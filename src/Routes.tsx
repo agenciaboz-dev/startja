@@ -2,7 +2,7 @@ import React from 'react';
 import { useUser } from './hooks/useUser';
 import { Route, Routes as ReactRoutes } from "react-router-dom"
 // import { Panel } from './pages/Panel';
-// import { Login } from './pages/Login';
+import { Login } from './pages/Login';
 // import { Signup } from './pages/Signup';
 
 interface RoutesProps {}
@@ -17,9 +17,9 @@ export const Routes:React.FC<RoutesProps> = ({  }) => {
             </ReactRoutes>
         ) : (
             <ReactRoutes>
-                {/* <Route index element={<Login />} />
+                <Route index element={<Login />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} /> */}
+                {/* <Route path="/signup" element={<Signup />} /> */} */}
             </ReactRoutes>
         )
 }
