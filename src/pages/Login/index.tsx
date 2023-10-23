@@ -17,7 +17,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
     const navigate = useNavigate()
     const io = useIo()
     const [loading, setLoading] = useState(false)
-    const { user } = useUser()
+    const { user, setUser } = useUser()
     const { snackbar } = useSnackbar()
 
     const initialValues: LoginValues = {
@@ -33,6 +33,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
     useEffect(() => {
         io.on("login:admin", (admin) => {
             setLoading(false)
+            setUser(admin)
             navigate('/panel')
             console.log(admin)
             snackbar({ severity: "success", text: "Conectado!" })
