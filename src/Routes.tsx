@@ -1,7 +1,7 @@
 import React from 'react';
 import { useUser } from './hooks/useUser';
 import { Route, Routes as ReactRoutes } from "react-router-dom"
-// import { Panel } from './pages/Panel';
+import { Panel } from './pages/Panel';
 import { Login } from './pages/Login';
 // import { Signup } from './pages/Signup';
 
@@ -12,8 +12,8 @@ export const Routes:React.FC<RoutesProps> = ({  }) => {
     
         return user ? (
             <ReactRoutes>
-                {/* <Route index element={<Panel user={user} />} />
-                <Route path="/*" element={<Panel user={user} />} /> */}
+                <Route index element={<Panel user={user} />} />
+                <Route path="/*" element={<Panel user={user} />} />
             </ReactRoutes>
         ) : (
             <ReactRoutes>

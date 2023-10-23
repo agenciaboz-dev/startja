@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { Form, Formik } from "formik"
 import { useIo } from "../../hooks/useIo"
 import { useUser } from "../../hooks/useUser"
+import { useSnackbar } from "burgos-snackbar"
 
 interface LoginProps {}
 
@@ -17,6 +18,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
     const io = useIo()
     const [loading, setLoading] = useState(false)
     const { user } = useUser()
+    const { snackbar } = useSnackbar()
 
     const initialValues: LoginValues = {
         email: "",
@@ -31,19 +33,22 @@ export const Login: React.FC<LoginProps> = ({}) => {
     useEffect(() => {
         io.on("login:admin", (admin) => {
             setLoading(false)
-            // navigate('/panel')
+            navigate('/panel')
             console.log(admin)
+            snackbar({ severity: "success", text: "Conectado!" })
         })
 
         io.on("login:customer", (customer) => {
             setLoading(false)
-            // navigate('/panel')
+            navigate('/panel')
             console.log(customer)
+            snackbar({ severity: "success", text: "Conectado!" })
         })
 
         io.on("login:error", (error) => {
             setLoading(false)
             console.log(error)
+            snackbar({ severity: "error", text: "Usuário não encontrado" })
         })
 
         return () => {
@@ -56,9 +61,8 @@ export const Login: React.FC<LoginProps> = ({}) => {
     return (
         <Box
             sx={{
-                // width: "100vw"
             }}
-            >
+        >
             <Box>
                 <img src="/src/assets/whitelabel-background-startja-login.webp" alt=""
                     style={{
