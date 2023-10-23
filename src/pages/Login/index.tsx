@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Box, Button, Checkbox, CircularProgress, TextField } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { Form, Formik } from "formik"
@@ -24,16 +24,34 @@ export const Login: React.FC<LoginProps> = ({}) => {
     }
 
     const handleLogin = async (values: LoginValues) => {
-        io.emit("client:sync", user)
         io.emit("user:login", values)
         setLoading(true)
     }
 
-    io.on("user:login", (user) => {
-        setLoading(false)
-        console.log(user)
-        navigate('/panel')
-    })
+    useEffect(() => {
+        io.on("login:admin", (admin) => {
+            setLoading(false)
+            // navigate('/panel')
+            console.log(admin)
+        })
+
+        io.on("login:customer", (customer) => {
+            setLoading(false)
+            // navigate('/panel')
+            console.log(customer)
+        })
+
+        io.on("login:error", (error) => {
+            setLoading(false)
+            console.log(error)
+        })
+
+        return () => {
+            io.off('login:admin')
+            io.off('login:customer')
+            io.off('login:error')
+        }   
+    }, [])
 
     return (
         <Box
