@@ -30,12 +30,24 @@ export const Login: React.FC<LoginProps> = ({}) => {
     }
 
     return (
-        <Box>
+        <Box
+            sx={{
+                width: "100vw"
+            }}
+            >
+            <Box>
+                <img src="https://chbsistemas.contentools.com/api/v1/media/174577/download/" alt="" />
+            </Box>
             <Formik initialValues={initialValues} onSubmit={(values) => handleLogin(values)}>
-            {({ values, handleChange }) => (
-                        <Form>
+                {({ values, handleChange }) => (
+                    <Form>
+                        <Box
+                            sx={{
+                                flexDirection: "column",
+                                margin: "auto"
+                            }}
+                        >
                             <TextField
-                                placeholder="E-mail"
                                 name="email"
                                 label="E-mail"
                                 value={values.email}
@@ -45,7 +57,6 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                 }}
                             />
                             <TextField
-                                placeholder="Senha"
                                 type="password"
                                 name="password"
                                 label="Senha"
@@ -61,8 +72,9 @@ export const Login: React.FC<LoginProps> = ({}) => {
                             >
                                 {loading ? <CircularProgress size={30} sx={{ color: "#fff", fontSize: "2vw" }} /> : "Entrar"}
                             </Button>
-                        </Form>
-                    )}
+                        </Box>
+                    </Form>
+                )}
             </Formik>
         </Box>
     )
