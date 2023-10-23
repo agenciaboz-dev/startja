@@ -1,6 +1,12 @@
 @font-face {
-  font-family: Montserrat;
-  src: url("/fonts/Montserrat-Regular.ttf") ;
+  font-family: Lato;
+  src: url("/src/fonts/Lato/Lato-Regular.ttf") ;
+}
+
+@font-face {
+  font-family: Lato;
+  src: url("/src/fonts/Lato/Lato-Bold.ttf") ;
+  font-weight: bold;
 }
 
 /* @font-face {
@@ -8,12 +14,6 @@
   src: url("../public/fonts/Montserrat-SemiBold.ttf") ;
   font-weight: 200 400;
 } */
-
-@font-face {
-  font-family: Montserrat;
-  src: url("/fonts/Montserrat-Bold.ttf") ;
-  font-weight: bold;
-}
 
 #root {
   height: 100%;
@@ -23,7 +23,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Montserrat;
+  font-family: Lato;
   /* user-select: none; */
 }
 
