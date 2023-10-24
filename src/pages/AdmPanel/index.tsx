@@ -2,12 +2,13 @@ import React from "react"
 import { Box } from "@mui/material"
 import { colors } from "../../style/colors"
 import { Sidebar } from "../../components/Sidebar"
+import { Header } from "../../components/Header"
 
-interface PanelProps {
+interface AdmPanelProps {
     user: User
 }
 
-export const Panel: React.FC<PanelProps> = ({ user }) => {
+export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
     return (
         <Box
             sx={{
@@ -16,6 +17,13 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
             }}
         >
             <Sidebar />
+            <Box
+                sx={{
+                    width: "90%"
+                }}
+            >
+                <Header />
+            </Box>
         </Box>
     )
 }

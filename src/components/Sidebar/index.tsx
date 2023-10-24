@@ -10,7 +10,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
         <Box
             sx={{
                 height: "100%",
-                width: "10rem",
+                width: "10%",
                 backgroundColor: "white",
                 boxShadow: "0 0 1rem 0 #d1d1d1",
                 flexDirection: "column",

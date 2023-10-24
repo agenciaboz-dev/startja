@@ -34,14 +34,13 @@ export const Login: React.FC<LoginProps> = ({}) => {
         io.on("login:admin", (admin) => {
             setLoading(false)
             setUser(admin)
-            navigate('/panel')
+            navigate('/admpanel')
             console.log(admin)
             snackbar({ severity: "success", text: "Conectado!" })
         })
 
         io.on("login:customer", (customer) => {
             setLoading(false)
-            navigate('/panel')
             console.log(customer)
             snackbar({ severity: "success", text: "Conectado!" })
         })
