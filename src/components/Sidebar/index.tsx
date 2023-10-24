@@ -44,8 +44,8 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                     // color="action"
                     sx={{
                         fill: "#000000",
-                        width: "2.5rem",
-                        height: "2.5rem"
+                        width: "2rem",
+                        height: "2rem"
                     }}
                 />
                 <p>

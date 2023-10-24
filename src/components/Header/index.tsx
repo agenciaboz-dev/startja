@@ -1,7 +1,8 @@
 import React from "react"
 import { Box } from "@mui/material"
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined'
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
+import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined'
 import { colors } from "../../style/colors"
 
 interface HeaderProps {}
@@ -20,7 +21,8 @@ export const Header: React.FC<HeaderProps> = ({}) => {
             <h1>Título</h1>
             <Box
                 sx={{
-                    gap: "2rem"
+                    gap: "2rem",
+                    alignItems: "center",
                 }}
             >
                 <Box
@@ -36,20 +38,55 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                             width: "2rem"
                         }}
                     />
-                    <p>Ajuda</p>
+                    <p
+                        style={{
+                            fontWeight: "lighter"
+                        }}
+                        >
+                        Ajuda
+                    </p>
                 </Box>
-                <hr />
-                <Box>
-                    <AccountCircleOutlinedIcon />
+                <hr
+                    style={{
+                        height: "2rem"
+                    }}
+                />
+                <Box
+                    sx={{
+                        alignItems: "center",
+                        gap: "0.5rem"
+                    }}
+                >
+                    <AccountCircleOutlinedIcon
+                        sx={{
+                            fill: "#323232",
+                            height: "2rem",
+                            width: "2rem"
+                        }}
+                    />
                     <Box
                         sx={{
-                            flexDirection: "column"
+                            flexDirection: "column",
                         }}
-                    >
-                        <p>Nome do Usuário</p>
-                        <p>Menus e configurações</p>
+                        >
+                        <p
+                            style={{
+                                fontWeight: "lighter"
+                            }}
+                        >
+                            [Nome do Usuário]
+                        </p>
+                        <p
+                            style={{
+                                fontSize: "0.8rem",
+                                fontWeight: "bold"
+                            }}
+                        >
+                            Menus e configurações
+                        </p>
                     </Box>
                 </Box>
+                <ArrowDropDownOutlinedIcon />
             </Box>
         </Box>
     )
