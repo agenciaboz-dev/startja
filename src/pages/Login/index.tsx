@@ -62,13 +62,18 @@ export const Login: React.FC<LoginProps> = ({}) => {
     return (
         <Box
             sx={{
+                width: "100%"
             }}
-        >
-            <Box>
+            >
+            <Box
+                sx={{
+                    width: "60%",
+                }}
+                >
                 <img src="/src/assets/whitelabel-background-startja-login.webp" alt=""
                     style={{
-                        height: "100vh",
-                        width: "60vw",
+                        height: "100%",
+                        width: "100%",
                         objectFit: "cover",
                         objectPosition: "0"
                     }}
@@ -78,22 +83,21 @@ export const Login: React.FC<LoginProps> = ({}) => {
                 sx={{
                     flexDirection: "column",
                     backgroundColor: "white",
-                    width: "40vw",
+                    width: "40%",
                     alignItems: "center",
                     justifyContent: "center",
-                    gap: "2vw"
+                    gap: "2rem"
                 }}
             >
                 <img src="/src/assets/whitelabel-logo-startja.webp" alt=""
                     style={{
-                        width: "30vw",
+                        width: "30rem",
                         objectFit: "contain"
                     }}
                 />
 
                 <p
                     style={{
-                        color: "black",
                         fontSize: "1.3rem"
                     }}
                 >
@@ -105,8 +109,8 @@ export const Login: React.FC<LoginProps> = ({}) => {
                             <Box
                                 sx={{
                                     flexDirection: "column",
-                                    gap: "2vw",
-                                    width: "30vw"
+                                    gap: "2rem",
+                                    width: "30rem"
                                 }}
                             >
                                 <TextField
@@ -136,7 +140,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                 >
                                     <Box
                                         sx={{
-                                            gap: "1vw"
+                                            gap: "1rem"
                                         }}
                                     >
                                         <Checkbox
@@ -144,11 +148,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                                 padding: 0
                                             }}
                                         />
-                                        <p
-                                            style={{
-                                                color: "black"
-                                            }}
-                                        >
+                                        <p>
                                             Manter conectado
                                         </p>
                                     </Box>
@@ -156,11 +156,11 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                         variant="contained"
                                         type="submit"
                                         sx={{
-                                            borderRadius: "4vw",
+                                            borderRadius: "4rem",
                                             textTransform: "capitalize"
                                         }}
                                     >
-                                        {loading ? <CircularProgress size={30} sx={{ color: "#fff", fontSize: "2vw" }} /> : "Entrar"}
+                                        {loading ? <CircularProgress size={30} sx={{ color: "#fff", fontSize: "2rem" }} /> : "Entrar"}
                                     </Button>
                                 </Box>
                             </Box>
