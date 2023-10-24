@@ -12,7 +12,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                 height: "100%",
                 width: "10%",
                 backgroundColor: "white",
-                boxShadow: "0 0 1rem 0 #d1d1d1",
+                boxShadow: "2px 0 2px 0 #d1d1d1",
                 flexDirection: "column",
                 alignItems: "center",
                 padding: "2rem 0",
