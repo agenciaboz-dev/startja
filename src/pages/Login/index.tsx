@@ -5,13 +5,9 @@ import { Form, Formik } from "formik"
 import { useIo } from "../../hooks/useIo"
 import { useUser } from "../../hooks/useUser"
 import { useSnackbar } from "burgos-snackbar"
+import { useLocalStorage } from "../../hooks/useLocalStorage"
 
 interface LoginProps {}
-
-interface LoginValues {
-    email: string
-    password: string
-}
 
 export const Login: React.FC<LoginProps> = ({}) => {
     const navigate = useNavigate()
@@ -19,6 +15,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
     const [loading, setLoading] = useState(false)
     const { user, setUser } = useUser()
     const { snackbar } = useSnackbar()
+    const storage = useLocalStorage()
 
     const initialValues: LoginValues = {
         email: "",
@@ -30,6 +27,10 @@ export const Login: React.FC<LoginProps> = ({}) => {
         setLoading(true)
     }
 
+    const saveLoginData = (values: LoginValues) => {
+        storage.set('startja:user', values)
+    }
+
     useEffect(() => {
         io.on("login:admin", (admin) => {
             setLoading(false)
@@ -37,12 +38,14 @@ export const Login: React.FC<LoginProps> = ({}) => {
             navigate('/admpanel')
             console.log(admin)
             snackbar({ severity: "success", text: "Conectado!" })
+            saveLoginData({email: admin.email, password: admin.password})
         })
 
         io.on("login:customer", (customer) => {
             setLoading(false)
             console.log(customer)
             snackbar({ severity: "success", text: "Conectado!" })
+            saveLoginData({email: customer.email, password: customer.password})
         })
 
         io.on("login:error", (error) => {

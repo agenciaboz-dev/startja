@@ -14,7 +14,7 @@ declare interface Customer extends User {
     state: String
 }
 
-interface LoginForm {
-    login: string
+declare interface LoginValues {
+    email: string
     password: string
 }
