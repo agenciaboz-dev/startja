@@ -5,7 +5,7 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 interface AdmCustomersScreenProps {}
 
 export const AdmCustomersScreen: React.FC<AdmCustomersScreenProps> = ({}) => {
-    const [emptyCustomersList, setEmptyCustomersList] = useState(true)
+    const [emptyCustomersList, setEmptyCustomersList] = useState(false)
 
     return(
         <Box>
@@ -14,9 +14,9 @@ export const AdmCustomersScreen: React.FC<AdmCustomersScreenProps> = ({}) => {
                     sx={{
                         height: "80vh",
                         width: "100%",
+                        padding: "2rem",
                         justifyContent: "center",
                         alignItems: "center",
-                        padding: "2rem",
                         flexDirection: "column",
                         gap: "1rem"
                     }}
@@ -38,6 +38,18 @@ export const AdmCustomersScreen: React.FC<AdmCustomersScreenProps> = ({}) => {
                         <AddOutlinedIcon />
                         Adicionar novo cliente
                     </Button>
+                </Box>
+            }
+
+            {!emptyCustomersList &&
+                <Box
+                    sx={{
+                        height: "80vh",
+                        width: "100%",
+                        padding: "2rem"
+                    }}
+                >
+                    <h2>teste</h2>
                 </Box>
             }
         </Box>
