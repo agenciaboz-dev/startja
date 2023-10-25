@@ -1,11 +1,12 @@
 import React, { useState } from "react"
 import { Box, Button } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
+import { CustomerCard } from "../../../components/CustomerCard"
 
 interface CustomersScreenProps {}
 
 export const CustomersScreen: React.FC<CustomersScreenProps> = ({}) => {
-    const [emptyCustomersList, setEmptyCustomersList] = useState(true)
+    const [emptyCustomersList, setEmptyCustomersList] = useState(false)
 
     return(
         <Box>
@@ -49,7 +50,7 @@ export const CustomersScreen: React.FC<CustomersScreenProps> = ({}) => {
                         padding: "2rem"
                     }}
                 >
-                    <h2>teste</h2>
+                    <CustomerCard />
                 </Box>
             }
         </Box>
