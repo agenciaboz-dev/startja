@@ -43,7 +43,7 @@ export const Routes:React.FC<RoutesProps> = ({  }) => {
             <ReactRoutes>
                 <Route index element={<AdmPanel user={user} />} />
                 {/* <Route path="*" element={<AdmPanel user={user} />} /> */}
-                <Route path="/admpanel" element={<AdmPanel user={user} />} />
+                <Route path="/admpanel/*" element={<AdmPanel user={user} />} />
             </ReactRoutes>
         ) : (
             <ReactRoutes>

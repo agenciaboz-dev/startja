@@ -2,29 +2,29 @@ import React, { useState } from "react"
 import { Box, Button } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 
-interface AdmProductsScreenProps {}
+interface CustomersScreenProps {}
 
-export const AdmProductsScreen: React.FC<AdmProductsScreenProps> = ({}) => {
-    const [emptyProductsList, setEmptyProductsList] = useState(true)
+export const CustomersScreen: React.FC<CustomersScreenProps> = ({}) => {
+    const [emptyCustomersList, setEmptyCustomersList] = useState(false)
 
     return(
         <Box>
-            {emptyProductsList &&
+            {emptyCustomersList &&
                 <Box
                     sx={{
                         height: "80vh",
                         width: "100%",
+                        padding: "2rem",
                         justifyContent: "center",
                         alignItems: "center",
-                        padding: "2rem",
                         flexDirection: "column",
                         gap: "1rem"
                     }}
                 >
                     <h2>
-                        Sem produtos cadastrados
+                        Sem clientes cadastrados
                     </h2>
-                    <p>Para facilitar a inclusão de produtos no sistema, pressione o botão para cadastrar um novo produto.</p>
+                    <p>Para facilitar a inclusão de clientes no sistema, pressione o botão para cadastrar um novo cliente.</p>
                     <Button
                         variant="contained"
                         sx={{
@@ -36,8 +36,20 @@ export const AdmProductsScreen: React.FC<AdmProductsScreenProps> = ({}) => {
                         }}
                     >
                         <AddOutlinedIcon />
-                        Adicionar novo produto
+                        Adicionar novo cliente
                     </Button>
+                </Box>
+            }
+
+            {!emptyCustomersList &&
+                <Box
+                    sx={{
+                        height: "80vh",
+                        width: "100%",
+                        padding: "2rem"
+                    }}
+                >
+                    <h2>teste</h2>
                 </Box>
             }
         </Box>

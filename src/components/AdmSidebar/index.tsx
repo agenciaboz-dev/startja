@@ -50,7 +50,7 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         marginTop: "auto",
                         cursor: "pointer"
                     }}
-                    onClick={() => navigate("/admcustomers/")}
+                    onClick={() => navigate("/admpanel/customers/")}
                 >
                     <PeopleOutlinedIcon
                         sx={{
@@ -71,7 +71,7 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         marginTop: "auto",
                         cursor: "pointer"
                     }}
-                    onClick={() => navigate("/admproducts/")}
+                    onClick={() => navigate("/admpanel/products/")}
                 >
                     <FilterVintageOutlinedIcon
                         sx={{
