@@ -3,10 +3,12 @@ import { Box } from "@mui/material"
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 import FilterVintageOutlinedIcon from '@mui/icons-material/FilterVintageOutlined';
+import { useNavigate } from "react-router-dom";
 
 interface AdmSidebarProps {}
 
 export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
+    const navigate = useNavigate()
 
     return (
         <Box
@@ -45,8 +47,10 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         flexDirection: "column",
                         gap: "0.5rem",
                         alignItems: "center",
-                        marginTop: "auto"
+                        marginTop: "auto",
+                        cursor: "pointer"
                     }}
+                    onClick={() => navigate("/admcustomers/")}
                 >
                     <PeopleOutlinedIcon
                         sx={{
@@ -64,8 +68,10 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         flexDirection: "column",
                         gap: "0.5rem",
                         alignItems: "center",
-                        marginTop: "auto"
+                        marginTop: "auto",
+                        cursor: "pointer"
                     }}
+                    onClick={() => navigate("/admproducts/")}
                 >
                     <FilterVintageOutlinedIcon
                         sx={{
