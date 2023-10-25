@@ -14,9 +14,9 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({}) => {
                     sx={{
                         height: "80vh",
                         width: "100%",
+                        padding: "2rem",
                         justifyContent: "center",
                         alignItems: "center",
-                        padding: "2rem",
                         flexDirection: "column",
                         gap: "1rem"
                     }}
@@ -38,6 +38,18 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({}) => {
                         <AddOutlinedIcon />
                         Adicionar novo produto
                     </Button>
+                </Box>
+            }
+
+            {!emptyProductsList &&
+                <Box
+                    sx={{
+                        height: "80vh",
+                        width: "100%",
+                        padding: "2rem"
+                    }}
+                >
+                    <h2>teste</h2>
                 </Box>
             }
         </Box>

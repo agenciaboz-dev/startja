@@ -5,7 +5,7 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 interface CustomersScreenProps {}
 
 export const CustomersScreen: React.FC<CustomersScreenProps> = ({}) => {
-    const [emptyCustomersList, setEmptyCustomersList] = useState(false)
+    const [emptyCustomersList, setEmptyCustomersList] = useState(true)
 
     return(
         <Box>
