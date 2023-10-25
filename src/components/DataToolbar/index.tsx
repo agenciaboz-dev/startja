@@ -9,10 +9,10 @@ export const DataToolbar: React.FC<DataToolbarProps> = ({}) => {
     return (
         <Box
             sx={{
-                padding: "2rem",
+                padding: "2rem 2rem 0",
                 justifyContent: "space-between",
                 alignItems: "center",
-                height: "7rem",
+                height: "5rem",
                 gap: "1rem"
             }}
             >

@@ -1,9 +1,10 @@
 import React from "react"
 import { Box } from "@mui/material"
 import { colors } from "../../style/colors"
-import { Sidebar } from "../../components/Sidebar"
+import { AdmSidebar } from "../../components/AdmSidebar"
 import { Header } from "../../components/Header"
 import { DataToolbar } from "../../components/DataToolbar"
+import { AdmCustomersScreen } from "./AdmCustomersScreen"
 
 interface AdmPanelProps {
     user: User
@@ -14,10 +15,11 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
         <Box
             sx={{
                 backgroundColor: colors.background,
-                width: "100%"
+                width: "100%",
+                overflow: "hidden"
             }}
         >
-            <Sidebar />
+            <AdmSidebar />
             <Box
                 sx={{
                     width: "90%",
@@ -26,7 +28,7 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
             >
                 <Header />
                 <DataToolbar />
-                
+                <AdmCustomersScreen />
             </Box>
         </Box>
     )
