@@ -1,11 +1,14 @@
-import React from "react"
+import React, { useState } from "react"
 import { Box } from "@mui/material"
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import { colors } from "../../style/colors"
+import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
+import FilterVintageOutlinedIcon from '@mui/icons-material/FilterVintageOutlined';
 
 interface SidebarProps {}
 
 export const Sidebar: React.FC<SidebarProps> = ({}) => {
+    const [admSidebar, setAdmSidebar] = useState(true)
+
     return (
         <Box
             sx={{
@@ -32,6 +35,54 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                 }}
             />
 
+            {admSidebar &&
+                <Box
+                    sx={{
+                        flexDirection: "column",
+                        gap: "2rem"
+                    }}
+                >
+                    <Box
+                        sx={{
+                            flexDirection: "column",
+                            gap: "0.5rem",
+                            alignItems: "center",
+                            marginTop: "auto"
+                        }}
+                    >
+                        <PeopleOutlinedIcon
+                            sx={{
+                                fill: "#000000",
+                                width: "2rem",
+                                height: "2rem"
+                            }}
+                        />
+                        <p>
+                            Clientes
+                        </p>
+                    </Box>
+                    <Box
+                        sx={{
+                            flexDirection: "column",
+                            gap: "0.5rem",
+                            alignItems: "center",
+                            marginTop: "auto"
+                        }}
+                    >
+                        <FilterVintageOutlinedIcon
+                            sx={{
+                                fill: "#000000",
+                                width: "2rem",
+                                height: "2rem"
+                            }}
+                        />
+                        <p>
+                            Produtos
+                        </p>
+                    </Box>
+                </Box>
+            }
+
             <Box
                 sx={{
                     flexDirection: "column",
@@ -41,7 +92,6 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                 }}
             >
                 <SettingsOutlinedIcon
-                    // color="action"
                     sx={{
                         fill: "#000000",
                         width: "2rem",

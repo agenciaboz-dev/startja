@@ -2,7 +2,6 @@ import React from "react"
 import { Box, Button, TextField } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { colors } from "../../style/colors"
 
 interface DataToolbarProps {}
 
@@ -24,7 +23,8 @@ export const DataToolbar: React.FC<DataToolbarProps> = ({}) => {
                     sx: {
                         borderRadius: "4rem",
                         alignItems: "center",
-                        height: "100%"
+                        height: "100%",
+                        gap: "0.5rem"
                     }
                 }}
                 inputProps={{
@@ -44,7 +44,8 @@ export const DataToolbar: React.FC<DataToolbarProps> = ({}) => {
                 sx={{
                     borderRadius: "2rem",
                     textTransform: "capitalize",
-                    height: "100%"
+                    height: "100%",
+                    gap: "0.5rem"
                 }}
             >
                 <AddOutlinedIcon />

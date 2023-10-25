@@ -26,6 +26,7 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
             >
                 <Header />
                 <DataToolbar />
+                
             </Box>
         </Box>
     )
