@@ -6,6 +6,8 @@ declare interface User {
     
 }
 
+declare interface Admin extends User {}
+
 declare interface Customer extends User {
     register_date: String
     phone: String
