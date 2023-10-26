@@ -29,6 +29,7 @@ export const DataToolbar: React.FC<DataToolbarProps> = ({}) => {
                 }}
                 inputProps={{
                     style: {
+                        padding: "4px 0 0 "
                     }
                 }}
                 sx={{
@@ -49,7 +50,9 @@ export const DataToolbar: React.FC<DataToolbarProps> = ({}) => {
                 }}
             >
                 <AddOutlinedIcon />
-                Adicionar
+                <p>
+                    Adicionar
+                </p>
             </Button>
         </Box>
     )
