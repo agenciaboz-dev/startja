@@ -9,7 +9,11 @@ export const CustomersScreen: React.FC<CustomersScreenProps> = ({}) => {
     const [emptyCustomersList, setEmptyCustomersList] = useState(false)
 
     return(
-        <Box>
+        <Box
+            sx={{
+                width: "100%"
+            }}
+        >
             {emptyCustomersList &&
                 <Box
                     sx={{
@@ -47,7 +51,6 @@ export const CustomersScreen: React.FC<CustomersScreenProps> = ({}) => {
                     sx={{
                         height: "80vh",
                         width: "100%",
-                        padding: "2rem"
                     }}
                 >
                     <CustomerCard />

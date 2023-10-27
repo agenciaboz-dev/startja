@@ -1,14 +1,19 @@
 import React, { useState } from "react"
-import { Box, Button } from "@mui/material"
+import { Box, Button, Checkbox } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 
 interface ProductsScreenProps {}
 
 export const ProductsScreen: React.FC<ProductsScreenProps> = ({}) => {
-    const [emptyProductsList, setEmptyProductsList] = useState(true)
+    const [emptyProductsList, setEmptyProductsList] = useState(false)
 
     return(
-        <Box>
+        <Box
+            sx={{
+                height: "100%",
+                width: "100%",
+            }}
+        >
             {emptyProductsList &&
                 <Box
                     sx={{
@@ -44,12 +49,43 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({}) => {
             {!emptyProductsList &&
                 <Box
                     sx={{
-                        height: "80vh",
-                        width: "100%",
-                        padding: "2rem"
+                        flex: 1,
+                        padding: "1rem 1.5rem 1rem 0.5rem",
+                        boxShadow: "0 2px 2px 2px #d1d1d1",
+                        backgroundColor: "white",
+                        borderRadius: "20px",
+                        flexDirection: "column",
+                        width: "100%"
                     }}
-                >
+                    >
+                    <Box
+                        sx={{
+                            alignItems: "center",
+                            width: "100%"
+                        }}
+                        >
+                        <Checkbox
+                            inputProps={{
+                                style: {
+                                    padding: "0"
+                                }
+                            }}
+                        />
+                        <Box
+                            sx={{
+                                justifyContent: "space-between",
+                                flex: 1,
+                            }}
+                        >
+                            <h3>Nome do Produto</h3>
+                            <h3>NCM - Classificação</h3>
+                            <h3>Ações</h3>
+                        </Box>
+                    </Box>
+                    <hr />
+
                     <h2>teste</h2>
+                    
                 </Box>
             }
         </Box>

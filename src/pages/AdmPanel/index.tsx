@@ -30,11 +30,17 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
             >
                 <Header />
                 <DataToolbar />
-                <Routes>
-                    <Route index element={<CustomersScreen />} />
-                    <Route path="/customers/" element={<CustomersScreen />} />
-                    <Route path="/products/" element={<ProductsScreen />} />
-                </Routes>
+                <Box
+                    sx={{
+                        margin: "2rem",
+                    }}
+                >
+                    <Routes>
+                        <Route index element={<CustomersScreen />} />
+                        <Route path="/customers/" element={<CustomersScreen />} />
+                        <Route path="/products/" element={<ProductsScreen />} />
+                    </Routes>
+                </Box>
             </Box>
         </Box>
     )

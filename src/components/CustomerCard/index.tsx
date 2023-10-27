@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Box, Button, IconButton, Avatar as MuiAvatar } from "@mui/material"
 import { colors } from "../../style/colors"
 import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
@@ -7,6 +7,28 @@ import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 interface CustomerCardProps {}
 
 export const CustomerCard: React.FC<CustomerCardProps> = ({}) => {
+    
+    async function fetchCustomerData() {
+        try {
+            // const response = await fetch('/src/api/backend.ts');
+            const data = await response.json();
+            return data.customers;
+        } catch (error) {
+            console.error('Erro ao obter dados do cliente:', error);
+            return [];
+        }
+    }
+    const [customerData, setCustomerData] = useState([]);
+    useEffect(() => {
+        async function fetchData() {
+            const data = await fetchCustomerData();
+            setCustomerData(data);
+        }
+
+        fetchData();
+    }, []);
+    
+
     return (
         <Box
             sx={{
