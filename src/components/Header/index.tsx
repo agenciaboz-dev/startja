@@ -11,7 +11,6 @@ export const Header: React.FC<HeaderProps> = ({}) => {
     return (
         <Box
             sx={{
-                padding: "2rem 2rem 0",
                 justifyContent: "space-between",
                 alignItems: "center",
                 width: "100%"

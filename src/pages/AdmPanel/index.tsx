@@ -26,13 +26,15 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
                 sx={{
                     width: "90%",
                     flexDirection: "column",
+                    overflowY: "auto",
+                    padding: "2rem",
+                    gap: "2rem",
                 }}
             >
                 <Header />
                 <DataToolbar />
                 <Box
                     sx={{
-                        margin: "2rem",
                     }}
                 >
                     <Routes>
