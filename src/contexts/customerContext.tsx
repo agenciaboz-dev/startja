@@ -1,5 +1,6 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import React from 'react'
+import { useIo } from '../hooks/useIo';
 
 interface CustomerContextValue {
     list: Customer[];
@@ -16,6 +17,21 @@ export default CustomerContext
 
 export const CustomerProvider:React.FC<CustomerProviderProps> = ({children}) => {
     const [list, setList] = useState<Customer[]>([])
+    const io = useIo()
+
+    useEffect(() => {
+        console.log({list})
+    },[list])
+
+    useEffect(() => {
+        io.on('customer:list', (data) =>{
+            setList(data.customers)
+        })
+
+        return () => {
+            io.off('customer:list')
+        }
+    },[])
 
     return (
          <CustomerContext.Provider value={{list, setList}}>
