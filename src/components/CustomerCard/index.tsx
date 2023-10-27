@@ -8,27 +8,6 @@ interface CustomerCardProps {}
 
 export const CustomerCard: React.FC<CustomerCardProps> = ({}) => {
     
-    async function fetchCustomerData() {
-        try {
-            // const response = await fetch('/src/api/backend.ts');
-            const data = await response.json();
-            return data.customers;
-        } catch (error) {
-            console.error('Erro ao obter dados do cliente:', error);
-            return [];
-        }
-    }
-    const [customerData, setCustomerData] = useState([]);
-    useEffect(() => {
-        async function fetchData() {
-            const data = await fetchCustomerData();
-            setCustomerData(data);
-        }
-
-        fetchData();
-    }, []);
-    
-
     return (
         <Box
             sx={{
