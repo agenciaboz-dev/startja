@@ -4,15 +4,17 @@ import { colors } from "../../style/colors"
 import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 
-interface CustomerCardProps {}
+interface CustomerCardProps {
+    customer : Customer
+}
 
-export const CustomerCard: React.FC<CustomerCardProps> = ({}) => {
+export const CustomerCard: React.FC<CustomerCardProps> = ({customer}) => {
     
     return (
         <Box
             sx={{
                 height: "fit-content",
-                width: "25%",
+                // width: "25%",
                 backgroundColor: "white",
                 borderRadius: "20px",
                 boxShadow: "0 2px 2px 2px #d1d1d1",
@@ -42,7 +44,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({}) => {
                         style={{
                             color: colors.text.darkgrey
                         }}
-                    >[Nome do Cliente]</p>
+                    >{customer.name}</p>
                     <p>Cliente há x dias</p>
                 </Box>
             </Box>

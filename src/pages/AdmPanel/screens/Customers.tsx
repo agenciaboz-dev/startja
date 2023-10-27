@@ -1,12 +1,19 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Box, Button } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { CustomerCard } from "../../../components/CustomerCard"
+import { useIo } from "../../../hooks/useIo"
+import { useCustomer } from "../../../hooks/useCustomer"
 
 interface CustomersScreenProps {}
 
 export const CustomersScreen: React.FC<CustomersScreenProps> = ({}) => {
     const [emptyCustomersList, setEmptyCustomersList] = useState(false)
+    const customers = useCustomer()
+    const io = useIo()
+    useEffect(() => {
+        io.emit('customer:list')
+    },[])
 
     return(
         <Box
@@ -51,9 +58,11 @@ export const CustomersScreen: React.FC<CustomersScreenProps> = ({}) => {
                     sx={{
                         height: "80vh",
                         width: "100%",
+                        flexWrap: "wrap",
+                        gap: "2rem"
                     }}
                 >
-                    <CustomerCard />
+                    {customers.list.map(customer => <CustomerCard key={customer.id} customer={customer} />)}
                 </Box>
             }
         </Box>
