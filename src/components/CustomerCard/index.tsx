@@ -14,7 +14,8 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer}) => {
         <Box
             sx={{
                 height: "fit-content",
-                // width: "25%",
+                minWidth: "20%",
+                flex: 1,
                 backgroundColor: "white",
                 borderRadius: "20px",
                 boxShadow: "0 2px 2px 2px #d1d1d1",
