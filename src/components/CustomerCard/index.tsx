@@ -59,8 +59,8 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer}) => {
                         gap: "1rem"
                     }}
                 >
-                    <p>CPF: 000.000.000-00</p>
-                    <p>Cidade/UF</p>
+                    <p>CPF: {customer.cpf}</p>
+                    <p>{customer.city}/{customer.state}</p>
                 </Box>
                 <p>Certificado digital expira em: 00/00/00</p>
             </Box>
@@ -70,8 +70,8 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer}) => {
                     flexDirection: "column"
                 }}
             >
-                <p>cliente@email.com.br</p>
-                <p>00 0 0000-0000</p>
+                <p>{customer.email}</p>
+                <p>{customer.phone}</p>
             </Box>
             <Box
                 sx={{
