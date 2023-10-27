@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import { Box, Button, Checkbox } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
+import { ProductsListHeader } from "../../../components/ProductsList/ProductsListHeader"
+import { ProductsList } from "../../../components/ProductsList/ProductsList"
 
 interface ProductsScreenProps {}
 
@@ -55,37 +57,11 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({}) => {
                         backgroundColor: "white",
                         borderRadius: "20px",
                         flexDirection: "column",
-                        width: "100%"
+                        width: "100%",
                     }}
                     >
-                    <Box
-                        sx={{
-                            alignItems: "center",
-                            width: "100%"
-                        }}
-                        >
-                        <Checkbox
-                            inputProps={{
-                                style: {
-                                    padding: "0"
-                                }
-                            }}
-                        />
-                        <Box
-                            sx={{
-                                justifyContent: "space-between",
-                                flex: 1,
-                            }}
-                        >
-                            <h3>Nome do Produto</h3>
-                            <h3>NCM - Classificação</h3>
-                            <h3>Ações</h3>
-                        </Box>
-                    </Box>
-                    <hr />
-
-                    <h2>teste</h2>
-                    
+                    <ProductsListHeader />
+                    <ProductsList />
                 </Box>
             }
         </Box>
