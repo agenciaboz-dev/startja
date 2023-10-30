@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { Box, Button, IconButton, Avatar as MuiAvatar } from "@mui/material"
 import { colors } from "../../style/colors"
 import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface CustomerCardProps {
     customer : Customer
