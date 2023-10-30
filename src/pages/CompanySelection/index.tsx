@@ -1,18 +1,14 @@
 import React from "react"
 import { Box } from "@mui/material"
 import { colors } from "../../style/colors"
-import { AdmSidebar } from "../../components/AdmSidebar"
 import { Header } from "../../components/Header"
 import { DataToolbar } from "../../components/DataToolbar"
-import { CustomersScreen } from "./screens/Customers"
-import { Route, Routes } from "react-router-dom"
-import { ProductsScreen } from "./screens/Products"
 
-interface AdmPanelProps {
+interface CompanySelectionProps {
     user: User
 }
 
-export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
+export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
     return (
         <Box
             sx={{
@@ -21,10 +17,9 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
                 overflow: "hidden"
             }}
         >
-            <AdmSidebar />
             <Box
                 sx={{
-                    width: "90%",
+                    width: "100%",
                     flexDirection: "column",
                     overflowY: "auto",
                     padding: "2rem",
@@ -37,11 +32,7 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
                     sx={{
                     }}
                 >
-                    <Routes>
-                        <Route index element={<CustomersScreen />} />
-                        <Route path="/clientes/" element={<CustomersScreen />} />
-                        <Route path="/produtos/" element={<ProductsScreen />} />
-                    </Routes>
+                    
                 </Box>
             </Box>
         </Box>

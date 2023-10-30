@@ -3,12 +3,14 @@ import { Box, Button, IconButton, Avatar as MuiAvatar } from "@mui/material"
 import { colors } from "../../style/colors"
 import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import { Navigate, useNavigate } from "react-router-dom";
 
 interface CustomerCardProps {
     customer : Customer
 }
 
 export const CustomerCard: React.FC<CustomerCardProps> = ({customer}) => {
+    const navigate = useNavigate()
     
     return (
         <Box
@@ -97,6 +99,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer}) => {
                         textTransform: "capitalize",
                         gap: "0.5rem"
                     }}
+                    onClick={() => navigate("/selecionar-empresa/")}
                 >
                     <LoginOutlinedIcon />
                     <p>

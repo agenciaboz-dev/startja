@@ -35,7 +35,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
         io.on("login:admin", (admin) => {
             setLoading(false)
             setUser(admin)
-            navigate('/admpanel')
+            navigate('/adm')
             console.log(admin)
             snackbar({ severity: "success", text: "Conectado!" })
             saveLoginData({email: admin.email, password: admin.password})
