@@ -1,13 +1,18 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Box, Button, Checkbox } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { ProductsListHeader } from "../../../components/ProductsList/ProductsListHeader"
 import { ProductsList } from "../../../components/ProductsList"
+import { useIo } from "../../../hooks/useIo"
 
 interface ProductsScreenProps {}
 
 export const ProductsScreen: React.FC<ProductsScreenProps> = ({}) => {
     const [emptyProductsList, setEmptyProductsList] = useState(false)
+    const io = useIo()
+    useEffect(() => {
+        io.emit('product:list')
+    },[])
 
     return(
         <Box
