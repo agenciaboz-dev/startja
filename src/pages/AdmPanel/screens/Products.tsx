@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Box, Button, Checkbox } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { ProductsListHeader } from "../../../components/ProductsList/ProductsListHeader"
-import { ProductsList } from "../../../components/ProductsList/ProductsList"
+import { ProductsList } from "../../../components/ProductsList"
 
 interface ProductsScreenProps {}
 
