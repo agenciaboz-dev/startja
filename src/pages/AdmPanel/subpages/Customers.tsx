@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button, Checkbox } from "@mui/material"
+import { Box, Button } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { ProductsListHeader } from "../../../components/ProductsList/ProductsListHeader"
-import { ProductsList } from "../../../components/ProductsList"
+import { CustomerCard } from "../../../components/CustomerCard"
 import { useIo } from "../../../hooks/useIo"
+import { useCustomer } from "../../../hooks/useCustomer"
 
-interface ProductsScreenProps {}
+interface CustomersProps {}
 
-export const ProductsScreen: React.FC<ProductsScreenProps> = ({}) => {
-    const [emptyProductsList, setEmptyProductsList] = useState(false)
+export const Customers: React.FC<CustomersProps> = ({}) => {
+    const [emptyCustomersList, setEmptyCustomersList] = useState(false)
+    const customers = useCustomer()
     const io = useIo()
     useEffect(() => {
-        io.emit('product:list')
+        io.emit('customer:list')
     },[])
 
     return(
         <Box
             sx={{
-                height: "100%",
-                width: "100%",
+                width: "100%"
             }}
         >
-            {emptyProductsList &&
+            {emptyCustomersList &&
                 <Box
                     sx={{
                         height: "80vh",
@@ -34,9 +34,9 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({}) => {
                     }}
                 >
                     <h2>
-                        Sem produtos cadastrados
+                        Sem clientes cadastrados
                     </h2>
-                    <p>Para facilitar a inclusão de produtos no sistema, pressione o botão para cadastrar um novo produto.</p>
+                    <p>Para facilitar a inclusão de clientes no sistema, pressione o botão para cadastrar um novo cliente.</p>
                     <Button
                         variant="contained"
                         sx={{
@@ -48,25 +48,21 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({}) => {
                         }}
                     >
                         <AddOutlinedIcon />
-                        Adicionar novo produto
+                        Adicionar novo cliente
                     </Button>
                 </Box>
             }
 
-            {!emptyProductsList &&
+            {!emptyCustomersList &&
                 <Box
                     sx={{
-                        flex: 1,
-                        padding: "1rem 1.5rem 1rem 0.5rem",
-                        boxShadow: "0 2px 2px 2px #d1d1d1",
-                        backgroundColor: "white",
-                        borderRadius: "20px",
-                        flexDirection: "column",
+                        height: "80vh",
                         width: "100%",
+                        flexWrap: "wrap",
+                        gap: "2rem"
                     }}
-                    >
-                    <ProductsListHeader />
-                    <ProductsList />
+                >
+                    {customers.list.map(customer => <CustomerCard key={customer.id} customer={customer} />)}
                 </Box>
             }
         </Box>

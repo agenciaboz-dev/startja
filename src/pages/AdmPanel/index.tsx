@@ -4,9 +4,9 @@ import { colors } from "../../style/colors"
 import { AdmSidebar } from "../../components/AdmSidebar"
 import { Header } from "../../components/Header"
 import { DataToolbar } from "../../components/DataToolbar"
-import { CustomersScreen } from "./screens/Customers"
 import { Route, Routes } from "react-router-dom"
-import { ProductsScreen } from "./screens/Products"
+import { Customers } from "./subpages/Customers"
+import { Products } from "./subpages/Products"
 
 interface AdmPanelProps {
     user: User
@@ -38,9 +38,9 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
                     }}
                 >
                     <Routes>
-                        <Route index element={<CustomersScreen />} />
-                        <Route path="/clientes/" element={<CustomersScreen />} />
-                        <Route path="/produtos/" element={<ProductsScreen />} />
+                        <Route index element={<Customers />} />
+                        <Route path="/clientes/" element={<Customers />} />
+                        <Route path="/produtos/" element={<Products />} />
                     </Routes>
                 </Box>
             </Box>

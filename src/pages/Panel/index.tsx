@@ -1,23 +1,18 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Box } from "@mui/material"
 import { colors } from "../../style/colors"
+import { Sidebar } from "../../components/Sidebar"
 import { Header } from "../../components/Header"
 import { DataToolbar } from "../../components/DataToolbar"
-import { CompanyCard } from "../../components/CompanyCard"
-import { useCompany } from "../../hooks/useCompany"
-import { useIo } from "../../hooks/useIo"
+import { Route, Routes } from "react-router-dom"
+import { Overview } from "./subpages/Overview"
+import { Issuance } from "./subpages/Issuance"
 
-interface CompanySelectionProps {
+interface PanelProps {
     user: User
 }
 
-export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
-    const companies = useCompany()
-    const io = useIo()
-    useEffect(() => {
-        io.emit('company:list')
-    },[])
-
+export const Panel: React.FC<PanelProps> = ({ user }) => {
     return (
         <Box
             sx={{
@@ -26,9 +21,10 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
                 overflow: "hidden"
             }}
         >
+            <Sidebar />
             <Box
                 sx={{
-                    width: "100%",
+                    width: "90%",
                     flexDirection: "column",
                     overflowY: "auto",
                     padding: "2rem",
@@ -36,16 +32,17 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
                 }}
             >
                 <Header />
-                <DataToolbar />
                 <Box
                     sx={{
                         height: "80vh",
-                        width: "100%",
-                        flexWrap: "wrap",
-                        gap: "2rem"
+                        width: "100%"
                     }}
                 >
-                    {companies.list.map(company => <CompanyCard key={company.id} company={company} />)}
+                    <Routes>
+                        <Route index element={<Overview user={user} />} />
+                        <Route path="/visao-geral/" element={<Overview user={user} />} />
+                        <Route path="/notas-fiscais/" element={<Issuance user={user} />} />
+                    </Routes>
                 </Box>
             </Box>
         </Box>

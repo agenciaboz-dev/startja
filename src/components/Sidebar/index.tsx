@@ -1,13 +1,13 @@
 import React, { useState } from "react"
 import { Box } from "@mui/material"
-import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
-import FilterVintageOutlinedIcon from '@mui/icons-material/FilterVintageOutlined';
+import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
+import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { useNavigate } from "react-router-dom";
 
-interface AdmSidebarProps {}
+interface SidebarProps {}
 
-export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
+export const Sidebar: React.FC<SidebarProps> = ({}) => {
     const navigate = useNavigate()
 
     return (
@@ -48,11 +48,12 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         gap: "0.5rem",
                         alignItems: "center",
                         marginTop: "auto",
-                        cursor: "pointer"
+                        cursor: "pointer",
+                        textAlign: "center"
                     }}
-                    onClick={() => navigate("/adm/clientes/")}
+                    onClick={() => navigate("/panel/visao-geral/")}
                 >
-                    <PeopleOutlinedIcon
+                    <GridViewOutlinedIcon
                         sx={{
                             fill: "#000000",
                             width: "2rem",
@@ -60,7 +61,7 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         }}
                     />
                     <p>
-                        Clientes
+                        Visão Geral
                     </p>
                 </Box>
                 <Box
@@ -69,11 +70,12 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         gap: "0.5rem",
                         alignItems: "center",
                         marginTop: "auto",
-                        cursor: "pointer"
+                        cursor: "pointer",
+                        textAlign: "center"
                     }}
-                    onClick={() => navigate("/adm/produtos/")}
+                    onClick={() => navigate("/panel/notas-fiscais")}
                 >
-                    <FilterVintageOutlinedIcon
+                    <ReceiptOutlinedIcon
                         sx={{
                             fill: "#000000",
                             width: "2rem",
@@ -81,7 +83,7 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         }}
                     />
                     <p>
-                        Produtos
+                        Emissão de Nota Fiscal
                     </p>
                 </Box>
             </Box>

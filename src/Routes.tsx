@@ -6,6 +6,7 @@ import { Login } from './pages/Login';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { useIo } from './hooks/useIo';
 import { CompanySelection } from './pages/CompanySelection';
+import { Panel } from './pages/Panel/';
 // import { Signup } from './pages/Signup';
 
 interface RoutesProps {}
@@ -46,6 +47,7 @@ export const Routes:React.FC<RoutesProps> = ({  }) => {
                 {/* <Route path="*" element={<AdmPanel user={user} />} /> */}
                 <Route path="/adm/*" element={<AdmPanel user={user} />} />
                 <Route path="/selecionar-empresa/" element={<CompanySelection user={user} />} />
+                <Route path="/panel/*" element={<Panel user={user} />} />
             </ReactRoutes>
         ) : (
             <ReactRoutes>

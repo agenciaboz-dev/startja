@@ -6,10 +6,10 @@ import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import { useNavigate } from "react-router-dom";
 
 interface CompanyCardProps {
-
+    company: Company
 }
 
-export const CompanyCard: React.FC<CompanyCardProps> = ({}) => {
+export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
     const navigate = useNavigate()
     
     return (
@@ -35,12 +35,20 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({}) => {
             />
             <Box
                 sx={{
-                    flexDirection: "column"
+                    flexDirection: "column",
+                    alignItems: "center"
                 }}
                 >
-                <p>CNPJ</p>
-                <p>Email</p>
-                <p>Fone</p>
+                <p>CNPJ: {company.cnpj}</p>
+                <p
+                    style={{
+                        fontWeight: "bold",
+                        textTransform: "capitalize"
+                    }}
+                >
+                    {company.name}
+                    </p>
+                <p>{company.city} / {company.state}</p>
             </Box>
             <Button
                 variant="contained"
@@ -50,7 +58,7 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({}) => {
                     gap: "0.5rem",
                     width: "90%"
                 }}
-                onClick={() => navigate("/selecionar-empresa/")}
+                onClick={() => navigate("/panel/")}
             >
                 <LoginOutlinedIcon />
                 <p>
