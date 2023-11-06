@@ -7,6 +7,7 @@ import { DataToolbar } from "../../components/DataToolbar"
 import { Route, Routes } from "react-router-dom"
 import { Customers } from "./subpages/Customers"
 import { Products } from "./subpages/Products"
+import { Operations } from "./subpages/Operations"
 
 interface AdmPanelProps {
     user: User
@@ -41,6 +42,8 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
                         <Route index element={<Customers />} />
                         <Route path="/clientes/" element={<Customers />} />
                         <Route path="/produtos/" element={<Products />} />
+                        <Route path="/natureza_da_operacao/" element={<Operations />} />
+                        {/* <Route path="/categorias/" element={<Products />} /> */}
                     </Routes>
                 </Box>
             </Box>

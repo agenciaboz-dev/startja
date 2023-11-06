@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import { Box } from "@mui/material"
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 import FilterVintageOutlinedIcon from '@mui/icons-material/FilterVintageOutlined';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
+import SnippetFolderOutlinedIcon from '@mui/icons-material/SnippetFolderOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { useNavigate } from "react-router-dom";
 
@@ -48,7 +50,8 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         gap: "0.5rem",
                         alignItems: "center",
                         marginTop: "auto",
-                        cursor: "pointer"
+                        cursor: "pointer",
+                        textAlign: "center"
                     }}
                     onClick={() => navigate("/adm/clientes/")}
                 >
@@ -69,7 +72,8 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         gap: "0.5rem",
                         alignItems: "center",
                         marginTop: "auto",
-                        cursor: "pointer"
+                        cursor: "pointer",
+                        textAlign: "center"
                     }}
                     onClick={() => navigate("/adm/produtos/")}
                 >
@@ -84,6 +88,50 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         Produtos
                     </p>
                 </Box>
+                <Box
+                    sx={{
+                        flexDirection: "column",
+                        gap: "0.5rem",
+                        alignItems: "center",
+                        marginTop: "auto",
+                        cursor: "pointer",
+                        textAlign: "center"
+                    }}
+                    onClick={() => navigate("/adm/natureza_da_operacao/")}
+                >
+                    <DescriptionOutlinedIcon
+                        sx={{
+                            fill: "#000000",
+                            width: "2rem",
+                            height: "2rem"
+                        }}
+                    />
+                    <p>
+                        Natureza da Operação
+                    </p>
+                </Box>
+                <Box
+                    sx={{
+                        flexDirection: "column",
+                        gap: "0.5rem",
+                        alignItems: "center",
+                        marginTop: "auto",
+                        cursor: "pointer",
+                        textAlign: "center"
+                    }}
+                    // onClick={() => navigate("/adm/categorias/")}
+                >
+                    <SnippetFolderOutlinedIcon
+                        sx={{
+                            fill: "#000000",
+                            width: "2rem",
+                            height: "2rem"
+                        }}
+                    />
+                    <p>
+                        Categorias
+                    </p>
+                </Box>
             </Box>
 
             <Box
@@ -91,7 +139,9 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                     flexDirection: "column",
                     gap: "0.5rem",
                     alignItems: "center",
-                    marginTop: "auto"
+                    marginTop: "auto",
+                    cursor: "pointer",
+                    textAlign: "center"
                 }}
             >
                 <SettingsOutlinedIcon
