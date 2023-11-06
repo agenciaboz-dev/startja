@@ -62,7 +62,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                         gap: "2rem"
                     }}
                 >
-                    {customers.list.map(customer => <CustomerCard key={customer.id} customer={customer} />)}
+                    {customers.list.map(customer => <CustomerCard buttonColor="primary" key={customer.id} customer={customer} />)}
                 </Box>
             }
         </Box>

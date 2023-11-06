@@ -1,15 +1,18 @@
 import React from "react"
-import { Box, Button, IconButton, Avatar as MuiAvatar } from "@mui/material"
+import { AlertColor, Box, Button, IconButton, Avatar as MuiAvatar } from "@mui/material"
 import { colors } from "../../style/colors"
 import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import SettingsPhoneOutlinedIcon from '@mui/icons-material/SettingsPhoneOutlined';
 import { useNavigate } from "react-router-dom";
 
 interface CustomerCardProps {
     customer : Customer
+    buttonColor: AlertColor | 'primary' | 'secondary'
 }
 
-export const CustomerCard: React.FC<CustomerCardProps> = ({customer}) => {
+export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor}) => {
     const navigate = useNavigate()
     
     return (
@@ -73,25 +76,39 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer}) => {
                     flexDirection: "column"
                 }}
             >
-                <p>{customer.email}</p>
-                <p>{customer.phone}</p>
+                <Box
+                    sx={{
+                        gap: "0.5rem"
+                    }}
+                >
+                    <EmailOutlinedIcon />
+                    <p>{customer.email}</p>
+                </Box>
+                <Box
+                    sx={{
+                        gap: "0.5rem"
+                    }}
+                >
+                    <SettingsPhoneOutlinedIcon />
+                    <p>{customer.phone}</p>
+                </Box>
             </Box>
             <Box
                 sx={{
-                    justifyContent: "space-between"
+                    justifyContent: "space-between",
+                    gap: "4rem"
                 }}
             >
-                <IconButton
+                <Button
+                    color={buttonColor}
+                    variant="outlined"
                     sx={{
-                        backgroundColor: colors.secondary
+                        textTransform: "capitalize",
+                        borderRadius: "20px"
                     }}
                 >
-                    <LinkOutlinedIcon
-                        sx={{
-                            color: "white"
-                        }}
-                    />
-                </IconButton>
+                    Sem pendências
+                </Button>
                 <Button
                     variant="contained"
                     sx={{
