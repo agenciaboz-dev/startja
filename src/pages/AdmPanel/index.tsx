@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom"
 import { Customers } from "./subpages/Customers"
 import { Products } from "./subpages/Products"
 import { Operations } from "./subpages/Operations"
+import { Categories } from "./subpages/Categories"
 
 interface AdmPanelProps {
     user: User
@@ -43,7 +44,7 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
                         <Route path="/clientes/" element={<Customers />} />
                         <Route path="/produtos/" element={<Products />} />
                         <Route path="/natureza_da_operacao/" element={<Operations />} />
-                        {/* <Route path="/categorias/" element={<Products />} /> */}
+                        <Route path="/categorias/" element={<Categories />} />
                     </Routes>
                 </Box>
             </Box>

@@ -119,7 +119,7 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         cursor: "pointer",
                         textAlign: "center"
                     }}
-                    // onClick={() => navigate("/adm/categorias/")}
+                    onClick={() => navigate("/adm/categorias/")}
                 >
                     <SnippetFolderOutlinedIcon
                         sx={{

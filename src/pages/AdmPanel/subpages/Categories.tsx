@@ -11,7 +11,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
     const [emptyCategoriesList, setEmptyCategoriesList] = useState(false)
     const io = useIo()
     useEffect(() => {
-        io.emit('product:list')
+        io.emit('category:list')
     },[])
 
     return(
@@ -34,9 +34,9 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                     }}
                 >
                     <h2>
-                        Sem produtos cadastrados
+                        Sem categorias cadastradas
                     </h2>
-                    <p>Para facilitar a inclusão de produtos no sistema, pressione o botão para cadastrar um novo produto.</p>
+                    <p>Pressione o botão para cadastrar uma categoria.</p>
                     <Button
                         variant="contained"
                         sx={{
@@ -48,7 +48,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                         }}
                     >
                         <AddOutlinedIcon />
-                        Adicionar novo produto
+                        Adicionar nova categoria
                     </Button>
                 </Box>
             }
