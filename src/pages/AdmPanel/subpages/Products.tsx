@@ -36,7 +36,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                     <h2>
                         Sem produtos cadastrados
                     </h2>
-                    <p>Para facilitar a inclusão de produtos no sistema, pressione o botão para cadastrar um novo produto.</p>
+                    <p>Pressione o botão para cadastrar um produto.</p>
                     <Button
                         variant="contained"
                         sx={{

@@ -4,7 +4,7 @@ import { ProductRow } from "./ProductRow"
 import { useProduct } from "../../hooks/useProduct"
 
 interface ProductsListProps {
-    product : Product
+    // product : Product
 }
 
 export const ProductsList: React.FC<ProductsListProps> = ({product}) => {

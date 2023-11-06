@@ -10,9 +10,9 @@ interface OperationsProps {}
 export const Operations: React.FC<OperationsProps> = ({}) => {
     const [emptyOperationsList, setEmptyOperationsList] = useState(false)
     const io = useIo()
-    // useEffect(() => {
-    //     io.emit('operation:list')
-    // },[])
+    useEffect(() => {
+        io.emit('operation:list')
+    },[])
 
     return(
         <Box
@@ -34,9 +34,9 @@ export const Operations: React.FC<OperationsProps> = ({}) => {
                     }}
                 >
                     <h2>
-                        Sem produtos cadastrados
+                        Sem naturezas de operação cadastradas
                     </h2>
-                    <p>Para facilitar a inclusão de produtos no sistema, pressione o botão para cadastrar um novo produto.</p>
+                    <p>Pressione o botão para cadastrar uma natureza de operação.</p>
                     <Button
                         variant="contained"
                         sx={{
@@ -48,7 +48,7 @@ export const Operations: React.FC<OperationsProps> = ({}) => {
                         }}
                     >
                         <AddOutlinedIcon />
-                        Adicionar novo produto
+                        Adicionar nova natureza de operação
                     </Button>
                 </Box>
             }
