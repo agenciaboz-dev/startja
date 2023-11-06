@@ -33,7 +33,7 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
                     gap: "2rem",
                 }}
             >
-                <Header />
+                <Header title="Título"/>
                 <DataToolbar />
                 <Box
                     sx={{

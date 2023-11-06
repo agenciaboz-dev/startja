@@ -5,9 +5,11 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined'
 import { colors } from "../../style/colors"
 
-interface HeaderProps {}
+interface HeaderProps {
+    title: string
+}
 
-export const Header: React.FC<HeaderProps> = ({}) => {
+export const Header: React.FC<HeaderProps> = ({title}) => {
     return (
         <Box
             sx={{
@@ -16,7 +18,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                 width: "100%"
             }}
         >
-            <h1>Título</h1>
+            <h1>{title}</h1>
             <Box
                 sx={{
                     gap: "2rem",
