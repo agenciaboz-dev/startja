@@ -19,7 +19,7 @@ export const Operations: React.FC<OperationsProps> = ({}) => {
     return(
         <>
             <Header title="Natureza da Operação"/>
-            <Toolbar searchPlaceholder="natureza da operação" />
+            <Toolbar searchPlaceholder="natureza da operação" addButtonPlaceholder="natureza da operação" hasAddButton={true} />
             <Box
                 sx={{
                     height: "100%",

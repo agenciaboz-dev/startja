@@ -5,10 +5,12 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 
 interface ToolbarProps {
     searchPlaceholder: string
-    hasFilter: boolean
+    addButtonPlaceholder: string
+    hasFilter?: boolean
+    hasAddButton: boolean
 }
 
-export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, hasFilter}) => {
+export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, addButtonPlaceholder, hasFilter, hasAddButton}) => {
     return (
         <Box
             sx={{
@@ -42,20 +44,22 @@ export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, hasFilter}) 
                     height: "100%"
                 }}
             />
-            <Button
-                variant="contained"
-                sx={{
-                    borderRadius: "2rem",
-                    textTransform: "capitalize",
-                    height: "100%",
-                    gap: "0.5rem"
-                }}
-            >
-                <AddOutlinedIcon />
-                <p>
-                    Adicionar
-                </p>
-            </Button>
+            {hasAddButton &&
+                <Button
+                    variant="contained"
+                    sx={{
+                        borderRadius: "2rem",
+                        textTransform: "unset",
+                        height: "100%",
+                        gap: "0.5rem"
+                    }}
+                >
+                    <AddOutlinedIcon />
+                    <p>
+                        Adicionar {addButtonPlaceholder}
+                    </p>
+                </Button>
+            }
         </Box>
     )
 }

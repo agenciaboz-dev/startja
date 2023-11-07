@@ -19,7 +19,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
     return(
         <>
             <Header title="Categorias"/>
-            <Toolbar searchPlaceholder="categoria" />
+            <Toolbar searchPlaceholder="categoria" addButtonPlaceholder="" hasAddButton={false} />
             <Box
                 sx={{
                     height: "100%",
