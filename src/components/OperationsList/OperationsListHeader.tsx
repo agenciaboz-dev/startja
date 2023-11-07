@@ -34,14 +34,14 @@ export const OperationsListHeader: React.FC<OperationsListHeaderProps> = ({}) =>
                 >
                     <Box
                     sx={{
-                        width: "55%"
+                        width: "70%"
                     }}
                     >
                         <h3>Natureza da Operação</h3>
                     </Box>
                     <Box
                     sx={{
-                        width: "15%",
+                        width: "10%",
                         justifyContent: "center"
                     }}
                     >
@@ -49,7 +49,7 @@ export const OperationsListHeader: React.FC<OperationsListHeaderProps> = ({}) =>
                     </Box>
                     <Box
                     sx={{
-                        width: "15%",
+                        width: "10%",
                         justifyContent: "center"
                     }}
                     >
@@ -57,7 +57,7 @@ export const OperationsListHeader: React.FC<OperationsListHeaderProps> = ({}) =>
                     </Box>
                     <Box
                     sx={{
-                        width: "15%",
+                        width: "10%",
                         justifyContent: "center"
                     }}
                     >

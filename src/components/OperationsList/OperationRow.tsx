@@ -2,7 +2,8 @@ import React from "react"
 import { Box, Checkbox } from "@mui/material"
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined'
+import { Switch } from '@mui/base/Switch'
+import ToggleSwitch from "../ToggleSwitch"
 
 interface OperationRowProps {
     // operation : Operation
@@ -32,24 +33,27 @@ return (
         >
             <Box
                 sx={{
-                    width: "55%"
+                    width: "70%",
+                    alignItems: "center"
                 }}
-            >
+                >
                 {/* <p>{operation.name}</p> */}
                 <p>Elementum senectus diam neque aliquet</p>
             </Box>
             <Box
                 sx={{
-                    width: "15%",
+                    alignItems: "center",
+                    width: "10%",
                     justifyContent: "center"
                 }}
-            >
+                >
                 {/* <p>{operation.taxation}</p> */}
                 <VisibilityOutlinedIcon />
             </Box>
             <Box
                 sx={{
-                    width: "15%",
+                    alignItems: "center",
+                    width: "10%",
                     justifyContent: "center"
                 }}
             >
@@ -57,11 +61,13 @@ return (
             </Box>
             <Box
                 sx={{
-                    width: "15%",
+                    width: "10%",
                     justifyContent: "center"
                 }}
             >
-                <FormatListBulletedOutlinedIcon />
+                
+                <ToggleSwitch />
+                
             </Box>
         </Box>
     </Box>
