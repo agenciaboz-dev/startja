@@ -20,7 +20,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
     return(
         <>
             <Header title="Clientes"/>
-            <Toolbar searchPlaceholder="cliente" addButtonPlaceholder="novo cliente" hasAddButton={true} />
+            <Toolbar searchPlaceholder="cliente" addButtonPlaceholder="novo cliente" selectList={customers.list} hasAddButton />
             <Box
                 sx={{
                     width: "100%"

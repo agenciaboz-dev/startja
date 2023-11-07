@@ -20,7 +20,7 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
                 // minWidth: "20%",
                 // flex: 1,
                 backgroundColor: "white",
-                borderRadius: "20px",
+                borderRadius: "30px",
                 boxShadow: "0 2px 2px 2px #d1d1d1",
                 flexDirection: "column",
                 padding: "1rem",
@@ -53,7 +53,7 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
             <Button
                 variant="contained"
                 sx={{
-                    borderRadius: "20px",
+                    borderRadius: "30px",
                     textTransform: "capitalize",
                     gap: "0.5rem",
                     width: "90%"

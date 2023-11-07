@@ -65,7 +65,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                             padding: "1rem 1.5rem 1rem 0.5rem",
                             boxShadow: "0 2px 2px 2px #d1d1d1",
                             backgroundColor: "white",
-                            borderRadius: "20px",
+                            borderRadius: "30px",
                             flexDirection: "column",
                             width: "100%",
                         }}

@@ -1,16 +1,16 @@
 import React from "react"
-import { Box, Button, TextField } from "@mui/material"
+import { Box, Button, MenuItem, TextField } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 
 interface ToolbarProps {
     searchPlaceholder: string
     addButtonPlaceholder: string
-    hasFilter?: boolean
+    selectList?: any[]
     hasAddButton: boolean
 }
 
-export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, addButtonPlaceholder, hasFilter, hasAddButton}) => {
+export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, addButtonPlaceholder, selectList, hasAddButton}) => {
     return (
         <Box
             sx={{
@@ -25,7 +25,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, addButtonPla
                 InputProps={{
                     startAdornment: <SearchIcon />,
                     sx: {
-                        borderRadius: "4rem",
+                        borderRadius: "30px",
                         alignItems: "center",
                         height: "100%",
                         gap: "0.5rem"
@@ -33,17 +33,39 @@ export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, addButtonPla
                 }}
                 inputProps={{
                     style: {
-                        padding: "4px 0 0 "
+                        // padding: "4px 0 0"
                     }
                 }}
                 sx={{
                     backgroundColor: "white",
                     flex: 1,
-                    borderRadius: "4rem",
+                    borderRadius: "30px",
                     boxShadow: "0 2px 2px 0 #d1d1d1",
                     height: "100%"
                 }}
-            />
+                />
+            {!!selectList &&
+                <TextField
+                label="Tudo"
+                name="toolbarSelect"
+                sx={{
+                    backgroundColor: "white",
+                    borderRadius: "30px",
+                    boxShadow: "0 2px 2px 0 #d1d1d1",
+                    height: "100%",
+                    width: "20rem",
+                }}
+                select
+                SelectProps={{
+                    sx: {
+                        height: "100%",
+                        borderRadius: "30px",
+                    }
+                }}
+                >
+                    {selectList.map(item => <MenuItem key={item.id}>{item.name}</MenuItem>)}
+                </TextField>
+            }
             {hasAddButton &&
                 <Button
                     variant="contained"

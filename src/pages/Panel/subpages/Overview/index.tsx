@@ -46,7 +46,7 @@ export const Overview: React.FC<OverviewProps> = ({user}) => {
                         <Button
                             variant="contained"
                             sx={{
-                                borderRadius: "20px",
+                                borderRadius: "30px",
                                 textTransform: "capitalize"
                             }}
                         >
@@ -56,7 +56,7 @@ export const Overview: React.FC<OverviewProps> = ({user}) => {
                     <Box
                         sx={{
                             backgroundColor: "white",
-                            borderRadius: "20px",
+                            borderRadius: "30px",
                             boxShadow: "0 2px 2px 2px #d1d1d1",
                             flex: 1,
                             flexDirection: "column",
@@ -85,7 +85,7 @@ export const Overview: React.FC<OverviewProps> = ({user}) => {
                         <Button
                             variant="contained"
                             sx={{
-                                borderRadius: "20px",
+                                borderRadius: "30px",
                                 textTransform: "capitalize"
                             }}
                         >
@@ -96,7 +96,7 @@ export const Overview: React.FC<OverviewProps> = ({user}) => {
                     <Box
                         sx={{
                             backgroundColor: "white",
-                            borderRadius: "20px",
+                            borderRadius: "30px",
                             boxShadow: "0 2px 2px 2px #d1d1d1",
                             flex: 1,
                             flexDirection: "column",
@@ -133,7 +133,7 @@ export const Overview: React.FC<OverviewProps> = ({user}) => {
                         <Button
                             variant="text"
                             sx={{
-                                borderRadius: "20px",
+                                borderRadius: "30px",
                                 textTransform: "capitalize"
                             }}
                         >
@@ -143,7 +143,7 @@ export const Overview: React.FC<OverviewProps> = ({user}) => {
                     <Box
                         sx={{
                             backgroundColor: "white",
-                            borderRadius: "20px",
+                            borderRadius: "30px",
                             boxShadow: "0 2px 2px 2px #d1d1d1",
                             flex: 1,
                             flexDirection: "column",
