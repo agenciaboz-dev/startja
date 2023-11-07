@@ -3,7 +3,7 @@ import { Box, Checkbox } from "@mui/material"
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import { Switch } from '@mui/base/Switch'
-import ToggleSwitch from "../ToggleSwitch"
+import { ToggleSwitch } from "../ToggleSwitch"
 
 interface OperationRowProps {
     // operation : Operation
