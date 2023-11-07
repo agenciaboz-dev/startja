@@ -4,7 +4,7 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import { colors } from "../../../../style/colors"
 import { Sidebar } from "../../../../components/Sidebar"
 import { Header } from "../../../../components/Header"
-import { DataToolbar } from "../../../../components/DataToolbar"
+import { Toolbar } from "../../../../components/Toolbar"
 
 interface OverviewProps {
     user: User

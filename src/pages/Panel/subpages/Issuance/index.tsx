@@ -4,7 +4,7 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import { colors } from "../../../../style/colors"
 import { Sidebar } from "../../../../components/Sidebar"
 import { Header } from "../../../../components/Header"
-import { DataToolbar } from "../../../../components/DataToolbar"
+import { Toolbar } from "../../../../components/Toolbar"
 import { InvoicesList } from "../../../../components/InvoicesList"
 import { ProductsList } from "../../../../components/ProductsList"
 import { InvoicesListHeader } from "../../../../components/InvoicesList/InvoicesListHeader"
@@ -23,7 +23,7 @@ export const Issuance: React.FC<IssuanceProps> = ({user}) => {
                 gap: "2rem"
             }}
             >
-            <DataToolbar />
+            <Toolbar />
             <Box
                 sx={{
                     height: "100%",

@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { Box } from "@mui/material"
 import { colors } from "../../style/colors"
 import { Header } from "../../components/Header"
-import { DataToolbar } from "../../components/DataToolbar"
+import { Toolbar } from "../../components/Toolbar"
 import { CompanyCard } from "../../components/CompanyCard"
 import { useCompany } from "../../hooks/useCompany"
 import { useIo } from "../../hooks/useIo"
@@ -36,7 +36,7 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
                 }}
             >
                 <Header />
-                <DataToolbar />
+                <Toolbar />
                 <Box
                     sx={{
                         height: "80vh",

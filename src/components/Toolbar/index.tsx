@@ -3,9 +3,9 @@ import { Box, Button, TextField } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 
-interface DataToolbarProps {}
+interface ToolbarProps {}
 
-export const DataToolbar: React.FC<DataToolbarProps> = ({}) => {
+export const Toolbar: React.FC<ToolbarProps> = ({}) => {
     return (
         <Box
             sx={{

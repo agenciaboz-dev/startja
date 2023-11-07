@@ -2,8 +2,6 @@ import React from "react"
 import { Box } from "@mui/material"
 import { colors } from "../../style/colors"
 import { AdmSidebar } from "../../components/AdmSidebar"
-import { Header } from "../../components/Header"
-import { DataToolbar } from "../../components/DataToolbar"
 import { Route, Routes } from "react-router-dom"
 import { Customers } from "./subpages/Customers"
 import { Products } from "./subpages/Products"
@@ -33,20 +31,13 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
                     gap: "2rem",
                 }}
             >
-                <Header title="Título"/>
-                <DataToolbar />
-                <Box
-                    sx={{
-                    }}
-                >
-                    <Routes>
-                        <Route index element={<Customers />} />
-                        <Route path="/clientes/" element={<Customers />} />
-                        <Route path="/produtos/" element={<Products />} />
-                        <Route path="/natureza_da_operacao/" element={<Operations />} />
-                        <Route path="/categorias/" element={<Categories />} />
-                    </Routes>
-                </Box>
+                <Routes>
+                    <Route index element={<Customers />} />
+                    <Route path="/clientes/" element={<Customers />} />
+                    <Route path="/produtos/" element={<Products />} />
+                    <Route path="/natureza_da_operacao/" element={<Operations />} />
+                    <Route path="/categorias/" element={<Categories />} />
+                </Routes>
             </Box>
         </Box>
     )
