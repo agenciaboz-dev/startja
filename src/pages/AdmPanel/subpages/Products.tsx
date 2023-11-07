@@ -19,7 +19,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     return(
         <>
             <Header title="Produtos"/>
-            <Toolbar />
+            <Toolbar searchPlaceholder="produto" />
             <Box
                 sx={{
                     height: "100%",

@@ -3,9 +3,12 @@ import { Box, Button, TextField } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 
-interface ToolbarProps {}
+interface ToolbarProps {
+    searchPlaceholder: string
+    hasFilter: boolean
+}
 
-export const Toolbar: React.FC<ToolbarProps> = ({}) => {
+export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, hasFilter}) => {
     return (
         <Box
             sx={{
@@ -16,7 +19,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({}) => {
             }}
             >
             <TextField
-                placeholder="Pesquisar"
+                placeholder={"Buscar " + searchPlaceholder}
                 InputProps={{
                     startAdornment: <SearchIcon />,
                     sx: {
