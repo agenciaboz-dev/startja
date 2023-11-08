@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react"
 import { Box, Button } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { CustomerCard } from "../../../components/CustomerCard"
-import { useIo } from "../../../hooks/useIo"
-import { useCustomer } from "../../../hooks/useCustomer"
-import { Header } from "../../../components/Header"
-import { Toolbar } from "../../../components/Toolbar"
+import { CustomerCard } from "../../../../components/CustomerCard"
+import { useIo } from "../../../../hooks/useIo"
+import { useCustomer } from "../../../../hooks/useCustomer"
+import { Header } from "../../../../components/Header"
+import { Toolbar } from "../../../../components/Toolbar"
+import AddNewCustomerModal from "./AddNewCustomerModal"
 
 interface CustomersProps {}
 
 export const Customers: React.FC<CustomersProps> = ({}) => {
-    const [emptyCustomersList, setEmptyCustomersList] = useState(false)
+    const [isAddNewCustomerModalOpen, setAddNewCustomerModalOpen] = useState(false);
+    const [emptyCustomersList, setEmptyCustomersList] = useState(true)
     const customers = useCustomer()
     const io = useIo()
     useEffect(() => {
@@ -51,6 +53,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                                 verticalAlign: "middle",
                                 gap: "0.5rem"
                             }}
+                            onClick={() => setAddNewCustomerModalOpen(true)}
                         >
                             <AddOutlinedIcon />
                             Adicionar novo cliente
@@ -71,6 +74,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                     </Box>
                 }
             </Box>
+            <AddNewCustomerModal open={isAddNewCustomerModalOpen} onClose={() => setAddNewCustomerModalOpen(false)} />
         </>
     )
 }
