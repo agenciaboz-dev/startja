@@ -48,7 +48,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                             variant="contained"
                             sx={{
                                 borderRadius: "2rem",
-                                textTransform: "capitalize",
+                                textTransform: "unset",
                                 height: "3rem",
                                 verticalAlign: "middle",
                                 gap: "0.5rem"

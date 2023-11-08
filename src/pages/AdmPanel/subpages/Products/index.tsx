@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react"
 import { Box, Button, Checkbox } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { ProductsListHeader } from "../../../components/ProductsList/ProductsListHeader"
-import { ProductsList } from "../../../components/ProductsList"
-import { useIo } from "../../../hooks/useIo"
-import { Header } from "../../../components/Header"
-import { Toolbar } from "../../../components/Toolbar"
+import { ProductsListHeader } from "../../../../components/ProductsList/ProductsListHeader"
+import { ProductsList } from "../../../../components/ProductsList"
+import { useIo } from "../../../../hooks/useIo"
+import { Header } from "../../../../components/Header"
+import { Toolbar } from "../../../../components/Toolbar"
+import AddNewProductModal from "./AddNewProductModal"
 
 interface ProductsProps {}
 
 export const Products: React.FC<ProductsProps> = ({}) => {
-    const [emptyProductsList, setEmptyProductsList] = useState(false)
+    const [isAddNewProductModalOpen, setAddNewProductModalOpen] = useState(false);
+    const [emptyProductsList, setEmptyProductsList] = useState(true)
     const io = useIo()
     useEffect(() => {
         io.emit('product:list')
@@ -46,11 +48,12 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                             variant="contained"
                             sx={{
                                 borderRadius: "2rem",
-                                textTransform: "capitalize",
+                                textTransform: "unset",
                                 height: "3rem",
                                 verticalAlign: "middle",
                                 gap: "0.5rem"
                             }}
+                            onClick={() => setAddNewProductModalOpen(true)}
                         >
                             <AddOutlinedIcon />
                             Adicionar novo produto
@@ -75,6 +78,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                     </Box>
                 }
             </Box>
+            <AddNewProductModal open={isAddNewProductModalOpen} onClose={() => setAddNewProductModalOpen(false)} />
         </>
     )
 }
