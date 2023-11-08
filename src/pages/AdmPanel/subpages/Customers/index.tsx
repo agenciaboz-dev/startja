@@ -12,8 +12,11 @@ interface CustomersProps {}
 
 export const Customers: React.FC<CustomersProps> = ({}) => {
     const [isAddNewCustomerModalOpen, setAddNewCustomerModalOpen] = useState(false);
-    const [emptyCustomersList, setEmptyCustomersList] = useState(true)
+    const [emptyCustomersList, setEmptyCustomersList] = useState(false)
     const customers = useCustomer()
+    const openNewCustomerModal = () => {
+        setAddNewCustomerModalOpen(true)
+    }
     const io = useIo()
     useEffect(() => {
         io.emit('customer:list')
@@ -22,7 +25,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
     return(
         <>
             <Header title="Clientes"/>
-            <Toolbar searchPlaceholder="cliente" addButtonPlaceholder="novo cliente" selectList={customers.list} hasAddButton />
+            <Toolbar searchPlaceholder="cliente" addButtonPlaceholder="novo cliente" selectList={customers.list} addButtonCallback={openNewCustomerModal} />
             <Box
                 sx={{
                     width: "100%"
@@ -53,7 +56,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                                 verticalAlign: "middle",
                                 gap: "0.5rem"
                             }}
-                            onClick={() => setAddNewCustomerModalOpen(true)}
+                            onClick={openNewCustomerModal}
                         >
                             <AddOutlinedIcon />
                             Adicionar novo cliente

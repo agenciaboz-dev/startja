@@ -12,7 +12,10 @@ interface ProductsProps {}
 
 export const Products: React.FC<ProductsProps> = ({}) => {
     const [isAddNewProductModalOpen, setAddNewProductModalOpen] = useState(false);
-    const [emptyProductsList, setEmptyProductsList] = useState(true)
+    const [emptyProductsList, setEmptyProductsList] = useState(false)
+    const openNewProductModal = () => {
+        setAddNewProductModalOpen(true)
+    }
     const io = useIo()
     useEffect(() => {
         io.emit('product:list')
@@ -21,7 +24,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     return(
         <>
             <Header title="Produtos"/>
-            <Toolbar searchPlaceholder="produto" addButtonPlaceholder="novo produto" hasAddButton={true} />
+            <Toolbar searchPlaceholder="produto" addButtonPlaceholder="novo produto" addButtonCallback={openNewProductModal} />
             <Box
                 sx={{
                     height: "100%",
@@ -53,7 +56,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                                 verticalAlign: "middle",
                                 gap: "0.5rem"
                             }}
-                            onClick={() => setAddNewProductModalOpen(true)}
+                            onClick={openNewProductModal}
                         >
                             <AddOutlinedIcon />
                             Adicionar novo produto

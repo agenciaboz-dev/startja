@@ -15,8 +15,8 @@ const AddNewProductModal: React.FC<AddNewProductModalProps> = ({ open, onClose }
         }}
         PaperProps={{
             sx: {
-                borderRadius: "30px",
-                height: "50rem",
+              borderRadius: "30px",
+              height: "50rem",
             }
         }}
     >

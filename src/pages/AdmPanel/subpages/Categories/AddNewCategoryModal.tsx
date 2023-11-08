@@ -2,12 +2,12 @@ import React from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from "@mui/material";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
-interface AddNewCustomerModalProps {
+interface AddNewCategoryModalProps {
   open: boolean;
   onClose: () => void;
 }
 
-const AddNewCustomerModal: React.FC<AddNewCustomerModalProps> = ({ open, onClose }) => {
+const AddNewCategoryModal: React.FC<AddNewCategoryModalProps> = ({ open, onClose }) => {
   return (
     <Dialog open={open} onClose={onClose}
         sx={{
@@ -20,7 +20,7 @@ const AddNewCustomerModal: React.FC<AddNewCustomerModalProps> = ({ open, onClose
             }
         }}
     >
-      <DialogTitle>Novo Cliente</DialogTitle>
+      <DialogTitle>Nova conta</DialogTitle>
       <CloseOutlinedIcon
         sx={{
             position: "absolute",
@@ -63,4 +63,4 @@ const AddNewCustomerModal: React.FC<AddNewCustomerModalProps> = ({ open, onClose
   );
 };
 
-export default AddNewCustomerModal;
+export default AddNewCategoryModal;

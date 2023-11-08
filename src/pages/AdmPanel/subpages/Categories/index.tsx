@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react"
 import { Box, Button, Checkbox } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { CategoriesListHeader } from "../../../components/CategoriesList/CategoriesListHeader"
-import { CategoriesList } from "../../../components/CategoriesList"
-import { useIo } from "../../../hooks/useIo"
-import { Header } from "../../../components/Header"
-import { Toolbar } from "../../../components/Toolbar"
+import { CategoriesListHeader } from "../../../../components/CategoriesList/CategoriesListHeader"
+import { CategoriesList } from "../../../../components/CategoriesList"
+import { useIo } from "../../../../hooks/useIo"
+import { Header } from "../../../../components/Header"
+import { Toolbar } from "../../../../components/Toolbar"
+import AddNewCategoryModal from "./AddNewCategoryModal"
 
 interface CategoriesProps {}
 
 export const Categories: React.FC<CategoriesProps> = ({}) => {
+    const [isAddNewCategoryModalOpen, setAddNewCategoryModalOpen] = useState(false);
     const [emptyCategoriesList, setEmptyCategoriesList] = useState(false)
+    const openNewCategoryModal = () => {
+        setAddNewCategoryModalOpen(true)
+    }
     const io = useIo()
     useEffect(() => {
         io.emit('category:list')
@@ -19,7 +24,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
     return(
         <>
             <Header title="Categorias"/>
-            <Toolbar searchPlaceholder="categoria" addButtonPlaceholder="" hasAddButton={false} />
+            <Toolbar searchPlaceholder="categoria" addButtonPlaceholder="" addButtonCallback={openNewCategoryModal} />
             <Box
                 sx={{
                     height: "100%",
@@ -46,11 +51,12 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                             variant="contained"
                             sx={{
                                 borderRadius: "2rem",
-                                textTransform: "capitalize",
+                                textTransform: "unset",
                                 height: "3rem",
                                 verticalAlign: "middle",
                                 gap: "0.5rem"
                             }}
+                            onClick={openNewCategoryModal}
                         >
                             <AddOutlinedIcon />
                             Adicionar nova categoria
@@ -75,6 +81,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                     </Box>
                 }
             </Box>
+            <AddNewCategoryModal open={isAddNewCategoryModalOpen} onClose={() => setAddNewCategoryModalOpen(false)} />
         </>
     )
 }

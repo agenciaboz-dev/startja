@@ -12,7 +12,10 @@ interface OperationsProps {}
 
 export const Operations: React.FC<OperationsProps> = ({}) => {
     const [isAddNewOperationModalOpen, setAddNewOperationModalOpen] = useState(false);
-    const [emptyOperationsList, setEmptyOperationsList] = useState(true)
+    const [emptyOperationsList, setEmptyOperationsList] = useState(false)
+    const openNewOperationModal = () => {
+        setAddNewOperationModalOpen(true)
+    }
     const io = useIo()
     useEffect(() => {
         io.emit('operation:list')
@@ -21,7 +24,7 @@ export const Operations: React.FC<OperationsProps> = ({}) => {
     return(
         <>
             <Header title="Natureza da Operação"/>
-            <Toolbar searchPlaceholder="natureza da operação" addButtonPlaceholder="natureza da operação" hasAddButton={true} />
+            <Toolbar searchPlaceholder="natureza da operação" addButtonPlaceholder="natureza da operação" addButtonCallback={openNewOperationModal} />
             <Box
                 sx={{
                     height: "100%",
@@ -53,7 +56,7 @@ export const Operations: React.FC<OperationsProps> = ({}) => {
                                 verticalAlign: "middle",
                                 gap: "0.5rem"
                             }}
-                            onClick={() => setAddNewOperationModalOpen(true)}
+                            onClick={openNewOperationModal}
                         >
                             <AddOutlinedIcon />
                             Adicionar nova natureza de operação

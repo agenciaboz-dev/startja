@@ -7,10 +7,10 @@ interface ToolbarProps {
     searchPlaceholder: string
     addButtonPlaceholder: string
     selectList?: any[]
-    hasAddButton: boolean
+    addButtonCallback?: () => void
 }
 
-export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, addButtonPlaceholder, selectList, hasAddButton}) => {
+export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, addButtonPlaceholder, selectList, addButtonCallback}) => {
     return (
         <Box
             sx={{
@@ -66,7 +66,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, addButtonPla
                     {selectList.map(item => <MenuItem key={item.id}>{item.name}</MenuItem>)}
                 </TextField>
             }
-            {hasAddButton &&
+            {!!addButtonCallback &&
                 <Button
                     variant="contained"
                     sx={{
@@ -75,6 +75,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, addButtonPla
                         height: "100%",
                         gap: "0.5rem"
                     }}
+                    onClick={addButtonCallback}
                 >
                     <AddOutlinedIcon />
                     <p>
