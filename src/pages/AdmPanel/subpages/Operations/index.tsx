@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react"
 import { Box, Button, Checkbox } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { OperationsListHeader } from "../../../components/OperationsList/OperationsListHeader"
-import { OperationsList } from "../../../components/OperationsList"
-import { useIo } from "../../../hooks/useIo"
-import { Header } from "../../../components/Header"
-import { Toolbar } from "../../../components/Toolbar"
+import { OperationsListHeader } from "../../../../components/OperationsList/OperationsListHeader"
+import { OperationsList } from "../../../../components/OperationsList"
+import { useIo } from "../../../../hooks/useIo"
+import { Header } from "../../../../components/Header"
+import { Toolbar } from "../../../../components/Toolbar"
+import AddNewOperationModal from "./AddNewOperationModal"
 
 interface OperationsProps {}
 
 export const Operations: React.FC<OperationsProps> = ({}) => {
-    const [emptyOperationsList, setEmptyOperationsList] = useState(false)
+    const [isAddNewOperationModalOpen, setAddNewOperationModalOpen] = useState(false);
+    const [emptyOperationsList, setEmptyOperationsList] = useState(true)
     const io = useIo()
     useEffect(() => {
         io.emit('operation:list')
@@ -46,11 +48,12 @@ export const Operations: React.FC<OperationsProps> = ({}) => {
                             variant="contained"
                             sx={{
                                 borderRadius: "2rem",
-                                textTransform: "capitalize",
+                                textTransform: "unset",
                                 height: "3rem",
                                 verticalAlign: "middle",
                                 gap: "0.5rem"
                             }}
+                            onClick={() => setAddNewOperationModalOpen(true)}
                         >
                             <AddOutlinedIcon />
                             Adicionar nova natureza de operação
@@ -75,6 +78,7 @@ export const Operations: React.FC<OperationsProps> = ({}) => {
                     </Box>
                 }
             </Box>
+            <AddNewOperationModal open={isAddNewOperationModalOpen} onClose={() => setAddNewOperationModalOpen(false)} />
         </>
     )
 }
