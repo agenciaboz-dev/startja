@@ -36,6 +36,27 @@ const AddNewTaxationRuleModal: React.FC<AddNewTaxationRuleModalProps> = ({ open,
 
       <DialogContent>
 
+        <Box
+          sx={{
+            alignItems: "center",
+            flexDirection: "column",
+            gap: "1rem",
+            width: "100%"
+          }}
+        >
+          <Box>
+            <p>Quando sair de</p>
+            <TextField select label="UF" />
+            <p>para</p>
+            <TextField select label="UF" />
+            <p>, e quando for</p>
+            <TextField select label="Produto" />
+            <p>:</p>
+          </Box>
+          
+          <p>Use a regra de tributação a seguir:</p>
+        </Box>
+
       </DialogContent>
       
       <DialogActions
