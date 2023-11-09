@@ -43,7 +43,7 @@ const AddNewCategoryModal: React.FC<AddNewCategoryModalProps> = ({ open, onClose
         sx={{
             borderRadius: "30px",
             color: "white",
-            textTransform: "capitalize",
+            textTransform: "unset",
         }}
         >
           Cancelar
@@ -52,7 +52,7 @@ const AddNewCategoryModal: React.FC<AddNewCategoryModalProps> = ({ open, onClose
         sx={{
             borderRadius: "30px",
             color: "white",
-            textTransform: "capitalize",
+            textTransform: "unset",
         }}
         >
           Adicionar

@@ -47,7 +47,7 @@ export const Overview: React.FC<OverviewProps> = ({user}) => {
                             variant="contained"
                             sx={{
                                 borderRadius: "30px",
-                                textTransform: "capitalize"
+                                textTransform: "unset"
                             }}
                         >
                             Simular Imposto de Renda
@@ -86,7 +86,7 @@ export const Overview: React.FC<OverviewProps> = ({user}) => {
                             variant="contained"
                             sx={{
                                 borderRadius: "30px",
-                                textTransform: "capitalize"
+                                textTransform: "unset"
                             }}
                         >
                             <AddOutlinedIcon />
@@ -134,7 +134,7 @@ export const Overview: React.FC<OverviewProps> = ({user}) => {
                             variant="text"
                             sx={{
                                 borderRadius: "30px",
-                                textTransform: "capitalize"
+                                textTransform: "unset"
                             }}
                         >
                             Ver Documentos

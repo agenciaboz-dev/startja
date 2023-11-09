@@ -53,7 +53,7 @@ const AddNewProductModal: React.FC<AddNewProductModalProps> = ({ open, onClose }
         sx={{
             borderRadius: "30px",
             color: "white",
-            textTransform: "capitalize",
+            textTransform: "unset",
         }}
         >
           Cancelar
@@ -62,7 +62,7 @@ const AddNewProductModal: React.FC<AddNewProductModalProps> = ({ open, onClose }
         sx={{
             borderRadius: "30px",
             color: "white",
-            textTransform: "capitalize",
+            textTransform: "unset",
         }}
         >
           Adicionar

@@ -149,7 +149,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                         type="submit"
                                         sx={{
                                             borderRadius: "30px",
-                                            textTransform: "capitalize"
+                                            textTransform: "unset"
                                         }}
                                     >
                                         {loading ? <CircularProgress size={30} sx={{ color: "#fff", fontSize: "2rem" }} /> : "Entrar"}

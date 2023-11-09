@@ -43,7 +43,7 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
                 <p
                     style={{
                         fontWeight: "bold",
-                        textTransform: "capitalize"
+                        textTransform: "unset"
                     }}
                 >
                     {company.name}
@@ -54,7 +54,7 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
                 variant="contained"
                 sx={{
                     borderRadius: "30px",
-                    textTransform: "capitalize",
+                    textTransform: "unset",
                     gap: "0.5rem",
                     width: "90%"
                 }}

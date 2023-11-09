@@ -1,6 +1,8 @@
 import React from "react";
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, Grid, TextField, FormControlLabel, Checkbox } from "@mui/material";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { ToggleSwitch } from "../../../../components/ToggleSwitch";
+import { PermissionsCard } from "../../../../components/PermissionsCard";
 
 interface AddNewCustomerModalProps {
   open: boolean;
@@ -16,6 +18,9 @@ const AddNewCustomerModal: React.FC<AddNewCustomerModalProps> = ({ open, onClose
         PaperProps={{
             sx: {
               borderRadius: "30px",
+              paddingTop: "1rem",
+              minWidth: "60vw",
+              width: "fit-content"
             }
         }}
     >
@@ -23,7 +28,7 @@ const AddNewCustomerModal: React.FC<AddNewCustomerModalProps> = ({ open, onClose
       <CloseOutlinedIcon
         sx={{
             position: "absolute",
-            top: "1rem",
+            top: "2rem",
             right: "1rem",
             cursor: "pointer"
         }}
@@ -31,7 +36,134 @@ const AddNewCustomerModal: React.FC<AddNewCustomerModalProps> = ({ open, onClose
       />
 
       <DialogContent>
-        
+        <Box
+          sx={{
+            width: "100%",
+            gap: "2rem"
+          }}
+        >
+          <Box
+            sx={{
+              flex: 1,
+              flexDirection: "column",
+              gap: "1rem"
+            }}
+            >
+              <Grid container spacing={2} >
+                <Grid item xs={6}>
+                  <TextField label="CPF/CNPJ" fullWidth/>
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField label="Nome" fullWidth />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField label="Regime tributário" placeholder="Selecione um" fullWidth />
+                </Grid>
+              </Grid>
+
+              <h3>Contato</h3>
+
+              <Grid container spacing={2} >
+                <Grid item xs={6}>
+                  <TextField label="E-mail" fullWidth/>
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField label="Telefone" fullWidth />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField label="Inscrição estadual" placeholder="Selecione um" fullWidth />
+                </Grid>
+              </Grid>
+
+              <FormControlLabel control={<Checkbox />} label="Não contribuinte / isento" />
+
+              <h3>Endereço</h3>
+
+              <Grid container spacing={2} >
+                <Grid item xs={6}>
+                  <TextField label="CEP" fullWidth/>
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField label="Cidade/UF" fullWidth />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField label="Rua" fullWidth/>
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField label="Número" fullWidth />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField label="Complemento" fullWidth/>
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField label="Bairro" fullWidth />
+                </Grid>
+              </Grid>
+          </Box>
+
+          <hr
+            style={{
+              height: "100%"
+            }}
+            />
+
+          <Box
+            sx={{
+              flex: 1,
+              flexDirection: "column",
+              gap: "1rem"
+            }}
+            >
+            <Box
+              sx={{
+                justifyContent: "space-around",
+              }}
+            >
+              <h3>Permissões</h3>
+              <Box>
+                <Button variant="contained" color="secondary"
+                  sx={{
+                    color: "white",
+                    borderRadius: "30px",
+                    textTransform: "unset"
+                  }}
+                >
+                  Salvar Predefinição
+                </Button>
+                <TextField label="Predefinição"
+                  sx={{
+                    width: "10rem"
+                  }}
+                />
+              </Box>
+            </Box>
+
+            <h4>Responsável pelo Uso</h4>
+            <p>O "Responsável pelo uso" é o representante legal da conta StartJá, com acesso total, podendo adicionar editar e remover acessos e configurações.</p>
+            <p>O Administrador responsável será o responsável legal por padrão, mas você pode atribuir ao seu cliente</p>
+            
+            <FormControlLabel control={<ToggleSwitch />} label="Atribuir cliente como responsável" />
+
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <TextField label="E-mail do Responsável" fullWidth/>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField label="Telefone do Responsável" fullWidth />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField label="Nome do Responsável" fullWidth />
+              </Grid>
+            </Grid>
+
+            <PermissionsCard header="Visão Geral" />
+            <PermissionsCard header="Emissão de Nota Fiscal" />
+            <PermissionsCard header="Livro Caixa" />
+            <PermissionsCard header="Cadastros Gerais" />
+            <PermissionsCard header="Relatórios" />
+
+          </Box>
+        </Box>
       </DialogContent>
       
       <DialogActions
@@ -43,7 +175,7 @@ const AddNewCustomerModal: React.FC<AddNewCustomerModalProps> = ({ open, onClose
         sx={{
             borderRadius: "30px",
             color: "white",
-            textTransform: "capitalize",
+            textTransform: "unset",
         }}
         >
           Cancelar
@@ -52,7 +184,7 @@ const AddNewCustomerModal: React.FC<AddNewCustomerModalProps> = ({ open, onClose
         sx={{
             borderRadius: "30px",
             color: "white",
-            textTransform: "capitalize",
+            textTransform: "unset",
         }}
         >
           Adicionar

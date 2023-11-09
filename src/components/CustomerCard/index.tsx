@@ -103,7 +103,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                     color={buttonColor}
                     variant="outlined"
                     sx={{
-                        textTransform: "capitalize",
+                        textTransform: "unset",
                         borderRadius: "30px"
                     }}
                 >
@@ -113,7 +113,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                     variant="contained"
                     sx={{
                         borderRadius: "30px",
-                        textTransform: "capitalize",
+                        textTransform: "unset",
                         gap: "0.5rem"
                     }}
                     onClick={() => navigate("/selecionar-empresa/")}
