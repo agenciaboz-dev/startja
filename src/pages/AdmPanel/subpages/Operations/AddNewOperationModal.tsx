@@ -49,12 +49,28 @@ const AddNewOperationModal: React.FC<AddNewOperationModalProps> = ({ open, onClo
               width: "100%"
             }}
           >
-            <TextField placeholder="Operação" />
-            <TextField placeholder="Tipo" />
-            <TextField placeholder="Finalidade" />
+            <TextField placeholder="Operação"
+              sx={{
+                flex: 1
+              }}
+            />
+            <TextField placeholder="Tipo"
+              sx={{
+                flex: 1
+              }}
+            />
+            <TextField placeholder="Finalidade"
+              sx={{
+                flex: 1
+              }}
+            />
           </Box>
           <Box>
-            <TextField placeholder="Natureza da operação (motivo)" />
+            <TextField placeholder="Natureza da operação (motivo)"
+              sx={{
+                flex: 1
+              }}
+            />
           </Box>
           <Box
             sx={{
