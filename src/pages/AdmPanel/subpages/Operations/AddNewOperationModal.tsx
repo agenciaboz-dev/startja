@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField } from "@mui/material";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { OperationsListHeader } from "../../../../components/OperationsList/OperationsListHeader";
 import { OperationsList } from "../../../../components/OperationsList";
+import AddNewTaxationRuleModal from "./AddNewTaxationRuleModal";
 
 interface AddNewOperationModalProps {
   open: boolean;
@@ -10,6 +11,11 @@ interface AddNewOperationModalProps {
 }
 
 const AddNewOperationModal: React.FC<AddNewOperationModalProps> = ({ open, onClose }) => {
+  const [isAddNewTaxationRuleModalOpen, setAddNewTaxationRuleModalOpen] = useState(false);
+  const openNewTaxationRuleModal = () => {
+    setAddNewTaxationRuleModalOpen(true)
+  }
+
   return (
     <Dialog open={open} onClose={onClose}
         sx={{
@@ -83,6 +89,7 @@ const AddNewOperationModal: React.FC<AddNewOperationModalProps> = ({ open, onClo
                 borderRadius: "30px",
                 textTransform: "unset"
               }}
+              onClick={openNewTaxationRuleModal}
             >
               Adicionar Regra
             </Button>
@@ -115,7 +122,7 @@ const AddNewOperationModal: React.FC<AddNewOperationModalProps> = ({ open, onClo
         sx={{
             borderRadius: "30px",
             color: "white",
-            textTransform: "capitalize",
+            textTransform: "unset",
         }}
         >
           Cancelar
@@ -124,12 +131,13 @@ const AddNewOperationModal: React.FC<AddNewOperationModalProps> = ({ open, onClo
         sx={{
             borderRadius: "30px",
             color: "white",
-            textTransform: "capitalize",
+            textTransform: "unset",
         }}
         >
           Adicionar
         </Button>
       </DialogActions>
+      <AddNewTaxationRuleModal open={isAddNewTaxationRuleModalOpen} onClose={() => setAddNewTaxationRuleModalOpen(false)} />
     </Dialog>
   );
 };

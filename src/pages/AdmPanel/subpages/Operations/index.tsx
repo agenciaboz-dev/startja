@@ -11,8 +11,8 @@ import AddNewOperationModal from "./AddNewOperationModal"
 interface OperationsProps {}
 
 export const Operations: React.FC<OperationsProps> = ({}) => {
-    const [isAddNewOperationModalOpen, setAddNewOperationModalOpen] = useState(false);
     const [emptyOperationsList, setEmptyOperationsList] = useState(false)
+    const [isAddNewOperationModalOpen, setAddNewOperationModalOpen] = useState(false);
     const openNewOperationModal = () => {
         setAddNewOperationModalOpen(true)
     }
