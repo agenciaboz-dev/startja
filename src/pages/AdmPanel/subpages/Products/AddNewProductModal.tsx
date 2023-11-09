@@ -1,5 +1,5 @@
 import React from "react";
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box } from "@mui/material";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 interface AddNewProductModalProps {
@@ -16,7 +16,7 @@ const AddNewProductModal: React.FC<AddNewProductModalProps> = ({ open, onClose }
         PaperProps={{
             sx: {
               borderRadius: "30px",
-              height: "50rem",
+              paddingTop: "1rem",
             }
         }}
     >
@@ -24,7 +24,7 @@ const AddNewProductModal: React.FC<AddNewProductModalProps> = ({ open, onClose }
       <CloseOutlinedIcon
         sx={{
             position: "absolute",
-            top: "1rem",
+            top: "2rem",
             right: "1rem",
             cursor: "pointer"
         }}
@@ -32,7 +32,16 @@ const AddNewProductModal: React.FC<AddNewProductModalProps> = ({ open, onClose }
       />
 
       <DialogContent>
-        
+        <Box
+          sx={{
+            flexDirection: "column",
+            gap: "1rem",
+            width: "30rem",
+          }}
+        >
+          <TextField placeholder="Nome do produto" />
+          <TextField placeholder="NCM / Classificação" />
+        </Box>
       </DialogContent>
       
       <DialogActions
