@@ -25,7 +25,7 @@ const AddNewOperationModal: React.FC<AddNewOperationModalProps> = ({ open, onClo
             sx: {
               borderRadius: "30px",
               paddingTop: "1rem",
-              minWidth: "50vw",
+              minWidth: "60vw",
               width: "fit-content"
             }
         }}

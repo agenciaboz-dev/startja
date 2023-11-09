@@ -16,6 +16,7 @@ const AddNewCategoryModal: React.FC<AddNewCategoryModalProps> = ({ open, onClose
         PaperProps={{
             sx: {
               borderRadius: "30px",
+              minWidth: "60vw"
             }
         }}
     >

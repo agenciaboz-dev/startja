@@ -17,6 +17,7 @@ const AddNewProductModal: React.FC<AddNewProductModalProps> = ({ open, onClose }
             sx: {
               borderRadius: "30px",
               paddingTop: "1rem",
+              minWidth: "60vw"
             }
         }}
     >
@@ -36,11 +37,11 @@ const AddNewProductModal: React.FC<AddNewProductModalProps> = ({ open, onClose }
           sx={{
             flexDirection: "column",
             gap: "1rem",
-            width: "30rem",
+            width: "100%",
           }}
         >
-          <TextField placeholder="Nome do produto" />
-          <TextField placeholder="NCM / Classificação" />
+          <TextField fullWidth placeholder="Nome do produto" />
+          <TextField fullWidth placeholder="NCM / Classificação" />
         </Box>
       </DialogContent>
       
