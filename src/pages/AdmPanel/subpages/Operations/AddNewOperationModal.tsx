@@ -1,6 +1,8 @@
 import React from "react";
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField } from "@mui/material";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { OperationsListHeader } from "../../../../components/OperationsList/OperationsListHeader";
+import { OperationsList } from "../../../../components/OperationsList";
 
 interface AddNewOperationModalProps {
   open: boolean;
@@ -11,12 +13,14 @@ const AddNewOperationModal: React.FC<AddNewOperationModalProps> = ({ open, onClo
   return (
     <Dialog open={open} onClose={onClose}
         sx={{
-            justifyContent: "center"
+          justifyContent: "center",
         }}
         PaperProps={{
             sx: {
               borderRadius: "30px",
-              height: "50rem",
+              paddingTop: "1rem",
+              minWidth: "50vw",
+              width: "fit-content"
             }
         }}
     >
@@ -24,7 +28,7 @@ const AddNewOperationModal: React.FC<AddNewOperationModalProps> = ({ open, onClo
       <CloseOutlinedIcon
         sx={{
             position: "absolute",
-            top: "1rem",
+            top: "2rem",
             right: "1rem",
             cursor: "pointer"
         }}
@@ -32,7 +36,58 @@ const AddNewOperationModal: React.FC<AddNewOperationModalProps> = ({ open, onClo
       />
 
       <DialogContent>
-        
+        <Box
+          sx={{
+            flexDirection: "column",
+            width: "100%",
+            gap: "2rem"
+          }}
+        >
+          <Box
+            sx={{
+              gap: "1rem",
+              width: "100%"
+            }}
+          >
+            <TextField placeholder="Operação" />
+            <TextField placeholder="Tipo" />
+            <TextField placeholder="Finalidade" />
+          </Box>
+          <Box>
+            <TextField placeholder="Natureza da operação (motivo)" />
+          </Box>
+          <Box
+            sx={{
+              justifyContent: "space-between"
+            }}
+          >
+            <p>Regras de tributação adicionadas</p>
+            <Button variant="contained"
+              sx={{
+                borderRadius: "30px",
+                textTransform: "unset"
+              }}
+            >
+              Adicionar Regra
+            </Button>
+          </Box>
+
+          <Box
+            sx={{
+                flex: 1,
+                padding: "1rem 1.5rem 1rem 0.5rem",
+                boxShadow: "0 2px 2px 2px #d1d1d1",
+                backgroundColor: "white",
+                borderRadius: "30px",
+                flexDirection: "column",
+                width: "100%",
+            }}
+            >
+            <OperationsListHeader />
+            <OperationsList />
+        </Box>
+
+        </Box>
       </DialogContent>
       
       <DialogActions

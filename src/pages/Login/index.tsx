@@ -16,6 +16,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
     const { user, setUser } = useUser()
     const { snackbar } = useSnackbar()
     const storage = useLocalStorage()
+    const [rememberLogin, setRememberLogin] = useState(!!storage.get('startja:user'))
 
     const initialValues: LoginValues = {
         email: "",
@@ -38,14 +39,14 @@ export const Login: React.FC<LoginProps> = ({}) => {
             navigate('/adm')
             console.log(admin)
             snackbar({ severity: "success", text: "Conectado!" })
-            saveLoginData({email: admin.email, password: admin.password})
+            rememberLogin ? saveLoginData({email: admin.email, password: admin.password}) : storage.set('startja:user', null)
         })
 
         io.on("login:customer", (customer) => {
             setLoading(false)
             console.log(customer)
             snackbar({ severity: "success", text: "Conectado!" })
-            saveLoginData({email: customer.email, password: customer.password})
+            rememberLogin ? saveLoginData({email: customer.email, password: customer.password}) : storage.set('startja:user', null)
         })
 
         io.on("login:error", (error) => {
@@ -141,7 +142,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                     }}
                                 >
                                     <Box>
-                                        <FormControlLabel control={<Checkbox />} label="Manter conectado" />
+                                        <FormControlLabel control={<Checkbox checked={rememberLogin} onChange={(_, checked) => setRememberLogin(checked)} />} label="Manter conectado" />
                                     </Box>
                                     <Button
                                         variant="contained"
