@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button, Checkbox, CircularProgress, TextField } from "@mui/material"
+import { Box, Button, Checkbox, CircularProgress, FormControlLabel, TextField } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { Form, Formik } from "formik"
 import { useIo } from "../../hooks/useIo"
@@ -140,19 +140,8 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                         alignItems: "center"
                                     }}
                                 >
-                                    <Box
-                                        sx={{
-                                            gap: "1rem"
-                                        }}
-                                    >
-                                        <Checkbox
-                                            sx={{
-                                                padding: 0
-                                            }}
-                                        />
-                                        <p>
-                                            Manter conectado
-                                        </p>
+                                    <Box>
+                                        <FormControlLabel control={<Checkbox />} label="Manter conectado" />
                                     </Box>
                                     <Button
                                         variant="contained"
