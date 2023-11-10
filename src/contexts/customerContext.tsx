@@ -25,7 +25,7 @@ export const CustomerProvider:React.FC<CustomerProviderProps> = ({children}) => 
 
     useEffect(() => {
         io.on('customer:list', (data) =>{
-            setList(data.customers)
+            setList(data)
         })
 
         return () => {
