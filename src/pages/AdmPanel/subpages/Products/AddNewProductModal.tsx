@@ -36,13 +36,13 @@ const AddNewProductModal: React.FC<AddNewProductModalProps> = ({ open, onClose }
 
         <Grid container spacing={2} >
           <Grid item xs={12}>
-            <TextField label="CPF/CNPJ" fullWidth/>
+            <TextField label="Nome do produto" fullWidth/>
           </Grid>
           <Grid item xs={12}>
-            <TextField label="Nome" fullWidth />
+            <TextField label="NCM - Classificação" fullWidth />
           </Grid>
         </Grid>
-        
+
       </DialogContent>
       
       <DialogActions
