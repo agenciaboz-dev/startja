@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button } from "@mui/material"
+import { Box, Button, Grid } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { CustomerCard } from "../../../../components/CustomerCard"
 import { useIo } from "../../../../hooks/useIo"
@@ -69,11 +69,11 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                         sx={{
                             height: "80vh",
                             width: "100%",
-                            flexWrap: "wrap",
-                            gap: "2rem"
                         }}
                     >
-                        {customers.list.map(customer => <CustomerCard buttonColor="primary" key={customer.id} customer={customer} />)}
+                        <Grid container >
+                            {customers.list.map(customer => <CustomerCard buttonColor="primary" key={customer.id} customer={customer} />)}
+                        </Grid>
                     </Box>
                 }
             </Box>

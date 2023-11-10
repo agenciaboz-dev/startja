@@ -1,5 +1,5 @@
 import React from "react"
-import { AlertColor, Box, Button, IconButton, Avatar as MuiAvatar } from "@mui/material"
+import { AlertColor, Box, Button, Grid, IconButton, Avatar as MuiAvatar } from "@mui/material"
 import { colors } from "../../style/colors"
 import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
@@ -16,114 +16,113 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
     const navigate = useNavigate()
     
     return (
-        <Box
-            sx={{
-                height: "fit-content",
-                // minWidth: "20%",
-                // flex: 1,
-                backgroundColor: "white",
-                borderRadius: "30px",
-                boxShadow: "0 2px 2px 2px #d1d1d1",
-                flexDirection: "column",
-                padding: "1rem",
-                gap: "1rem",
-                color: colors.text.greyish
-            }}
-        >
+        <Grid item xs={3} >
             <Box
                 sx={{
-                    alignItems: "center",
-                    gap: "1rem"
+                    height: "fit-content",
+                    backgroundColor: "white",
+                    borderRadius: "30px",
+                    boxShadow: "0 2px 2px 2px #d1d1d1",
+                    flexDirection: "column",
+                    padding: "1rem",
+                    gap: "1rem",
+                    color: colors.text.greyish
+                    // flex: 1,
                 }}
             >
-                <MuiAvatar
+                <Box
                     sx={{
-                        backgroundColor: colors.secondary
+                        alignItems: "center",
+                        gap: "1rem"
                     }}
-                />
+                >
+                    <MuiAvatar
+                        sx={{
+                            backgroundColor: colors.secondary
+                        }}
+                    />
+                    <Box
+                        sx={{
+                            flexDirection: "column"
+                        }}
+                    >
+                        <p
+                            style={{
+                                color: colors.text.darkgrey
+                            }}
+                        >{customer.name}</p>
+                        <p>Cliente há x dias</p>
+                    </Box>
+                </Box>
                 <Box
                     sx={{
                         flexDirection: "column"
                     }}
                 >
-                    <p
-                        style={{
-                            color: colors.text.darkgrey
+                    <Box
+                        sx={{
+                            gap: "1rem"
                         }}
-                    >{customer.name}</p>
-                    <p>Cliente há x dias</p>
-                </Box>
-            </Box>
-
-            <Box
-                sx={{
-                    flexDirection: "column"
-                }}
-            >
-                <Box
-                    sx={{
-                        gap: "1rem"
-                    }}
-                >
-                    <p>CPF: {customer.cpf}</p>
-                    <p>{customer.city}/{customer.state}</p>
-                </Box>
-                <p>Certificado digital expira em: 00/00/00</p>
-            </Box>
-
-            <Box
-                sx={{
-                    flexDirection: "column"
-                }}
-            >
-                <Box
-                    sx={{
-                        gap: "0.5rem"
-                    }}
-                >
-                    <EmailOutlinedIcon />
-                    <p>{customer.email}</p>
+                    >
+                        <p>CPF: {customer.cpf}</p>
+                        <p>{customer.city}/{customer.state}</p>
+                    </Box>
+                    <p>Certificado digital expira em: 00/00/00</p>
                 </Box>
                 <Box
                     sx={{
-                        gap: "0.5rem"
+                        flexDirection: "column"
                     }}
                 >
-                    <SettingsPhoneOutlinedIcon />
-                    <p>{customer.phone}</p>
+                    <Box
+                        sx={{
+                            gap: "0.5rem"
+                        }}
+                    >
+                        <EmailOutlinedIcon />
+                        <p>{customer.email}</p>
+                    </Box>
+                    <Box
+                        sx={{
+                            gap: "0.5rem"
+                        }}
+                    >
+                        <SettingsPhoneOutlinedIcon />
+                        <p>{customer.phone}</p>
+                    </Box>
+                </Box>
+                <Box
+                    sx={{
+                        justifyContent: "space-between",
+                        gap: "3rem"
+                    }}
+                >
+                    <Button
+                        color={buttonColor}
+                        variant="outlined"
+                        sx={{
+                            textTransform: "unset",
+                            borderRadius: "30px"
+                        }}
+                    >
+                        Sem pendências
+                    </Button>
+                    <Button
+                        variant="contained"
+                        sx={{
+                            borderRadius: "30px",
+                            textTransform: "unset",
+                            gap: "0.5rem"
+                        }}
+                        onClick={() => navigate("/selecionar-empresa/")}
+                    >
+                        <LoginOutlinedIcon />
+                        <p>
+                            Acessar Sistema
+                        </p>
+                    </Button>
                 </Box>
             </Box>
-            <Box
-                sx={{
-                    justifyContent: "space-between",
-                    gap: "4rem"
-                }}
-            >
-                <Button
-                    color={buttonColor}
-                    variant="outlined"
-                    sx={{
-                        textTransform: "unset",
-                        borderRadius: "30px"
-                    }}
-                >
-                    Sem pendências
-                </Button>
-                <Button
-                    variant="contained"
-                    sx={{
-                        borderRadius: "30px",
-                        textTransform: "unset",
-                        gap: "0.5rem"
-                    }}
-                    onClick={() => navigate("/selecionar-empresa/")}
-                >
-                    <LoginOutlinedIcon />
-                    <p>
-                        Acessar Sistema
-                    </p>
-                </Button>
-            </Box>
-        </Box>
+        </Grid>
     )
 }
