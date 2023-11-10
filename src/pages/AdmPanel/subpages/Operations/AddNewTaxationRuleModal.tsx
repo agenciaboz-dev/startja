@@ -1,5 +1,5 @@
 import React from "react";
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid } from "@mui/material";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 interface AddNewTaxationRuleModalProps {
@@ -55,6 +55,18 @@ const AddNewTaxationRuleModal: React.FC<AddNewTaxationRuleModalProps> = ({ open,
           </Box>
           
           <p>Use a regra de tributação a seguir:</p>
+          
+          <Grid container spacing={2} >
+            <Grid item xs={6}>
+              <TextField label="E-mail" fullWidth/>
+            </Grid>
+            <Grid item xs={6}>
+              <TextField label="Telefone" fullWidth />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField label="Inscrição estadual" placeholder="Selecione um" fullWidth />
+            </Grid>
+          </Grid>
         </Box>
 
       </DialogContent>
