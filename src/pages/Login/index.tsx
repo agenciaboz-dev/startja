@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react"
 import { Box, Button, Checkbox, CircularProgress, FormControlLabel, TextField } from "@mui/material"
 import { useNavigate } from "react-router-dom"
-import { Form, Formik } from "formik"
+import { Form, Formik, useFormik } from "formik"
 import { useIo } from "../../hooks/useIo"
 import { useUser } from "../../hooks/useUser"
 import { useSnackbar } from "burgos-snackbar"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 
 interface LoginProps {}
+
+const autoFill = true
 
 export const Login: React.FC<LoginProps> = ({}) => {
     const navigate = useNavigate()
@@ -22,6 +24,8 @@ export const Login: React.FC<LoginProps> = ({}) => {
         email: "",
         password: "",
     }
+
+    const formik = useFormik({initialValues, onSubmit: (values) => handleLogin(values)})
 
     const handleLogin = async (values: LoginValues) => {
         io.emit("user:login", values)
@@ -60,6 +64,13 @@ export const Login: React.FC<LoginProps> = ({}) => {
             io.off('login:customer')
             io.off('login:error')
         }   
+    }, [])
+
+    useEffect(() => {
+        if (autoFill) {
+            formik.setFieldValue('email', 'admin@admin.com')
+            formik.setFieldValue('password', '1234')
+        }
     }, [])
 
     return (
@@ -106,9 +117,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                 >
                     Levando soluções ao empreendedor do Agro
                 </p>
-                <Formik initialValues={initialValues} onSubmit={(values) => handleLogin(values)}>
-                    {({ values, handleChange }) => (
-                        <Form>
+                        <form onSubmit={formik.handleSubmit}>
                             <Box
                                 sx={{
                                     flexDirection: "column",
@@ -119,8 +128,8 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                 <TextField
                                     name="email"
                                     label="E-mail"
-                                    value={values.email}
-                                    onChange={handleChange}
+                                    value={formik.values.email}
+                                    onChange={formik.handleChange}
                                     sx={{
                                         backgroundColor: "white"
                                     }}
@@ -129,8 +138,8 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                     type="password"
                                     name="password"
                                     label="Senha"
-                                    value={values.password}
-                                    onChange={handleChange}
+                                    value={formik.values.password}
+                                    onChange={formik.handleChange}
                                     sx={{
                                         backgroundColor: "white"
                                     }}
@@ -156,9 +165,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                     </Button>
                                 </Box>
                             </Box>
-                        </Form>
-                    )}
-                </Formik>
+                        </form>
             </Box>
         </Box>
     )
