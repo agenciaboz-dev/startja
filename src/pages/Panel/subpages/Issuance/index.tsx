@@ -15,29 +15,39 @@ interface IssuanceProps {
 
 export const Issuance: React.FC<IssuanceProps> = ({user}) => {
     return (
-        <Box
-            sx={{
-                height: "100%",
-                width: "100%",
-                flexDirection: "column",
-                gap: "2rem"
-            }}
-            >
-            <Toolbar />
+        <>
+            <Header title="Notas fiscais emitidas" />
             <Box
                 sx={{
-                    height: "100%",
-                    flex: 1,
-                    flexDirection: "column",
-                    backgroundColor: "white",
-                    borderRadius: "30px",
-                    boxShadow: "0 2px 2px 2px #d1d1d1",
-                    padding: "1rem 1.5rem 1rem 0.5rem"
+                    height: "80vh",
+                    width: "100%"
                 }}
             >
-                <InvoicesListHeader />
-                <InvoicesList />
+                <Box
+                    sx={{
+                        height: "100%",
+                        width: "100%",
+                        flexDirection: "column",
+                        gap: "2rem"
+                    }}
+                    >
+                    <Toolbar searchPlaceholder="produto" />
+                    <Box
+                        sx={{
+                            height: "100%",
+                            flex: 1,
+                            flexDirection: "column",
+                            backgroundColor: "white",
+                            borderRadius: "30px",
+                            boxShadow: "0 2px 2px 2px #d1d1d1",
+                            padding: "1rem 1.5rem 1rem 0.5rem"
+                        }}
+                    >
+                        <InvoicesListHeader />
+                        {/* <InvoicesList /> */}
+                    </Box>
+                </Box>
             </Box>
-        </Box>
+        </>
     )
 }
