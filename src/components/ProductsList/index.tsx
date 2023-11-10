@@ -4,10 +4,9 @@ import { ProductRow } from "./ProductRow"
 import { useProduct } from "../../hooks/useProduct"
 
 interface ProductsListProps {
-    // product : Product
 }
 
-export const ProductsList: React.FC<ProductsListProps> = ({product}) => {
+export const ProductsList: React.FC<ProductsListProps> = ({}) => {
     const products = useProduct()
 
     return (

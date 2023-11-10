@@ -7,12 +7,15 @@ import { useIo } from "../../../../hooks/useIo"
 import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
 import AddNewProductModal from "./AddNewProductModal"
+import { useProduct } from "../../../../hooks/useProduct"
 
 interface ProductsProps {}
 
 export const Products: React.FC<ProductsProps> = ({}) => {
+    // const [emptyProductsList, setEmptyProductsList] = useState(true)
+    const products = useProduct()
+    const emptyProductsList = !products.list.length
     const [isAddNewProductModalOpen, setAddNewProductModalOpen] = useState(false);
-    const [emptyProductsList, setEmptyProductsList] = useState(false)
     const openNewProductModal = () => {
         setAddNewProductModalOpen(true)
     }

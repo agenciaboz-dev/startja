@@ -11,9 +11,10 @@ import AddNewCustomerModal from "./AddNewCustomerModal"
 interface CustomersProps {}
 
 export const Customers: React.FC<CustomersProps> = ({}) => {
-    const [isAddNewCustomerModalOpen, setAddNewCustomerModalOpen] = useState(false);
-    const [emptyCustomersList, setEmptyCustomersList] = useState(false)
+    // const [emptyCustomersList, setEmptyCustomersList] = useState(true)
     const customers = useCustomer()
+    const emptyCustomersList = !customers.list.length
+    const [isAddNewCustomerModalOpen, setAddNewCustomerModalOpen] = useState(false);
     const openNewCustomerModal = () => {
         setAddNewCustomerModalOpen(true)
     }
@@ -31,7 +32,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                     width: "100%"
                 }}
             >
-                {emptyCustomersList &&
+                {emptyCustomersList ?
                     <Box
                         sx={{
                             height: "80vh",
@@ -62,9 +63,9 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                             Adicionar novo cliente
                         </Button>
                     </Box>
-                }
-
-                {!emptyCustomersList &&
+                    
+                    :
+                    
                     <Box
                         sx={{
                             height: "80vh",
