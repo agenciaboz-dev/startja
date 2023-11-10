@@ -35,8 +35,8 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
                     gap: "2rem",
                 }}
             >
-                <Header />
-                <Toolbar />
+                <Header title="Selecionar empresa" />
+                <Toolbar searchPlaceholder="empresa" />
                 <Box
                     sx={{
                         height: "80vh",

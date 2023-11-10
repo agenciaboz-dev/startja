@@ -5,7 +5,7 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 
 interface ToolbarProps {
     searchPlaceholder: string
-    addButtonPlaceholder: string
+    addButtonPlaceholder?: string
     selectList?: any[]
     addButtonCallback?: () => void
 }
