@@ -4,6 +4,8 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { OperationsListHeader } from "../../../../components/OperationsList/OperationsListHeader";
 import { OperationsList } from "../../../../components/OperationsList";
 import AddNewTaxationRuleModal from "./AddNewTaxationRuleModal";
+import { AddedTaxationRulesListHeader } from "../../../../components/AddedTaxationRulesList/AddedTaxationRulesListHeader";
+import { AddedTaxationRuleRowsList } from "../../../../components/AddedTaxationRulesList";
 
 interface AddNewOperationModalProps {
   open: boolean;
@@ -93,8 +95,8 @@ const AddNewOperationModal: React.FC<AddNewOperationModalProps> = ({ open, onClo
                 width: "100%",
             }}
             >
-            <OperationsListHeader />
-            <OperationsList />
+            <AddedTaxationRulesListHeader />
+            <AddedTaxationRuleRowsList />
         </Box>
 
         </Box>
