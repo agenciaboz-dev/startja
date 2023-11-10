@@ -102,7 +102,8 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                         variant="outlined"
                         sx={{
                             textTransform: "unset",
-                            borderRadius: "30px"
+                            borderRadius: "30px",
+                            pointerEvents: "none"
                         }}
                     >
                         Sem pendências
