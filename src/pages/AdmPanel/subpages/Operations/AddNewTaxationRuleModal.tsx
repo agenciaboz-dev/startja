@@ -57,15 +57,56 @@ const AddNewTaxationRuleModal: React.FC<AddNewTaxationRuleModalProps> = ({ open,
           <p>Use a regra de tributação a seguir:</p>
           
           <Grid container spacing={2} >
-            <Grid item xs={6}>
-              <TextField label="E-mail" fullWidth/>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField label="Telefone" fullWidth />
-            </Grid>
+
             <Grid item xs={12}>
-              <TextField label="Inscrição estadual" placeholder="Selecione um" fullWidth />
+              <TextField label="Situação tributária ICMS" fullWidth />
             </Grid>
+
+            <Grid item xs={9}>
+              <TextField label="CFOP" fullWidth />
+            </Grid>
+            <Grid item xs={3}>
+              <TextField label="Benefício fiscal" fullWidth />
+            </Grid>
+
+            <Grid item xs={4}>
+              <TextField label="Percentual base de cálculo" fullWidth />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField label="Alíquota" fullWidth />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField label="Percentual de deferimento" fullWidth />
+            </Grid>
+
+            <Grid item xs={12}>
+              <TextField label="Informações adicionais" fullWidth />
+            </Grid>
+
+            <Grid item xs={12}>
+              <Box
+                sx={{
+                  flexDirection: "column",
+                  width: "100%"
+                }}
+              >
+                <p>PIS</p>
+                <TextField label="CST" fullWidth />
+              </Box>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Box
+                sx={{
+                  flexDirection: "column",
+                  width: "100%"
+                }}
+              >
+                <p>COFINS</p>
+                <TextField label="CST" fullWidth />
+              </Box>
+            </Grid>
+
           </Grid>
         </Box>
 
