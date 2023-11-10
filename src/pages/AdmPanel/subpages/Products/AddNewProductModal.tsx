@@ -1,5 +1,5 @@
 import React from "react";
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box, Grid } from "@mui/material";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 interface AddNewProductModalProps {
@@ -33,16 +33,16 @@ const AddNewProductModal: React.FC<AddNewProductModalProps> = ({ open, onClose }
       />
 
       <DialogContent>
-        <Box
-          sx={{
-            flexDirection: "column",
-            gap: "1rem",
-            width: "100%",
-          }}
-        >
-          <TextField fullWidth placeholder="Nome do produto" />
-          <TextField fullWidth placeholder="NCM / Classificação" />
-        </Box>
+
+        <Grid container spacing={2} >
+          <Grid item xs={12}>
+            <TextField label="CPF/CNPJ" fullWidth/>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField label="Nome" fullWidth />
+          </Grid>
+        </Grid>
+        
       </DialogContent>
       
       <DialogActions

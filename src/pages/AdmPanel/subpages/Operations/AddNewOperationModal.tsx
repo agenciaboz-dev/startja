@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid } from "@mui/material";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { OperationsListHeader } from "../../../../components/OperationsList/OperationsListHeader";
 import { OperationsList } from "../../../../components/OperationsList";
@@ -49,35 +49,22 @@ const AddNewOperationModal: React.FC<AddNewOperationModalProps> = ({ open, onClo
             gap: "2rem"
           }}
         >
-          <Box
-            sx={{
-              gap: "1rem",
-              width: "100%"
-            }}
-          >
-            <TextField placeholder="Operação"
-              sx={{
-                flex: 1
-              }}
-            />
-            <TextField placeholder="Tipo"
-              sx={{
-                flex: 1
-              }}
-            />
-            <TextField placeholder="Finalidade"
-              sx={{
-                flex: 1
-              }}
-            />
-          </Box>
-          <Box>
-            <TextField placeholder="Natureza da operação (motivo)"
-              sx={{
-                flex: 1
-              }}
-            />
-          </Box>
+
+          <Grid container spacing={2} >
+            <Grid item xs={4}>
+              <TextField label="Operação" fullWidth/>
+            </Grid>
+            <Grid item xs={4}>
+              <TextField label="Tipo" fullWidth />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField label="Finalidade" fullWidth />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField label="Natureza da operação (motivo)" placeholder="Busque pelo nome do produto ou NCM" fullWidth />
+            </Grid>
+          </Grid>
+
           <Box
             sx={{
               justifyContent: "space-between"
