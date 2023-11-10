@@ -46,7 +46,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                         <h2>
                             Sem clientes cadastrados
                         </h2>
-                        <p>Para facilitar a inclusão de clientes no sistema, pressione o botão para cadastrar um novo cliente.</p>
+                        <p>Pressione o botão para cadastrar um cliente.</p>
                         <Button
                             variant="contained"
                             sx={{
