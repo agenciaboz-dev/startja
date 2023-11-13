@@ -35,7 +35,7 @@ export const Issuance: React.FC<IssuanceProps> = ({user}) => {
                         gap: "2rem"
                     }}
                     >
-                    <Toolbar searchPlaceholder="produto" addButtonPlaceholder="nota fiscal" addButtonCallback={openNewInvoiceModal} />
+                    <Toolbar searchPlaceholder="produto" hasFilterButton importButtonPlaceholder="notas fiscais" addButtonPlaceholder="nota fiscal" addButtonCallback={openNewInvoiceModal} />
                     <Box
                         sx={{
                             height: "100%",

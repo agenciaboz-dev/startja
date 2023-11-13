@@ -5,12 +5,14 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 
 interface ToolbarProps {
     searchPlaceholder: string
-    addButtonPlaceholder?: string
     selectList?: any[]
+    hasFilterButton?: boolean
+    importButtonPlaceholder?: string
+    addButtonPlaceholder?: string
     addButtonCallback?: () => void
 }
 
-export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, addButtonPlaceholder, selectList, addButtonCallback}) => {
+export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, selectList, hasFilterButton, importButtonPlaceholder, addButtonPlaceholder, addButtonCallback}) => {
     return (
         <Box
             sx={{
@@ -44,6 +46,42 @@ export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, addButtonPla
                     height: "100%"
                 }}
                 />
+            {/* {!!filterButtonCallback && */}
+            {hasFilterButton &&
+                <Button
+                    variant="outlined"
+                    sx={{
+                        borderRadius: "2rem",
+                        textTransform: "unset",
+                        height: "100%",
+                        gap: "0.5rem",
+                    }}
+                    // onClick={filterButtonCallback}
+                >
+                    <AddOutlinedIcon />
+                    <p>
+                        Filtrar
+                    </p>
+                </Button>
+            }
+            {/* {!!importButtonCallback && */}
+            {importButtonPlaceholder &&
+                <Button
+                    variant="outlined"
+                    sx={{
+                        borderRadius: "2rem",
+                        textTransform: "unset",
+                        height: "100%",
+                        gap: "0.5rem",
+                    }}
+                    // onClick={importButtonCallback}
+                >
+                    <AddOutlinedIcon />
+                    <p>
+                        Importar {importButtonPlaceholder}
+                    </p>
+                </Button>
+            }
             {!!selectList &&
                 <TextField
                 label="Tudo"
