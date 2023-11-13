@@ -58,7 +58,7 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
                     gap: "0.5rem",
                     width: "90%"
                 }}
-                onClick={() => navigate("/panel/")}
+                onClick={() => navigate("/painel/")}
             >
                 <LoginOutlinedIcon />
                 <p>

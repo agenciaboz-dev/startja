@@ -51,7 +51,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                         cursor: "pointer",
                         textAlign: "center"
                     }}
-                    onClick={() => navigate("/panel/visao-geral/")}
+                    onClick={() => navigate("/painel/visao-geral/")}
                 >
                     <GridViewOutlinedIcon
                         sx={{
@@ -73,7 +73,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                         cursor: "pointer",
                         textAlign: "center"
                     }}
-                    onClick={() => navigate("/panel/notas-fiscais")}
+                    onClick={() => navigate("/painel/notas-fiscais")}
                 >
                     <ReceiptOutlinedIcon
                         sx={{
