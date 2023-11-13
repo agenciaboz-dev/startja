@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Box, Button } from "@mui/material"
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import { colors } from "../../../../style/colors"
@@ -6,14 +6,18 @@ import { Sidebar } from "../../../../components/Sidebar"
 import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
 import { InvoicesList } from "../../../../components/InvoicesList"
-import { ProductsList } from "../../../../components/ProductsList"
 import { InvoicesListHeader } from "../../../../components/InvoicesList/InvoicesListHeader"
+import AddNewInvoiceModal from "./AddNewInvoiceModal"
 
 interface IssuanceProps {
     user: User
 }
 
 export const Issuance: React.FC<IssuanceProps> = ({user}) => {
+    const [isAddNewInvoiceModalOpen, setAddNewInvoiceModalOpen] = useState(false)
+    const openNewInvoiceModal = () => {
+        setAddNewInvoiceModalOpen(true)
+    }
     return (
         <>
             <Header title="Notas fiscais emitidas" />
@@ -31,7 +35,7 @@ export const Issuance: React.FC<IssuanceProps> = ({user}) => {
                         gap: "2rem"
                     }}
                     >
-                    <Toolbar searchPlaceholder="produto" />
+                    <Toolbar searchPlaceholder="produto" addButtonPlaceholder="nota fiscal" addButtonCallback={openNewInvoiceModal} />
                     <Box
                         sx={{
                             height: "100%",
@@ -44,10 +48,11 @@ export const Issuance: React.FC<IssuanceProps> = ({user}) => {
                         }}
                     >
                         <InvoicesListHeader />
-                        {/* <InvoicesList /> */}
+                        <InvoicesList />
                     </Box>
                 </Box>
             </Box>
+            <AddNewInvoiceModal open={isAddNewInvoiceModalOpen} onClose={() => setAddNewInvoiceModalOpen(false)} />
         </>
     )
 }

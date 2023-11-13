@@ -1,6 +1,7 @@
 import React from "react"
-import { Box, Checkbox } from "@mui/material"
+import { Box, Button, Checkbox } from "@mui/material"
 import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined'
+import { colors } from "../../style/colors"
 
 interface InvoiceRowProps {
     invoice : Invoice
@@ -68,22 +69,26 @@ return (
                 </Box>
                 <Box
                     sx={{
-                        flex: 1
+                        flex: 1,
+                        color: colors.primary
                     }}
                 >
                     <p>R$60.475,00</p>
                 </Box>
-                <Box
+                <Button
+                    variant="contained"
                     sx={{
-                        flex: 1
+                        flex: 1,
+                        borderRadius: "30px",
+                        textTransform: "unset",
+                        pointerEvents: "none"
                     }}
                 >
                     <p>Autorizada</p>
-                </Box>
+                </Button>
                 <Box
                     sx={{
                         flex: 1,
-                        justifyContent: "end"
                     }}
                 >
                 <FormatListBulletedOutlinedIcon />

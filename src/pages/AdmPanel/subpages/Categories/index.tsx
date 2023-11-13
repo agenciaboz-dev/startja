@@ -11,7 +11,7 @@ import AddNewCategoryModal from "./AddNewCategoryModal"
 interface CategoriesProps {}
 
 export const Categories: React.FC<CategoriesProps> = ({}) => {
-    const [emptyCategoriesList, setEmptyCategoriesList] = useState(true)
+    const [emptyCategoriesList, setEmptyCategoriesList] = useState(false)
     const [isAddNewCategoryModalOpen, setAddNewCategoryModalOpen] = useState(false);
     const openNewCategoryModal = () => {
         setAddNewCategoryModalOpen(true)

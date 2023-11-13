@@ -1,16 +1,22 @@
-import React from "react"
+import React, { useState } from "react"
 import { Box, Button } from "@mui/material"
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import { colors } from "../../../../style/colors"
 import { Sidebar } from "../../../../components/Sidebar"
 import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
+import AddNewInvoiceModal from "../Issuance/AddNewInvoiceModal"
 
 interface OverviewProps {
     user: User
 }
 
 export const Overview: React.FC<OverviewProps> = ({user}) => {
+    const [isAddNewInvoiceModalOpen, setAddNewInvoiceModalOpen] = useState(false)
+    const openNewInvoiceModal = () => {
+        setAddNewInvoiceModalOpen(true)
+    }
+
     return (
         <>
             <Header title="Visão geral" />
@@ -91,6 +97,7 @@ export const Overview: React.FC<OverviewProps> = ({user}) => {
                                     <h3>Movimentação das últimas notas</h3>
                                     <Button
                                         variant="contained"
+                                        onClick={openNewInvoiceModal}
                                         sx={{
                                             borderRadius: "30px",
                                             textTransform: "unset"
@@ -161,6 +168,7 @@ export const Overview: React.FC<OverviewProps> = ({user}) => {
                         </Box>
                     </Box>
                 </Box>
+                <AddNewInvoiceModal open={isAddNewInvoiceModalOpen} onClose={() => setAddNewInvoiceModalOpen(false)} />
             </Box>
         </>
     )

@@ -86,7 +86,6 @@ export const InvoicesListHeader: React.FC<InvoicesListHeaderProps> = ({}) => {
                     <Box
                     sx={{
                         flex: 1,
-                        justifyContent: "end"
                     }}
                     >
                         <h3>Ações</h3>
