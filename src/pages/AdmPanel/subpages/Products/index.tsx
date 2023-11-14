@@ -8,25 +8,28 @@ import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
 import AddNewProductModal from "./AddNewProductModal"
 import { useProduct } from "../../../../hooks/useProduct"
+import { useHeader } from "../../../../hooks/useHeader"
 
 interface ProductsProps {}
 
 export const Products: React.FC<ProductsProps> = ({}) => {
     // const [emptyProductsList, setEmptyProductsList] = useState(true)
     const products = useProduct()
+    const header = useHeader()
     const emptyProductsList = !products.list.length
-    const [isAddNewProductModalOpen, setAddNewProductModalOpen] = useState(false);
+    const [isAddNewProductModalOpen, setAddNewProductModalOpen] = useState(false)
     const openNewProductModal = () => {
         setAddNewProductModalOpen(true)
     }
     const io = useIo()
     useEffect(() => {
-        io.emit('product:list')
-    },[])
+        header.setTitle("Produtos")
+        io.emit("product:list")
+    }, [])
 
-    return(
+    return (
         <>
-            <Header title="Produtos"/>
+            <Header />
             <Toolbar searchPlaceholder="produto" addButtonPlaceholder="novo produto" addButtonCallback={openNewProductModal} />
             <Box
                 sx={{
@@ -34,7 +37,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                     width: "100%",
                 }}
             >
-                {emptyProductsList &&
+                {emptyProductsList && (
                     <Box
                         sx={{
                             height: "80vh",
@@ -43,12 +46,10 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                             justifyContent: "center",
                             alignItems: "center",
                             flexDirection: "column",
-                            gap: "1rem"
+                            gap: "1rem",
                         }}
                     >
-                        <h2>
-                            Sem produtos cadastrados
-                        </h2>
+                        <h2>Sem produtos cadastrados</h2>
                         <p>Pressione o botão para cadastrar um produto.</p>
                         <Button
                             variant="contained"
@@ -57,7 +58,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                                 textTransform: "unset",
                                 height: "3rem",
                                 verticalAlign: "middle",
-                                gap: "0.5rem"
+                                gap: "0.5rem",
                             }}
                             onClick={openNewProductModal}
                         >
@@ -65,9 +66,9 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                             Adicionar novo produto
                         </Button>
                     </Box>
-                }
+                )}
 
-                {!emptyProductsList &&
+                {!emptyProductsList && (
                     <Box
                         sx={{
                             flex: 1,
@@ -78,11 +79,11 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                             flexDirection: "column",
                             width: "100%",
                         }}
-                        >
+                    >
                         <ProductsListHeader />
                         <ProductsList />
                     </Box>
-                }
+                )}
             </Box>
             <AddNewProductModal open={isAddNewProductModalOpen} onClose={() => setAddNewProductModalOpen(false)} />
         </>

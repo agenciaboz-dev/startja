@@ -7,23 +7,26 @@ import { useIo } from "../../../../hooks/useIo"
 import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
 import AddNewOperationModal from "./AddNewOperationModal"
+import { useHeader } from "../../../../hooks/useHeader"
 
 interface OperationsProps {}
 
 export const Operations: React.FC<OperationsProps> = ({}) => {
+    const header = useHeader()
     const [emptyOperationsList, setEmptyOperationsList] = useState(false)
-    const [isAddNewOperationModalOpen, setAddNewOperationModalOpen] = useState(false);
+    const [isAddNewOperationModalOpen, setAddNewOperationModalOpen] = useState(false)
     const openNewOperationModal = () => {
         setAddNewOperationModalOpen(true)
     }
     const io = useIo()
     useEffect(() => {
-        io.emit('operation:list')
-    },[])
+        header.setTitle("Natureza da operação")
+        io.emit("operation:list")
+    }, [])
 
-    return(
+    return (
         <>
-            <Header title="Natureza da Operação"/>
+            <Header />
             <Toolbar searchPlaceholder="natureza da operação" addButtonPlaceholder="natureza da operação" addButtonCallback={openNewOperationModal} />
             <Box
                 sx={{
@@ -31,7 +34,7 @@ export const Operations: React.FC<OperationsProps> = ({}) => {
                     width: "100%",
                 }}
             >
-                {emptyOperationsList &&
+                {emptyOperationsList && (
                     <Box
                         sx={{
                             height: "80vh",
@@ -40,12 +43,10 @@ export const Operations: React.FC<OperationsProps> = ({}) => {
                             justifyContent: "center",
                             alignItems: "center",
                             flexDirection: "column",
-                            gap: "1rem"
+                            gap: "1rem",
                         }}
                     >
-                        <h2>
-                            Sem naturezas de operação cadastradas
-                        </h2>
+                        <h2>Sem naturezas de operação cadastradas</h2>
                         <p>Pressione o botão para cadastrar uma natureza de operação.</p>
                         <Button
                             variant="contained"
@@ -54,7 +55,7 @@ export const Operations: React.FC<OperationsProps> = ({}) => {
                                 textTransform: "unset",
                                 height: "3rem",
                                 verticalAlign: "middle",
-                                gap: "0.5rem"
+                                gap: "0.5rem",
                             }}
                             onClick={openNewOperationModal}
                         >
@@ -62,9 +63,9 @@ export const Operations: React.FC<OperationsProps> = ({}) => {
                             Adicionar nova natureza de operação
                         </Button>
                     </Box>
-                }
+                )}
 
-                {!emptyOperationsList &&
+                {!emptyOperationsList && (
                     <Box
                         sx={{
                             flex: 1,
@@ -75,11 +76,11 @@ export const Operations: React.FC<OperationsProps> = ({}) => {
                             flexDirection: "column",
                             width: "100%",
                         }}
-                        >
+                    >
                         <OperationsListHeader />
                         <OperationsList />
                     </Box>
-                }
+                )}
             </Box>
             <AddNewOperationModal open={isAddNewOperationModalOpen} onClose={() => setAddNewOperationModalOpen(false)} />
         </>

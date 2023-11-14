@@ -1,30 +1,24 @@
 import React, { useEffect, useState } from "react"
 import { Box, Button } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { colors } from "../../../../style/colors"
-import { Sidebar } from "../../../../components/Sidebar"
-import { Header } from "../../../../components/Header"
-import { Toolbar } from "../../../../components/Toolbar"
-import AddNewInvoiceModal from "../Issuance/AddNewInvoiceModal"
-import { useHeader } from "../../../../hooks/useHeader"
+import { colors } from "../../../../../../style/colors"
+import { Sidebar } from "../../../../../../components/Sidebar"
+import { Header } from "../../../../../../components/Header"
+import { Toolbar } from "../../../../../../components/Toolbar"
+import { useHeader } from "../../../../../../hooks/useHeader"
 
-interface OverviewProps {
+interface EnterprisesProps {
     user: User
 }
 
-export const Overview: React.FC<OverviewProps> = ({ user }) => {
+export const Enterprises: React.FC<EnterprisesProps> = ({ user }) => {
     const header = useHeader()
-    const [isAddNewInvoiceModalOpen, setAddNewInvoiceModalOpen] = useState(false)
-    const openNewInvoiceModal = () => {
-        setAddNewInvoiceModalOpen(true)
-    }
     useEffect(() => {
-        header.setTitle("Visão geral")
+        header.setTitle("Cadastros gerais - Pessoas e empresas")
     }, [])
-
     return (
         <>
-            <Header />
+            <Toolbar searchPlaceholder="pessoas e empresas" />
             <Box
                 sx={{
                     height: "80vh",
@@ -100,7 +94,7 @@ export const Overview: React.FC<OverviewProps> = ({ user }) => {
                                 <h3>Movimentação das últimas notas</h3>
                                 <Button
                                     variant="contained"
-                                    onClick={openNewInvoiceModal}
+                                    // onClick={openNewInvoiceModal}
                                     sx={{
                                         borderRadius: "30px",
                                         textTransform: "unset",
@@ -166,7 +160,6 @@ export const Overview: React.FC<OverviewProps> = ({ user }) => {
                         </Box>
                     </Box>
                 </Box>
-                <AddNewInvoiceModal open={isAddNewInvoiceModalOpen} onClose={() => setAddNewInvoiceModalOpen(false)} />
             </Box>
         </>
     )

@@ -6,6 +6,7 @@ import { Toolbar } from "../../components/Toolbar"
 import { CompanyCard } from "../../components/CompanyCard"
 import { useCompany } from "../../hooks/useCompany"
 import { useIo } from "../../hooks/useIo"
+import { useHeader } from "../../hooks/useHeader"
 
 interface CompanySelectionProps {
     user: User
@@ -13,17 +14,19 @@ interface CompanySelectionProps {
 
 export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
     const companies = useCompany()
+    const header = useHeader()
     const io = useIo()
     useEffect(() => {
-        io.emit('company:list')
-    },[])
+        header.setTitle("Selecionar empresa")
+        io.emit("company:list")
+    }, [])
 
     return (
         <Box
             sx={{
                 backgroundColor: colors.background,
                 width: "100%",
-                overflow: "hidden"
+                overflow: "hidden",
             }}
         >
             <Box
@@ -35,7 +38,7 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
                     gap: "2rem",
                 }}
             >
-                <Header title="Selecionar empresa" />
+                <Header />
                 <Toolbar searchPlaceholder="empresa" />
                 <Box
                     sx={{
@@ -44,7 +47,9 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
                     }}
                 >
                     <Grid container>
-                        {companies.list.map(company => <CompanyCard key={company.id} company={company} />)}
+                        {companies.list.map((company) => (
+                            <CompanyCard key={company.id} company={company} />
+                        ))}
                     </Grid>
                 </Box>
             </Box>

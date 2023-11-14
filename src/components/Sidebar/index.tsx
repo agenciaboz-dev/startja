@@ -1,9 +1,11 @@
 import React, { useState } from "react"
 import { Box } from "@mui/material"
-import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
-import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import { useNavigate } from "react-router-dom";
+import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined"
+import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined"
+import BookOutlinedIcon from "@mui/icons-material/BookOutlined"
+import ListAltOutlinedIcon from "@mui/icons-material/ListAltOutlined"
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined"
+import { useNavigate } from "react-router-dom"
 
 interface SidebarProps {}
 
@@ -14,16 +16,18 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
         <Box
             sx={{
                 height: "100%",
-                width: "10%",
+                width: "7%",
                 backgroundColor: "white",
                 boxShadow: "2px 0 2px 0 #d1d1d1",
                 flexDirection: "column",
                 alignItems: "center",
                 padding: "2rem 0",
-                gap: "2rem"
+                gap: "2rem",
             }}
         >
-            <img src="/src/assets/startja_icon.png" alt=""
+            <img
+                src="/src/assets/startja_icon.png"
+                alt=""
                 style={{
                     height: "5rem",
                     width: "5rem",
@@ -32,14 +36,14 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
             />
             <hr
                 style={{
-                    width: "70%"
+                    width: "70%",
                 }}
             />
 
             <Box
                 sx={{
                     flexDirection: "column",
-                    gap: "2rem"
+                    gap: "2rem",
                 }}
             >
                 <Box
@@ -49,7 +53,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                         alignItems: "center",
                         marginTop: "auto",
                         cursor: "pointer",
-                        textAlign: "center"
+                        textAlign: "center",
                     }}
                     onClick={() => navigate("/painel/visao-geral/")}
                 >
@@ -57,12 +61,10 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                         sx={{
                             fill: "#000000",
                             width: "2rem",
-                            height: "2rem"
+                            height: "2rem",
                         }}
                     />
-                    <p>
-                        Visão Geral
-                    </p>
+                    <p>Visão Geral</p>
                 </Box>
                 <Box
                     sx={{
@@ -71,7 +73,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                         alignItems: "center",
                         marginTop: "auto",
                         cursor: "pointer",
-                        textAlign: "center"
+                        textAlign: "center",
                     }}
                     onClick={() => navigate("/painel/notas-fiscais")}
                 >
@@ -79,12 +81,50 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                         sx={{
                             fill: "#000000",
                             width: "2rem",
-                            height: "2rem"
+                            height: "2rem",
                         }}
                     />
-                    <p>
-                        Emissão de Nota Fiscal
-                    </p>
+                    <p>Emissão de Nota Fiscal</p>
+                </Box>
+                <Box
+                    sx={{
+                        flexDirection: "column",
+                        gap: "0.5rem",
+                        alignItems: "center",
+                        marginTop: "auto",
+                        cursor: "pointer",
+                        textAlign: "center",
+                    }}
+                    // onClick={() => navigate("/painel/notas-fiscais")}
+                >
+                    <BookOutlinedIcon
+                        sx={{
+                            fill: "#000000",
+                            width: "2rem",
+                            height: "2rem",
+                        }}
+                    />
+                    <p>Livro-Caixa</p>
+                </Box>
+                <Box
+                    sx={{
+                        flexDirection: "column",
+                        gap: "0.5rem",
+                        alignItems: "center",
+                        marginTop: "auto",
+                        cursor: "pointer",
+                        textAlign: "center",
+                    }}
+                    onClick={() => navigate("/painel/cadastros-gerais")}
+                >
+                    <ListAltOutlinedIcon
+                        sx={{
+                            fill: "#000000",
+                            width: "2rem",
+                            height: "2rem",
+                        }}
+                    />
+                    <p>Cadastros gerais</p>
                 </Box>
             </Box>
 
@@ -93,19 +133,17 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                     flexDirection: "column",
                     gap: "0.5rem",
                     alignItems: "center",
-                    marginTop: "auto"
+                    marginTop: "auto",
                 }}
             >
                 <SettingsOutlinedIcon
                     sx={{
                         fill: "#000000",
                         width: "2rem",
-                        height: "2rem"
+                        height: "2rem",
                     }}
                 />
-                <p>
-                    Configurações
-                </p>
+                <p>Configurações</p>
             </Box>
         </Box>
     )

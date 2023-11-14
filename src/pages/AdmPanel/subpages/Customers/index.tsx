@@ -7,32 +7,40 @@ import { useCustomer } from "../../../../hooks/useCustomer"
 import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
 import AddNewCustomerModal from "./AddNewCustomerModal"
+import { useHeader } from "../../../../hooks/useHeader"
 
 interface CustomersProps {}
 
 export const Customers: React.FC<CustomersProps> = ({}) => {
     // const [emptyCustomersList, setEmptyCustomersList] = useState(true)
     const customers = useCustomer()
+    const header = useHeader()
     const emptyCustomersList = !customers.list.length
-    const [isAddNewCustomerModalOpen, setAddNewCustomerModalOpen] = useState(false);
+    const [isAddNewCustomerModalOpen, setAddNewCustomerModalOpen] = useState(false)
     const openNewCustomerModal = () => {
         setAddNewCustomerModalOpen(true)
     }
     const io = useIo()
     useEffect(() => {
-        io.emit('customer:list')
-    },[])
+        header.setTitle("Clientes")
+        io.emit("customer:list")
+    }, [])
 
-    return(
+    return (
         <>
-            <Header title="Clientes"/>
-            <Toolbar searchPlaceholder="cliente" addButtonPlaceholder="novo cliente" selectList={customers.list} addButtonCallback={openNewCustomerModal} />
+            <Header />
+            <Toolbar
+                searchPlaceholder="cliente"
+                addButtonPlaceholder="novo cliente"
+                selectList={customers.list}
+                addButtonCallback={openNewCustomerModal}
+            />
             <Box
                 sx={{
-                    width: "100%"
+                    width: "100%",
                 }}
             >
-                {emptyCustomersList ?
+                {emptyCustomersList ? (
                     <Box
                         sx={{
                             height: "80vh",
@@ -41,12 +49,10 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                             justifyContent: "center",
                             alignItems: "center",
                             flexDirection: "column",
-                            gap: "1rem"
+                            gap: "1rem",
                         }}
                     >
-                        <h2>
-                            Sem clientes cadastrados
-                        </h2>
+                        <h2>Sem clientes cadastrados</h2>
                         <p>Pressione o botão para cadastrar um cliente.</p>
                         <Button
                             variant="contained"
@@ -55,7 +61,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                                 textTransform: "unset",
                                 height: "3rem",
                                 verticalAlign: "middle",
-                                gap: "0.5rem"
+                                gap: "0.5rem",
                             }}
                             onClick={openNewCustomerModal}
                         >
@@ -63,20 +69,20 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                             Adicionar novo cliente
                         </Button>
                     </Box>
-                    
-                    :
-                    
+                ) : (
                     <Box
                         sx={{
                             height: "80vh",
                             width: "100%",
                         }}
                     >
-                        <Grid container >
-                            {customers.list.map(customer => <CustomerCard buttonColor="primary" key={customer.id} customer={customer} />)}
+                        <Grid container>
+                            {customers.list.map((customer) => (
+                                <CustomerCard buttonColor="primary" key={customer.id} customer={customer} />
+                            ))}
                         </Grid>
                     </Box>
-                }
+                )}
             </Box>
             <AddNewCustomerModal open={isAddNewCustomerModalOpen} onClose={() => setAddNewCustomerModalOpen(false)} />
         </>

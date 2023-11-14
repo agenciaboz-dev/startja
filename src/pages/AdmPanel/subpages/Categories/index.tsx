@@ -7,23 +7,26 @@ import { useIo } from "../../../../hooks/useIo"
 import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
 import AddNewCategoryModal from "./AddNewCategoryModal"
+import { useHeader } from "../../../../hooks/useHeader"
 
 interface CategoriesProps {}
 
 export const Categories: React.FC<CategoriesProps> = ({}) => {
+    const header = useHeader()
     const [emptyCategoriesList, setEmptyCategoriesList] = useState(false)
-    const [isAddNewCategoryModalOpen, setAddNewCategoryModalOpen] = useState(false);
+    const [isAddNewCategoryModalOpen, setAddNewCategoryModalOpen] = useState(false)
     const openNewCategoryModal = () => {
         setAddNewCategoryModalOpen(true)
     }
     const io = useIo()
     useEffect(() => {
-        io.emit('category:list')
-    },[])
+        header.setTitle("Categorias")
+        io.emit("category:list")
+    }, [])
 
-    return(
+    return (
         <>
-            <Header title="Categorias"/>
+            <Header />
             <Toolbar searchPlaceholder="categoria" addButtonPlaceholder="" addButtonCallback={openNewCategoryModal} />
             <Box
                 sx={{
@@ -31,7 +34,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                     width: "100%",
                 }}
             >
-                {emptyCategoriesList &&
+                {emptyCategoriesList && (
                     <Box
                         sx={{
                             height: "80vh",
@@ -40,12 +43,10 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                             justifyContent: "center",
                             alignItems: "center",
                             flexDirection: "column",
-                            gap: "1rem"
+                            gap: "1rem",
                         }}
                     >
-                        <h2>
-                            Sem categorias cadastradas
-                        </h2>
+                        <h2>Sem categorias cadastradas</h2>
                         <p>Pressione o botão para cadastrar uma categoria.</p>
                         <Button
                             variant="contained"
@@ -54,7 +55,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                                 textTransform: "unset",
                                 height: "3rem",
                                 verticalAlign: "middle",
-                                gap: "0.5rem"
+                                gap: "0.5rem",
                             }}
                             onClick={openNewCategoryModal}
                         >
@@ -62,9 +63,9 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                             Adicionar nova categoria
                         </Button>
                     </Box>
-                }
+                )}
 
-                {!emptyCategoriesList &&
+                {!emptyCategoriesList && (
                     <Box
                         sx={{
                             flex: 1,
@@ -75,11 +76,11 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                             flexDirection: "column",
                             width: "100%",
                         }}
-                        >
+                    >
                         <CategoriesListHeader />
                         <CategoriesList />
                     </Box>
-                }
+                )}
             </Box>
             <AddNewCategoryModal open={isAddNewCategoryModalOpen} onClose={() => setAddNewCategoryModalOpen(false)} />
         </>
