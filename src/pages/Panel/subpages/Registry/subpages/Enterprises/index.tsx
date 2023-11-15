@@ -8,6 +8,7 @@ import { Toolbar } from "../../../../../../components/Toolbar"
 import { useHeader } from "../../../../../../hooks/useHeader"
 import { EnterprisesListHeader } from "../../../../../../components/EnterprisesList/EnterprisesListHeader"
 import { EnterprisesList } from "../../../../../../components/EnterprisesList"
+import AddEnterpriseModal from "./AddEnterpriseModal"
 
 interface EnterprisesProps {
     user: User
@@ -44,7 +45,7 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ user }) => {
                 <EnterprisesListHeader />
                 <EnterprisesList />
             </Box>
-            {/* <AddEnterpriseModal open={isAddEnterpriseModalOpen} onClose={() => setAddEnterpriseModalOpen(false)} /> */}
+            <AddEnterpriseModal open={isAddEnterpriseModalOpen} onClose={() => setAddEnterpriseModalOpen(false)} />
         </>
     )
 }

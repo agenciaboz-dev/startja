@@ -19,7 +19,6 @@ export const RegistrySidebar: React.FC<RegistrySidebarProps> = ({}) => {
                 alignItems: "center",
                 padding: "2rem 0",
                 gap: "2rem",
-                margin: "2px",
                 borderRadius: "30px",
             }}
         >

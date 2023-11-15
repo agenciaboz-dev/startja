@@ -16,6 +16,7 @@ export const Registry: React.FC<RegistryProps> = ({ user }) => {
             sx={{
                 flexDirection: "column",
                 gap: "2rem",
+                height: "100%",
             }}
         >
             <Header />
@@ -23,7 +24,6 @@ export const Registry: React.FC<RegistryProps> = ({ user }) => {
                 sx={{
                     backgroundColor: colors.background,
                     flex: 1,
-                    overflow: "hidden",
                 }}
             >
                 <RegistrySidebar />
@@ -32,8 +32,9 @@ export const Registry: React.FC<RegistryProps> = ({ user }) => {
                         flex: 1,
                         flexDirection: "column",
                         overflowY: "auto",
-                        padding: "0 0.1rem 0 2rem",
+                        padding: "0 2rem",
                         gap: "2rem",
+                        height: "100%",
                     }}
                 >
                     <Routes>

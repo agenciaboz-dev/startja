@@ -1,0 +1,5 @@
+padronizar as larguras dos modais
+aplicar todos os labels E placeholders nos Textfields
+padronizar <p> ou <h4> nos modais
+padronizar se tem ou não tem espaços em volta de barras
+padronizar margins dos DialogActions dos modais

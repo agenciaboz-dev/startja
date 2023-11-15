@@ -18,6 +18,7 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
                 backgroundColor: colors.background,
                 width: "100%",
                 overflow: "hidden",
+                height: "100%",
             }}
         >
             <Sidebar />
@@ -28,6 +29,7 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
                     overflowY: "auto",
                     padding: "2rem",
                     gap: "2rem",
+                    height: "100%",
                 }}
             >
                 <Routes>

@@ -35,14 +35,14 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ Enterprise }) => {
                         flex: 1,
                     }}
                 >
-                    <p>28/11/2022</p>
+                    <p>Lorem Ipsum</p>
                 </Box>
                 <Box
                     sx={{
                         flex: 1,
                     }}
                 >
-                    <p>920/7</p>
+                    <p>90020/151517</p>
                 </Box>
                 <Box
                     sx={{
@@ -63,27 +63,8 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ Enterprise }) => {
                         flex: 1,
                     }}
                 >
-                    <p>Dignissim Consectetur</p>
+                    <p>9889-6556</p>
                 </Box>
-                <Box
-                    sx={{
-                        flex: 1,
-                        color: colors.primary,
-                    }}
-                >
-                    <p>R$60.475,00</p>
-                </Box>
-                <Button
-                    variant="contained"
-                    sx={{
-                        flex: 1,
-                        borderRadius: "30px",
-                        textTransform: "unset",
-                        pointerEvents: "none",
-                    }}
-                >
-                    <p>Autorizada</p>
-                </Button>
                 <Box
                     sx={{
                         flex: 1,

@@ -1,8 +1,6 @@
 import React, { useState } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box, Grid, Tab, Tabs } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box, Grid, Tab, Tabs, Radio } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
-// import { EnterpriseModalProductsListHeader } from "../../../../components/EnterpriseModalProductsList/EnterpriseModalProductsListHeader"
-// import AddEnterpriseInfoModal from "./AddEnterpriseInfoModal"
 
 interface AddEnterpriseModalProps {
     open: boolean
@@ -28,11 +26,11 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
                 sx: {
                     borderRadius: "30px",
                     paddingTop: "1rem",
-                    minWidth: "90vw",
+                    minWidth: "60vw",
                 },
             }}
         >
-            <DialogTitle>Preencha os dados da nota de saída</DialogTitle>
+            <DialogTitle>Adicionar nova pessoa ou empresa</DialogTitle>
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
@@ -46,208 +44,113 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
             <DialogContent>
                 <Box
                     sx={{
+                        flexDirection: "column",
                         width: "100%",
-                        gap: "2rem",
+                        gap: "1rem",
                     }}
                 >
                     <Box
                         sx={{
-                            flex: 1,
-                            flexDirection: "column",
-                            gap: "1rem",
+                            justifyContent: "space-between",
+                            width: "25%",
                         }}
                     >
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <TextField label="Propriedade" placeholder="Selecione uma propriedade" fullWidth />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField label="Natureza da operação" placeholder="Selecione uma natureza de operação" fullWidth />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField label="Cliente / Fornecedor" placeholder="Selecione um cliente/fornecedor" fullWidth />
-                            </Grid>
-                        </Grid>
-
-                        <EnterpriseModalProductsListHeader />
                         <Box
                             sx={{
                                 alignItems: "center",
-                                flexDirection: "column",
                             }}
                         >
-                            <h3>Sem produtos adicionados</h3>
-                            <p>Para emissão da nota fiscal, adicione os produtos ao lado.</p>
+                            <Radio />
+                            <p>Nacional</p>
+                        </Box>
+                        <Box
+                            sx={{
+                                alignItems: "center",
+                            }}
+                        >
+                            <Radio />
+                            <p>Exterior</p>
                         </Box>
                     </Box>
 
-                    <hr
-                        style={{
-                            height: "100%",
-                        }}
-                    />
+                    <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                            <TextField label="CPF / CNPJ" fullWidth />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField label="Nome" fullWidth />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField label="Indicador de inscrição estadual" fullWidth />
+                        </Grid>
+                    </Grid>
 
-                    <Box
-                        sx={{
-                            flex: 1,
-                            flexDirection: "column",
-                            gap: "1rem",
-                        }}
-                    >
-                        <h3>Adicionar Produto</h3>
+                    <h4>Endereço</h4>
 
-                        <Box>
-                            <Tabs variant="scrollable" indicatorColor="primary">
-                                <Tab label="Produto" onClick={() => setRightSideDisplay("produto")} />
-                                <Tab label="Tributação" onClick={() => setRightSideDisplay("tributação")} />
-                            </Tabs>
-                        </Box>
-                        {rightSideDisplay === "produto" && (
-                            <Box
-                                sx={{
-                                    flexDirection: "column",
-                                    gap: "1rem",
-                                }}
-                            >
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12}>
-                                        <TextField label="Produto" fullWidth />
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <TextField label="Quantidade" fullWidth />
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <TextField label="Unidade" fullWidth />
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <TextField label="Valor unitário" fullWidth />
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <TextField label="Valor total" fullWidth />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField label="Informações adicionais do produto" fullWidth />
-                                    </Grid>
-                                </Grid>
-                                <h4>Integração com pedido de compra</h4>
-                                <Grid container spacing={2}>
-                                    <Grid item xs={6}>
-                                        <TextField label="Ordem de compra" fullWidth />
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <TextField label="Nº do item" fullWidth />
-                                    </Grid>
-                                </Grid>
-                                <Button
-                                    variant="outlined"
-                                    sx={{
-                                        alignSelf: "end",
-                                        borderRadius: "30px",
-                                        textTransform: "unset",
-                                    }}
-                                >
-                                    Próximo
-                                </Button>
-                            </Box>
-                        )}
-                        {rightSideDisplay === "tributação" && (
-                            <Box
-                                sx={{
-                                    flexDirection: "column",
-                                    gap: "1rem",
-                                }}
-                            >
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12}>
-                                        <TextField label="CFOP" fullWidth />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField label="Situação tributária (CST)" fullWidth />
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <TextField label="Alíquota ICMS" fullWidth />
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <TextField label="Valor do ICMS" fullWidth />
-                                    </Grid>
-                                </Grid>
-                                <Button
-                                    variant="contained"
-                                    sx={{
-                                        alignSelf: "end",
-                                        borderRadius: "30px",
-                                        textTransform: "unset",
-                                    }}
-                                >
-                                    Adicionar
-                                </Button>
-                            </Box>
-                        )}
-                    </Box>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                            <TextField label="CEP" fullWidth />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField label="Cidade/UF" fullWidth />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField label="Rua" fullWidth />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField label="Número" fullWidth />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField label="Complemento" fullWidth />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField label="Bairro" fullWidth />
+                        </Grid>
+                    </Grid>
+
+                    <h4>Informar contato (opcional)</h4>
+
+                    <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                            <TextField label="E-mail" fullWidth />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField label="Telefone" fullWidth />
+                        </Grid>
+                    </Grid>
                 </Box>
             </DialogContent>
 
             <DialogActions
                 sx={{
                     margin: "0.5rem",
-                    justifyContent: "space-between",
                 }}
             >
                 <Button
                     onClick={onClose}
                     color="secondary"
-                    variant="outlined"
+                    variant="contained"
                     sx={{
                         borderRadius: "30px",
-                        color: "black",
+                        color: "white",
                         textTransform: "unset",
                     }}
                 >
                     Cancelar
                 </Button>
-                <Box
+                <Button
+                    onClick={onClose}
+                    color="primary"
+                    variant="contained"
                     sx={{
-                        gap: "1rem",
+                        borderRadius: "30px",
+                        color: "white",
+                        textTransform: "unset",
                     }}
                 >
-                    <Button
-                        onClick={openEnterpriseInfoModal}
-                        color="primary"
-                        variant="outlined"
-                        sx={{
-                            borderRadius: "30px",
-                            textTransform: "unset",
-                        }}
-                    >
-                        Adicionar informações
-                    </Button>
-                    <Button
-                        onClick={onClose}
-                        color="secondary"
-                        variant="contained"
-                        sx={{
-                            borderRadius: "30px",
-                            color: "white",
-                            textTransform: "unset",
-                        }}
-                    >
-                        Salvar e visualizar
-                    </Button>
-                    <Button
-                        onClick={onClose}
-                        color="primary"
-                        variant="contained"
-                        sx={{
-                            borderRadius: "30px",
-                            color: "white",
-                            textTransform: "unset",
-                        }}
-                    >
-                        Simular imposto de renda
-                    </Button>
-                </Box>
+                    Adicionar
+                </Button>
             </DialogActions>
-            <AddEnterpriseInfoModal open={isAddEnterpriseInfoModalOpen} onClose={() => setAddEnterpriseInfoModalOpen(false)} />
         </Dialog>
     )
 }

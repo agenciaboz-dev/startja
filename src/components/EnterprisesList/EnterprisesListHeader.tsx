@@ -37,49 +37,35 @@ export const EnterprisesListHeader: React.FC<EnterprisesListHeaderProps> = ({}) 
                             flex: 1,
                         }}
                     >
-                        <h3>Emissão</h3>
+                        <h3>Nome</h3>
                     </Box>
                     <Box
                         sx={{
                             flex: 1,
                         }}
                     >
-                        <h3>Série/Nº NFe</h3>
+                        <h3>CPF / CNPJ</h3>
                     </Box>
                     <Box
                         sx={{
                             flex: 1,
                         }}
                     >
-                        <h3>Cliente/Fornecedor</h3>
+                        <h3>Tipo</h3>
                     </Box>
                     <Box
                         sx={{
                             flex: 1,
                         }}
                     >
-                        <h3>Emitente</h3>
+                        <h3>Cidade / UF</h3>
                     </Box>
                     <Box
                         sx={{
                             flex: 1,
                         }}
                     >
-                        <h3>Propriedade</h3>
-                    </Box>
-                    <Box
-                        sx={{
-                            flex: 1,
-                        }}
-                    >
-                        <h3>Valor</h3>
-                    </Box>
-                    <Box
-                        sx={{
-                            flex: 1,
-                        }}
-                    >
-                        <h3>Situação</h3>
+                        <h3>Fone</h3>
                     </Box>
                     <Box
                         sx={{
