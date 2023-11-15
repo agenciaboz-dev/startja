@@ -4,12 +4,12 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { InvoiceModalProductsListHeader } from "../../../../components/InvoiceModalProductsList/InvoiceModalProductsListHeader"
 import AddInvoiceInfoModal from "./AddInvoiceInfoModal"
 
-interface AddNewInvoiceModalProps {
+interface AddInvoiceModalProps {
     open: boolean
     onClose: () => void
 }
 
-const AddNewInvoiceModal: React.FC<AddNewInvoiceModalProps> = ({ open, onClose }) => {
+const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
     const [rightSideDisplay, setRightSideDisplay] = useState("produto")
 
     const [isAddInvoiceInfoModalOpen, setAddInvoiceInfoModalOpen] = useState(false)
@@ -252,4 +252,4 @@ const AddNewInvoiceModal: React.FC<AddNewInvoiceModalProps> = ({ open, onClose }
     )
 }
 
-export default AddNewInvoiceModal
+export default AddInvoiceModal

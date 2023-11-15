@@ -6,7 +6,7 @@ import { OperationsList } from "../../../../components/OperationsList"
 import { useIo } from "../../../../hooks/useIo"
 import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
-import AddNewOperationModal from "./AddNewOperationModal"
+import AddOperationModal from "./AddOperationModal"
 import { useHeader } from "../../../../hooks/useHeader"
 
 interface OperationsProps {}
@@ -14,9 +14,9 @@ interface OperationsProps {}
 export const Operations: React.FC<OperationsProps> = ({}) => {
     const header = useHeader()
     const [emptyOperationsList, setEmptyOperationsList] = useState(false)
-    const [isAddNewOperationModalOpen, setAddNewOperationModalOpen] = useState(false)
+    const [isAddOperationModalOpen, setAddOperationModalOpen] = useState(false)
     const openNewOperationModal = () => {
-        setAddNewOperationModalOpen(true)
+        setAddOperationModalOpen(true)
     }
     const io = useIo()
     useEffect(() => {
@@ -82,7 +82,7 @@ export const Operations: React.FC<OperationsProps> = ({}) => {
                     </Box>
                 )}
             </Box>
-            <AddNewOperationModal open={isAddNewOperationModalOpen} onClose={() => setAddNewOperationModalOpen(false)} />
+            <AddOperationModal open={isAddOperationModalOpen} onClose={() => setAddOperationModalOpen(false)} />
         </>
     )
 }

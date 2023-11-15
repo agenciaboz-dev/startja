@@ -6,7 +6,7 @@ import { CategoriesList } from "../../../../components/CategoriesList"
 import { useIo } from "../../../../hooks/useIo"
 import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
-import AddNewCategoryModal from "./AddNewCategoryModal"
+import AddCategoryModal from "./AddCategoryModal"
 import { useHeader } from "../../../../hooks/useHeader"
 
 interface CategoriesProps {}
@@ -14,9 +14,9 @@ interface CategoriesProps {}
 export const Categories: React.FC<CategoriesProps> = ({}) => {
     const header = useHeader()
     const [emptyCategoriesList, setEmptyCategoriesList] = useState(false)
-    const [isAddNewCategoryModalOpen, setAddNewCategoryModalOpen] = useState(false)
+    const [isAddCategoryModalOpen, setAddCategoryModalOpen] = useState(false)
     const openNewCategoryModal = () => {
-        setAddNewCategoryModalOpen(true)
+        setAddCategoryModalOpen(true)
     }
     const io = useIo()
     useEffect(() => {
@@ -82,7 +82,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                     </Box>
                 )}
             </Box>
-            <AddNewCategoryModal open={isAddNewCategoryModalOpen} onClose={() => setAddNewCategoryModalOpen(false)} />
+            <AddCategoryModal open={isAddCategoryModalOpen} onClose={() => setAddCategoryModalOpen(false)} />
         </>
     )
 }

@@ -16,9 +16,18 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ user }) => {
     useEffect(() => {
         header.setTitle("Cadastros gerais - Pessoas e empresas")
     }, [])
+    const [isAddEnterpriseModalOpen, setAddEnterpriseModalOpen] = useState(false)
+    const openEnterpriseModal = () => {
+        setAddEnterpriseModalOpen(true)
+    }
+
     return (
         <>
-            <Toolbar searchPlaceholder="pessoas e empresas" />
+            <Toolbar
+                searchPlaceholder="pessoas e empresas"
+                addButtonPlaceholder="Adicionar pessoa ou empresa"
+                addButtonCallback={openEnterpriseModal}
+            />
             <Box
                 sx={{
                     height: "80vh",
@@ -161,6 +170,7 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ user }) => {
                     </Box>
                 </Box>
             </Box>
+            {/* <AddEnterpriseModal open={isAddEnterpriseModalOpen} onClose={() => setAddEnterpriseModalOpen(false)} /> */}
         </>
     )
 }

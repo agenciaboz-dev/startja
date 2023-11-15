@@ -6,7 +6,7 @@ import { ProductsList } from "../../../../components/ProductsList"
 import { useIo } from "../../../../hooks/useIo"
 import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
-import AddNewProductModal from "./AddNewProductModal"
+import AddProductModal from "./AddProductModal"
 import { useProduct } from "../../../../hooks/useProduct"
 import { useHeader } from "../../../../hooks/useHeader"
 
@@ -17,9 +17,9 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     const products = useProduct()
     const header = useHeader()
     const emptyProductsList = !products.list.length
-    const [isAddNewProductModalOpen, setAddNewProductModalOpen] = useState(false)
+    const [isAddProductModalOpen, setAddProductModalOpen] = useState(false)
     const openNewProductModal = () => {
-        setAddNewProductModalOpen(true)
+        setAddProductModalOpen(true)
     }
     const io = useIo()
     useEffect(() => {
@@ -85,7 +85,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                     </Box>
                 )}
             </Box>
-            <AddNewProductModal open={isAddNewProductModalOpen} onClose={() => setAddNewProductModalOpen(false)} />
+            <AddProductModal open={isAddProductModalOpen} onClose={() => setAddProductModalOpen(false)} />
         </>
     )
 }

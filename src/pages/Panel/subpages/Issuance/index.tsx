@@ -7,7 +7,7 @@ import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
 import { InvoicesList } from "../../../../components/InvoicesList"
 import { InvoicesListHeader } from "../../../../components/InvoicesList/InvoicesListHeader"
-import AddNewInvoiceModal from "./AddNewInvoiceModal"
+import AddInvoiceModal from "./AddInvoiceModal"
 import { useHeader } from "../../../../hooks/useHeader"
 
 interface IssuanceProps {
@@ -16,9 +16,9 @@ interface IssuanceProps {
 
 export const Issuance: React.FC<IssuanceProps> = ({ user }) => {
     const header = useHeader()
-    const [isAddNewInvoiceModalOpen, setAddNewInvoiceModalOpen] = useState(false)
+    const [isAddInvoiceModalOpen, setAddInvoiceModalOpen] = useState(false)
     const openNewInvoiceModal = () => {
-        setAddNewInvoiceModalOpen(true)
+        setAddInvoiceModalOpen(true)
     }
     useEffect(() => {
         header.setTitle("Notas fiscais emitidas")
@@ -63,7 +63,7 @@ export const Issuance: React.FC<IssuanceProps> = ({ user }) => {
                     </Box>
                 </Box>
             </Box>
-            <AddNewInvoiceModal open={isAddNewInvoiceModalOpen} onClose={() => setAddNewInvoiceModalOpen(false)} />
+            <AddInvoiceModal open={isAddInvoiceModalOpen} onClose={() => setAddInvoiceModalOpen(false)} />
         </>
     )
 }

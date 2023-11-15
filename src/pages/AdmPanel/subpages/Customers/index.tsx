@@ -6,7 +6,7 @@ import { useIo } from "../../../../hooks/useIo"
 import { useCustomer } from "../../../../hooks/useCustomer"
 import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
-import AddNewCustomerModal from "./AddNewCustomerModal"
+import AddCustomerModal from "./AddCustomerModal"
 import { useHeader } from "../../../../hooks/useHeader"
 
 interface CustomersProps {}
@@ -16,9 +16,9 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
     const customers = useCustomer()
     const header = useHeader()
     const emptyCustomersList = !customers.list.length
-    const [isAddNewCustomerModalOpen, setAddNewCustomerModalOpen] = useState(false)
+    const [isAddCustomerModalOpen, setAddCustomerModalOpen] = useState(false)
     const openNewCustomerModal = () => {
-        setAddNewCustomerModalOpen(true)
+        setAddCustomerModalOpen(true)
     }
     const io = useIo()
     useEffect(() => {
@@ -84,7 +84,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                     </Box>
                 )}
             </Box>
-            <AddNewCustomerModal open={isAddNewCustomerModalOpen} onClose={() => setAddNewCustomerModalOpen(false)} />
+            <AddCustomerModal open={isAddCustomerModalOpen} onClose={() => setAddCustomerModalOpen(false)} />
         </>
     )
 }

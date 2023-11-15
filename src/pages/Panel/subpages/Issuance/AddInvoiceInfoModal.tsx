@@ -3,12 +3,12 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextFie
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { ToggleSwitch } from "../../../../components/ToggleSwitch"
 
-interface AddNewInvoiceInfoModalProps {
+interface AddInvoiceInfoModalProps {
     open: boolean
     onClose: () => void
 }
 
-const AddNewInvoiceInfoModal: React.FC<AddNewInvoiceInfoModalProps> = ({ open, onClose }) => {
+const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose }) => {
     const [informTime, setInformTime] = useState(false)
 
     const handleSwitchToggle = () => {
@@ -181,4 +181,4 @@ const AddNewInvoiceInfoModal: React.FC<AddNewInvoiceInfoModalProps> = ({ open, o
     )
 }
 
-export default AddNewInvoiceInfoModal
+export default AddInvoiceInfoModal

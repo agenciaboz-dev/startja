@@ -5,7 +5,7 @@ import { colors } from "../../../../style/colors"
 import { Sidebar } from "../../../../components/Sidebar"
 import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
-import AddNewInvoiceModal from "../Issuance/AddNewInvoiceModal"
+import AddInvoiceModal from "../Issuance/AddInvoiceModal"
 import { useHeader } from "../../../../hooks/useHeader"
 
 interface OverviewProps {
@@ -14,9 +14,9 @@ interface OverviewProps {
 
 export const Overview: React.FC<OverviewProps> = ({ user }) => {
     const header = useHeader()
-    const [isAddNewInvoiceModalOpen, setAddNewInvoiceModalOpen] = useState(false)
+    const [isAddInvoiceModalOpen, setAddInvoiceModalOpen] = useState(false)
     const openNewInvoiceModal = () => {
-        setAddNewInvoiceModalOpen(true)
+        setAddInvoiceModalOpen(true)
     }
     useEffect(() => {
         header.setTitle("Visão geral")
@@ -166,7 +166,7 @@ export const Overview: React.FC<OverviewProps> = ({ user }) => {
                         </Box>
                     </Box>
                 </Box>
-                <AddNewInvoiceModal open={isAddNewInvoiceModalOpen} onClose={() => setAddNewInvoiceModalOpen(false)} />
+                <AddInvoiceModal open={isAddInvoiceModalOpen} onClose={() => setAddInvoiceModalOpen(false)} />
             </Box>
         </>
     )
