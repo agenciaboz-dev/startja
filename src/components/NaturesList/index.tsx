@@ -1,7 +1,7 @@
 import React from "react"
 import { Box } from "@mui/material"
 import { NatureRow } from "./NatureRow"
-import { useNature } from "../../hooks/useNature"
+import { useNature } from "../../../src/hooks/useNature"
 
 interface NaturesListProps {
     // Nature: Nature

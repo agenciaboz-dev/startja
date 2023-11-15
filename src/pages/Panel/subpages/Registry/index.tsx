@@ -6,6 +6,7 @@ import { Enterprises } from "./subpages/Enterprises"
 import { RegistrySidebar } from "../../../../components/RegistrySidebar"
 import { Header } from "../../../../components/Header"
 import { Products } from "./subpages/Products"
+import { Natures } from "./subpages/Natures"
 
 interface RegistryProps {
     user: User
@@ -42,6 +43,7 @@ export const Registry: React.FC<RegistryProps> = ({ user }) => {
                         <Route index element={<Enterprises user={user} />} />
                         <Route path="/pessoas-e-empresas/" element={<Enterprises user={user} />} />
                         <Route path="/produtos/" element={<Products />} />
+                        <Route path="/naturezas-de-operacao/" element={<Natures />} />
                     </Routes>
                 </Box>
             </Box>

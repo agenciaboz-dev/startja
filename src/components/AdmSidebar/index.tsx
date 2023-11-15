@@ -22,10 +22,12 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                 flexDirection: "column",
                 alignItems: "center",
                 padding: "2rem 0",
-                gap: "2rem"
+                gap: "2rem",
             }}
         >
-            <img src="/src/assets/startja_icon.png" alt=""
+            <img
+                src="/src/assets/startja_icon.png"
+                alt=""
                 style={{
                     height: "5rem",
                     width: "5rem",
@@ -34,14 +36,14 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
             />
             <hr
                 style={{
-                    width: "70%"
+                    width: "70%",
                 }}
             />
 
             <Box
                 sx={{
                     flexDirection: "column",
-                    gap: "2rem"
+                    gap: "2rem",
                 }}
             >
                 <Box
@@ -51,7 +53,7 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         alignItems: "center",
                         marginTop: "auto",
                         cursor: "pointer",
-                        textAlign: "center"
+                        textAlign: "center",
                     }}
                     onClick={() => navigate("/adm/clientes/")}
                 >
@@ -59,12 +61,10 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         sx={{
                             fill: "#000000",
                             width: "2rem",
-                            height: "2rem"
+                            height: "2rem",
                         }}
                     />
-                    <p>
-                        Clientes
-                    </p>
+                    <p>Clientes</p>
                 </Box>
                 <Box
                     sx={{
@@ -73,7 +73,7 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         alignItems: "center",
                         marginTop: "auto",
                         cursor: "pointer",
-                        textAlign: "center"
+                        textAlign: "center",
                     }}
                     onClick={() => navigate("/adm/produtos/")}
                 >
@@ -81,12 +81,10 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         sx={{
                             fill: "#000000",
                             width: "2rem",
-                            height: "2rem"
+                            height: "2rem",
                         }}
                     />
-                    <p>
-                        Produtos
-                    </p>
+                    <p>Produtos</p>
                 </Box>
                 <Box
                     sx={{
@@ -95,20 +93,18 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         alignItems: "center",
                         marginTop: "auto",
                         cursor: "pointer",
-                        textAlign: "center"
+                        textAlign: "center",
                     }}
-                    onClick={() => navigate("/adm/natureza_da_operacao/")}
+                    onClick={() => navigate("/adm/naturezas-de-operacao/")}
                 >
                     <DescriptionOutlinedIcon
                         sx={{
                             fill: "#000000",
                             width: "2rem",
-                            height: "2rem"
+                            height: "2rem",
                         }}
                     />
-                    <p>
-                        Natureza da Operação
-                    </p>
+                    <p>Naturezas de Operação</p>
                 </Box>
                 <Box
                     sx={{
@@ -117,7 +113,7 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         alignItems: "center",
                         marginTop: "auto",
                         cursor: "pointer",
-                        textAlign: "center"
+                        textAlign: "center",
                     }}
                     onClick={() => navigate("/adm/categorias/")}
                 >
@@ -125,12 +121,10 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                         sx={{
                             fill: "#000000",
                             width: "2rem",
-                            height: "2rem"
+                            height: "2rem",
                         }}
                     />
-                    <p>
-                        Categorias
-                    </p>
+                    <p>Categorias</p>
                 </Box>
             </Box>
 
@@ -141,19 +135,17 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                     alignItems: "center",
                     marginTop: "auto",
                     cursor: "pointer",
-                    textAlign: "center"
+                    textAlign: "center",
                 }}
             >
                 <SettingsOutlinedIcon
                     sx={{
                         fill: "#000000",
                         width: "2rem",
-                        height: "2rem"
+                        height: "2rem",
                     }}
                 />
-                <p>
-                    Configurações
-                </p>
+                <p>Configurações</p>
             </Box>
         </Box>
     )

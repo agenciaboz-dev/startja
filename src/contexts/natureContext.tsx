@@ -1,6 +1,6 @@
-import { createContext, useEffect, useState } from 'react'
-import React from 'react'
-import { useIo } from '../hooks/useIo';
+import { createContext, useEffect, useState } from "react"
+import React from "react"
+import { useIo } from "../hooks/useIo"
 
 interface NatureContextValue {
     list: Nature[]
@@ -20,16 +20,16 @@ export const NatureProvider: React.FC<NatureProviderProps> = ({ children }) => {
     const io = useIo()
 
     useEffect(() => {
-        console.log({ Natures: list })
+        console.log({ natures: list })
     }, [list])
 
     useEffect(() => {
-        io.on("Nature:list", (data) => {
+        io.on("nature:list", (data) => {
             setList(data)
         })
 
         return () => {
-            io.off("Nature:list")
+            io.off("nature:list")
         }
     }, [])
 

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react"
 import { Box, Button, Checkbox } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { NaturesListHeader } from "../../../../components/NaturesList/NaturesListHeader"
-import { NaturesList } from "../../../../components/NaturesList"
-import { useIo } from "../../../../hooks/useIo"
-import { Header } from "../../../../components/Header"
-import { Toolbar } from "../../../../components/Toolbar"
+import { NaturesListHeader } from "../../../../../../components/NaturesList/NaturesListHeader"
+import { NaturesList } from "../../../../../../components/NaturesList"
+import { useIo } from "../../../../../../hooks/useIo"
+import { Header } from "../../../../../../components/Header"
+import { Toolbar } from "../../../../../../components/Toolbar"
 import AddNatureModal from "./AddNatureModal"
-import { useHeader } from "../../../../hooks/useHeader"
+import { useHeader } from "../../../../../../hooks/useHeader"
 
 interface NaturesProps {}
 
@@ -26,7 +26,6 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
 
     return (
         <>
-            <Header />
             <Toolbar searchPlaceholder="natureza de operação" addButtonPlaceholder="natureza de operação" addButtonCallback={openNewNatureModal} />
             <Box
                 sx={{
