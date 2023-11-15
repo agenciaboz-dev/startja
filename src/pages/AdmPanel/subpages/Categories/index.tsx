@@ -15,7 +15,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
     const header = useHeader()
     const [emptyCategoriesList, setEmptyCategoriesList] = useState(false)
     const [isAddCategoryModalOpen, setAddCategoryModalOpen] = useState(false)
-    const openNewCategoryModal = () => {
+    const openCategoryModal = () => {
         setAddCategoryModalOpen(true)
     }
     const io = useIo()
@@ -27,7 +27,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
     return (
         <>
             <Header />
-            <Toolbar searchPlaceholder="categoria" addButtonPlaceholder="" addButtonCallback={openNewCategoryModal} />
+            <Toolbar searchPlaceholder="categoria" addButtonPlaceholder="" addButtonCallback={openCategoryModal} />
             <Box
                 sx={{
                     height: "100%",
@@ -57,7 +57,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                                 verticalAlign: "middle",
                                 gap: "0.5rem",
                             }}
-                            onClick={openNewCategoryModal}
+                            onClick={openCategoryModal}
                         >
                             <AddOutlinedIcon />
                             Adicionar nova categoria

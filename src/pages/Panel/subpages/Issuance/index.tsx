@@ -17,7 +17,7 @@ interface IssuanceProps {
 export const Issuance: React.FC<IssuanceProps> = ({ user }) => {
     const header = useHeader()
     const [isAddInvoiceModalOpen, setAddInvoiceModalOpen] = useState(false)
-    const openNewInvoiceModal = () => {
+    const openInvoiceModal = () => {
         setAddInvoiceModalOpen(true)
     }
     useEffect(() => {
@@ -45,7 +45,7 @@ export const Issuance: React.FC<IssuanceProps> = ({ user }) => {
                         hasFilterButton
                         importButtonPlaceholder="notas fiscais"
                         addButtonPlaceholder="nota fiscal"
-                        addButtonCallback={openNewInvoiceModal}
+                        addButtonCallback={openInvoiceModal}
                     />
                     <Box
                         sx={{

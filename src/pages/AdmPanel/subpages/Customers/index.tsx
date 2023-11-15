@@ -17,7 +17,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
     const header = useHeader()
     const emptyCustomersList = !customers.list.length
     const [isAddCustomerModalOpen, setAddCustomerModalOpen] = useState(false)
-    const openNewCustomerModal = () => {
+    const openCustomerModal = () => {
         setAddCustomerModalOpen(true)
     }
     const io = useIo()
@@ -33,7 +33,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                 searchPlaceholder="cliente"
                 addButtonPlaceholder="novo cliente"
                 selectList={customers.list}
-                addButtonCallback={openNewCustomerModal}
+                addButtonCallback={openCustomerModal}
             />
             <Box
                 sx={{
@@ -63,7 +63,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                                 verticalAlign: "middle",
                                 gap: "0.5rem",
                             }}
-                            onClick={openNewCustomerModal}
+                            onClick={openCustomerModal}
                         >
                             <AddOutlinedIcon />
                             Adicionar novo cliente

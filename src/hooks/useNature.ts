@@ -8,7 +8,7 @@ export const useNature = () => {
     const io = useIo()
 
     const makeList = () => {
-        io.emit("Nature:list", {})
+        io.emit("nature:list", {})
     }
 
     return { makeList, list, setList }

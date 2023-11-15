@@ -15,19 +15,19 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
     const header = useHeader()
     const [emptyNaturesList, setEmptyNaturesList] = useState(false)
     const [isAddNatureModalOpen, setAddNatureModalOpen] = useState(false)
-    const openNewNatureModal = () => {
+    const openNatureModal = () => {
         setAddNatureModalOpen(true)
     }
     const io = useIo()
     useEffect(() => {
         header.setTitle("Naturezas de operação")
-        io.emit("Nature:list")
+        io.emit("nature:list")
     }, [])
 
     return (
         <>
             <Header />
-            <Toolbar searchPlaceholder="natureza de operação" addButtonPlaceholder="natureza de operação" addButtonCallback={openNewNatureModal} />
+            <Toolbar searchPlaceholder="natureza de operação" addButtonPlaceholder="natureza de operação" addButtonCallback={openNatureModal} />
             <Box
                 sx={{
                     height: "100%",
@@ -57,7 +57,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                                 verticalAlign: "middle",
                                 gap: "0.5rem",
                             }}
-                            onClick={openNewNatureModal}
+                            onClick={openNatureModal}
                         >
                             <AddOutlinedIcon />
                             Adicionar nova natureza de operação

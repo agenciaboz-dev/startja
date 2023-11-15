@@ -44,6 +44,7 @@ export const Registry: React.FC<RegistryProps> = ({ user }) => {
                         <Route path="/pessoas-e-empresas/" element={<Enterprises user={user} />} />
                         <Route path="/produtos/" element={<Products />} />
                         <Route path="/naturezas-de-operacao/" element={<Natures />} />
+                        <Route path="/propriedades/" element={<Natures />} />
                     </Routes>
                 </Box>
             </Box>

@@ -18,7 +18,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     const header = useHeader()
     const emptyProductsList = !products.list.length
     const [isAddProductModalOpen, setAddProductModalOpen] = useState(false)
-    const openNewProductModal = () => {
+    const openProductModal = () => {
         setAddProductModalOpen(true)
     }
     const io = useIo()
@@ -30,7 +30,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     return (
         <>
             <Header />
-            <Toolbar searchPlaceholder="produto" addButtonPlaceholder="novo produto" addButtonCallback={openNewProductModal} />
+            <Toolbar searchPlaceholder="produto" addButtonPlaceholder="novo produto" addButtonCallback={openProductModal} />
             <Box
                 sx={{
                     height: "100%",
@@ -60,7 +60,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                                 verticalAlign: "middle",
                                 gap: "0.5rem",
                             }}
-                            onClick={openNewProductModal}
+                            onClick={openProductModal}
                         >
                             <AddOutlinedIcon />
                             Adicionar novo produto

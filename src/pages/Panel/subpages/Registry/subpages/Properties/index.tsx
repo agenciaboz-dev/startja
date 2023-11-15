@@ -6,7 +6,7 @@ import { NaturesList } from "../../../../../../components/NaturesList"
 import { useIo } from "../../../../../../hooks/useIo"
 import { Header } from "../../../../../../components/Header"
 import { Toolbar } from "../../../../../../components/Toolbar"
-import AddNatureModal from "./AddNatureModal"
+import AddNatureModal from "./AddPropertyModal"
 import { useHeader } from "../../../../../../hooks/useHeader"
 
 interface NaturesProps {}
@@ -20,13 +20,13 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
     }
     const io = useIo()
     useEffect(() => {
-        header.setTitle("Cadastros gerais - Naturezas de operação")
-        io.emit("nature:list")
+        header.setTitle("Cadastros gerais - Propriedades")
+        io.emit("property:list")
     }, [])
 
     return (
         <>
-            <Toolbar searchPlaceholder="naturezas de operação" addButtonPlaceholder="natureza de operação" addButtonCallback={openNatureModal} />
+            <Toolbar searchPlaceholder="propriedades" addButtonPlaceholder="propriedade" addButtonCallback={openNatureModal} />
             <Box
                 sx={{
                     height: "100%",

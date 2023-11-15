@@ -15,7 +15,7 @@ interface OverviewProps {
 export const Overview: React.FC<OverviewProps> = ({ user }) => {
     const header = useHeader()
     const [isAddInvoiceModalOpen, setAddInvoiceModalOpen] = useState(false)
-    const openNewInvoiceModal = () => {
+    const openInvoiceModal = () => {
         setAddInvoiceModalOpen(true)
     }
     useEffect(() => {
@@ -100,7 +100,7 @@ export const Overview: React.FC<OverviewProps> = ({ user }) => {
                                 <h3>Movimentação das últimas notas</h3>
                                 <Button
                                     variant="contained"
-                                    onClick={openNewInvoiceModal}
+                                    onClick={openInvoiceModal}
                                     sx={{
                                         borderRadius: "30px",
                                         textTransform: "unset",

@@ -14,7 +14,7 @@ interface AddNatureModalProps {
 
 const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
     const [isAddTaxationRuleModalOpen, setAddTaxationRuleModalOpen] = useState(false)
-    const openNewTaxationRuleModal = () => {
+    const openTaxationRuleModal = () => {
         setAddTaxationRuleModalOpen(true)
     }
 
@@ -80,7 +80,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                                 borderRadius: "30px",
                                 textTransform: "unset",
                             }}
-                            onClick={openNewTaxationRuleModal}
+                            onClick={openTaxationRuleModal}
                         >
                             Adicionar Regra
                         </Button>
