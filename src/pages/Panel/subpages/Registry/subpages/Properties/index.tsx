@@ -1,39 +1,38 @@
 import React, { useEffect, useState } from "react"
 import { Box, Button, Checkbox } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { NaturesListHeader } from "../../../../../../components/NaturesList/NaturesListHeader"
-import { NaturesList } from "../../../../../../components/NaturesList"
+import { PropertiesListHeader } from "../../../../../../components/PropertiesList/PropertiesListHeader"
+import { PropertiesList } from "../../../../../../components/PropertiesList"
 import { useIo } from "../../../../../../hooks/useIo"
-import { Header } from "../../../../../../components/Header"
 import { Toolbar } from "../../../../../../components/Toolbar"
-import AddNatureModal from "./AddPropertyModal"
+import AddPropertyModal from "./AddPropertyModal"
 import { useHeader } from "../../../../../../hooks/useHeader"
 
-interface NaturesProps {}
+interface PropertiesProps {}
 
-export const Natures: React.FC<NaturesProps> = ({}) => {
+export const Properties: React.FC<PropertiesProps> = ({}) => {
     const header = useHeader()
-    const [emptyNaturesList, setEmptyNaturesList] = useState(false)
-    const [isAddNatureModalOpen, setAddNatureModalOpen] = useState(false)
-    const openNatureModal = () => {
-        setAddNatureModalOpen(true)
+    const [emptyPropertiesList, setEmptyPropertiesList] = useState(false)
+    const [isAddPropertyModalOpen, setAddPropertyModalOpen] = useState(false)
+    const openPropertyModal = () => {
+        setAddPropertyModalOpen(true)
     }
     const io = useIo()
     useEffect(() => {
         header.setTitle("Cadastros gerais - Propriedades")
-        io.emit("property:list")
+        // io.emit("property:list")
     }, [])
 
     return (
         <>
-            <Toolbar searchPlaceholder="propriedades" addButtonPlaceholder="propriedade" addButtonCallback={openNatureModal} />
+            <Toolbar searchPlaceholder="propriedades" addButtonPlaceholder="propriedade" addButtonCallback={openPropertyModal} />
             <Box
                 sx={{
                     height: "100%",
                     width: "100%",
                 }}
             >
-                {emptyNaturesList && (
+                {emptyPropertiesList && (
                     <Box
                         sx={{
                             height: "80vh",
@@ -56,7 +55,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                                 verticalAlign: "middle",
                                 gap: "0.5rem",
                             }}
-                            onClick={openNatureModal}
+                            onClick={openPropertyModal}
                         >
                             <AddOutlinedIcon />
                             Adicionar nova natureza de operação
@@ -64,7 +63,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                     </Box>
                 )}
 
-                {!emptyNaturesList && (
+                {!emptyPropertiesList && (
                     <Box
                         sx={{
                             flex: 1,
@@ -76,12 +75,12 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                             width: "100%",
                         }}
                     >
-                        <NaturesListHeader />
-                        <NaturesList />
+                        <PropertiesListHeader />
+                        <PropertiesList />
                     </Box>
                 )}
             </Box>
-            <AddNatureModal open={isAddNatureModalOpen} onClose={() => setAddNatureModalOpen(false)} />
+            <AddPropertyModal open={isAddPropertyModalOpen} onClose={() => setAddPropertyModalOpen(false)} />
         </>
     )
 }

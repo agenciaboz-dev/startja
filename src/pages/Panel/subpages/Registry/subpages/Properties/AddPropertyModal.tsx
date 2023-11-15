@@ -1,23 +1,17 @@
 import React, { useState } from "react"
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
-import { NaturesListHeader } from "../../../../components/NaturesList/NaturesListHeader"
-import { NaturesList } from "../../../../components/NaturesList"
-import AddTaxationRuleModal from "./AddTaxationRuleModal"
+import { PropertiesListHeader } from "../../../../../../components/PropertiesList/PropertiesListHeader"
+import { PropertiesList } from "../../../../../../components/PropertiesList"
 import { AddedTaxationRulesListHeader } from "../../../../../../components/AddedTaxationRulesList/AddedTaxationRulesListHeader"
 import { AddedTaxationRuleRowsList } from "../../../../../../components/AddedTaxationRulesList"
 
-interface AddNatureModalProps {
+interface AddPropertyModalProps {
     open: boolean
     onClose: () => void
 }
 
-const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
-    const [isAddTaxationRuleModalOpen, setAddTaxationRuleModalOpen] = useState(false)
-    const openTaxationRuleModal = () => {
-        setAddTaxationRuleModalOpen(true)
-    }
-
+const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose }) => {
     return (
         <Dialog
             open={open}
@@ -34,7 +28,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                 },
             }}
         >
-            <DialogTitle>Adicionar natureza da operação</DialogTitle>
+            <DialogTitle>Adicionar propriedade</DialogTitle>
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
@@ -54,52 +48,50 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                     }}
                 >
                     <Grid container spacing={2}>
-                        <Grid item xs={4}>
-                            <TextField label="Operação" fullWidth />
-                        </Grid>
-                        <Grid item xs={4}>
-                            <TextField label="Tipo" fullWidth />
-                        </Grid>
-                        <Grid item xs={4}>
-                            <TextField label="Finalidade" fullWidth />
-                        </Grid>
                         <Grid item xs={12}>
-                            <TextField label="Natureza da operação (motivo)" placeholder="Busque pelo nome do produto ou NCM" fullWidth />
+                            <TextField label="Nome da propriedade" fullWidth />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField label="IE vinculada à propriedade" fullWidth />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField label="NIRF(CAFIR)" fullWidth />
                         </Grid>
                     </Grid>
 
-                    <Box
-                        sx={{
-                            justifyContent: "space-between",
-                        }}
-                    >
-                        <p>Regras de tributação adicionadas</p>
-                        <Button
-                            variant="contained"
-                            sx={{
-                                borderRadius: "30px",
-                                textTransform: "unset",
-                            }}
-                            onClick={openTaxationRuleModal}
-                        >
-                            Adicionar Regra
-                        </Button>
-                    </Box>
+                    <h4>Endereço da propriedade</h4>
 
-                    <Box
-                        sx={{
-                            flex: 1,
-                            padding: "1rem 1.5rem 1rem 0.5rem",
-                            boxShadow: "0 2px 2px 2px #d1d1d1",
-                            backgroundColor: "white",
-                            borderRadius: "30px",
-                            flexDirection: "column",
-                            width: "100%",
-                        }}
-                    >
-                        <AddedTaxationRulesListHeader />
-                        <AddedTaxationRuleRowsList />
-                    </Box>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                            <TextField label="CEP" fullWidth />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField label="Cidade/UF" fullWidth />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField label="Rua" fullWidth />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField label="Número" fullWidth />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField label="Complemento" fullWidth />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField label="Bairro" fullWidth />
+                        </Grid>
+                    </Grid>
+
+                    <h4>Exploração</h4>
+
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <TextField label="Tipo de exploração" fullWidth />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField label="Produtor rural declarante" fullWidth />
+                        </Grid>
+                    </Grid>
                 </Box>
             </DialogContent>
 
@@ -130,12 +122,11 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                         textTransform: "unset",
                     }}
                 >
-                    Adicionar
+                    Cadastrar propriedade
                 </Button>
             </DialogActions>
-            <AddTaxationRuleModal open={isAddTaxationRuleModalOpen} onClose={() => setAddTaxationRuleModalOpen(false)} />
         </Dialog>
     )
 }
 
-export default AddNatureModal
+export default AddPropertyModal

@@ -6,3 +6,7 @@ padronizar margins dos DialogActions dos modais
 verificar e padronizar onde é pra ter overflows
 verificar e corrigir minúsculas e maiúsculas
 padronizar singulares e plurais em placeholders etc
+verificar e remover imports desnecessários
+verificar definitions
+padronizar justify-content dos cabeçalhos de listas
+padronizar gaps dos modais
