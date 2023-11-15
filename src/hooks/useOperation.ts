@@ -1,14 +1,14 @@
 import { useContext } from "react"
-import OperationContext from "../contexts/operationContext"
+import NatureContext from "../contexts/NatureContext"
 import { useIo } from "./useIo"
 
-export const useOperation = () => {
-    const operationContext = useContext(OperationContext)
-    const { list, setList } = operationContext
+export const useNature = () => {
+    const NatureContext = useContext(NatureContext)
+    const { list, setList } = NatureContext
     const io = useIo()
 
     const makeList = () => {
-        io.emit("operation:list", {})
+        io.emit("Nature:list", {})
     }
 
     return { makeList, list, setList }

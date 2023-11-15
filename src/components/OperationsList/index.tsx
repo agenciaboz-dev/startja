@@ -1,14 +1,14 @@
 import React from "react"
 import { Box } from "@mui/material"
-import { OperationRow } from "./OperationRow"
-import { useOperation } from "../../hooks/useOperation"
+import { NatureRow } from "./NatureRow"
+import { useNature } from "../../hooks/useNature"
 
-interface OperationsListProps {
-    // operation: Operation
+interface NaturesListProps {
+    // Nature: Nature
 }
 
-export const OperationsList: React.FC<OperationsListProps> = ({operation}) => {
-    const operations = useOperation()
+export const NaturesList: React.FC<NaturesListProps> = ({ Nature }) => {
+    const Natures = useNature()
 
     return (
         <Box
@@ -16,11 +16,11 @@ export const OperationsList: React.FC<OperationsListProps> = ({operation}) => {
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5rem 0"
-            }}    
+                margin: "0.5rem 0",
+            }}
         >
-            {/* {operations.list.map(operation => <OperationRow key={operation.id} operation={operation} />)} */}
-            <OperationRow />
+            {/* {Natures.list.map(Nature => <NatureRow key={Nature.id} Nature={Nature} />)} */}
+            <NatureRow />
         </Box>
     )
 }

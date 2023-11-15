@@ -2,40 +2,36 @@ import { createContext, useEffect, useState } from 'react'
 import React from 'react'
 import { useIo } from '../hooks/useIo';
 
-interface OperationContextValue {
-    list: Operation[];
-    setList: (value:Operation[]) => void;
+interface NatureContextValue {
+    list: Nature[]
+    setList: (value: Nature[]) => void
 }
 
-interface OperationProviderProps {
+interface NatureProviderProps {
     children: React.ReactNode
 }
 
-const OperationContext = createContext<OperationContextValue>({} as OperationContextValue);
+const NatureContext = createContext<NatureContextValue>({} as NatureContextValue)
 
-export default OperationContext
+export default NatureContext
 
-export const OperationProvider:React.FC<OperationProviderProps> = ({children}) => {
-    const [list, setList] = useState<Operation[]>([])
+export const NatureProvider: React.FC<NatureProviderProps> = ({ children }) => {
+    const [list, setList] = useState<Nature[]>([])
     const io = useIo()
 
     useEffect(() => {
-        console.log({operations:list})
-    },[list])
+        console.log({ Natures: list })
+    }, [list])
 
     useEffect(() => {
-        io.on('operation:list', (data) =>{
+        io.on("Nature:list", (data) => {
             setList(data)
         })
 
         return () => {
-            io.off('operation:list')
+            io.off("Nature:list")
         }
-    },[])
+    }, [])
 
-    return (
-         <OperationContext.Provider value={{list, setList}}>
-              {children}
-         </OperationContext.Provider>
-    )
+    return <NatureContext.Provider value={{ list, setList }}>{children}</NatureContext.Provider>
 }

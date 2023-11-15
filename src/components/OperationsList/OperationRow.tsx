@@ -5,70 +5,68 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import { Switch } from '@mui/base/Switch'
 import { ToggleSwitch } from "../ToggleSwitch"
 
-interface OperationRowProps {
-    // operation : Operation
+interface NatureRowProps {
+    // Nature : Nature
 }
 
-export const OperationRow: React.FC<OperationRowProps> = ({operation}) => {
-
-return (
-    <Box
-    sx={{
-        alignItems: "center",
-        width: "100%",
-    }}
-    >
-        <Checkbox
-            inputProps={{
-                style: {
-                    padding: "0"
-                }
-            }}
-        />
+export const NatureRow: React.FC<NatureRowProps> = ({ Nature }) => {
+    return (
         <Box
             sx={{
-                justifyContent: "space-between",
-                flex: 1,
+                alignItems: "center",
+                width: "100%",
             }}
         >
-            <Box
-                sx={{
-                    width: "70%",
-                    alignItems: "center"
+            <Checkbox
+                inputProps={{
+                    style: {
+                        padding: "0",
+                    },
                 }}
-                >
-                {/* <p>{operation.name}</p> */}
-                <p>Elementum senectus diam neque aliquet</p>
-            </Box>
+            />
             <Box
                 sx={{
-                    alignItems: "center",
-                    width: "10%",
-                    justifyContent: "center"
-                }}
-                >
-                {/* <p>{operation.taxation}</p> */}
-                <VisibilityOutlinedIcon />
-            </Box>
-            <Box
-                sx={{
-                    alignItems: "center",
-                    width: "10%",
-                    justifyContent: "center"
+                    justifyContent: "space-between",
+                    flex: 1,
                 }}
             >
-                <EditOutlinedIcon />
-            </Box>
-            <Box
-                sx={{
-                    width: "10%",
-                    justifyContent: "center"
-                }}
-            >
-                
-                <ToggleSwitch />
-                
+                <Box
+                    sx={{
+                        width: "70%",
+                        alignItems: "center",
+                    }}
+                >
+                    {/* <p>{Nature.name}</p> */}
+                    <p>Elementum senectus diam neque aliquet</p>
+                </Box>
+                <Box
+                    sx={{
+                        alignItems: "center",
+                        width: "10%",
+                        justifyContent: "center",
+                    }}
+                >
+                    {/* <p>{Nature.taxation}</p> */}
+                    <VisibilityOutlinedIcon />
+                </Box>
+                <Box
+                    sx={{
+                        alignItems: "center",
+                        width: "10%",
+                        justifyContent: "center",
+                    }}
+                >
+                    <EditOutlinedIcon />
+                </Box>
+                <Box
+                    sx={{
+                        width: "10%",
+                        justifyContent: "center",
+                    }}
+                >
+                    <ToggleSwitch />
+                </Box>
             </Box>
         </Box>
-    </Box>
-)}
+    )
+}

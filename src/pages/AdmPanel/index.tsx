@@ -5,7 +5,7 @@ import { AdmSidebar } from "../../components/AdmSidebar"
 import { Route, Routes } from "react-router-dom"
 import { Customers } from "./subpages/Customers"
 import { Products } from "./subpages/Products"
-import { Operations } from "./subpages/Operations"
+import { Natures } from "./subpages/Natures"
 import { Categories } from "./subpages/Categories"
 
 interface AdmPanelProps {
@@ -18,7 +18,7 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
             sx={{
                 backgroundColor: colors.background,
                 width: "100%",
-                overflow: "hidden"
+                overflow: "hidden",
             }}
         >
             <AdmSidebar />
@@ -35,7 +35,7 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
                     <Route index element={<Customers />} />
                     <Route path="/clientes/" element={<Customers />} />
                     <Route path="/produtos/" element={<Products />} />
-                    <Route path="/natureza_da_operacao/" element={<Operations />} />
+                    <Route path="/natureza_da_operacao/" element={<Natures />} />
                     <Route path="/categorias/" element={<Categories />} />
                 </Routes>
             </Box>

@@ -1,18 +1,18 @@
 import React, { useState } from "react"
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
-import { OperationsListHeader } from "../../../../components/OperationsList/OperationsListHeader"
-import { OperationsList } from "../../../../components/OperationsList"
+import { NaturesListHeader } from "../../../../components/NaturesList/NaturesListHeader"
+import { NaturesList } from "../../../../components/NaturesList"
 import AddTaxationRuleModal from "./AddTaxationRuleModal"
 import { AddedTaxationRulesListHeader } from "../../../../components/AddedTaxationRulesList/AddedTaxationRulesListHeader"
 import { AddedTaxationRuleRowsList } from "../../../../components/AddedTaxationRulesList"
 
-interface AddOperationModalProps {
+interface AddNatureModalProps {
     open: boolean
     onClose: () => void
 }
 
-const AddOperationModal: React.FC<AddOperationModalProps> = ({ open, onClose }) => {
+const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
     const [isAddTaxationRuleModalOpen, setAddTaxationRuleModalOpen] = useState(false)
     const openNewTaxationRuleModal = () => {
         setAddTaxationRuleModalOpen(true)
@@ -138,4 +138,4 @@ const AddOperationModal: React.FC<AddOperationModalProps> = ({ open, onClose }) 
     )
 }
 
-export default AddOperationModal
+export default AddNatureModal

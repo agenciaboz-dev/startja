@@ -1,40 +1,40 @@
 import React, { useEffect, useState } from "react"
 import { Box, Button, Checkbox } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { OperationsListHeader } from "../../../../components/OperationsList/OperationsListHeader"
-import { OperationsList } from "../../../../components/OperationsList"
+import { NaturesListHeader } from "../../../../components/NaturesList/NaturesListHeader"
+import { NaturesList } from "../../../../components/NaturesList"
 import { useIo } from "../../../../hooks/useIo"
 import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
-import AddOperationModal from "./AddOperationModal"
+import AddNatureModal from "./AddNatureModal"
 import { useHeader } from "../../../../hooks/useHeader"
 
-interface OperationsProps {}
+interface NaturesProps {}
 
-export const Operations: React.FC<OperationsProps> = ({}) => {
+export const Natures: React.FC<NaturesProps> = ({}) => {
     const header = useHeader()
-    const [emptyOperationsList, setEmptyOperationsList] = useState(false)
-    const [isAddOperationModalOpen, setAddOperationModalOpen] = useState(false)
-    const openNewOperationModal = () => {
-        setAddOperationModalOpen(true)
+    const [emptyNaturesList, setEmptyNaturesList] = useState(false)
+    const [isAddNatureModalOpen, setAddNatureModalOpen] = useState(false)
+    const openNewNatureModal = () => {
+        setAddNatureModalOpen(true)
     }
     const io = useIo()
     useEffect(() => {
         header.setTitle("Natureza da operação")
-        io.emit("operation:list")
+        io.emit("Nature:list")
     }, [])
 
     return (
         <>
             <Header />
-            <Toolbar searchPlaceholder="natureza da operação" addButtonPlaceholder="natureza da operação" addButtonCallback={openNewOperationModal} />
+            <Toolbar searchPlaceholder="natureza da operação" addButtonPlaceholder="natureza da operação" addButtonCallback={openNewNatureModal} />
             <Box
                 sx={{
                     height: "100%",
                     width: "100%",
                 }}
             >
-                {emptyOperationsList && (
+                {emptyNaturesList && (
                     <Box
                         sx={{
                             height: "80vh",
@@ -57,7 +57,7 @@ export const Operations: React.FC<OperationsProps> = ({}) => {
                                 verticalAlign: "middle",
                                 gap: "0.5rem",
                             }}
-                            onClick={openNewOperationModal}
+                            onClick={openNewNatureModal}
                         >
                             <AddOutlinedIcon />
                             Adicionar nova natureza de operação
@@ -65,7 +65,7 @@ export const Operations: React.FC<OperationsProps> = ({}) => {
                     </Box>
                 )}
 
-                {!emptyOperationsList && (
+                {!emptyNaturesList && (
                     <Box
                         sx={{
                             flex: 1,
@@ -77,12 +77,12 @@ export const Operations: React.FC<OperationsProps> = ({}) => {
                             width: "100%",
                         }}
                     >
-                        <OperationsListHeader />
-                        <OperationsList />
+                        <NaturesListHeader />
+                        <NaturesList />
                     </Box>
                 )}
             </Box>
-            <AddOperationModal open={isAddOperationModalOpen} onClose={() => setAddOperationModalOpen(false)} />
+            <AddNatureModal open={isAddNatureModalOpen} onClose={() => setAddNatureModalOpen(false)} />
         </>
     )
 }
