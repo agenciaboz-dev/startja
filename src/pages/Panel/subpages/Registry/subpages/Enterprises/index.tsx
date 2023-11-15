@@ -26,11 +26,7 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ user }) => {
 
     return (
         <>
-            <Toolbar
-                searchPlaceholder="pessoas e empresas"
-                addButtonPlaceholder="Adicionar pessoa ou empresa"
-                addButtonCallback={openEnterpriseModal}
-            />
+            <Toolbar searchPlaceholder="pessoas e empresas" addButtonPlaceholder="pessoa ou empresa" addButtonCallback={openEnterpriseModal} />
             <Box
                 sx={{
                     flex: 1,
