@@ -37,7 +37,7 @@ export const RegistrySidebar: React.FC<RegistrySidebarProps> = ({}) => {
                         cursor: "pointer",
                         textAlign: "center",
                     }}
-                    onClick={() => navigate("/painel/visao-geral/")}
+                    onClick={() => navigate("/painel/cadastros-gerais/pessoas-e-empresas/")}
                 >
                     <DomainAddOutlinedIcon
                         sx={{
@@ -56,7 +56,7 @@ export const RegistrySidebar: React.FC<RegistrySidebarProps> = ({}) => {
                         cursor: "pointer",
                         textAlign: "center",
                     }}
-                    onClick={() => navigate("/painel/visao-geral/")}
+                    onClick={() => navigate("/painel/cadastros-gerais/produtos/")}
                 >
                     <ControlPointDuplicateOutlinedIcon
                         sx={{

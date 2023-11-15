@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom"
 import { Enterprises } from "./subpages/Enterprises"
 import { RegistrySidebar } from "../../../../components/RegistrySidebar"
 import { Header } from "../../../../components/Header"
-import { Products } from "../../../AdmPanel/subpages/Products"
+import { Products } from "./subpages/Products"
 
 interface RegistryProps {
     user: User

@@ -36,7 +36,7 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
                     <Route index element={<Overview user={user} />} />
                     <Route path="/visao-geral/" element={<Overview user={user} />} />
                     <Route path="/notas-fiscais/" element={<Issuance user={user} />} />
-                    <Route path="/cadastros-gerais/" element={<Registry user={user} />} />
+                    <Route path="/cadastros-gerais/*" element={<Registry user={user} />} />
                 </Routes>
             </Box>
         </Box>
