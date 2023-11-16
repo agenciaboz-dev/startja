@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { Box } from "@mui/material"
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined"
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined"
@@ -95,7 +95,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                         cursor: "pointer",
                         textAlign: "center",
                     }}
-                    // onClick={() => navigate("/painel/notas-fiscais")}
+                    onClick={() => navigate("/painel/livro-caixa")}
                 >
                     <BookOutlinedIcon
                         sx={{

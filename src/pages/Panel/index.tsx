@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom"
 import { Overview } from "./subpages/Overview"
 import { Issuance } from "./subpages/Issuance"
 import { Registry } from "./subpages/Registry"
+import { Cashbook } from "./subpages/Cashbook"
 
 interface PanelProps {
     user: User
@@ -36,6 +37,7 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
                     <Route index element={<Overview user={user} />} />
                     <Route path="/visao-geral/" element={<Overview user={user} />} />
                     <Route path="/notas-fiscais/" element={<Issuance user={user} />} />
+                    <Route path="/livro-caixa/" element={<Cashbook user={user} />} />
                     <Route path="/cadastros-gerais/*" element={<Registry user={user} />} />
                 </Routes>
             </Box>
