@@ -8,6 +8,7 @@ import { Header } from "../../../../components/Header"
 import { Products } from "./subpages/Products"
 import { Natures } from "./subpages/Natures"
 import { Properties } from "./subpages/Properties"
+import { Accounts } from "./subpages/Accounts"
 
 interface RegistryProps {
     user: User
@@ -46,6 +47,7 @@ export const Registry: React.FC<RegistryProps> = ({ user }) => {
                         <Route path="/produtos/" element={<Products />} />
                         <Route path="/naturezas-de-operacao/" element={<Natures />} />
                         <Route path="/propriedades/" element={<Properties />} />
+                        <Route path="/contas/" element={<Accounts />} />
                     </Routes>
                 </Box>
             </Box>

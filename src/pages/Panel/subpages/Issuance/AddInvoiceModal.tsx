@@ -98,8 +98,8 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
 
                         <Box>
                             <Tabs variant="scrollable" indicatorColor="primary">
-                                <Tab label="Produto" onClick={() => setRightSideDisplay("produto")} />
-                                <Tab label="Tributação" onClick={() => setRightSideDisplay("tributação")} />
+                                <Tab label="Produto" onClick={() => setRightSideDisplay("produto")} sx={{ textTransform: "unset" }} />
+                                <Tab label="Tributação" onClick={() => setRightSideDisplay("tributação")} sx={{ textTransform: "unset" }} />
                             </Tabs>
                         </Box>
                         {rightSideDisplay === "produto" && (
