@@ -1,18 +1,16 @@
 import React, { useState } from "react"
 import { ReactSVG } from "react-svg"
 import { Box } from "@mui/material"
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined"
-import FilterVintageOutlinedIcon from "@mui/icons-material/FilterVintageOutlined"
-import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined"
-import SnippetFolderOutlinedIcon from "@mui/icons-material/SnippetFolderOutlined"
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined"
-import { useNavigate } from "react-router-dom"
 import startjaIcon from "../../assets/startja_icon.svg"
+import { useNavigate } from "react-router-dom"
+import { MenuButton } from "../MenuButton"
+import { useAdmSidebar } from "../../hooks/useAdmSidebar"
 
 interface AdmSidebarProps {}
 
 export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
     const navigate = useNavigate()
+    const admSideBar = useAdmSidebar()
 
     return (
         <Box
@@ -40,113 +38,15 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                     width: "70%",
                 }}
             />
-
             <Box
                 sx={{
                     flexDirection: "column",
                     gap: "2rem",
                 }}
             >
-                <Box
-                    sx={{
-                        flexDirection: "column",
-                        gap: "0.5rem",
-                        alignItems: "center",
-                        marginTop: "auto",
-                        cursor: "pointer",
-                        textAlign: "center",
-                    }}
-                    onClick={() => navigate("/adm/clientes/")}
-                >
-                    <PeopleOutlinedIcon
-                        sx={{
-                            fill: "#000000",
-                            width: "2rem",
-                            height: "2rem",
-                        }}
-                    />
-                    <p>Clientes</p>
-                </Box>
-                <Box
-                    sx={{
-                        flexDirection: "column",
-                        gap: "0.5rem",
-                        alignItems: "center",
-                        marginTop: "auto",
-                        cursor: "pointer",
-                        textAlign: "center",
-                    }}
-                    onClick={() => navigate("/adm/produtos/")}
-                >
-                    <FilterVintageOutlinedIcon
-                        sx={{
-                            fill: "#000000",
-                            width: "2rem",
-                            height: "2rem",
-                        }}
-                    />
-                    <p>Produtos</p>
-                </Box>
-                <Box
-                    sx={{
-                        flexDirection: "column",
-                        gap: "0.5rem",
-                        alignItems: "center",
-                        marginTop: "auto",
-                        cursor: "pointer",
-                        textAlign: "center",
-                    }}
-                    onClick={() => navigate("/adm/naturezas-de-operacao/")}
-                >
-                    <DescriptionOutlinedIcon
-                        sx={{
-                            fill: "#000000",
-                            width: "2rem",
-                            height: "2rem",
-                        }}
-                    />
-                    <p>Naturezas de Operação</p>
-                </Box>
-                <Box
-                    sx={{
-                        flexDirection: "column",
-                        gap: "0.5rem",
-                        alignItems: "center",
-                        marginTop: "auto",
-                        cursor: "pointer",
-                        textAlign: "center",
-                    }}
-                    onClick={() => navigate("/adm/categorias/")}
-                >
-                    <SnippetFolderOutlinedIcon
-                        sx={{
-                            fill: "#000000",
-                            width: "2rem",
-                            height: "2rem",
-                        }}
-                    />
-                    <p>Categorias</p>
-                </Box>
-            </Box>
-
-            <Box
-                sx={{
-                    flexDirection: "column",
-                    gap: "0.5rem",
-                    alignItems: "center",
-                    marginTop: "auto",
-                    cursor: "pointer",
-                    textAlign: "center",
-                }}
-            >
-                <SettingsOutlinedIcon
-                    sx={{
-                        fill: "#000000",
-                        width: "2rem",
-                        height: "2rem",
-                    }}
-                />
-                <p>Configurações</p>
+                {admSideBar.map((sideBarItem) => (
+                    <MenuButton sideBarItem={sideBarItem} key={sideBarItem.id} />
+                ))}
             </Box>
         </Box>
     )
