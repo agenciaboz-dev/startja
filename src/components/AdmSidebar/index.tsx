@@ -1,11 +1,13 @@
 import React, { useState } from "react"
+import { ReactSVG } from "react-svg"
 import { Box } from "@mui/material"
-import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
-import FilterVintageOutlinedIcon from '@mui/icons-material/FilterVintageOutlined';
-import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import SnippetFolderOutlinedIcon from '@mui/icons-material/SnippetFolderOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import { useNavigate } from "react-router-dom";
+import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined"
+import FilterVintageOutlinedIcon from "@mui/icons-material/FilterVintageOutlined"
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined"
+import SnippetFolderOutlinedIcon from "@mui/icons-material/SnippetFolderOutlined"
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined"
+import { useNavigate } from "react-router-dom"
+import startjaIcon from "../../assets/startja_icon.svg"
 
 interface AdmSidebarProps {}
 
@@ -25,15 +27,14 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                 gap: "2rem",
             }}
         >
-            <img
-                src="/src/assets/startja_icon.png"
-                alt=""
-                style={{
-                    height: "5rem",
-                    width: "5rem",
-                    objectFit: "cover",
-                }}
-            />
+            <Box sx={{}}>
+                <ReactSVG
+                    src={startjaIcon}
+                    style={{
+                        transform: "scale(1.5)",
+                    }}
+                />
+            </Box>
             <hr
                 style={{
                     width: "70%",
