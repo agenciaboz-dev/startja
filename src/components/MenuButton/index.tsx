@@ -17,12 +17,11 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
 
     const buildStyle = (active: boolean, sideBarItem: SidebarItem) => {
         const menuItemStyle: SxProps = {
-            // backgroundColor: active ? (menu.subItens ? "" : "secondary.main") : "",
-            // color: active ? (menu.subItens ? "secondary.main" : "background.paper") : "secondary.main",
-            // pointerEvents: active ? (menu.subItens ? "auto" : "none") : "auto",
-            fontWeight: "bold",
-            fontSize: "1vw",
-            gap: "1vw",
+            backgroundColor: active ? "secondary.main" : "",
+            color: active ? "white" : "secondary.main",
+            pointerEvents: active ? (sideBarItem.subItens ? "auto" : "none") : "auto",
+            flexDirection: "column",
+            gap: "0.5rem",
             ...sx,
         }
 
@@ -56,8 +55,6 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                                 key={sideBarItem.id}
                                 sx={{
                                     ...buildStyle(active, sideBarItem),
-                                    // paddingLeft: isMobile ? "14vw" : "3vw",
-                                    // fontSize: isMobile ? "3.5vw" : "0.85vw",
                                     whiteSpace: "normal",
                                     overflow: "hidden",
                                 }}
