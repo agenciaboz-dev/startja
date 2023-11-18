@@ -41,7 +41,7 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
             <Box
                 sx={{
                     flexDirection: "column",
-                    gap: "1rem",
+                    gap: "2rem",
                 }}
             >
                 {admSideBar.map((sideBarItem) => (

@@ -11,14 +11,14 @@ interface MenuButtonProps {
 export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
     const Icon = () => sideBarItem.icon
     const location = useLocation()
-    const active = location.pathname.split("/")[1] == sideBarItem.path.split("/")[1]
+    const active = location.pathname.split("/adm/")[1] == sideBarItem.path.split("/")[1]
 
     const [collapse, setCollapse] = useState(active)
 
     const buildStyle = (active: boolean, sideBarItem: SidebarItem) => {
         const menuItemStyle: SxProps = {
             backgroundColor: active ? "secondary.main" : "",
-            color: active ? "white" : "secondary.main",
+            color: active ? "white" : "black",
             pointerEvents: active ? (sideBarItem.subItens ? "auto" : "none") : "auto",
             flexDirection: "column",
             gap: "0.5rem",
@@ -37,12 +37,19 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
     }
 
     return (
-        <>
-            <MenuItem key={sideBarItem.id} sx={buildStyle(active, sideBarItem)} onClick={() => handleMenuClick(sideBarItem)}>
+        <Box
+            onClick={() => handleMenuClick(sideBarItem)}
+            sx={{
+                flexDirection: "column",
+                alignItems: "center",
+                pointerEvents: active ? (sideBarItem.subItens ? "auto" : "none") : "auto",
+            }}
+        >
+            <MenuItem key={sideBarItem.id} sx={buildStyle(active, sideBarItem)}>
                 <Icon />
-                {sideBarItem.name}
                 {sideBarItem.subItens && <KeyboardArrowDown sx={{ marginLeft: "auto", rotate: collapse ? "-180deg" : "", transition: "0.3s" }} />}
             </MenuItem>
+            {sideBarItem.name}
 
             <Collapse in={collapse}>
                 <Box sx={{ flexDirection: "column", width: "100%" }}>
@@ -67,6 +74,6 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                     })}
                 </Box>
             </Collapse>
-        </>
+        </Box>
     )
 }
