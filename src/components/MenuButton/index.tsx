@@ -17,11 +17,10 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
 
     const buildStyle = (active: boolean, sideBarItem: SidebarItem) => {
         const menuItemStyle: SxProps = {
-            backgroundColor: active ? "secondary.main" : "",
-            color: active ? "white" : "black",
             pointerEvents: active ? (sideBarItem.subItens ? "auto" : "none") : "auto",
             flexDirection: "column",
             gap: "0.5rem",
+            fontWeight: active ? "600" : "400",
             ...sx,
         }
 
@@ -46,10 +45,20 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
             }}
         >
             <MenuItem key={sideBarItem.id} sx={buildStyle(active, sideBarItem)}>
-                <Icon />
+                <Box
+                    sx={{
+                        backgroundColor: active ? "secondary.main" : "",
+                        color: active ? "white" : "black",
+                        pointerEvents: active ? (sideBarItem.subItens ? "auto" : "none") : "auto",
+                        padding: "0.5rem",
+                        borderRadius: "10px",
+                    }}
+                >
+                    <Icon />
+                </Box>
+                {sideBarItem.name}
                 {sideBarItem.subItens && <KeyboardArrowDown sx={{ marginLeft: "auto", rotate: collapse ? "-180deg" : "", transition: "0.3s" }} />}
             </MenuItem>
-            {sideBarItem.name}
 
             <Collapse in={collapse}>
                 <Box sx={{ flexDirection: "column", width: "100%" }}>
