@@ -11,7 +11,7 @@ interface MenuButtonProps {
 export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
     const Icon = () => sideBarItem.icon
     const location = useLocation()
-    const active = location.pathname.split("/adm/")[1] == sideBarItem.path.split("/")[1]
+    const active = location.pathname.split("/")[2] == sideBarItem.path.split("/")[1]
 
     const [collapse, setCollapse] = useState(active)
 
