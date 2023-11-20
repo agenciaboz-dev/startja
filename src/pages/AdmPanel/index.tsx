@@ -24,7 +24,7 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
             <AdmSidebar />
             <Box
                 sx={{
-                    width: "90%",
+                    flex: 1,
                     flexDirection: "column",
                     overflowY: "auto",
                     padding: "2rem",
