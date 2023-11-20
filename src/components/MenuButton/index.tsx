@@ -40,36 +40,36 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
     }
 
     return (
-        <Box
-            onClick={() => handleMenuClick(sideBarItem)}
-            sx={{
-                flexDirection: "column",
-                alignItems: "center",
-                pointerEvents: active ? (sideBarItem.subItens ? "auto" : "none") : "auto",
-            }}
-        >
-            <MenuItem key={sideBarItem.id} sx={buildStyle(active, sideBarItem)}>
-                <Box
-                    sx={{
-                        backgroundColor: active ? "secondary.main" : "",
-                        color: active ? "white" : "black",
-                        pointerEvents: active ? (sideBarItem.subItens ? "auto" : "none") : "auto",
-                        padding: "0.5rem",
-                        borderRadius: "10px",
-                    }}
-                >
-                    <Icon />
-                </Box>
-                {sideBarItem.name}
-                {sideBarItem.subItens && <KeyboardArrowDown sx={{ marginLeft: "auto", rotate: collapse ? "-180deg" : "", transition: "0.3s" }} />}
-            </MenuItem>
-
-            <Collapse in={collapse}>
+        <>
+            <Box
+                onClick={() => handleMenuClick(sideBarItem)}
+                sx={{
+                    flexDirection: "column",
+                    alignItems: "center",
+                    pointerEvents: active ? (sideBarItem.subItens ? "auto" : "none") : "auto",
+                }}
+            >
+                <MenuItem key={sideBarItem.id} sx={buildStyle(active, sideBarItem)}>
+                    <Box
+                        sx={{
+                            backgroundColor: active ? "secondary.main" : "",
+                            color: active ? "white" : "black",
+                            pointerEvents: active ? (sideBarItem.subItens ? "auto" : "none") : "auto",
+                            padding: "0.5rem",
+                            borderRadius: "10px",
+                        }}
+                    >
+                        <Icon />
+                    </Box>
+                    {sideBarItem.name}
+                    {sideBarItem.subItens && <KeyboardArrowDown sx={{ marginLeft: "auto", rotate: collapse ? "-180deg" : "", transition: "0.3s" }} />}
+                </MenuItem>
+            </Box>
+            <Collapse in={active}>
                 <Box sx={{ flexDirection: "column", width: "100%" }}>
                     {sideBarItem.subItens?.map((sideBarItem) => {
                         const active = location.pathname.split("/")[2] == sideBarItem.path.split("/")[1]
                         const Icon = () => sideBarItem.icon
-
                         return (
                             <MenuItem
                                 key={sideBarItem.id}
@@ -87,6 +87,6 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                     })}
                 </Box>
             </Collapse>
-        </Box>
+        </>
     )
 }
