@@ -1,15 +1,13 @@
-import React, { useState } from "react"
+import React from "react"
 import { ReactSVG } from "react-svg"
 import { Box } from "@mui/material"
 import startjaIcon from "../../assets/startja_icon.svg"
-import { useNavigate } from "react-router-dom"
 import { MenuButton } from "../MenuButton"
 import { useAdmSidebar } from "../../hooks/useAdmSidebar"
 
 interface AdmSidebarProps {}
 
 export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
-    const navigate = useNavigate()
     const admSideBar = useAdmSidebar()
 
     return (
