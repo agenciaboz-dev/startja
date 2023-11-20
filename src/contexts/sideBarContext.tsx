@@ -1,6 +1,7 @@
 import { createContext } from "react"
 import React from "react"
 import { useAdmSidebar } from "../hooks/useAdmSidebar"
+import { useSidebar } from "../hooks/useSidebar"
 
 interface SidebarContextValue {}
 
@@ -14,6 +15,7 @@ export default SidebarContext
 
 export const SidebarProvider: React.FC<SidebarProviderProps> = ({ children }) => {
     const admSidebar = useAdmSidebar()
+    const sidebar = useSidebar()
 
-    return <SidebarContext.Provider value={{ admSidebar }}>{children}</SidebarContext.Provider>
+    return <SidebarContext.Provider value={{ admSidebar, sidebar }}>{children}</SidebarContext.Provider>
 }

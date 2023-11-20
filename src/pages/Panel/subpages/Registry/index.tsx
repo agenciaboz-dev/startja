@@ -36,7 +36,7 @@ export const Registry: React.FC<RegistryProps> = ({ user }) => {
                         flex: 1,
                         flexDirection: "column",
                         overflowY: "auto",
-                        padding: "0 2rem",
+                        paddingLeft: "2rem",
                         gap: "2rem",
                         height: "100%",
                     }}

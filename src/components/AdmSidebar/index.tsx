@@ -20,27 +20,20 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                 flexDirection: "column",
                 alignItems: "center",
                 padding: "2rem 0",
-                gap: "2rem",
             }}
         >
-            <Box sx={{}}>
-                <ReactSVG
-                    src={startjaIcon}
-                    style={{
-                        transform: "scale(1.5)",
-                    }}
-                />
-            </Box>
-            <hr
-                style={{
-                    width: "70%",
+            <Box
+                sx={{
+                    marginBottom: "0.5rem",
                 }}
-            />
+            >
+                <ReactSVG src={startjaIcon} />
+            </Box>
             <Box
                 sx={{
                     flexDirection: "column",
                     alignItems: "center",
-                    gap: "2rem",
+                    gap: "0.5rem",
                 }}
             >
                 {admSideBar.map((sideBarItem) => (

@@ -34,6 +34,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
         if (!sideBarItem.subItens) {
             item.onClick()
         } else {
+            item.onClick()
             setCollapse((collapse) => !collapse)
         }
     }
