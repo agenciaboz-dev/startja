@@ -16,7 +16,7 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
         <Box
             sx={{
                 height: "100%",
-                width: "10%",
+                width: "7%",
                 backgroundColor: "white",
                 boxShadow: "2px 0 2px 0 #d1d1d1",
                 flexDirection: "column",
@@ -41,6 +41,7 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
             <Box
                 sx={{
                     flexDirection: "column",
+                    alignItems: "center",
                     gap: "2rem",
                 }}
             >
