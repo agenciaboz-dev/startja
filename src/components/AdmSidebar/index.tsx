@@ -1,9 +1,9 @@
 import React from "react"
-import { ReactSVG } from "react-svg"
 import { Box } from "@mui/material"
+import { ReactSVG } from "react-svg"
 import startjaIcon from "../../assets/startja_icon.svg"
-import { MenuButton } from "../MenuButton"
 import { useAdmSidebar } from "../../hooks/useAdmSidebar"
+import { MenuButton } from "../MenuButton"
 
 interface AdmSidebarProps {}
 
@@ -33,7 +33,6 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                 sx={{
                     flexDirection: "column",
                     alignItems: "center",
-                    gap: "0.5rem",
                 }}
             >
                 {admSideBar.map((sideBarItem) => (

@@ -19,7 +19,6 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
         const menuItemStyle: SxProps = {
             pointerEvents: active ? (sideBarItem.subItens ? "auto" : "none") : "auto",
             flexDirection: "column",
-            gap: "0.5rem",
             fontWeight: active ? "600" : "400",
             whiteSpace: "normal",
             overflow: "hidden",
@@ -35,7 +34,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
             item.onClick()
         } else {
             item.onClick()
-            setCollapse((collapse) => !collapse)
+            // setCollapse((collapse) => !collapse)
         }
     }
 
@@ -47,6 +46,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                     flexDirection: "column",
                     alignItems: "center",
                     pointerEvents: active ? (sideBarItem.subItens ? "auto" : "none") : "auto",
+                    backgroundColor: active ? "#e8e8e8" : "",
                 }}
             >
                 <MenuItem key={sideBarItem.id} sx={buildStyle(active, sideBarItem)}>
@@ -62,11 +62,11 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                         <Icon />
                     </Box>
                     {sideBarItem.name}
-                    {sideBarItem.subItens && <KeyboardArrowDown sx={{ marginLeft: "auto", rotate: collapse ? "-180deg" : "", transition: "0.3s" }} />}
+                    {/* {sideBarItem.subItens && <KeyboardArrowDown sx={{ marginLeft: "auto", rotate: collapse ? "-180deg" : "", transition: "0.3s" }} />} */}
                 </MenuItem>
             </Box>
             <Collapse in={active}>
-                <Box sx={{ flexDirection: "column", width: "100%" }}>
+                <Box sx={{ flexDirection: "column", width: "100%", backgroundColor: "#e8e8e8" }}>
                     {sideBarItem.subItens?.map((sideBarItem) => {
                         const active = location.pathname.split("/")[2] == sideBarItem.path.split("/")[1]
                         const Icon = () => sideBarItem.icon

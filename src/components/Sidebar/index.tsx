@@ -1,15 +1,13 @@
 import React from "react"
 import { Box } from "@mui/material"
-import startjaIcon from "../../assets/startja_icon.svg"
-import { useNavigate } from "react-router-dom"
 import { ReactSVG } from "react-svg"
+import startjaIcon from "../../assets/startja_icon.svg"
 import { useSidebar } from "../../hooks/useSidebar"
 import { MenuButton } from "../MenuButton"
 
 interface SidebarProps {}
 
 export const Sidebar: React.FC<SidebarProps> = ({}) => {
-    const navigate = useNavigate()
     const sidebar = useSidebar()
 
     return (
@@ -35,7 +33,6 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                 sx={{
                     flexDirection: "column",
                     alignItems: "center",
-                    gap: "0.5rem",
                 }}
             >
                 {sidebar.map((sideBarItem) => (

@@ -27,7 +27,7 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
                 sx={{
                     flex: 1,
                     flexDirection: "column",
-                    overflowY: "auto",
+                    overflow: "hidden",
                     padding: "2rem",
                     gap: "2rem",
                     height: "100%",

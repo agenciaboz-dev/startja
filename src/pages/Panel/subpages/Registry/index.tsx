@@ -30,13 +30,13 @@ export const Registry: React.FC<RegistryProps> = ({ user }) => {
                     flex: 1,
                 }}
             >
-                <RegistrySidebar />
+                {/* <RegistrySidebar /> */}
                 <Box
                     sx={{
                         flex: 1,
                         flexDirection: "column",
-                        overflowY: "auto",
-                        paddingLeft: "2rem",
+                        overflow: "hidden",
+                        // paddingLeft: "2rem",
                         gap: "2rem",
                         height: "100%",
                     }}
