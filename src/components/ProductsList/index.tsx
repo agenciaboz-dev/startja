@@ -3,8 +3,7 @@ import { Box } from "@mui/material"
 import { ProductRow } from "./ProductRow"
 import { useProduct } from "../../hooks/useProduct"
 
-interface ProductsListProps {
-}
+interface ProductsListProps {}
 
 export const ProductsList: React.FC<ProductsListProps> = ({}) => {
     const products = useProduct()

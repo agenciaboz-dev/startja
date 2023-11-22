@@ -25,7 +25,7 @@ export const NatureProvider: React.FC<NatureProviderProps> = ({ children }) => {
 
     useEffect(() => {
         io.on("nature:list", (data) => {
-            setList(data)
+            setList(data.naturezas || [])
         })
 
         return () => {

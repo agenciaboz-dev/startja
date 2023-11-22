@@ -1,5 +1,7 @@
 declare interface Nature {
     id: number
-    name: string
-    taxation: string
+    operation: string
+    type: string
+    finality: string
+    motive: string
 }

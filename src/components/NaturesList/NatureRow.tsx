@@ -1,15 +1,14 @@
 import React from "react"
 import { Box, Checkbox } from "@mui/material"
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined'
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import { Switch } from '@mui/base/Switch'
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined"
 import { ToggleSwitch } from "../ToggleSwitch"
 
 interface NatureRowProps {
-    // Nature : Nature
+    nature: Nature
 }
 
-export const NatureRow: React.FC<NatureRowProps> = ({ Nature }) => {
+export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
     return (
         <Box
             sx={{
@@ -36,8 +35,8 @@ export const NatureRow: React.FC<NatureRowProps> = ({ Nature }) => {
                         alignItems: "center",
                     }}
                 >
-                    {/* <p>{Nature.name}</p> */}
-                    <p>Elementum senectus diam neque aliquet</p>
+                    <p>{nature.motive}</p>
+                    {/* <p>Elementum senectus diam neque aliquet</p> */}
                 </Box>
                 <Box
                     sx={{
@@ -46,7 +45,6 @@ export const NatureRow: React.FC<NatureRowProps> = ({ Nature }) => {
                         justifyContent: "center",
                     }}
                 >
-                    {/* <p>{Nature.taxation}</p> */}
                     <VisibilityOutlinedIcon />
                 </Box>
                 <Box

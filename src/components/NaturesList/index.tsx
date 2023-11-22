@@ -1,14 +1,12 @@
 import React from "react"
 import { Box } from "@mui/material"
 import { NatureRow } from "./NatureRow"
-import { useNature } from "../../../src/hooks/useNature"
+import { useNature } from "../../hooks/useNature"
 
-interface NaturesListProps {
-    // Nature: Nature
-}
+interface NaturesListProps {}
 
-export const NaturesList: React.FC<NaturesListProps> = ({ Nature }) => {
-    const Natures = useNature()
+export const NaturesList: React.FC<NaturesListProps> = ({}) => {
+    const natures = useNature()
 
     return (
         <Box
@@ -19,8 +17,10 @@ export const NaturesList: React.FC<NaturesListProps> = ({ Nature }) => {
                 margin: "0.5rem 0",
             }}
         >
-            {/* {Natures.list.map(Nature => <NatureRow key={Nature.id} Nature={Nature} />)} */}
-            <NatureRow />
+            {natures.list.map((nature) => (
+                <NatureRow key={nature.id} nature={nature} />
+            ))}
+            {/* <NatureRow /> */}
         </Box>
     )
 }
