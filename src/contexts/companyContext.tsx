@@ -25,7 +25,7 @@ export const CompanyProvider:React.FC<CompanyProviderProps> = ({children}) => {
 
     useEffect(() => {
         io.on('company:list', (data) =>{
-            setList(data)
+            setList(data.company)
         })
 
         return () => {
