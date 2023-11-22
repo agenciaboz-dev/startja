@@ -17,7 +17,6 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
 
     const buildStyle = (active: boolean, sideBarItem: SidebarItem) => {
         const menuItemStyle: SxProps = {
-            pointerEvents: active ? (sideBarItem.subItens ? "auto" : "none") : "auto",
             flexDirection: "column",
             fontWeight: active ? "600" : "400",
             whiteSpace: "normal",
@@ -30,12 +29,13 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
     }
 
     const handleMenuClick = (item: SidebarItem) => {
-        if (!sideBarItem.subItens) {
-            item.onClick()
-        } else {
-            item.onClick()
-            // setCollapse((collapse) => !collapse)
-        }
+        // if (!sideBarItem.subItens) {
+        //     item.onClick()
+        // } else {
+        //     item.onClick()
+        //     setCollapse((collapse) => !collapse)
+        // }
+        item.onClick()
     }
 
     return (
@@ -45,7 +45,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                 sx={{
                     flexDirection: "column",
                     alignItems: "center",
-                    pointerEvents: active ? (sideBarItem.subItens ? "auto" : "none") : "auto",
+                    pointerEvents: active ? "none" : "auto",
                     backgroundColor: active ? "#e8e8e8" : "",
                 }}
             >
@@ -54,7 +54,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                         sx={{
                             backgroundColor: active ? "secondary.main" : "",
                             color: active ? "white" : "black",
-                            pointerEvents: active ? (sideBarItem.subItens ? "auto" : "none") : "auto",
+                            pointerEvents: active ? "none" : "auto",
                             padding: "0.5rem",
                             borderRadius: "10px",
                         }}
