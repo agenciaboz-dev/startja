@@ -1,6 +1,7 @@
-import React from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box, Grid } from "@mui/material"
+import React, { useState, useEffect } from "react"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Grid } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
+import { useIo } from "../../../../hooks/useIo"
 
 interface AddProductModalProps {
     open: boolean
@@ -8,6 +9,37 @@ interface AddProductModalProps {
 }
 
 const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
+    const [productName, setProductName] = useState("")
+    const [ncm, setNcm] = useState("")
+    const io = useIo()
+
+    const handleProductNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setProductName(event.target.value)
+    }
+
+    const handleNcmChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setNcm(event.target.value)
+    }
+
+    const handleAddProduct = async () => {
+        io.emit("product:create", { name: productName, ncm: ncm })
+    }
+
+    useEffect(() => {
+        io.on("product:creation:successful", (result) => {
+            console.log("Product created successfully:", result)
+            onClose()
+        })
+        io.on("product:creation:error", (error) => {
+            console.log(error)
+        })
+
+        return () => {
+            io.off("product:creation:successful")
+            io.off("product:creation:error")
+        }
+    }, [])
+
     return (
         <Dialog
             open={open}
@@ -37,10 +69,10 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
             <DialogContent>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
-                        <TextField label="Nome do produto" fullWidth />
+                        <TextField label="Nome do produto" fullWidth value={productName} onChange={handleProductNameChange} />
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField label="NCM - Classificação" fullWidth />
+                        <TextField label="NCM - Classificação" fullWidth value={ncm} onChange={handleNcmChange} />
                     </Grid>
                 </Grid>
             </DialogContent>
@@ -63,7 +95,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
                     Cancelar
                 </Button>
                 <Button
-                    onClick={onClose}
+                    onClick={handleAddProduct}
                     color="primary"
                     variant="contained"
                     sx={{
