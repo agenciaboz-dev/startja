@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Box, Collapse, MenuItem, SxProps } from "@mui/material"
 import { useLocation } from "react-router-dom"
 import { KeyboardArrowDown } from "@mui/icons-material"
+import { colors } from "../../style/colors"
 
 interface MenuButtonProps {
     sideBarItem: SidebarItem
@@ -22,6 +23,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
             whiteSpace: "normal",
             overflow: "hidden",
             textAlign: "center",
+            width: "100%",
             ...sx,
         }
 
@@ -46,9 +48,24 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                     flexDirection: "column",
                     alignItems: "center",
                     pointerEvents: active ? "none" : "auto",
-                    backgroundColor: active ? "#e8e8e8" : "",
+                    backgroundColor: active ? (sideBarItem.subItens ? "#e8e8e8" : "") : "",
+                    position: "relative",
+                    width: "100%",
                 }}
             >
+                {active && (
+                    <Box
+                        sx={{
+                            backgroundColor: colors.primary,
+                            borderTopRightRadius: "1rem",
+                            borderBottomRightRadius: "1rem",
+                            position: "absolute",
+                            height: "100%",
+                            width: "0.5rem",
+                            left: 0,
+                        }}
+                    ></Box>
+                )}
                 <MenuItem key={sideBarItem.id} sx={buildStyle(active, sideBarItem)}>
                     <Box
                         sx={{
