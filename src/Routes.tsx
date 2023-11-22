@@ -25,9 +25,9 @@ export const Routes:React.FC<RoutesProps> = ({  }) => {
         if (savedUserLogin) {
             io.emit('user:login', savedUserLogin)
             
-            io.on("login:admin", (admin) => {
+            io.on("admin:login:success", (admin) => {
                 setUser(admin)
-                saveLoginData({email: admin.email, password: admin.password})
+                saveLoginData({ email: admin.email, password: admin.password })
             })
     
             io.on("login:customer", (customer) => {
@@ -35,7 +35,7 @@ export const Routes:React.FC<RoutesProps> = ({  }) => {
             })
     
             return () => {
-                io.off('login:admin')
+                io.off("admin:login:success")
                 io.off('login:customer')
             }  
         }

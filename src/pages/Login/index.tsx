@@ -39,7 +39,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
     }
 
     useEffect(() => {
-        io.on("login:admin", (admin) => {
+        io.on("admin:login:success", (admin) => {
             setLoading(false)
             setUser(admin)
             navigate("/adm")
@@ -62,7 +62,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
         })
 
         return () => {
-            io.off("login:admin")
+            io.off("admin:login:success")
             io.off("login:customer")
             io.off("login:error")
         }
