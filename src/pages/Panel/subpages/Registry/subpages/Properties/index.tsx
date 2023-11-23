@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button, Checkbox } from "@mui/material"
+import { Box, Button } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { PropertiesListHeader } from "../../../../../../components/PropertiesList/PropertiesListHeader"
 import { PropertiesList } from "../../../../../../components/PropertiesList"

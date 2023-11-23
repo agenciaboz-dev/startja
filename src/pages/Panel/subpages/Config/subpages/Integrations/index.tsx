@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button, Checkbox } from "@mui/material"
+import { Box, Button } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { PropertiesListHeader } from "../../../../../../components/PropertiesList/PropertiesListHeader"
 import { PropertiesList } from "../../../../../../components/PropertiesList"
 import { useIo } from "../../../../../../hooks/useIo"
 import { Toolbar } from "../../../../../../components/Toolbar"
-import AddPropertyModal from "./AddPropertyModal"
 import { useHeader } from "../../../../../../hooks/useHeader"
 
 interface PropertiesProps {}
@@ -13,10 +12,7 @@ interface PropertiesProps {}
 export const Properties: React.FC<PropertiesProps> = ({}) => {
     const header = useHeader()
     const [emptyPropertiesList, setEmptyPropertiesList] = useState(false)
-    const [isAddPropertyModalOpen, setAddPropertyModalOpen] = useState(false)
-    const openPropertyModal = () => {
-        setAddPropertyModalOpen(true)
-    }
+
     const io = useIo()
     useEffect(() => {
         header.setTitle("Cadastros gerais - Propriedades")

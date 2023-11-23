@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button, Checkbox } from "@mui/material"
+import { Box, Button } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { NaturesListHeader } from "../../../../../../components/NaturesList/NaturesListHeader"
 import { NaturesList } from "../../../../../../components/NaturesList"
 import { useIo } from "../../../../../../hooks/useIo"
-import { Header } from "../../../../../../components/Header"
 import { Toolbar } from "../../../../../../components/Toolbar"
-import AddNatureModal from "./AddNatureModal"
 import { useHeader } from "../../../../../../hooks/useHeader"
 
 interface NaturesProps {}
@@ -14,10 +12,7 @@ interface NaturesProps {}
 export const Natures: React.FC<NaturesProps> = ({}) => {
     const header = useHeader()
     const [emptyNaturesList, setEmptyNaturesList] = useState(false)
-    const [isAddNatureModalOpen, setAddNatureModalOpen] = useState(false)
-    const openNatureModal = () => {
-        setAddNatureModalOpen(true)
-    }
+
     const io = useIo()
     useEffect(() => {
         header.setTitle("Cadastros gerais - Naturezas de operação")

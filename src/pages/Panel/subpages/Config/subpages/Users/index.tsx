@@ -4,9 +4,7 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { ProductsListHeader } from "../../../../../../components/ProductsList/ProductsListHeader"
 import { ProductsList } from "../../../../../../components/ProductsList"
 import { useIo } from "../../../../../../hooks/useIo"
-import { Header } from "../../../../../../components/Header"
 import { Toolbar } from "../../../../../../components/Toolbar"
-import AddProductModal from "./AddProductModal"
 import { useProduct } from "../../../../../../hooks/useProduct"
 import { useHeader } from "../../../../../../hooks/useHeader"
 
@@ -17,10 +15,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     const products = useProduct()
     const header = useHeader()
     const emptyProductsList = !products.list.length
-    const [isAddProductModalOpen, setAddProductModalOpen] = useState(false)
-    const openProductModal = () => {
-        setAddProductModalOpen(true)
-    }
+
     const io = useIo()
     useEffect(() => {
         header.setTitle("Cadastros gerais - Produtos")

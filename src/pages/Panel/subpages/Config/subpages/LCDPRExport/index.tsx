@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { Box, Button } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-// import { AccountsListHeader } from "../../../../../../components/AccountsList/AccountsListHeader"
-// import { AccountsList } from "../../../../../../components/AccountsList"
 import { useIo } from "../../../../../../hooks/useIo"
 import { Toolbar } from "../../../../../../components/Toolbar"
-import AddAccountModal from "./AddAccountModal"
 import { useHeader } from "../../../../../../hooks/useHeader"
 import { AccountsListHeader } from "../../../../../../components/AccountsList/AccountsListHeader"
 import { AccountsList } from "../../../../../../components/AccountsList"
@@ -15,10 +12,7 @@ interface AccountsProps {}
 export const Accounts: React.FC<AccountsProps> = ({}) => {
     const header = useHeader()
     const [emptyAccountsList, setEmptyAccountsList] = useState(false)
-    const [isAddAccountModalOpen, setAddAccountModalOpen] = useState(false)
-    const openAccountModal = () => {
-        setAddAccountModalOpen(true)
-    }
+
     const io = useIo()
     useEffect(() => {
         header.setTitle("Cadastros gerais - Contas")

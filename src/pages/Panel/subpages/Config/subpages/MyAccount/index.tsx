@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react"
-import { Box, Button } from "@mui/material"
+import React, { useEffect } from "react"
+import { Box } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { colors } from "../../../../../../style/colors"
 import { Sidebar } from "../../../../../../components/Sidebar"
-import { Header } from "../../../../../../components/Header"
 import { Toolbar } from "../../../../../../components/Toolbar"
 import { useHeader } from "../../../../../../hooks/useHeader"
 import { EnterprisesListHeader } from "../../../../../../components/EnterprisesList/EnterprisesListHeader"
 import { EnterprisesList } from "../../../../../../components/EnterprisesList"
-import AddEnterpriseModal from "./AddEnterpriseModal"
 
 interface EnterprisesProps {
     user: User
@@ -19,10 +17,6 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ user }) => {
     useEffect(() => {
         header.setTitle("Cadastros gerais - Pessoas e empresas")
     }, [])
-    const [isAddEnterpriseModalOpen, setAddEnterpriseModalOpen] = useState(false)
-    const openEnterpriseModal = () => {
-        setAddEnterpriseModalOpen(true)
-    }
 
     return (
         <>
