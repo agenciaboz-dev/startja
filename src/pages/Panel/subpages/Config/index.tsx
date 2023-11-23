@@ -3,17 +3,17 @@ import { Box } from "@mui/material"
 import { colors } from "../../../../style/colors"
 import { Route, Routes } from "react-router-dom"
 import { Header } from "../../../../components/Header"
-import { Enterprises } from "./subpages/Enterprises"
-import { Products } from "./subpages/Products"
-import { Natures } from "./subpages/Natures"
-import { Properties } from "./subpages/Properties"
-import { Accounts } from "./subpages/Accounts"
+import { Enterprises } from "./subpages/MyAccount"
+import { Products } from "./subpages/Users"
+import { Natures } from "./subpages/Options"
+import { Properties } from "./subpages/Integrations"
+import { Accounts } from "./subpages/LCDPRExport"
 
-interface RegistryProps {
+interface ConfigProps {
     user: User
 }
 
-export const Registry: React.FC<RegistryProps> = ({ user }) => {
+export const Config: React.FC<ConfigProps> = ({ user }) => {
     return (
         <Box
             sx={{
@@ -39,12 +39,12 @@ export const Registry: React.FC<RegistryProps> = ({ user }) => {
                     }}
                 >
                     <Routes>
-                        <Route index element={<Enterprises user={user} />} />
-                        <Route path="/pessoas-e-empresas/" element={<Enterprises user={user} />} />
-                        <Route path="/produtos/" element={<Products />} />
-                        <Route path="/naturezas-de-operacao/" element={<Natures />} />
-                        <Route path="/propriedades/" element={<Properties />} />
-                        <Route path="/contas/" element={<Accounts />} />
+                        <Route index element={<MyAccount user={user} />} />
+                        <Route path="/pessoas-e-empresas/" element={<MyAccount user={user} />} />
+                        <Route path="/produtos/" element={<Users />} />
+                        <Route path="/naturezas-de-operacao/" element={<Options />} />
+                        <Route path="/propriedades/" element={<Integrations />} />
+                        <Route path="/contas/" element={<LCDPRExport />} />
                     </Routes>
                 </Box>
             </Box>

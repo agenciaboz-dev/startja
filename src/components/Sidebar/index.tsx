@@ -22,13 +22,13 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                 padding: "2rem 0",
             }}
         >
-            <Box
+            {/* <Box
                 sx={{
                     marginBottom: "0.5rem",
                 }}
             >
                 <ReactSVG src={startjaIcon} />
-            </Box>
+            </Box> */}
             <Box
                 sx={{
                     flexDirection: "column",

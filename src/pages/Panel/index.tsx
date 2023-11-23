@@ -7,6 +7,7 @@ import { Overview } from "./subpages/Overview"
 import { Issuance } from "./subpages/Issuance"
 import { Registry } from "./subpages/Registry"
 import { Cashbook } from "./subpages/Cashbook"
+import { Config } from "./subpages/Config"
 
 interface PanelProps {
     user: User
@@ -34,6 +35,7 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
                 }}
             >
                 <Routes>
+                    <Route path="/configuracoes/*" element={<Config user={user} />} />
                     <Route index element={<Overview user={user} />} />
                     <Route path="/visao-geral/" element={<Overview user={user} />} />
                     <Route path="/notas-fiscais/" element={<Issuance user={user} />} />
