@@ -1,15 +1,16 @@
 import { useContext } from "react"
 import UserContext from "../contexts/userContext"
-import { useIo } from "./useIo"
+import { useNavigate } from "react-router-dom"
 
 export const useUser = () => {
+    const navigate = useNavigate()
     const userContext = useContext(UserContext)
     const { user, setUser } = userContext
-    const io = useIo()
 
-    const login = (data: LoginForm) => {
-        io.emit("user:login", data)
+    const logout = () => {
+        setUser(null)
+        navigate("/")
     }
 
-    return { login, user, setUser }
+    return { user, setUser, logout }
 }
