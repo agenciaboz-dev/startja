@@ -8,11 +8,15 @@ declare interface User {
 declare interface Admin extends User {}
 
 declare interface Customer extends User {
-    register_date: String
-    phone: String
-    cpf: String
-    city: String
-    state: String
+    register_date: string
+    phone: string
+    cpf: string
+    city: string
+    state: string
+
+    companies: Company[]
+    notas: Invoice[]
+    certificate: DigitalCertificate
 }
 
 declare interface LoginValues {

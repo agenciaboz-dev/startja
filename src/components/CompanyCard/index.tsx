@@ -23,7 +23,7 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
                     flexDirection: "column",
                     padding: "1rem",
                     gap: "1rem",
-                    color: colors.text.greyish,
+                    color: colors.text.greyish
                     // flex: 1,
                 }}
             >
@@ -37,8 +37,8 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
                         flexDirection: "column",
                         alignItems: "center"
                     }}
-                    >
-                    <p>CNPJ: {company.cnpj}</p>
+                >
+                    <p>CNPJ: {company.document}</p>
                     <p
                         style={{
                             fontWeight: "bold",
@@ -46,22 +46,22 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
                         }}
                     >
                         {company.name}
-                        </p>
-                    <p>{company.city} / {company.state}</p>
+                    </p>
+                    <p>
+                        {company.city} / {company.state}
+                    </p>
                 </Box>
                 <Button
                     variant="contained"
                     sx={{
                         borderRadius: "30px",
                         textTransform: "unset",
-                        gap: "0.5rem",
+                        gap: "0.5rem"
                     }}
-                    onClick={() => navigate("/painel/")}
+                    onClick={() => navigate(`/painel/`)}
                 >
                     <LoginOutlinedIcon />
-                    <p>
-                        Acessar Empresa
-                    </p>
+                    <p>Acessar Empresa</p>
                 </Button>
             </Box>
         </Grid>

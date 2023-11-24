@@ -9,7 +9,7 @@ import { Natures } from "./subpages/Natures"
 import { Categories } from "./subpages/Categories"
 
 interface AdmPanelProps {
-    user: User
+    user: Admin
 }
 
 export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {

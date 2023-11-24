@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Box, Button, Checkbox, CircularProgress, FormControlLabel, TextField } from "@mui/material"
 import { useNavigate } from "react-router-dom"
-import { Form, Formik, useFormik } from "formik"
+import { useFormik } from "formik"
 import { useIo } from "../../hooks/useIo"
 import { useUser } from "../../hooks/useUser"
 import { useSnackbar } from "burgos-snackbar"
@@ -10,7 +10,6 @@ import background_image from "../../assets/whitelabel-background-startja-login.w
 import login_logo from "../../assets/whitelabel-logo-startja.webp"
 
 interface LoginProps {}
-
 
 export const Login: React.FC<LoginProps> = ({}) => {
     const navigate = useNavigate()
@@ -52,6 +51,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
             setLoading(false)
             console.log(customer)
             snackbar({ severity: "success", text: "Conectado!" })
+            setUser(customer)
             rememberLogin ? saveLoginData({ login: customer.email, password: customer.password }) : storage.set("startja:user", null)
         })
 

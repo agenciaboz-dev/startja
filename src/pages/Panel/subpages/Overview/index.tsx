@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Box, Button } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { colors } from "../../../../style/colors"
-import { Sidebar } from "../../../../components/Sidebar"
 import { Header } from "../../../../components/Header"
-import { Toolbar } from "../../../../components/Toolbar"
 import AddInvoiceModal from "../Issuance/AddInvoiceModal"
 import { useHeader } from "../../../../hooks/useHeader"
 

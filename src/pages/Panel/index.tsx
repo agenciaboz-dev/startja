@@ -10,7 +10,7 @@ import { Cashbook } from "./subpages/Cashbook"
 import { Config } from "./subpages/Config"
 
 interface PanelProps {
-    user: User
+    user: Customer
 }
 
 export const Panel: React.FC<PanelProps> = ({ user }) => {

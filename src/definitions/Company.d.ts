@@ -1,9 +1,16 @@
 declare interface Company {
     id: number
+    type: string
     name: string
-    cnpj: string
+    document: string
+    iine: string
     city: string
     state: string
-    
-    // customer: Customer
+    district: string
+    street: string
+    adjunct: string
+    number: string
+    cep: string
+    email?: string
+    phone?: string
 }

@@ -16,7 +16,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
     const navigate = useNavigate()
     
     return (
-        <Grid item xs={3} >
+        <Grid item xs={3}>
             <Box
                 sx={{
                     height: "fit-content",
@@ -50,7 +50,9 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                             style={{
                                 color: colors.text.darkgrey
                             }}
-                        >{customer.name}</p>
+                        >
+                            {customer.name}
+                        </p>
                         <p>Cliente há x dias</p>
                     </Box>
                 </Box>
@@ -65,7 +67,9 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                         }}
                     >
                         <p>CPF: {customer.cpf}</p>
-                        <p>{customer.city}/{customer.state}</p>
+                        <p>
+                            {customer.city}/{customer.state}
+                        </p>
                     </Box>
                     <p>Certificado digital expira em: 00/00/00</p>
                 </Box>
@@ -115,12 +119,10 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                             textTransform: "unset",
                             gap: "0.5rem"
                         }}
-                        onClick={() => navigate("/selecionar-empresa/")}
+                        onClick={() => navigate(`/selecionar-empresa/${customer.id}`)}
                     >
                         <LoginOutlinedIcon />
-                        <p>
-                            Acessar Sistema
-                        </p>
+                        <p>Acessar Sistema</p>
                     </Button>
                 </Box>
             </Box>

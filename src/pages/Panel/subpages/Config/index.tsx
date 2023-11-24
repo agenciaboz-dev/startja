@@ -3,11 +3,6 @@ import { Box } from "@mui/material"
 import { colors } from "../../../../style/colors"
 import { Route, Routes } from "react-router-dom"
 import { Header } from "../../../../components/Header"
-import { Enterprises } from "./subpages/MyAccount"
-import { Products } from "./subpages/Users"
-import { Natures } from "./subpages/Options"
-import { Properties } from "./subpages/Integrations"
-import { Accounts } from "./subpages/LCDPRExport"
 
 interface ConfigProps {
     user: User
@@ -19,14 +14,14 @@ export const Config: React.FC<ConfigProps> = ({ user }) => {
             sx={{
                 flexDirection: "column",
                 gap: "2rem",
-                height: "100%",
+                height: "100%"
             }}
         >
             <Header />
             <Box
                 sx={{
                     backgroundColor: colors.background,
-                    flex: 1,
+                    flex: 1
                 }}
             >
                 <Box
@@ -35,17 +30,17 @@ export const Config: React.FC<ConfigProps> = ({ user }) => {
                         flexDirection: "column",
                         overflow: "hidden",
                         gap: "2rem",
-                        height: "100%",
+                        height: "100%"
                     }}
                 >
-                    <Routes>
+                    {/* <Routes>
                         <Route index element={<MyAccount user={user} />} />
                         <Route path="/pessoas-e-empresas/" element={<MyAccount user={user} />} />
                         <Route path="/produtos/" element={<Users />} />
                         <Route path="/naturezas-de-operacao/" element={<Options />} />
                         <Route path="/propriedades/" element={<Integrations />} />
                         <Route path="/contas/" element={<LCDPRExport />} />
-                    </Routes>
+                    </Routes> */}
                 </Box>
             </Box>
         </Box>

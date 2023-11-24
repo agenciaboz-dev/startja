@@ -3,8 +3,8 @@ import React from "react"
 import { useIo } from "../hooks/useIo"
 
 interface UserContextValue {
-    user: User | null
-    setUser: (user: User | null) => void
+    user: Admin | Customer | null
+    setUser: (user: Admin | Customer | null) => void
 }
 
 interface UserProviderProps {
@@ -18,7 +18,7 @@ export default UserContext
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const io = useIo()
 
-    const [user, setUser] = useState<User | null>(null)
+    const [user, setUser] = useState<Admin | Customer | null>(null)
 
     useEffect(() => {
         console.log({ user })
@@ -34,9 +34,5 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         }
     }, [user])
 
-    return (
-        <UserContext.Provider value={{ user, setUser }}>
-            {children}
-        </UserContext.Provider>
-    )
+    return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>
 }
