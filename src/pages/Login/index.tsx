@@ -11,16 +11,16 @@ import login_logo from "../../assets/whitelabel-logo-startja.webp"
 
 interface LoginProps {}
 
-const autoFill = true
 
 export const Login: React.FC<LoginProps> = ({}) => {
     const navigate = useNavigate()
     const io = useIo()
     const [loading, setLoading] = useState(false)
-    const { user, setUser } = useUser()
+    const { setUser } = useUser()
     const { snackbar } = useSnackbar()
     const storage = useLocalStorage()
     const [rememberLogin, setRememberLogin] = useState(!!storage.get("startja:user"))
+    const savedUser = storage.get("startja:user") as LoginValues | undefined | null
 
     const initialValues: LoginValues = {
         login: "",
@@ -69,9 +69,9 @@ export const Login: React.FC<LoginProps> = ({}) => {
     }, [])
 
     useEffect(() => {
-        if (autoFill) {
-            formik.setFieldValue("email", "admin@admin.com")
-            formik.setFieldValue("password", "1234")
+        if (savedUser) {
+            formik.setFieldValue("login", savedUser.login)
+            formik.setFieldValue("password", savedUser.password)
         }
     }, [])
 

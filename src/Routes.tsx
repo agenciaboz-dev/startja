@@ -1,59 +1,30 @@
-import React, { useEffect } from 'react';
-import { useUser } from './hooks/useUser';
+import React from "react"
+import { useUser } from "./hooks/useUser"
 import { Route, Routes as ReactRoutes } from "react-router-dom"
-import { AdmPanel } from './pages/AdmPanel';
-import { Login } from './pages/Login';
-import { useLocalStorage } from './hooks/useLocalStorage';
-import { useIo } from './hooks/useIo';
-import { CompanySelection } from './pages/CompanySelection';
-import { Panel } from './pages/Panel/';
+import { AdmPanel } from "./pages/AdmPanel"
+import { Login } from "./pages/Login"
+import { CompanySelection } from "./pages/CompanySelection"
+import { Panel } from "./pages/Panel/"
 // import { Signup } from './pages/Signup';
 
 interface RoutesProps {}
 
-export const Routes:React.FC<RoutesProps> = ({  }) => {
-    const { user, setUser } = useUser()
-    const storage = useLocalStorage()
-    const io = useIo()
+export const Routes: React.FC<RoutesProps> = ({}) => {
+    const { user } = useUser()
 
-    const saveLoginData = (values: LoginValues) => {
-        storage.set('startja:user', values)
-    }
-
-    useEffect(() => {
-        const savedUserLogin = storage.get('startja:user')
-        if (savedUserLogin) {
-            io.emit('user:login', savedUserLogin)
-            
-            io.on("admin:login:success", (admin) => {
-                setUser(admin)
-                saveLoginData({ login: admin.email, password: admin.password })
-            })
-    
-            io.on("login:customer", (customer) => {
-                saveLoginData({ login: customer.email, password: customer.password })
-            })
-    
-            return () => {
-                io.off("admin:login:success")
-                io.off('login:customer')
-            }  
-        }
-    }, [])
-    
-        return user ? (
-            <ReactRoutes>
-                <Route index element={<AdmPanel user={user} />} />
-                {/* <Route path="*" element={<AdmPanel user={user} />} /> */}
-                <Route path="/adm/*" element={<AdmPanel user={user} />} />
-                <Route path="/selecionar-empresa/" element={<CompanySelection user={user} />} />
-                <Route path="/painel/*" element={<Panel user={user} />} />
-            </ReactRoutes>
-        ) : (
-            <ReactRoutes>
-                <Route index element={<Login />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="*" element={<Login />} />
-            </ReactRoutes>
-        )
+    return user ? (
+        <ReactRoutes>
+            <Route index element={<AdmPanel user={user} />} />
+            {/* <Route path="*" element={<AdmPanel user={user} />} /> */}
+            <Route path="/adm/*" element={<AdmPanel user={user} />} />
+            <Route path="/selecionar-empresa/" element={<CompanySelection user={user} />} />
+            <Route path="/painel/*" element={<Panel user={user} />} />
+        </ReactRoutes>
+    ) : (
+        <ReactRoutes>
+            <Route index element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<Login />} />
+        </ReactRoutes>
+    )
 }
