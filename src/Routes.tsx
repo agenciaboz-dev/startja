@@ -27,11 +27,11 @@ export const Routes:React.FC<RoutesProps> = ({  }) => {
             
             io.on("admin:login:success", (admin) => {
                 setUser(admin)
-                saveLoginData({ email: admin.email, password: admin.password })
+                saveLoginData({ login: admin.email, password: admin.password })
             })
     
             io.on("login:customer", (customer) => {
-                saveLoginData({email: customer.email, password: customer.password})
+                saveLoginData({ login: customer.email, password: customer.password })
             })
     
             return () => {

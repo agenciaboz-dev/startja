@@ -16,6 +16,6 @@ declare interface Customer extends User {
 }
 
 declare interface LoginValues {
-    email: string
+    login: string
     password: string
 }

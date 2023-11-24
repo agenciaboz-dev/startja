@@ -23,8 +23,8 @@ export const Login: React.FC<LoginProps> = ({}) => {
     const [rememberLogin, setRememberLogin] = useState(!!storage.get("startja:user"))
 
     const initialValues: LoginValues = {
-        email: "",
-        password: "",
+        login: "",
+        password: ""
     }
 
     const formik = useFormik({ initialValues, onSubmit: (values) => handleLogin(values) })
@@ -40,22 +40,22 @@ export const Login: React.FC<LoginProps> = ({}) => {
 
     useEffect(() => {
         io.on("admin:login:success", (admin) => {
+            console.log("admin login")
             setLoading(false)
             setUser(admin)
             navigate("/adm")
-            console.log(admin)
             snackbar({ severity: "success", text: "Conectado!" })
-            rememberLogin ? saveLoginData({ email: admin.email, password: admin.password }) : storage.set("startja:user", null)
+            rememberLogin ? saveLoginData({ login: admin.email, password: admin.password }) : storage.set("startja:user", null)
         })
 
-        io.on("login:customer", (customer) => {
+        io.on("customer:login:success", (customer) => {
             setLoading(false)
             console.log(customer)
             snackbar({ severity: "success", text: "Conectado!" })
-            rememberLogin ? saveLoginData({ email: customer.email, password: customer.password }) : storage.set("startja:user", null)
+            rememberLogin ? saveLoginData({ login: customer.email, password: customer.password }) : storage.set("startja:user", null)
         })
 
-        io.on("login:error", (error) => {
+        io.on("user:login:failed", (error) => {
             setLoading(false)
             console.log(error)
             snackbar({ severity: "error", text: "Usuário não encontrado" })
@@ -63,8 +63,8 @@ export const Login: React.FC<LoginProps> = ({}) => {
 
         return () => {
             io.off("admin:login:success")
-            io.off("login:customer")
-            io.off("login:error")
+            io.off("customer:login:success")
+            io.off("user:login:failed")
         }
     }, [])
 
@@ -78,12 +78,12 @@ export const Login: React.FC<LoginProps> = ({}) => {
     return (
         <Box
             sx={{
-                width: "100%",
+                width: "100%"
             }}
         >
             <Box
                 sx={{
-                    width: "60%",
+                    width: "60%"
                 }}
             >
                 <img
@@ -93,7 +93,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                         height: "100%",
                         width: "100%",
                         objectFit: "cover",
-                        objectPosition: "0",
+                        objectPosition: "0"
                     }}
                 />
             </Box>
@@ -104,7 +104,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                     width: "40%",
                     alignItems: "center",
                     justifyContent: "center",
-                    gap: "2rem",
+                    gap: "2rem"
                 }}
             >
                 <img
@@ -112,13 +112,13 @@ export const Login: React.FC<LoginProps> = ({}) => {
                     alt="login_logo"
                     style={{
                         width: "30rem",
-                        objectFit: "contain",
+                        objectFit: "contain"
                     }}
                 />
 
                 <p
                     style={{
-                        fontSize: "1.3rem",
+                        fontSize: "1.3rem"
                     }}
                 >
                     Levando soluções ao empreendedor do Agro
@@ -128,16 +128,16 @@ export const Login: React.FC<LoginProps> = ({}) => {
                         sx={{
                             flexDirection: "column",
                             gap: "2rem",
-                            width: "30rem",
+                            width: "30rem"
                         }}
                     >
                         <TextField
-                            name="email"
+                            name="login"
                             label="E-mail"
-                            value={formik.values.email}
+                            value={formik.values.login}
                             onChange={formik.handleChange}
                             sx={{
-                                backgroundColor: "white",
+                                backgroundColor: "white"
                             }}
                         />
                         <TextField
@@ -147,13 +147,13 @@ export const Login: React.FC<LoginProps> = ({}) => {
                             value={formik.values.password}
                             onChange={formik.handleChange}
                             sx={{
-                                backgroundColor: "white",
+                                backgroundColor: "white"
                             }}
                         />
                         <Box
                             sx={{
                                 justifyContent: "space-between",
-                                alignItems: "center",
+                                alignItems: "center"
                             }}
                         >
                             <Box>
@@ -167,7 +167,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                 type="submit"
                                 sx={{
                                     borderRadius: "30px",
-                                    textTransform: "unset",
+                                    textTransform: "unset"
                                 }}
                             >
                                 {loading ? <CircularProgress size={30} sx={{ color: "#fff", fontSize: "2rem" }} /> : "Entrar"}
