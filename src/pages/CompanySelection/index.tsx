@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Box, Grid } from "@mui/material"
 import { colors } from "../../style/colors"
 import { Header } from "../../components/Header"
@@ -12,9 +12,21 @@ interface CompanySelectionProps {
 }
 
 export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
-    const companies = user.companies
+    // const companies = user.companies
     const header = useHeader()
     const io = useIo()
+
+    const [companies, setCompanies] = useState(user.companies)
+
+    const onSearch = (text: string) => {
+        console.log(text)
+        setCompanies(user.companies.filter((company) => company.name.includes(text)))
+    }
+
+    useEffect(() => {
+        setCompanies(user.companies)
+    }, [user.companies])
+
     useEffect(() => {
         header.setTitle("Selecionar empresa")
         io.emit("company:list")
@@ -38,7 +50,7 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
                 }}
             >
                 <Header />
-                <Toolbar searchPlaceholder="empresa" />
+                <Toolbar searchPlaceholder="empresa" onSearch={onSearch} />
                 <Box
                     sx={{
                         height: "80vh",

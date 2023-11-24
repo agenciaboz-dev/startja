@@ -1,10 +1,12 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Box, Button, MenuItem, TextField } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 
 interface ToolbarProps {
     searchPlaceholder: string
+    onSearch: (text: string) => void
+
     selectList?: any[]
     hasFilterButton?: boolean
     importButtonPlaceholder?: string
@@ -12,7 +14,21 @@ interface ToolbarProps {
     addButtonCallback?: () => void
 }
 
-export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, selectList, hasFilterButton, importButtonPlaceholder, addButtonPlaceholder, addButtonCallback}) => {
+export const Toolbar: React.FC<ToolbarProps> = ({
+    searchPlaceholder,
+    selectList,
+    hasFilterButton,
+    importButtonPlaceholder,
+    addButtonPlaceholder,
+    addButtonCallback,
+    onSearch
+}) => {
+    const [searchValue, setSearchValue] = useState("")
+
+    useEffect(() => {
+        onSearch(searchValue)
+    }, [searchValue])
+
     return (
         <Box
             sx={{
@@ -24,6 +40,8 @@ export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, selectList, 
         >
             <TextField
                 placeholder={"Buscar " + searchPlaceholder}
+                value={searchValue}
+                onChange={(ev) => setSearchValue(ev.target.value)}
                 InputProps={{
                     startAdornment: <SearchIcon />,
                     sx: {
@@ -82,7 +100,6 @@ export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, selectList, 
                 <TextField
                     label="Tudo"
                     name="toolbarSelect"
-                    value=""
                     sx={{
                         backgroundColor: "white",
                         borderRadius: "30px",
