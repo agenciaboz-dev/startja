@@ -21,7 +21,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, selectList, 
                 height: "3rem",
                 gap: "1rem"
             }}
-            >
+        >
             <TextField
                 placeholder={"Buscar " + searchPlaceholder}
                 InputProps={{
@@ -45,66 +45,65 @@ export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, selectList, 
                     boxShadow: "0 2px 2px 0 #d1d1d1",
                     height: "100%"
                 }}
-                />
+            />
             {/* {!!filterButtonCallback && */}
-            {hasFilterButton &&
+            {hasFilterButton && (
                 <Button
                     variant="outlined"
                     sx={{
                         borderRadius: "2rem",
                         textTransform: "unset",
                         height: "100%",
-                        gap: "0.5rem",
+                        gap: "0.5rem"
                     }}
                     // onClick={filterButtonCallback}
                 >
                     <AddOutlinedIcon />
-                    <p>
-                        Filtrar
-                    </p>
+                    <p>Filtrar</p>
                 </Button>
-            }
+            )}
             {/* {!!importButtonCallback && */}
-            {importButtonPlaceholder &&
+            {importButtonPlaceholder && (
                 <Button
                     variant="outlined"
                     sx={{
                         borderRadius: "2rem",
                         textTransform: "unset",
                         height: "100%",
-                        gap: "0.5rem",
+                        gap: "0.5rem"
                     }}
                     // onClick={importButtonCallback}
                 >
                     <AddOutlinedIcon />
-                    <p>
-                        Importar {importButtonPlaceholder}
-                    </p>
+                    <p>Importar {importButtonPlaceholder}</p>
                 </Button>
-            }
-            {!!selectList &&
+            )}
+            {!!selectList && (
                 <TextField
-                label="Tudo"
-                name="toolbarSelect"
-                sx={{
-                    backgroundColor: "white",
-                    borderRadius: "30px",
-                    boxShadow: "0 2px 2px 0 #d1d1d1",
-                    height: "100%",
-                    width: "20rem",
-                }}
-                select
-                SelectProps={{
-                    sx: {
-                        height: "100%",
+                    label="Tudo"
+                    name="toolbarSelect"
+                    value=""
+                    sx={{
+                        backgroundColor: "white",
                         borderRadius: "30px",
-                    }
-                }}
+                        boxShadow: "0 2px 2px 0 #d1d1d1",
+                        height: "100%",
+                        width: "20rem"
+                    }}
+                    select
+                    SelectProps={{
+                        sx: {
+                            height: "100%",
+                            borderRadius: "30px"
+                        }
+                    }}
                 >
-                    {selectList.map(item => <MenuItem key={item.id}>{item.name}</MenuItem>)}
+                    {selectList.map((item) => (
+                        <MenuItem key={item.id}>{item.name}</MenuItem>
+                    ))}
                 </TextField>
-            }
-            {!!addButtonCallback &&
+            )}
+            {!!addButtonCallback && (
                 <Button
                     variant="contained"
                     sx={{
@@ -116,11 +115,9 @@ export const Toolbar: React.FC<ToolbarProps> = ({searchPlaceholder, selectList, 
                     onClick={addButtonCallback}
                 >
                     <AddOutlinedIcon />
-                    <p>
-                        Adicionar {addButtonPlaceholder}
-                    </p>
+                    <p>Adicionar {addButtonPlaceholder}</p>
                 </Button>
-            }
+            )}
         </Box>
     )
 }
