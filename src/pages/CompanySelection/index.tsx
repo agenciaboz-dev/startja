@@ -38,26 +38,19 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
                 backgroundColor: colors.background,
                 width: "100%",
                 overflow: "hidden"
-            }}
-        >
+            }}>
             <Box
                 sx={{
                     width: "100%",
                     flexDirection: "column",
                     overflowY: "auto",
-                    padding: "2rem",
-                    gap: "2rem"
-                }}
-            >
+                    padding: "2vw",
+                    gap: "2vw"
+                }}>
                 <Header />
                 <Toolbar searchPlaceholder="empresa" onSearch={onSearch} />
-                <Box
-                    sx={{
-                        height: "80vh",
-                        width: "100%"
-                    }}
-                >
-                    <Grid container>
+                <Box sx={{}}>
+                    <Grid container spacing={5} columns={7}>
                         {companies.map((company) => (
                             <CompanyCard key={company.id} company={company} />
                         ))}
