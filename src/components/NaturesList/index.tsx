@@ -1,13 +1,12 @@
 import React from "react"
 import { Box } from "@mui/material"
 import { NatureRow } from "./NatureRow"
-import { useNature } from "../../hooks/useNature"
 
-interface NaturesListProps {}
+interface NaturesListProps {
+    natures: Nature[]
+}
 
-export const NaturesList: React.FC<NaturesListProps> = ({}) => {
-    const natures = useNature()
-
+export const NaturesList: React.FC<NaturesListProps> = ({ natures }) => {
     return (
         <Box
             sx={{
@@ -17,7 +16,7 @@ export const NaturesList: React.FC<NaturesListProps> = ({}) => {
                 margin: "0.5vw 0",
             }}
         >
-            {natures.list.map((nature) => (
+            {natures.map((nature) => (
                 <NatureRow key={nature.id} nature={nature} />
             ))}
             {/* <NatureRow /> */}

@@ -1,13 +1,12 @@
 import React from "react"
 import { Box } from "@mui/material"
 import { ProductRow } from "./ProductRow"
-import { useProduct } from "../../hooks/useProduct"
 
-interface ProductsListProps {}
+interface ProductsListProps {
+    products: Product[]
+}
 
-export const ProductsList: React.FC<ProductsListProps> = ({}) => {
-    const products = useProduct()
-
+export const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
     return (
         <Box
             sx={{
@@ -17,7 +16,7 @@ export const ProductsList: React.FC<ProductsListProps> = ({}) => {
                 margin: "0.5vw 0",
             }}
         >
-            {products.list.map((product) => (
+            {products.map((product) => (
                 <ProductRow key={product.id} product={product} />
             ))}
         </Box>
