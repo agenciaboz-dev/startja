@@ -73,11 +73,10 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                 ) : (
                     <Box
                         sx={{
-                            height: "80vh",
                             width: "100%",
                         }}
                     >
-                        <Grid container>
+                        <Grid container spacing={2}>
                             {customers.list.map((customer) => (
                                 <CustomerCard buttonColor="primary" key={customer.id} customer={customer} />
                             ))}
