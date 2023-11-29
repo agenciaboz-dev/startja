@@ -119,7 +119,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
 
                 <p
                     style={{
-                        fontSize: "1.3vw",
+                        fontSize: "1.5rem",
                     }}
                 >
                     Levando soluções ao empreendedor do Agro
@@ -171,7 +171,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                     textTransform: "unset",
                                 }}
                             >
-                                {loading ? <CircularProgress size={30} sx={{ color: "#fff", fontSize: "2vw" }} /> : "Entrar"}
+                                {loading ? <CircularProgress size={30} sx={{ color: "#fff", fontSize: "2rem" }} /> : "Entrar"}
                             </Button>
                         </Box>
                     </Box>
