@@ -8,20 +8,30 @@ import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
 import AddNatureModal from "./AddNatureModal"
 import { useHeader } from "../../../../hooks/useHeader"
+import { useNature } from "../../../../hooks/useNature"
+import normalize from "../../../../tools/normalize"
 
 interface NaturesProps {}
 
 export const Natures: React.FC<NaturesProps> = ({}) => {
+    // const [emptyNaturesList, setEmptyNaturesList] = useState(false)
+    const natures = useNature()
     const header = useHeader()
     const io = useIo()
-    const [emptyNaturesList, setEmptyNaturesList] = useState(false)
+    const emptyNaturesList = !natures.list.length
     const [isAddNatureModalOpen, setAddNatureModalOpen] = useState(false)
     const openNatureModal = () => {
         setAddNatureModalOpen(true)
     }
 
+    const [naturesList, setNaturesList] = useState(natures.list)
+
+    useEffect(() => {
+        setNaturesList(natures.list)
+    }, [natures.list])
+
     const handleSearch = (text: string) => {
-        console.log("Search text:", text)
+        setNaturesList(natures.list.filter((item) => normalize(item.motive).includes(text)))
     }
 
     useEffect(() => {
@@ -88,7 +98,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                         }}
                     >
                         <NaturesListHeader />
-                        <NaturesList />
+                        <NaturesList natures={naturesList} />
                     </Box>
                 )}
             </Box>
