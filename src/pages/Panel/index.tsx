@@ -18,13 +18,7 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
     const { selectedCompany } = useCompany()
 
     return selectedCompany ? (
-        <Box
-            sx={{
-                backgroundColor: colors.background,
-                width: "100%",
-                overflow: "hidden",
-                height: "100%"
-            }}>
+        <Box sx={{ backgroundColor: colors.background, width: "100%", overflow: "hidden", height: "100%" }}>
             <Sidebar />
             <Box
                 sx={{
@@ -39,7 +33,7 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
                     <Route path="/configuracoes/*" element={<Config user={user} />} />
                     <Route index element={<Overview user={user} company={selectedCompany} />} />
                     <Route path="/visao-geral/" element={<Overview user={user} company={selectedCompany} />} />
-                    <Route path="/notas-fiscais/" element={<Issuance user={user} />} />
+                    <Route path="/notas-fiscais/" element={<Issuance user={user} company={selectedCompany} />} />
                     <Route path="/livro-caixa/" element={<Cashbook user={user} />} />
                     <Route path="/cadastros-gerais/*" element={<Registry user={user} />} />
                 </Routes>

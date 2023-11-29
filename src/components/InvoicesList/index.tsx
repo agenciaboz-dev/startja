@@ -1,26 +1,23 @@
 import React from "react"
 import { Box } from "@mui/material"
 import { InvoiceRow } from "./InvoiceRow"
-import { useInvoice } from "../../hooks/useInvoice"
 
 interface InvoicesListProps {
-    invoice : Invoice
+    invoices: Invoice[]
 }
 
-export const InvoicesList: React.FC<InvoicesListProps> = ({invoice}) => {
-    const invoices = useInvoice()
-
+export const InvoicesList: React.FC<InvoicesListProps> = ({ invoices }) => {
     return (
         <Box
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5vw 0",
-            }}
-        >
-            {/* {invoices.list.map(invoice => <InvoiceRow key={invoice.id} invoice={invoice} />)} */}
-            <InvoiceRow />
+                margin: "0.5vw 0"
+            }}>
+            {invoices.map((invoice) => (
+                <InvoiceRow key={invoice.id} invoice={invoice} />
+            ))}
         </Box>
     )
 }

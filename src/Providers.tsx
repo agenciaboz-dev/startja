@@ -15,9 +15,9 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
     return (
         <SnackbarProvider>
             <IoProvider>
-                <CompanyProvider>
-                    <ProductProvider>
-                        <UserProvider>
+                <UserProvider>
+                    <CompanyProvider>
+                        <ProductProvider>
                             <CustomerProvider>
                                 <NatureProvider>
                                     <HeaderProvider>
@@ -26,9 +26,9 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
                                     </HeaderProvider>
                                 </NatureProvider>
                             </CustomerProvider>
-                        </UserProvider>
-                    </ProductProvider>
-                </CompanyProvider>
+                        </ProductProvider>
+                    </CompanyProvider>
+                </UserProvider>
             </IoProvider>
         </SnackbarProvider>
     )

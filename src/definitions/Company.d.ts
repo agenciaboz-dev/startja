@@ -13,4 +13,6 @@ declare interface Company {
     cep: string
     email?: string
     phone?: string
+
+    notas: Invoice[]
 }

@@ -25,6 +25,10 @@ export const CompanyProvider: React.FC<CompanyProviderProps> = ({ children }) =>
     const [selectedCompany, setSelectedCompany] = useState<Company | null>(null)
 
     useEffect(() => {
+        console.log({ selectedCompany })
+    }, [selectedCompany])
+
+    useEffect(() => {
         console.log({ companies: list })
         io.on("company:new", (company: Company) => {
             console.log({ new_company: company })
