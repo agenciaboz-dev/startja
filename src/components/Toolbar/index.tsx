@@ -34,8 +34,8 @@ export const Toolbar: React.FC<ToolbarProps> = ({
             sx={{
                 justifyContent: "space-between",
                 alignItems: "center",
-                height: "3rem",
-                gap: "1rem"
+                height: "3vw",
+                gap: "1vw",
             }}
         >
             <TextField
@@ -48,20 +48,20 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                         borderRadius: "30px",
                         alignItems: "center",
                         height: "100%",
-                        gap: "0.5rem"
-                    }
+                        gap: "0.5vw",
+                    },
                 }}
                 inputProps={{
                     style: {
                         // padding: "4px 0 0"
-                    }
+                    },
                 }}
                 sx={{
                     backgroundColor: "white",
                     flex: 1,
                     borderRadius: "30px",
                     boxShadow: "0 2px 2px 0 #d1d1d1",
-                    height: "100%"
+                    height: "100%",
                 }}
             />
             {/* {!!filterButtonCallback && */}
@@ -69,10 +69,10 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 <Button
                     variant="outlined"
                     sx={{
-                        borderRadius: "2rem",
+                        borderRadius: "2vw",
                         textTransform: "unset",
                         height: "100%",
-                        gap: "0.5rem"
+                        gap: "0.5vw",
                     }}
                     // onClick={filterButtonCallback}
                 >
@@ -85,10 +85,10 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 <Button
                     variant="outlined"
                     sx={{
-                        borderRadius: "2rem",
+                        borderRadius: "2vw",
                         textTransform: "unset",
                         height: "100%",
-                        gap: "0.5rem"
+                        gap: "0.5vw",
                     }}
                     // onClick={importButtonCallback}
                 >
@@ -105,14 +105,14 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                         borderRadius: "30px",
                         boxShadow: "0 2px 2px 0 #d1d1d1",
                         height: "100%",
-                        width: "20rem"
+                        width: "20vw",
                     }}
                     select
                     SelectProps={{
                         sx: {
                             height: "100%",
-                            borderRadius: "30px"
-                        }
+                            borderRadius: "30px",
+                        },
                     }}
                 >
                     {selectList.map((item) => (
@@ -124,10 +124,10 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 <Button
                     variant="contained"
                     sx={{
-                        borderRadius: "2rem",
+                        borderRadius: "2vw",
                         textTransform: "unset",
                         height: "100%",
-                        gap: "0.5rem"
+                        gap: "0.5vw",
                     }}
                     onClick={addButtonCallback}
                 >

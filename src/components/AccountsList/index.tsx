@@ -14,7 +14,7 @@ export const AccountsList: React.FC<AccountsListProps> = ({}) => {
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5rem 0",
+                margin: "0.5vw 0",
             }}
         >
             {/* {properties.list.map(property => <AccountRow key={property.id} property={property} />)} */}

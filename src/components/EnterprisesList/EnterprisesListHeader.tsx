@@ -15,7 +15,7 @@ export const EnterprisesListHeader: React.FC<EnterprisesListHeaderProps> = ({}) 
                 sx={{
                     alignItems: "center",
                     width: "100%",
-                    marginBottom: "1rem",
+                    marginBottom: "1vw",
                 }}
             >
                 <Checkbox
@@ -29,7 +29,7 @@ export const EnterprisesListHeader: React.FC<EnterprisesListHeaderProps> = ({}) 
                     sx={{
                         justifyContent: "space-between",
                         flex: 1,
-                        gap: "2rem",
+                        gap: "2vw",
                     }}
                 >
                     <Box
@@ -78,7 +78,7 @@ export const EnterprisesListHeader: React.FC<EnterprisesListHeaderProps> = ({}) 
             </Box>
             <hr
                 style={{
-                    marginLeft: "1rem",
+                    marginLeft: "1vw",
                     width: "100%",
                 }}
             />

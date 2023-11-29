@@ -18,7 +18,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
             PaperProps={{
                 sx: {
                     borderRadius: "30px",
-                    paddingTop: "1rem",
+                    paddingTop: "1vw",
                     minWidth: "50vw",
                     width: "fit-content",
                 },
@@ -28,8 +28,8 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "2rem",
-                    right: "1rem",
+                    top: "2vw",
+                    right: "1vw",
                     cursor: "pointer",
                 }}
                 onClick={onClose}
@@ -40,7 +40,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                     sx={{
                         alignItems: "center",
                         flexDirection: "column",
-                        gap: "1rem",
+                        gap: "1vw",
                         width: "100%",
                     }}
                 >
@@ -111,7 +111,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
 
             <DialogActions
                 sx={{
-                    margin: "0.5rem",
+                    margin: "0.5vw",
                 }}
             >
                 <Button

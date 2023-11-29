@@ -16,8 +16,8 @@ export const CategoriesList: React.FC<CategoriesListProps> = ({category}) => {
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5rem 0"
-            }}    
+                margin: "0.5vw 0",
+            }}
         >
             {/* {categories.list.map(category => <CategoryRow key={category.id} category={category} />)} */}
             <CategoryRow />

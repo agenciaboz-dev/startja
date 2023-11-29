@@ -16,7 +16,7 @@ export const EnterprisesList: React.FC<EnterprisesListProps> = ({ Enterprise }) 
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5rem 0",
+                margin: "0.5vw 0",
             }}
         >
             {/* {Enterprises.list.map(Enterprise => <EnterpriseRow key={Enterprise.id} Enterprise={Enterprise} />)} */}

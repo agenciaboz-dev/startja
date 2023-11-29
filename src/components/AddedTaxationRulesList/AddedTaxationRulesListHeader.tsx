@@ -10,20 +10,20 @@ export const AddedTaxationRulesListHeader: React.FC<AddedTaxationRulesListHeader
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
-            }}    
+            }}
         >
             <Box
                 sx={{
                     alignItems: "center",
                     width: "100%",
-                    marginBottom: "1rem"
+                    marginBottom: "1vw",
                 }}
-                >
+            >
                 <Checkbox
                     inputProps={{
                         style: {
-                            padding: "0"
-                        }
+                            padding: "0",
+                        },
                     }}
                 />
 
@@ -37,7 +37,7 @@ export const AddedTaxationRulesListHeader: React.FC<AddedTaxationRulesListHeader
                         sx={{
                             alignItems: "center",
                             justifyContent: "center",
-                            width: "10%"
+                            width: "10%",
                         }}
                     >
                         <h3>Destino</h3>
@@ -46,7 +46,7 @@ export const AddedTaxationRulesListHeader: React.FC<AddedTaxationRulesListHeader
                         sx={{
                             alignItems: "center",
                             justifyContent: "center",
-                            width: "10%"
+                            width: "10%",
                         }}
                     >
                         <h3>NCM</h3>
@@ -55,7 +55,7 @@ export const AddedTaxationRulesListHeader: React.FC<AddedTaxationRulesListHeader
                         sx={{
                             alignItems: "center",
                             justifyContent: "center",
-                            width: "30%"
+                            width: "30%",
                         }}
                     >
                         <h3>Produto</h3>
@@ -64,7 +64,7 @@ export const AddedTaxationRulesListHeader: React.FC<AddedTaxationRulesListHeader
                         sx={{
                             alignItems: "center",
                             justifyContent: "center",
-                            width: "30%"
+                            width: "30%",
                         }}
                     >
                         <h3>CFOP</h3>
@@ -73,7 +73,7 @@ export const AddedTaxationRulesListHeader: React.FC<AddedTaxationRulesListHeader
                         sx={{
                             alignItems: "center",
                             justifyContent: "center",
-                            width: "10%"
+                            width: "10%",
                         }}
                     >
                         <h3>Situação tributária</h3>
@@ -82,18 +82,17 @@ export const AddedTaxationRulesListHeader: React.FC<AddedTaxationRulesListHeader
                         sx={{
                             alignItems: "center",
                             justifyContent: "center",
-                            width: "10%"
+                            width: "10%",
                         }}
                     >
                         <h3>Ações</h3>
                     </Box>
                 </Box>
-
             </Box>
             <hr
                 style={{
-                    marginLeft: "1rem",
-                    width: "100%"
+                    marginLeft: "1vw",
+                    width: "100%",
                 }}
             />
         </Box>

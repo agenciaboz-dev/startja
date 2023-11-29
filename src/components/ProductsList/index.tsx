@@ -14,10 +14,12 @@ export const ProductsList: React.FC<ProductsListProps> = ({}) => {
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5rem 0"
-            }}    
+                margin: "0.5vw 0",
+            }}
         >
-            {products.list.map(product => <ProductRow key={product.id} product={product} />)}
+            {products.list.map((product) => (
+                <ProductRow key={product.id} product={product} />
+            ))}
         </Box>
     )
 }

@@ -24,7 +24,7 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ user }) => {
             <Box
                 sx={{
                     flex: 1,
-                    padding: "1rem 1.5rem 1rem 0.5rem",
+                    padding: "1vw 1.5vw 1vw 0.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
                     borderRadius: "30px",

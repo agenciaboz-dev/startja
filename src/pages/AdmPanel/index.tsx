@@ -27,8 +27,8 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
                     flex: 1,
                     flexDirection: "column",
                     overflowY: "auto",
-                    padding: "2rem",
-                    gap: "2rem",
+                    padding: "2vw",
+                    gap: "2vw",
                 }}
             >
                 <Routes>

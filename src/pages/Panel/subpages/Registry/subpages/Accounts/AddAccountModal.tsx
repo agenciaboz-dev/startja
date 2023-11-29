@@ -24,7 +24,7 @@ const AddAccountModal: React.FC<AddAccountModalProps> = ({ open, onClose }) => {
             PaperProps={{
                 sx: {
                     borderRadius: "30px",
-                    paddingTop: "1rem",
+                    paddingTop: "1vw",
                     minWidth: "60vw",
                     width: "fit-content",
                 },
@@ -34,8 +34,8 @@ const AddAccountModal: React.FC<AddAccountModalProps> = ({ open, onClose }) => {
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "2rem",
-                    right: "1rem",
+                    top: "2vw",
+                    right: "1vw",
                     cursor: "pointer",
                 }}
                 onClick={onClose}
@@ -46,7 +46,7 @@ const AddAccountModal: React.FC<AddAccountModalProps> = ({ open, onClose }) => {
                     sx={{
                         flexDirection: "column",
                         width: "100%",
-                        gap: "2rem",
+                        gap: "2vw",
                     }}
                 >
                     <Box>
@@ -85,7 +85,7 @@ const AddAccountModal: React.FC<AddAccountModalProps> = ({ open, onClose }) => {
 
             <DialogActions
                 sx={{
-                    margin: "0.5rem",
+                    margin: "0.5vw",
                 }}
             >
                 <Button

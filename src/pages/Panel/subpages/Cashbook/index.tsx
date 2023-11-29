@@ -31,7 +31,7 @@ export const Cashbook: React.FC<CashbookProps> = ({ user }) => {
                     sx={{
                         height: "100%",
                         width: "100%",
-                        gap: "2rem",
+                        gap: "2vw",
                     }}
                 >
                     <Box
@@ -43,14 +43,14 @@ export const Cashbook: React.FC<CashbookProps> = ({ user }) => {
                         <Box
                             sx={{
                                 flex: 1,
-                                gap: "1rem",
+                                gap: "1vw",
                                 flexDirection: "column",
                             }}
                         >
                             <Box
                                 sx={{
                                     alignContent: "center",
-                                    gap: "2rem",
+                                    gap: "2vw",
                                     width: "100%",
                                 }}
                             >
@@ -72,7 +72,7 @@ export const Cashbook: React.FC<CashbookProps> = ({ user }) => {
                                     boxShadow: "0 2px 2px 2px #d1d1d1",
                                     flex: 1,
                                     flexDirection: "column",
-                                    padding: "1rem",
+                                    padding: "1vw",
                                 }}
                             ></Box>
                         </Box>

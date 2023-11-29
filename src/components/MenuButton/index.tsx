@@ -57,11 +57,11 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                     <Box
                         sx={{
                             backgroundColor: colors.primary,
-                            borderTopRightRadius: "1rem",
-                            borderBottomRightRadius: "1rem",
+                            borderTopRightRadius: "1vw",
+                            borderBottomRightRadius: "1vw",
                             position: "absolute",
                             height: "100%",
-                            width: "0.5rem",
+                            width: "0.5vw",
                             left: 0,
                         }}
                     ></Box>
@@ -72,7 +72,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                             backgroundColor: active ? "secondary.main" : "",
                             color: active ? "white" : "black",
                             pointerEvents: active ? "none" : "auto",
-                            padding: "0.5rem",
+                            padding: "0.5vw",
                             borderRadius: "10px",
                         }}
                     >

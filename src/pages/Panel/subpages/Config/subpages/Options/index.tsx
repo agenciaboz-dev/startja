@@ -33,11 +33,11 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                         sx={{
                             height: "80vh",
                             width: "100%",
-                            padding: "2rem",
+                            padding: "2vw",
                             justifyContent: "center",
                             alignItems: "center",
                             flexDirection: "column",
-                            gap: "1rem",
+                            gap: "1vw",
                         }}
                     >
                         <h2>Sem naturezas de operação cadastradas</h2>
@@ -45,11 +45,11 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                         <Button
                             variant="contained"
                             sx={{
-                                borderRadius: "2rem",
+                                borderRadius: "2vw",
                                 textTransform: "unset",
-                                height: "3rem",
+                                height: "3vw",
                                 verticalAlign: "middle",
-                                gap: "0.5rem",
+                                gap: "0.5vw",
                             }}
                             onClick={openNatureModal}
                         >
@@ -63,7 +63,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                     <Box
                         sx={{
                             flex: 1,
-                            padding: "1rem 1.5rem 1rem 0.5rem",
+                            padding: "1vw 1.5vw 1vw 0.5vw",
                             boxShadow: "0 2px 2px 2px #d1d1d1",
                             backgroundColor: "white",
                             borderRadius: "30px",

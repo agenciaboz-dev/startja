@@ -15,7 +15,7 @@ export const AccountsListHeader: React.FC<AccountsListHeaderProps> = ({}) => {
                 sx={{
                     alignItems: "center",
                     width: "100%",
-                    marginBottom: "1rem",
+                    marginBottom: "1vw",
                 }}
             >
                 <Checkbox
@@ -70,7 +70,7 @@ export const AccountsListHeader: React.FC<AccountsListHeaderProps> = ({}) => {
             </Box>
             <hr
                 style={{
-                    marginLeft: "1rem",
+                    marginLeft: "1vw",
                     width: "100%",
                 }}
             />

@@ -10,20 +10,20 @@ export const CategoriesListHeader: React.FC<CategoriesListHeaderProps> = ({}) =>
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
-            }}    
+            }}
         >
             <Box
                 sx={{
                     alignItems: "center",
                     width: "100%",
-                    marginBottom: "1rem"
+                    marginBottom: "1vw",
                 }}
-                >
+            >
                 <Checkbox
                     inputProps={{
                         style: {
-                            padding: "0"
-                        }
+                            padding: "0",
+                        },
                     }}
                 />
                 <Box
@@ -33,24 +33,24 @@ export const CategoriesListHeader: React.FC<CategoriesListHeaderProps> = ({}) =>
                     }}
                 >
                     <Box
-                    sx={{
-                        width: "45%"
-                    }}
+                        sx={{
+                            width: "45%",
+                        }}
                     >
                         <h3>Categoria</h3>
                     </Box>
                     <Box
-                    sx={{
-                        width: "45%"
-                    }}
+                        sx={{
+                            width: "45%",
+                        }}
                     >
                         <h3>Classificação</h3>
                     </Box>
                     <Box
-                    sx={{
-                        width: "10%",
-                        justifyContent: "end"
-                    }}
+                        sx={{
+                            width: "10%",
+                            justifyContent: "end",
+                        }}
                     >
                         <h3>Ações</h3>
                     </Box>
@@ -58,8 +58,8 @@ export const CategoriesListHeader: React.FC<CategoriesListHeaderProps> = ({}) =>
             </Box>
             <hr
                 style={{
-                    marginLeft: "1rem",
-                    width: "100%"
+                    marginLeft: "1vw",
+                    width: "100%",
                 }}
             />
         </Box>

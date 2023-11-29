@@ -26,8 +26,8 @@ const AddCategoryModal: React.FC<AddCategoryModalProps> = ({ open, onClose }) =>
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "1rem",
-                    right: "1rem",
+                    top: "1vw",
+                    right: "1vw",
                     cursor: "pointer",
                 }}
                 onClick={onClose}
@@ -37,7 +37,7 @@ const AddCategoryModal: React.FC<AddCategoryModalProps> = ({ open, onClose }) =>
 
             <DialogActions
                 sx={{
-                    margin: "0.5rem",
+                    margin: "0.5vw",
                 }}
             >
                 <Button

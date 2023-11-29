@@ -14,7 +14,7 @@ export const InvoiceModalProductsList: React.FC<InvoiceModalProductsListProps> =
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5rem 0",
+                margin: "0.5vw 0",
             }}
         >
             {products.list.map((product) => (

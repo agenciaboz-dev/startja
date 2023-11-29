@@ -16,8 +16,8 @@ export const AddedTaxationRuleRowsList: React.FC<AddedTaxationRuleRowsListProps>
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5rem 0"
-            }}    
+                margin: "0.5vw 0",
+            }}
         >
             {/* {addedTaxationRules.list.map(addedTaxationRule => <AddedTaxationRuleRowRow key={addedTaxationRule.id} addedTaxationRule={addedTaxationRule} />)} */}
             <AddedTaxationRuleRow />

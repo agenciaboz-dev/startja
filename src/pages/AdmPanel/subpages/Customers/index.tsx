@@ -38,31 +38,34 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
             />
             <Box
                 sx={{
-                    width: "100%"
-                }}>
+                    width: "100%",
+                }}
+            >
                 {emptyCustomersList ? (
                     <Box
                         sx={{
                             height: "80vh",
                             width: "100%",
-                            padding: "2rem",
+                            padding: "2vw",
                             justifyContent: "center",
                             alignItems: "center",
                             flexDirection: "column",
-                            gap: "1rem"
-                        }}>
+                            gap: "1vw",
+                        }}
+                    >
                         <h2>Sem clientes cadastrados</h2>
                         <p>Pressione o botão para cadastrar um cliente.</p>
                         <Button
                             variant="contained"
                             sx={{
-                                borderRadius: "2rem",
+                                borderRadius: "2vw",
                                 textTransform: "unset",
-                                height: "3rem",
+                                height: "3vw",
                                 verticalAlign: "middle",
-                                gap: "0.5rem"
+                                gap: "0.5vw",
                             }}
-                            onClick={openCustomerModal}>
+                            onClick={openCustomerModal}
+                        >
                             <AddOutlinedIcon />
                             Adicionar novo cliente
                         </Button>
@@ -71,8 +74,9 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                     <Box
                         sx={{
                             height: "80vh",
-                            width: "100%"
-                        }}>
+                            width: "100%",
+                        }}
+                    >
                         <Grid container>
                             {customers.list.map((customer) => (
                                 <CustomerCard buttonColor="primary" key={customer.id} customer={customer} />

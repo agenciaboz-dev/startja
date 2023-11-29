@@ -24,21 +24,23 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                 <MenuItem
                     sx={{
                         alignItems: "center",
-                        gap: "0.5rem",
+                        gap: "0.5vw",
                         paddingRight: "2vw",
                         height: "100%",
-                        borderRight: "1px solid"
-                    }}>
-                    <HelpOutlineOutlinedIcon sx={{ fill: "#323232", height: "2rem", width: "2rem" }} />
+                        borderRight: "1px solid",
+                    }}
+                >
+                    <HelpOutlineOutlinedIcon sx={{ fill: "#323232", height: "2vw", width: "2vw" }} />
                     <p style={{ fontWeight: "lighter" }}>Ajuda</p>
                 </MenuItem>
                 <MenuItem
-                    sx={{ alignItems: "center", gap: "0.5rem", width: "15vw", paddingLeft: "2vw" }}
-                    onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
-                    <AccountCircleOutlinedIcon sx={{ fill: "#323232", height: "2rem", width: "2rem" }} />
+                    sx={{ alignItems: "center", gap: "0.5vw", width: "15vw", paddingLeft: "2vw" }}
+                    onClick={(event) => setMenuAnchorEl(event.currentTarget)}
+                >
+                    <AccountCircleOutlinedIcon sx={{ fill: "#323232", height: "2vw", width: "2vw" }} />
                     <Box sx={{ flexDirection: "column" }}>
                         <p style={{ fontWeight: "lighter" }}>{user?.name}</p>
-                        <p style={{ fontSize: "0.8rem", fontWeight: "bold" }}>Menus e configurações</p>
+                        <p style={{ fontSize: "0.8vw", fontWeight: "bold" }}>Menus e configurações</p>
                     </Box>
                     <ArrowDropDownOutlinedIcon />
                 </MenuItem>
@@ -47,7 +49,8 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                     open={menu_opened}
                     onClose={() => setMenuAnchorEl(null)}
                     slotProps={{ paper: { sx: { width: "15vw" }, elevation: 2 } }}
-                    MenuListProps={{ sx: { width: "100%" } }}>
+                    MenuListProps={{ sx: { width: "100%" } }}
+                >
                     {menus.list.map((menu) => {
                         const Icon = () => menu.icon
                         return (

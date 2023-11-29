@@ -18,7 +18,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
             PaperProps={{
                 sx: {
                     borderRadius: "30px",
-                    paddingTop: "1rem",
+                    paddingTop: "1vw",
                     minWidth: "60vw",
                 },
             }}
@@ -27,8 +27,8 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "2rem",
-                    right: "1rem",
+                    top: "2vw",
+                    right: "1vw",
                     cursor: "pointer",
                 }}
                 onClick={onClose}
@@ -47,7 +47,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
 
             <DialogActions
                 sx={{
-                    margin: "0.5rem",
+                    margin: "0.5vw",
                 }}
             >
                 <Button

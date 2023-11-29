@@ -15,7 +15,7 @@ export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
                 sx={{
                     alignItems: "center",
                     width: "100%",
-                    marginBottom: "1rem",
+                    marginBottom: "1vw",
                 }}
             >
                 <Checkbox
@@ -66,7 +66,7 @@ export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
             </Box>
             <hr
                 style={{
-                    marginLeft: "1rem",
+                    marginLeft: "1vw",
                     width: "100%",
                 }}
             />

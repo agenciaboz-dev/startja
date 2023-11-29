@@ -24,7 +24,7 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
             PaperProps={{
                 sx: {
                     borderRadius: "30px",
-                    paddingTop: "1rem",
+                    paddingTop: "1vw",
                     minWidth: "80vw",
                     width: "fit-content",
                 },
@@ -34,8 +34,8 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "2rem",
-                    right: "1rem",
+                    top: "2vw",
+                    right: "1vw",
                     cursor: "pointer",
                 }}
                 onClick={onClose}
@@ -45,14 +45,14 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                 <Box
                     sx={{
                         width: "100%",
-                        gap: "2rem",
+                        gap: "2vw",
                     }}
                 >
                     <Box
                         sx={{
                             flex: 1,
                             flexDirection: "column",
-                            gap: "1rem",
+                            gap: "1vw",
                         }}
                     >
                         <p>Informações gerais</p>
@@ -110,7 +110,7 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                         sx={{
                             flex: 1,
                             flexDirection: "column",
-                            gap: "1rem",
+                            gap: "1vw",
                         }}
                     >
                         <p>Transporte e frete</p>
@@ -149,7 +149,7 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
 
             <DialogActions
                 sx={{
-                    margin: "0.5rem",
+                    margin: "0.5vw",
                 }}
             >
                 <Button

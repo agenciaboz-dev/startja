@@ -79,12 +79,12 @@ export const Login: React.FC<LoginProps> = ({}) => {
     return (
         <Box
             sx={{
-                width: "100%"
+                width: "100%",
             }}
         >
             <Box
                 sx={{
-                    width: "60%"
+                    width: "60%",
                 }}
             >
                 <img
@@ -94,7 +94,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                         height: "100%",
                         width: "100%",
                         objectFit: "cover",
-                        objectPosition: "0"
+                        objectPosition: "0",
                     }}
                 />
             </Box>
@@ -105,21 +105,21 @@ export const Login: React.FC<LoginProps> = ({}) => {
                     width: "40%",
                     alignItems: "center",
                     justifyContent: "center",
-                    gap: "2rem"
+                    gap: "2vw",
                 }}
             >
                 <img
                     src={login_logo}
                     alt="login_logo"
                     style={{
-                        width: "30rem",
-                        objectFit: "contain"
+                        width: "30vw",
+                        objectFit: "contain",
                     }}
                 />
 
                 <p
                     style={{
-                        fontSize: "1.3rem"
+                        fontSize: "1.3vw",
                     }}
                 >
                     Levando soluções ao empreendedor do Agro
@@ -128,8 +128,8 @@ export const Login: React.FC<LoginProps> = ({}) => {
                     <Box
                         sx={{
                             flexDirection: "column",
-                            gap: "2rem",
-                            width: "30rem"
+                            gap: "2vw",
+                            width: "30vw",
                         }}
                     >
                         <TextField
@@ -138,7 +138,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                             value={formik.values.login}
                             onChange={formik.handleChange}
                             sx={{
-                                backgroundColor: "white"
+                                backgroundColor: "white",
                             }}
                         />
                         <TextField
@@ -148,13 +148,13 @@ export const Login: React.FC<LoginProps> = ({}) => {
                             value={formik.values.password}
                             onChange={formik.handleChange}
                             sx={{
-                                backgroundColor: "white"
+                                backgroundColor: "white",
                             }}
                         />
                         <Box
                             sx={{
                                 justifyContent: "space-between",
-                                alignItems: "center"
+                                alignItems: "center",
                             }}
                         >
                             <Box>
@@ -168,10 +168,10 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                 type="submit"
                                 sx={{
                                     borderRadius: "30px",
-                                    textTransform: "unset"
+                                    textTransform: "unset",
                                 }}
                             >
-                                {loading ? <CircularProgress size={30} sx={{ color: "#fff", fontSize: "2rem" }} /> : "Entrar"}
+                                {loading ? <CircularProgress size={30} sx={{ color: "#fff", fontSize: "2vw" }} /> : "Entrar"}
                             </Button>
                         </Box>
                     </Box>

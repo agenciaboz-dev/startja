@@ -27,7 +27,7 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ Enterprise }) => {
                     alignItems: "center",
                     justifyContent: "space-between",
                     flex: 1,
-                    gap: "2rem",
+                    gap: "2vw",
                 }}
             >
                 <Box

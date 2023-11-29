@@ -28,7 +28,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
             PaperProps={{
                 sx: {
                     borderRadius: "30px",
-                    paddingTop: "1rem",
+                    paddingTop: "1vw",
                     minWidth: "60vw",
                     width: "fit-content",
                 },
@@ -38,8 +38,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "2rem",
-                    right: "1rem",
+                    top: "2vw",
+                    right: "1vw",
                     cursor: "pointer",
                 }}
                 onClick={onClose}
@@ -50,7 +50,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                     sx={{
                         flexDirection: "column",
                         width: "100%",
-                        gap: "2rem",
+                        gap: "2vw",
                     }}
                 >
                     <Grid container spacing={2}>
@@ -89,7 +89,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                     <Box
                         sx={{
                             flex: 1,
-                            padding: "1rem 1.5rem 1rem 0.5rem",
+                            padding: "1vw 1.5vw 1vw 0.5vw",
                             boxShadow: "0 2px 2px 2px #d1d1d1",
                             backgroundColor: "white",
                             borderRadius: "30px",
@@ -105,7 +105,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
 
             <DialogActions
                 sx={{
-                    margin: "0.5rem",
+                    margin: "0.5vw",
                 }}
             >
                 <Button

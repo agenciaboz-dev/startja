@@ -14,7 +14,7 @@ export const NaturesList: React.FC<NaturesListProps> = ({}) => {
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5rem 0",
+                margin: "0.5vw 0",
             }}
         >
             {natures.list.map((nature) => (

@@ -24,31 +24,31 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                     borderRadius: "30px",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     flexDirection: "column",
-                    padding: "1rem",
-                    gap: "1rem",
-                    color: colors.text.greyish
+                    padding: "1vw",
+                    gap: "1vw",
+                    color: colors.text.greyish,
                     // flex: 1,
                 }}
             >
                 <Box
                     sx={{
                         alignItems: "center",
-                        gap: "1rem"
+                        gap: "1vw",
                     }}
                 >
                     <MuiAvatar
                         sx={{
-                            backgroundColor: colors.secondary
+                            backgroundColor: colors.secondary,
                         }}
                     />
                     <Box
                         sx={{
-                            flexDirection: "column"
+                            flexDirection: "column",
                         }}
                     >
                         <p
                             style={{
-                                color: colors.text.darkgrey
+                                color: colors.text.darkgrey,
                             }}
                         >
                             {customer.name}
@@ -58,12 +58,12 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                 </Box>
                 <Box
                     sx={{
-                        flexDirection: "column"
+                        flexDirection: "column",
                     }}
                 >
                     <Box
                         sx={{
-                            gap: "1rem"
+                            gap: "1vw",
                         }}
                     >
                         <p>CPF: {customer.cpf}</p>
@@ -75,12 +75,12 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                 </Box>
                 <Box
                     sx={{
-                        flexDirection: "column"
+                        flexDirection: "column",
                     }}
                 >
                     <Box
                         sx={{
-                            gap: "0.5rem"
+                            gap: "0.5vw",
                         }}
                     >
                         <EmailOutlinedIcon />
@@ -88,7 +88,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                     </Box>
                     <Box
                         sx={{
-                            gap: "0.5rem"
+                            gap: "0.5vw",
                         }}
                     >
                         <SettingsPhoneOutlinedIcon />
@@ -98,7 +98,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                 <Box
                     sx={{
                         justifyContent: "space-between",
-                        gap: "3rem"
+                        gap: "3vw",
                     }}
                 >
                     <Button
@@ -107,7 +107,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                         sx={{
                             textTransform: "unset",
                             borderRadius: "30px",
-                            pointerEvents: "none"
+                            pointerEvents: "none",
                         }}
                     >
                         Sem pendências
@@ -117,7 +117,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                         sx={{
                             borderRadius: "30px",
                             textTransform: "unset",
-                            gap: "0.5rem"
+                            gap: "0.5vw",
                         }}
                         onClick={() => navigate(`/selecionar-empresa/${customer.id}`)}
                     >

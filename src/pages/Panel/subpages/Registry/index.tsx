@@ -18,7 +18,7 @@ export const Registry: React.FC<RegistryProps> = ({ user }) => {
         <Box
             sx={{
                 flexDirection: "column",
-                gap: "2rem",
+                gap: "2vw",
                 height: "100%",
             }}
         >
@@ -34,7 +34,7 @@ export const Registry: React.FC<RegistryProps> = ({ user }) => {
                         flex: 1,
                         flexDirection: "column",
                         overflow: "hidden",
-                        gap: "2rem",
+                        gap: "2vw",
                         height: "100%",
                     }}
                 >

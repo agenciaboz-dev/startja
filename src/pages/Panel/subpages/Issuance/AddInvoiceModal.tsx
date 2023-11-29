@@ -27,7 +27,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
             PaperProps={{
                 sx: {
                     borderRadius: "30px",
-                    paddingTop: "1rem",
+                    paddingTop: "1vw",
                     minWidth: "90vw",
                 },
             }}
@@ -36,8 +36,8 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "2rem",
-                    right: "1rem",
+                    top: "2vw",
+                    right: "1vw",
                     cursor: "pointer",
                 }}
                 onClick={onClose}
@@ -47,14 +47,14 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                 <Box
                     sx={{
                         width: "100%",
-                        gap: "2rem",
+                        gap: "2vw",
                     }}
                 >
                     <Box
                         sx={{
                             flex: 1,
                             flexDirection: "column",
-                            gap: "1rem",
+                            gap: "1vw",
                         }}
                     >
                         <Grid container spacing={2}>
@@ -91,7 +91,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                         sx={{
                             flex: 1,
                             flexDirection: "column",
-                            gap: "1rem",
+                            gap: "1vw",
                         }}
                     >
                         <h3>Adicionar Produto</h3>
@@ -106,7 +106,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                             <Box
                                 sx={{
                                     flexDirection: "column",
-                                    gap: "1rem",
+                                    gap: "1vw",
                                 }}
                             >
                                 <Grid container spacing={2}>
@@ -154,7 +154,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                             <Box
                                 sx={{
                                     flexDirection: "column",
-                                    gap: "1rem",
+                                    gap: "1vw",
                                 }}
                             >
                                 <Grid container spacing={2}>
@@ -189,7 +189,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
 
             <DialogActions
                 sx={{
-                    margin: "0.5rem",
+                    margin: "0.5vw",
                     justifyContent: "space-between",
                 }}
             >
@@ -207,7 +207,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                 </Button>
                 <Box
                     sx={{
-                        gap: "1rem",
+                        gap: "1vw",
                     }}
                 >
                     <Button

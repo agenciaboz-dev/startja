@@ -10,93 +10,91 @@ export const InvoicesListHeader: React.FC<InvoicesListHeaderProps> = ({}) => {
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
-            }}    
+            }}
         >
             <Box
                 sx={{
                     alignItems: "center",
                     width: "100%",
-                    marginBottom: "1rem"
+                    marginBottom: "1vw",
                 }}
-                >
+            >
                 <Checkbox
                     inputProps={{
                         style: {
-                            padding: "0"
-                        }
+                            padding: "0",
+                        },
                     }}
                 />
                 <Box
                     sx={{
                         justifyContent: "space-between",
                         flex: 1,
-                        gap: "2rem"
+                        gap: "2vw",
                     }}
                 >
-
                     <Box
-                    sx={{
-                        flex: 1
-                    }}
+                        sx={{
+                            flex: 1,
+                        }}
                     >
                         <h3>Emissão</h3>
                     </Box>
                     <Box
-                    sx={{
-                        flex: 1
-                    }}
+                        sx={{
+                            flex: 1,
+                        }}
                     >
                         <h3>Série/Nº NFe</h3>
                     </Box>
                     <Box
-                    sx={{
-                        flex: 1
-                    }}
+                        sx={{
+                            flex: 1,
+                        }}
                     >
                         <h3>Cliente/Fornecedor</h3>
                     </Box>
                     <Box
-                    sx={{
-                        flex: 1
-                    }}
+                        sx={{
+                            flex: 1,
+                        }}
                     >
                         <h3>Emitente</h3>
                     </Box>
                     <Box
-                    sx={{
-                        flex: 1
-                    }}
+                        sx={{
+                            flex: 1,
+                        }}
                     >
                         <h3>Propriedade</h3>
                     </Box>
                     <Box
-                    sx={{
-                        flex: 1
-                    }}
+                        sx={{
+                            flex: 1,
+                        }}
                     >
                         <h3>Valor</h3>
                     </Box>
                     <Box
-                    sx={{
-                        flex: 1
-                    }}
+                        sx={{
+                            flex: 1,
+                        }}
                     >
                         <h3>Situação</h3>
                     </Box>
                     <Box
-                    sx={{
-                        flex: 1,
-                    }}
+                        sx={{
+                            flex: 1,
+                        }}
                     >
                         <h3>Ações</h3>
                     </Box>
-
                 </Box>
             </Box>
             <hr
                 style={{
-                    marginLeft: "1rem",
-                    width: "100%"
+                    marginLeft: "1vw",
+                    width: "100%",
                 }}
             />
         </Box>

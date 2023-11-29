@@ -14,8 +14,8 @@ import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined"
 export const useSidebar = () => {
     const navigate = useNavigate()
     const iconStyle = {
-        height: "2rem",
-        width: "2rem",
+        height: "2vw",
+        width: "2vw",
     }
 
     const sidebar: SidebarItem[] = [

@@ -9,43 +9,42 @@ interface PermissionsCardProps {
 export const PermissionsCard: React.FC<PermissionsCardProps> = ({header}) => {
     return (
         <Box
-              sx={{
+            sx={{
                 flex: 1,
-                padding: "1rem",
+                padding: "1vw",
                 boxShadow: "0 2px 2px 2px #d1d1d1",
                 backgroundColor: "white",
                 borderRadius: "10px",
                 flexDirection: "column",
                 width: "100%",
-              }}
-            >
-
-              <Box
+            }}
+        >
+            <Box
                 sx={{
-                  justifyContent: "space-between"
+                    justifyContent: "space-between",
                 }}
-              >
+            >
                 <p>{header}</p>
                 <ToggleSwitch />
-              </Box>
-              <hr />
-                <Box
-                    sx={{
-                        marginTop: "1rem",
-                        justifyContent: "space-between"
-                    }}
-                >
-                    <p>Lorem Ipsum</p>
-                    <ToggleSwitch />
-                </Box>
-                <Box
-                    sx={{
-                    justifyContent: "space-between"
-                    }}
-                >
-                    <p>Dolor Sit Amet</p>
-                    <ToggleSwitch />
-                </Box>
             </Box>
+            <hr />
+            <Box
+                sx={{
+                    marginTop: "1vw",
+                    justifyContent: "space-between",
+                }}
+            >
+                <p>Lorem Ipsum</p>
+                <ToggleSwitch />
+            </Box>
+            <Box
+                sx={{
+                    justifyContent: "space-between",
+                }}
+            >
+                <p>Dolor Sit Amet</p>
+                <ToggleSwitch />
+            </Box>
+        </Box>
     )
 }

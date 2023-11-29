@@ -15,7 +15,7 @@ export const InvoiceModalProductsListHeader: React.FC<InvoiceModalProductsListHe
                 sx={{
                     alignItems: "center",
                     width: "100%",
-                    marginBottom: "1rem",
+                    marginBottom: "1vw",
                 }}
             >
                 <Checkbox
@@ -56,7 +56,7 @@ export const InvoiceModalProductsListHeader: React.FC<InvoiceModalProductsListHe
             </Box>
             <hr
                 style={{
-                    marginLeft: "1rem",
+                    marginLeft: "1vw",
                     width: "100%",
                 }}
             />

@@ -37,7 +37,7 @@ export const Issuance: React.FC<IssuanceProps> = ({ user }) => {
                         height: "100%",
                         width: "100%",
                         flexDirection: "column",
-                        gap: "2rem",
+                        gap: "2vw",
                     }}
                 >
                     <Toolbar
@@ -55,7 +55,7 @@ export const Issuance: React.FC<IssuanceProps> = ({ user }) => {
                             backgroundColor: "white",
                             borderRadius: "30px",
                             boxShadow: "0 2px 2px 2px #d1d1d1",
-                            padding: "1rem 1.5rem 1rem 0.5rem",
+                            padding: "1vw 1.5vw 1vw 0.5vw",
                         }}
                     >
                         <InvoicesListHeader />

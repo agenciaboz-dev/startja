@@ -20,7 +20,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
             PaperProps={{
                 sx: {
                     borderRadius: "30px",
-                    paddingTop: "1rem",
+                    paddingTop: "1vw",
                     minWidth: "60vw",
                     width: "fit-content",
                 },
@@ -30,8 +30,8 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "2rem",
-                    right: "1rem",
+                    top: "2vw",
+                    right: "1vw",
                     cursor: "pointer",
                 }}
                 onClick={onClose}
@@ -41,14 +41,14 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                 <Box
                     sx={{
                         width: "100%",
-                        gap: "2rem",
+                        gap: "2vw",
                     }}
                 >
                     <Box
                         sx={{
                             flex: 1,
                             flexDirection: "column",
-                            gap: "1rem",
+                            gap: "1vw",
                         }}
                     >
                         <Grid container spacing={2}>
@@ -113,7 +113,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         sx={{
                             flex: 1,
                             flexDirection: "column",
-                            gap: "1rem",
+                            gap: "1vw",
                         }}
                     >
                         <Box
@@ -137,7 +137,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                 <TextField
                                     label="Predefinição"
                                     sx={{
-                                        width: "10rem",
+                                        width: "10vw",
                                     }}
                                 />
                             </Box>
@@ -175,7 +175,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
 
             <DialogActions
                 sx={{
-                    margin: "0.5rem",
+                    margin: "0.5vw",
                 }}
             >
                 <Button

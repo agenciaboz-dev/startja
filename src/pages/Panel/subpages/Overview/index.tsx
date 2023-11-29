@@ -32,7 +32,7 @@ export const Overview: React.FC<OverviewProps> = ({ user }) => {
                     sx={{
                         height: "100%",
                         width: "100%",
-                        gap: "2rem",
+                        gap: "2vw",
                     }}
                 >
                     <Box
@@ -40,13 +40,13 @@ export const Overview: React.FC<OverviewProps> = ({ user }) => {
                             flexDirection: "column",
                             height: "100%",
                             flex: "0.7",
-                            gap: "2rem",
+                            gap: "2vw",
                         }}
                     >
                         <Box
                             sx={{
                                 flex: "0.5",
-                                gap: "1rem",
+                                gap: "1vw",
                                 flexDirection: "column",
                             }}
                         >
@@ -75,7 +75,7 @@ export const Overview: React.FC<OverviewProps> = ({ user }) => {
                                     boxShadow: "0 2px 2px 2px #d1d1d1",
                                     flex: 1,
                                     flexDirection: "column",
-                                    padding: "1rem",
+                                    padding: "1vw",
                                 }}
                             ></Box>
                         </Box>
@@ -83,7 +83,7 @@ export const Overview: React.FC<OverviewProps> = ({ user }) => {
                         <Box
                             sx={{
                                 flex: "0.5",
-                                gap: "1rem",
+                                gap: "1vw",
                                 flexDirection: "column",
                             }}
                         >
@@ -114,7 +114,7 @@ export const Overview: React.FC<OverviewProps> = ({ user }) => {
                                     boxShadow: "0 2px 2px 2px #d1d1d1",
                                     flex: 1,
                                     flexDirection: "column",
-                                    padding: "1rem",
+                                    padding: "1vw",
                                 }}
                             ></Box>
                         </Box>
@@ -128,14 +128,14 @@ export const Overview: React.FC<OverviewProps> = ({ user }) => {
                         <Box
                             sx={{
                                 flex: 1,
-                                gap: "1rem",
+                                gap: "1vw",
                                 flexDirection: "column",
                             }}
                         >
                             <Box
                                 sx={{
                                     alignContent: "center",
-                                    gap: "2rem",
+                                    gap: "2vw",
                                     width: "100%",
                                 }}
                             >
@@ -157,7 +157,7 @@ export const Overview: React.FC<OverviewProps> = ({ user }) => {
                                     boxShadow: "0 2px 2px 2px #d1d1d1",
                                     flex: 1,
                                     flexDirection: "column",
-                                    padding: "1rem",
+                                    padding: "1vw",
                                 }}
                             ></Box>
                         </Box>
