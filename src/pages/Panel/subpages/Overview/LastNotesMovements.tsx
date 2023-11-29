@@ -15,19 +15,12 @@ export const LastNotesMovements: React.FC<LastNotesMovementsProps> = ({ company 
         setAddInvoiceModalOpen(true)
     }
     return (
-        <Box
-            sx={{
-                flex: "0.5",
-                gap: "1vw",
-                flexDirection: "column"
-            }}>
-            <Box
-                sx={{
-                    alignContent: "center",
-                    justifyContent: "space-between",
-                    width: "100%"
-                }}>
-                <SectionTitle>Movimentação das últimas notas</SectionTitle>
+        <Box sx={{ flex: "0.5", gap: "1vw", flexDirection: "column" }}>
+            <Box sx={{ alignContent: "center", justifyContent: "space-between", width: "100%" }}>
+                <Box sx={{ gap: "1vw", alignItems: "center" }}>
+                    <SectionTitle>Movimentação das últimas notas</SectionTitle>
+                    <Button sx={{ textTransform: "none", borderRadius: "30px" }}>Ver últimas notas</Button>
+                </Box>
                 <Button
                     variant="contained"
                     onClick={openInvoiceModal}
