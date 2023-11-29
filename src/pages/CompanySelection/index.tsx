@@ -6,6 +6,7 @@ import { Toolbar } from "../../components/Toolbar"
 import { CompanyCard } from "../../components/CompanyCard"
 import { useIo } from "../../hooks/useIo"
 import { useHeader } from "../../hooks/useHeader"
+import normalize from "../../tools/normalize"
 
 interface CompanySelectionProps {
     user: Customer
@@ -19,8 +20,7 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
     const [companies, setCompanies] = useState(user.companies)
 
     const onSearch = (text: string) => {
-        console.log(text)
-        setCompanies(user.companies.filter((company) => company.name.includes(text)))
+        setCompanies(user.companies.filter((company) => normalize(company.name).includes(text)))
     }
 
     useEffect(() => {
