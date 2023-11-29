@@ -8,19 +8,31 @@ import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
 import AddCustomerModal from "./AddCustomerModal"
 import { useHeader } from "../../../../hooks/useHeader"
+import normalize from "../../../../tools/normalize"
 
 interface CustomersProps {}
 
 export const Customers: React.FC<CustomersProps> = ({}) => {
     // const [emptyCustomersList, setEmptyCustomersList] = useState(true)
     const customers = useCustomer()
-    const header = useHeader()
     const emptyCustomersList = !customers.list.length
+    const header = useHeader()
     const [isAddCustomerModalOpen, setAddCustomerModalOpen] = useState(false)
     const openCustomerModal = () => {
         setAddCustomerModalOpen(true)
     }
     const io = useIo()
+
+    const [customersList, setCustomersList] = useState(customers.list)
+
+    useEffect(() => {
+        setCustomersList(customers.list)
+    }, [customers.list])
+
+    const handleSearch = (text: string) => {
+        setCustomersList(customers.list.filter((item) => normalize(item.name).includes(text)))
+    }
+
     useEffect(() => {
         header.setTitle("Clientes")
         io.emit("customer:list")
@@ -34,7 +46,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                 addButtonPlaceholder="novo cliente"
                 selectList={customers.list}
                 addButtonCallback={openCustomerModal}
-                onSearch={() => {}}
+                onSearch={handleSearch}
             />
             <Box
                 sx={{
@@ -77,7 +89,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                         }}
                     >
                         <Grid container spacing={2}>
-                            {customers.list.map((customer) => (
+                            {customersList.map((customer) => (
                                 <CustomerCard buttonColor="primary" key={customer.id} customer={customer} />
                             ))}
                         </Grid>
