@@ -32,7 +32,10 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
                         {company.city} / {company.state}
                     </p>
                 </Box>
-                <Button variant="contained" sx={{ borderRadius: "30px", textTransform: "unset", gap: "0.5vw" }} onClick={() => navigate(`/painel/`)}>
+                <Button
+                    variant="contained"
+                    sx={{ borderRadius: "30px", textTransform: "unset", gap: "0.5vw" }}
+                    onClick={() => navigate(`/painel/${company.id}`)}>
                     <LoginOutlinedIcon />
                     <p>Acessar Empresa</p>
                 </Button>
