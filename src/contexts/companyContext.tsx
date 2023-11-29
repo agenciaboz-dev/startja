@@ -5,6 +5,9 @@ import { useIo } from '../hooks/useIo';
 interface CompanyContextValue {
     list: Company[]
     setList: React.Dispatch<React.SetStateAction<Company[]>>
+
+    selectedCompany: Company | null
+    setSelectedCompany: React.Dispatch<React.SetStateAction<Company | null>>
 }
 
 interface CompanyProviderProps {
@@ -16,8 +19,10 @@ const CompanyContext = createContext<CompanyContextValue>({} as CompanyContextVa
 export default CompanyContext
 
 export const CompanyProvider: React.FC<CompanyProviderProps> = ({ children }) => {
-    const [list, setList] = useState<Company[]>([])
     const io = useIo()
+
+    const [list, setList] = useState<Company[]>([])
+    const [selectedCompany, setSelectedCompany] = useState<Company | null>(null)
 
     useEffect(() => {
         console.log({ companies: list })
@@ -45,5 +50,5 @@ export const CompanyProvider: React.FC<CompanyProviderProps> = ({ children }) =>
         }
     }, [])
 
-    return <CompanyContext.Provider value={{ list, setList }}>{children}</CompanyContext.Provider>
+    return <CompanyContext.Provider value={{ list, setList, selectedCompany, setSelectedCompany }}>{children}</CompanyContext.Provider>
 }

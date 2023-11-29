@@ -54,7 +54,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                     {menus.list.map((menu) => {
                         const Icon = () => menu.icon
                         return (
-                            <MenuItem sx={{ gap: "1vw" }} onClick={menu.onClick}>
+                            <MenuItem sx={{ gap: "1vw" }} onClick={menu.onClick} key={menu.id}>
                                 <Icon /> {menu.title}
                             </MenuItem>
                         )

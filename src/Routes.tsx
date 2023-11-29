@@ -18,7 +18,7 @@ const CustomerRoutes: React.FC<{ user: Customer }> = ({ user }) => {
         <ReactRoutes>
             <Route index element={<CompanySelection user={user} />} />
             <Route path="/selecionar-empresa/" element={<CompanySelection user={user} />} />
-            <Route path="/painel/:companyId/*" element={<Panel user={user} />} />
+            <Route path="/painel/*" element={<Panel user={user} />} />
         </ReactRoutes>
     )
 }

@@ -8,21 +8,23 @@ import { Issuance } from "./subpages/Issuance"
 import { Registry } from "./subpages/Registry"
 import { Cashbook } from "./subpages/Cashbook"
 import { Config } from "./subpages/Config"
+import { useCompany } from "../../hooks/useCompany"
 
 interface PanelProps {
     user: Customer
 }
 
 export const Panel: React.FC<PanelProps> = ({ user }) => {
+    const { selectedCompany } = useCompany()
+
     return (
         <Box
             sx={{
                 backgroundColor: colors.background,
                 width: "100%",
                 overflow: "hidden",
-                height: "100%",
-            }}
-        >
+                height: "100%"
+            }}>
             <Sidebar />
             <Box
                 sx={{
@@ -31,9 +33,8 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
                     overflow: "hidden",
                     padding: "2vw",
                     gap: "2vw",
-                    height: "100%",
-                }}
-            >
+                    height: "100%"
+                }}>
                 <Routes>
                     <Route path="/configuracoes/*" element={<Config user={user} />} />
                     <Route index element={<Overview user={user} />} />

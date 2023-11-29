@@ -3,6 +3,7 @@ import { Box, Button, Grid, Avatar as MuiAvatar } from "@mui/material"
 import { colors } from "../../style/colors"
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import { useNavigate } from "react-router-dom";
+import { useCompany } from "../../hooks/useCompany"
 
 interface CompanyCardProps {
     company: Company
@@ -10,6 +11,12 @@ interface CompanyCardProps {
 
 export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
     const navigate = useNavigate()
+    const { setSelectedCompany } = useCompany()
+
+    const selectCompany = () => {
+        setSelectedCompany(company)
+        navigate(`/painel`)
+    }
     
     return (
         <Grid item xs={1}>
@@ -32,10 +39,7 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
                         {company.city} / {company.state}
                     </p>
                 </Box>
-                <Button
-                    variant="contained"
-                    sx={{ borderRadius: "30px", textTransform: "unset", gap: "0.5vw" }}
-                    onClick={() => navigate(`/painel/${company.id}`)}>
+                <Button variant="contained" sx={{ borderRadius: "30px", textTransform: "unset", gap: "0.5vw" }} onClick={() => selectCompany()}>
                     <LoginOutlinedIcon />
                     <p>Acessar Empresa</p>
                 </Button>

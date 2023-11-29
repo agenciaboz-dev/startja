@@ -4,12 +4,12 @@ import { useIo } from "./useIo"
 
 export const useCompany = () => {
     const companyContext = useContext(CompanyContext)
-    const { list, setList } = companyContext
+    const { list, setList, selectedCompany, setSelectedCompany } = companyContext
     const io = useIo()
 
     const makeList = () => {
         io.emit("company:list", {})
     }
 
-    return { makeList, list, setList }
+    return { makeList, list, setList, selectedCompany, setSelectedCompany }
 }
