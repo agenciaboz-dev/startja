@@ -13,12 +13,17 @@ interface CategoriesProps {}
 
 export const Categories: React.FC<CategoriesProps> = ({}) => {
     const header = useHeader()
+    const io = useIo()
     const [emptyCategoriesList, setEmptyCategoriesList] = useState(false)
     const [isAddCategoryModalOpen, setAddCategoryModalOpen] = useState(false)
     const openCategoryModal = () => {
         setAddCategoryModalOpen(true)
     }
-    const io = useIo()
+
+    const handleSearch = (text: string) => {
+        console.log("Search text:", text)
+    }
+
     useEffect(() => {
         header.setTitle("Categorias")
         io.emit("category:list")
@@ -27,7 +32,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
     return (
         <>
             <Header />
-            <Toolbar searchPlaceholder="categoria" addButtonPlaceholder="" addButtonCallback={openCategoryModal} />
+            <Toolbar searchPlaceholder="categoria" onSearch={handleSearch} addButtonPlaceholder="" addButtonCallback={openCategoryModal} />
             <Box
                 sx={{
                     height: "100%",
