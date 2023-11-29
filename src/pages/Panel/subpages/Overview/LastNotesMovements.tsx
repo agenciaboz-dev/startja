@@ -21,13 +21,7 @@ export const LastNotesMovements: React.FC<LastNotesMovementsProps> = ({ company 
                     <SectionTitle>Movimentação das últimas notas</SectionTitle>
                     <Button sx={{ textTransform: "none", borderRadius: "30px" }}>Ver últimas notas</Button>
                 </Box>
-                <Button
-                    variant="contained"
-                    onClick={openInvoiceModal}
-                    sx={{
-                        borderRadius: "30px",
-                        textTransform: "unset"
-                    }}>
+                <Button variant="contained" onClick={openInvoiceModal} sx={{ borderRadius: "30px", textTransform: "unset" }}>
                     <AddOutlinedIcon />
                     Emitir Nota Fiscal
                 </Button>
@@ -38,8 +32,7 @@ export const LastNotesMovements: React.FC<LastNotesMovementsProps> = ({ company 
                     borderRadius: "15px",
                     flex: 1,
                     flexDirection: "column",
-                    padding: "1vw",
-                    paddingLeft: 0
+                    padding: "1vw 1vw 0 0"
                 }}>
                 <MovementsChart company={company} />
             </Paper>
