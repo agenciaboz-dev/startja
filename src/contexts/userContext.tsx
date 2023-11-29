@@ -28,8 +28,13 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
                 io.emit("client:sync", user)
             })
 
+            io.on("user:update", (updatedUser: Admin | Customer) => {
+                if (updatedUser.id == user.id) setUser(updatedUser)
+            })
+
             return () => {
                 io.off("connect")
+                io.off("user:update")
             }
         }
     }, [user])
