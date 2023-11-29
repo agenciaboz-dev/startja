@@ -3,39 +3,47 @@ import React from 'react'
 import { useIo } from '../hooks/useIo';
 
 interface CompanyContextValue {
-    list: Company[];
-    setList: (value:Company[]) => void;
+    list: Company[]
+    setList: React.Dispatch<React.SetStateAction<Company[]>>
 }
 
 interface CompanyProviderProps {
     children: React.ReactNode
 }
 
-const CompanyContext = createContext<CompanyContextValue>({} as CompanyContextValue);
+const CompanyContext = createContext<CompanyContextValue>({} as CompanyContextValue)
 
 export default CompanyContext
 
-export const CompanyProvider:React.FC<CompanyProviderProps> = ({children}) => {
+export const CompanyProvider: React.FC<CompanyProviderProps> = ({ children }) => {
     const [list, setList] = useState<Company[]>([])
     const io = useIo()
 
     useEffect(() => {
-        console.log({companies:list})
-    },[list])
+        console.log({ companies: list })
+        io.on("company:new", (company: Company) => {
+            console.log({ new_company: company })
+            setList((previousList) => {
+                console.log({ previousList })
 
-    useEffect(() => {
-        io.on('company:list', (data) =>{
-            setList(data.company)
+                return [...previousList, company]
+            })
         })
 
         return () => {
-            io.off('company:list')
+            io.off("company:new")
         }
-    },[])
+    }, [list])
 
-    return (
-         <CompanyContext.Provider value={{list, setList}}>
-              {children}
-         </CompanyContext.Provider>
-    )
+    useEffect(() => {
+        io.on("company:list", (data) => {
+            setList(data)
+        })
+
+        return () => {
+            io.off("company:list")
+        }
+    }, [])
+
+    return <CompanyContext.Provider value={{ list, setList }}>{children}</CompanyContext.Provider>
 }
