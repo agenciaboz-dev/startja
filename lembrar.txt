@@ -11,3 +11,6 @@ verificar definitions
 padronizar justify-content dos cabeçalhos de listas
 padronizar gaps dos modais
 padronizar botões de ação dos modais; gap, etc
+
+PERGUNTAS:
+o que são as categorias?

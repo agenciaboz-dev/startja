@@ -25,7 +25,7 @@ export const ProductProvider:React.FC<ProductProviderProps> = ({children}) => {
 
     useEffect(() => {
         io.on('product:list', (data) =>{
-            setList(data)
+            setList(data.product)
         })
 
         return () => {

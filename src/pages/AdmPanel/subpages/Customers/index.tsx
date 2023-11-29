@@ -15,13 +15,13 @@ interface CustomersProps {}
 export const Customers: React.FC<CustomersProps> = ({}) => {
     // const [emptyCustomersList, setEmptyCustomersList] = useState(true)
     const customers = useCustomer()
-    const emptyCustomersList = !customers.list.length
     const header = useHeader()
+    const io = useIo()
+    const emptyCustomersList = !customers.list.length
     const [isAddCustomerModalOpen, setAddCustomerModalOpen] = useState(false)
     const openCustomerModal = () => {
         setAddCustomerModalOpen(true)
     }
-    const io = useIo()
 
     const [customersList, setCustomersList] = useState(customers.list)
 

@@ -9,6 +9,7 @@ import { Toolbar } from "../../../../components/Toolbar"
 import AddProductModal from "./AddProductModal"
 import { useProduct } from "../../../../hooks/useProduct"
 import { useHeader } from "../../../../hooks/useHeader"
+import normalize from "../../../../tools/normalize"
 
 interface ProductsProps {}
 
@@ -23,8 +24,14 @@ export const Products: React.FC<ProductsProps> = ({}) => {
         setAddProductModalOpen(true)
     }
 
+    const [productsList, setProductsList] = useState(products.list)
+
+    useEffect(() => {
+        setProductsList(products.list)
+    }, [products.list])
+
     const handleSearch = (text: string) => {
-        console.log("Search text:", text)
+        setProductsList(products.list.filter((item) => normalize(item.name).includes(text)))
     }
 
     useEffect(() => {
@@ -93,7 +100,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                         }}
                     >
                         <ProductsListHeader />
-                        <ProductsList />
+                        <ProductsList products={productsList} />
                     </Box>
                 )}
             </Box>
