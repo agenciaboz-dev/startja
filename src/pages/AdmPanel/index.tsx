@@ -17,6 +17,7 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
         <Box
             sx={{
                 backgroundColor: colors.background,
+                height: "100%",
                 width: "100%",
                 overflow: "hidden",
             }}

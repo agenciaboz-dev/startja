@@ -19,7 +19,7 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
 
     const [companies, setCompanies] = useState(user.companies)
 
-    const onSearch = (text: string) => {
+    const handleSearch = (text: string) => {
         setCompanies(user.companies.filter((company) => normalize(company.name).includes(text)))
     }
 
@@ -37,18 +37,20 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
             sx={{
                 backgroundColor: colors.background,
                 width: "100%",
-                overflow: "hidden"
-            }}>
+                overflow: "hidden",
+            }}
+        >
             <Box
                 sx={{
                     width: "100%",
                     flexDirection: "column",
                     overflowY: "auto",
                     padding: "2vw",
-                    gap: "2vw"
-                }}>
+                    gap: "2vw",
+                }}
+            >
                 <Header />
-                <Toolbar searchPlaceholder="empresa" onSearch={onSearch} />
+                <Toolbar searchPlaceholder="empresa" onSearch={handleSearch} />
                 <Box sx={{}}>
                     <Grid container spacing={5} columns={7}>
                         {companies.map((company) => (

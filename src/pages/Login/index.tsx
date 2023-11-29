@@ -79,6 +79,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
     return (
         <Box
             sx={{
+                height: "100%",
                 width: "100%",
             }}
         >
