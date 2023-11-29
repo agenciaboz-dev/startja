@@ -16,12 +16,17 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     // const [emptyProductsList, setEmptyProductsList] = useState(true)
     const products = useProduct()
     const header = useHeader()
+    const io = useIo()
     const emptyProductsList = !products.list.length
     const [isAddProductModalOpen, setAddProductModalOpen] = useState(false)
     const openProductModal = () => {
         setAddProductModalOpen(true)
     }
-    const io = useIo()
+
+    const handleSearch = (text: string) => {
+        console.log("Search text:", text)
+    }
+
     useEffect(() => {
         header.setTitle("Produtos")
         io.emit("product:list")
@@ -37,7 +42,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     return (
         <>
             <Header />
-            <Toolbar searchPlaceholder="produto" addButtonPlaceholder="produto" addButtonCallback={openProductModal} />
+            <Toolbar searchPlaceholder="produto" onSearch={handleSearch} addButtonPlaceholder="produto" addButtonCallback={openProductModal} />
             <Box
                 sx={{
                     height: "100%",

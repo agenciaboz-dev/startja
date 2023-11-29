@@ -21,7 +21,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
     importButtonPlaceholder,
     addButtonPlaceholder,
     addButtonCallback,
-    onSearch
+    onSearch,
 }) => {
     const [searchValue, setSearchValue] = useState("")
 
