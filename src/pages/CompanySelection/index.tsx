@@ -37,18 +37,17 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
             sx={{
                 backgroundColor: colors.background,
                 width: "100%",
-                overflow: "hidden",
-            }}
-        >
+                height: "100%",
+                overflow: "hidden"
+            }}>
             <Box
                 sx={{
                     width: "100%",
                     flexDirection: "column",
                     overflowY: "auto",
                     padding: "2vw",
-                    gap: "2vw",
-                }}
-            >
+                    gap: "2vw"
+                }}>
                 <Header />
                 <Toolbar searchPlaceholder="empresa" onSearch={handleSearch} />
                 <Box sx={{}}>
