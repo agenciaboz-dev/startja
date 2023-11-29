@@ -13,12 +13,17 @@ interface NaturesProps {}
 
 export const Natures: React.FC<NaturesProps> = ({}) => {
     const header = useHeader()
+    const io = useIo()
     const [emptyNaturesList, setEmptyNaturesList] = useState(false)
     const [isAddNatureModalOpen, setAddNatureModalOpen] = useState(false)
     const openNatureModal = () => {
         setAddNatureModalOpen(true)
     }
-    const io = useIo()
+
+    const handleSearch = (text: string) => {
+        console.log("Search text:", text)
+    }
+
     useEffect(() => {
         header.setTitle("Naturezas de operação")
         io.emit("nature:list")
@@ -27,7 +32,12 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
     return (
         <>
             <Header />
-            <Toolbar searchPlaceholder="natureza de operação" addButtonPlaceholder="natureza de operação" addButtonCallback={openNatureModal} />
+            <Toolbar
+                searchPlaceholder="natureza de operação"
+                onSearch={handleSearch}
+                addButtonPlaceholder="natureza de operação"
+                addButtonCallback={openNatureModal}
+            />
             <Box
                 sx={{
                     height: "100%",
