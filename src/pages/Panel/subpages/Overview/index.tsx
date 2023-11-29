@@ -4,6 +4,7 @@ import { Header } from "../../../../components/Header"
 import { useHeader } from "../../../../hooks/useHeader"
 import { TaxSimulator } from "./TaxSimulator"
 import { LastNotesMovements } from "./LastNotesMovements"
+import { useLocation, useNavigate } from "react-router-dom"
 
 interface OverviewProps {
     user: User
@@ -12,8 +13,14 @@ interface OverviewProps {
 
 export const Overview: React.FC<OverviewProps> = ({ user, company }) => {
     const header = useHeader()
+    const pathname = useLocation().pathname
+    const navigate = useNavigate()
 
     useEffect(() => {
+        if (pathname.split("/painel").length < 3) {
+            navigate("/painel/visao-geral")
+        }
+
         header.setTitle("Visão geral")
     }, [])
 
