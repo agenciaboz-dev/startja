@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { Box, Button } from "@mui/material"
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { colors } from "../../../../style/colors"
-import { Sidebar } from "../../../../components/Sidebar"
 import { Header } from "../../../../components/Header"
-import { Toolbar } from "../../../../components/Toolbar"
-import AddInvoiceModal from "../Issuance/AddInvoiceModal"
 import { useHeader } from "../../../../hooks/useHeader"
 
 interface CashbookProps {
     user: User
+    company: Company
 }
 
-export const Cashbook: React.FC<CashbookProps> = ({ user }) => {
+export const Cashbook: React.FC<CashbookProps> = ({ user, company }) => {
     const header = useHeader()
     useEffect(() => {
         header.setTitle("Livro-caixa")
@@ -24,44 +20,38 @@ export const Cashbook: React.FC<CashbookProps> = ({ user }) => {
             <Box
                 sx={{
                     height: "80vh",
-                    width: "100%",
-                }}
-            >
+                    width: "100%"
+                }}>
                 <Box
                     sx={{
                         height: "100%",
                         width: "100%",
-                        gap: "2vw",
-                    }}
-                >
+                        gap: "2vw"
+                    }}>
                     <Box
                         sx={{
                             height: "100%",
-                            flex: "0.3",
-                        }}
-                    >
+                            flex: "0.3"
+                        }}>
                         <Box
                             sx={{
                                 flex: 1,
                                 gap: "1vw",
-                                flexDirection: "column",
-                            }}
-                        >
+                                flexDirection: "column"
+                            }}>
                             <Box
                                 sx={{
                                     alignContent: "center",
                                     gap: "2vw",
-                                    width: "100%",
-                                }}
-                            >
+                                    width: "100%"
+                                }}>
                                 <h3>Lorem Ipsum</h3>
                                 <Button
                                     variant="text"
                                     sx={{
                                         borderRadius: "30px",
-                                        textTransform: "unset",
-                                    }}
-                                >
+                                        textTransform: "unset"
+                                    }}>
                                     Selecionar
                                 </Button>
                             </Box>
@@ -72,9 +62,8 @@ export const Cashbook: React.FC<CashbookProps> = ({ user }) => {
                                     boxShadow: "0 2px 2px 2px #d1d1d1",
                                     flex: 1,
                                     flexDirection: "column",
-                                    padding: "1vw",
-                                }}
-                            ></Box>
+                                    padding: "1vw"
+                                }}></Box>
                         </Box>
                     </Box>
                 </Box>
