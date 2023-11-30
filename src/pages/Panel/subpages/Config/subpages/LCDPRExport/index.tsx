@@ -1,80 +1,31 @@
-import React, { useEffect, useState } from "react"
-import { Box, Button } from "@mui/material"
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { useIo } from "../../../../../../hooks/useIo"
-import { Toolbar } from "../../../../../../components/Toolbar"
+import React, { useEffect } from "react"
+import { Box } from "@mui/material"
 import { useHeader } from "../../../../../../hooks/useHeader"
-import { AccountsListHeader } from "../../../../../../components/AccountsList/AccountsListHeader"
-import { AccountsList } from "../../../../../../components/AccountsList"
 
-interface AccountsProps {}
+interface ConfigLCDPRExportProps {
+    user: User
+}
 
-export const Accounts: React.FC<AccountsProps> = ({}) => {
+export const ConfigLCDPRExport: React.FC<ConfigLCDPRExportProps> = ({ user }) => {
     const header = useHeader()
-    const [emptyAccountsList, setEmptyAccountsList] = useState(false)
-
-    const io = useIo()
     useEffect(() => {
-        header.setTitle("Cadastros gerais - Contas")
-        // io.emit("account:list")
+        header.setTitle("Configurações")
     }, [])
 
     return (
         <>
-            <Toolbar searchPlaceholder="contas" addButtonPlaceholder="conta" addButtonCallback={openAccountModal} />
             <Box
                 sx={{
-                    height: "100%",
+                    flex: 1,
+                    padding: "1vw 1.5vw 1vw 0.5vw",
+                    boxShadow: "0 2px 2px 2px #d1d1d1",
+                    backgroundColor: "white",
+                    borderRadius: "30px",
+                    flexDirection: "column",
                     width: "100%",
                 }}
             >
-                {emptyAccountsList && (
-                    <Box
-                        sx={{
-                            height: "80vh",
-                            width: "100%",
-                            padding: "2vw",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            flexDirection: "column",
-                            gap: "1vw",
-                        }}
-                    >
-                        <h2>Sem contas cadastradas</h2>
-                        <p>Pressione o botão para cadastrar uma conta.</p>
-                        <Button
-                            variant="contained"
-                            sx={{
-                                borderRadius: "2vw",
-                                textTransform: "unset",
-                                height: "3vw",
-                                verticalAlign: "middle",
-                                gap: "0.5vw",
-                            }}
-                            onClick={openAccountModal}
-                        >
-                            <AddOutlinedIcon />
-                            Adicionar nova conta
-                        </Button>
-                    </Box>
-                )}
-
-                {!emptyAccountsList && (
-                    <Box
-                        sx={{
-                            flex: 1,
-                            padding: "1vw 1.5vw 1vw 0.5vw",
-                            boxShadow: "0 2px 2px 2px #d1d1d1",
-                            backgroundColor: "white",
-                            borderRadius: "30px",
-                            flexDirection: "column",
-                            width: "100%",
-                        }}
-                    >
-                        <AccountsListHeader />
-                        <AccountsList />
-                    </Box>
-                )}
+                <h1>Exportar LCDPR</h1>
             </Box>
         </>
     )

@@ -1,6 +1,11 @@
 import { useNavigate } from "react-router-dom"
 import { ReactSVG } from "react-svg"
 import startjaIcon from "../../src/assets/startja_icon.svg"
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined"
+import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined"
+import SummarizeOutlinedIcon from "@mui/icons-material/SummarizeOutlined"
+import MonitorWeightOutlinedIcon from "@mui/icons-material/MonitorWeightOutlined"
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined"
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined"
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined"
 import BookOutlinedIcon from "@mui/icons-material/BookOutlined"
@@ -28,38 +33,38 @@ export const useSidebar = () => {
             subItens: [
                 {
                     id: 1,
-                    icon: <DomainAddOutlinedIcon />,
+                    icon: <PersonOutlinedIcon />,
                     name: "Minha conta",
-                    path: "/pessoas-e-empresas",
-                    onClick: () => navigate("/painel/cadastros-gerais/pessoas-e-empresas/"),
+                    path: "/minha-conta",
+                    onClick: () => navigate("/painel/configuracoes/minha-conta/"),
                 },
                 {
                     id: 2,
-                    icon: <ControlPointDuplicateOutlinedIcon />,
+                    icon: <PeopleOutlinedIcon />,
                     name: "Usuários",
-                    path: "/produtos",
-                    onClick: () => navigate("/painel/cadastros-gerais/produtos/"),
+                    path: "/usuarios",
+                    onClick: () => navigate("/painel/configuracoes/usuarios/"),
                 },
                 {
                     id: 3,
-                    icon: <NoteAddOutlinedIcon />,
+                    icon: <SummarizeOutlinedIcon />,
                     name: "Opções",
-                    path: "/naturezas-de-operacao",
-                    onClick: () => navigate("/painel/cadastros-gerais/naturezas-de-operacao/"),
+                    path: "/opcoes",
+                    onClick: () => navigate("/painel/configuracoes/opcoes/"),
                 },
                 {
                     id: 4,
-                    icon: <AddLocationAltOutlinedIcon />,
+                    icon: <MonitorWeightOutlinedIcon />,
                     name: "Integrações",
-                    path: "/propriedades",
-                    onClick: () => navigate("/painel/cadastros-gerais/propriedades/"),
+                    path: "/integracoes",
+                    onClick: () => navigate("/painel/configuracoes/integracoes/"),
                 },
                 {
                     id: 5,
-                    icon: <PersonAddAltOutlinedIcon />,
+                    icon: <FileDownloadOutlinedIcon />,
                     name: "Exportar LCDPR",
-                    path: "/contas",
-                    onClick: () => navigate("/painel/cadastros-gerais/contas/"),
+                    path: "/exportar-lcdpr",
+                    onClick: () => navigate("/painel/configuracoes/exportar-lcdpr/"),
                 },
             ],
         },

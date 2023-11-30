@@ -1,26 +1,19 @@
 import React, { useEffect } from "react"
 import { Box } from "@mui/material"
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { colors } from "../../../../../../style/colors"
-import { Sidebar } from "../../../../../../components/Sidebar"
-import { Toolbar } from "../../../../../../components/Toolbar"
 import { useHeader } from "../../../../../../hooks/useHeader"
-import { EnterprisesListHeader } from "../../../../../../components/EnterprisesList/EnterprisesListHeader"
-import { EnterprisesList } from "../../../../../../components/EnterprisesList"
 
-interface EnterprisesProps {
+interface ConfigMyAccountProps {
     user: User
 }
 
-export const Enterprises: React.FC<EnterprisesProps> = ({ user }) => {
+export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
     const header = useHeader()
     useEffect(() => {
-        header.setTitle("Cadastros gerais - Pessoas e empresas")
+        header.setTitle("Configurações")
     }, [])
 
     return (
         <>
-            <Toolbar searchPlaceholder="pessoas e empresas" addButtonPlaceholder="pessoa ou empresa" addButtonCallback={openEnterpriseModal} />
             <Box
                 sx={{
                     flex: 1,
@@ -32,8 +25,7 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ user }) => {
                     width: "100%",
                 }}
             >
-                <EnterprisesListHeader />
-                <EnterprisesList />
+                <h1>Minha Conta</h1>
             </Box>
         </>
     )
