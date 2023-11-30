@@ -3,7 +3,7 @@ import { Box, Button, Grid } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { CustomerCard } from "../../../../components/CustomerCard"
 import { useIo } from "../../../../hooks/useIo"
-import { useCustomer } from "../../../../hooks/useCustomer"
+import { useCustomersList } from "../../../../hooks/useCustomersList"
 import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
 import AddCustomerModal from "./AddCustomerModal"
@@ -14,7 +14,7 @@ interface CustomersProps {}
 
 export const Customers: React.FC<CustomersProps> = ({}) => {
     // const [emptyCustomersList, setEmptyCustomersList] = useState(true)
-    const customers = useCustomer()
+    const customers = useCustomersList()
     const header = useHeader()
     const io = useIo()
     const emptyCustomersList = !customers.list.length
