@@ -82,15 +82,9 @@ export const useSidebar = () => {
             icon: <ReceiptOutlinedIcon sx={iconStyle} />,
             onClick: () => navigate("/painel/notas-fiscais"),
         },
+
         {
             id: 4,
-            name: "Livro-caixa",
-            path: "/livro-caixa",
-            icon: <BookOutlinedIcon sx={iconStyle} />,
-            onClick: () => navigate("/painel/livro-caixa"),
-        },
-        {
-            id: 5,
             name: "Cadastros gerais",
             path: "/cadastros-gerais",
             icon: <ListAltOutlinedIcon sx={iconStyle} />,
@@ -133,6 +127,13 @@ export const useSidebar = () => {
                 },
             ],
         },
+        // {
+        //     id: ,
+        //     name: "Livro-caixa",
+        //     path: "/livro-caixa",
+        //     icon: <BookOutlinedIcon sx={iconStyle} />,
+        //     onClick: () => navigate("/painel/livro-caixa"),
+        // },
     ]
 
     return sidebar

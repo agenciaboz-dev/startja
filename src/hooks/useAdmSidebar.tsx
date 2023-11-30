@@ -33,14 +33,14 @@ export const useAdmSidebar = () => {
             icon: <DescriptionOutlinedIcon sx={iconStyle} />,
             onClick: () => navigate("/adm/naturezas-de-operacao"),
         },
-        {
-            id: 4,
-            name: "Categorias",
-            path: "/categorias",
-            icon: <SnippetFolderOutlinedIcon sx={iconStyle} />,
-            onClick: () => navigate("/adm/categorias"),
-            admin: true,
-        },
+        // {
+        //     id: 4,
+        //     name: "Categorias",
+        //     path: "/categorias",
+        //     icon: <SnippetFolderOutlinedIcon sx={iconStyle} />,
+        //     onClick: () => navigate("/adm/categorias"),
+        //     admin: true,
+        // },
     ]
 
     return admSidebar
