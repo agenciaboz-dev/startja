@@ -9,6 +9,7 @@ import { Toolbar } from "../../../../components/Toolbar"
 import AddCustomerModal from "./AddCustomerModal"
 import { useHeader } from "../../../../hooks/useHeader"
 import normalize from "../../../../tools/normalize"
+import { useLocation, useNavigate } from "react-router-dom"
 
 interface CustomersProps {}
 
@@ -17,6 +18,8 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
     const customers = useCustomersList()
     const header = useHeader()
     const io = useIo()
+    const pathname = useLocation().pathname
+    const navigate = useNavigate()
     const emptyCustomersList = !customers.list.length
     const [isAddCustomerModalOpen, setAddCustomerModalOpen] = useState(false)
     const openCustomerModal = () => {
@@ -34,6 +37,10 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
     }
 
     useEffect(() => {
+        if (pathname.split("/adm").length < 3) {
+            navigate("/adm/clientes")
+        }
+
         header.setTitle("Clientes")
         io.emit("customer:list")
     }, [])
