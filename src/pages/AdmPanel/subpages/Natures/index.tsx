@@ -14,7 +14,6 @@ import normalize from "../../../../tools/normalize"
 interface NaturesProps {}
 
 export const Natures: React.FC<NaturesProps> = ({}) => {
-    // const [emptyNaturesList, setEmptyNaturesList] = useState(false)
     const natures = useNature()
     const header = useHeader()
     const io = useIo()

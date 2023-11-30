@@ -14,7 +14,6 @@ import normalize from "../../../../tools/normalize"
 interface ProductsProps {}
 
 export const Products: React.FC<ProductsProps> = ({}) => {
-    // const [emptyProductsList, setEmptyProductsList] = useState(true)
     const products = useProduct()
     const header = useHeader()
     const io = useIo()
@@ -23,7 +22,6 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     const openProductModal = () => {
         setAddProductModalOpen(true)
     }
-
     const [productsList, setProductsList] = useState(products.list)
 
     useEffect(() => {

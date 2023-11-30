@@ -12,12 +12,15 @@ interface PropertiesProps {}
 
 export const Properties: React.FC<PropertiesProps> = ({}) => {
     const header = useHeader()
+    const io = useIo()
     const [emptyPropertiesList, setEmptyPropertiesList] = useState(false)
     const [isAddPropertyModalOpen, setAddPropertyModalOpen] = useState(false)
     const openPropertyModal = () => {
         setAddPropertyModalOpen(true)
     }
-    const io = useIo()
+
+    const handleSearch = (text: string) => {}
+
     useEffect(() => {
         header.setTitle("Cadastros gerais - Propriedades")
         // io.emit("property:list")
@@ -25,7 +28,12 @@ export const Properties: React.FC<PropertiesProps> = ({}) => {
 
     return (
         <>
-            <Toolbar searchPlaceholder="propriedades" addButtonPlaceholder="propriedade" addButtonCallback={openPropertyModal} />
+            <Toolbar
+                searchPlaceholder="propriedades"
+                onSearch={handleSearch}
+                addButtonPlaceholder="propriedade"
+                addButtonCallback={openPropertyModal}
+            />
             <Box
                 sx={{
                     height: "100%",

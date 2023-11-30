@@ -8,27 +8,44 @@ import { Toolbar } from "../../../../../../components/Toolbar"
 import AddProductModal from "./AddProductModal"
 import { useProduct } from "../../../../../../hooks/useProduct"
 import { useHeader } from "../../../../../../hooks/useHeader"
+import normalize from "../../../../../../tools/normalize"
 
 interface ProductsProps {}
 
 export const Products: React.FC<ProductsProps> = ({}) => {
-    // const [emptyProductsList, setEmptyProductsList] = useState(true)
     const products = useProduct()
     const header = useHeader()
+    const io = useIo()
     const emptyProductsList = !products.list.length
     const [isAddProductModalOpen, setAddProductModalOpen] = useState(false)
     const openProductModal = () => {
         setAddProductModalOpen(true)
     }
-    const io = useIo()
+    const [productsList, setProductsList] = useState(products.list)
+
+    useEffect(() => {
+        setProductsList(products.list)
+    }, [products.list])
+
+    const handleSearch = (text: string) => {
+        setProductsList(products.list.filter((item) => normalize(item.name).includes(text)))
+    }
+
     useEffect(() => {
         header.setTitle("Cadastros gerais - Produtos")
         io.emit("product:list")
+        io.on("product:creation:successful", () => {
+            window.location.reload()
+        })
+
+        return () => {
+            io.off("product:creation:successful")
+        }
     }, [])
 
     return (
         <>
-            <Toolbar searchPlaceholder="produtos" addButtonPlaceholder="produto" addButtonCallback={openProductModal} />
+            <Toolbar searchPlaceholder="produtos" onSearch={handleSearch} addButtonPlaceholder="produto" addButtonCallback={openProductModal} />
             <Box
                 sx={{
                     height: "100%",
@@ -79,7 +96,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                         }}
                     >
                         <ProductsListHeader />
-                        <ProductsList />
+                        <ProductsList products={productsList} />
                     </Box>
                 )}
             </Box>

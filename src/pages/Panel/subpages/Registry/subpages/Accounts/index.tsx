@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Box, Button } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-// import { AccountsListHeader } from "../../../../../../components/AccountsList/AccountsListHeader"
-// import { AccountsList } from "../../../../../../components/AccountsList"
 import { useIo } from "../../../../../../hooks/useIo"
 import { Toolbar } from "../../../../../../components/Toolbar"
 import AddAccountModal from "./AddAccountModal"
@@ -14,12 +12,15 @@ interface AccountsProps {}
 
 export const Accounts: React.FC<AccountsProps> = ({}) => {
     const header = useHeader()
+    const io = useIo()
     const [emptyAccountsList, setEmptyAccountsList] = useState(false)
     const [isAddAccountModalOpen, setAddAccountModalOpen] = useState(false)
     const openAccountModal = () => {
         setAddAccountModalOpen(true)
     }
-    const io = useIo()
+
+    const handleSearch = (text: string) => {}
+
     useEffect(() => {
         header.setTitle("Cadastros gerais - Contas")
         // io.emit("account:list")
@@ -27,7 +28,7 @@ export const Accounts: React.FC<AccountsProps> = ({}) => {
 
     return (
         <>
-            <Toolbar searchPlaceholder="contas" addButtonPlaceholder="conta" addButtonCallback={openAccountModal} />
+            <Toolbar searchPlaceholder="contas" onSearch={handleSearch} addButtonPlaceholder="conta" addButtonCallback={openAccountModal} />
             <Box
                 sx={{
                     height: "100%",
