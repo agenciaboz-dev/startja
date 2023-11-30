@@ -85,21 +85,40 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
             <Collapse in={active}>
                 <Box sx={{ flexDirection: "column", width: "100%", backgroundColor: "#e8e8e8" }}>
                     {sideBarItem.subItens?.map((sideBarItem) => {
-                        const active = location.pathname.split("/")[2] == sideBarItem.path.split("/")[1]
+                        const active = location.pathname.split("/")[3] == sideBarItem.path.split("/")[1]
                         const Icon = () => sideBarItem.icon
                         return (
-                            <MenuItem
-                                key={sideBarItem.id}
+                            <Box
                                 sx={{
-                                    ...buildStyle(active, sideBarItem),
-                                    whiteSpace: "normal",
-                                    overflow: "hidden",
+                                    alignItems: "center",
                                 }}
-                                onClick={() => handleMenuClick(sideBarItem)}
                             >
-                                <Icon />
-                                {sideBarItem.name}
-                            </MenuItem>
+                                {active && (
+                                    <Box
+                                        sx={{
+                                            backgroundColor: colors.primary,
+                                            borderTopRightRadius: "1vw",
+                                            borderBottomRightRadius: "1vw",
+                                            position: "absolute",
+                                            height: "2vw",
+                                            width: "0.5vw",
+                                            left: 0,
+                                        }}
+                                    ></Box>
+                                )}
+                                <MenuItem
+                                    key={sideBarItem.id}
+                                    sx={{
+                                        ...buildStyle(active, sideBarItem),
+                                        whiteSpace: "normal",
+                                        overflow: "hidden",
+                                    }}
+                                    onClick={() => handleMenuClick(sideBarItem)}
+                                >
+                                    <Icon />
+                                    {sideBarItem.name}
+                                </MenuItem>
+                            </Box>
                         )
                     })}
                 </Box>
