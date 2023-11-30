@@ -40,7 +40,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                     <AccountCircleOutlinedIcon sx={{ fill: "#323232", height: "2vw", width: "2vw" }} />
                     <Box sx={{ flexDirection: "column" }}>
                         <p style={{ fontWeight: "lighter" }}>{user?.name}</p>
-                        <p style={{ fontSize: "0.8vw", fontWeight: "bold" }}>Menus e configurações</p>
+                        <p style={{ fontSize: "1rem", fontWeight: "bold" }}>Menus e configurações</p>
                     </Box>
                     <ArrowDropDownOutlinedIcon />
                 </MenuItem>
