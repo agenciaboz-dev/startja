@@ -5,6 +5,7 @@ import { useHeader } from "../../../../../../hooks/useHeader"
 import { EnterprisesListHeader } from "../../../../../../components/EnterprisesList/EnterprisesListHeader"
 import { EnterprisesList } from "../../../../../../components/EnterprisesList"
 import AddEnterpriseModal from "./AddEnterpriseModal"
+import { useLocation, useNavigate } from "react-router-dom"
 
 interface EnterprisesProps {
     user: User
@@ -12,9 +13,16 @@ interface EnterprisesProps {
 
 export const Enterprises: React.FC<EnterprisesProps> = ({ user }) => {
     const header = useHeader()
+    const pathname = useLocation().pathname
+    const navigate = useNavigate()
+
     useEffect(() => {
+        if (pathname.split("/painel").length < 3) {
+            navigate("/painel/cadastros-gerais/pessoas-e-empresas")
+        }
         header.setTitle("Cadastros gerais - Pessoas e empresas")
     }, [])
+
     const [isAddEnterpriseModalOpen, setAddEnterpriseModalOpen] = useState(false)
     const openEnterpriseModal = () => {
         setAddEnterpriseModalOpen(true)

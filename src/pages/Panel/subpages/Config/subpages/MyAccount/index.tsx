@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { Box } from "@mui/material"
 import { useHeader } from "../../../../../../hooks/useHeader"
+import { useLocation, useNavigate } from "react-router-dom"
 
 interface ConfigMyAccountProps {
     user: User
@@ -8,7 +9,13 @@ interface ConfigMyAccountProps {
 
 export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
     const header = useHeader()
+    const pathname = useLocation().pathname
+    const navigate = useNavigate()
+
     useEffect(() => {
+        if (pathname.split("/painel").length < 3) {
+            navigate("/painel/configuracoes/minha-conta")
+        }
         header.setTitle("Configurações")
     }, [])
 

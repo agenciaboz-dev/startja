@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Box, Collapse, MenuItem, SxProps } from "@mui/material"
 import { useLocation } from "react-router-dom"
-import { KeyboardArrowDown } from "@mui/icons-material"
+// import { KeyboardArrowDown } from "@mui/icons-material"
 import { colors } from "../../style/colors"
 
 interface MenuButtonProps {
@@ -14,7 +14,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
     const location = useLocation()
     const active = location.pathname.split("/")[2] == sideBarItem.path.split("/")[1]
 
-    const [collapse, setCollapse] = useState(active)
+    // const [collapse, setCollapse] = useState(active)
 
     const buildStyle = (active: boolean, sideBarItem: SidebarItem) => {
         const menuItemStyle: SxProps = {
