@@ -63,3 +63,7 @@ section {
 img {
   object-fit: contain;
 }
+
+h1 {
+    color: #009F4A
+}
