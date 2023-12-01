@@ -17,7 +17,7 @@ export const ConfigUsers: React.FC<ConfigUsersProps> = ({ user }) => {
             <Box
                 sx={{
                     flex: 1,
-                    padding: "1vw 1.5vw 1vw 0.5vw",
+                    padding: "1vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
                     borderRadius: "30px",
@@ -25,7 +25,7 @@ export const ConfigUsers: React.FC<ConfigUsersProps> = ({ user }) => {
                     width: "100%",
                 }}
             >
-                <h1>Usuários</h1>
+                <h2>Usuários</h2>
             </Box>
         </>
     )
