@@ -57,7 +57,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                 {emptyProductsList && (
                     <Box
                         sx={{
-                            height: "80vh",
+                            height: "100%",
                             width: "100%",
                             padding: "2vw",
                             justifyContent: "center",

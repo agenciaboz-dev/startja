@@ -28,7 +28,7 @@ export const Overview: React.FC<OverviewProps> = ({ user, company }) => {
     return (
         <>
             <Header />
-            <Box sx={{ height: "80vh", width: "100%" }}>
+            <Box sx={{ height: "100%", width: "100%" }}>
                 <Box sx={{ height: "100%", width: "100%", gap: "2vw" }}>
                     <Box sx={{ flexDirection: "column", height: "100%", width: "70%", gap: "2vw" }}>
                         <TaxSimulator company={company} />

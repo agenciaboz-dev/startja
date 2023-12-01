@@ -42,7 +42,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                 {emptyCategoriesList && (
                     <Box
                         sx={{
-                            height: "80vh",
+                            height: "100%",
                             width: "100%",
                             padding: "2vw",
                             justifyContent: "center",

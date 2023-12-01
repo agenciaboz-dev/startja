@@ -38,7 +38,7 @@ export const Accounts: React.FC<AccountsProps> = ({}) => {
                 {emptyAccountsList && (
                     <Box
                         sx={{
-                            height: "80vh",
+                            height: "100%",
                             width: "100%",
                             padding: "2vw",
                             justifyContent: "center",

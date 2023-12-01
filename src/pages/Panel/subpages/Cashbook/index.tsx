@@ -19,39 +19,45 @@ export const Cashbook: React.FC<CashbookProps> = ({ user, company }) => {
             <Header />
             <Box
                 sx={{
-                    height: "80vh",
-                    width: "100%"
-                }}>
+                    height: "100%",
+                    width: "100%",
+                }}
+            >
                 <Box
                     sx={{
                         height: "100%",
                         width: "100%",
-                        gap: "2vw"
-                    }}>
+                        gap: "2vw",
+                    }}
+                >
                     <Box
                         sx={{
                             height: "100%",
-                            flex: "0.3"
-                        }}>
+                            flex: "0.3",
+                        }}
+                    >
                         <Box
                             sx={{
                                 flex: 1,
                                 gap: "1vw",
-                                flexDirection: "column"
-                            }}>
+                                flexDirection: "column",
+                            }}
+                        >
                             <Box
                                 sx={{
                                     alignContent: "center",
                                     gap: "2vw",
-                                    width: "100%"
-                                }}>
+                                    width: "100%",
+                                }}
+                            >
                                 <h3>Lorem Ipsum</h3>
                                 <Button
                                     variant="text"
                                     sx={{
                                         borderRadius: "30px",
-                                        textTransform: "unset"
-                                    }}>
+                                        textTransform: "unset",
+                                    }}
+                                >
                                     Selecionar
                                 </Button>
                             </Box>
@@ -62,8 +68,9 @@ export const Cashbook: React.FC<CashbookProps> = ({ user, company }) => {
                                     boxShadow: "0 2px 2px 2px #d1d1d1",
                                     flex: 1,
                                     flexDirection: "column",
-                                    padding: "1vw"
-                                }}></Box>
+                                    padding: "1vw",
+                                }}
+                            ></Box>
                         </Box>
                     </Box>
                 </Box>
