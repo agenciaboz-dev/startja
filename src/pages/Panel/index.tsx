@@ -24,11 +24,12 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
                 sx={{
                     flex: 1,
                     flexDirection: "column",
-                    overflow: "hidden",
+                    overflow: "auto",
                     padding: "2vw",
                     gap: "2vw",
-                    height: "100%"
-                }}>
+                    height: "100%",
+                }}
+            >
                 <Routes>
                     <Route path="/configuracoes/*" element={<Config user={user} />} />
                     <Route index element={<Overview user={user} company={selectedCompany} />} />

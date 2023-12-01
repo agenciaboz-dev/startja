@@ -33,7 +33,6 @@ export const Registry: React.FC<RegistryProps> = ({ user }) => {
                     sx={{
                         flex: 1,
                         flexDirection: "column",
-                        overflow: "hidden",
                         gap: "2vw",
                         height: "100%",
                     }}

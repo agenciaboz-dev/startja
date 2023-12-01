@@ -53,8 +53,9 @@ export const TaxSimulator: React.FC<TaxSimulatorProps> = ({ company }) => {
                         // boxShadow: "0 2px 2px 2px #d1d1d1",
                         flex: 1,
                         flexDirection: "column",
-                        padding: "2vw"
-                    }}>
+                        padding: "1vw",
+                    }}
+                >
                     <Box sx={{ flexDirection: "column", gap: "1vw" }}>
                         <Box sx={{ gap: "1vw" }}>
                             <TextField
@@ -63,7 +64,8 @@ export const TaxSimulator: React.FC<TaxSimulatorProps> = ({ company }) => {
                                 fullWidth
                                 value={formik.values.producer}
                                 name="producer"
-                                onChange={formik.handleChange}>
+                                onChange={formik.handleChange}
+                            >
                                 <MenuItem sx={{ display: "none" }} value={0}></MenuItem>
                                 <MenuItem value={1}>Todos os produtores</MenuItem>
                             </TextField>
