@@ -55,7 +55,7 @@ export const ConfigCollaborators: React.FC<ConfigCollaboratorsProps> = ({ user }
                     }}
                 >
                     <h2>Usuários</h2>
-                    <Toolbar searchPlaceholder="usuários" onSearch={() => {}} addButtonCallback={() => {}} addButtonPlaceholder="usuário" />
+                    <Toolbar searchPlaceholder="usuários" onSearch={() => {}} addButtonCallback={() => {}} addButtonText="Convidar usuário" />
                 </Box>
                 <Box
                     sx={{

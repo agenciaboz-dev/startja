@@ -43,7 +43,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
             <Toolbar
                 searchPlaceholder="naturezas de operação"
                 onSearch={handleSearch}
-                addButtonPlaceholder="natureza de operação"
+                addButtonText="Adicionar natureza de operação"
                 addButtonCallback={openNatureModal}
             />
             <Box

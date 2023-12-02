@@ -32,7 +32,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
     return (
         <>
             <Header />
-            <Toolbar searchPlaceholder="categoria" onSearch={handleSearch} addButtonPlaceholder="" addButtonCallback={openCategoryModal} />
+            <Toolbar searchPlaceholder="categoria" onSearch={handleSearch} addButtonText="Adicionar" addButtonCallback={openCategoryModal} />
             <Box
                 sx={{
                     height: "100%",

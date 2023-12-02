@@ -50,7 +50,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
             <Header />
             <Toolbar
                 searchPlaceholder="cliente"
-                addButtonPlaceholder="novo cliente"
+                addButtonText="Adicionar novo cliente"
                 selectList={customers.list}
                 addButtonCallback={openCustomerModal}
                 onSearch={handleSearch}

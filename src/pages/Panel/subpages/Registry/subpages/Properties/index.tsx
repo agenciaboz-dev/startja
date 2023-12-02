@@ -31,7 +31,7 @@ export const Properties: React.FC<PropertiesProps> = ({}) => {
             <Toolbar
                 searchPlaceholder="propriedades"
                 onSearch={handleSearch}
-                addButtonPlaceholder="propriedade"
+                addButtonText="Adicionar propriedade"
                 addButtonCallback={openPropertyModal}
             />
             <Box

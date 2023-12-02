@@ -28,7 +28,7 @@ export const Accounts: React.FC<AccountsProps> = ({}) => {
 
     return (
         <>
-            <Toolbar searchPlaceholder="contas" onSearch={handleSearch} addButtonPlaceholder="conta" addButtonCallback={openAccountModal} />
+            <Toolbar searchPlaceholder="contas" onSearch={handleSearch} addButtonText="Adicionar conta" addButtonCallback={openAccountModal} />
             <Box
                 sx={{
                     height: "100%",

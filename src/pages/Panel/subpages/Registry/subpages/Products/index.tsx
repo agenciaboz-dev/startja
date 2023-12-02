@@ -45,7 +45,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
 
     return (
         <>
-            <Toolbar searchPlaceholder="produtos" onSearch={handleSearch} addButtonPlaceholder="produto" addButtonCallback={openProductModal} />
+            <Toolbar searchPlaceholder="produtos" onSearch={handleSearch} addButtonText="Adicionar produto" addButtonCallback={openProductModal} />
             <Box
                 sx={{
                     height: "100%",
