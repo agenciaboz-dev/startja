@@ -26,7 +26,13 @@ export const Overview: React.FC<OverviewProps> = ({ user, company }) => {
     }, [])
 
     return (
-        <>
+        <Box
+            sx={{
+                flexDirection: "column",
+                gap: "1vw",
+                height: "100%",
+            }}
+        >
             <Header />
             <Box sx={{ height: "100%", width: "100%" }}>
                 <Box sx={{ height: "100%", width: "100%", gap: "2vw" }}>
@@ -37,6 +43,6 @@ export const Overview: React.FC<OverviewProps> = ({ user, company }) => {
                     <FiscalMonitor company={company} />
                 </Box>
             </Box>
-        </>
+        </Box>
     )
 }

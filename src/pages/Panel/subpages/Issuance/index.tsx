@@ -28,7 +28,13 @@ export const Issuance: React.FC<IssuanceProps> = ({ user, company }) => {
         header.setTitle("Notas fiscais emitidas")
     }, [])
     return (
-        <>
+        <Box
+            sx={{
+                flexDirection: "column",
+                gap: "1vw",
+                height: "100%",
+            }}
+        >
             <Header />
             <Box
                 sx={{
@@ -69,6 +75,6 @@ export const Issuance: React.FC<IssuanceProps> = ({ user, company }) => {
                 </Box>
             </Box>
             <AddInvoiceModal open={isAddInvoiceModalOpen} onClose={() => setAddInvoiceModalOpen(false)} />
-        </>
+        </Box>
     )
 }
