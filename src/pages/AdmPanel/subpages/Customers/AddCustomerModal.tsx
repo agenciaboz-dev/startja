@@ -166,9 +166,9 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
 
                         <PermissionsCard header="Visão Geral" />
                         <PermissionsCard header="Emissão de Nota Fiscal" />
-                        <PermissionsCard header="Livro Caixa" />
                         <PermissionsCard header="Cadastros Gerais" />
                         <PermissionsCard header="Relatórios" />
+                        {/* <PermissionsCard header="Livro Caixa" /> */}
                     </Box>
                 </Box>
             </DialogContent>
