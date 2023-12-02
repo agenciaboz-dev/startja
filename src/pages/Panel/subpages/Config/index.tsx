@@ -18,7 +18,7 @@ export const Config: React.FC<ConfigProps> = ({ user }) => {
         <Box
             sx={{
                 flexDirection: "column",
-                gap: "2vw",
+                gap: "1vw",
                 height: "100%",
             }}
         >
@@ -33,7 +33,6 @@ export const Config: React.FC<ConfigProps> = ({ user }) => {
                     sx={{
                         flex: 1,
                         flexDirection: "column",
-                        gap: "2vw",
                         height: "100%",
                     }}
                 >
