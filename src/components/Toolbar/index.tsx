@@ -11,7 +11,7 @@ interface ToolbarProps {
     selectList?: any[]
     hasFilterButton?: boolean
     importButtonPlaceholder?: string
-    addButtonPlaceholder?: string
+    addButtonText?: string
     addButtonCallback?: () => void
 }
 
@@ -20,9 +20,9 @@ export const Toolbar: React.FC<ToolbarProps> = ({
     selectList,
     hasFilterButton,
     importButtonPlaceholder,
-    addButtonPlaceholder,
+    addButtonText,
     addButtonCallback,
-    onSearch
+    onSearch,
 }) => {
     const [searchValue, setSearchValue] = useState("")
 
@@ -35,7 +35,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
             sx={{
                 justifyContent: "space-between",
                 alignItems: "center",
-                height: "3vw",
+                height: "2vw",
                 width: "100%",
                 gap: "1vw",
             }}
@@ -55,7 +55,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 }}
                 inputProps={{
                     style: {
-                        // padding: "4px 0 0"
+                        padding: "5px 0 0",
                     },
                 }}
                 sx={{
@@ -134,7 +134,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                     onClick={addButtonCallback}
                 >
                     <AddOutlinedIcon />
-                    <p>Adicionar {addButtonPlaceholder}</p>
+                    <p>{addButtonText}</p>
                 </Button>
             )}
         </Box>
