@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { Box, Button, Checkbox, FormControlLabel, Radio, RadioGroup, TextareaAutosize } from "@mui/material"
 import { useHeader } from "../../../../../../hooks/useHeader"
+import { colors } from "../../../../../../style/colors"
 
 interface ConfigOptionsProps {
     user: User
@@ -50,7 +51,7 @@ export const ConfigOptions: React.FC<ConfigOptionsProps> = ({ user }) => {
                     // value={value}
                     // onChange={handleChange}
                     style={{
-                        backgroundColor: "#F5F5F5",
+                        backgroundColor: colors.background,
                         borderRadius: "30px",
                         height: "100%",
                         width: "100%",

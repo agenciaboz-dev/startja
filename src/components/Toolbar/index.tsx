@@ -3,11 +3,12 @@ import { Box, Button, MenuItem, TextField } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import normalize from "../../tools/normalize"
+import { colors } from "../../style/colors"
 
 interface ToolbarProps {
     searchPlaceholder: string
     onSearch: (text: string) => void
-
+    greyBackground?: boolean
     selectList?: any[]
     hasFilterButton?: boolean
     importButtonPlaceholder?: string
@@ -17,12 +18,13 @@ interface ToolbarProps {
 
 export const Toolbar: React.FC<ToolbarProps> = ({
     searchPlaceholder,
+    onSearch,
+    greyBackground,
     selectList,
     hasFilterButton,
     importButtonPlaceholder,
     addButtonText,
     addButtonCallback,
-    onSearch,
 }) => {
     const [searchValue, setSearchValue] = useState("")
 
@@ -51,6 +53,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                         alignItems: "center",
                         height: "100%",
                         gap: "0.5vw",
+                        backgroundColor: greyBackground ? colors.background : "white",
                     },
                 }}
                 inputProps={{
