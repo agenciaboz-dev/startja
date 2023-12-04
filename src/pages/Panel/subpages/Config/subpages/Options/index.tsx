@@ -24,7 +24,6 @@ export const ConfigOptions: React.FC<ConfigOptionsProps> = ({ user }) => {
         >
             <Box
                 sx={{
-                    flex: 1,
                     padding: "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
@@ -46,7 +45,7 @@ export const ConfigOptions: React.FC<ConfigOptionsProps> = ({ user }) => {
                 </Box>
                 <p>As observações poderão ser alteradas no momento da emissão da NFe.</p>
                 <TextareaAutosize
-                    // minRows={3}
+                    minRows={3}
                     // maxRows={10}
                     // value={value}
                     // onChange={handleChange}
@@ -65,7 +64,6 @@ export const ConfigOptions: React.FC<ConfigOptionsProps> = ({ user }) => {
             </Box>
             <Box
                 sx={{
-                    flex: 1,
                     padding: "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
@@ -98,7 +96,6 @@ export const ConfigOptions: React.FC<ConfigOptionsProps> = ({ user }) => {
             </Box>
             <Box
                 sx={{
-                    flex: 1,
                     padding: "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",

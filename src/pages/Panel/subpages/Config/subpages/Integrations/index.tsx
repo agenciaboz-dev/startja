@@ -25,7 +25,6 @@ export const ConfigIntegrations: React.FC<ConfigIntegrationsProps> = ({ user }) 
         >
             <Box
                 sx={{
-                    flex: 1,
                     padding: "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
@@ -49,7 +48,7 @@ export const ConfigIntegrations: React.FC<ConfigIntegrationsProps> = ({ user }) 
                 <p>A integração envia as NFe's emitidas para o sistema do seu contador automaticamente.</p>
                 <p>Insira a chave de integração:</p>
                 <TextareaAutosize
-                    // minRows={3}
+                    minRows={3}
                     // maxRows={10}
                     // value={value}
                     // onChange={handleChange}
@@ -69,7 +68,6 @@ export const ConfigIntegrations: React.FC<ConfigIntegrationsProps> = ({ user }) 
             </Box>
             <Box
                 sx={{
-                    flex: 1,
                     padding: "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",

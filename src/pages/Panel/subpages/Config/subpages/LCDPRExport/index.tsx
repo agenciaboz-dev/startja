@@ -23,7 +23,6 @@ export const ConfigLCDPRExport: React.FC<ConfigLCDPRExportProps> = ({ user }) =>
         >
             <Box
                 sx={{
-                    flex: 1,
                     padding: "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",

@@ -36,85 +36,83 @@ export const ConfigCollaborators: React.FC<ConfigCollaboratorsProps> = ({ user }
     }, [])
 
     return (
-        <>
+        <Box
+            sx={{
+                flex: 1,
+                padding: "1.5vw",
+                boxShadow: "0 2px 2px 2px #d1d1d1",
+                backgroundColor: "white",
+                borderRadius: "30px",
+                flexDirection: "column",
+                width: "100%",
+            }}
+        >
             <Box
                 sx={{
-                    flex: 1,
-                    padding: "1.5vw",
-                    boxShadow: "0 2px 2px 2px #d1d1d1",
-                    backgroundColor: "white",
-                    borderRadius: "30px",
-                    flexDirection: "column",
+                    width: "100%",
+                    gap: "1vw",
+                }}
+            >
+                <h2>Usuários</h2>
+                <Toolbar
+                    searchPlaceholder="usuários"
+                    onSearch={() => {}}
+                    addButtonCallback={() => {}}
+                    addButtonText="Convidar usuário"
+                    greyBackground
+                />
+            </Box>
+            <Box
+                sx={{
+                    height: "100%",
                     width: "100%",
                 }}
             >
-                <Box
-                    sx={{
-                        width: "100%",
-                        gap: "1vw",
-                    }}
-                >
-                    <h2>Usuários</h2>
-                    <Toolbar
-                        searchPlaceholder="usuários"
-                        onSearch={() => {}}
-                        addButtonCallback={() => {}}
-                        addButtonText="Convidar usuário"
-                        greyBackground
-                    />
-                </Box>
-                <Box
-                    sx={{
-                        height: "100%",
-                        width: "100%",
-                    }}
-                >
-                    {emptyCollaboratorsList && (
-                        <Box
+                {emptyCollaboratorsList && (
+                    <Box
+                        sx={{
+                            height: "100%",
+                            width: "100%",
+                            padding: "2vw",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            flexDirection: "column",
+                            gap: "1vw",
+                        }}
+                    >
+                        <h2>Sem usuários colaboradores cadastrados</h2>
+                        <p>Pressione o botão para cadastrar um usuário colaborador.</p>
+                        <Button
+                            variant="contained"
                             sx={{
-                                height: "100%",
-                                width: "100%",
-                                padding: "2vw",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                flexDirection: "column",
-                                gap: "1vw",
+                                borderRadius: "2vw",
+                                textTransform: "unset",
+                                height: "3vw",
+                                verticalAlign: "middle",
+                                gap: "0.5vw",
                             }}
                         >
-                            <h2>Sem usuários colaboradores cadastrados</h2>
-                            <p>Pressione o botão para cadastrar um usuário colaborador.</p>
-                            <Button
-                                variant="contained"
-                                sx={{
-                                    borderRadius: "2vw",
-                                    textTransform: "unset",
-                                    height: "3vw",
-                                    verticalAlign: "middle",
-                                    gap: "0.5vw",
-                                }}
-                            >
-                                <AddOutlinedIcon />
-                                Adicionar novo usuário colaborador
-                            </Button>
-                        </Box>
-                    )}
+                            <AddOutlinedIcon />
+                            Adicionar novo usuário colaborador
+                        </Button>
+                    </Box>
+                )}
 
-                    {!emptyCollaboratorsList && (
-                        <Box
-                            sx={{
-                                flexDirection: "column",
-                                width: "100%",
-                                padding: "1vw 0.5vw 0 0",
-                                marginLeft: "-0.5vw",
-                            }}
-                        >
-                            <CollaboratorsListHeader />
-                            {/* <CollaboratorsList collaborators={collaboratorsList} /> */}
-                            <CollaboratorRow />
-                        </Box>
-                    )}
-                </Box>
+                {!emptyCollaboratorsList && (
+                    <Box
+                        sx={{
+                            flexDirection: "column",
+                            width: "100%",
+                            padding: "1vw 0.5vw 0 0",
+                            marginLeft: "-0.5vw",
+                        }}
+                    >
+                        <CollaboratorsListHeader />
+                        {/* <CollaboratorsList collaborators={collaboratorsList} /> */}
+                        <CollaboratorRow />
+                    </Box>
+                )}
             </Box>
-        </>
+        </Box>
     )
 }
