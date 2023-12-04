@@ -1,22 +1,25 @@
 import React from "react"
-import { Box, Switch } from "@mui/material"
+import { Box, Switch, SwitchProps } from "@mui/material"
 import CircleIcon from "@mui/icons-material/Circle"
 import CheckCircleIcon from "@mui/icons-material/CheckCircle"
 import { useIo } from "../../hooks/useIo"
 
-interface ToggleSwitchProps {
-    checked: boolean
+interface ToggleSwitchProps extends SwitchProps {
     toggleSwitchCallback: () => void
 }
 
-export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ checked, toggleSwitchCallback }) => {
-    const handleChange = () => {
-        toggleSwitchCallback()
+export const ToggleSwitch: React.FC<ToggleSwitchProps> = (props) => {
+    const handleChange = (ev: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+        if (props.onChange) {
+            props.onChange(ev, checked)
+        }
+
+        props.toggleSwitchCallback()
     }
 
     return (
         <Box>
-            <Switch checked={checked} onChange={handleChange} sx={{}} icon={<CircleIcon sx={{}} />} checkedIcon={<CheckCircleIcon sx={{}} />} />
+            <Switch {...props} onChange={handleChange} sx={{}} icon={<CircleIcon sx={{}} />} checkedIcon={<CheckCircleIcon sx={{}} />} />
         </Box>
     )
 }
