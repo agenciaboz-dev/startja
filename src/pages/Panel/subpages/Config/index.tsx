@@ -20,6 +20,7 @@ export const Config: React.FC<ConfigProps> = ({ user }) => {
                 flexDirection: "column",
                 gap: "1vw",
                 height: "100%",
+                width: "100%",
             }}
         >
             <Header />
@@ -27,6 +28,7 @@ export const Config: React.FC<ConfigProps> = ({ user }) => {
                 sx={{
                     backgroundColor: colors.background,
                     flex: 1,
+                    width: "100%",
                 }}
             >
                 <Box
@@ -34,6 +36,7 @@ export const Config: React.FC<ConfigProps> = ({ user }) => {
                         flex: 1,
                         flexDirection: "column",
                         height: "100%",
+                        width: "100%",
                     }}
                 >
                     <Routes>
