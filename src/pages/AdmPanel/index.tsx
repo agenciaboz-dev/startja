@@ -27,7 +27,7 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
                 sx={{
                     flex: 1,
                     flexDirection: "column",
-                    overflowY: "auto",
+                    overflow: "auto",
                     padding: "2vw",
                     gap: "2vw",
                 }}
@@ -37,7 +37,7 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
                     <Route path="/clientes/" element={<Customers />} />
                     <Route path="/produtos/" element={<Products />} />
                     <Route path="/naturezas-de-operacao/" element={<Natures />} />
-                    <Route path="/categorias/" element={<Categories />} />
+                    {/* <Route path="/categorias/" element={<Categories />} /> */}
                 </Routes>
             </Box>
         </Box>
