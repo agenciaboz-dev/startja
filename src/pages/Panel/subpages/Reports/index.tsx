@@ -4,9 +4,9 @@ import { colors } from "../../../../style/colors"
 import { Route, Routes } from "react-router-dom"
 import { Header } from "../../../../components/Header"
 import { IssuedInvoices } from "./subpages/IssuedInvoices"
-import { Products } from "./subpages/Products"
-import { Natures } from "./subpages/Natures"
-import { Properties } from "./subpages/Properties"
+import { SoldProducts } from "./subpages/SoldProducts"
+import { CashbookReports } from "./subpages/CashbookReports"
+import { Plan } from "./subpages/Plan"
 import { Accounts } from "./subpages/Accounts"
 
 interface ReportsProps {
@@ -38,11 +38,11 @@ export const Reports: React.FC<ReportsProps> = ({ user }) => {
                     }}
                 >
                     <Routes>
-                        <Route index element={<IssuedInvoices user={user} />} />
-                        <Route path="/notas-fiscais-emitidas/" element={<IssuedInvoices user={user} />} />
-                        <Route path="/produtos-vendidos/" element={<Products />} />
-                        <Route path="/livro-caixa/" element={<Natures />} />
-                        <Route path="/plano-de-contas/" element={<Properties />} />
+                        <Route index element={<IssuedInvoices />} />
+                        <Route path="/notas-fiscais-emitidas/" element={<IssuedInvoices />} />
+                        <Route path="/produtos-vendidos/" element={<SoldProducts />} />
+                        <Route path="/livro-caixa/" element={<CashbookReports />} />
+                        <Route path="/plano-de-contas/" element={<Plan />} />
                     </Routes>
                 </Box>
             </Box>

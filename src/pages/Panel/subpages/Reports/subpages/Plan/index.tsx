@@ -1,27 +1,18 @@
 import React, { useEffect, useState } from "react"
 import { Box, Button, Grid, TextField } from "@mui/material"
 import { useHeader } from "../../../../../../hooks/useHeader"
-// import AddIssuedInvoiceModal from "./AddIssuedInvoiceModal"
 import { useLocation, useNavigate } from "react-router-dom"
 
-interface IssuedInvoicesProps {}
+interface PlanProps {}
 
-export const IssuedInvoices: React.FC<IssuedInvoicesProps> = ({}) => {
+export const Plan: React.FC<PlanProps> = ({}) => {
     const header = useHeader()
     const pathname = useLocation().pathname
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (pathname.split("/painel").length < 3) {
-            navigate("/painel/relatorios/notas-fiscais-emitidas")
-        }
-        header.setTitle("Relatórios - Notas fiscais emitidas")
+        header.setTitle("Relatórios - Plano de contas")
     }, [])
-
-    // const [isAddIssuedInvoiceModalOpen, setAddIssuedInvoiceModalOpen] = useState(false)
-    // const openIssuedInvoiceModal = () => {
-    //     setAddIssuedInvoiceModalOpen(true)
-    // }
 
     const [emptyList, setEmptyList] = useState(true)
 
@@ -63,17 +54,8 @@ export const IssuedInvoices: React.FC<IssuedInvoicesProps> = ({}) => {
                     </Button>
                 </Box>
                 <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                    <Grid item xs={12}>
                         <TextField label="Período" select fullWidth></TextField>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField label="Situação" select fullWidth></TextField>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField label="Cliente/fornecedor" select fullWidth></TextField>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField label="Natureza da operação" select fullWidth></TextField>
                     </Grid>
                 </Grid>
             </Box>
@@ -102,7 +84,6 @@ export const IssuedInvoices: React.FC<IssuedInvoicesProps> = ({}) => {
                     </Box>
                 )}
             </Box>
-            {/* <AddIssuedInvoiceModal open={isAddIssuedInvoiceModalOpen} onClose={() => setAddIssuedInvoiceModalOpen(false)} /> */}
         </Box>
     )
 }

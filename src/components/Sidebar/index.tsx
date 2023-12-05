@@ -17,7 +17,6 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                 boxShadow: "2px 0 2px 0 #d1d1d1",
                 flexDirection: "column",
                 alignItems: "center",
-                // padding: "1vw 0",
             }}
         >
             <Box

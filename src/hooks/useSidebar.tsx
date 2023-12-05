@@ -37,7 +37,7 @@ export const useSidebar = () => {
             id: 1,
             name: "",
             path: "/configuracoes",
-            icon: <ReactSVG src={startjaIcon} style={{ fontSize: "1rem" }} />,
+            icon: <ReactSVG src={startjaIcon} />,
             onClick: () => navigate("/painel/configuracoes"),
             subItens: [
                 {
