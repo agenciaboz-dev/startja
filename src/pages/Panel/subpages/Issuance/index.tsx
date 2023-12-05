@@ -32,7 +32,7 @@ export const Issuance: React.FC<IssuanceProps> = ({ user, company }) => {
             sx={{
                 flexDirection: "column",
                 gap: "1vw",
-                height: "100%",
+                flex: 1,
             }}
         >
             <Header />

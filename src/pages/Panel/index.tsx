@@ -28,7 +28,6 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
                     overflow: "auto",
                     padding: "2vw",
                     gap: "2vw",
-                    height: "100%",
                 }}
             >
                 <Routes>
@@ -36,9 +35,9 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
                     <Route index element={<Overview user={user} company={selectedCompany} />} />
                     <Route path="/visao-geral/" element={<Overview user={user} company={selectedCompany} />} />
                     <Route path="/notas-fiscais/" element={<Issuance user={user} company={selectedCompany} />} />
-                    <Route path="/livro-caixa/" element={<Cashbook user={user} company={selectedCompany} />} />
                     <Route path="/cadastros-gerais/*" element={<Registry user={user} />} />
                     <Route path="/relatorios/*" element={<Reports user={user} />} />
+                    {/* <Route path="/livro-caixa/" element={<Cashbook user={user} company={selectedCompany} />} /> */}
                 </Routes>
             </Box>
         </Box>

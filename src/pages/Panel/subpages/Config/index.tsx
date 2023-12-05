@@ -19,8 +19,8 @@ export const Config: React.FC<ConfigProps> = ({ user }) => {
             sx={{
                 flexDirection: "column",
                 gap: "1vw",
-                height: "100%",
                 width: "100%",
+                flex: 1,
             }}
         >
             <Header />

@@ -19,7 +19,7 @@ export const Registry: React.FC<RegistryProps> = ({ user }) => {
             sx={{
                 flexDirection: "column",
                 gap: "1vw",
-                height: "100%",
+                flex: 1,
             }}
         >
             <Header />

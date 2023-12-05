@@ -30,7 +30,7 @@ export const Overview: React.FC<OverviewProps> = ({ user, company }) => {
             sx={{
                 flexDirection: "column",
                 gap: "1vw",
-                height: "100%",
+                flex: 1,
             }}
         >
             <Header />
