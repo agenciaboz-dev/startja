@@ -60,7 +60,6 @@ export const Issuance: React.FC<IssuanceProps> = ({ user, company }) => {
                     />
                     <Box
                         sx={{
-                            height: "100%",
                             flex: 1,
                             flexDirection: "column",
                             backgroundColor: "white",
