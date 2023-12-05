@@ -19,7 +19,7 @@ export const Reports: React.FC<ReportsProps> = ({ user }) => {
             sx={{
                 flexDirection: "column",
                 gap: "1vw",
-                height: "100%",
+                flex: 1,
             }}
         >
             <Header />
