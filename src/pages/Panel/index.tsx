@@ -9,6 +9,7 @@ import { Registry } from "./subpages/Registry"
 import { Cashbook } from "./subpages/Cashbook"
 import { Config } from "./subpages/Config"
 import { useCompany } from "../../hooks/useCompany"
+import { Reports } from "./subpages/Reports"
 
 interface PanelProps {
     user: Customer
@@ -37,6 +38,7 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
                     <Route path="/notas-fiscais/" element={<Issuance user={user} company={selectedCompany} />} />
                     <Route path="/livro-caixa/" element={<Cashbook user={user} company={selectedCompany} />} />
                     <Route path="/cadastros-gerais/*" element={<Registry user={user} />} />
+                    <Route path="/relatorios/*" element={<Reports user={user} />} />
                 </Routes>
             </Box>
         </Box>
