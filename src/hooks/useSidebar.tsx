@@ -8,13 +8,18 @@ import MonitorWeightOutlinedIcon from "@mui/icons-material/MonitorWeightOutlined
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined"
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined"
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined"
-import BookOutlinedIcon from "@mui/icons-material/BookOutlined"
 import ListAltOutlinedIcon from "@mui/icons-material/ListAltOutlined"
 import DomainAddOutlinedIcon from "@mui/icons-material/DomainAddOutlined"
 import ControlPointDuplicateOutlinedIcon from "@mui/icons-material/ControlPointDuplicateOutlined"
 import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined"
 import AddLocationAltOutlinedIcon from "@mui/icons-material/AddLocationAltOutlined"
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined"
+import EqualizerOutlinedIcon from "@mui/icons-material/EqualizerOutlined"
+import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined"
+import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined"
+import CollectionsBookmarkOutlinedIcon from "@mui/icons-material/CollectionsBookmarkOutlined"
+import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined"
+import BookOutlinedIcon from "@mui/icons-material/BookOutlined"
 
 export const useSidebar = () => {
     const navigate = useNavigate()
@@ -124,6 +129,43 @@ export const useSidebar = () => {
                     name: "Contas",
                     path: "/contas",
                     onClick: () => navigate("/painel/cadastros-gerais/contas/"),
+                },
+            ],
+        },
+        {
+            id: 5,
+            name: "Relatórios",
+            path: "/relatorios",
+            icon: <EqualizerOutlinedIcon sx={iconStyle} />,
+            onClick: () => navigate("/painel/relatorios"),
+            subItens: [
+                {
+                    id: 1,
+                    icon: <ReceiptLongOutlinedIcon />,
+                    name: "Notas fiscais emitidas",
+                    path: "/notas-fiscais-emitidas",
+                    onClick: () => navigate("/painel/relatorios/notas-fiscais-emitidas/"),
+                },
+                {
+                    id: 2,
+                    icon: <LocalMallOutlinedIcon />,
+                    name: "Produtos vendidos",
+                    path: "/produtos-vendidos",
+                    onClick: () => navigate("/painel/relatorios/produtos-vendidos/"),
+                },
+                {
+                    id: 3,
+                    icon: <CollectionsBookmarkOutlinedIcon />,
+                    name: "Livro-caixa",
+                    path: "/livro-caixa",
+                    onClick: () => navigate("/painel/relatorios/livro-caixa/"),
+                },
+                {
+                    id: 4,
+                    icon: <AssignmentOutlinedIcon />,
+                    name: "Plano de contas",
+                    path: "/plano-de-contas",
+                    onClick: () => navigate("/painel/relatorios/plano-de-contas/"),
                 },
             ],
         },
