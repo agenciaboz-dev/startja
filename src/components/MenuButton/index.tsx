@@ -24,6 +24,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
             overflow: "hidden",
             textAlign: "center",
             width: "100%",
+            fontSize: "0.8vw",
             ...sx,
         }
 
