@@ -100,11 +100,13 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                         </Grid>
                     </Box>
 
-                    <hr
-                        style={{
-                            height: "100%",
-                        }}
-                    />
+                    <Box>
+                        <hr
+                            style={{
+                                height: "100%",
+                            }}
+                        />
+                    </Box>
 
                     <Box
                         sx={{

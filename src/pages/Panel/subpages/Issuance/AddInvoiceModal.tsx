@@ -1,8 +1,9 @@
 import React, { useState } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box, Grid, Tab, Tabs } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box, Grid, Tab, Tabs, Radio } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { InvoiceModalProductsListHeader } from "../../../../components/InvoiceModalProductsList/InvoiceModalProductsListHeader"
 import AddInvoiceInfoModal from "./AddInvoiceInfoModal"
+import { colors } from "../../../../style/colors"
 
 interface AddInvoiceModalProps {
     open: boolean
@@ -16,6 +17,22 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
     const openInvoiceInfoModal = () => {
         setAddInvoiceInfoModalOpen(true)
     }
+
+    const activeTabStyle = {
+        textTransform: "unset",
+        flex: 1,
+        borderBottom: `2px solid ${colors.primary}`,
+        color: `${colors.primary}`,
+        fontWeight: "bold",
+    }
+    const inactiveTabStyle = {
+        textTransform: "unset",
+        flex: 1,
+        borderTopLeftRadius: "15px",
+        borderTopRightRadius: "15px",
+        backgroundColor: `${colors.background}`,
+    }
+    const tabLabelBoxStyles = { alignItems: "center" }
 
     return (
         <Dialog
@@ -74,6 +91,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                             sx={{
                                 alignItems: "center",
                                 flexDirection: "column",
+                                gap: "0.5vw",
                             }}
                         >
                             <h3>Sem produtos adicionados</h3>
@@ -81,11 +99,13 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                         </Box>
                     </Box>
 
-                    <hr
-                        style={{
-                            height: "100%",
-                        }}
-                    />
+                    <Box>
+                        <hr
+                            style={{
+                                height: "100%",
+                            }}
+                        />
+                    </Box>
 
                     <Box
                         sx={{
@@ -96,10 +116,32 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                     >
                         <h3>Adicionar Produto</h3>
 
-                        <Box>
-                            <Tabs variant="scrollable" indicatorColor="primary">
-                                <Tab label="Produto" onClick={() => setRightSideDisplay("produto")} sx={{ textTransform: "unset" }} />
-                                <Tab label="Tributação" onClick={() => setRightSideDisplay("tributação")} sx={{ textTransform: "unset" }} />
+                        <Box
+                            sx={{
+                                width: "100%",
+                            }}
+                        >
+                            <Tabs variant="fullWidth" textColor="primary" indicatorColor="primary" sx={{ width: "100%" }}>
+                                <Tab
+                                    label={
+                                        <Box sx={tabLabelBoxStyles}>
+                                            <Radio checked={rightSideDisplay === "produto"} />
+                                            <p>Produto</p>
+                                        </Box>
+                                    }
+                                    onClick={() => setRightSideDisplay("produto")}
+                                    sx={rightSideDisplay === "produto" ? activeTabStyle : inactiveTabStyle}
+                                />
+                                <Tab
+                                    label={
+                                        <Box sx={tabLabelBoxStyles}>
+                                            <Radio checked={rightSideDisplay === "tributação"} />
+                                            <p>Tributação</p>
+                                        </Box>
+                                    }
+                                    onClick={() => setRightSideDisplay("tributação")}
+                                    sx={rightSideDisplay === "tributação" ? activeTabStyle : inactiveTabStyle}
+                                />
                             </Tabs>
                         </Box>
                         {rightSideDisplay === "produto" && (

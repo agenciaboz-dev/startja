@@ -22,7 +22,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                 sx: {
                     borderRadius: "30px",
                     paddingTop: "1vw",
-                    minWidth: "50vw",
+                    minWidth: "60vw",
                     width: "fit-content",
                 },
             }}
