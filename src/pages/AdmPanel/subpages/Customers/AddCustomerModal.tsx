@@ -21,7 +21,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                 sx: {
                     borderRadius: "30px",
                     paddingTop: "1vw",
-                    minWidth: "60vw",
+                    minWidth: "70vw",
                     width: "fit-content",
                 },
             }}
@@ -40,7 +40,8 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
             <DialogContent>
                 <Box
                     sx={{
-                        width: "100%",
+                        flex: 1,
+                        height: "fit-content",
                         gap: "2vw",
                     }}
                 >
@@ -77,7 +78,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                             </Grid>
                         </Grid>
 
-                        <FormControlLabel control={<Checkbox />} label="Não contribuinte / isento" />
+                        <FormControlLabel control={<Checkbox />} label="Não contribuinte / isento" sx={{ textAlign: "center" }} />
 
                         <h3>Endereço</h3>
 
@@ -103,11 +104,13 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         </Grid>
                     </Box>
 
-                    <hr
-                        style={{
-                            height: "100%",
-                        }}
-                    />
+                    <Box>
+                        <hr
+                            style={{
+                                height: "100%",
+                            }}
+                        />
+                    </Box>
 
                     <Box
                         sx={{
@@ -118,11 +121,17 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                     >
                         <Box
                             sx={{
-                                justifyContent: "space-around",
+                                justifyContent: "space-between",
+                                alignItems: "center",
                             }}
                         >
                             <h3>Permissões</h3>
-                            <Box>
+                            <Box
+                                sx={{
+                                    alignItems: "center",
+                                    gap: "1vw",
+                                }}
+                            >
                                 <Button
                                     variant="contained"
                                     color="secondary"

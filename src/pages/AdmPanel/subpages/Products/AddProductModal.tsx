@@ -51,7 +51,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
                 sx: {
                     borderRadius: "30px",
                     paddingTop: "1vw",
-                    minWidth: "60vw",
+                    minWidth: "70vw",
                 },
             }}
         >

@@ -29,7 +29,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                 sx: {
                     borderRadius: "30px",
                     paddingTop: "1vw",
-                    minWidth: "60vw",
+                    minWidth: "70vw",
                     width: "fit-content",
                 },
             }}
