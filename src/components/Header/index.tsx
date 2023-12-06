@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                     anchorEl={menuAnchorEl}
                     open={menu_opened}
                     onClose={() => setMenuAnchorEl(null)}
-                    slotProps={{ paper: { sx: { width: "15vw" }, elevation: 2 } }}
+                    slotProps={{ paper: { sx: { width: "15vw" }, elevation: 3 } }}
                     MenuListProps={{ sx: { width: "100%" } }}
                 >
                     {menus.list.map((menu) => {
