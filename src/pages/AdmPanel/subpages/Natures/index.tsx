@@ -39,7 +39,13 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
     }, [])
 
     return (
-        <>
+        <Box
+            sx={{
+                flexDirection: "column",
+                gap: "1vw",
+                flex: 1,
+            }}
+        >
             <Header />
             <Toolbar
                 searchPlaceholder="natureza de operação"
@@ -102,6 +108,6 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                 )}
             </Box>
             <AddNatureModal open={isAddNatureModalOpen} onClose={() => setAddNatureModalOpen(false)} />
-        </>
+        </Box>
     )
 }

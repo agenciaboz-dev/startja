@@ -46,7 +46,13 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
     }, [])
 
     return (
-        <>
+        <Box
+            sx={{
+                flexDirection: "column",
+                gap: "1vw",
+                flex: 1,
+            }}
+        >
             <Header />
             <Toolbar
                 searchPlaceholder="cliente"
@@ -104,6 +110,6 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                 )}
             </Box>
             <AddCustomerModal open={isAddCustomerModalOpen} onClose={() => setAddCustomerModalOpen(false)} />
-        </>
+        </Box>
     )
 }
