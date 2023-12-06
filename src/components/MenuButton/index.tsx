@@ -24,7 +24,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
             overflow: "hidden",
             textAlign: "center",
             width: "100%",
-            fontSize: "0.8vw",
+            fontSize: "1rem",
             ...sx,
         }
 
@@ -42,7 +42,12 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
     }
 
     return (
-        <>
+        <Box
+            sx={{
+                flexDirection: "column",
+                width: "100%",
+            }}
+        >
             <Box
                 onClick={() => handleMenuClick(sideBarItem)}
                 sx={{
@@ -51,10 +56,9 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                     pointerEvents: active ? "none" : "auto",
                     backgroundColor: active ? (sideBarItem.subItens ? "#e8e8e8" : "") : "",
                     position: "relative",
-                    width: "100%",
                 }}
             >
-                {active && (
+                {active && !sideBarItem.subItens && (
                     <Box
                         sx={{
                             backgroundColor: colors.primary,
@@ -124,6 +128,6 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                     })}
                 </Box>
             </Collapse>
-        </>
+        </Box>
     )
 }
