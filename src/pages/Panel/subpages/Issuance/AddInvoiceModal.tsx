@@ -1,9 +1,10 @@
 import React, { useState } from "react"
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box, Grid, Tab, Tabs, Radio } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
-import { InvoiceModalProductsListHeader } from "../../../../components/InvoiceModalProductsList/InvoiceModalProductsListHeader"
 import AddInvoiceInfoModal from "./AddInvoiceInfoModal"
 import { colors } from "../../../../style/colors"
+import { InvoiceModalProductsList } from "../../../../components/InvoiceModalProductsList"
+import { InvoiceModalProductsListHeader } from "../../../../components/InvoiceModalProductsList/InvoiceModalProductsListHeader"
 
 interface AddInvoiceModalProps {
     open: boolean
@@ -12,6 +13,7 @@ interface AddInvoiceModalProps {
 
 const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
     const [rightSideDisplay, setRightSideDisplay] = useState("produto")
+    const [emptyList, setEmptyList] = useState(false)
 
     const [isAddInvoiceInfoModalOpen, setAddInvoiceInfoModalOpen] = useState(false)
     const openInvoiceInfoModal = () => {
@@ -86,17 +88,29 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                             </Grid>
                         </Grid>
 
-                        <InvoiceModalProductsListHeader />
-                        <Box
-                            sx={{
-                                alignItems: "center",
-                                flexDirection: "column",
-                                gap: "0.5vw",
-                            }}
-                        >
-                            <h3>Sem produtos adicionados</h3>
-                            <p>Para emissão da nota fiscal, adicione os produtos ao lado.</p>
-                        </Box>
+                        {emptyList && (
+                            <Box
+                                sx={{
+                                    alignItems: "center",
+                                    flexDirection: "column",
+                                    gap: "0.5vw",
+                                }}
+                            >
+                                <h3>Sem produtos adicionados</h3>
+                                <p>Para emissão da nota fiscal, adicione os produtos ao lado.</p>
+                            </Box>
+                        )}
+                        {!emptyList && (
+                            <Box
+                                sx={{
+                                    flexDirection: "column",
+                                    flex: 1,
+                                }}
+                            >
+                                <InvoiceModalProductsListHeader />
+                                <InvoiceModalProductsList />
+                            </Box>
+                        )}
                     </Box>
 
                     <Box>

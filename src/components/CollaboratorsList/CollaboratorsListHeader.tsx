@@ -29,6 +29,7 @@ export const CollaboratorsListHeader: React.FC<CollaboratorsListHeaderProps> = (
                     sx={{
                         justifyContent: "space-between",
                         flex: 1,
+                        gap: "2vw",
                     }}
                 >
                     <Box
@@ -64,8 +65,8 @@ export const CollaboratorsListHeader: React.FC<CollaboratorsListHeaderProps> = (
                     </Box>
                     <Box
                         sx={{
-                            width: "10%",
-                            justifyContent: "end",
+                            width: "5%",
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Ações</h3>

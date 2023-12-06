@@ -26,8 +26,10 @@ export const CollaboratorRow: React.FC<CollaboratorRowProps> = ({ collaborator }
             />
             <Box
                 sx={{
+                    alignItems: "center",
                     justifyContent: "space-between",
                     flex: 1,
+                    gap: "2vw",
                 }}
             >
                 <Box
@@ -67,8 +69,8 @@ export const CollaboratorRow: React.FC<CollaboratorRowProps> = ({ collaborator }
                 </Box>
                 <Box
                     sx={{
-                        width: "10%",
-                        justifyContent: "end",
+                        width: "5%",
+                        justifyContent: "center",
                     }}
                 >
                     <FormatListBulletedOutlinedIcon />

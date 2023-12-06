@@ -6,7 +6,13 @@ interface InvoiceModalProductRowProps {
     product: Product
 }
 
-export const ProductRow: React.FC<InvoiceModalProductRowProps> = ({ product }) => {
+export const InvoiceModalProductRow: React.FC<InvoiceModalProductRowProps> = ({ product }) => {
+    const slotStyle = {
+        alignItems: "center",
+        justifyContent: "center",
+        flex: 1,
+    }
+
     return (
         <Box
             sx={{
@@ -27,28 +33,13 @@ export const ProductRow: React.FC<InvoiceModalProductRowProps> = ({ product }) =
                     flex: 1,
                 }}
             >
-                <Box
-                    sx={{
-                        width: "45%",
-                    }}
-                >
-                    <p>{product.name}</p>
-                    {/* <p>Elementum senectus diam neque aliquet</p> */}
-                </Box>
-                <Box
-                    sx={{
-                        width: "45%",
-                    }}
-                >
-                    <p>{product.ncm}</p>
-                    {/* <p>Cras lobortis sollicitudin consectetur aliquet</p> */}
-                </Box>
-                <Box
-                    sx={{
-                        width: "10%",
-                        justifyContent: "end",
-                    }}
-                >
+                <Box sx={{ ...slotStyle, justifyContent: "start" }}>{product.name}</Box>
+                <Box sx={slotStyle}>1</Box>
+                <Box sx={slotStyle}>R$5,00</Box>
+                <Box sx={slotStyle}>R$1,00</Box>
+                <Box sx={slotStyle}>R$4,00</Box>
+                <Box sx={slotStyle}>20%</Box>
+                <Box sx={{ ...slotStyle, flex: 0.5 }}>
                     <FormatListBulletedOutlinedIcon />
                 </Box>
             </Box>

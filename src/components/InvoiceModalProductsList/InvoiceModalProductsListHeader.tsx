@@ -4,18 +4,25 @@ import { Box, Checkbox } from "@mui/material"
 interface InvoiceModalProductsListHeaderProps {}
 
 export const InvoiceModalProductsListHeader: React.FC<InvoiceModalProductsListHeaderProps> = ({}) => {
+    const slotStyle = {
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        flex: 1,
+    }
+
     return (
         <Box
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
+                width: "100%",
             }}
         >
             <Box
                 sx={{
                     alignItems: "center",
                     width: "100%",
-                    marginBottom: "1vw",
                 }}
             >
                 <Checkbox
@@ -31,25 +38,25 @@ export const InvoiceModalProductsListHeader: React.FC<InvoiceModalProductsListHe
                         flex: 1,
                     }}
                 >
-                    <Box>
+                    <Box sx={{ ...slotStyle, justifyContent: "start" }}>
                         <h4>Produto</h4>
                     </Box>
-                    <Box>
+                    <Box sx={slotStyle}>
                         <h4>Quantidade/ Unidade</h4>
                     </Box>
-                    <Box>
+                    <Box sx={slotStyle}>
                         <h4>Valor unitário</h4>
                     </Box>
-                    <Box>
+                    <Box sx={slotStyle}>
                         <h4>Valor desconto</h4>
                     </Box>
-                    <Box>
+                    <Box sx={slotStyle}>
                         <h4>Valor total</h4>
                     </Box>
-                    <Box>
+                    <Box sx={slotStyle}>
                         <h4>Tributação</h4>
                     </Box>
-                    <Box>
+                    <Box sx={{ ...slotStyle, flex: 0.5 }}>
                         <h4>Ações</h4>
                     </Box>
                 </Box>

@@ -10,16 +10,16 @@ export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({added
 
 return (
     <Box
-    sx={{
-        alignItems: "center",
-        width: "100%",
-    }}
+        sx={{
+            alignItems: "center",
+            width: "100%",
+        }}
     >
         <Checkbox
             inputProps={{
                 style: {
-                    padding: "0"
-                }
+                    padding: "0",
+                },
             }}
         />
         <Box
@@ -28,12 +28,10 @@ return (
                 flex: 1,
             }}
         >
-
             <Box
                 sx={{
                     alignItems: "center",
-                    justifyContent: "center",
-                    width: "10%"
+                    width: "10%",
                 }}
             >
                 <p>SP</p>
@@ -42,7 +40,7 @@ return (
                 sx={{
                     alignItems: "center",
                     justifyContent: "center",
-                    width: "10%"
+                    width: "10%",
                 }}
             >
                 <p>00000001</p>
@@ -51,7 +49,7 @@ return (
                 sx={{
                     alignItems: "center",
                     justifyContent: "center",
-                    width: "30%"
+                    width: "25%",
                 }}
             >
                 <p>SIT FERMENTUM</p>
@@ -60,7 +58,7 @@ return (
                 sx={{
                     alignItems: "center",
                     justifyContent: "center",
-                    width: "30%"
+                    width: "25%",
                 }}
             >
                 <p>Nulla lacus etiam</p>
@@ -69,7 +67,7 @@ return (
                 sx={{
                     alignItems: "center",
                     justifyContent: "center",
-                    width: "10%"
+                    width: "20%",
                 }}
             >
                 <p>32 - Morbi</p>
@@ -78,12 +76,11 @@ return (
                 sx={{
                     alignItems: "center",
                     justifyContent: "center",
-                    width: "10%"
+                    width: "5%",
                 }}
             >
                 <FormatListBulletedOutlinedIcon />
             </Box>
-            
         </Box>
     </Box>
 )}

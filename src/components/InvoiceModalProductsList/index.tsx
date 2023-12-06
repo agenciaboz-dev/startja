@@ -2,6 +2,7 @@ import React from "react"
 import { Box } from "@mui/material"
 import { InvoiceModalProductRow } from "./InvoiceModalProductRow"
 import { useProduct } from "../../hooks/useProduct"
+import { InvoiceModalProductsListHeader } from "./InvoiceModalProductsListHeader"
 
 interface InvoiceModalProductsListProps {}
 
@@ -14,7 +15,6 @@ export const InvoiceModalProductsList: React.FC<InvoiceModalProductsListProps> =
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5vw 0",
             }}
         >
             {products.list.map((product) => (
