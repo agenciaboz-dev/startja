@@ -28,7 +28,7 @@ export const ConfigIntegrations: React.FC<ConfigIntegrationsProps> = ({ user }) 
                     padding: "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
-                    borderRadius: "30px",
+                    borderRadius: "15px",
                     flexDirection: "column",
                     width: "100%",
                     gap: "0.5vw",
@@ -41,7 +41,7 @@ export const ConfigIntegrations: React.FC<ConfigIntegrationsProps> = ({ user }) 
                     }}
                 >
                     <h2>Integração Sistema Domínio</h2>
-                    <Button variant="contained" sx={{ borderRadius: "30px", textTransform: "unset" }}>
+                    <Button variant="contained" sx={{ borderRadius: "15px", textTransform: "unset" }}>
                         Salvar informações
                     </Button>
                 </Box>
@@ -54,7 +54,7 @@ export const ConfigIntegrations: React.FC<ConfigIntegrationsProps> = ({ user }) 
                     // onChange={handleChange}
                     style={{
                         backgroundColor: colors.background,
-                        borderRadius: "30px",
+                        borderRadius: "15px",
                         height: "100%",
                         width: "100%",
                         padding: "0.5vw",
@@ -71,7 +71,7 @@ export const ConfigIntegrations: React.FC<ConfigIntegrationsProps> = ({ user }) 
                     padding: "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
-                    borderRadius: "30px",
+                    borderRadius: "15px",
                     flexDirection: "column",
                     width: "100%",
                     gap: "0.5vw",
@@ -84,7 +84,7 @@ export const ConfigIntegrations: React.FC<ConfigIntegrationsProps> = ({ user }) 
                     }}
                 >
                     <h2>Integração Omie</h2>
-                    <Button variant="contained" sx={{ borderRadius: "30px", textTransform: "unset" }}>
+                    <Button variant="contained" sx={{ borderRadius: "15px", textTransform: "unset" }}>
                         Salvar informações
                     </Button>
                 </Box>

@@ -19,9 +19,9 @@ export const LastNotesMovements: React.FC<LastNotesMovementsProps> = ({ company 
             <Box sx={{ alignContent: "center", justifyContent: "space-between", width: "100%" }}>
                 <Box sx={{ gap: "1vw", alignItems: "center" }}>
                     <SectionTitle>Movimentação das últimas notas</SectionTitle>
-                    <Button sx={{ textTransform: "none", borderRadius: "30px" }}>Ver últimas notas</Button>
+                    <Button sx={{ textTransform: "none", borderRadius: "15px" }}>Ver últimas notas</Button>
                 </Box>
-                <Button variant="contained" onClick={openInvoiceModal} sx={{ borderRadius: "30px", textTransform: "unset" }}>
+                <Button variant="contained" onClick={openInvoiceModal} sx={{ borderRadius: "15px", textTransform: "unset" }}>
                     <AddOutlinedIcon />
                     Emitir Nota Fiscal
                 </Button>

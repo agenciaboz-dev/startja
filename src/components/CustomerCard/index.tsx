@@ -21,7 +21,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                 sx={{
                     height: "fit-content",
                     backgroundColor: "white",
-                    borderRadius: "30px",
+                    borderRadius: "15px",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     flexDirection: "column",
                     padding: "1vw",
@@ -106,7 +106,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                         variant="outlined"
                         sx={{
                             textTransform: "unset",
-                            borderRadius: "30px",
+                            borderRadius: "15px",
                             pointerEvents: "none",
                         }}
                     >
@@ -115,7 +115,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                     <Button
                         variant="contained"
                         sx={{
-                            borderRadius: "30px",
+                            borderRadius: "15px",
                             textTransform: "unset",
                             gap: "0.5vw",
                         }}

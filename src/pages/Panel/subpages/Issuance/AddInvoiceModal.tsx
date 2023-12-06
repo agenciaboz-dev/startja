@@ -43,7 +43,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
             }}
             PaperProps={{
                 sx: {
-                    borderRadius: "30px",
+                    borderRadius: "15px",
                     paddingTop: "1vw",
                     minWidth: "90vw",
                 },
@@ -184,7 +184,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                                     variant="outlined"
                                     sx={{
                                         alignSelf: "end",
-                                        borderRadius: "30px",
+                                        borderRadius: "15px",
                                         textTransform: "unset",
                                     }}
                                 >
@@ -217,7 +217,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                                     variant="contained"
                                     sx={{
                                         alignSelf: "end",
-                                        borderRadius: "30px",
+                                        borderRadius: "15px",
                                         textTransform: "unset",
                                     }}
                                 >
@@ -240,7 +240,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                     color="secondary"
                     variant="outlined"
                     sx={{
-                        borderRadius: "30px",
+                        borderRadius: "15px",
                         color: "black",
                         textTransform: "unset",
                     }}
@@ -257,7 +257,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                         color="primary"
                         variant="outlined"
                         sx={{
-                            borderRadius: "30px",
+                            borderRadius: "15px",
                             textTransform: "unset",
                         }}
                     >
@@ -268,7 +268,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                         color="secondary"
                         variant="contained"
                         sx={{
-                            borderRadius: "30px",
+                            borderRadius: "15px",
                             color: "white",
                             textTransform: "unset",
                         }}
@@ -280,7 +280,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                         color="primary"
                         variant="contained"
                         sx={{
-                            borderRadius: "30px",
+                            borderRadius: "15px",
                             color: "white",
                             textTransform: "unset",
                         }}

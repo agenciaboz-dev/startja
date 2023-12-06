@@ -31,7 +31,7 @@ export const SoldProducts: React.FC<SoldProductsProps> = ({}) => {
                     padding: "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
-                    borderRadius: "30px",
+                    borderRadius: "15px",
                     flexDirection: "column",
                     width: "100%",
                     gap: "1vw",
@@ -46,7 +46,7 @@ export const SoldProducts: React.FC<SoldProductsProps> = ({}) => {
                     <Button
                         variant="contained"
                         sx={{
-                            borderRadius: "30px",
+                            borderRadius: "15px",
                             textTransform: "unset",
                         }}
                     >
@@ -77,7 +77,7 @@ export const SoldProducts: React.FC<SoldProductsProps> = ({}) => {
                     padding: "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
-                    borderRadius: "30px",
+                    borderRadius: "15px",
                     flexDirection: "column",
                     width: "100%",
                 }}

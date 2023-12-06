@@ -43,7 +43,7 @@ export const FiscalMonitor: React.FC<FiscalMonitorProps> = ({ company }) => {
                     <Button
                         variant="text"
                         sx={{
-                            borderRadius: "30px",
+                            borderRadius: "15px",
                             textTransform: "unset",
                         }}
                     >
@@ -68,7 +68,7 @@ export const FiscalMonitor: React.FC<FiscalMonitorProps> = ({ company }) => {
                     ))}
                     <Button
                         variant="contained"
-                        sx={{ borderRadius: "30px", textTransform: "none", position: "absolute", bottom: "1vw", right: "1vw", gap: "0.5vw" }}
+                        sx={{ borderRadius: "15px", textTransform: "none", position: "absolute", bottom: "1vw", right: "1vw", gap: "0.5vw" }}
                     >
                         <AddOutlined />
                         Adicionar novo cliente

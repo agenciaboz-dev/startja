@@ -38,10 +38,11 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => {
                     variant="contained"
                     sx={{
                         flex: 1,
-                        borderRadius: "30px",
+                        borderRadius: "15px",
                         textTransform: "unset",
-                        pointerEvents: "none"
-                    }}>
+                        pointerEvents: "none",
+                    }}
+                >
                     <p>{invoice.situation}</p>
                 </Button>
                 <Box sx={{ flex: 1 }}>

@@ -17,7 +17,7 @@ const AddCategoryModal: React.FC<AddCategoryModalProps> = ({ open, onClose }) =>
             }}
             PaperProps={{
                 sx: {
-                    borderRadius: "30px",
+                    borderRadius: "15px",
                     minWidth: "60vw",
                 },
             }}
@@ -45,7 +45,7 @@ const AddCategoryModal: React.FC<AddCategoryModalProps> = ({ open, onClose }) =>
                     color="secondary"
                     variant="contained"
                     sx={{
-                        borderRadius: "30px",
+                        borderRadius: "15px",
                         color: "white",
                         textTransform: "unset",
                     }}
@@ -57,7 +57,7 @@ const AddCategoryModal: React.FC<AddCategoryModalProps> = ({ open, onClose }) =>
                     color="primary"
                     variant="contained"
                     sx={{
-                        borderRadius: "30px",
+                        borderRadius: "15px",
                         color: "white",
                         textTransform: "unset",
                     }}

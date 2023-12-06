@@ -49,7 +49,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 InputProps={{
                     startAdornment: <SearchIcon />,
                     sx: {
-                        borderRadius: "30px",
+                        borderRadius: "15px",
                         alignItems: "center",
                         height: "100%",
                         gap: "0.5vw",
@@ -64,7 +64,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 sx={{
                     backgroundColor: "white",
                     flex: 1,
-                    borderRadius: "30px",
+                    borderRadius: "15px",
                     boxShadow: "0 2px 2px 0 #d1d1d1",
                     height: "100%",
                 }}
@@ -107,7 +107,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                     name="toolbarSelect"
                     sx={{
                         backgroundColor: "white",
-                        borderRadius: "30px",
+                        borderRadius: "15px",
                         boxShadow: "0 2px 2px 0 #d1d1d1",
                         height: "100%",
                         width: "20vw",
@@ -116,7 +116,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                     SelectProps={{
                         sx: {
                             height: "100%",
-                            borderRadius: "30px",
+                            borderRadius: "15px",
                         },
                     }}
                 >

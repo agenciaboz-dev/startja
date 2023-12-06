@@ -41,7 +41,7 @@ export const TaxSimulator: React.FC<TaxSimulatorProps> = ({ company }) => {
             <Box sx={{ flex: "0.5", gap: "1vw", flexDirection: "column" }}>
                 <Box sx={{ justifyContent: "space-between" }}>
                     <SectionTitle>Simulador de Imposto de Renda</SectionTitle>
-                    <Button variant="contained" sx={{ borderRadius: "30px", textTransform: "unset" }}>
+                    <Button variant="contained" sx={{ borderRadius: "15px", textTransform: "unset" }}>
                         Simular Imposto de Renda
                     </Button>
                 </Box>

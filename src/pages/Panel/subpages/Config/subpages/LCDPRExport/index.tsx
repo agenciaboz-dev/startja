@@ -26,7 +26,7 @@ export const ConfigLCDPRExport: React.FC<ConfigLCDPRExportProps> = ({ user }) =>
                     padding: "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
-                    borderRadius: "30px",
+                    borderRadius: "15px",
                     flexDirection: "column",
                     width: "100%",
                     gap: "0.5vw",
@@ -39,7 +39,7 @@ export const ConfigLCDPRExport: React.FC<ConfigLCDPRExportProps> = ({ user }) =>
                     }}
                 >
                     <h2>Exportar LCDPR</h2>
-                    <Button variant="contained" sx={{ borderRadius: "30px", textTransform: "unset" }}>
+                    <Button variant="contained" sx={{ borderRadius: "15px", textTransform: "unset" }}>
                         Salvar informações
                     </Button>
                 </Box>

@@ -42,7 +42,7 @@ export const ConfigCollaborators: React.FC<ConfigCollaboratorsProps> = ({ user }
                 padding: "1.5vw",
                 boxShadow: "0 2px 2px 2px #d1d1d1",
                 backgroundColor: "white",
-                borderRadius: "30px",
+                borderRadius: "15px",
                 flexDirection: "column",
                 width: "100%",
             }}

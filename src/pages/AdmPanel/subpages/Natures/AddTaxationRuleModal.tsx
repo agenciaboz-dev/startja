@@ -20,7 +20,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
             }}
             PaperProps={{
                 sx: {
-                    borderRadius: "30px",
+                    borderRadius: "15px",
                     paddingTop: "1vw",
                     minWidth: "60vw",
                     width: "fit-content",
@@ -132,7 +132,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                     color="secondary"
                     variant="contained"
                     sx={{
-                        borderRadius: "30px",
+                        borderRadius: "15px",
                         color: "white",
                         textTransform: "unset",
                     }}
@@ -144,7 +144,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                     color="primary"
                     variant="contained"
                     sx={{
-                        borderRadius: "30px",
+                        borderRadius: "15px",
                         color: "white",
                         textTransform: "unset",
                     }}

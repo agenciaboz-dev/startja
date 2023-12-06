@@ -21,7 +21,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose }) =>
             }}
             PaperProps={{
                 sx: {
-                    borderRadius: "30px",
+                    borderRadius: "15px",
                     paddingTop: "1vw",
                     minWidth: "60vw",
                     width: "fit-content",
@@ -105,7 +105,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose }) =>
                     color="secondary"
                     variant="contained"
                     sx={{
-                        borderRadius: "30px",
+                        borderRadius: "15px",
                         color: "white",
                         textTransform: "unset",
                     }}
@@ -117,7 +117,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose }) =>
                     color="primary"
                     variant="contained"
                     sx={{
-                        borderRadius: "30px",
+                        borderRadius: "15px",
                         color: "white",
                         textTransform: "unset",
                     }}

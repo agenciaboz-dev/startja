@@ -168,7 +168,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                 variant="contained"
                                 type="submit"
                                 sx={{
-                                    borderRadius: "30px",
+                                    borderRadius: "15px",
                                     textTransform: "unset",
                                 }}
                             >
