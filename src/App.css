@@ -44,7 +44,8 @@ form {
 html {
   scroll-behavior: smooth;
   height: 100%;
-  font-size: 85%;
+  font-size: 80%;
+  overflow: hidden;
 }
 
 body {
