@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button, Checkbox, CircularProgress, FormControlLabel, TextField } from "@mui/material"
+import { Box, Button, Checkbox, CircularProgress, FormControlLabel, TextField, useMediaQuery } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { useFormik } from "formik"
 import { useIo } from "../../hooks/useIo"
@@ -12,6 +12,7 @@ import login_logo from "../../assets/whitelabel-logo-startja.webp"
 interface LoginProps {}
 
 export const Login: React.FC<LoginProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const navigate = useNavigate()
     const io = useIo()
     const [loading, setLoading] = useState(false)
@@ -23,7 +24,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
 
     const initialValues: LoginValues = {
         login: "",
-        password: ""
+        password: "",
     }
 
     const formik = useFormik({ initialValues, onSubmit: (values) => handleLogin(values) })
@@ -86,6 +87,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
             <Box
                 sx={{
                     width: "60%",
+                    display: isMobile ? "none" : "",
                 }}
             >
                 <img
@@ -103,24 +105,24 @@ export const Login: React.FC<LoginProps> = ({}) => {
                 sx={{
                     flexDirection: "column",
                     backgroundColor: "white",
-                    width: "40%",
+                    width: isMobile ? "100%" : "40%",
                     alignItems: "center",
                     justifyContent: "center",
-                    gap: "2vw",
+                    gap: isMobile ? "4vw" : "2vw",
                 }}
             >
                 <img
                     src={login_logo}
                     alt="login_logo"
                     style={{
-                        width: "30vw",
+                        width: isMobile ? "90vw" : "30vw",
                         objectFit: "contain",
                     }}
                 />
 
                 <p
                     style={{
-                        fontSize: "1.5rem",
+                        fontSize: isMobile ? "1.2rem" : "1.5rem",
                     }}
                 >
                     Levando soluções ao empreendedor do Agro
@@ -129,8 +131,9 @@ export const Login: React.FC<LoginProps> = ({}) => {
                     <Box
                         sx={{
                             flexDirection: "column",
-                            gap: "2vw",
-                            width: "30vw",
+                            gap: isMobile ? "4vw" : "2vw",
+                            width: isMobile ? "90vw" : "30vw",
+                            marginTop: isMobile ? "4vw" : "",
                         }}
                     >
                         <TextField
@@ -155,7 +158,8 @@ export const Login: React.FC<LoginProps> = ({}) => {
                         <Box
                             sx={{
                                 justifyContent: "space-between",
-                                alignItems: "center",
+                                alignItems: isMobile ? "" : "center",
+                                flexDirection: isMobile ? "column" : "",
                             }}
                         >
                             <Box>
@@ -170,6 +174,8 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                 sx={{
                                     borderRadius: "15px",
                                     textTransform: "unset",
+                                    margin: isMobile ? "8vw auto" : "",
+                                    width: isMobile ? "33vw" : "",
                                 }}
                             >
                                 {loading ? <CircularProgress size={30} sx={{ color: "#fff", fontSize: "2rem" }} /> : "Entrar"}
