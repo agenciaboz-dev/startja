@@ -16,7 +16,7 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                 height: "100%",
                 width: "7%",
                 backgroundColor: "white",
-                boxShadow: "2px 0 2px 0 #d1d1d1",
+                boxShadow: "0 2px 2px 2px #d1d1d1",
                 flexDirection: "column",
                 alignItems: "center",
                 padding: "2vw 0",

@@ -27,13 +27,15 @@ export const LastNotesMovements: React.FC<LastNotesMovementsProps> = ({ company 
                 </Button>
             </Box>
             <Paper
+                elevation={3}
                 sx={{
                     backgroundColor: "white",
                     borderRadius: "15px",
                     flex: 1,
                     flexDirection: "column",
-                    padding: "1vw 1vw 0 0"
-                }}>
+                    padding: "1vw 1vw 0 0",
+                }}
+            >
                 <MovementsChart company={company} />
             </Paper>
             <AddInvoiceModal open={isAddInvoiceModalOpen} onClose={() => setAddInvoiceModalOpen(false)} />

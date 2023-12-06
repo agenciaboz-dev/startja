@@ -46,11 +46,10 @@ export const TaxSimulator: React.FC<TaxSimulatorProps> = ({ company }) => {
                     </Button>
                 </Box>
                 <Paper
-                    elevation={1}
+                    elevation={3}
                     sx={{
                         backgroundColor: "white",
                         borderRadius: "15px",
-                        // boxShadow: "0 2px 2px 2px #d1d1d1",
                         flex: 1,
                         flexDirection: "column",
                         padding: "1vw",

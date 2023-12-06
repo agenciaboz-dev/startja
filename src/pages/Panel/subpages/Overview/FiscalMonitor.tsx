@@ -51,8 +51,8 @@ export const FiscalMonitor: React.FC<FiscalMonitorProps> = ({ company }) => {
                     </Button>
                 </Box>
                 <Paper
+                    elevation={3}
                     sx={{
-                        // width: "75%",
                         backgroundColor: "white",
                         borderRadius: "15px",
                         flex: 1,
