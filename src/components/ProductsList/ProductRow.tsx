@@ -10,16 +10,16 @@ export const ProductRow: React.FC<ProductRowProps> = ({product}) => {
 
 return (
     <Box
-    sx={{
-        alignItems: "center",
-        width: "100%",
-    }}
+        sx={{
+            alignItems: "center",
+            width: "100%",
+        }}
     >
         <Checkbox
             inputProps={{
                 style: {
-                    padding: "0"
-                }
+                    padding: "0",
+                },
             }}
         />
         <Box
@@ -30,7 +30,7 @@ return (
         >
             <Box
                 sx={{
-                    width: "45%"
+                    width: "45%",
                 }}
             >
                 <p>{product.name}</p>
@@ -38,7 +38,7 @@ return (
             </Box>
             <Box
                 sx={{
-                    width: "45%"
+                    width: "45%",
                 }}
             >
                 <p>{product.ncm}</p>
@@ -46,8 +46,8 @@ return (
             </Box>
             <Box
                 sx={{
-                    width: "10%",
-                    justifyContent: "end"
+                    width: "5%",
+                    justifyContent: "center",
                 }}
             >
                 <FormatListBulletedOutlinedIcon />

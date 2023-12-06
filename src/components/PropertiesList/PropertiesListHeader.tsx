@@ -41,6 +41,7 @@ export const PropertiesListHeader: React.FC<PropertiesListHeaderProps> = ({}) =>
                     <Box
                         sx={{
                             flex: 1,
+                            justifyContent: "center",
                         }}
                     >
                         <h3>NIRT</h3>
@@ -48,6 +49,7 @@ export const PropertiesListHeader: React.FC<PropertiesListHeaderProps> = ({}) =>
                     <Box
                         sx={{
                             flex: 1,
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Inscrição estadual</h3>
@@ -55,13 +57,15 @@ export const PropertiesListHeader: React.FC<PropertiesListHeaderProps> = ({}) =>
                     <Box
                         sx={{
                             flex: 1,
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Endereço</h3>
                     </Box>
                     <Box
                         sx={{
-                            flex: 1,
+                            width: "5%",
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Ações</h3>

@@ -37,6 +37,7 @@ export const PropertyRow: React.FC<PropertyRowProps> = ({ property }) => {
                 <Box
                     sx={{
                         flex: 1,
+                        justifyContent: "center",
                     }}
                 >
                     <p>95522</p>
@@ -44,6 +45,7 @@ export const PropertyRow: React.FC<PropertyRowProps> = ({ property }) => {
                 <Box
                     sx={{
                         flex: 1,
+                        justifyContent: "center",
                     }}
                 >
                     <p>12315/85</p>
@@ -51,13 +53,15 @@ export const PropertyRow: React.FC<PropertyRowProps> = ({ property }) => {
                 <Box
                     sx={{
                         flex: 1,
+                        justifyContent: "center",
                     }}
                 >
                     <p>Cras lobortis sollicitudin consectetur aliquet</p>
                 </Box>
                 <Box
                     sx={{
-                        flex: 1,
+                        width: "5%",
+                        justifyContent: "center",
                     }}
                 >
                     <FormatListBulletedOutlinedIcon />

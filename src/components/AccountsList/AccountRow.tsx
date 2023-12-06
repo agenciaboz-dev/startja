@@ -37,6 +37,7 @@ export const AccountRow: React.FC<AccountRowProps> = ({ account }) => {
                 <Box
                     sx={{
                         flex: 1,
+                        justifyContent: "center",
                     }}
                 >
                     <p>48123</p>
@@ -44,6 +45,7 @@ export const AccountRow: React.FC<AccountRowProps> = ({ account }) => {
                 <Box
                     sx={{
                         flex: 1,
+                        justifyContent: "center",
                     }}
                 >
                     <p>1240/01246</p>
@@ -51,13 +53,15 @@ export const AccountRow: React.FC<AccountRowProps> = ({ account }) => {
                 <Box
                     sx={{
                         flex: 1,
+                        justifyContent: "center",
                     }}
                 >
                     <p>TestBank</p>
                 </Box>
                 <Box
                     sx={{
-                        flex: 1,
+                        width: "5%",
+                        justifyContent: "center",
                     }}
                 >
                     <FormatListBulletedOutlinedIcon />

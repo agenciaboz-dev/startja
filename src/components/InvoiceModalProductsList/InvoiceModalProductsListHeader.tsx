@@ -56,7 +56,6 @@ export const InvoiceModalProductsListHeader: React.FC<InvoiceModalProductsListHe
             </Box>
             <hr
                 style={{
-                    marginLeft: "1vw",
                     width: "100%",
                 }}
             />

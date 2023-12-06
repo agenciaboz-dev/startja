@@ -43,6 +43,7 @@ export const InvoicesListHeader: React.FC<InvoicesListHeaderProps> = ({}) => {
                     <Box
                         sx={{
                             flex: 1,
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Série/Nº NFe</h3>
@@ -50,6 +51,7 @@ export const InvoicesListHeader: React.FC<InvoicesListHeaderProps> = ({}) => {
                     <Box
                         sx={{
                             flex: 1,
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Cliente/Fornecedor</h3>
@@ -57,6 +59,7 @@ export const InvoicesListHeader: React.FC<InvoicesListHeaderProps> = ({}) => {
                     <Box
                         sx={{
                             flex: 1,
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Emitente</h3>
@@ -64,6 +67,7 @@ export const InvoicesListHeader: React.FC<InvoicesListHeaderProps> = ({}) => {
                     <Box
                         sx={{
                             flex: 1,
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Propriedade</h3>
@@ -71,6 +75,7 @@ export const InvoicesListHeader: React.FC<InvoicesListHeaderProps> = ({}) => {
                     <Box
                         sx={{
                             flex: 1,
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Valor</h3>
@@ -78,13 +83,15 @@ export const InvoicesListHeader: React.FC<InvoicesListHeaderProps> = ({}) => {
                     <Box
                         sx={{
                             flex: 1,
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Situação</h3>
                     </Box>
                     <Box
                         sx={{
-                            flex: 1,
+                            width: "5%",
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Ações</h3>

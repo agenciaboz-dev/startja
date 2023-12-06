@@ -48,8 +48,8 @@ export const ProductsListHeader: React.FC<ProductsListHeaderProps> = ({}) => {
                     </Box>
                     <Box
                         sx={{
-                            width: "10%",
-                            justifyContent: "end",
+                            width: "5%",
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Ações</h3>

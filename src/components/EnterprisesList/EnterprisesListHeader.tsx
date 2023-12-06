@@ -42,6 +42,7 @@ export const EnterprisesListHeader: React.FC<EnterprisesListHeaderProps> = ({}) 
                     <Box
                         sx={{
                             flex: 1,
+                            justifyContent: "center",
                         }}
                     >
                         <h3>CPF / CNPJ</h3>
@@ -49,6 +50,7 @@ export const EnterprisesListHeader: React.FC<EnterprisesListHeaderProps> = ({}) 
                     <Box
                         sx={{
                             flex: 1,
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Tipo</h3>
@@ -56,6 +58,7 @@ export const EnterprisesListHeader: React.FC<EnterprisesListHeaderProps> = ({}) 
                     <Box
                         sx={{
                             flex: 1,
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Cidade / UF</h3>
@@ -63,13 +66,15 @@ export const EnterprisesListHeader: React.FC<EnterprisesListHeaderProps> = ({}) 
                     <Box
                         sx={{
                             flex: 1,
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Fone</h3>
                     </Box>
                     <Box
                         sx={{
-                            flex: 1,
+                            width: "5%",
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Ações</h3>

@@ -41,6 +41,7 @@ export const AccountsListHeader: React.FC<AccountsListHeaderProps> = ({}) => {
                     <Box
                         sx={{
                             flex: 1,
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Agência</h3>
@@ -48,6 +49,7 @@ export const AccountsListHeader: React.FC<AccountsListHeaderProps> = ({}) => {
                     <Box
                         sx={{
                             flex: 1,
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Número da conta</h3>
@@ -55,13 +57,15 @@ export const AccountsListHeader: React.FC<AccountsListHeaderProps> = ({}) => {
                     <Box
                         sx={{
                             flex: 1,
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Banco</h3>
                     </Box>
                     <Box
                         sx={{
-                            flex: 1,
+                            width: "5%",
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Ações</h3>

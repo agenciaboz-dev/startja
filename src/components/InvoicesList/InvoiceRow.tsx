@@ -17,35 +17,37 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => {
                 <Box sx={{ flex: 1 }}>
                     <p>{new Date(Number(invoice.emission)).toLocaleDateString("pt-br")}</p>
                 </Box>
-                <Box sx={{ flex: 1 }}>
+                <Box sx={{ flex: 1, justifyContent: "center" }}>
                     <p>
                         {invoice.series}/{invoice.nfe}
                     </p>
                 </Box>
-                <Box sx={{ flex: 1 }}>
+                <Box sx={{ flex: 1, justifyContent: "center" }}>
                     <p>{invoice.clientSupplier}</p>
                 </Box>
-                <Box sx={{ flex: 1 }}>
+                <Box sx={{ flex: 1, justifyContent: "center" }}>
                     <p>{invoice.issuer}</p>
                 </Box>
-                <Box sx={{ flex: 1 }}>
+                <Box sx={{ flex: 1, justifyContent: "center" }}>
                     <p>{invoice.property.id}</p>
                 </Box>
-                <Box sx={{ flex: 1, color: colors.primary }}>
+                <Box sx={{ flex: 1, color: colors.primary, justifyContent: "center" }}>
                     <p>R$ {invoice.value.toString().replace(".", ",")}</p>
                 </Box>
-                <Button
-                    variant="contained"
-                    sx={{
-                        flex: 1,
-                        borderRadius: "15px",
-                        textTransform: "unset",
-                        pointerEvents: "none",
-                    }}
-                >
-                    <p>{invoice.situation}</p>
-                </Button>
-                <Box sx={{ flex: 1 }}>
+                <Box sx={{ flex: 1, justifyContent: "center" }}>
+                    <Button
+                        variant="contained"
+                        sx={{
+                            flex: 1,
+                            borderRadius: "15px",
+                            textTransform: "unset",
+                            pointerEvents: "none",
+                        }}
+                    >
+                        <p>{invoice.situation}</p>
+                    </Button>
+                </Box>
+                <Box sx={{ width: "5%", justifyContent: "center" }}>
                     <IconButton>
                         <FormatListBulletedOutlinedIcon />
                     </IconButton>

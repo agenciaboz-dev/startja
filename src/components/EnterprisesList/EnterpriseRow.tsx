@@ -40,6 +40,7 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ Enterprise }) => {
                 <Box
                     sx={{
                         flex: 1,
+                        justifyContent: "center",
                     }}
                 >
                     <p>90020/151517</p>
@@ -47,6 +48,7 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ Enterprise }) => {
                 <Box
                     sx={{
                         flex: 1,
+                        justifyContent: "center",
                     }}
                 >
                     <p>Lorem Ipsum</p>
@@ -54,6 +56,7 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ Enterprise }) => {
                 <Box
                     sx={{
                         flex: 1,
+                        justifyContent: "center",
                     }}
                 >
                     <p>Aliquam aliquet</p>
@@ -61,13 +64,15 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ Enterprise }) => {
                 <Box
                     sx={{
                         flex: 1,
+                        justifyContent: "center",
                     }}
                 >
                     <p>9889-6556</p>
                 </Box>
                 <Box
                     sx={{
-                        flex: 1,
+                        width: "5%",
+                        justifyContent: "center",
                     }}
                 >
                     <FormatListBulletedOutlinedIcon />
