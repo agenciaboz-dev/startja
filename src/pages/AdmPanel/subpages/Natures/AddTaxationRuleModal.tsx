@@ -8,6 +8,9 @@ interface AddTaxationRuleModalProps {
 }
 
 const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClose }) => {
+    const pStyles = { minWidth: "fit-content" }
+    const selectStyles = { maxWidth: "10vw" }
+
     return (
         <Dialog
             open={open}
@@ -44,13 +47,21 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                         width: "100%",
                     }}
                 >
-                    <Box>
-                        <p>Quando sair de</p>
-                        <TextField select label="UF" />
-                        <p>para</p>
-                        <TextField select label="UF" />
-                        <p>, e quando for</p>
-                        <TextField select label="Produto" />
+                    <Box
+                        sx={{
+                            height: "fit-content",
+                            width: "100%",
+                            justifyContent: "center",
+                            alignItems: "baseline",
+                            gap: "0.5vw",
+                        }}
+                    >
+                        <p style={pStyles}>Quando sair de</p>
+                        <TextField select label="UF" variant="standard" size="small" fullWidth sx={selectStyles} />
+                        <p style={pStyles}>para</p>
+                        <TextField select label="UF" variant="standard" fullWidth sx={selectStyles} />
+                        <p style={pStyles}>, e quando for</p>
+                        <TextField select label="Produto" variant="standard" fullWidth sx={selectStyles} />
                         <p>:</p>
                     </Box>
 
@@ -87,6 +98,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                 sx={{
                                     flexDirection: "column",
                                     width: "100%",
+                                    gap: "0.5vw",
                                 }}
                             >
                                 <p>PIS</p>
@@ -99,6 +111,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                 sx={{
                                     flexDirection: "column",
                                     width: "100%",
+                                    gap: "0.5vw",
                                 }}
                             >
                                 <p>COFINS</p>
