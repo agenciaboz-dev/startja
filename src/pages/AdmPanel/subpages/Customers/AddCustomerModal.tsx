@@ -75,16 +75,17 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
             open={open}
             onClose={onClose}
             sx={{
-                justifyContent: "center"
+                justifyContent: "center",
             }}
             PaperProps={{
                 sx: {
                     borderRadius: "15px",
                     paddingTop: "1vw",
                     minWidth: "70vw",
-                    width: "fit-content"
-                }
-            }}>
+                    width: "fit-content",
+                },
+            }}
+        >
             <form style={{ display: "contents" }} onSubmit={formik.handleSubmit}>
                 <DialogTitle>Novo Cliente</DialogTitle>
                 <CloseOutlinedIcon
@@ -92,7 +93,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         position: "absolute",
                         top: "2vw",
                         right: "1vw",
-                        cursor: "pointer"
+                        cursor: "pointer",
                     }}
                     onClick={onClose}
                 />
@@ -102,14 +103,16 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         sx={{
                             flex: 1,
                             height: "fit-content",
-                            gap: "2vw"
-                        }}>
+                            gap: "2vw",
+                        }}
+                    >
                         <Box
                             sx={{
                                 flex: 1,
                                 flexDirection: "column",
-                                gap: "1vw"
-                            }}>
+                                gap: "1vw",
+                            }}
+                        >
                             <Grid container spacing={2}>
                                 <Grid item xs={6}>
                                     <TextField
@@ -201,6 +204,8 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         name="city"
                                         onChange={formik.handleChange}
                                     />
+                                </Grid>
+                                <Grid item xs={6}>
                                     <TextField
                                         required
                                         label="UF"
@@ -248,7 +253,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         <Box>
                             <hr
                                 style={{
-                                    height: "100%"
+                                    height: "100%",
                                 }}
                             />
                         </Box>
@@ -257,33 +262,37 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                             sx={{
                                 flex: 1,
                                 flexDirection: "column",
-                                gap: "1vw"
-                            }}>
+                                gap: "1vw",
+                            }}
+                        >
                             <Box
                                 sx={{
                                     justifyContent: "space-between",
-                                    alignItems: "center"
-                                }}>
+                                    alignItems: "center",
+                                }}
+                            >
                                 <h3>Permissões</h3>
                                 <Box
                                     sx={{
                                         alignItems: "center",
-                                        gap: "1vw"
-                                    }}>
+                                        gap: "1vw",
+                                    }}
+                                >
                                     <Button
                                         variant="contained"
                                         color="secondary"
                                         sx={{
                                             color: "white",
                                             borderRadius: "15px",
-                                            textTransform: "unset"
-                                        }}>
+                                            textTransform: "unset",
+                                        }}
+                                    >
                                         Salvar Predefinição
                                     </Button>
                                     <TextField
                                         label="Predefinição"
                                         sx={{
-                                            width: "10vw"
+                                            width: "10vw",
                                         }}
                                     />
                                 </Box>
@@ -321,8 +330,9 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
 
                 <DialogActions
                     sx={{
-                        margin: "0.5vw"
-                    }}>
+                        margin: "0.5vw",
+                    }}
+                >
                     <Button
                         onClick={onClose}
                         color="secondary"
@@ -330,8 +340,9 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         sx={{
                             borderRadius: "15px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         Cancelar
                     </Button>
                     <Button
@@ -341,8 +352,9 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         sx={{
                             borderRadius: "15px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         {loading ? <CircularProgress size="1.5rem" color="secondary" /> : "adicionar"}
                     </Button>
                 </DialogActions>
