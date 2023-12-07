@@ -7,15 +7,20 @@ import { CompanyCard } from "../../components/CompanyCard"
 import { useIo } from "../../hooks/useIo"
 import { useHeader } from "../../hooks/useHeader"
 import normalize from "../../tools/normalize"
+import AddCompanyModal from "./AddCompanyModal"
 
 interface CompanySelectionProps {
     user: Customer
 }
 
 export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
-    // const companies = user.companies
     const header = useHeader()
     const io = useIo()
+
+    const [isAddCompanyModalOpen, setAddCompanyModalOpen] = useState(false)
+    const openCompanyModal = () => {
+        setAddCompanyModalOpen(true)
+    }
 
     const [companies, setCompanies] = useState(user.companies)
 
@@ -38,18 +43,20 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
                 backgroundColor: colors.background,
                 width: "100%",
                 height: "100%",
-                overflow: "hidden"
-            }}>
+                overflow: "hidden",
+            }}
+        >
             <Box
                 sx={{
                     width: "100%",
                     flexDirection: "column",
                     overflowY: "auto",
                     padding: "2vw",
-                    gap: "2vw"
-                }}>
+                    gap: "2vw",
+                }}
+            >
                 <Header />
-                <Toolbar searchPlaceholder="empresa" onSearch={handleSearch} />
+                <Toolbar searchPlaceholder="empresa" onSearch={handleSearch} addButtonText="Adicionar Empresa" addButtonCallback={openCompanyModal} />
                 <Box sx={{}}>
                     <Grid container spacing={5} columns={7}>
                         {companies.map((company) => (
@@ -58,6 +65,7 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
                     </Grid>
                 </Box>
             </Box>
+            <AddCompanyModal open={isAddCompanyModalOpen} onClose={() => setAddCompanyModalOpen(false)} />
         </Box>
     )
 }

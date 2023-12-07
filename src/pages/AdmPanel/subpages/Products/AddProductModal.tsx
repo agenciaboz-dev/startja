@@ -31,7 +31,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
 
     useEffect(() => {
         io.on("product:creation:successful", (product: Product) => {
-            console.log("Produto criado com sucesso:", product)
+            console.log("Produto criado com sucesso: ", product)
             io.emit("product:list")
             setLoading(false)
             onClose()
