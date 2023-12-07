@@ -299,10 +299,10 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
 
                             <h4>Responsável pelo Uso</h4>
                             <p>
-                                O "Responsável pelo uso" é o representante legal da conta StartJá, com acesso total, podendo adicionar editar e
+                                O "Responsável pelo uso" é o representante legal da conta StartJá, com acesso total, podendo adicionar, editar e
                                 remover acessos e configurações.
                             </p>
-                            <p>O Administrador responsável será o responsável legal por padrão, mas você pode atribuir ao seu cliente</p>
+                            <p>O Administrador responsável será o responsável legal por padrão, mas você pode atribuir ao seu cliente.</p>
 
                             {/* <FormControlLabel control={<ToggleSwitch />} label="Atribuir cliente como responsável" /> */}
 
@@ -354,7 +354,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                             textTransform: "unset",
                         }}
                     >
-                        {loading ? <CircularProgress size="1.5rem" color="secondary" /> : "adicionar"}
+                        {loading ? <CircularProgress size="1.5rem" color="inherit" /> : "Adicionar"}
                     </Button>
                 </DialogActions>
             </form>
