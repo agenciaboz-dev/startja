@@ -96,6 +96,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                             <Box
                                 sx={{
                                     alignItems: "center",
+                                    position: "relative",
                                 }}
                             >
                                 {active && (

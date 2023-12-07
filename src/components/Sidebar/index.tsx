@@ -17,6 +17,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                 boxShadow: "0 2px 2px 2px #d1d1d1",
                 flexDirection: "column",
                 alignItems: "center",
+                overflow: "auto",
             }}
         >
             <Box
