@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button, MenuItem, TextField } from "@mui/material"
+import { Box, Button, MenuItem, TextField, useMediaQuery } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import normalize from "../../tools/normalize"
@@ -26,6 +26,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
     addButtonText,
     addButtonCallback,
 }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const [searchValue, setSearchValue] = useState("")
 
     useEffect(() => {
@@ -37,9 +38,10 @@ export const Toolbar: React.FC<ToolbarProps> = ({
             sx={{
                 justifyContent: "space-between",
                 alignItems: "center",
-                height: "2vw",
+                height: isMobile ? "fit-content" : "2vw",
                 width: "100%",
                 gap: "1vw",
+                flexDirection: isMobile ? "column" : "",
             }}
         >
             <TextField
@@ -67,6 +69,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                     borderRadius: "15px",
                     boxShadow: "0 2px 2px 0 #d1d1d1",
                     height: "100%",
+                    width: isMobile ? "100%" : "",
                 }}
             />
             {/* {!!filterButtonCallback && */}
@@ -117,6 +120,29 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                         sx: {
                             height: "100%",
                             borderRadius: "15px",
+                            padding: 0,
+                        },
+                        style: {
+                            height: "100%",
+                            padding: 0,
+                        },
+                    }}
+                    InputProps={{
+                        sx: {
+                            height: "100%",
+                            padding: 0,
+                        },
+                    }}
+                    inputProps={{
+                        style: {
+                            height: "100%",
+                            padding: 0,
+                        },
+                    }}
+                    InputLabelProps={{
+                        sx: {
+                            height: "100%",
+                            padding: 0,
                         },
                     }}
                 >

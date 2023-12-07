@@ -1,5 +1,5 @@
 import React from "react"
-import { Box } from "@mui/material"
+import { Box, useMediaQuery } from "@mui/material"
 import { ReactSVG } from "react-svg"
 import startjaIcon from "../../assets/startja_icon.svg"
 import { useAdmSidebar } from "../../hooks/useAdmSidebar"
@@ -9,8 +9,11 @@ interface AdmSidebarProps {}
 
 export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
     const admSideBar = useAdmSidebar()
+    const isMobile = useMediaQuery("(orientation: portrait)")
 
-    return (
+    return isMobile ? (
+        <Box sx={{}}></Box>
+    ) : (
         <Box
             sx={{
                 height: "100%",

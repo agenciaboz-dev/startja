@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button, Grid } from "@mui/material"
+import { Box, Button, Grid, useMediaQuery } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { CustomerCard } from "../../../../components/CustomerCard"
 import { useIo } from "../../../../hooks/useIo"
@@ -14,7 +14,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 interface CustomersProps {}
 
 export const Customers: React.FC<CustomersProps> = ({}) => {
-    // const [emptyCustomersList, setEmptyCustomersList] = useState(true)
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const customers = useCustomersList()
     const header = useHeader()
     const io = useIo()
@@ -49,7 +49,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
         <Box
             sx={{
                 flexDirection: "column",
-                gap: "1vw",
+                gap: isMobile ? "4vw" : "1vw",
                 flex: 1,
             }}
         >
