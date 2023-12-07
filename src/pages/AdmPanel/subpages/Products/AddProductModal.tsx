@@ -50,7 +50,6 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
             PaperProps={{
                 sx: {
                     borderRadius: "15px",
-                    paddingTop: "1vw",
                     minWidth: "70vw",
                 },
             }}
@@ -59,7 +58,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "2vw",
+                    top: "1vw",
                     right: "1vw",
                     cursor: "pointer",
                 }}

@@ -25,7 +25,6 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
             PaperProps={{
                 sx: {
                     borderRadius: "15px",
-                    paddingTop: "1vw",
                     minWidth: "60vw",
                 },
             }}
@@ -34,7 +33,7 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "2vw",
+                    top: "1vw",
                     right: "1vw",
                     cursor: "pointer",
                 }}
