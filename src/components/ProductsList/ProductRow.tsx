@@ -25,12 +25,13 @@ return (
         <Box
             sx={{
                 justifyContent: "space-between",
+                alignItems: "center",
                 flex: 1,
             }}
         >
             <Box
                 sx={{
-                    width: "45%",
+                    flex: 0.45,
                 }}
             >
                 <p>{product.name}</p>
@@ -38,7 +39,7 @@ return (
             </Box>
             <Box
                 sx={{
-                    width: "45%",
+                    flex: 0.45,
                 }}
             >
                 <p>{product.ncm}</p>
@@ -46,7 +47,7 @@ return (
             </Box>
             <Box
                 sx={{
-                    width: "5%",
+                    flex: 0.05,
                     justifyContent: "center",
                 }}
             >

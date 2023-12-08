@@ -29,26 +29,27 @@ export const ProductsListHeader: React.FC<ProductsListHeaderProps> = ({}) => {
                 <Box
                     sx={{
                         justifyContent: "space-between",
+                        alignItems: "center",
                         flex: 1,
                     }}
                 >
                     <Box
                         sx={{
-                            width: "45%",
+                            flex: 0.45,
                         }}
                     >
                         <h3>Nome do Produto</h3>
                     </Box>
                     <Box
                         sx={{
-                            width: "45%",
+                            flex: 0.45,
                         }}
                     >
                         <h3>NCM - Classificação</h3>
                     </Box>
                     <Box
                         sx={{
-                            width: "5%",
+                            flex: 0.05,
                             justifyContent: "center",
                         }}
                     >
