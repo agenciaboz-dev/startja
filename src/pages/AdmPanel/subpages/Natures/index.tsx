@@ -69,7 +69,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                             justifyContent: "center",
                             alignItems: "center",
                             flexDirection: "column",
-                            gap: isMobile ? "4vw" : "1vw",
+                            gap: isMobile ? "5vw" : "1vw",
                         }}
                     >
                         <h2>Sem naturezas de operação cadastradas</h2>

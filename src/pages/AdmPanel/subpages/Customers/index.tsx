@@ -64,7 +64,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
             <Box
                 sx={{
                     width: "100%",
-                    marginTop: isMobile ? "4vw" : "",
+                    marginTop: isMobile ? "5vw" : "",
                 }}
             >
                 {emptyCustomersList ? (
@@ -76,7 +76,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                             justifyContent: "center",
                             alignItems: "center",
                             flexDirection: "column",
-                            gap: isMobile ? "4vw" : "1vw",
+                            gap: isMobile ? "5vw" : "1vw",
                         }}
                     >
                         <h2>Sem clientes cadastrados</h2>

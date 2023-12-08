@@ -108,7 +108,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                     width: isMobile ? "100%" : "40%",
                     alignItems: "center",
                     justifyContent: "center",
-                    gap: isMobile ? "4vw" : "2vw",
+                    gap: isMobile ? "5vw" : "2vw",
                 }}
             >
                 <img
@@ -131,9 +131,9 @@ export const Login: React.FC<LoginProps> = ({}) => {
                     <Box
                         sx={{
                             flexDirection: "column",
-                            gap: isMobile ? "4vw" : "2vw",
+                            gap: isMobile ? "5vw" : "2vw",
                             width: isMobile ? "90vw" : "30vw",
-                            marginTop: isMobile ? "4vw" : "",
+                            marginTop: isMobile ? "5vw" : "",
                         }}
                     >
                         <TextField

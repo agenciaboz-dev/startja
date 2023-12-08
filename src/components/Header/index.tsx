@@ -24,7 +24,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
             sx={{
                 flexDirection: isMobile ? "column" : "",
                 alignItems: isMobile ? "center" : "",
-                gap: isMobile ? "4vw" : "",
+                gap: isMobile ? "5vw" : "",
             }}
         >
             <Box sx={{ justifyContent: "space-between", alignItems: "center", width: "100%" }}>
@@ -34,7 +34,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                     <MenuItem
                         sx={{
                             alignItems: "center",
-                            gap: isMobile ? "4vw" : "0.5vw",
+                            gap: isMobile ? "5vw" : "0.5vw",
                             padding: 0,
                             paddingRight: "2vw",
                             height: "100%",
@@ -49,7 +49,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                             alignItems: "center",
                             gap: "0.5vw",
                             padding: 0,
-                            paddingLeft: isMobile ? "4vw" : "2vw",
+                            paddingLeft: isMobile ? "5vw" : "2vw",
                         }}
                         onClick={(event) => setMenuAnchorEl(event.currentTarget)}
                     >
@@ -59,7 +59,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                                 height: "2vw",
                                 width: "2vw",
                                 transform: isMobile ? "scale(3)" : "",
-                                marginRight: isMobile ? "4vw" : "",
+                                marginRight: isMobile ? "5vw" : "",
                             }}
                         />
                         <Box sx={{ flexDirection: "column" }}>

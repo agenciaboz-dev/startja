@@ -25,8 +25,8 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
                     borderRadius: "20px",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     flexDirection: "column",
-                    padding: isMobile ? "4vw" : "1vw",
-                    gap: isMobile ? "4vw" : "1vw",
+                    padding: isMobile ? "5vw" : "1vw",
+                    gap: isMobile ? "5vw" : "1vw",
                     color: colors.text.greyish,
                     // flex: 1,
                 }}

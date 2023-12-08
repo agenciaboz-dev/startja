@@ -29,7 +29,7 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
                     flex: 1,
                     flexDirection: "column",
                     overflow: "auto",
-                    padding: isMobile ? "4vw" : "2vw",
+                    padding: isMobile ? "5vw" : "2vw",
                     gap: "2vw",
                 }}
             >

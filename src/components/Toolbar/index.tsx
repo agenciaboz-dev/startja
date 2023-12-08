@@ -40,7 +40,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 alignItems: "center",
                 height: isMobile ? "fit-content" : "2vw",
                 width: "100%",
-                gap: isMobile ? "4vw" : "1vw",
+                gap: isMobile ? "5vw" : "1vw",
                 flexDirection: isMobile ? "column" : "",
             }}
         >
