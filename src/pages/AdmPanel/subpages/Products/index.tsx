@@ -18,8 +18,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     const products = useProduct()
     const header = useHeader()
     const io = useIo()
-    // const emptyProductsList = !products.list.length
-    const emptyProductsList = true
+    const emptyProductsList = !products.list.length
     const [isAddProductModalOpen, setAddProductModalOpen] = useState(false)
     const openProductModal = () => {
         setAddProductModalOpen(true)

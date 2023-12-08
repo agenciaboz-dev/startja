@@ -20,8 +20,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
     const io = useIo()
     const pathname = useLocation().pathname
     const navigate = useNavigate()
-    // const emptyCustomersList = !customers.list.length
-    const emptyCustomersList = true
+    const emptyCustomersList = !customers.list.length
     const [isAddCustomerModalOpen, setAddCustomerModalOpen] = useState(false)
     const openCustomerModal = () => {
         setAddCustomerModalOpen(true)

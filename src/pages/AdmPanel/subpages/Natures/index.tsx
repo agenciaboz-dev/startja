@@ -18,8 +18,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
     const natures = useNature()
     const header = useHeader()
     const io = useIo()
-    // const emptyNaturesList = !natures.list.length
-    const emptyNaturesList = true
+    const emptyNaturesList = !natures.list.length
     const [isAddNatureModalOpen, setAddNatureModalOpen] = useState(false)
     const openNatureModal = () => {
         setAddNatureModalOpen(true)
