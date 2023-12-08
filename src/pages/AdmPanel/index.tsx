@@ -1,5 +1,5 @@
 import React from "react"
-import { Box } from "@mui/material"
+import { Box, useMediaQuery } from "@mui/material"
 import { colors } from "../../style/colors"
 import { AdmSidebar } from "../../components/AdmSidebar"
 import { Route, Routes } from "react-router-dom"
@@ -13,6 +13,7 @@ interface AdmPanelProps {
 }
 
 export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
             sx={{
@@ -28,7 +29,7 @@ export const AdmPanel: React.FC<AdmPanelProps> = ({ user }) => {
                     flex: 1,
                     flexDirection: "column",
                     overflow: "auto",
-                    padding: "2vw",
+                    padding: isMobile ? "4vw" : "2vw",
                     gap: "2vw",
                 }}
             >

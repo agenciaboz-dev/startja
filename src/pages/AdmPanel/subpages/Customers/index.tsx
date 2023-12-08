@@ -63,8 +63,8 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
             />
             <Box
                 sx={{
-                    height: "100%",
                     width: "100%",
+                    marginTop: isMobile ? "4vw" : "",
                 }}
             >
                 {emptyCustomersList ? (

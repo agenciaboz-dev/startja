@@ -24,7 +24,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
             sx={{
                 flexDirection: isMobile ? "column" : "",
                 alignItems: isMobile ? "center" : "",
-                gap: isMobile ? "2vw" : "",
+                gap: isMobile ? "4vw" : "",
             }}
         >
             <Box sx={{ justifyContent: "space-between", alignItems: "center", width: "100%" }}>

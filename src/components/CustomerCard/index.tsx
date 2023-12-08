@@ -1,22 +1,23 @@
 import React from "react"
-import { AlertColor, Box, Button, Grid, IconButton, Avatar as MuiAvatar } from "@mui/material"
+import { AlertColor, Box, Button, Grid, IconButton, Avatar as MuiAvatar, useMediaQuery } from "@mui/material"
 import { colors } from "../../style/colors"
-import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
-import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import SettingsPhoneOutlinedIcon from '@mui/icons-material/SettingsPhoneOutlined';
-import { useNavigate } from "react-router-dom";
+import LinkOutlinedIcon from "@mui/icons-material/LinkOutlined"
+import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined"
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined"
+import SettingsPhoneOutlinedIcon from "@mui/icons-material/SettingsPhoneOutlined"
+import { useNavigate } from "react-router-dom"
 
 interface CustomerCardProps {
-    customer : Customer
-    buttonColor: AlertColor | 'primary' | 'secondary'
+    customer: Customer
+    buttonColor: AlertColor | "primary" | "secondary"
 }
 
-export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor}) => {
+export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColor }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const navigate = useNavigate()
-    
+
     return (
-        <Grid item xs={3}>
+        <Grid item xs={isMobile ? 12 : 3}>
             <Box
                 sx={{
                     height: "fit-content",
@@ -24,8 +25,8 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({customer, buttonColor
                     borderRadius: "20px",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     flexDirection: "column",
-                    padding: "1vw",
-                    gap: "1vw",
+                    padding: isMobile ? "4vw" : "1vw",
+                    gap: isMobile ? "4vw" : "1vw",
                     color: colors.text.greyish,
                     // flex: 1,
                 }}
