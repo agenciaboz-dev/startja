@@ -20,64 +20,73 @@ export const Header: React.FC<HeaderProps> = ({}) => {
     const menu_opened = Boolean(menuAnchorEl)
 
     return (
-        <Box sx={{ justifyContent: "space-between", alignItems: "center", width: "100%" }}>
-            {isMobile && <MenuIcon sx={{ transform: "scale(2)", marginLeft: "2vw" }} />}
-            {!isMobile && <h1>{title}</h1>}
-            <Box sx={{ alignItems: "center", height: "100%" }}>
-                <MenuItem
-                    sx={{
-                        alignItems: "center",
-                        gap: isMobile ? "4vw" : "0.5vw",
-                        padding: 0,
-                        paddingRight: "2vw",
-                        height: "100%",
-                        borderRight: "1px solid",
-                    }}
-                >
-                    <HelpOutlineOutlinedIcon sx={{ fill: "#323232", height: "2vw", width: "2vw", transform: isMobile ? "scale(3)" : "" }} />
-                    <p style={{ fontWeight: "lighter" }}>Ajuda</p>
-                </MenuItem>
-                <MenuItem
-                    sx={{
-                        alignItems: "center",
-                        gap: "0.5vw",
-                        padding: 0,
-                        paddingLeft: isMobile ? "4vw" : "2vw",
-                    }}
-                    onClick={(event) => setMenuAnchorEl(event.currentTarget)}
-                >
-                    <AccountCircleOutlinedIcon
+        <Box
+            sx={{
+                flexDirection: isMobile ? "column" : "",
+                alignItems: isMobile ? "center" : "",
+                gap: isMobile ? "2vw" : "",
+            }}
+        >
+            <Box sx={{ justifyContent: "space-between", alignItems: "center", width: "100%" }}>
+                {isMobile && <MenuIcon sx={{ transform: "scale(2)", marginLeft: "2vw" }} />}
+                {!isMobile && <h1>{title}</h1>}
+                <Box sx={{ alignItems: "center", height: "100%" }}>
+                    <MenuItem
                         sx={{
-                            fill: "#323232",
-                            height: "2vw",
-                            width: "2vw",
-                            transform: isMobile ? "scale(3)" : "",
-                            marginRight: isMobile ? "4vw" : "",
+                            alignItems: "center",
+                            gap: isMobile ? "4vw" : "0.5vw",
+                            padding: 0,
+                            paddingRight: "2vw",
+                            height: "100%",
+                            borderRight: "1px solid",
                         }}
-                    />
-                    <Box sx={{ flexDirection: "column" }}>
-                        <p style={{ fontWeight: "lighter" }}>{user?.name}</p>
-                        <p style={{ fontSize: "1rem", fontWeight: "bold" }}>Menus e configurações</p>
-                    </Box>
-                    <ArrowDropDownOutlinedIcon />
-                </MenuItem>
-                <Menu
-                    anchorEl={menuAnchorEl}
-                    open={menu_opened}
-                    onClose={() => setMenuAnchorEl(null)}
-                    slotProps={{ paper: { elevation: 3 } }}
-                    MenuListProps={{ sx: { width: "100%" } }}
-                >
-                    {menus.list.map((menu) => {
-                        const Icon = () => menu.icon
-                        return (
-                            <MenuItem sx={{ gap: "1vw" }} onClick={menu.onClick} key={menu.id}>
-                                <Icon /> {menu.title}
-                            </MenuItem>
-                        )
-                    })}
-                </Menu>
+                    >
+                        <HelpOutlineOutlinedIcon sx={{ fill: "#323232", height: "2vw", width: "2vw", transform: isMobile ? "scale(3)" : "" }} />
+                        <p style={{ fontWeight: "lighter" }}>Ajuda</p>
+                    </MenuItem>
+                    <MenuItem
+                        sx={{
+                            alignItems: "center",
+                            gap: "0.5vw",
+                            padding: 0,
+                            paddingLeft: isMobile ? "4vw" : "2vw",
+                        }}
+                        onClick={(event) => setMenuAnchorEl(event.currentTarget)}
+                    >
+                        <AccountCircleOutlinedIcon
+                            sx={{
+                                fill: "#323232",
+                                height: "2vw",
+                                width: "2vw",
+                                transform: isMobile ? "scale(3)" : "",
+                                marginRight: isMobile ? "4vw" : "",
+                            }}
+                        />
+                        <Box sx={{ flexDirection: "column" }}>
+                            <p style={{ fontWeight: "lighter" }}>{user?.name}</p>
+                            <p style={{ fontSize: "1rem", fontWeight: "bold" }}>Menus e configurações</p>
+                        </Box>
+                        <ArrowDropDownOutlinedIcon />
+                    </MenuItem>
+                    <Menu
+                        anchorEl={menuAnchorEl}
+                        open={menu_opened}
+                        onClose={() => setMenuAnchorEl(null)}
+                        slotProps={{ paper: { elevation: 3 } }}
+                        MenuListProps={{ sx: { width: "100%" } }}
+                    >
+                        {menus.list.map((menu) => {
+                            const Icon = () => menu.icon
+                            return (
+                                <MenuItem sx={{ gap: "1vw" }} onClick={menu.onClick} key={menu.id}>
+                                    <Icon /> {menu.title}
+                                </MenuItem>
+                            )
+                        })}
+                    </Menu>
+                </Box>
             </Box>
+            {isMobile && <h1>{title}</h1>}
         </Box>
     )
 }

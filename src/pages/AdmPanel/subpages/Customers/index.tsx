@@ -49,7 +49,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
         <Box
             sx={{
                 flexDirection: "column",
-                gap: isMobile ? "4vw" : "1vw",
+                gap: isMobile ? "2vw" : "1vw",
                 flex: 1,
             }}
         >

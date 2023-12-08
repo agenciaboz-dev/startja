@@ -40,7 +40,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 alignItems: "center",
                 height: isMobile ? "fit-content" : "2vw",
                 width: "100%",
-                gap: "1vw",
+                gap: isMobile ? "4vw" : "1vw",
                 flexDirection: isMobile ? "column" : "",
             }}
         >
@@ -53,7 +53,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                     sx: {
                         borderRadius: "15px",
                         alignItems: "center",
-                        height: "100%",
+                        height: isMobile ? "10vw" : "100%",
                         gap: "0.5vw",
                         backgroundColor: greyBackground ? colors.background : "white",
                     },
@@ -106,37 +106,38 @@ export const Toolbar: React.FC<ToolbarProps> = ({
             )}
             {!!selectList && (
                 <TextField
-                    label="Tudo"
+                    label="Filtrar"
                     name="toolbarSelect"
                     sx={{
                         backgroundColor: "white",
                         borderRadius: "15px",
                         boxShadow: "0 2px 2px 0 #d1d1d1",
-                        height: "100%",
-                        width: "20vw",
+                        height: isMobile ? "10vw" : "100%",
+                        width: isMobile ? "100%" : "20vw",
                     }}
                     select
+                    size="small"
                     SelectProps={{
                         sx: {
                             height: "100%",
                             borderRadius: "15px",
-                            padding: 0,
+                            // padding: 0,
                         },
                         style: {
-                            height: "100%",
-                            padding: 0,
+                            // height: "100%",
+                            // padding: 0,
                         },
                     }}
                     InputProps={{
                         sx: {
-                            height: "100%",
-                            padding: 0,
+                            // height: "100%",
+                            // padding: 0,
                         },
                     }}
                     inputProps={{
                         style: {
-                            height: "100%",
-                            padding: 0,
+                            // height: "100%",
+                            // padding: 0,
                         },
                     }}
                     InputLabelProps={{
@@ -159,6 +160,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                         textTransform: "unset",
                         height: "100%",
                         gap: "0.5vw",
+                        marginLeft: "auto",
                     }}
                     onClick={addButtonCallback}
                 >
