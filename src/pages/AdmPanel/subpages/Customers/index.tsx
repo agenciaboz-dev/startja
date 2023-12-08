@@ -20,7 +20,8 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
     const io = useIo()
     const pathname = useLocation().pathname
     const navigate = useNavigate()
-    const emptyCustomersList = !customers.list.length
+    // const emptyCustomersList = !customers.list.length
+    const emptyCustomersList = true
     const [isAddCustomerModalOpen, setAddCustomerModalOpen] = useState(false)
     const openCustomerModal = () => {
         setAddCustomerModalOpen(true)
@@ -63,6 +64,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
             />
             <Box
                 sx={{
+                    height: "100%",
                     width: "100%",
                 }}
             >
@@ -75,7 +77,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                             justifyContent: "center",
                             alignItems: "center",
                             flexDirection: "column",
-                            gap: "1vw",
+                            gap: isMobile ? "4vw" : "1vw",
                         }}
                     >
                         <h2>Sem clientes cadastrados</h2>
@@ -85,7 +87,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                             sx={{
                                 borderRadius: "20px",
                                 textTransform: "unset",
-                                height: "3vw",
+                                height: isMobile ? "8vw" : "2vw",
                                 verticalAlign: "middle",
                                 gap: "0.5vw",
                             }}
