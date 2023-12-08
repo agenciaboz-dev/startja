@@ -57,7 +57,7 @@ export const Properties: React.FC<PropertiesProps> = ({}) => {
                         <Button
                             variant="contained"
                             sx={{
-                                borderRadius: "2vw",
+                                borderRadius: "20px",
                                 textTransform: "unset",
                                 height: "3vw",
                                 verticalAlign: "middle",
@@ -78,7 +78,7 @@ export const Properties: React.FC<PropertiesProps> = ({}) => {
                             padding: "1vw 1.5vw 1vw 0.5vw",
                             boxShadow: "0 2px 2px 2px #d1d1d1",
                             backgroundColor: "white",
-                            borderRadius: "15px",
+                            borderRadius: "20px",
                             flexDirection: "column",
                             width: "100%",
                         }}

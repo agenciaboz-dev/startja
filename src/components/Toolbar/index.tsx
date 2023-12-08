@@ -51,7 +51,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 InputProps={{
                     startAdornment: <SearchIcon />,
                     sx: {
-                        borderRadius: "15px",
+                        borderRadius: "20px",
                         alignItems: "center",
                         height: isMobile ? "10vw" : "100%",
                         gap: "0.5vw",
@@ -66,7 +66,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 sx={{
                     backgroundColor: "white",
                     flex: 1,
-                    borderRadius: "15px",
+                    borderRadius: "20px",
                     boxShadow: "0 2px 2px 0 #d1d1d1",
                     height: "100%",
                     width: isMobile ? "100%" : "",
@@ -77,7 +77,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 <Button
                     variant="outlined"
                     sx={{
-                        borderRadius: "2vw",
+                        borderRadius: "20px",
                         textTransform: "unset",
                         height: "100%",
                         gap: "0.5vw",
@@ -93,7 +93,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 <Button
                     variant="outlined"
                     sx={{
-                        borderRadius: "2vw",
+                        borderRadius: "20px",
                         textTransform: "unset",
                         height: "100%",
                         gap: "0.5vw",
@@ -110,7 +110,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                     name="toolbarSelect"
                     sx={{
                         backgroundColor: "white",
-                        borderRadius: "15px",
+                        borderRadius: "20px",
                         boxShadow: "0 2px 2px 0 #d1d1d1",
                         height: isMobile ? "10vw" : "100%",
                         width: isMobile ? "100%" : "20vw",
@@ -120,7 +120,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                     SelectProps={{
                         sx: {
                             height: "100%",
-                            borderRadius: "15px",
+                            borderRadius: "20px",
                             // padding: 0,
                         },
                         style: {
@@ -156,7 +156,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 <Button
                     variant="contained"
                     sx={{
-                        borderRadius: "2vw",
+                        borderRadius: "20px",
                         textTransform: "unset",
                         height: "100%",
                         gap: "0.5vw",

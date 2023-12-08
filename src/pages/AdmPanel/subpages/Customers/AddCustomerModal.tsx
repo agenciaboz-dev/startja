@@ -79,7 +79,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
             }}
             PaperProps={{
                 sx: {
-                    borderRadius: "15px",
+                    borderRadius: "20px",
                     minWidth: "70vw",
                     width: "fit-content",
                 },
@@ -282,7 +282,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         color="secondary"
                                         sx={{
                                             color: "white",
-                                            borderRadius: "15px",
+                                            borderRadius: "20px",
                                             textTransform: "unset",
                                         }}
                                     >
@@ -337,7 +337,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         color="secondary"
                         variant="contained"
                         sx={{
-                            borderRadius: "15px",
+                            borderRadius: "20px",
                             color: "white",
                             textTransform: "unset",
                         }}
@@ -349,7 +349,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         variant="contained"
                         type="submit"
                         sx={{
-                            borderRadius: "15px",
+                            borderRadius: "20px",
                             color: "white",
                             textTransform: "unset",
                         }}

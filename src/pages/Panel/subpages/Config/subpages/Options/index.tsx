@@ -27,7 +27,7 @@ export const ConfigOptions: React.FC<ConfigOptionsProps> = ({ user }) => {
                     padding: "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
-                    borderRadius: "15px",
+                    borderRadius: "20px",
                     flexDirection: "column",
                     width: "100%",
                 }}
@@ -39,7 +39,7 @@ export const ConfigOptions: React.FC<ConfigOptionsProps> = ({ user }) => {
                     }}
                 >
                     <h2>Observações</h2>
-                    <Button variant="contained" sx={{ borderRadius: "15px", textTransform: "unset" }}>
+                    <Button variant="contained" sx={{ borderRadius: "20px", textTransform: "unset" }}>
                         Salvar informações
                     </Button>
                 </Box>
@@ -51,7 +51,7 @@ export const ConfigOptions: React.FC<ConfigOptionsProps> = ({ user }) => {
                     // onChange={handleChange}
                     style={{
                         backgroundColor: colors.background,
-                        borderRadius: "15px",
+                        borderRadius: "20px",
                         height: "100%",
                         width: "100%",
                         padding: "0.5vw",
@@ -67,7 +67,7 @@ export const ConfigOptions: React.FC<ConfigOptionsProps> = ({ user }) => {
                     padding: "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
-                    borderRadius: "15px",
+                    borderRadius: "20px",
                     flexDirection: "column",
                     width: "100%",
                 }}
@@ -78,7 +78,7 @@ export const ConfigOptions: React.FC<ConfigOptionsProps> = ({ user }) => {
                     }}
                 >
                     <h2>Funrural</h2>
-                    <Button variant="contained" sx={{ borderRadius: "15px", textTransform: "unset" }}>
+                    <Button variant="contained" sx={{ borderRadius: "20px", textTransform: "unset" }}>
                         Salvar informações
                     </Button>
                 </Box>
@@ -99,7 +99,7 @@ export const ConfigOptions: React.FC<ConfigOptionsProps> = ({ user }) => {
                     padding: "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
-                    borderRadius: "15px",
+                    borderRadius: "20px",
                     flexDirection: "column",
                     width: "100%",
                 }}
@@ -110,7 +110,7 @@ export const ConfigOptions: React.FC<ConfigOptionsProps> = ({ user }) => {
                     }}
                 >
                     <h2>Livro-caixa</h2>
-                    <Button variant="contained" sx={{ borderRadius: "15px", textTransform: "unset" }}>
+                    <Button variant="contained" sx={{ borderRadius: "20px", textTransform: "unset" }}>
                         Salvar informações
                     </Button>
                 </Box>

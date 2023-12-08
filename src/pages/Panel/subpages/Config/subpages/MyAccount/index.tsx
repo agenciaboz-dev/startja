@@ -27,7 +27,7 @@ export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
                 padding: "1.5vw",
                 boxShadow: "0 2px 2px 2px #d1d1d1",
                 backgroundColor: "white",
-                borderRadius: "15px",
+                borderRadius: "20px",
                 flexDirection: "column",
                 width: "100%",
                 gap: "1vw",
@@ -39,7 +39,7 @@ export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
                 }}
             >
                 <h2>Minha Conta</h2>
-                <Button variant="contained" sx={{ borderRadius: "15px", textTransform: "unset" }}>
+                <Button variant="contained" sx={{ borderRadius: "20px", textTransform: "unset" }}>
                     Salvar informações
                 </Button>
             </Box>
@@ -89,7 +89,7 @@ export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
                             <Button
                                 variant="outlined"
                                 sx={{
-                                    borderRadius: "15px",
+                                    borderRadius: "20px",
                                     textTransform: "unset",
                                 }}
                             >
@@ -262,7 +262,7 @@ export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
                                     backgroundColor: colors.background,
                                     boxShadow: "0 2px 2px 2px #d1d1d1",
 
-                                    borderRadius: "15px",
+                                    borderRadius: "20px",
                                     justifyContent: "space-between",
                                     padding: "1vw",
                                 }}

@@ -43,7 +43,7 @@ export const FiscalMonitor: React.FC<FiscalMonitorProps> = ({ company }) => {
                     <Button
                         variant="text"
                         sx={{
-                            borderRadius: "15px",
+                            borderRadius: "20px",
                             textTransform: "unset",
                         }}
                     >
@@ -54,7 +54,7 @@ export const FiscalMonitor: React.FC<FiscalMonitorProps> = ({ company }) => {
                     elevation={3}
                     sx={{
                         backgroundColor: "white",
-                        borderRadius: "15px",
+                        borderRadius: "20px",
                         flex: 1,
                         flexDirection: "column",
                         padding: "2vw",
@@ -68,7 +68,7 @@ export const FiscalMonitor: React.FC<FiscalMonitorProps> = ({ company }) => {
                     ))}
                     <Button
                         variant="contained"
-                        sx={{ borderRadius: "15px", textTransform: "none", position: "absolute", bottom: "1vw", right: "1vw", gap: "0.5vw" }}
+                        sx={{ borderRadius: "20px", textTransform: "none", position: "absolute", bottom: "1vw", right: "1vw", gap: "0.5vw" }}
                     >
                         <AddOutlined />
                         Adicionar novo cliente

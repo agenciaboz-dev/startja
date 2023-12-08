@@ -39,7 +39,7 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => {
                         variant="contained"
                         sx={{
                             flex: 1,
-                            borderRadius: "15px",
+                            borderRadius: "20px",
                             textTransform: "unset",
                             pointerEvents: "none",
                         }}

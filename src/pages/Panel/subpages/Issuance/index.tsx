@@ -63,7 +63,7 @@ export const Issuance: React.FC<IssuanceProps> = ({ user, company }) => {
                             flex: 1,
                             flexDirection: "column",
                             backgroundColor: "white",
-                            borderRadius: "15px",
+                            borderRadius: "20px",
                             boxShadow: "0 2px 2px 2px #d1d1d1",
                             padding: "1vw 1.5vw 1vw 0.5vw",
                         }}

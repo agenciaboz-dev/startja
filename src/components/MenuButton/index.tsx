@@ -78,7 +78,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                             color: active ? "white" : "black",
                             pointerEvents: active ? "none" : "auto",
                             padding: "0.5vw",
-                            borderRadius: "15px",
+                            borderRadius: "20px",
                         }}
                     >
                         <Icon />

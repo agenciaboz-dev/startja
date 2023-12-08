@@ -44,7 +44,7 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ user }) => {
                     padding: "1vw 1.5vw 1vw 0.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
-                    borderRadius: "15px",
+                    borderRadius: "20px",
                     flexDirection: "column",
                     width: "100%",
                 }}

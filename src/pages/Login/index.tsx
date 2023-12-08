@@ -172,7 +172,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                 variant="contained"
                                 type="submit"
                                 sx={{
-                                    borderRadius: "15px",
+                                    borderRadius: "20px",
                                     textTransform: "unset",
                                     margin: isMobile ? "8vw auto" : "",
                                     width: isMobile ? "33vw" : "",

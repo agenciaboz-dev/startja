@@ -24,7 +24,7 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
             }}
             PaperProps={{
                 sx: {
-                    borderRadius: "15px",
+                    borderRadius: "20px",
                     minWidth: "60vw",
                 },
             }}
@@ -130,7 +130,7 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
                     color="secondary"
                     variant="contained"
                     sx={{
-                        borderRadius: "15px",
+                        borderRadius: "20px",
                         color: "white",
                         textTransform: "unset",
                     }}
@@ -142,7 +142,7 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
                     color="primary"
                     variant="contained"
                     sx={{
-                        borderRadius: "15px",
+                        borderRadius: "20px",
                         color: "white",
                         textTransform: "unset",
                     }}

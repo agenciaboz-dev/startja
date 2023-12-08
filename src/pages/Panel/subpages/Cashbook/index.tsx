@@ -54,7 +54,7 @@ export const Cashbook: React.FC<CashbookProps> = ({ user, company }) => {
                                 <Button
                                     variant="text"
                                     sx={{
-                                        borderRadius: "15px",
+                                        borderRadius: "20px",
                                         textTransform: "unset",
                                     }}
                                 >
@@ -64,7 +64,7 @@ export const Cashbook: React.FC<CashbookProps> = ({ user, company }) => {
                             <Box
                                 sx={{
                                     backgroundColor: "white",
-                                    borderRadius: "15px",
+                                    borderRadius: "20px",
                                     boxShadow: "0 2px 2px 2px #d1d1d1",
                                     flex: 1,
                                     flexDirection: "column",

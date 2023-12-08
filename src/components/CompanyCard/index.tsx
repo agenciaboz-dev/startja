@@ -24,7 +24,7 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
                 sx={{
                     alignItems: "center",
                     backgroundColor: "white",
-                    borderRadius: "15px",
+                    borderRadius: "20px",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     flexDirection: "column",
                     padding: "1vw",
@@ -40,7 +40,7 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
                         {company.city} / {company.state}
                     </p>
                 </Box>
-                <Button variant="contained" sx={{ borderRadius: "15px", textTransform: "unset", gap: "0.5vw" }} onClick={() => selectCompany()}>
+                <Button variant="contained" sx={{ borderRadius: "20px", textTransform: "unset", gap: "0.5vw" }} onClick={() => selectCompany()}>
                     <LoginOutlinedIcon />
                     <p>Acessar Empresa</p>
                 </Button>

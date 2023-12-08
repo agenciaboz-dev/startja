@@ -83,7 +83,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                         <Button
                             variant="contained"
                             sx={{
-                                borderRadius: "2vw",
+                                borderRadius: "20px",
                                 textTransform: "unset",
                                 height: "3vw",
                                 verticalAlign: "middle",

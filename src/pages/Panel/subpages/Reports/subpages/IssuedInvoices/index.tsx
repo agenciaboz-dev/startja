@@ -40,7 +40,7 @@ export const IssuedInvoices: React.FC<IssuedInvoicesProps> = ({}) => {
                     padding: "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
-                    borderRadius: "15px",
+                    borderRadius: "20px",
                     flexDirection: "column",
                     width: "100%",
                     gap: "1vw",
@@ -55,7 +55,7 @@ export const IssuedInvoices: React.FC<IssuedInvoicesProps> = ({}) => {
                     <Button
                         variant="contained"
                         sx={{
-                            borderRadius: "15px",
+                            borderRadius: "20px",
                             textTransform: "unset",
                         }}
                     >
@@ -83,7 +83,7 @@ export const IssuedInvoices: React.FC<IssuedInvoicesProps> = ({}) => {
                     padding: "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
-                    borderRadius: "15px",
+                    borderRadius: "20px",
                     flexDirection: "column",
                     width: "100%",
                 }}

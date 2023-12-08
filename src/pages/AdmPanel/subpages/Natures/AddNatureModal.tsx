@@ -27,7 +27,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
             }}
             PaperProps={{
                 sx: {
-                    borderRadius: "15px",
+                    borderRadius: "20px",
                     minWidth: "70vw",
                     width: "fit-content",
                 },
@@ -76,7 +76,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                         <Button
                             variant="contained"
                             sx={{
-                                borderRadius: "15px",
+                                borderRadius: "20px",
                                 textTransform: "unset",
                             }}
                             onClick={openTaxationRuleModal}
@@ -91,7 +91,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                             padding: "1vw 1.5vw 1vw 0.5vw",
                             boxShadow: "0 2px 2px 2px #d1d1d1",
                             backgroundColor: "white",
-                            borderRadius: "15px",
+                            borderRadius: "20px",
                             flexDirection: "column",
                             width: "100%",
                         }}
@@ -112,7 +112,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                     color="secondary"
                     variant="contained"
                     sx={{
-                        borderRadius: "15px",
+                        borderRadius: "20px",
                         color: "white",
                         textTransform: "unset",
                     }}
@@ -124,7 +124,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                     color="primary"
                     variant="contained"
                     sx={{
-                        borderRadius: "15px",
+                        borderRadius: "20px",
                         color: "white",
                         textTransform: "unset",
                     }}

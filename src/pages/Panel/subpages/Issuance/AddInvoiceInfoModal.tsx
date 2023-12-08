@@ -23,7 +23,7 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
             }}
             PaperProps={{
                 sx: {
-                    borderRadius: "15px",
+                    borderRadius: "20px",
                     paddingTop: "1vw",
                     minWidth: "80vw",
                     width: "fit-content",
@@ -159,7 +159,7 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                     color="secondary"
                     variant="contained"
                     sx={{
-                        borderRadius: "15px",
+                        borderRadius: "20px",
                         color: "white",
                         textTransform: "unset",
                     }}
@@ -171,7 +171,7 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                     color="primary"
                     variant="contained"
                     sx={{
-                        borderRadius: "15px",
+                        borderRadius: "20px",
                         color: "white",
                         textTransform: "unset",
                     }}
