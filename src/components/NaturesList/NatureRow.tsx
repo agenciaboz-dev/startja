@@ -1,6 +1,6 @@
 import React from "react"
-import { Box, Checkbox } from "@mui/material"
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined'
+import { Box, Checkbox, useMediaQuery } from "@mui/material"
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined"
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined"
 import { ToggleSwitch } from "../ToggleSwitch"
 
@@ -9,6 +9,7 @@ interface NatureRowProps {
 }
 
 export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
             sx={{
@@ -26,12 +27,13 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
             <Box
                 sx={{
                     justifyContent: "space-between",
+                    alignItems: "center",
                     flex: 1,
                 }}
             >
                 <Box
                     sx={{
-                        width: "70%",
+                        flex: isMobile ? 0.5 : 0.7,
                         alignItems: "center",
                     }}
                 >
@@ -41,7 +43,7 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
                 <Box
                     sx={{
                         alignItems: "center",
-                        width: "10%",
+                        flex: isMobile ? 0.1 : 0.1,
                         justifyContent: "center",
                     }}
                 >
@@ -50,7 +52,7 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
                 <Box
                     sx={{
                         alignItems: "center",
-                        width: "10%",
+                        flex: isMobile ? 0.1 : 0.1,
                         justifyContent: "center",
                     }}
                 >
@@ -58,7 +60,8 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
                 </Box>
                 <Box
                     sx={{
-                        width: "10%",
+                        alignItems: "center",
+                        flex: isMobile ? 0.1 : 0.1,
                         justifyContent: "center",
                     }}
                 >

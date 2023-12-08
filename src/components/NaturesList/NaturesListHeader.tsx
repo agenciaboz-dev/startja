@@ -1,9 +1,10 @@
 import React from "react"
-import { Box, Checkbox } from "@mui/material"
+import { Box, Checkbox, useMediaQuery } from "@mui/material"
 
 interface NaturesListHeaderProps {}
 
 export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
             sx={{
@@ -33,14 +34,14 @@ export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
                 >
                     <Box
                         sx={{
-                            width: "70%",
+                            flex: isMobile ? 0.5 : 0.7,
                         }}
                     >
                         <h3>Natureza da Operação</h3>
                     </Box>
                     <Box
                         sx={{
-                            width: "10%",
+                            flex: isMobile ? 0.1 : 0.1,
                             justifyContent: "center",
                         }}
                     >
@@ -48,7 +49,7 @@ export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
                     </Box>
                     <Box
                         sx={{
-                            width: "10%",
+                            flex: isMobile ? 0.1 : 0.1,
                             justifyContent: "center",
                         }}
                     >
@@ -56,7 +57,7 @@ export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
                     </Box>
                     <Box
                         sx={{
-                            width: "10%",
+                            flex: isMobile ? 0.1 : 0.1,
                             justifyContent: "center",
                         }}
                     >

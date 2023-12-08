@@ -101,6 +101,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                             borderRadius: "20px",
                             flexDirection: "column",
                             width: "100%",
+                            marginTop: isMobile ? "5vw" : "",
                         }}
                     >
                         <NaturesListHeader />

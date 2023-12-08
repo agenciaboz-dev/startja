@@ -49,7 +49,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
         <Box
             sx={{
                 flexDirection: "column",
-                gap: isMobile ? "5vw" : "1vw",
+                gap: isMobile ? "2vw" : "1vw",
                 flex: 1,
             }}
         >
@@ -102,6 +102,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                             borderRadius: "20px",
                             flexDirection: "column",
                             width: "100%",
+                            marginTop: isMobile ? "5vw" : "",
                         }}
                     >
                         <ProductsListHeader />
