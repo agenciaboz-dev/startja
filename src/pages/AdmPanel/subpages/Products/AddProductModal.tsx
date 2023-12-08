@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Grid, CircularProgress } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Grid, CircularProgress, useMediaQuery } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { useIo } from "../../../../hooks/useIo"
 import { useFormik } from "formik"
@@ -13,6 +13,7 @@ interface AddProductModalProps {
 const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
     // const [productName, setProductName] = useState("")
     // const [ncm, setNcm] = useState("")
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const io = useIo()
 
     const formik = useFormik<NewProduct>({
@@ -84,7 +85,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
-                    minWidth: "70vw",
+                    minWidth: "90vw",
                 },
             }}
         >
@@ -93,8 +94,8 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
                 <CloseOutlinedIcon
                     sx={{
                         position: "absolute",
-                        top: "1vw",
-                        right: "1vw",
+                        top: isMobile ? "5vw" : "1vw",
+                        right: isMobile ? "5vw" : "1vw",
                         cursor: "pointer",
                     }}
                     onClick={onClose}
@@ -127,7 +128,8 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
                 </DialogContent>
                 <DialogActions
                     sx={{
-                        margin: "0.5vw",
+                        margin: isMobile ? "0" : "0.5vw",
+                        padding: isMobile ? "5vw" : "",
                     }}
                 >
                     <Button
