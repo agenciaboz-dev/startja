@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button, Checkbox } from "@mui/material"
+import { Box, Button, Checkbox, useMediaQuery } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { NaturesListHeader } from "../../../../components/NaturesList/NaturesListHeader"
 import { NaturesList } from "../../../../components/NaturesList"
@@ -14,10 +14,12 @@ import normalize from "../../../../tools/normalize"
 interface NaturesProps {}
 
 export const Natures: React.FC<NaturesProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const natures = useNature()
     const header = useHeader()
     const io = useIo()
-    const emptyNaturesList = !natures.list.length
+    // const emptyNaturesList = !natures.list.length
+    const emptyNaturesList = true
     const [isAddNatureModalOpen, setAddNatureModalOpen] = useState(false)
     const openNatureModal = () => {
         setAddNatureModalOpen(true)
@@ -42,7 +44,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
         <Box
             sx={{
                 flexDirection: "column",
-                gap: "1vw",
+                gap: isMobile ? "2vw" : "1vw",
                 flex: 1,
             }}
         >
@@ -68,7 +70,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                             justifyContent: "center",
                             alignItems: "center",
                             flexDirection: "column",
-                            gap: "1vw",
+                            gap: isMobile ? "4vw" : "1vw",
                         }}
                     >
                         <h2>Sem naturezas de operação cadastradas</h2>
@@ -78,7 +80,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                             sx={{
                                 borderRadius: "20px",
                                 textTransform: "unset",
-                                height: "3vw",
+                                height: isMobile ? "8vw" : "2vw",
                                 verticalAlign: "middle",
                                 gap: "0.5vw",
                             }}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button, Checkbox } from "@mui/material"
+import { Box, Button, Checkbox, useMediaQuery } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { ProductsListHeader } from "../../../../components/ProductsList/ProductsListHeader"
 import { ProductsList } from "../../../../components/ProductsList"
@@ -14,10 +14,12 @@ import normalize from "../../../../tools/normalize"
 interface ProductsProps {}
 
 export const Products: React.FC<ProductsProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const products = useProduct()
     const header = useHeader()
     const io = useIo()
-    const emptyProductsList = !products.list.length
+    // const emptyProductsList = !products.list.length
+    const emptyProductsList = true
     const [isAddProductModalOpen, setAddProductModalOpen] = useState(false)
     const openProductModal = () => {
         setAddProductModalOpen(true)
@@ -48,7 +50,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
         <Box
             sx={{
                 flexDirection: "column",
-                gap: "1vw",
+                gap: isMobile ? "2vw" : "1vw",
                 flex: 1,
             }}
         >
@@ -69,7 +71,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                             justifyContent: "center",
                             alignItems: "center",
                             flexDirection: "column",
-                            gap: "1vw",
+                            gap: isMobile ? "4vw" : "1vw",
                         }}
                     >
                         <h2>Sem produtos cadastrados</h2>
@@ -79,7 +81,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                             sx={{
                                 borderRadius: "20px",
                                 textTransform: "unset",
-                                height: "3vw",
+                                height: isMobile ? "8vw" : "2vw",
                                 verticalAlign: "middle",
                                 gap: "0.5vw",
                             }}
