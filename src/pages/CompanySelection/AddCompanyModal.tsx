@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Grid, CircularProgress } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Grid, CircularProgress, useMediaQuery } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { useIo } from "../../../src/hooks/useIo"
 import { useFormik } from "formik"
@@ -11,6 +11,7 @@ interface AddCompanyModalProps {
 }
 
 const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const io = useIo()
 
     const formik = useFormik<NewCompany>({
@@ -67,7 +68,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
-                    minWidth: "70vw",
+                    minWidth: "90vw",
                 },
             }}
         >
@@ -76,21 +77,25 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
                 <CloseOutlinedIcon
                     sx={{
                         position: "absolute",
-                        top: "1vw",
-                        right: "1vw",
+                        top: isMobile ? "5vw" : "1vw",
+                        right: isMobile ? "5vw" : "1vw",
                         cursor: "pointer",
                     }}
                     onClick={onClose}
                 />
-                <DialogContent>
+                <DialogContent
+                    sx={{
+                        paddingTop: 0,
+                    }}
+                >
                     <Grid container spacing={2}>
-                        <Grid item xs={3}>
+                        <Grid item xs={isMobile ? 12 : 3}>
                             <TextField required label="Tipo" fullWidth value={formik.values.type} name="type" onChange={formik.handleChange} />
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={isMobile ? 12 : 3}>
                             <TextField required label="Nome" fullWidth value={formik.values.name} name="name" onChange={formik.handleChange} />
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={isMobile ? 12 : 3}>
                             <TextField
                                 required
                                 label="Documento"
@@ -100,16 +105,16 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
                                 onChange={formik.handleChange}
                             />
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={isMobile ? 12 : 3}>
                             <TextField required label="IINE" fullWidth value={formik.values.iine} name="iine" onChange={formik.handleChange} />
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={isMobile ? 12 : 3}>
                             <TextField required label="Cidade" fullWidth value={formik.values.city} name="city" onChange={formik.handleChange} />
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={isMobile ? 12 : 3}>
                             <TextField required label="Estado" fullWidth value={formik.values.state} name="state" onChange={formik.handleChange} />
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={isMobile ? 12 : 3}>
                             <TextField
                                 required
                                 label="Bairro"
@@ -119,10 +124,10 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
                                 onChange={formik.handleChange}
                             />
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={isMobile ? 12 : 3}>
                             <TextField required label="Rua" fullWidth value={formik.values.street} name="street" onChange={formik.handleChange} />
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={isMobile ? 12 : 3}>
                             <TextField
                                 required
                                 label="Complemento"
@@ -132,19 +137,19 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
                                 onChange={formik.handleChange}
                             />
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={isMobile ? 12 : 3}>
                             <TextField required label="Número" fullWidth value={formik.values.number} name="number" onChange={formik.handleChange} />
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={isMobile ? 12 : 3}>
                             <TextField required label="CEP" fullWidth value={formik.values.cep} name="cep" onChange={formik.handleChange} />
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={isMobile ? 12 : 3}>
                             <TextField required label="E-mail" fullWidth value={formik.values.email} name="email" onChange={formik.handleChange} />
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={isMobile ? 12 : 3}>
                             <TextField required label="Telefone" fullWidth value={formik.values.phone} name="phone" onChange={formik.handleChange} />
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={isMobile ? 12 : 3}>
                             <TextField
                                 required
                                 label="ID de proprietário(a)"
