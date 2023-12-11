@@ -73,10 +73,6 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                     <p>Use a regra de tributação a seguir:</p>
 
                     <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField label="Situação tributária ICMS" fullWidth />
-                        </Grid>
-
                         <Grid item xs={isMobile ? 12 : 8}>
                             <TextField label="CFOP" fullWidth />
                         </Grid>
@@ -98,7 +94,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                             <TextField label="Informações adicionais" fullWidth />
                         </Grid>
 
-                        <Grid item xs={12}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <Box
                                 sx={{
                                     flexDirection: "column",
@@ -106,11 +102,22 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                     gap: "0.5vw",
                                 }}
                             >
-                                <p>PIS</p>
+                                <p>ICMS - Situação tributária</p>
                                 <TextField label="CST" fullWidth />
                             </Box>
                         </Grid>
-
+                        <Grid item xs={isMobile ? 12 : 6}>
+                            <Box
+                                sx={{
+                                    flexDirection: "column",
+                                    width: "100%",
+                                    gap: "0.5vw",
+                                }}
+                            >
+                                <p>ICMS - Origem</p>
+                                <TextField label="Origem" fullWidth />
+                            </Box>
+                        </Grid>
                         <Grid item xs={12}>
                             <Box
                                 sx={{
@@ -119,7 +126,19 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                     gap: "0.5vw",
                                 }}
                             >
-                                <p>COFINS</p>
+                                <p>PIS - Situação tributária</p>
+                                <TextField label="CST" fullWidth />
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Box
+                                sx={{
+                                    flexDirection: "column",
+                                    width: "100%",
+                                    gap: "0.5vw",
+                                }}
+                            >
+                                <p>COFINS - Situação tributária</p>
                                 <TextField label="CST" fullWidth />
                             </Box>
                         </Grid>
