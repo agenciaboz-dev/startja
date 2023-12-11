@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, Button, Paper } from "@mui/material"
+import { Box, Button, Paper, useMediaQuery } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import AddInvoiceModal from "../Issuance/AddInvoiceModal"
 import { SectionTitle } from "../../../../components/SectionTitle"
@@ -10,12 +10,13 @@ interface LastNotesMovementsProps {
 }
 
 export const LastNotesMovements: React.FC<LastNotesMovementsProps> = ({ company }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const [isAddInvoiceModalOpen, setAddInvoiceModalOpen] = useState(false)
     const openInvoiceModal = () => {
         setAddInvoiceModalOpen(true)
     }
     return (
-        <Box sx={{ flex: "0.5", gap: "1vw", flexDirection: "column" }}>
+        <Box sx={{ flex: "0.5", gap: isMobile ? "5vw" : "1vw", flexDirection: "column", width: "90vw" }}>
             <Box sx={{ alignContent: "center", justifyContent: "space-between", width: "100%" }}>
                 <Box sx={{ gap: "1vw", alignItems: "center" }}>
                     <SectionTitle>Movimentação das últimas notas</SectionTitle>

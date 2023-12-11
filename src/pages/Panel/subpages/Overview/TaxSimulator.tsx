@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Button, Grid, MenuItem, Paper, SxProps, TextField } from "@mui/material"
+import { Box, Button, Grid, MenuItem, Paper, SxProps, TextField, useMediaQuery } from "@mui/material"
 import { useFormik } from "formik"
 import { SectionTitle } from "../../../../components/SectionTitle"
 
@@ -8,6 +8,7 @@ interface TaxSimulatorProps {
 }
 
 export const TaxSimulator: React.FC<TaxSimulatorProps> = ({ company }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const formik = useFormik({
         initialValues: {
             producer: 0,
@@ -15,32 +16,35 @@ export const TaxSimulator: React.FC<TaxSimulatorProps> = ({ company }) => {
             income: {
                 received: "",
                 to_receive: "",
-                simulated: ""
+                simulated: "",
             },
             expenses: {
                 dependents: "",
                 to_pay: "",
-                simulated: ""
+                simulated: "",
             },
             others: {
                 other_income: "",
                 deductible_expenses: "",
-                previous_losses: ""
-            }
+                previous_losses: "",
+            },
         },
         onSubmit: (values) => {
             console.log(values)
-        }
+        },
     })
 
-    const columnBoxStyle: SxProps = { flexDirection: "column", gap: "1vw" }
+    const columnBoxStyle: SxProps = { flexDirection: "column", gap: isMobile ? "5vw" : "1vw" }
     const inputAdornmentStyle: SxProps = { startAdornment: "R$", sx: { gap: "0.5vw" } }
 
     return (
         <form onSubmit={formik.handleSubmit} style={{ display: "contents" }}>
-            <Box sx={{ flex: "0.5", gap: "1vw", flexDirection: "column" }}>
-                <Box sx={{ justifyContent: "space-between" }}>
-                    <SectionTitle>Simulador de Imposto de Renda</SectionTitle>
+            <Box
+                sx={{ flex: "0.5", gap: isMobile ? "5vw" : "1vw", flexDirection: "column", alignItems: "center", width: isMobile ? "90vw" : "100%" }}
+            >
+                <Box sx={{ justifyContent: "space-between", alignItems: "center", width: "100%" }}>
+                    {!isMobile && <SectionTitle>Simulador de Imposto de Renda</SectionTitle>}
+                    {isMobile && <SectionTitle>Simulador de IR</SectionTitle>}
                     <Button variant="contained" sx={{ borderRadius: "20px", textTransform: "unset" }}>
                         Simular Imposto de Renda
                     </Button>
@@ -50,33 +54,44 @@ export const TaxSimulator: React.FC<TaxSimulatorProps> = ({ company }) => {
                     sx={{
                         backgroundColor: "white",
                         borderRadius: "20px",
-                        flex: 1,
                         flexDirection: "column",
-                        padding: "1vw",
+                        padding: isMobile ? "5vw" : "1vw",
+                        width: "100%",
                     }}
                 >
-                    <Box sx={{ flexDirection: "column", gap: "1vw" }}>
-                        <Box sx={{ gap: "1vw" }}>
-                            <TextField
-                                label="Selecione o produtor"
-                                select
-                                fullWidth
-                                value={formik.values.producer}
-                                name="producer"
-                                onChange={formik.handleChange}
-                            >
-                                <MenuItem sx={{ display: "none" }} value={0}></MenuItem>
-                                <MenuItem value={1}>Todos os produtores</MenuItem>
-                            </TextField>
+                    <Box sx={{ flexDirection: "column", gap: isMobile ? "5vw" : "1vw" }}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={isMobile ? 12 : 6}>
+                                <TextField
+                                    label="Selecione o produtor"
+                                    select
+                                    fullWidth
+                                    value={formik.values.producer}
+                                    name="producer"
+                                    onChange={formik.handleChange}
+                                >
+                                    <MenuItem sx={{ display: "none" }} value={0}></MenuItem>
+                                    <MenuItem value={1}>Todos os produtores</MenuItem>
+                                </TextField>
+                            </Grid>
 
-                            <TextField label="Selecione o ano" select fullWidth value={formik.values.year} name="year" onChange={formik.handleChange}>
-                                <MenuItem sx={{ display: "none" }} value={""}></MenuItem>
-                                <MenuItem value={"2023"}>2023</MenuItem>
-                            </TextField>
-                        </Box>
+                            <Grid item xs={isMobile ? 12 : 6}>
+                                <TextField
+                                    label="Selecione o ano"
+                                    select
+                                    fullWidth
+                                    value={formik.values.year}
+                                    name="year"
+                                    onChange={formik.handleChange}
+                                >
+                                    <MenuItem sx={{ display: "none" }} value={""}></MenuItem>
+                                    <MenuItem value={"2023"}>2023</MenuItem>
+                                </TextField>
+                            </Grid>
+                        </Grid>
 
-                        <Grid container spacing={1.5} columns={3}>
-                            <Grid item xs={1}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={isMobile ? 12 : 4}>
                                 <Box sx={columnBoxStyle}>
                                     Receitas da atividade rural
                                     <TextField
@@ -102,7 +117,7 @@ export const TaxSimulator: React.FC<TaxSimulatorProps> = ({ company }) => {
                                     />
                                 </Box>
                             </Grid>
-                            <Grid item xs={1}>
+                            <Grid item xs={isMobile ? 12 : 4}>
                                 <Box sx={columnBoxStyle}>
                                     Despesas da atividade rural
                                     <TextField
@@ -128,7 +143,7 @@ export const TaxSimulator: React.FC<TaxSimulatorProps> = ({ company }) => {
                                     />
                                 </Box>
                             </Grid>
-                            <Grid item xs={1}>
+                            <Grid item xs={isMobile ? 12 : 4}>
                                 <Box sx={columnBoxStyle}>
                                     Outros valores
                                     <TextField
