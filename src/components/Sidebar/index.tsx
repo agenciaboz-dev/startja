@@ -1,14 +1,17 @@
 import React from "react"
-import { Box } from "@mui/material"
+import { Box, useMediaQuery } from "@mui/material"
 import { useSidebar } from "../../hooks/useSidebar"
 import { MenuButton } from "../MenuButton"
 
 interface SidebarProps {}
 
 export const Sidebar: React.FC<SidebarProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const sidebar = useSidebar()
 
-    return (
+    return isMobile ? (
+        <Box sx={{}}></Box>
+    ) : (
         <Box
             sx={{
                 height: "100%",

@@ -8,8 +8,8 @@ import { MenuButton } from "../MenuButton"
 interface AdmSidebarProps {}
 
 export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
-    const admSideBar = useAdmSidebar()
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const admSideBar = useAdmSidebar()
 
     return isMobile ? (
         <Box sx={{}}></Box>
