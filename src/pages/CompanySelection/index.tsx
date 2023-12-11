@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Grid } from "@mui/material"
+import { Box, Grid, useMediaQuery } from "@mui/material"
 import { colors } from "../../style/colors"
 import { Header } from "../../components/Header"
 import { Toolbar } from "../../components/Toolbar"
@@ -14,6 +14,7 @@ interface CompanySelectionProps {
 }
 
 export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const header = useHeader()
     const io = useIo()
 
@@ -51,14 +52,14 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
                     width: "100%",
                     flexDirection: "column",
                     overflowY: "auto",
-                    padding: "2vw",
+                    padding: isMobile ? "5vw" : "2vw",
                     gap: "2vw",
                 }}
             >
                 <Header />
                 <Toolbar searchPlaceholder="empresa" onSearch={handleSearch} addButtonText="Adicionar Empresa" addButtonCallback={openCompanyModal} />
-                <Box sx={{}}>
-                    <Grid container spacing={5} columns={7}>
+                <Box sx={{ padding: isMobile ? "5vw 0" : "" }}>
+                    <Grid container spacing={2}>
                         {companies.map((company) => (
                             <CompanyCard key={company.id} company={company} />
                         ))}

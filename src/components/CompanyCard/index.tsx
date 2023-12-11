@@ -1,15 +1,16 @@
 import React from "react"
-import { Box, Button, Grid, Avatar as MuiAvatar } from "@mui/material"
+import { Box, Button, Grid, Avatar as MuiAvatar, useMediaQuery } from "@mui/material"
 import { colors } from "../../style/colors"
-import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
-import { useNavigate } from "react-router-dom";
+import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined"
+import { useNavigate } from "react-router-dom"
 import { useCompany } from "../../hooks/useCompany"
 
 interface CompanyCardProps {
     company: Company
 }
 
-export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
+export const CompanyCard: React.FC<CompanyCardProps> = ({ company }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const navigate = useNavigate()
     const { setSelectedCompany } = useCompany()
 
@@ -17,9 +18,9 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
         setSelectedCompany(company)
         navigate(`/painel`)
     }
-    
+
     return (
-        <Grid item xs={1}>
+        <Grid item xs={isMobile ? 12 : 2}>
             <Box
                 sx={{
                     alignItems: "center",
@@ -27,7 +28,7 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({company}) => {
                     borderRadius: "20px",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     flexDirection: "column",
-                    padding: "1vw",
+                    padding: isMobile ? "5vw" : "1vw",
                     gap: "1vw",
                     color: colors.text.greyish,
                 }}
