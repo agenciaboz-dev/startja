@@ -47,6 +47,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
+                    minHeight: "90vh",
                     minWidth: "90vw",
                 },
             }}

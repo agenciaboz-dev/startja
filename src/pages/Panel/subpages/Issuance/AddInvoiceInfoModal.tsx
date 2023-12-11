@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { ToggleSwitch } from "../../../../components/ToggleSwitch"
 
@@ -9,6 +9,7 @@ interface AddInvoiceInfoModalProps {
 }
 
 const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const [informTime, setInformTime] = useState(false)
 
     const handleSwitchToggle = () => {
@@ -24,7 +25,6 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
-                    paddingTop: "1vw",
                     minWidth: "80vw",
                     width: "fit-content",
                 },
@@ -34,29 +34,34 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "2vw",
-                    right: "1vw",
+                    top: isMobile ? "5vw" : "1vw",
+                    right: isMobile ? "5vw" : "1vw",
                     cursor: "pointer",
                 }}
                 onClick={onClose}
             />
 
-            <DialogContent>
+            <DialogContent
+                sx={{
+                    paddingTop: 0,
+                }}
+            >
                 <Box
                     sx={{
                         width: "100%",
-                        gap: "2vw",
+                        gap: isMobile ? "5vw" : "2vw",
+                        flexDirection: isMobile ? "column" : "",
                     }}
                 >
                     <Box
                         sx={{
                             flex: 1,
                             flexDirection: "column",
-                            gap: "1vw",
+                            gap: isMobile ? "5vw" : "1vw",
                         }}
                     >
                         <p>Informações gerais</p>
-                        <TextField label="Digite as informações complementares" fullWidth />
+                        <TextField label="Informações complementares" fullWidth />
                         <Box
                             sx={{
                                 alignItems: "center",
@@ -79,22 +84,22 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                         )}
                         <p>Pagamento</p>
                         <Grid container spacing={2}>
-                            <Grid item xs={6}>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField label="Condições de pagamento" fullWidth />
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField label="Tipo de pagamento" fullWidth />
                             </Grid>
                         </Grid>
                         <p>Adicionar faturas</p>
                         <Grid container spacing={2}>
-                            <Grid item xs={4}>
+                            <Grid item xs={isMobile ? 12 : 4}>
                                 <TextField label="Quantidade de parcelas" fullWidth />
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={isMobile ? 12 : 4}>
                                 <TextField label="Valor" fullWidth />
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={isMobile ? 12 : 4}>
                                 <TextField label="Vencimento" fullWidth />
                             </Grid>
                         </Grid>
@@ -103,7 +108,7 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                     <Box>
                         <hr
                             style={{
-                                height: "100%",
+                                flex: 1,
                             }}
                         />
                     </Box>
@@ -112,7 +117,7 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                         sx={{
                             flex: 1,
                             flexDirection: "column",
-                            gap: "1vw",
+                            gap: isMobile ? "5vw" : "1vw",
                         }}
                     >
                         <p>Transporte e frete</p>
@@ -120,10 +125,10 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                             <Grid item xs={12}>
                                 <TextField label="Tipo de frete" fullWidth />
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField label="Placa do veículo" fullWidth />
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField label="UF do veículo" fullWidth />
                             </Grid>
                             <Grid item xs={12}>
@@ -132,16 +137,16 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                         </Grid>
                         <p>Volumes do transporte</p>
                         <Grid container spacing={2}>
-                            <Grid item xs={6}>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField label="Quantidade dos produtos transportados" fullWidth />
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField label="Espécie dos produtos transportados" fullWidth />
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField label="Quantidade de parcelas" fullWidth />
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField label="Valor" fullWidth />
                             </Grid>
                         </Grid>
