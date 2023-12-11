@@ -99,7 +99,11 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                     onClick={onClose}
                 />
 
-                <DialogContent>
+                <DialogContent
+                    sx={{
+                        paddingTop: 0,
+                    }}
+                >
                     <Box
                         sx={{
                             flex: 1,
@@ -322,10 +326,10 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                             {/* <FormControlLabel control={<ToggleSwitch />} label="Atribuir cliente como responsável" /> */}
 
                             <Grid container spacing={2}>
-                                <Grid item xs={6}>
+                                <Grid item xs={isMobile ? 12 : 6}>
                                     <TextField label="E-mail do Responsável" fullWidth />
                                 </Grid>
-                                <Grid item xs={6}>
+                                <Grid item xs={isMobile ? 12 : 6}>
                                     <TextField label="Telefone do Responsável" fullWidth />
                                 </Grid>
                                 <Grid item xs={12}>
