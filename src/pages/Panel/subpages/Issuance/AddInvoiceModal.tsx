@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box, Grid, Tab, Tabs, Radio } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box, Grid, Tab, Tabs, Radio, useMediaQuery } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import AddInvoiceInfoModal from "./AddInvoiceInfoModal"
 import { colors } from "../../../../style/colors"
@@ -12,6 +12,7 @@ interface AddInvoiceModalProps {
 }
 
 const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const [rightSideDisplay, setRightSideDisplay] = useState("produto")
     const [emptyList, setEmptyList] = useState(false)
 
@@ -50,29 +51,34 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                 },
             }}
         >
-            <DialogTitle>Preencha os dados da nota de saída</DialogTitle>
+            {!isMobile && <DialogTitle>Preencha os dados da nota de saída</DialogTitle>}
+            {isMobile && <DialogTitle>Preencha a nota de saída</DialogTitle>}
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "1vw",
-                    right: "1vw",
+                    top: isMobile ? "5vw" : "1vw",
+                    right: isMobile ? "5vw" : "1vw",
                     cursor: "pointer",
                 }}
                 onClick={onClose}
             />
 
-            <DialogContent>
+            <DialogContent
+                sx={{
+                    paddingTop: 0,
+                }}
+            >
                 <Box
                     sx={{
-                        width: "100%",
-                        gap: "2vw",
+                        flex: 1,
+                        gap: isMobile ? "5vw" : "2vw",
                     }}
                 >
                     <Box
                         sx={{
                             flex: 1,
                             flexDirection: "column",
-                            gap: "1vw",
+                            gap: isMobile ? "5vw" : "1vw",
                         }}
                     >
                         <Grid container spacing={2}>
@@ -115,7 +121,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                     <Box>
                         <hr
                             style={{
-                                height: "100%",
+                                flex: 1,
                             }}
                         />
                     </Box>
@@ -124,7 +130,8 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                         sx={{
                             flex: 1,
                             flexDirection: "column",
-                            gap: "1vw",
+                            gap: isMobile ? "5vw" : "1vw",
+                            paddingRight: isMobile ? "5vw" : "",
                         }}
                     >
                         <h3>Adicionar Produto</h3>
@@ -161,23 +168,26 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                             <Box
                                 sx={{
                                     flexDirection: "column",
-                                    gap: "1vw",
+                                    gap: isMobile ? "5vw" : "1vw",
                                 }}
                             >
                                 <Grid container spacing={2}>
-                                    <Grid item xs={12}>
+                                    <Grid item xs={isMobile ? 12 : 6}>
                                         <TextField label="Produto" fullWidth />
                                     </Grid>
-                                    <Grid item xs={6}>
+                                    <Grid item xs={isMobile ? 12 : 6}>
                                         <TextField label="Quantidade" fullWidth />
                                     </Grid>
-                                    <Grid item xs={6}>
-                                        <TextField label="Unidade" fullWidth />
+                                    <Grid item xs={isMobile ? 12 : 6}>
+                                        <TextField label="Unidade comercial" fullWidth />
                                     </Grid>
-                                    <Grid item xs={6}>
+                                    <Grid item xs={isMobile ? 12 : 6}>
+                                        <TextField label="Unidade tributável" fullWidth />
+                                    </Grid>
+                                    <Grid item xs={isMobile ? 12 : 6}>
                                         <TextField label="Valor unitário" fullWidth />
                                     </Grid>
-                                    <Grid item xs={6}>
+                                    <Grid item xs={isMobile ? 12 : 6}>
                                         <TextField label="Valor total" fullWidth />
                                     </Grid>
                                     <Grid item xs={12}>
@@ -186,10 +196,10 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                                 </Grid>
                                 <h4>Integração com pedido de compra</h4>
                                 <Grid container spacing={2}>
-                                    <Grid item xs={6}>
+                                    <Grid item xs={isMobile ? 12 : 6}>
                                         <TextField label="Ordem de compra" fullWidth />
                                     </Grid>
-                                    <Grid item xs={6}>
+                                    <Grid item xs={isMobile ? 12 : 6}>
                                         <TextField label="Nº do item" fullWidth />
                                     </Grid>
                                 </Grid>
@@ -209,7 +219,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                             <Box
                                 sx={{
                                     flexDirection: "column",
-                                    gap: "1vw",
+                                    gap: isMobile ? "5vw" : "1vw",
                                 }}
                             >
                                 <Grid container spacing={2}>
@@ -245,26 +255,28 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
             <DialogActions
                 sx={{
                     margin: "0.5vw",
-                    justifyContent: "space-between",
                 }}
             >
-                <Button
-                    onClick={onClose}
-                    color="secondary"
-                    variant="outlined"
-                    sx={{
-                        borderRadius: "20px",
-                        color: "black",
-                        textTransform: "unset",
-                    }}
-                >
-                    Cancelar
-                </Button>
                 <Box
                     sx={{
-                        gap: "1vw",
+                        gap: isMobile ? "2vw" : "1vw",
+                        flexDirection: isMobile ? "column" : "",
+                        width: "100%",
                     }}
                 >
+                    <Button
+                        onClick={onClose}
+                        color="secondary"
+                        variant="outlined"
+                        sx={{
+                            color: "black",
+                            borderRadius: "20px",
+                            textTransform: "unset",
+                            marginRight: isMobile ? "" : "auto",
+                        }}
+                    >
+                        Cancelar
+                    </Button>
                     <Button
                         onClick={openInvoiceInfoModal}
                         color="primary"
