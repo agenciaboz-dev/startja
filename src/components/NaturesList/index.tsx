@@ -16,6 +16,7 @@ export const NaturesList: React.FC<NaturesListProps> = ({ natures }) => {
                 overflowY: "auto",
                 margin: isMobile ? "2vw 0" : "0.5vw 0",
                 gap: isMobile ? "2vw" : "",
+                width: "100%",
             }}
         >
             {natures.map((nature) => (

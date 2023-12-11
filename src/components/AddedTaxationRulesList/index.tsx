@@ -1,5 +1,5 @@
 import React from "react"
-import { Box } from "@mui/material"
+import { Box, useMediaQuery } from "@mui/material"
 import { AddedTaxationRuleRow } from "./AddedTaxationRulesRow"
 // import { useAddedTaxationRuleRow } from "../../hooks/useAddedTaxationRuleRow"
 
@@ -7,7 +7,8 @@ interface AddedTaxationRuleRowsListProps {
     // addedTaxationRule: AddedTaxationRuleRow
 }
 
-export const AddedTaxationRuleRowsList: React.FC<AddedTaxationRuleRowsListProps> = ({addedTaxationRule}) => {
+export const AddedTaxationRuleRowsList: React.FC<AddedTaxationRuleRowsListProps> = ({ addedTaxationRule }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     // const addedTaxationRules = useAddedTaxationRuleRow()
 
     return (

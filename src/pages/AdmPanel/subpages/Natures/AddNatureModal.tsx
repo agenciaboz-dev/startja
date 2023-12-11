@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { NaturesListHeader } from "../../../../components/NaturesList/NaturesListHeader"
 import { NaturesList } from "../../../../components/NaturesList"
@@ -13,6 +13,7 @@ interface AddNatureModalProps {
 }
 
 const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const [isAddTaxationRuleModalOpen, setAddTaxationRuleModalOpen] = useState(false)
     const openTaxationRuleModal = () => {
         setAddTaxationRuleModalOpen(true)
@@ -28,7 +29,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
-                    minWidth: "70vw",
+                    minWidth: "90vw",
                     width: "fit-content",
                 },
             }}
@@ -37,8 +38,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "1vw",
-                    right: "1vw",
+                    top: isMobile ? "5vw" : "1vw",
+                    right: isMobile ? "5vw" : "1vw",
                     cursor: "pointer",
                 }}
                 onClick={onClose}
@@ -49,7 +50,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                     sx={{
                         flexDirection: "column",
                         width: "100%",
-                        gap: "2vw",
+                        gap: isMobile ? "5vw" : "2vw",
                     }}
                 >
                     <Grid container spacing={2}>
@@ -85,6 +86,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                         </Button>
                     </Box>
 
+                    {/* <Box sx={{}}> */}
                     <Box
                         sx={{
                             flex: 1,
@@ -93,12 +95,14 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                             backgroundColor: "white",
                             borderRadius: "20px",
                             flexDirection: "column",
-                            width: "100%",
+                            overflow: "auto",
+                            width: isMobile ? "700px" : "100%",
                         }}
                     >
                         <AddedTaxationRulesListHeader />
                         <AddedTaxationRuleRowsList />
                     </Box>
+                    {/* </Box> */}
                 </Box>
             </DialogContent>
 

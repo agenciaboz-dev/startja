@@ -1,9 +1,15 @@
 import React from "react"
-import { Box, Checkbox } from "@mui/material"
+import { Box, Checkbox, useMediaQuery } from "@mui/material"
 
 interface AddedTaxationRulesListHeaderProps {}
 
 export const AddedTaxationRulesListHeader: React.FC<AddedTaxationRulesListHeaderProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
+    const cellStyle = {
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+    }
 
     return (
         <Box
@@ -15,7 +21,7 @@ export const AddedTaxationRulesListHeader: React.FC<AddedTaxationRulesListHeader
             <Box
                 sx={{
                     alignItems: "center",
-                    width: "100%",
+                    width: isMobile ? "100%" : "100%",
                     marginBottom: "1vw",
                 }}
             >
@@ -31,57 +37,53 @@ export const AddedTaxationRulesListHeader: React.FC<AddedTaxationRulesListHeader
                     sx={{
                         justifyContent: "space-between",
                         flex: 1,
+                        gap: isMobile ? "5vw" : "",
                     }}
                 >
                     <Box
                         sx={{
                             alignItems: "center",
-                            width: "10%",
+                            flex: 0.1,
                         }}
                     >
                         <h3>Destino</h3>
                     </Box>
                     <Box
                         sx={{
-                            alignItems: "center",
-                            justifyContent: "center",
-                            width: "10%",
+                            ...cellStyle,
+                            flex: 0.1,
                         }}
                     >
                         <h3>NCM</h3>
                     </Box>
                     <Box
                         sx={{
-                            alignItems: "center",
-                            justifyContent: "center",
-                            width: "25%",
+                            ...cellStyle,
+                            flex: 0.25,
                         }}
                     >
                         <h3>Produto</h3>
                     </Box>
                     <Box
                         sx={{
-                            alignItems: "center",
-                            justifyContent: "center",
-                            width: "25%",
+                            ...cellStyle,
+                            flex: 0.2,
                         }}
                     >
                         <h3>CFOP</h3>
                     </Box>
                     <Box
                         sx={{
-                            alignItems: "center",
-                            justifyContent: "center",
-                            width: "20%",
+                            ...cellStyle,
+                            flex: 0.25,
                         }}
                     >
                         <h3>Situação tributária</h3>
                     </Box>
                     <Box
                         sx={{
-                            alignItems: "center",
-                            justifyContent: "center",
-                            width: "5%",
+                            ...cellStyle,
+                            flex: 0.05,
                         }}
                     >
                         <h3>Ações</h3>
