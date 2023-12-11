@@ -1,5 +1,5 @@
 import React from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 
 interface AddTaxationRuleModalProps {
@@ -8,8 +8,9 @@ interface AddTaxationRuleModalProps {
 }
 
 const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClose }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const pStyles = { minWidth: "fit-content" }
-    const selectStyles = { maxWidth: "10vw" }
+    const selectStyles = { maxWidth: isMobile ? "100%" : "10vw" }
 
     return (
         <Dialog
@@ -22,7 +23,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                 sx: {
                     borderRadius: "20px",
                     paddingTop: "1vw",
-                    minWidth: "60vw",
+                    minWidth: "80vw",
                     width: "fit-content",
                 },
             }}
@@ -38,12 +39,16 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                 onClick={onClose}
             />
 
-            <DialogContent>
+            <DialogContent
+                sx={{
+                    paddingTop: 0,
+                }}
+            >
                 <Box
                     sx={{
                         alignItems: "center",
                         flexDirection: "column",
-                        gap: "1vw",
+                        gap: isMobile ? "5vw" : "1vw",
                         width: "100%",
                     }}
                 >
@@ -54,15 +59,15 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                             justifyContent: "center",
                             alignItems: "baseline",
                             gap: "0.5vw",
+                            flexDirection: isMobile ? "column" : "",
                         }}
                     >
                         <p style={pStyles}>Quando sair de</p>
                         <TextField select label="UF" variant="standard" size="small" fullWidth sx={selectStyles} />
                         <p style={pStyles}>para</p>
                         <TextField select label="UF" variant="standard" fullWidth sx={selectStyles} />
-                        <p style={pStyles}>, e quando for</p>
+                        <p style={pStyles}> e quando for</p>
                         <TextField select label="Produto" variant="standard" fullWidth sx={selectStyles} />
-                        <p>:</p>
                     </Box>
 
                     <p>Use a regra de tributação a seguir:</p>
@@ -72,20 +77,20 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                             <TextField label="Situação tributária ICMS" fullWidth />
                         </Grid>
 
-                        <Grid item xs={9}>
+                        <Grid item xs={isMobile ? 12 : 8}>
                             <TextField label="CFOP" fullWidth />
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={isMobile ? 12 : 4}>
                             <TextField label="Benefício fiscal" fullWidth />
                         </Grid>
 
-                        <Grid item xs={4}>
+                        <Grid item xs={isMobile ? 12 : 4}>
                             <TextField label="Percentual base de cálculo" fullWidth />
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={isMobile ? 12 : 4}>
                             <TextField label="Alíquota" fullWidth />
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={isMobile ? 12 : 4}>
                             <TextField label="Percentual de deferimento" fullWidth />
                         </Grid>
 

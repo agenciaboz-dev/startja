@@ -45,7 +45,11 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                 onClick={onClose}
             />
 
-            <DialogContent>
+            <DialogContent
+                sx={{
+                    paddingTop: 0,
+                }}
+            >
                 <Box
                     sx={{
                         flexDirection: "column",
@@ -54,13 +58,13 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                     }}
                 >
                     <Grid container spacing={2}>
-                        <Grid item xs={4}>
+                        <Grid item xs={isMobile ? 12 : 4}>
                             <TextField label="Operação" fullWidth />
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={isMobile ? 12 : 4}>
                             <TextField label="Tipo" fullWidth />
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={isMobile ? 12 : 4}>
                             <TextField label="Finalidade" fullWidth />
                         </Grid>
                         <Grid item xs={12}>
