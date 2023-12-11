@@ -34,31 +34,34 @@ export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
                 >
                     <Box
                         sx={{
-                            flex: isMobile ? 0.5 : 0.7,
+                            flex: 0.7,
                         }}
                     >
                         <h3>Natureza da Operação</h3>
                     </Box>
                     <Box
                         sx={{
-                            flex: isMobile ? 0.1 : 0.1,
+                            flex: 0.1,
                             justifyContent: "center",
+                            display: isMobile ? "none" : "",
                         }}
                     >
                         <h3>Tributação</h3>
                     </Box>
                     <Box
                         sx={{
-                            flex: isMobile ? 0.1 : 0.1,
+                            flex: 0.1,
                             justifyContent: "center",
+                            display: isMobile ? "none" : "",
                         }}
                     >
                         <h3>Editar</h3>
                     </Box>
                     <Box
                         sx={{
-                            flex: isMobile ? 0.1 : 0.1,
+                            flex: 0.1,
                             justifyContent: "center",
+                            display: isMobile ? "none" : "",
                         }}
                     >
                         <h3>Ativar/Desativar</h3>

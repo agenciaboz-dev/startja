@@ -70,6 +70,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                             alignItems: "center",
                             flexDirection: "column",
                             gap: isMobile ? "5vw" : "1vw",
+                            textAlign: "center",
                         }}
                     >
                         <h2>Sem naturezas de operação cadastradas</h2>
@@ -86,7 +87,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                             onClick={openNatureModal}
                         >
                             <AddOutlinedIcon />
-                            Adicionar nova natureza de operação
+                            Adicionar natureza de operação
                         </Button>
                     </Box>
                 )}
@@ -95,7 +96,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                     <Box
                         sx={{
                             flex: 1,
-                            padding: "1vw 1.5vw 1vw 0.5vw",
+                            padding: isMobile ? "5vw 1vw" : "1vw 1.5vw 1vw 0.5vw",
                             boxShadow: "0 2px 2px 2px #d1d1d1",
                             backgroundColor: "white",
                             borderRadius: "20px",

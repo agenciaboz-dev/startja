@@ -43,7 +43,7 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
                 <Box
                     sx={{
                         alignItems: "center",
-                        flex: isMobile ? 0.1 : 0.1,
+                        flex: 0.1,
                         justifyContent: "center",
                     }}
                 >
@@ -52,7 +52,7 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
                 <Box
                     sx={{
                         alignItems: "center",
-                        flex: isMobile ? 0.1 : 0.1,
+                        flex: 0.1,
                         justifyContent: "center",
                     }}
                 >
@@ -61,7 +61,7 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
                 <Box
                     sx={{
                         alignItems: "center",
-                        flex: isMobile ? 0.1 : 0.1,
+                        flex: 0.1,
                         justifyContent: "center",
                     }}
                 >

@@ -71,6 +71,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                             alignItems: "center",
                             flexDirection: "column",
                             gap: isMobile ? "5vw" : "1vw",
+                            textAlign: "center",
                         }}
                     >
                         <h2>Sem produtos cadastrados</h2>

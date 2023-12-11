@@ -1,5 +1,5 @@
 import React from "react"
-import { Box } from "@mui/material"
+import { Box, useMediaQuery } from "@mui/material"
 import { ProductRow } from "./ProductRow"
 
 interface ProductsListProps {
@@ -7,13 +7,15 @@ interface ProductsListProps {
 }
 
 export const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5vw 0",
+                margin: isMobile ? "2vw 0" : "0.5vw 0",
+                gap: isMobile ? "2vw" : "",
             }}
         >
             {products.map((product) => (

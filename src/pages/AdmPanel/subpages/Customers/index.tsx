@@ -77,6 +77,7 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                             alignItems: "center",
                             flexDirection: "column",
                             gap: isMobile ? "5vw" : "1vw",
+                            textAlign: "center",
                         }}
                     >
                         <h2>Sem clientes cadastrados</h2>

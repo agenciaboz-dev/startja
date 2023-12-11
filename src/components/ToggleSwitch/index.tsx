@@ -3,6 +3,7 @@ import { Box, Switch, SwitchProps } from "@mui/material"
 import CircleIcon from "@mui/icons-material/Circle"
 import CheckCircleIcon from "@mui/icons-material/CheckCircle"
 import { useIo } from "../../hooks/useIo"
+import { colors } from "../../style/colors"
 
 interface ToggleSwitchProps extends SwitchProps {
     toggleSwitchCallback: () => void
@@ -18,8 +19,19 @@ export const ToggleSwitch: React.FC<ToggleSwitchProps> = (props) => {
     }
 
     return (
-        <Box>
-            <Switch {...props} onChange={handleChange} sx={{}} icon={<CircleIcon sx={{}} />} checkedIcon={<CheckCircleIcon sx={{}} />} />
+        <Box
+            sx={{
+                padding: 0,
+                margin: 0,
+            }}
+        >
+            <Switch
+                {...props}
+                onChange={handleChange}
+                sx={{}}
+                icon={<CircleIcon sx={{ color: "gray", transform: "scale(1.5)" }} />}
+                checkedIcon={<CheckCircleIcon sx={{ transform: "scale(1.5)" }} />}
+            />
         </Box>
     )
 }
