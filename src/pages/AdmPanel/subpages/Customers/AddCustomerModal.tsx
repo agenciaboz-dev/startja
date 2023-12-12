@@ -34,6 +34,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
             document: "",
             email: "",
             name: "",
+            businessName: "",
             password: "",
             phone: "",
             state: "",
@@ -137,6 +138,17 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         fullWidth
                                         value={formik.values.name}
                                         name="name"
+                                        onChange={formik.handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        label="Nome Fantasia"
+                                        placeholder="Selecione um"
+                                        fullWidth
+                                        value={formik.values.businessName}
+                                        name="businessName"
                                         onChange={formik.handleChange}
                                     />
                                 </Grid>
