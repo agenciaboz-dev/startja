@@ -40,7 +40,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 alignItems: "center",
                 height: isMobile ? "fit-content" : "2vw",
                 width: "100%",
-                gap: isMobile ? "5vw" : "1vw",
+                gap: isMobile ? "2.5vw" : "1vw",
                 flexDirection: isMobile ? "column" : "",
             }}
         >
@@ -69,7 +69,8 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                     borderRadius: "20px",
                     boxShadow: "0 2px 2px 0 #d1d1d1",
                     height: "100%",
-                    width: isMobile ? "100%" : "",
+                    width: isMobile ? "100%" : "fit-content",
+                    minWidth: "15vw",
                 }}
             />
             {/* {!!filterButtonCallback && */}
@@ -81,6 +82,8 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                         textTransform: "unset",
                         height: "100%",
                         gap: "0.5vw",
+                        width: isMobile ? "100%" : "fit-content",
+                        minWidth: "15vw",
                     }}
                     // onClick={filterButtonCallback}
                 >
@@ -97,6 +100,8 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                         textTransform: "unset",
                         height: "100%",
                         gap: "0.5vw",
+                        width: isMobile ? "100%" : "fit-content",
+                        minWidth: "15vw",
                     }}
                     // onClick={importButtonCallback}
                 >
@@ -113,7 +118,8 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                         borderRadius: "20px",
                         boxShadow: "0 2px 2px 0 #d1d1d1",
                         height: isMobile ? "10vw" : "100%",
-                        width: isMobile ? "100%" : "20vw",
+                        width: isMobile ? "100%" : "fit-content",
+                        minWidth: "15vw",
                     }}
                     select
                     size="small"
@@ -162,6 +168,8 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                         gap: "0.5vw",
                         marginLeft: "auto",
                         marginRight: isMobile ? "auto" : "",
+                        width: isMobile ? "100%" : "fit-content",
+                        minWidth: "15vw",
                     }}
                     onClick={addButtonCallback}
                 >

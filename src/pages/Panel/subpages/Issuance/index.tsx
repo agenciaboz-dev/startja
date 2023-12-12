@@ -32,7 +32,7 @@ export const Issuance: React.FC<IssuanceProps> = ({ user, company }) => {
         <Box
             sx={{
                 flexDirection: "column",
-                gap: "1vw",
+                gap: isMobile ? "5vw" : "1vw",
                 flex: 1,
             }}
         >
