@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, Collapse, MenuItem, SxProps } from "@mui/material"
+import { Box, Collapse, MenuItem, SxProps, useMediaQuery } from "@mui/material"
 import { useLocation } from "react-router-dom"
 // import { KeyboardArrowDown } from "@mui/icons-material"
 import { colors } from "../../style/colors"
@@ -11,6 +11,7 @@ interface MenuButtonProps {
 }
 
 export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const Icon = () => sideBarItem.icon
     const location = useLocation()
     const { setOpenDrawer } = useDrawer()
@@ -65,11 +66,11 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                     <Box
                         sx={{
                             backgroundColor: colors.primary,
-                            borderTopRightRadius: "1vw",
-                            borderBottomRightRadius: "1vw",
+                            borderTopRightRadius: isMobile ? "2.5vw" : "1vw",
+                            borderBottomRightRadius: isMobile ? "2.5vw" : "1vw",
                             position: "absolute",
                             height: "100%",
-                            width: "0.5vw",
+                            width: isMobile ? "2.5vw" : "0.5vw",
                             left: 0,
                         }}
                     ></Box>

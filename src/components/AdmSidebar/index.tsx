@@ -19,11 +19,12 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
             <Box
                 sx={{
                     height: "100%",
-                    width: "70vw",
+                    width: "50vw",
                     backgroundColor: "white",
                     flexDirection: "column",
                     alignItems: "center",
                     overflow: "auto",
+                    paddingTop: "5vw",
                 }}
             >
                 <Box

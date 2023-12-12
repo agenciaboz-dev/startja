@@ -3,12 +3,14 @@ import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined"
 import FilterVintageOutlinedIcon from "@mui/icons-material/FilterVintageOutlined"
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined"
 import SnippetFolderOutlinedIcon from "@mui/icons-material/SnippetFolderOutlined"
+import { useMediaQuery } from "@mui/material"
 
 export const useAdmSidebar = () => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const navigate = useNavigate()
     const iconStyle = {
-        height: "2vw",
-        width: "2vw",
+        height: isMobile ? "12vw" : "2vw",
+        width: isMobile ? "12vw" : "2vw",
     }
 
     const admSidebar: SidebarItem[] = [
