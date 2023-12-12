@@ -15,7 +15,7 @@ const DrawerContext = createContext<DrawerContextValue>({} as DrawerContextValue
 export default DrawerContext
 
 export const DrawerProvider: React.FC<DrawerProviderProps> = ({ children }) => {
-    const [openDrawer, setOpenDrawer] = useState(true)
+    const [openDrawer, setOpenDrawer] = useState(false)
 
     return <DrawerContext.Provider value={{ openDrawer, setOpenDrawer }}>{children}</DrawerContext.Provider>
 }
