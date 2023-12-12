@@ -64,11 +64,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                 onClick={onClose}
             />
 
-            <DialogContent
-                sx={{
-                    paddingTop: 0,
-                }}
-            >
+            <DialogContent>
                 <Box
                     sx={{
                         flex: 1,
@@ -84,13 +80,13 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                     >
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <TextField label="Propriedade" placeholder="Selecione uma propriedade" fullWidth />
+                                <TextField label="Propriedade" fullWidth />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField label="Natureza da operação" placeholder="Selecione uma natureza de operação" fullWidth />
+                                <TextField label="Natureza da operação" fullWidth />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField label="Cliente / Fornecedor" placeholder="Selecione um cliente/fornecedor" fullWidth />
+                                <TextField label="Cliente / Fornecedor" fullWidth />
                             </Grid>
                         </Grid>
 

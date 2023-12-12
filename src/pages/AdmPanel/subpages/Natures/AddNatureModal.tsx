@@ -45,11 +45,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                 onClick={onClose}
             />
 
-            <DialogContent
-                sx={{
-                    paddingTop: 0,
-                }}
-            >
+            <DialogContent>
                 <Box
                     sx={{
                         flexDirection: "column",

@@ -100,11 +100,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
                     }}
                     onClick={onClose}
                 />
-                <DialogContent
-                    sx={{
-                        paddingTop: 0,
-                    }}
-                >
+                <DialogContent>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             {/* <TextField label="Nome do produto" fullWidth value={productName} onChange={handleProductNameChange} /> */}

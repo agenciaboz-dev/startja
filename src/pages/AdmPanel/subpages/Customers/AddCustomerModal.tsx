@@ -100,11 +100,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                     onClick={onClose}
                 />
 
-                <DialogContent
-                    sx={{
-                        paddingTop: 0,
-                    }}
-                >
+                <DialogContent>
                     <Box
                         sx={{
                             flex: 1,

@@ -38,11 +38,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                 onClick={onClose}
             />
 
-            <DialogContent
-                sx={{
-                    paddingTop: 0,
-                }}
-            >
+            <DialogContent>
                 <Box
                     sx={{
                         alignItems: "center",

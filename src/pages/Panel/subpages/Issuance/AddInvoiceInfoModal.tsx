@@ -41,11 +41,7 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                 onClick={onClose}
             />
 
-            <DialogContent
-                sx={{
-                    paddingTop: 0,
-                }}
-            >
+            <DialogContent>
                 <Box
                     sx={{
                         width: "100%",
