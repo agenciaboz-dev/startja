@@ -145,7 +145,6 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                     <TextField
                                         required
                                         label="Nome Fantasia"
-                                        placeholder="Selecione um"
                                         fullWidth
                                         value={formik.values.businessName}
                                         name="businessName"
@@ -156,7 +155,6 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                     <TextField
                                         required
                                         label="Regime tributário"
-                                        placeholder="Selecione um"
                                         fullWidth
                                         value={formik.values.regime_tributario}
                                         name="regime_tributario"
@@ -192,7 +190,6 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                     <TextField
                                         required
                                         label="Inscrição estadual"
-                                        placeholder="Selecione um"
                                         fullWidth
                                         value={formik.values.inscricao_estadual}
                                         name="inscricao_estadual"
