@@ -81,7 +81,7 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                         <p>Pagamento</p>
                         <Grid container spacing={2}>
                             <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField label="Condições de pagamento" fullWidth />
+                                <TextField label="Condição de pagamento" fullWidth />
                             </Grid>
                             <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField label="Tipo de pagamento" fullWidth />
@@ -122,6 +122,12 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                                 <TextField label="Tipo de frete" fullWidth />
                             </Grid>
                             <Grid item xs={isMobile ? 12 : 6}>
+                                <TextField label="Valor do frete" fullWidth />
+                            </Grid>
+                            <Grid item xs={isMobile ? 12 : 6}>
+                                <TextField label="Valor do seguro" fullWidth />
+                            </Grid>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField label="Placa do veículo" fullWidth />
                             </Grid>
                             <Grid item xs={isMobile ? 12 : 6}>
@@ -140,10 +146,10 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                                 <TextField label="Espécie dos produtos transportados" fullWidth />
                             </Grid>
                             <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField label="Quantidade de parcelas" fullWidth />
+                                <TextField label="Peso bruto (Kg)" fullWidth />
                             </Grid>
                             <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField label="Valor" fullWidth />
+                                <TextField label="Peso líquido (Kg)" fullWidth />
                             </Grid>
                         </Grid>
                     </Box>
