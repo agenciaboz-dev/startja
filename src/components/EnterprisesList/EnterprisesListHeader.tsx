@@ -1,9 +1,10 @@
 import React from "react"
-import { Box, Checkbox } from "@mui/material"
+import { Box, Checkbox, useMediaQuery } from "@mui/material"
 
 interface EnterprisesListHeaderProps {}
 
 export const EnterprisesListHeader: React.FC<EnterprisesListHeaderProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
             sx={{
@@ -29,19 +30,19 @@ export const EnterprisesListHeader: React.FC<EnterprisesListHeaderProps> = ({}) 
                     sx={{
                         justifyContent: "space-between",
                         flex: 1,
-                        gap: "2vw",
+                        gap: isMobile ? "20vw" : "2vw",
                     }}
                 >
                     <Box
                         sx={{
-                            flex: 1,
+                            flex: 0.2,
                         }}
                     >
                         <h3>Nome</h3>
                     </Box>
                     <Box
                         sx={{
-                            flex: 1,
+                            flex: 0.2,
                             justifyContent: "center",
                         }}
                     >
@@ -49,7 +50,7 @@ export const EnterprisesListHeader: React.FC<EnterprisesListHeaderProps> = ({}) 
                     </Box>
                     <Box
                         sx={{
-                            flex: 1,
+                            flex: 0.2,
                             justifyContent: "center",
                         }}
                     >
@@ -57,7 +58,7 @@ export const EnterprisesListHeader: React.FC<EnterprisesListHeaderProps> = ({}) 
                     </Box>
                     <Box
                         sx={{
-                            flex: 1,
+                            flex: 0.2,
                             justifyContent: "center",
                         }}
                     >
@@ -65,7 +66,7 @@ export const EnterprisesListHeader: React.FC<EnterprisesListHeaderProps> = ({}) 
                     </Box>
                     <Box
                         sx={{
-                            flex: 1,
+                            flex: 0.15,
                             justifyContent: "center",
                         }}
                     >
@@ -73,7 +74,7 @@ export const EnterprisesListHeader: React.FC<EnterprisesListHeaderProps> = ({}) 
                     </Box>
                     <Box
                         sx={{
-                            width: "5%",
+                            flex: 0.05,
                             justifyContent: "center",
                         }}
                     >

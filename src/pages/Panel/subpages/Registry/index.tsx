@@ -36,6 +36,7 @@ export const Registry: React.FC<RegistryProps> = ({ user }) => {
                         flexDirection: "column",
                         gap: isMobile ? "5vw" : "2vw",
                         height: "100%",
+                        width: isMobile ? "90vw" : "100%",
                     }}
                 >
                     <Routes>

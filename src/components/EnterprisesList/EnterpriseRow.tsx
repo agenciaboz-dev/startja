@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Button, Checkbox } from "@mui/material"
+import { Box, Button, Checkbox, useMediaQuery } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import { colors } from "../../style/colors"
 
@@ -8,6 +8,7 @@ interface EnterpriseRowProps {
 }
 
 export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ Enterprise }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
             sx={{
@@ -27,19 +28,19 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ Enterprise }) => {
                     alignItems: "center",
                     justifyContent: "space-between",
                     flex: 1,
-                    gap: "2vw",
+                    gap: isMobile ? "20vw" : "2vw",
                 }}
             >
                 <Box
                     sx={{
-                        flex: 1,
+                        flex: 0.2,
                     }}
                 >
                     <p>Lorem Ipsum</p>
                 </Box>
                 <Box
                     sx={{
-                        flex: 1,
+                        flex: 0.2,
                         justifyContent: "center",
                     }}
                 >
@@ -47,7 +48,7 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ Enterprise }) => {
                 </Box>
                 <Box
                     sx={{
-                        flex: 1,
+                        flex: 0.2,
                         justifyContent: "center",
                     }}
                 >
@@ -55,7 +56,7 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ Enterprise }) => {
                 </Box>
                 <Box
                     sx={{
-                        flex: 1,
+                        flex: 0.2,
                         justifyContent: "center",
                     }}
                 >
@@ -63,7 +64,7 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ Enterprise }) => {
                 </Box>
                 <Box
                     sx={{
-                        flex: 1,
+                        flex: 0.15,
                         justifyContent: "center",
                     }}
                 >
@@ -71,7 +72,7 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ Enterprise }) => {
                 </Box>
                 <Box
                     sx={{
-                        width: "5%",
+                        flex: 0.05,
                         justifyContent: "center",
                     }}
                 >
