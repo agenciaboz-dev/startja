@@ -32,7 +32,7 @@ export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ adde
                 sx={{
                     justifyContent: "space-between",
                     flex: 1,
-                    gap: isMobile ? "5vw" : "",
+                    gap: isMobile ? "10vw" : "",
                 }}
             >
                 <Box

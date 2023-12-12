@@ -86,23 +86,29 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                         </Button>
                     </Box>
 
-                    {/* <Box sx={{}}> */}
                     <Box
                         sx={{
                             flex: 1,
-                            padding: "1vw 1.5vw 1vw 0.5vw",
-                            boxShadow: "0 2px 2px 2px #d1d1d1",
-                            backgroundColor: "white",
-                            borderRadius: "20px",
-                            flexDirection: "column",
-                            overflow: "auto",
-                            width: isMobile ? "700px" : "100%",
+                            overflow: isMobile ? "scroll" : "",
+                            padding: isMobile ? "1vw 5vw" : "",
+                            margin: isMobile ? "0 -5vw" : "",
                         }}
                     >
-                        <AddedTaxationRulesListHeader />
-                        <AddedTaxationRuleRowsList />
+                        <Box
+                            sx={{
+                                flex: 1,
+                                boxShadow: "0 2px 2px 2px #d1d1d1",
+                                backgroundColor: "white",
+                                borderRadius: "20px",
+                                flexDirection: "column",
+                                padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
+                                width: isMobile ? "fit-content" : "100%",
+                            }}
+                        >
+                            <AddedTaxationRulesListHeader />
+                            <AddedTaxationRuleRowsList />
+                        </Box>
                     </Box>
-                    {/* </Box> */}
                 </Box>
             </DialogContent>
 
