@@ -6,6 +6,7 @@ import { ProductProvider } from "./contexts/productContext"
 import { CompanyProvider } from "./contexts/companyContext"
 import { HeaderProvider } from "./contexts/headerContext"
 import { NatureProvider } from "./contexts/natureContext"
+import { DrawerProvider } from "./contexts/drawerContext"
 
 interface ProvidersProps {
     children: React.ReactNode
@@ -21,8 +22,10 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
                             <CustomersListProvider>
                                 <NatureProvider>
                                     <HeaderProvider>
-                                        <Snackbar />
-                                        {children}
+                                        <DrawerProvider>
+                                            <Snackbar />
+                                            {children}
+                                        </DrawerProvider>
                                     </HeaderProvider>
                                 </NatureProvider>
                             </CustomersListProvider>

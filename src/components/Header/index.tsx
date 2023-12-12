@@ -7,6 +7,7 @@ import { useHeader } from "../../hooks/useHeader"
 import { useMenus } from "../../hooks/useMenus"
 import { useUser } from "../../hooks/useUser"
 import MenuIcon from "@mui/icons-material/Menu"
+import { useDrawer } from "../../hooks/useDrawer"
 
 interface HeaderProps {}
 
@@ -15,6 +16,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
     const { title } = useHeader()
     const menus = useMenus()
     const { user } = useUser()
+    const drawer = useDrawer()
 
     const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null)
     const menu_opened = Boolean(menuAnchorEl)
@@ -29,7 +31,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
             }}
         >
             <Box sx={{ justifyContent: "space-between", alignItems: "center", width: "100%" }}>
-                {isMobile && <MenuIcon sx={{ transform: "scale(2)", marginLeft: "2vw" }} />}
+                {isMobile && <MenuIcon sx={{ transform: "scale(2)", marginLeft: "2vw" }} onClick={() => drawer.setOpenDrawer(true)} />}
                 {!isMobile && <h1>{title}</h1>}
                 <Box sx={{ alignItems: "center", height: "100%" }}>
                     <MenuItem

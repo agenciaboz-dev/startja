@@ -3,6 +3,7 @@ import { Box, Collapse, MenuItem, SxProps } from "@mui/material"
 import { useLocation } from "react-router-dom"
 // import { KeyboardArrowDown } from "@mui/icons-material"
 import { colors } from "../../style/colors"
+import { useDrawer } from "../../hooks/useDrawer"
 
 interface MenuButtonProps {
     sideBarItem: SidebarItem
@@ -12,6 +13,7 @@ interface MenuButtonProps {
 export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
     const Icon = () => sideBarItem.icon
     const location = useLocation()
+    const { setOpenDrawer } = useDrawer()
     const active = location.pathname.split("/")[2] == sideBarItem.path.split("/")[1]
 
     // const [collapse, setCollapse] = useState(active)
@@ -39,6 +41,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
         //     setCollapse((collapse) => !collapse)
         // }
         item.onClick()
+        setOpenDrawer(false)
     }
 
     return (
