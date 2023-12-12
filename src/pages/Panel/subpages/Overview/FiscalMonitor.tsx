@@ -66,7 +66,8 @@ export const FiscalMonitor: React.FC<FiscalMonitorProps> = ({ company }) => {
                     sx={{
                         flexDirection: "column",
                         maxWidth: "80vw",
-                        height: isMobile ? "80%" : "",
+                        height: isMobile ? "85%" : "100%",
+                        overflow: "scroll",
                     }}
                 >
                     Há {quantity} documentos restantes

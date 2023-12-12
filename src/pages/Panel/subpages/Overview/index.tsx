@@ -41,7 +41,7 @@ export const Overview: React.FC<OverviewProps> = ({ user, company }) => {
                         sx={{
                             flexDirection: "column",
                             height: "100%",
-                            flex: isMobile ? 1 : 0.8,
+                            flex: isMobile ? 1 : 0.7,
                             gap: isMobile ? "5vw" : "2vw",
                             alignItems: isMobile ? "center" : "normal",
                         }}
@@ -49,7 +49,7 @@ export const Overview: React.FC<OverviewProps> = ({ user, company }) => {
                         <TaxSimulator company={company} />
                         <LastNotesMovements company={company} />
                     </Box>
-                    <Box sx={{ height: "100%", flex: isMobile ? 1 : 0.2, justifyContent: "center" }}>
+                    <Box sx={{ height: "100%", flex: isMobile ? 1 : 0.3, justifyContent: "center" }}>
                         <FiscalMonitor company={company} />
                     </Box>
                 </Box>

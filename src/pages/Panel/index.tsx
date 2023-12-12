@@ -1,5 +1,5 @@
 import React from "react"
-import { Box } from "@mui/material"
+import { Box, useMediaQuery } from "@mui/material"
 import { colors } from "../../style/colors"
 import { Sidebar } from "../../components/Sidebar"
 import { Route, Routes } from "react-router-dom"
@@ -16,6 +16,7 @@ interface PanelProps {
 }
 
 export const Panel: React.FC<PanelProps> = ({ user }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const { selectedCompany } = useCompany()
 
     return selectedCompany ? (
@@ -26,7 +27,7 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
                     flex: 1,
                     flexDirection: "column",
                     overflow: "auto",
-                    padding: "2vw",
+                    padding: isMobile ? "5vw" : "2vw",
                     gap: "2vw",
                 }}
             >
