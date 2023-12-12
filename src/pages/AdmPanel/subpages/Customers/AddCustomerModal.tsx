@@ -121,7 +121,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                             }}
                         >
                             <Grid container spacing={2}>
-                                <Grid item xs={6}>
+                                <Grid item xs={isMobile ? 12 : 6}>
                                     <TextField
                                         required
                                         label="CPF/CNPJ"
@@ -131,7 +131,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         onChange={formik.handleChange}
                                     />
                                 </Grid>
-                                <Grid item xs={6}>
+                                <Grid item xs={isMobile ? 12 : 6}>
                                     <TextField
                                         required
                                         label="Nome"
@@ -210,30 +210,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                             <h3>Endereço</h3>
 
                             <Grid container spacing={2}>
-                                <Grid item xs={6}>
-                                    <TextField required label="CEP" fullWidth value={formik.values.cep} name="cep" onChange={formik.handleChange} />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        required
-                                        label="Cidade"
-                                        fullWidth
-                                        value={formik.values.city}
-                                        name="city"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        required
-                                        label="UF"
-                                        fullWidth
-                                        value={formik.values.state}
-                                        name="state"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
+                                <Grid item xs={12}>
                                     <TextField required label="Rua" fullWidth value={formik.values.rua} name="rua" onChange={formik.handleChange} />
                                 </Grid>
                                 <Grid item xs={6}>
@@ -262,6 +239,29 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         fullWidth
                                         value={formik.values.bairro}
                                         name="bairro"
+                                        onChange={formik.handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField required label="CEP" fullWidth value={formik.values.cep} name="cep" onChange={formik.handleChange} />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        required
+                                        label="Cidade"
+                                        fullWidth
+                                        value={formik.values.city}
+                                        name="city"
+                                        onChange={formik.handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        required
+                                        label="UF"
+                                        fullWidth
+                                        value={formik.values.state}
+                                        name="state"
                                         onChange={formik.handleChange}
                                     />
                                 </Grid>
