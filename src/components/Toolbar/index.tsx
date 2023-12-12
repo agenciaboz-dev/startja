@@ -161,6 +161,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                         height: "100%",
                         gap: "0.5vw",
                         marginLeft: "auto",
+                        marginRight: isMobile ? "auto" : "",
                     }}
                     onClick={addButtonCallback}
                 >

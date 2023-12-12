@@ -1,9 +1,10 @@
 import React from "react"
-import { Box, Checkbox } from "@mui/material"
+import { Box, Checkbox, useMediaQuery } from "@mui/material"
 
 interface InvoiceModalProductsListHeaderProps {}
 
 export const InvoiceModalProductsListHeader: React.FC<InvoiceModalProductsListHeaderProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const slotStyle = {
         alignItems: "center",
         justifyContent: "center",
@@ -36,6 +37,7 @@ export const InvoiceModalProductsListHeader: React.FC<InvoiceModalProductsListHe
                     sx={{
                         justifyContent: "space-between",
                         flex: 1,
+                        gap: isMobile ? "10vw" : "",
                     }}
                 >
                     <Box sx={{ ...slotStyle, justifyContent: "start" }}>

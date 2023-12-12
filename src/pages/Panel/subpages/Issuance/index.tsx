@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button } from "@mui/material"
+import { Box, Button, useMediaQuery } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { colors } from "../../../../style/colors"
 import { Sidebar } from "../../../../components/Sidebar"
@@ -16,6 +16,7 @@ interface IssuanceProps {
 }
 
 export const Issuance: React.FC<IssuanceProps> = ({ user, company }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const header = useHeader()
     const [isAddInvoiceModalOpen, setAddInvoiceModalOpen] = useState(false)
     const openInvoiceModal = () => {
@@ -47,7 +48,7 @@ export const Issuance: React.FC<IssuanceProps> = ({ user, company }) => {
                         height: "100%",
                         width: "100%",
                         flexDirection: "column",
-                        gap: "2vw",
+                        gap: isMobile ? "5vw" : "2vw",
                     }}
                 >
                     <Toolbar
@@ -61,15 +62,25 @@ export const Issuance: React.FC<IssuanceProps> = ({ user, company }) => {
                     <Box
                         sx={{
                             flex: 1,
-                            flexDirection: "column",
-                            backgroundColor: "white",
-                            borderRadius: "20px",
-                            boxShadow: "0 2px 2px 2px #d1d1d1",
-                            padding: "1vw 1.5vw 1vw 0.5vw",
+                            overflow: isMobile ? "scroll" : "",
+                            padding: isMobile ? "1vw 5vw" : "",
+                            margin: isMobile ? "0 -5vw" : "",
                         }}
                     >
-                        <InvoicesListHeader />
-                        <InvoicesList invoices={company.notas} />
+                        <Box
+                            sx={{
+                                flex: 1,
+                                flexDirection: "column",
+                                backgroundColor: "white",
+                                borderRadius: "20px",
+                                boxShadow: "0 2px 2px 2px #d1d1d1",
+                                padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
+                                width: isMobile ? "fit-content" : "100%",
+                            }}
+                        >
+                            <InvoicesListHeader />
+                            <InvoicesList invoices={company.notas} />
+                        </Box>
                     </Box>
                 </Box>
             </Box>

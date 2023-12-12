@@ -69,6 +69,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                     sx={{
                         flex: 1,
                         gap: isMobile ? "5vw" : "2vw",
+                        flexDirection: isMobile ? "column" : "",
                     }}
                 >
                     <Box
@@ -105,12 +106,21 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                         {!emptyList && (
                             <Box
                                 sx={{
-                                    flexDirection: "column",
                                     flex: 1,
+                                    overflow: isMobile ? "scroll" : "",
+                                    padding: isMobile ? "1vw 5vw" : "",
+                                    margin: isMobile ? "0 -5vw" : "",
                                 }}
                             >
-                                <InvoiceModalProductsListHeader />
-                                <InvoiceModalProductsList />
+                                <Box
+                                    sx={{
+                                        flexDirection: "column",
+                                        flex: 1,
+                                    }}
+                                >
+                                    <InvoiceModalProductsListHeader />
+                                    <InvoiceModalProductsList />
+                                </Box>
                             </Box>
                         )}
                     </Box>
@@ -128,7 +138,6 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                             flex: 1,
                             flexDirection: "column",
                             gap: isMobile ? "5vw" : "1vw",
-                            paddingRight: isMobile ? "5vw" : "",
                         }}
                     >
                         <h3>Adicionar Produto</h3>
