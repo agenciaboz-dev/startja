@@ -19,7 +19,7 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
             <Box
                 sx={{
                     height: "100%",
-                    width: "50vw",
+                    width: "70vw",
                     backgroundColor: "white",
                     flexDirection: "column",
                     alignItems: "center",
@@ -30,6 +30,8 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                 <Box
                     sx={{
                         marginBottom: "0.5vw",
+                        width: "100%",
+                        justifyContent: "center",
                     }}
                 >
                     <ReactSVG src={startjaIcon} />
@@ -38,6 +40,7 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                     sx={{
                         flexDirection: "column",
                         alignItems: "center",
+                        width: "100%",
                     }}
                 >
                     {admSideBar.map((sideBarItem) => (
