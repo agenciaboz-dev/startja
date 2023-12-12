@@ -79,8 +79,11 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
                         <Grid item xs={6}>
                             <TextField label="Nome" fullWidth />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={6}>
                             <TextField label="Indicador de inscrição estadual" fullWidth />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField label="Número de inscrição estadual" fullWidth />
                         </Grid>
                     </Grid>
 
