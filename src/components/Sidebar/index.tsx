@@ -1,16 +1,42 @@
 import React from "react"
-import { Box, useMediaQuery } from "@mui/material"
+import { Box, Drawer, useMediaQuery } from "@mui/material"
 import { useSidebar } from "../../hooks/useSidebar"
 import { MenuButton } from "../MenuButton"
+import { useDrawer } from "../../hooks/useDrawer"
 
 interface SidebarProps {}
 
 export const Sidebar: React.FC<SidebarProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const sidebar = useSidebar()
+    const drawer = useDrawer()
 
     return isMobile ? (
-        <Box sx={{}}></Box>
+        <Drawer anchor={"left"} open={drawer.openDrawer} onClose={() => drawer.setOpenDrawer(false)} sx={{}}>
+            <Box
+                sx={{
+                    height: "100%",
+                    width: "70vw",
+                    backgroundColor: "white",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    overflow: "auto",
+                    paddingTop: "5vw",
+                }}
+            >
+                <Box
+                    sx={{
+                        flexDirection: "column",
+                        alignItems: "center",
+                        width: "100%",
+                    }}
+                >
+                    {sidebar.map((sideBarItem) => (
+                        <MenuButton sideBarItem={sideBarItem} key={sideBarItem.id} />
+                    ))}
+                </Box>
+            </Box>
+        </Drawer>
     ) : (
         <Box
             sx={{

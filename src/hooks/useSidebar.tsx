@@ -20,16 +20,18 @@ import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined"
 import CollectionsBookmarkOutlinedIcon from "@mui/icons-material/CollectionsBookmarkOutlined"
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined"
 import BookOutlinedIcon from "@mui/icons-material/BookOutlined"
+import { useMediaQuery } from "@mui/material"
 
 export const useSidebar = () => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const navigate = useNavigate()
     const itemStyle = {
-        height: "2vw",
-        width: "2vw",
+        height: isMobile ? "10vw" : "2vw",
+        width: isMobile ? "10vw" : "2vw",
     }
     const subItemStyle = {
-        height: "1vw",
-        width: "1vw",
+        height: isMobile ? "6vw" : "1vw",
+        width: isMobile ? "6vw" : "1vw",
     }
 
     const sidebar: SidebarItem[] = [

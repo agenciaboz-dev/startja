@@ -9,8 +9,8 @@ export const useAdmSidebar = () => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const navigate = useNavigate()
     const iconStyle = {
-        height: isMobile ? "12vw" : "2vw",
-        width: isMobile ? "12vw" : "2vw",
+        height: isMobile ? "10vw" : "2vw",
+        width: isMobile ? "10vw" : "2vw",
     }
 
     const admSidebar: SidebarItem[] = [

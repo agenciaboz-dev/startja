@@ -42,7 +42,9 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
         //     setCollapse((collapse) => !collapse)
         // }
         item.onClick()
-        setOpenDrawer(false)
+        setTimeout(() => {
+            setOpenDrawer(false)
+        }, 500)
     }
 
     return (
@@ -107,11 +109,11 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                                     <Box
                                         sx={{
                                             backgroundColor: colors.primary,
-                                            borderTopRightRadius: "1vw",
-                                            borderBottomRightRadius: "1vw",
+                                            borderTopRightRadius: isMobile ? "2.5vw" : "1vw",
+                                            borderBottomRightRadius: isMobile ? "2.5vw" : "1vw",
                                             position: "absolute",
-                                            height: "2vw",
-                                            width: "0.5vw",
+                                            height: isMobile ? "100%" : "2vw",
+                                            width: isMobile ? "2.5vw" : "0.5vw",
                                             left: 0,
                                         }}
                                     ></Box>
