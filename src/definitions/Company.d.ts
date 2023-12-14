@@ -3,16 +3,19 @@ declare interface Company {
     type: string
     name: string
     document: string
-    iine: string
+    inscricaoEstadual?: string
+    indicadorEstadual: number
     city: string
     state: string
     district: string
     street: string
     adjunct: string
-    number: string
+    number: number
     cep: string
     email?: string
-    phone?: string
+    phone?: number
 
-    notas: Invoice[]
+    customerId: number
+    customer: Customer
+    notas: notaFiscal[]
 }

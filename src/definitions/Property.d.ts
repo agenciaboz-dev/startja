@@ -11,4 +11,6 @@ declare interface Property {
     district: string
     exploration: string
     declarant: string
+
+    notas: notaFiscal[]
 }

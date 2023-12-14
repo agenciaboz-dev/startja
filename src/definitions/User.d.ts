@@ -10,13 +10,23 @@ declare interface Admin extends User {}
 declare interface Customer extends User {
     register_date: string
     phone: string
-    cpf: string
+    document: string
     city: string
     state: string
+    district: string
+    number: number
+    adjunct: string
+    street: string
+    cep: string
+    businessName: string
+    regimeTributario: number
+    inscricaoEstadual: string
+    isento: boolean
 
-    companies: Company[]
-    notas: Invoice[]
+    certificateId: number
     certificate: DigitalCertificate
+    companies: Company[]
+    // notas: Invoice[]
 }
 
 declare interface LoginValues {
