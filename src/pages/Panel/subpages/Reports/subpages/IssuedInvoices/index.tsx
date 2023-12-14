@@ -95,7 +95,7 @@ export const IssuedInvoices: React.FC<IssuedInvoicesProps> = ({}) => {
                             flexDirection: "column",
                             alignItems: "center",
                             margin: "auto",
-                            gap: "1vw",
+                            gap: isMobile ? "5vw" : "1vw",
                         }}
                     >
                         <h2>Sem resultados</h2>
