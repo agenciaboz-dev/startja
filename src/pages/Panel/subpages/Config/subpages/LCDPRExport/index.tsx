@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Box, Button } from "@mui/material"
+import { Box, Button, useMediaQuery } from "@mui/material"
 import { useHeader } from "../../../../../../hooks/useHeader"
 
 interface ConfigLCDPRExportProps {
@@ -7,6 +7,7 @@ interface ConfigLCDPRExportProps {
 }
 
 export const ConfigLCDPRExport: React.FC<ConfigLCDPRExportProps> = ({ user }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const header = useHeader()
     useEffect(() => {
         header.setTitle("Configurações")
@@ -18,18 +19,18 @@ export const ConfigLCDPRExport: React.FC<ConfigLCDPRExportProps> = ({ user }) =>
                 flexDirection: "column",
                 height: "100%",
                 width: "100%",
-                gap: "1vw",
+                gap: isMobile ? "5vw" : "1vw",
             }}
         >
             <Box
                 sx={{
-                    padding: "1.5vw",
+                    padding: isMobile ? "5vw" : "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
                     borderRadius: "20px",
                     flexDirection: "column",
                     width: "100%",
-                    gap: "0.5vw",
+                    gap: isMobile ? "5vw" : "0.5vw",
                 }}
             >
                 <Box
@@ -53,8 +54,8 @@ export const ConfigLCDPRExport: React.FC<ConfigLCDPRExportProps> = ({ user }) =>
                         border: "2px dashed grey",
                         justifyContent: "center",
                         alignContent: "center",
-                        padding: "4vw",
-                        margin: "1vw 0",
+                        padding: "5vw",
+                        margin: isMobile ? "" : "1vw 0",
                     }}
                 >
                     Arraste os arquivos aqui ou clique para selecionar.
