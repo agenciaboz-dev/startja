@@ -1,9 +1,10 @@
 import React from "react"
-import { Box, Checkbox } from "@mui/material"
+import { Box, Checkbox, useMediaQuery } from "@mui/material"
 
 interface AccountsListHeaderProps {}
 
 export const AccountsListHeader: React.FC<AccountsListHeaderProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
             sx={{
@@ -29,6 +30,7 @@ export const AccountsListHeader: React.FC<AccountsListHeaderProps> = ({}) => {
                     sx={{
                         justifyContent: "space-between",
                         flex: 1,
+                        gap: isMobile ? "20vw" : "2vw",
                     }}
                 >
                     <Box

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, Tabs, Tab } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, Tabs, Tab, useMediaQuery } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 // import { AccountsListHeader } from "../../../../components/AccountsList/AccountsListHeader"
 // import { AccountsList } from "../../../../components/AccountsList"
@@ -12,6 +12,7 @@ interface AddAccountModalProps {
 }
 
 const AddAccountModal: React.FC<AddAccountModalProps> = ({ open, onClose }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const [accountType, setAccountType] = useState("bank")
 
     return (
@@ -24,8 +25,9 @@ const AddAccountModal: React.FC<AddAccountModalProps> = ({ open, onClose }) => {
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
-                    minWidth: "60vw",
+                    minWidth: "90vw",
                     width: "fit-content",
+                    minHeight: isMobile ? "60vh" : "",
                 },
             }}
         >
@@ -33,8 +35,8 @@ const AddAccountModal: React.FC<AddAccountModalProps> = ({ open, onClose }) => {
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "1vw",
-                    right: "1vw",
+                    top: isMobile ? "5vw" : "1vw",
+                    right: isMobile ? "5vw" : "1vw",
                     cursor: "pointer",
                 }}
                 onClick={onClose}
@@ -60,13 +62,13 @@ const AddAccountModal: React.FC<AddAccountModalProps> = ({ open, onClose }) => {
                             <Grid item xs={12}>
                                 <TextField label="Nome da conta" fullWidth />
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={isMobile ? 12 : 4}>
                                 <TextField label="Banco" fullWidth />
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={isMobile ? 12 : 4}>
                                 <TextField label="Agência" fullWidth />
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={isMobile ? 12 : 4}>
                                 <TextField label="Número da conta" fullWidth />
                             </Grid>
                         </Grid>
@@ -84,7 +86,7 @@ const AddAccountModal: React.FC<AddAccountModalProps> = ({ open, onClose }) => {
 
             <DialogActions
                 sx={{
-                    margin: "0.5vw",
+                    padding: isMobile ? "5vw" : "0.5vw",
                 }}
             >
                 <Button

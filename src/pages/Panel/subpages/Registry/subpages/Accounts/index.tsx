@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button } from "@mui/material"
+import { Box, Button, useMediaQuery } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { useIo } from "../../../../../../hooks/useIo"
 import { Toolbar } from "../../../../../../components/Toolbar"
@@ -11,6 +11,7 @@ import { AccountsList } from "../../../../../../components/AccountsList"
 interface AccountsProps {}
 
 export const Accounts: React.FC<AccountsProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const header = useHeader()
     const io = useIo()
     const [emptyAccountsList, setEmptyAccountsList] = useState(false)
@@ -27,12 +28,20 @@ export const Accounts: React.FC<AccountsProps> = ({}) => {
     }, [])
 
     return (
-        <>
+        <Box
+            sx={{
+                flexDirection: "column",
+                gap: isMobile ? "5vw" : "1vw",
+                flex: 1,
+            }}
+        >
             <Toolbar searchPlaceholder="contas" onSearch={handleSearch} addButtonText="Adicionar conta" addButtonCallback={openAccountModal} />
             <Box
                 sx={{
-                    height: "100%",
-                    width: "100%",
+                    flex: 1,
+                    overflow: isMobile ? "scroll" : "",
+                    padding: isMobile ? "1vw 5vw" : "",
+                    margin: isMobile ? "0 -5vw" : "",
                 }}
             >
                 {emptyAccountsList && (
@@ -70,12 +79,12 @@ export const Accounts: React.FC<AccountsProps> = ({}) => {
                     <Box
                         sx={{
                             flex: 1,
-                            padding: "1vw 1.5vw 1vw 0.5vw",
                             boxShadow: "0 2px 2px 2px #d1d1d1",
                             backgroundColor: "white",
                             borderRadius: "20px",
                             flexDirection: "column",
-                            width: "100%",
+                            padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
+                            width: isMobile ? "fit-content" : "100%",
                         }}
                     >
                         <AccountsListHeader />
@@ -84,6 +93,6 @@ export const Accounts: React.FC<AccountsProps> = ({}) => {
                 )}
             </Box>
             <AddAccountModal open={isAddAccountModalOpen} onClose={() => setAddAccountModalOpen(false)} />
-        </>
+        </Box>
     )
 }
