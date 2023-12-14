@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button, Grid, TextField } from "@mui/material"
+import { Box, Button, Grid, TextField, useMediaQuery } from "@mui/material"
 import { useHeader } from "../../../../../../hooks/useHeader"
 // import AddIssuedInvoiceModal from "./AddIssuedInvoiceModal"
 import { useLocation, useNavigate } from "react-router-dom"
@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 interface IssuedInvoicesProps {}
 
 export const IssuedInvoices: React.FC<IssuedInvoicesProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const header = useHeader()
     const pathname = useLocation().pathname
     const navigate = useNavigate()
@@ -32,18 +33,18 @@ export const IssuedInvoices: React.FC<IssuedInvoicesProps> = ({}) => {
             sx={{
                 flexDirection: "column",
                 flex: 1,
-                gap: "1vw",
+                gap: isMobile ? "5vw" : "1vw",
             }}
         >
             <Box
                 sx={{
-                    padding: "1.5vw",
+                    padding: isMobile ? "5vw" : "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
                     borderRadius: "20px",
                     flexDirection: "column",
                     width: "100%",
-                    gap: "1vw",
+                    gap: isMobile ? "5vw" : "1vw",
                 }}
             >
                 <Box
@@ -63,16 +64,16 @@ export const IssuedInvoices: React.FC<IssuedInvoicesProps> = ({}) => {
                     </Button>
                 </Box>
                 <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                    <Grid item xs={isMobile ? 12 : 6}>
                         <TextField label="Período" select fullWidth></TextField>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={isMobile ? 12 : 6}>
                         <TextField label="Situação" select fullWidth></TextField>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={isMobile ? 12 : 6}>
                         <TextField label="Cliente/fornecedor" select fullWidth></TextField>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={isMobile ? 12 : 6}>
                         <TextField label="Natureza da operação" select fullWidth></TextField>
                     </Grid>
                 </Grid>
@@ -80,7 +81,7 @@ export const IssuedInvoices: React.FC<IssuedInvoicesProps> = ({}) => {
             <Box
                 sx={{
                     flex: 1,
-                    padding: "1.5vw",
+                    padding: isMobile ? "5vw" : "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
                     borderRadius: "20px",
