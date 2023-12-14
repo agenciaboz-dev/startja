@@ -1,5 +1,5 @@
 import React from "react"
-import { Box } from "@mui/material"
+import { Box, useMediaQuery } from "@mui/material"
 import { colors } from "../../../../style/colors"
 import { Route, Routes } from "react-router-dom"
 import { Header } from "../../../../components/Header"
@@ -14,11 +14,12 @@ interface ConfigProps {
 }
 
 export const Config: React.FC<ConfigProps> = ({ user }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
             sx={{
                 flexDirection: "column",
-                gap: "1vw",
+                gap: isMobile ? "5vw" : "1vw",
                 width: "100%",
                 flex: 1,
             }}

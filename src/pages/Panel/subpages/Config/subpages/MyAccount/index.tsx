@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Avatar, Box, Button, Grid, TextField } from "@mui/material"
+import { Avatar, Box, Button, Grid, TextField, useMediaQuery } from "@mui/material"
 import { useHeader } from "../../../../../../hooks/useHeader"
 import { useLocation, useNavigate } from "react-router-dom"
 import { colors } from "../../../../../../style/colors"
@@ -9,6 +9,7 @@ interface ConfigMyAccountProps {
 }
 
 export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const header = useHeader()
     const pathname = useLocation().pathname
     const navigate = useNavigate()
@@ -24,13 +25,13 @@ export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
         <Box
             sx={{
                 flex: 1,
-                padding: "1.5vw",
+                padding: isMobile ? "5vw" : "1.5vw",
                 boxShadow: "0 2px 2px 2px #d1d1d1",
                 backgroundColor: "white",
                 borderRadius: "20px",
                 flexDirection: "column",
                 width: "100%",
-                gap: "1vw",
+                gap: isMobile ? "5vw" : "1vw",
             }}
         >
             <Box
@@ -46,7 +47,8 @@ export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
             <Box
                 sx={{
                     height: "100%",
-                    gap: "1.5vw",
+                    gap: isMobile ? "5vw" : "1.5vw",
+                    flexDirection: isMobile ? "column" : "row",
                 }}
             >
                 <Box
@@ -55,13 +57,13 @@ export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
                         flex: 1,
                         justifyContent: "space-between",
                         height: "100%",
-                        gap: "1vw",
+                        gap: isMobile ? "5vw" : "1vw",
                     }}
                 >
                     <Box
                         sx={{
                             alignItems: "center",
-                            gap: "1vw",
+                            gap: isMobile ? "5vw" : "1vw",
                         }}
                     >
                         <Avatar
@@ -74,7 +76,7 @@ export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
                             sx={{
                                 flexDirection: "column",
                                 justifyContent: "space-between",
-                                gap: "2vw",
+                                gap: isMobile ? "5vw" : "2vw",
                             }}
                         >
                             <Box
@@ -100,7 +102,7 @@ export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
                     <Box
                         sx={{
                             flexDirection: "column",
-                            gap: "0.5vw",
+                            gap: isMobile ? "5vw" : "0.5vw",
                         }}
                     >
                         <p>Dados da empresa</p>
@@ -108,16 +110,16 @@ export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
                             <Grid item xs={12}>
                                 <TextField label="CNPJ" fullWidth />
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField label="Razão social" fullWidth />
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField label="Nome fantasia" fullWidth />
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField label="E-mail para recebimento de boletos" fullWidth />
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField label="Telefone da empresa" fullWidth />
                             </Grid>
                         </Grid>
@@ -125,25 +127,19 @@ export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
                     <Box
                         sx={{
                             flexDirection: "column",
-                            gap: "0.5vw",
+                            gap: isMobile ? "5vw" : "0.5vw",
                         }}
                     >
-                        <p>Dados da empresa</p>
+                        <p>Dados do responsável</p>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <TextField label="CNPJ" fullWidth />
+                                <TextField label="Nome do responsável" fullWidth />
                             </Grid>
-                            <Grid item xs={6}>
-                                <TextField label="Razão social" fullWidth />
+                            <Grid item xs={isMobile ? 12 : 6}>
+                                <TextField label="E-mail do responsável" fullWidth />
                             </Grid>
-                            <Grid item xs={6}>
-                                <TextField label="Nome fantasia" fullWidth />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField label="E-mail para recebimento de boletos" fullWidth />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField label="Telefone da empresa" fullWidth />
+                            <Grid item xs={isMobile ? 12 : 6}>
+                                <TextField label="Telefone do responsável" fullWidth />
                             </Grid>
                         </Grid>
                     </Box>
@@ -154,13 +150,13 @@ export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
                         flex: 1,
                         justifyContent: "space-between",
                         height: "100%",
-                        gap: "1vw",
+                        gap: isMobile ? "5vw" : "1vw",
                     }}
                 >
                     <Box
                         sx={{
                             flexDirection: "column",
-                            gap: "0.5vw",
+                            gap: isMobile ? "5vw" : "0.5vw",
                         }}
                     >
                         <p>Endereço</p>
@@ -186,22 +182,23 @@ export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
                         sx={{
                             flexDirection: "column",
                             flex: 1,
-                            gap: "1vw",
+                            gap: isMobile ? "5vw" : "1vw",
                         }}
                     >
                         <p>Meu plano</p>
                         <Box
                             sx={{
                                 height: "100%",
-                                gap: "0.5vw",
+                                gap: isMobile ? "5vw" : "0.5vw",
+                                flexDirection: isMobile ? "column" : "",
                             }}
                         >
                             <Box
                                 sx={{
                                     flexDirection: "column",
                                     flex: 1,
-                                    gap: "0.5vw",
-                                    width: "50%",
+                                    gap: isMobile ? "5vw" : "0.5vw",
+                                    width: isMobile ? "100%" : "50%",
                                     justifyContent: "space-between",
                                 }}
                             >
@@ -257,14 +254,14 @@ export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
                                 sx={{
                                     flexDirection: "column",
                                     flex: 1,
-                                    gap: "0.5vw",
-                                    width: "50%",
+                                    gap: isMobile ? "5vw" : "0.5vw",
+                                    width: isMobile ? "100%" : "50%",
                                     backgroundColor: colors.background,
                                     boxShadow: "0 2px 2px 2px #d1d1d1",
 
                                     borderRadius: "20px",
                                     justifyContent: "space-between",
-                                    padding: "1vw",
+                                    padding: isMobile ? "5vw" : "1vw",
                                 }}
                             >
                                 <p>Lorem Ipsum</p>
