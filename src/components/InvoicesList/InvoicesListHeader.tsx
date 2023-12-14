@@ -1,10 +1,10 @@
 import React from "react"
-import { Box, Checkbox } from "@mui/material"
+import { Box, Checkbox, useMediaQuery } from "@mui/material"
 
 interface InvoicesListHeaderProps {}
 
 export const InvoicesListHeader: React.FC<InvoicesListHeaderProps> = ({}) => {
-
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
             sx={{
@@ -30,7 +30,7 @@ export const InvoicesListHeader: React.FC<InvoicesListHeaderProps> = ({}) => {
                     sx={{
                         justifyContent: "space-between",
                         flex: 1,
-                        gap: "2vw",
+                        gap: isMobile ? "20vw" : "2vw",
                     }}
                 >
                     <Box
