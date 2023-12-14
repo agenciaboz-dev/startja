@@ -1,9 +1,10 @@
 import React from "react"
-import { Box, Checkbox } from "@mui/material"
+import { Box, Checkbox, useMediaQuery } from "@mui/material"
 
 interface CollaboratorsListHeaderProps {}
 
 export const CollaboratorsListHeader: React.FC<CollaboratorsListHeaderProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
             sx={{
@@ -29,7 +30,7 @@ export const CollaboratorsListHeader: React.FC<CollaboratorsListHeaderProps> = (
                     sx={{
                         justifyContent: "space-between",
                         flex: 1,
-                        gap: "2vw",
+                        gap: isMobile ? "20vw" : "2vw",
                     }}
                 >
                     <Box

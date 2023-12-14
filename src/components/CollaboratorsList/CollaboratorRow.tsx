@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Checkbox } from "@mui/material"
+import { Box, Checkbox, useMediaQuery } from "@mui/material"
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined"
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined"
 import { ToggleSwitch } from "../ToggleSwitch"
@@ -10,6 +10,7 @@ interface CollaboratorRowProps {
 }
 
 export const CollaboratorRow: React.FC<CollaboratorRowProps> = ({ collaborator }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
             sx={{
@@ -29,7 +30,7 @@ export const CollaboratorRow: React.FC<CollaboratorRowProps> = ({ collaborator }
                     alignItems: "center",
                     justifyContent: "space-between",
                     flex: 1,
-                    gap: "2vw",
+                    gap: isMobile ? "20vw" : "2vw",
                 }}
             >
                 <Box

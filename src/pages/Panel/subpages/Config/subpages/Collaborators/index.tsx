@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button } from "@mui/material"
+import { Box, Button, useMediaQuery } from "@mui/material"
 import { useHeader } from "../../../../../../hooks/useHeader"
 import { Toolbar } from "../../../../../../components/Toolbar"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
@@ -13,6 +13,7 @@ interface ConfigCollaboratorsProps {
 }
 
 export const ConfigCollaborators: React.FC<ConfigCollaboratorsProps> = ({ user }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const header = useHeader()
     const io = useIo()
 
@@ -39,7 +40,7 @@ export const ConfigCollaborators: React.FC<ConfigCollaboratorsProps> = ({ user }
         <Box
             sx={{
                 flex: 1,
-                padding: "1.5vw",
+                padding: isMobile ? "5vw" : "1.5vw",
                 boxShadow: "0 2px 2px 2px #d1d1d1",
                 backgroundColor: "white",
                 borderRadius: "20px",
@@ -50,10 +51,10 @@ export const ConfigCollaborators: React.FC<ConfigCollaboratorsProps> = ({ user }
             <Box
                 sx={{
                     width: "100%",
-                    gap: "1vw",
+                    gap: isMobile ? "5vw" : "1vw",
                 }}
             >
-                <h2>Usuários</h2>
+                {!isMobile && <h2>Usuários</h2>}
                 <Toolbar
                     searchPlaceholder="usuários"
                     onSearch={() => {}}
@@ -65,7 +66,10 @@ export const ConfigCollaborators: React.FC<ConfigCollaboratorsProps> = ({ user }
             <Box
                 sx={{
                     height: "100%",
-                    width: "100%",
+                    flex: 1,
+                    overflow: isMobile ? "scroll" : "",
+                    padding: isMobile ? "1vw 5vw" : "",
+                    margin: isMobile ? "0 -5vw" : "",
                 }}
             >
                 {emptyCollaboratorsList && (
@@ -102,8 +106,8 @@ export const ConfigCollaborators: React.FC<ConfigCollaboratorsProps> = ({ user }
                     <Box
                         sx={{
                             flexDirection: "column",
-                            width: "100%",
-                            padding: "1vw 0.5vw 0 0",
+                            width: isMobile ? "fit-content" : "100%",
+                            padding: isMobile ? "5vw 0" : "1vw 0.5vw 0 0",
                             marginLeft: "-0.5vw",
                         }}
                     >
