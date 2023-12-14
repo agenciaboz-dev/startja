@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Checkbox } from "@mui/material"
+import { Box, Checkbox, useMediaQuery } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 
 interface PropertyRowProps {
@@ -7,6 +7,7 @@ interface PropertyRowProps {
 }
 
 export const PropertyRow: React.FC<PropertyRowProps> = ({ property }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
             sx={{
@@ -23,8 +24,11 @@ export const PropertyRow: React.FC<PropertyRowProps> = ({ property }) => {
             />
             <Box
                 sx={{
+                    alignItems: "center",
+
                     justifyContent: "space-between",
                     flex: 1,
+                    gap: isMobile ? "20vw" : "2vw",
                 }}
             >
                 <Box

@@ -1,7 +1,6 @@
 import React from "react"
-import { Box, Button, Checkbox, useMediaQuery } from "@mui/material"
+import { Box, Checkbox, useMediaQuery } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
-import { colors } from "../../style/colors"
 
 interface EnterpriseRowProps {
     // Enterprise: Enterprise

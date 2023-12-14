@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { PropertiesListHeader } from "../../../../../../components/PropertiesList/PropertiesListHeader"
 import { PropertiesList } from "../../../../../../components/PropertiesList"
@@ -12,6 +12,7 @@ interface AddPropertyModalProps {
 }
 
 const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Dialog
             open={open}
@@ -31,8 +32,8 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose }) =>
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "1vw",
-                    right: "1vw",
+                    top: isMobile ? "5vw" : "1vw",
+                    right: isMobile ? "5vw" : "1vw",
                     cursor: "pointer",
                 }}
                 onClick={onClose}
@@ -43,17 +44,17 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose }) =>
                     sx={{
                         flexDirection: "column",
                         width: "100%",
-                        gap: "2vw",
+                        gap: isMobile ? "5vw" : "2vw",
                     }}
                 >
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField label="Nome da propriedade" fullWidth />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="IE vinculada à propriedade" fullWidth />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="NIRF(CAFIR)" fullWidth />
                         </Grid>
                     </Grid>
@@ -61,22 +62,22 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose }) =>
                     <h4>Endereço da propriedade</h4>
 
                     <Grid container spacing={2}>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="CEP" fullWidth />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="Cidade/UF" fullWidth />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="Rua" fullWidth />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="Número" fullWidth />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="Complemento" fullWidth />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="Bairro" fullWidth />
                         </Grid>
                     </Grid>
@@ -96,7 +97,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose }) =>
 
             <DialogActions
                 sx={{
-                    margin: "0.5vw",
+                    padding: isMobile ? "5vw" : "0.5vw",
                 }}
             >
                 <Button

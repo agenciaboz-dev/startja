@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button } from "@mui/material"
+import { Box, Button, useMediaQuery } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { PropertiesListHeader } from "../../../../../../components/PropertiesList/PropertiesListHeader"
 import { PropertiesList } from "../../../../../../components/PropertiesList"
@@ -11,6 +11,7 @@ import { useHeader } from "../../../../../../hooks/useHeader"
 interface PropertiesProps {}
 
 export const Properties: React.FC<PropertiesProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const header = useHeader()
     const io = useIo()
     const [emptyPropertiesList, setEmptyPropertiesList] = useState(false)
@@ -27,7 +28,13 @@ export const Properties: React.FC<PropertiesProps> = ({}) => {
     }, [])
 
     return (
-        <>
+        <Box
+            sx={{
+                flexDirection: "column",
+                gap: isMobile ? "5vw" : "1vw",
+                flex: 1,
+            }}
+        >
             <Toolbar
                 searchPlaceholder="propriedades"
                 onSearch={handleSearch}
@@ -36,8 +43,10 @@ export const Properties: React.FC<PropertiesProps> = ({}) => {
             />
             <Box
                 sx={{
-                    height: "100%",
-                    width: "100%",
+                    flex: 1,
+                    overflow: isMobile ? "scroll" : "",
+                    padding: isMobile ? "1vw 5vw" : "",
+                    margin: isMobile ? "0 -5vw" : "",
                 }}
             >
                 {emptyPropertiesList && (
@@ -75,12 +84,13 @@ export const Properties: React.FC<PropertiesProps> = ({}) => {
                     <Box
                         sx={{
                             flex: 1,
-                            padding: "1vw 1.5vw 1vw 0.5vw",
                             boxShadow: "0 2px 2px 2px #d1d1d1",
                             backgroundColor: "white",
                             borderRadius: "20px",
                             flexDirection: "column",
-                            width: "100%",
+                            padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
+                            width: isMobile ? "fit-content" : "100%",
+                            gap: isMobile ? "2.5vw" : "",
                         }}
                     >
                         <PropertiesListHeader />
@@ -89,6 +99,6 @@ export const Properties: React.FC<PropertiesProps> = ({}) => {
                 )}
             </Box>
             <AddPropertyModal open={isAddPropertyModalOpen} onClose={() => setAddPropertyModalOpen(false)} />
-        </>
+        </Box>
     )
 }
