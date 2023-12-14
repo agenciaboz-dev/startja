@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box, Grid, Tab, Tabs, Radio } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box, Grid, Tab, Tabs, Radio, useMediaQuery } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 
 interface AddEnterpriseModalProps {
@@ -8,6 +8,7 @@ interface AddEnterpriseModalProps {
 }
 
 const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const [rightSideDisplay, setRightSideDisplay] = useState("produto")
 
     const [isAddEnterpriseInfoModalOpen, setAddEnterpriseInfoModalOpen] = useState(false)
@@ -33,8 +34,8 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "1vw",
-                    right: "1vw",
+                    top: isMobile ? "5vw" : "1vw",
+                    right: isMobile ? "5vw" : "1vw",
                     cursor: "pointer",
                 }}
                 onClick={onClose}
@@ -45,13 +46,13 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
                     sx={{
                         flexDirection: "column",
                         width: "100%",
-                        gap: "1vw",
+                        gap: isMobile ? "5vw" : "1vw",
                     }}
                 >
                     <Box
                         sx={{
                             justifyContent: "space-between",
-                            width: "25%",
+                            width: isMobile ? "75%" : "25%",
                         }}
                     >
                         <Box
@@ -73,16 +74,16 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
                     </Box>
 
                     <Grid container spacing={2}>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="CPF / CNPJ" fullWidth />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="Nome" fullWidth />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="Indicador de inscrição estadual" fullWidth />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="Número de inscrição estadual" fullWidth />
                         </Grid>
                     </Grid>
@@ -90,22 +91,22 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
                     <h4>Endereço</h4>
 
                     <Grid container spacing={2}>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="CEP" fullWidth />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="Cidade/UF" fullWidth />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="Rua" fullWidth />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="Número" fullWidth />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="Complemento" fullWidth />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="Bairro" fullWidth />
                         </Grid>
                     </Grid>
@@ -113,10 +114,10 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
                     <h4>Informar contato (opcional)</h4>
 
                     <Grid container spacing={2}>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="E-mail" fullWidth />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="Telefone" fullWidth />
                         </Grid>
                     </Grid>
@@ -125,7 +126,7 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
 
             <DialogActions
                 sx={{
-                    margin: "0.5vw",
+                    padding: isMobile ? "5vw" : "0.5vw",
                 }}
             >
                 <Button
