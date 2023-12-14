@@ -1,5 +1,5 @@
 import React from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box, Grid } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box, Grid, useMediaQuery } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 
 interface AddProductModalProps {
@@ -8,6 +8,7 @@ interface AddProductModalProps {
 }
 
 const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Dialog
             open={open}
@@ -26,8 +27,8 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
-                    top: "1vw",
-                    right: "1vw",
+                    top: isMobile ? "5vw" : "1vw",
+                    right: isMobile ? "5vw" : "1vw",
                     cursor: "pointer",
                 }}
                 onClick={onClose}
@@ -46,7 +47,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
 
             <DialogActions
                 sx={{
-                    margin: "0.5vw",
+                    padding: isMobile ? "5vw" : "0.5vw",
                 }}
             >
                 <Button

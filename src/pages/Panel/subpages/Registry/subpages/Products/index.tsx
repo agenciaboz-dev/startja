@@ -45,7 +45,13 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     }, [])
 
     return (
-        <>
+        <Box
+            sx={{
+                flexDirection: "column",
+                gap: isMobile ? "5vw" : "1vw",
+                flex: 1,
+            }}
+        >
             <Toolbar searchPlaceholder="produtos" onSearch={handleSearch} addButtonText="Adicionar produto" addButtonCallback={openProductModal} />
             <Box
                 sx={{
@@ -111,6 +117,6 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                 )}
             </Box>
             <AddProductModal open={isAddProductModalOpen} onClose={() => setAddProductModalOpen(false)} />
-        </>
+        </Box>
     )
 }

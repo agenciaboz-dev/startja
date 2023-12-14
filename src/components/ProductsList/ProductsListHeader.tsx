@@ -1,10 +1,10 @@
 import React from "react"
-import { Box, Checkbox } from "@mui/material"
+import { Box, Checkbox, useMediaQuery } from "@mui/material"
 
 interface ProductsListHeaderProps {}
 
 export const ProductsListHeader: React.FC<ProductsListHeaderProps> = ({}) => {
-
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
             sx={{
@@ -38,7 +38,8 @@ export const ProductsListHeader: React.FC<ProductsListHeaderProps> = ({}) => {
                             flex: 0.45,
                         }}
                     >
-                        <h3>Nome do Produto</h3>
+                        {!isMobile && <h3>Nome do Produto</h3>}
+                        {isMobile && <h3>Produto</h3>}
                     </Box>
                     <Box
                         sx={{
