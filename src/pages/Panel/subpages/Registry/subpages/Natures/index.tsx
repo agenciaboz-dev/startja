@@ -39,7 +39,13 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
     }, [])
 
     return (
-        <>
+        <Box
+            sx={{
+                flexDirection: "column",
+                gap: isMobile ? "5vw" : "1vw",
+                flex: 1,
+            }}
+        >
             <Toolbar
                 searchPlaceholder="naturezas de operação"
                 onSearch={handleSearch}
@@ -88,7 +94,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                 {!emptyNaturesList && (
                     <Box
                         sx={{
-                            flex: 1,
+                            // flex: 1,
                             boxShadow: "0 2px 2px 2px #d1d1d1",
                             backgroundColor: "white",
                             borderRadius: "20px",
@@ -103,6 +109,6 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                 )}
             </Box>
             <AddNatureModal open={isAddNatureModalOpen} onClose={() => setAddNatureModalOpen(false)} />
-        </>
+        </Box>
     )
 }

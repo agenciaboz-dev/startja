@@ -29,11 +29,12 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     flex: 1,
+                    gap: isMobile ? "20vw" : "2vw",
                 }}
             >
                 <Box
                     sx={{
-                        flex: isMobile ? 0.5 : 0.7,
+                        flex: 0.7,
                         alignItems: "center",
                     }}
                 >

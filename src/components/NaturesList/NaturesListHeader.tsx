@@ -30,6 +30,7 @@ export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
                     sx={{
                         justifyContent: "space-between",
                         flex: 1,
+                        gap: isMobile ? "20vw" : "2vw",
                     }}
                 >
                     <Box
@@ -43,7 +44,6 @@ export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
                         sx={{
                             flex: 0.1,
                             justifyContent: "center",
-                            display: isMobile ? "none" : "",
                         }}
                     >
                         <h3>Tributação</h3>
@@ -52,7 +52,6 @@ export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
                         sx={{
                             flex: 0.1,
                             justifyContent: "center",
-                            display: isMobile ? "none" : "",
                         }}
                     >
                         <h3>Editar</h3>
@@ -61,7 +60,6 @@ export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
                         sx={{
                             flex: 0.1,
                             justifyContent: "center",
-                            display: isMobile ? "none" : "",
                         }}
                     >
                         <h3>Ativar/Desativar</h3>
