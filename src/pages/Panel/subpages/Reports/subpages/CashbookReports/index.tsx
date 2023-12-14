@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button, Grid, TextField } from "@mui/material"
+import { Box, Button, Grid, TextField, useMediaQuery } from "@mui/material"
 import { useHeader } from "../../../../../../hooks/useHeader"
 import { useLocation, useNavigate } from "react-router-dom"
 
 interface CashbookReportsProps {}
 
 export const CashbookReports: React.FC<CashbookReportsProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const header = useHeader()
     const pathname = useLocation().pathname
     const navigate = useNavigate()
@@ -23,18 +24,18 @@ export const CashbookReports: React.FC<CashbookReportsProps> = ({}) => {
             sx={{
                 flexDirection: "column",
                 flex: 1,
-                gap: "1vw",
+                gap: isMobile ? "5vw" : "1vw",
             }}
         >
             <Box
                 sx={{
-                    padding: "1.5vw",
+                    padding: isMobile ? "5vw" : "1.5vw",
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
                     borderRadius: "20px",
                     flexDirection: "column",
                     width: "100%",
-                    gap: "1vw",
+                    gap: isMobile ? "5vw" : "1vw",
                 }}
             >
                 <Box
@@ -54,19 +55,19 @@ export const CashbookReports: React.FC<CashbookReportsProps> = ({}) => {
                     </Button>
                 </Box>
                 <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                    <Grid item xs={isMobile ? 12 : 6}>
                         <TextField label="Período" select fullWidth></TextField>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={isMobile ? 12 : 6}>
                         <TextField label="Tipo de relatório" select fullWidth></TextField>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={isMobile ? 12 : 4}>
                         <TextField label="Cliente/fornecedor" select fullWidth></TextField>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={isMobile ? 12 : 4}>
                         <TextField label="Conta (Plano de contas)" select fullWidth></TextField>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={isMobile ? 12 : 4}>
                         <TextField label="Conta bancária" select fullWidth></TextField>
                     </Grid>
                 </Grid>
@@ -74,7 +75,8 @@ export const CashbookReports: React.FC<CashbookReportsProps> = ({}) => {
             <Box
                 sx={{
                     flex: 1,
-                    padding: "1.5vw",
+                    padding: isMobile ? "5vw" : "1.5vw",
+
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     backgroundColor: "white",
                     borderRadius: "20px",
@@ -88,7 +90,7 @@ export const CashbookReports: React.FC<CashbookReportsProps> = ({}) => {
                             flexDirection: "column",
                             alignItems: "center",
                             margin: "auto",
-                            gap: "1vw",
+                            gap: isMobile ? "5vw" : "1vw",
                         }}
                     >
                         <h2>Sem resultados</h2>
