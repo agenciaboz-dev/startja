@@ -26,7 +26,6 @@ declare interface Customer extends User {
     certificateId: number
     certificate: DigitalCertificate
     companies: Company[]
-    // notas: Invoice[]
 }
 
 declare interface LoginValues {

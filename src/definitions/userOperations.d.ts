@@ -28,18 +28,18 @@ export declare interface NewUser {
     city: string
     state: string
     district: string
-    number: string
+    number: number
     adjunct: string
     street: string
     cep: string
     businessName: string
-    regimeTributario: string
+    regimeTributario: number
     inscricaoEstadual: string
     isento: boolean
 
-    certificateId?: number
-    certificate?: DigitalCertificate
-    companies?: Company[]
+    certificateId: number
+    certificate: DigitalCertificate
+    companies: Company[]
 }
 
 export declare interface NewCompany {
@@ -53,21 +53,21 @@ export declare interface NewCompany {
     district: string
     street: string
     adjunct: string
-    number: string
+    number: number
     cep: string
-    email: string
-    phone: string
+    email?: string
+    phone?: number
 
     customerId: number
-    customer?: Customer
-    notas?: notaFiscal[]
+    customer: Customer
+    notas: notaFiscal[]
 }
 
 export declare interface NewProduct {
     name: string
     ncm: string
-    rules?: regraTributacao[]
-    produtosNota?: ProdutoNotaFiscal[]
+    rules: regraTributacao[]
+    produtosNota: ProdutoNotaFiscal[]
 }
 
 export declare interface NewNatureza {
@@ -76,9 +76,8 @@ export declare interface NewNatureza {
     finality: string
     motive: string
 
-    // rules: { id: number }[]
-    rules?: regraTributacao[]
-    notas?: notaFiscal[]
+    rules: regraTributacao[]
+    notas: notaFiscal[]
 }
 
 export declare interface NewregraTributacao {
@@ -94,9 +93,9 @@ export declare interface NewregraTributacao {
     pisSituation: string
     cofinsSituation: string
 
-    notas?: notaFiscal[]
-    natures?: Natureza[]
-    products?: Product[]
+    notas: notaFiscal[]
+    natures: Natureza[]
+    products: Product[]
 }
 
 export declare interface NewProperty {
@@ -138,17 +137,17 @@ export declare interface NewnotaFiscal {
     totalValue: number
     totalProductValue: number
 
-    products?: ProdutoNotaFiscal[]
-    rules?: regraTributacao[]
+    products: ProdutoNotaFiscal[]
+    rules: regraTributacao[]
 
-    companyId?: number
-    company?: Company
+    companyId: number
+    company: Company
 
-    propertyId?: number
-    property?: Property
+    propertyId: number
+    property: Property
 
-    natureId?: number
-    nature?: Natureza
+    natureId: number
+    nature: Natureza
 }
 
 export declare interface NewAccount {
