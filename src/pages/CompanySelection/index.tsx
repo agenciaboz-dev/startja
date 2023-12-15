@@ -23,15 +23,19 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
         setAddCompanyModalOpen(true)
     }
 
-    const [companies, setCompanies] = useState(user.companies)
+    const [companies, setCompanies] = useState(user.companies || [])
 
     const handleSearch = (text: string) => {
-        setCompanies(user.companies.filter((company) => normalize(company.name).includes(text)))
+        if (user.companies) {
+            setCompanies(user.companies.filter((company) => normalize(company.name).includes(text)))
+        }
     }
 
     useEffect(() => {
-        setCompanies(user.companies)
-    }, [user.companies])
+        if (user.companies) {
+            setCompanies(user.companies)
+        }
+    }, [])
 
     useEffect(() => {
         header.setTitle("Selecionar empresa")
