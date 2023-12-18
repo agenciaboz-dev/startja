@@ -109,7 +109,24 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
                             />
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 3}>
-                            <TextField required label="IINE" fullWidth value={formik.values.iine} name="iine" onChange={formik.handleChange} />
+                            <TextField
+                                required
+                                label="inscricaoEstadual"
+                                fullWidth
+                                value={formik.values.inscricaoEstadual}
+                                name="inscricaoEstadual"
+                                onChange={formik.handleChange}
+                            />
+                        </Grid>
+                        <Grid item xs={isMobile ? 12 : 3}>
+                            <TextField
+                                required
+                                label="indicadorEstadual"
+                                fullWidth
+                                value={formik.values.indicadorEstadual}
+                                name="indicadorEstadual"
+                                onChange={formik.handleChange}
+                            />
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 3}>
                             <TextField required label="Cidade" fullWidth value={formik.values.city} name="city" onChange={formik.handleChange} />
