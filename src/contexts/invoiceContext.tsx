@@ -3,8 +3,8 @@ import React from 'react'
 import { useIo } from '../hooks/useIo';
 
 interface InvoiceContextValue {
-    list: Invoice[];
-    setList: (value:Invoice[]) => void;
+    list: notaFiscal[];
+    setList: (value:notaFiscal[]) => void;
 }
 
 interface InvoiceProviderProps {
@@ -16,7 +16,7 @@ const InvoiceContext = createContext<InvoiceContextValue>({} as InvoiceContextVa
 export default InvoiceContext
 
 export const InvoiceProvider:React.FC<InvoiceProviderProps> = ({children}) => {
-    const [list, setList] = useState<Invoice[]>([])
+    const [list, setList] = useState<notaFiscal[]>([])
     const io = useIo()
 
     useEffect(() => {

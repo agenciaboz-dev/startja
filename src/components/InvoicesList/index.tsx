@@ -3,7 +3,7 @@ import { Box } from "@mui/material"
 import { InvoiceRow } from "./InvoiceRow"
 
 interface InvoicesListProps {
-    invoices: Invoice[]
+    invoices: notaFiscal[]
 }
 
 export const InvoicesList: React.FC<InvoicesListProps> = ({ invoices }) => {
