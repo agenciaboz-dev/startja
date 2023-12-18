@@ -30,22 +30,27 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
     const io = useIo()
     const formik = useFormik<NewUser>({
         initialValues: {
-            city: "",
-            document: "",
-            email: "",
             name: "",
-            businessName: "",
+            email: "",
             password: "",
+            register_date: "",
             phone: "",
+            document: "",
+            city: "",
             state: "",
-            bairro: "",
+            district: "",
+            number: 0,
+            adjunct: "",
+            street: "",
             cep: "",
-            complemento: "",
-            inscricao_estadual: "",
+            businessName: "",
+            regimeTributario: 0,
+            inscricaoEstadual: "",
             isento: false,
-            numero: "",
-            regime_tributario: "",
-            rua: "",
+
+            certificateId: 0,
+            certificate: "",
+            companies: [],
         },
         onSubmit: (values) => {
             console.log(values)
@@ -152,8 +157,8 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         required
                                         label="Regime tributário"
                                         fullWidth
-                                        value={formik.values.regime_tributario}
-                                        name="regime_tributario"
+                                        value={formik.values.regimeTributario}
+                                        name="regimeTributario"
                                         onChange={formik.handleChange}
                                     />
                                 </Grid>
@@ -187,8 +192,8 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         required
                                         label="Inscrição estadual"
                                         fullWidth
-                                        value={formik.values.inscricao_estadual}
-                                        name="inscricao_estadual"
+                                        value={formik.values.inscricaoEstadual}
+                                        name="inscricaoEstadual"
                                         onChange={formik.handleChange}
                                     />
                                 </Grid>
@@ -204,15 +209,22 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
 
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
-                                    <TextField required label="Rua" fullWidth value={formik.values.rua} name="rua" onChange={formik.handleChange} />
+                                    <TextField
+                                        required
+                                        label="Rua"
+                                        fullWidth
+                                        value={formik.values.street}
+                                        name="street"
+                                        onChange={formik.handleChange}
+                                    />
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField
                                         required
                                         label="Número"
                                         fullWidth
-                                        value={formik.values.numero}
-                                        name="numero"
+                                        value={formik.values.number}
+                                        name="number"
                                         onChange={formik.handleChange}
                                     />
                                 </Grid>
@@ -220,8 +232,8 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                     <TextField
                                         label="Complemento"
                                         fullWidth
-                                        value={formik.values.complemento}
-                                        name="complemento"
+                                        value={formik.values.adjunct}
+                                        name="adjunct"
                                         onChange={formik.handleChange}
                                     />
                                 </Grid>
@@ -230,8 +242,8 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         required
                                         label="Bairro"
                                         fullWidth
-                                        value={formik.values.bairro}
-                                        name="bairro"
+                                        value={formik.values.district}
+                                        name="district"
                                         onChange={formik.handleChange}
                                     />
                                 </Grid>
