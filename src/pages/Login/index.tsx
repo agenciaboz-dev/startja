@@ -23,7 +23,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
     const savedUser = storage.get("startja:user") as LoginValues | undefined | null
 
     const initialValues: LoginValues = {
-        login: "",
+        email: "",
         password: "",
     }
 
@@ -45,7 +45,9 @@ export const Login: React.FC<LoginProps> = ({}) => {
             setUser(admin)
             navigate("/")
             snackbar({ severity: "success", text: "Conectado!" })
-            rememberLogin ? saveLoginData({ login: admin.email, password: admin.password }) : storage.set("startja:user", null)
+            rememberLogin
+                ? saveLoginData({ email: admin.email, password: admin.password })
+                : storage.set("startja:user", null)
         })
 
         io.on("customer:login:success", (customer) => {
@@ -54,7 +56,9 @@ export const Login: React.FC<LoginProps> = ({}) => {
             snackbar({ severity: "success", text: "Conectado!" })
             navigate("/")
             setUser(customer)
-            rememberLogin ? saveLoginData({ login: customer.email, password: customer.password }) : storage.set("startja:user", null)
+            rememberLogin
+                ? saveLoginData({ email: customer.email, password: customer.password })
+                : storage.set("startja:user", null)
         })
 
         io.on("user:login:failed", (error) => {
@@ -72,7 +76,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
 
     useEffect(() => {
         if (savedUser) {
-            formik.setFieldValue("login", savedUser.login)
+            formik.setFieldValue("login", savedUser.email)
             formik.setFieldValue("password", savedUser.password)
         }
     }, [])
@@ -137,9 +141,9 @@ export const Login: React.FC<LoginProps> = ({}) => {
                         }}
                     >
                         <TextField
-                            name="login"
+                            name="email"
                             label="E-mail"
-                            value={formik.values.login}
+                            value={formik.values.email}
                             onChange={formik.handleChange}
                             sx={{
                                 backgroundColor: "white",
@@ -164,7 +168,12 @@ export const Login: React.FC<LoginProps> = ({}) => {
                         >
                             <Box>
                                 <FormControlLabel
-                                    control={<Checkbox checked={rememberLogin} onChange={(_, checked) => setRememberLogin(checked)} />}
+                                    control={
+                                        <Checkbox
+                                            checked={rememberLogin}
+                                            onChange={(_, checked) => setRememberLogin(checked)}
+                                        />
+                                    }
                                     label="Manter conectado"
                                 />
                             </Box>
@@ -178,7 +187,11 @@ export const Login: React.FC<LoginProps> = ({}) => {
                                     width: isMobile ? "33vw" : "",
                                 }}
                             >
-                                {loading ? <CircularProgress size={30} sx={{ color: "#fff", fontSize: "2rem" }} /> : "Entrar"}
+                                {loading ? (
+                                    <CircularProgress size={30} sx={{ color: "#fff", fontSize: "2rem" }} />
+                                ) : (
+                                    "Entrar"
+                                )}
                             </Button>
                         </Box>
                     </Box>
