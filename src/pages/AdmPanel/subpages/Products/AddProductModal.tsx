@@ -20,6 +20,9 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
         initialValues: {
             name: "",
             ncm: "",
+
+            rules: [],
+            produtosNota: [],
         },
         onSubmit: (values) => {
             console.log(values)
