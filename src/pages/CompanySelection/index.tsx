@@ -8,6 +8,7 @@ import { useIo } from "../../hooks/useIo"
 import { useHeader } from "../../hooks/useHeader"
 import normalize from "../../tools/normalize"
 import AddCompanyModal from "./AddCompanyModal"
+import { useCompany } from "../../hooks/useCompany"
 
 interface CompanySelectionProps {
     user: Customer
@@ -17,6 +18,7 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const header = useHeader()
     const io = useIo()
+    const { list } = useCompany()
 
     const [isAddCompanyModalOpen, setAddCompanyModalOpen] = useState(false)
     const openCompanyModal = () => {
@@ -32,8 +34,8 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
     }
 
     useEffect(() => {
-        if (user.companies) {
-            setCompanies(user.companies)
+        if (user) {
+            setCompanies(list)
         }
     }, [])
 
