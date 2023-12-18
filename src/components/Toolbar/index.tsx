@@ -113,6 +113,8 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 <TextField
                     label="Filtrar"
                     name="toolbarSelect"
+                    value=""
+                    onChange={() => {}}
                     sx={{
                         backgroundColor: "white",
                         borderRadius: "20px",
