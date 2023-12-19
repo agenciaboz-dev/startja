@@ -31,19 +31,24 @@ return (
         >
             <Box
                 sx={{
-                    flex: 0.45,
+                    flex: 0.35,
                 }}
             >
                 <p>{product.name}</p>
-                {/* <p>Elementum senectus diam neque aliquet</p> */}
             </Box>
             <Box
                 sx={{
-                    flex: 0.45,
+                    flex: 0.35,
                 }}
             >
                 <p>{product.ncm}</p>
-                {/* <p>Cras lobortis sollicitudin consectetur aliquet</p> */}
+            </Box>
+            <Box
+                sx={{
+                    flex: 0.25,
+                }}
+            >
+                <p>{product.icmsOrigin}</p>
             </Box>
             <Box
                 sx={{
