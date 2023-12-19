@@ -4,6 +4,7 @@ declare interface Natureza {
     type: string
     finality: string
     motive: string
+    emissionFinality: string
 
     rules: regraTributacao[]
     notas: notaFiscal[]

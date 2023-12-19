@@ -2,6 +2,7 @@ declare interface Property {
     id: number
     ie: string
     nifr: string
+    series: string
     cep: string
     city: string
     state: string
