@@ -14,3 +14,4 @@ padronizar botões de ação dos modais; gap, etc
 
 PERGUNTAS:
 o que são as categorias?
+Sobre o ICMS Origem nos modais de adicionar produto: deixa os números? E tela mobile?

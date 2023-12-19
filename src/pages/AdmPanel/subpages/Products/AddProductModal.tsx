@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Grid, CircularProgress, useMediaQuery } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Grid, CircularProgress, useMediaQuery, MenuItem } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { useIo } from "../../../../hooks/useIo"
 import { useFormik } from "formik"
@@ -11,8 +11,6 @@ interface AddProductModalProps {
 }
 
 const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
-    // const [productName, setProductName] = useState("")
-    // const [ncm, setNcm] = useState("")
     const isMobile = useMediaQuery("(orientation: portrait)")
     const io = useIo()
 
@@ -20,6 +18,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
         initialValues: {
             name: "",
             ncm: "",
+            icmsOrigin: "",
 
             rules: [],
             produtosNota: [],
@@ -51,33 +50,6 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
         }
     }, [])
 
-    // const handleProductNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setProductName(event.target.value)
-    // }
-
-    // const handleNcmChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setNcm(event.target.value)
-    // }
-
-    // const handleAddProduct = async () => {
-    //     io.emit("product:create", { name: productName, ncm: ncm })
-    // }
-
-    // useEffect(() => {
-    //     io.on("product:creation:successful", (result) => {
-    //         console.log("Product created successfully:", result)
-    //         onClose()
-    //     })
-    //     io.on("product:creation:error", (error) => {
-    //         console.log(error)
-    //     })
-
-    //     return () => {
-    //         io.off("product:creation:successful")
-    //         io.off("product:creation:error")
-    //     }
-    // }, [])
-
     return (
         <Dialog
             open={open}
@@ -106,7 +78,6 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
                 <DialogContent>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            {/* <TextField label="Nome do produto" fullWidth value={productName} onChange={handleProductNameChange} /> */}
                             <TextField
                                 required
                                 label="Nome do produto"
@@ -117,7 +88,6 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            {/* <TextField label="NCM - Classificação" fullWidth value={ncm} onChange={handleNcmChange} /> */}
                             <TextField
                                 required
                                 label="NCM - Classificação"
@@ -126,6 +96,27 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
                                 name="ncm"
                                 onChange={formik.handleChange}
                             />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                required
+                                label="Origem do ICMS"
+                                fullWidth
+                                value={formik.values.icmsOrigin}
+                                name="icmsOrigin"
+                                onChange={formik.handleChange}
+                                select
+                                InputLabelProps={{ shrink: true }}
+                            >
+                                <MenuItem value="0">0 – Nacional</MenuItem>
+                                <MenuItem value="1">1 – Estrangeira (importação direta)</MenuItem>
+                                <MenuItem value="2">2 – Estrangeira (adquirida no mercado interno)</MenuItem>
+                                <MenuItem value="3">3 – Nacional com mais de 40% de conteúdo estrangeiro</MenuItem>
+                                <MenuItem value="4">4 – Nacional produzida através de processos produtivos básicos</MenuItem>
+                                <MenuItem value="5">5 – Nacional com menos de 40% de conteúdo estrangeiro</MenuItem>
+                                <MenuItem value="6">6 – Estrangeira (importação direta) sem produto nacional similar</MenuItem>
+                                <MenuItem value="7">7 – Estrangeira (adquirida no mercado interno) sem produto nacional similar</MenuItem>
+                            </TextField>
                         </Grid>
                     </Grid>
                 </DialogContent>
@@ -148,7 +139,6 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
                         Cancelar
                     </Button>
                     <Button
-                        // onClick={handleAddProduct}
                         type="submit"
                         color="primary"
                         variant="contained"
