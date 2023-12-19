@@ -31,8 +31,6 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
             email: "",
             phone: 0,
             customerId: 0,
-            customer: "",
-            notas: [],
         },
         onSubmit: (values) => {
             console.log(values)
@@ -183,7 +181,8 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
                 </DialogContent>
                 <DialogActions
                     sx={{
-                        margin: "0.5vw",
+                        margin: isMobile ? "0" : "0.5vw",
+                        padding: isMobile ? "5vw" : "",
                     }}
                 >
                     <Button

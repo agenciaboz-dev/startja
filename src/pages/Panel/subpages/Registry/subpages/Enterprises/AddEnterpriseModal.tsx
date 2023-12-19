@@ -126,7 +126,8 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
 
             <DialogActions
                 sx={{
-                    padding: isMobile ? "5vw" : "0.5vw",
+                    margin: isMobile ? "0" : "0.5vw",
+                    padding: isMobile ? "5vw" : "",
                 }}
             >
                 <Button

@@ -174,7 +174,8 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
 
             <DialogActions
                 sx={{
-                    margin: "0.5vw",
+                    margin: isMobile ? "0" : "0.5vw",
+                    padding: isMobile ? "5vw" : "",
                 }}
             >
                 <Button
