@@ -57,6 +57,9 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose }) =>
                         <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="NIRF(CAFIR)" fullWidth />
                         </Grid>
+                        <Grid item xs={12}>
+                            <TextField label="Série" fullWidth />
+                        </Grid>
                     </Grid>
 
                     <h4>Endereço da propriedade</h4>

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery, MenuItem } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { NaturesListHeader } from "../../../../components/NaturesList/NaturesListHeader"
 import { NaturesList } from "../../../../components/NaturesList"
@@ -65,6 +65,14 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField label="Natureza da operação (motivo)" placeholder="Busque pelo nome do produto ou NCM" fullWidth />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField label="Finalidade de emissão" select fullWidth>
+                                <MenuItem value="1">1 – Normal</MenuItem>
+                                <MenuItem value="2">2 – Complementar</MenuItem>
+                                <MenuItem value="3">3 – Nota de ajuste</MenuItem>
+                                <MenuItem value="4">4 – Devolução</MenuItem>
+                            </TextField>
                         </Grid>
                     </Grid>
 
