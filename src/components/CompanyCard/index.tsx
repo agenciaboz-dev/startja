@@ -29,12 +29,12 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({ company }) => {
                     boxShadow: "0 2px 2px 2px #d1d1d1",
                     flexDirection: "column",
                     padding: isMobile ? "5vw" : "1vw",
-                    gap: "1vw",
+                    gap: isMobile ? "5vw" : "1vw",
                     color: colors.text.greyish,
                 }}
             >
                 <MuiAvatar sx={{ backgroundColor: colors.secondary }} />
-                <Box sx={{ flexDirection: "column", alignItems: "center" }}>
+                <Box sx={{ flexDirection: "column", alignItems: "center", gap: isMobile ? "2.5vw" : "0.5vw" }}>
                     <p>CNPJ: {company.document}</p>
                     <p style={{ fontWeight: "bold", textTransform: "unset" }}>{company.name}</p>
                     <p>
