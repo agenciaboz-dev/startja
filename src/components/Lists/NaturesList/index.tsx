@@ -3,7 +3,7 @@ import { Box, useMediaQuery } from "@mui/material"
 import { NatureRow } from "./NatureRow"
 
 interface NaturesListProps {
-    natures: Nature[]
+    natures: Natureza[]
 }
 
 export const NaturesList: React.FC<NaturesListProps> = ({ natures }) => {

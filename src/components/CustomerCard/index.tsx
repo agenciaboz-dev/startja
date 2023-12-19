@@ -1,7 +1,6 @@
 import React from "react"
-import { AlertColor, Box, Button, Grid, IconButton, Avatar as MuiAvatar, useMediaQuery } from "@mui/material"
+import { AlertColor, Box, Button, Grid, Avatar as MuiAvatar, useMediaQuery } from "@mui/material"
 import { colors } from "../../style/colors"
-import LinkOutlinedIcon from "@mui/icons-material/LinkOutlined"
 import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined"
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined"
 import SettingsPhoneOutlinedIcon from "@mui/icons-material/SettingsPhoneOutlined"
@@ -67,7 +66,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
                             gap: "1vw",
                         }}
                     >
-                        <p>CPF: {customer.cpf}</p>
+                        <p>CPF: {customer.document}</p>
                         <p>
                             {customer.city}/{customer.state}
                         </p>

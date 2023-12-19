@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button, Checkbox } from "@mui/material"
+import { Box, Button } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { CategoriesListHeader } from "../../../../components/CategoriesList/CategoriesListHeader"
-import { CategoriesList } from "../../../../components/CategoriesList"
+import { CategoriesListHeader } from "../../../../components/Lists/CategoriesList/CategoriesListHeader"
+import { CategoriesList } from "../../../../components/Lists/CategoriesList"
 import { useIo } from "../../../../hooks/useIo"
 import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
-import AddCategoryModal from "./AddCategoryModal"
+import AddCategoryModal from "../../../../components/Modals/AddCategoryModal"
 import { useHeader } from "../../../../hooks/useHeader"
 
 interface CategoriesProps {}

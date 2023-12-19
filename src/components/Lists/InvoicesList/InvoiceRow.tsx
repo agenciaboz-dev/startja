@@ -1,7 +1,7 @@
 import React from "react"
 import { Box, Button, Checkbox, IconButton } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
-import { colors } from "../../style/colors"
+import { colors } from "../../../style/colors"
 
 interface InvoiceRowProps {
     invoice: notaFiscal

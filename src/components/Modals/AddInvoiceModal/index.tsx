@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box, Grid, Tab, Tabs, Radio, useMediaQuery } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
-import AddInvoiceInfoModal from "./AddInvoiceInfoModal"
-import { colors } from "../../../../style/colors"
-import { InvoiceModalProductsList } from "../../../../components/InvoiceModalProductsList"
-import { InvoiceModalProductsListHeader } from "../../../../components/InvoiceModalProductsList/InvoiceModalProductsListHeader"
+import AddInvoiceInfoModal from "../AddInvoiceInfoModal"
+import { colors } from "../../../style/colors"
+import { InvoiceModalProductsList } from "../../../../src/components/Lists/InvoiceModalProductsList"
+import { InvoiceModalProductsListHeader } from "../../../../src/components/Lists/InvoiceModalProductsList/InvoiceModalProductsListHeader"
 
 interface AddInvoiceModalProps {
     open: boolean

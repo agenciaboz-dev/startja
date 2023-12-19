@@ -3,10 +3,10 @@ import { Box, Button, useMediaQuery } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { useIo } from "../../../../../../hooks/useIo"
 import { Toolbar } from "../../../../../../components/Toolbar"
-import AddAccountModal from "./AddAccountModal"
+import AddAccountModal from "../../../../../../components/Modals/AddAccountModal"
 import { useHeader } from "../../../../../../hooks/useHeader"
-import { AccountsListHeader } from "../../../../../../components/AccountsList/AccountsListHeader"
-import { AccountsList } from "../../../../../../components/AccountsList"
+import { AccountsListHeader } from "../../../../../../components/Lists/AccountsList/AccountsListHeader"
+import { AccountsList } from "../../../../../../components/Lists/AccountsList"
 
 interface AccountsProps {}
 

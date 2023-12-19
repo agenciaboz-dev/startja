@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery, MenuItem } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
-import { ToggleSwitch } from "../../../../components/ToggleSwitch"
+import { ToggleSwitch } from "../../ToggleSwitch"
 
 interface AddInvoiceInfoModalProps {
     open: boolean

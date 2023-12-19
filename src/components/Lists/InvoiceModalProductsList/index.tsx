@@ -1,8 +1,7 @@
 import React from "react"
 import { Box } from "@mui/material"
 import { InvoiceModalProductRow } from "./InvoiceModalProductRow"
-import { useProduct } from "../../hooks/useProduct"
-import { InvoiceModalProductsListHeader } from "./InvoiceModalProductsListHeader"
+import { useProduct } from "../../../hooks/useProduct"
 
 interface InvoiceModalProductsListProps {}
 

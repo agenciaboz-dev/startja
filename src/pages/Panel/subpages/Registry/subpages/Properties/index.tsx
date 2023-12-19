@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { Box, Button, useMediaQuery } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { PropertiesListHeader } from "../../../../../../components/PropertiesList/PropertiesListHeader"
-import { PropertiesList } from "../../../../../../components/PropertiesList"
+import { PropertiesListHeader } from "../../../../../../components/Lists/PropertiesList/PropertiesListHeader"
+import { PropertiesList } from "../../../../../../components/Lists/PropertiesList"
 import { useIo } from "../../../../../../hooks/useIo"
 import { Toolbar } from "../../../../../../components/Toolbar"
-import AddPropertyModal from "./AddPropertyModal"
+import AddPropertyModal from "../../../../../../components/Modals/AddPropertyModal"
 import { useHeader } from "../../../../../../hooks/useHeader"
 
 interface PropertiesProps {}

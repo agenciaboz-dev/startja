@@ -1,10 +1,6 @@
-import React, { useState } from "react"
+import React from "react"
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
-import { PropertiesListHeader } from "../../../../../../components/PropertiesList/PropertiesListHeader"
-import { PropertiesList } from "../../../../../../components/PropertiesList"
-import { AddedTaxationRulesListHeader } from "../../../../../../components/AddedTaxationRulesList/AddedTaxationRulesListHeader"
-import { AddedTaxationRuleRowsList } from "../../../../../../components/AddedTaxationRulesList"
 
 interface AddPropertyModalProps {
     open: boolean

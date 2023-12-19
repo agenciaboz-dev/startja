@@ -2,14 +2,13 @@ import React from "react"
 import { Box, Checkbox, useMediaQuery } from "@mui/material"
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined"
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined"
-import { ToggleSwitch } from "../ToggleSwitch"
-import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
+import { ToggleSwitch } from "../../ToggleSwitch"
 
-interface CollaboratorRowProps {
-    // collaborator: Collaborator
+interface NatureRowProps {
+    nature: Natureza
 }
 
-export const CollaboratorRow: React.FC<CollaboratorRowProps> = ({ collaborator }) => {
+export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
@@ -27,54 +26,47 @@ export const CollaboratorRow: React.FC<CollaboratorRowProps> = ({ collaborator }
             />
             <Box
                 sx={{
-                    alignItems: "center",
                     justifyContent: "space-between",
+                    alignItems: "center",
                     flex: 1,
                     gap: isMobile ? "20vw" : "2vw",
                 }}
             >
                 <Box
                     sx={{
-                        width: "35%",
+                        flex: 0.7,
                         alignItems: "center",
                     }}
                 >
-                    {/* <p>{collaborator.name}</p> */}
-                    <p>Giana Workman</p>
+                    <p>{nature.motive}</p>
+                    {/* <p>Elementum senectus diam neque aliquet</p> */}
                 </Box>
                 <Box
                     sx={{
                         alignItems: "center",
-                        width: "25%",
+                        flex: 0.1,
                         justifyContent: "center",
                     }}
                 >
-                    <p>cursus@outlook.com.br</p>
+                    <VisibilityOutlinedIcon />
                 </Box>
                 <Box
                     sx={{
                         alignItems: "center",
-                        width: "20%",
+                        flex: 0.1,
                         justifyContent: "center",
                     }}
                 >
-                    <p>05/08/2022</p>
+                    <EditOutlinedIcon />
                 </Box>
                 <Box
                     sx={{
-                        width: "10%",
+                        alignItems: "center",
+                        flex: 0.1,
                         justifyContent: "center",
                     }}
                 >
                     <ToggleSwitch />
-                </Box>
-                <Box
-                    sx={{
-                        width: "5%",
-                        justifyContent: "center",
-                    }}
-                >
-                    <FormatListBulletedOutlinedIcon />
                 </Box>
             </Box>
         </Box>

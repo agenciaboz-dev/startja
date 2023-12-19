@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react"
 import { Box, useMediaQuery } from "@mui/material"
 import { Toolbar } from "../../../../../../components/Toolbar"
 import { useHeader } from "../../../../../../hooks/useHeader"
-import { EnterprisesListHeader } from "../../../../../../components/EnterprisesList/EnterprisesListHeader"
-import { EnterprisesList } from "../../../../../../components/EnterprisesList"
-import AddEnterpriseModal from "./AddEnterpriseModal"
+import { EnterprisesListHeader } from "../../../../../../components/Lists/EnterprisesList/EnterprisesListHeader"
+import { EnterprisesList } from "../../../../../../components/Lists/EnterprisesList"
+import AddEnterpriseModal from "../../../../../../components/Modals/AddEnterpriseModal"
 import { useLocation, useNavigate } from "react-router-dom"
 
 interface EnterprisesProps {

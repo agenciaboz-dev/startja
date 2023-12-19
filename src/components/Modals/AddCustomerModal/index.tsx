@@ -14,11 +14,11 @@ import {
     useMediaQuery,
 } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
-import { ToggleSwitch } from "../../../../components/ToggleSwitch"
-import { PermissionsCard } from "../../../../components/PermissionsCard"
+import { ToggleSwitch } from "../../ToggleSwitch"
+import { PermissionsCard } from "../../PermissionsCard"
 import { useFormik } from "formik"
-import { NewUser } from "../../../../definitions/userOperations"
-import { useIo } from "../../../../hooks/useIo"
+import { NewUser } from "../../../definitions/userOperations"
+import { useIo } from "../../../hooks/useIo"
 
 interface AddCustomerModalProps {
     open: boolean

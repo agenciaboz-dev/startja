@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button, useMediaQuery } from "@mui/material"
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import { colors } from "../../../../style/colors"
-import { Sidebar } from "../../../../components/Sidebar"
+import { Box, useMediaQuery } from "@mui/material"
 import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
-import { InvoicesList } from "../../../../components/InvoicesList"
-import { InvoicesListHeader } from "../../../../components/InvoicesList/InvoicesListHeader"
-import AddInvoiceModal from "./AddInvoiceModal"
+import { InvoicesList } from "../../../../components/Lists/InvoicesList"
+import { InvoicesListHeader } from "../../../../components/Lists/InvoicesList/InvoicesListHeader"
+import AddInvoiceModal from "../../../../components/Modals/AddInvoiceModal"
 import { useHeader } from "../../../../hooks/useHeader"
 
 interface IssuanceProps {

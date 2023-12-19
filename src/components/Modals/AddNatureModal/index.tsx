@@ -1,11 +1,9 @@
 import React, { useState } from "react"
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery, MenuItem } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
-import { NaturesListHeader } from "../../../../components/NaturesList/NaturesListHeader"
-import { NaturesList } from "../../../../components/NaturesList"
-import AddTaxationRuleModal from "./AddTaxationRuleModal"
-import { AddedTaxationRulesListHeader } from "../../../../components/AddedTaxationRulesList/AddedTaxationRulesListHeader"
-import { AddedTaxationRuleRowsList } from "../../../../components/AddedTaxationRulesList"
+import AddTaxationRuleModal from "../AddTaxationRuleModal"
+import { AddedTaxationRulesListHeader } from "../../../../src/components/Lists/AddedTaxationRulesList/AddedTaxationRulesListHeader"
+import { AddedTaxationRuleRowsList } from "../../../../src/components/Lists/AddedTaxationRulesList"
 
 interface AddNatureModalProps {
     open: boolean

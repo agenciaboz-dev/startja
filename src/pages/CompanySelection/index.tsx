@@ -7,7 +7,7 @@ import { CompanyCard } from "../../components/CompanyCard"
 import { useIo } from "../../hooks/useIo"
 import { useHeader } from "../../hooks/useHeader"
 import normalize from "../../tools/normalize"
-import AddCompanyModal from "./AddCompanyModal"
+import AddCompanyModal from "../../components/Modals/AddCompanyModal"
 import { useCompany } from "../../hooks/useCompany"
 
 interface CompanySelectionProps {

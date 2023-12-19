@@ -4,9 +4,8 @@ import { useHeader } from "../../../../../../hooks/useHeader"
 import { Toolbar } from "../../../../../../components/Toolbar"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 import { useIo } from "../../../../../../hooks/useIo"
-import normalize from "../../../../../../tools/normalize"
-import { CollaboratorsListHeader } from "../../../../../../components/CollaboratorsList/CollaboratorsListHeader"
-import { CollaboratorRow } from "../../../../../../components/CollaboratorsList/CollaboratorRow"
+import { CollaboratorsListHeader } from "../../../../../../components/Lists/CollaboratorsList/CollaboratorsListHeader"
+import { CollaboratorRow } from "../../../../../../components/Lists/CollaboratorsList/CollaboratorRow"
 
 interface ConfigCollaboratorsProps {
     user: User

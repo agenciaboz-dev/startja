@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Box, Button, Paper, useMediaQuery } from "@mui/material"
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import AddInvoiceModal from "../Issuance/AddInvoiceModal"
+import AddInvoiceModal from "../../../../components/Modals/AddInvoiceModal"
 import { SectionTitle } from "../../../../components/SectionTitle"
 import { MovementsChart } from "./MovementsChart"
 
