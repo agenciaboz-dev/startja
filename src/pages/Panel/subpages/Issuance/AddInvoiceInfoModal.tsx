@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery, MenuItem } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { ToggleSwitch } from "../../../../components/ToggleSwitch"
 
@@ -57,15 +57,31 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                         }}
                     >
                         <p>Informações gerais</p>
-                        <TextField label="Informações complementares" fullWidth />
-                        <Box
-                            sx={{
-                                alignItems: "center",
-                            }}
-                        >
-                            <ToggleSwitch toggleSwitchCallback={handleSwitchToggle} checked={informTime} />
-                            <p>Informar data e hora de saída</p>
-                        </Box>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <TextField label="Informações complementares" fullWidth />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField label="Presença do Comprador" select fullWidth>
+                                    <MenuItem value="0">0 – Não se aplica (por exemplo, para a Nota Fiscal complementar ou de ajuste)</MenuItem>
+                                    <MenuItem value="1">1 – Operação presencial</MenuItem>
+                                    <MenuItem value="2">2 – Operação não presencial, pela Internet</MenuItem>
+                                    <MenuItem value="3">3 – Operação não presencial, Teleatendimento</MenuItem>
+                                    <MenuItem value="4">4 – NFC-e em operação com entrega em domicílio</MenuItem>
+                                    <MenuItem value="9">9 – Operação não presencial, outros.</MenuItem>
+                                </TextField>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Box
+                                    sx={{
+                                        alignItems: "center",
+                                    }}
+                                >
+                                    <ToggleSwitch toggleSwitchCallback={handleSwitchToggle} checked={informTime} />
+                                    <p>Informar data e hora de saída</p>
+                                </Box>
+                            </Grid>
+                        </Grid>
                         {informTime && (
                             <Box>
                                 <Grid container spacing={2}>
