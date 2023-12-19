@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Grid, CircularProgress, useMediaQuery, MenuItem } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
-import { useIo } from "../../../../hooks/useIo"
+import { useIo } from "../../hooks/useIo"
 import { useFormik } from "formik"
-import { NewProduct } from "../../../../definitions/userOperations"
+import { NewProduct } from "../../definitions/userOperations"
 
 interface AddProductModalProps {
     open: boolean

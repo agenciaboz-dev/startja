@@ -5,7 +5,7 @@ import { ProductsListHeader } from "../../../../../../components/ProductsList/Pr
 import { ProductsList } from "../../../../../../components/ProductsList"
 import { useIo } from "../../../../../../hooks/useIo"
 import { Toolbar } from "../../../../../../components/Toolbar"
-import AddProductModal from "./AddProductModal"
+import AddProductModal from "../../../../../../components/AddProductModal"
 import { useProduct } from "../../../../../../hooks/useProduct"
 import { useHeader } from "../../../../../../hooks/useHeader"
 import normalize from "../../../../../../tools/normalize"
