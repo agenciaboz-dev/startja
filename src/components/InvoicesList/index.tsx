@@ -13,11 +13,12 @@ export const InvoicesList: React.FC<InvoicesListProps> = ({ invoices }) => {
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5vw 0"
-            }}>
-            {invoices.map((invoice) => (
+                margin: "0.5vw 0",
+            }}
+        >
+            {/* {invoices.map((invoice) => (
                 <InvoiceRow key={invoice.id} invoice={invoice} />
-            ))}
+            ))} */}
         </Box>
     )
 }

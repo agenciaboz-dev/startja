@@ -4,7 +4,7 @@ import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBullet
 import { colors } from "../../style/colors"
 
 interface InvoiceRowProps {
-    invoice: Invoice
+    invoice: notaFiscal
 }
 
 export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => {
@@ -15,24 +15,22 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => {
             <Checkbox inputProps={{ style: { padding: "0" } }} />
             <Box sx={{ alignItems: "center", justifyContent: "space-between", flex: 1, gap: "2vw" }}>
                 <Box sx={{ flex: 1 }}>
-                    <p>{new Date(Number(invoice.emission)).toLocaleDateString("pt-br")}</p>
+                    <p>{new Date(Number(invoice.emissionDate)).toLocaleDateString("pt-br")}</p>
                 </Box>
                 <Box sx={{ flex: 1, justifyContent: "center" }}>
-                    <p>
-                        {invoice.series}/{invoice.nfe}
-                    </p>
+                    <p>{invoice.series}</p>
                 </Box>
                 <Box sx={{ flex: 1, justifyContent: "center" }}>
-                    <p>{invoice.clientSupplier}</p>
+                    <p>{invoice.companyId}</p>
                 </Box>
                 <Box sx={{ flex: 1, justifyContent: "center" }}>
-                    <p>{invoice.issuer}</p>
+                    <p>{invoice.shippingCompany}</p>
                 </Box>
                 <Box sx={{ flex: 1, justifyContent: "center" }}>
                     <p>{invoice.property.id}</p>
                 </Box>
                 <Box sx={{ flex: 1, color: colors.primary, justifyContent: "center" }}>
-                    <p>R$ {invoice.value.toString().replace(".", ",")}</p>
+                    <p>R$ {invoice.totalProductValue.toString().replace(".", ",")}</p>
                 </Box>
                 <Box sx={{ flex: 1, justifyContent: "center" }}>
                     <Button
@@ -44,7 +42,7 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => {
                             pointerEvents: "none",
                         }}
                     >
-                        <p>{invoice.situation}</p>
+                        <p>{invoice.generalInfo}</p>
                     </Button>
                 </Box>
                 <Box sx={{ width: "5%", justifyContent: "center" }}>
