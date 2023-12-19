@@ -28,12 +28,14 @@ interface AddCustomerModalProps {
 const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const io = useIo()
+    const todayDate = new Date()
+    const formattedDate = todayDate.toISOString().split("T")[0]
     const formik = useFormik<NewUser>({
         initialValues: {
             name: "",
             email: "",
             password: "",
-            register_date: "",
+            register_date: formattedDate,
             phone: "",
             document: "",
             city: "",
@@ -47,10 +49,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
             regimeTributario: 0,
             inscricaoEstadual: "",
             isento: false,
-
-            certificateId: 0,
-            certificate: "",
-            companies: [],
+            certificateId: "",
         },
         onSubmit: (values) => {
             console.log(values)
@@ -159,6 +158,26 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         fullWidth
                                         value={formik.values.regimeTributario}
                                         name="regimeTributario"
+                                        onChange={formik.handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        label="ID de Certificado"
+                                        fullWidth
+                                        value={formik.values.certificateId}
+                                        name="certificateId"
+                                        onChange={formik.handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        label="Senha"
+                                        fullWidth
+                                        value={formik.values.password}
+                                        name="password"
                                         onChange={formik.handleChange}
                                     />
                                 </Grid>
