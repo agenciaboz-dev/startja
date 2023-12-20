@@ -102,12 +102,12 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                         <Box
                             sx={{
                                 flex: 1,
-                                padding: "1vw 1.5vw 1vw 0.5vw",
                                 boxShadow: "0 2px 2px 2px #d1d1d1",
                                 backgroundColor: "white",
                                 borderRadius: "20px",
                                 flexDirection: "column",
-                                width: "100%",
+                                padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
+                                width: isMobile ? "fit-content" : "100%",
                             }}
                         >
                             <ProductsListHeader />
