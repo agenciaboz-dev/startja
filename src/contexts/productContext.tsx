@@ -20,7 +20,7 @@ export const ProductProvider:React.FC<ProductProviderProps> = ({children}) => {
     const io = useIo()
 
     useEffect(() => {
-        console.log({products:list})
+        console.log({ list })
     },[list])
 
     useEffect(() => {

@@ -36,13 +36,6 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     useEffect(() => {
         header.setTitle("Produtos")
         io.emit("product:list")
-        io.on("product:creation:successful", () => {
-            window.location.reload()
-        })
-
-        return () => {
-            io.off("product:creation:successful")
-        }
     }, [])
 
     return (
