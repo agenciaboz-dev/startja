@@ -158,6 +158,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         fullWidth
                                         value={formik.values.regimeTributario}
                                         name="regimeTributario"
+                                        type="number"
                                         onChange={formik.handleChange}
                                     />
                                 </Grid>
@@ -244,6 +245,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         fullWidth
                                         value={formik.values.number}
                                         name="number"
+                                        type="number"
                                         onChange={formik.handleChange}
                                     />
                                 </Grid>
