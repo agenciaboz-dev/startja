@@ -3,8 +3,8 @@ import React from "react"
 import { useIo } from "../hooks/useIo"
 
 interface NatureContextValue {
-    list: Nature[]
-    setList: (value: Nature[]) => void
+    list: Natureza[]
+    setList: (value: Natureza[]) => void
 }
 
 interface NatureProviderProps {
@@ -16,7 +16,7 @@ const NatureContext = createContext<NatureContextValue>({} as NatureContextValue
 export default NatureContext
 
 export const NatureProvider: React.FC<NatureProviderProps> = ({ children }) => {
-    const [list, setList] = useState<Nature[]>([])
+    const [list, setList] = useState<Natureza[]>([])
     const io = useIo()
 
     useEffect(() => {

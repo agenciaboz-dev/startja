@@ -19,6 +19,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
     const header = useHeader()
     const io = useIo()
     const emptyNaturesList = !natures.list.length
+
     const [isAddNatureModalOpen, setAddNatureModalOpen] = useState(false)
     const openNatureModal = () => {
         setAddNatureModalOpen(true)
@@ -56,8 +57,10 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
             />
             <Box
                 sx={{
-                    height: "100%",
-                    width: "100%",
+                    flex: 1,
+                    overflow: isMobile ? "scroll" : "",
+                    padding: isMobile ? "1vw 5vw" : "",
+                    margin: isMobile ? "0 -5vw" : "",
                 }}
             >
                 {emptyNaturesList && (
@@ -96,13 +99,12 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                     <Box
                         sx={{
                             flex: 1,
-                            padding: isMobile ? "5vw 1vw" : "1vw 1.5vw 1vw 0.5vw",
                             boxShadow: "0 2px 2px 2px #d1d1d1",
                             backgroundColor: "white",
                             borderRadius: "20px",
                             flexDirection: "column",
-                            width: "100%",
-                            marginTop: isMobile ? "5vw" : "",
+                            padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
+                            width: isMobile ? "fit-content" : "100%",
                         }}
                     >
                         <NaturesListHeader />

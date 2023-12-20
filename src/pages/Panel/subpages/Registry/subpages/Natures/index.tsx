@@ -17,7 +17,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
     const natures = useNature()
     const header = useHeader()
     const io = useIo()
-    const [emptyNaturesList, setEmptyNaturesList] = useState(false)
+    const emptyNaturesList = !natures.list.length
     const [isAddNatureModalOpen, setAddNatureModalOpen] = useState(false)
     const openNatureModal = () => {
         setAddNatureModalOpen(true)
@@ -47,7 +47,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
             }}
         >
             <Toolbar
-                searchPlaceholder="naturezas de operação"
+                searchPlaceholder="natureza de operação"
                 onSearch={handleSearch}
                 addButtonText="Adicionar natureza de operação"
                 addButtonCallback={openNatureModal}
@@ -69,7 +69,8 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                             justifyContent: "center",
                             alignItems: "center",
                             flexDirection: "column",
-                            gap: "1vw",
+                            gap: isMobile ? "5vw" : "1vw",
+                            textAlign: "center",
                         }}
                     >
                         <h2>Sem naturezas de operação cadastradas</h2>
@@ -79,14 +80,14 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                             sx={{
                                 borderRadius: "20px",
                                 textTransform: "unset",
-                                height: "3vw",
+                                height: isMobile ? "8vw" : "2vw",
                                 verticalAlign: "middle",
                                 gap: "0.5vw",
                             }}
                             onClick={openNatureModal}
                         >
                             <AddOutlinedIcon />
-                            Adicionar nova natureza de operação
+                            Adicionar natureza de operação
                         </Button>
                     </Box>
                 )}
@@ -94,7 +95,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                 {!emptyNaturesList && (
                     <Box
                         sx={{
-                            // flex: 1,
+                            flex: 1,
                             boxShadow: "0 2px 2px 2px #d1d1d1",
                             backgroundColor: "white",
                             borderRadius: "20px",
