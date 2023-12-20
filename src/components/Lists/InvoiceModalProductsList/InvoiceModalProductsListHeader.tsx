@@ -36,6 +36,7 @@ export const InvoiceModalProductsListHeader: React.FC<InvoiceModalProductsListHe
                 <Box
                     sx={{
                         justifyContent: "space-between",
+                        alignItems: "center",
                         flex: 1,
                         gap: isMobile ? "10vw" : "",
                     }}

@@ -29,6 +29,7 @@ export const InvoicesListHeader: React.FC<InvoicesListHeaderProps> = ({}) => {
                 <Box
                     sx={{
                         justifyContent: "space-between",
+                        alignItems: "center",
                         flex: 1,
                         gap: isMobile ? "20vw" : "2vw",
                     }}
