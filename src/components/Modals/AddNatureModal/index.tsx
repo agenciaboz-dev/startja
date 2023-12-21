@@ -4,6 +4,7 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import AddTaxationRuleModal from "../AddTaxationRuleModal"
 import { AddedTaxationRulesListHeader } from "../../../../src/components/Lists/AddedTaxationRulesList/AddedTaxationRulesListHeader"
 import { AddedTaxationRuleRowsList } from "../../../../src/components/Lists/AddedTaxationRulesList"
+import { colors } from "../../../style/colors"
 
 interface AddNatureModalProps {
     open: boolean
@@ -12,9 +13,40 @@ interface AddNatureModalProps {
 
 const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+
     const [isAddTaxationRuleModalOpen, setAddTaxationRuleModalOpen] = useState(false)
+    const [selectedOperation, setSelectedOperation] = useState("")
+    const [selectedType, setSelectedType] = useState("")
+    const [selectedFinality, setSelectedFinality] = useState("")
+
     const openTaxationRuleModal = () => {
         setAddTaxationRuleModalOpen(true)
+    }
+
+    const handleOperationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedOperation = event.target.value
+        setSelectedOperation(selectedOperation)
+
+        if (
+            selectedOperation === "Compra de mercadorias" ||
+            selectedOperation === "Retorno de mercadoria" ||
+            selectedOperation === "Transferência de entrada"
+        ) {
+            setSelectedType("Entrada")
+            setSelectedFinality("Normal")
+        } else if (selectedOperation === "Devolução de venda") {
+            setSelectedType("Entrada")
+            setSelectedFinality("Devolução")
+        } else if (selectedOperation === "Remessa de mercadoria" || selectedOperation === "Transferência de saída" || selectedOperation === "Venda") {
+            setSelectedType("Saída")
+            setSelectedFinality("Normal")
+        } else if (selectedOperation === "Devolução de compra") {
+            setSelectedType("Saída")
+            setSelectedFinality("Devolução")
+        } else if (selectedOperation === "Anulação de valores") {
+            setSelectedType("Saída")
+            setSelectedFinality("Ajuste")
+        }
     }
 
     return (
@@ -53,13 +85,48 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                 >
                     <Grid container spacing={2}>
                         <Grid item xs={isMobile ? 12 : 4}>
-                            <TextField label="Operação" fullWidth />
+                            <TextField label="Operação" select fullWidth onChange={handleOperationChange} value={selectedOperation}>
+                                <MenuItem value="Compra de mercadorias">Compra de mercadorias</MenuItem>
+                                <MenuItem value="Devolução de compra">Devolução de compra</MenuItem>
+                                <MenuItem value="Devolução de venda">Devolução de venda</MenuItem>
+                                <MenuItem value="Remessa de mercadoria">Remessa de mercadoria</MenuItem>
+                                <MenuItem value="Retorno de mercadoria">Retorno de mercadoria</MenuItem>
+                                <MenuItem value="Transferência de entrada">Transferência de entrada</MenuItem>
+                                <MenuItem value="Transferência de saída">Transferência de saída</MenuItem>
+                                <MenuItem value="Anulação de valores">Anulação de valores</MenuItem>
+                                <MenuItem value="Venda">Venda</MenuItem>
+                            </TextField>
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 4}>
-                            <TextField label="Tipo" fullWidth />
+                            <TextField
+                                label="Tipo"
+                                select
+                                fullWidth
+                                value={selectedType}
+                                disabled
+                                sx={{
+                                    backgroundColor: colors.background,
+                                }}
+                            >
+                                <MenuItem value="Entrada">Entrada</MenuItem>
+                                <MenuItem value="Saída">Saída</MenuItem>
+                            </TextField>
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 4}>
-                            <TextField label="Finalidade" fullWidth />
+                            <TextField
+                                label="Finalidade"
+                                select
+                                fullWidth
+                                value={selectedFinality}
+                                disabled
+                                sx={{
+                                    backgroundColor: colors.background,
+                                }}
+                            >
+                                <MenuItem value="Normal">Normal</MenuItem>
+                                <MenuItem value="Devolução">Devolução</MenuItem>
+                                <MenuItem value="Ajuste">Ajuste</MenuItem>
+                            </TextField>
                         </Grid>
                         <Grid item xs={12}>
                             <TextField label="Natureza da operação (motivo)" placeholder="Busque pelo nome do produto ou NCM" fullWidth />
