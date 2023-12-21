@@ -89,7 +89,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                             <TextField label="Informações adicionais" fullWidth />
                         </Grid>
 
-                        <Grid item xs={isMobile ? 12 : 6}>
+                        <Grid item xs={12}>
                             <Box
                                 sx={{
                                     flexDirection: "column",
@@ -99,18 +99,6 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                             >
                                 <p>ICMS - Situação tributária</p>
                                 <TextField label="CST" fullWidth />
-                            </Box>
-                        </Grid>
-                        <Grid item xs={isMobile ? 12 : 6}>
-                            <Box
-                                sx={{
-                                    flexDirection: "column",
-                                    width: "100%",
-                                    gap: "0.5vw",
-                                }}
-                            >
-                                <p>ICMS - Origem</p>
-                                <TextField label="Origem" fullWidth />
                             </Box>
                         </Grid>
                         <Grid item xs={12}>
