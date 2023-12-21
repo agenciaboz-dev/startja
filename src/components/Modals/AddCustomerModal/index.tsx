@@ -12,6 +12,7 @@ import {
     Checkbox,
     CircularProgress,
     useMediaQuery,
+    MenuItem,
 } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { ToggleSwitch } from "../../ToggleSwitch"
@@ -134,7 +135,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                 <Grid item xs={isMobile ? 12 : 6}>
                                     <TextField
                                         required
-                                        label="Nome"
+                                        label="Nome completo"
                                         fullWidth
                                         value={formik.values.name}
                                         name="name"
@@ -158,9 +159,13 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         fullWidth
                                         value={formik.values.regimeTributario}
                                         name="regimeTributario"
-                                        type="number"
+                                        select
                                         onChange={formik.handleChange}
-                                    />
+                                    >
+                                        <MenuItem value={1}>1 – Simples Nacional</MenuItem>
+                                        <MenuItem value={2}>2 – Simples Nacional – excesso de sublimite de receita bruta</MenuItem>
+                                        <MenuItem value={3}>3 – Regime Normal</MenuItem>
+                                    </TextField>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
