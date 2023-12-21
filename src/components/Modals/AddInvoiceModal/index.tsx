@@ -178,7 +178,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                                 }}
                             >
                                 <Grid container spacing={2}>
-                                    <Grid item xs={isMobile ? 12 : 6}>
+                                    <Grid item xs={12}>
                                         <TextField label="Produto" fullWidth />
                                     </Grid>
                                     <Grid item xs={isMobile ? 12 : 6}>
@@ -186,9 +186,6 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                                     </Grid>
                                     <Grid item xs={isMobile ? 12 : 6}>
                                         <TextField label="Unidade comercial" fullWidth />
-                                    </Grid>
-                                    <Grid item xs={isMobile ? 12 : 6}>
-                                        <TextField label="Unidade tributável" fullWidth />
                                     </Grid>
                                     <Grid item xs={isMobile ? 12 : 6}>
                                         <TextField label="Valor unitário" fullWidth />
