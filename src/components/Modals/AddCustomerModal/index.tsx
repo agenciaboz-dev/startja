@@ -167,6 +167,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         <MenuItem value={3}>3 – Regime Normal</MenuItem>
                                     </TextField>
                                 </Grid>
+
                                 <Grid item xs={12}>
                                     <TextField
                                         required
@@ -175,6 +176,9 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         value={formik.values.certificateId}
                                         name="certificateId"
                                         onChange={formik.handleChange}
+                                        sx={{
+                                            backgroundColor: "#DDE37C",
+                                        }}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -185,6 +189,9 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         value={formik.values.password}
                                         name="password"
                                         onChange={formik.handleChange}
+                                        sx={{
+                                            backgroundColor: "#DDE37C",
+                                        }}
                                     />
                                 </Grid>
                             </Grid>
