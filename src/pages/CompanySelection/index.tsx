@@ -35,7 +35,9 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
         header.setTitle("Selecionar empresa")
     }, [])
 
-    useEffect(() => {}, [])
+    useEffect(() => {
+        if (user.companies) setCompanies(user.companies)
+    }, [user.companies])
 
     return (
         <Box

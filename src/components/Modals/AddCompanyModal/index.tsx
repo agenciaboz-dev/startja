@@ -4,6 +4,7 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { useIo } from "../../../hooks/useIo"
 import { useFormik } from "formik"
 import { NewCompany } from "../../../definitions/userOperations"
+import { useUser } from "../../../hooks/useUser"
 
 interface AddCompanyModalProps {
     open: boolean
@@ -13,30 +14,31 @@ interface AddCompanyModalProps {
 const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const io = useIo()
+    const { user } = useUser()
 
     const formik = useFormik<NewCompany>({
         initialValues: {
-            type: "",
-            name: "",
-            document: "",
-            inscricaoEstadual: "",
-            indicadorEstadual: 0,
-            city: "",
-            state: "",
-            district: "",
-            street: "",
+            type: "nacional",
+            name: "HENRIQUE DEL COLI BATISTA LIMA",
+            document: "06117933932",
+            inscricaoEstadual: "9586480810",
+            indicadorEstadual: "1",
+            city: "Curitiba",
+            state: "Paraná",
+            district: "Bacacheri",
+            street: "Rua Canadá",
             adjunct: "",
-            number: 0,
-            cep: "",
-            email: "",
-            phone: 0,
-            customerId: 0,
+            number: "185",
+            cep: "82510-290",
+            email: "fernando@agenciazop.com.br",
+            phone: "41984556795",
+            customerId: user?.id || 0
         },
         onSubmit: (values) => {
             console.log(values)
             setLoading(true)
             io.emit("company:create", values)
-        },
+        }
     })
 
     const [loading, setLoading] = useState(false)
@@ -64,15 +66,14 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
             open={open}
             onClose={onClose}
             sx={{
-                justifyContent: "center",
+                justifyContent: "center"
             }}
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
-                    minWidth: "90vw",
-                },
-            }}
-        >
+                    minWidth: "90vw"
+                }
+            }}>
             <form style={{ display: "contents" }} onSubmit={formik.handleSubmit}>
                 <DialogTitle>Adicionar Empresa</DialogTitle>
                 <CloseOutlinedIcon
@@ -80,15 +81,14 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
                         position: "absolute",
                         top: isMobile ? "5vw" : "1vw",
                         right: isMobile ? "5vw" : "1vw",
-                        cursor: "pointer",
+                        cursor: "pointer"
                     }}
                     onClick={onClose}
                 />
                 <DialogContent
                     sx={{
-                        paddingTop: 0,
-                    }}
-                >
+                        paddingTop: 0
+                    }}>
                     <Grid container spacing={2}>
                         <Grid item xs={isMobile ? 12 : 3}>
                             <TextField required label="Tipo" fullWidth value={formik.values.type} name="type" onChange={formik.handleChange} />
@@ -146,14 +146,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
                             <TextField required label="Rua" fullWidth value={formik.values.street} name="street" onChange={formik.handleChange} />
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 3}>
-                            <TextField
-                                required
-                                label="Complemento"
-                                fullWidth
-                                value={formik.values.adjunct}
-                                name="adjunct"
-                                onChange={formik.handleChange}
-                            />
+                            <TextField label="Complemento" fullWidth value={formik.values.adjunct} name="adjunct" onChange={formik.handleChange} />
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 3}>
                             <TextField required label="Número" fullWidth value={formik.values.number} name="number" onChange={formik.handleChange} />
@@ -167,24 +160,13 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
                         <Grid item xs={isMobile ? 12 : 3}>
                             <TextField required label="Telefone" fullWidth value={formik.values.phone} name="phone" onChange={formik.handleChange} />
                         </Grid>
-                        <Grid item xs={isMobile ? 12 : 3}>
-                            <TextField
-                                required
-                                label="ID de proprietário(a)"
-                                fullWidth
-                                value={formik.values.customerId}
-                                name="customerId"
-                                onChange={formik.handleChange}
-                            />
-                        </Grid>
                     </Grid>
                 </DialogContent>
                 <DialogActions
                     sx={{
                         margin: isMobile ? "0" : "0.5vw",
-                        padding: isMobile ? "5vw" : "",
-                    }}
-                >
+                        padding: isMobile ? "5vw" : ""
+                    }}>
                     <Button
                         onClick={onClose}
                         color="secondary"
@@ -192,9 +174,8 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset",
-                        }}
-                    >
+                            textTransform: "unset"
+                        }}>
                         Cancelar
                     </Button>
                     <Button
@@ -204,9 +185,8 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset",
-                        }}
-                    >
+                            textTransform: "unset"
+                        }}>
                         {loading ? <CircularProgress size="1.5rem" color="inherit" /> : "Adicionar"}
                     </Button>
                 </DialogActions>

@@ -27,16 +27,16 @@ export declare interface NewCompany {
     name: string
     document: string
     inscricaoEstadual: string
-    indicadorEstadual: number
+    indicadorEstadual: string
     city: string
     state: string
     district: string
     street: string
     adjunct: string
-    number: number
+    number: string
     cep: string
     email: string
-    phone: number
+    phone: string
     customerId: number
 }
 
