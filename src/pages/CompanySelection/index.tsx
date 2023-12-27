@@ -17,8 +17,6 @@ interface CompanySelectionProps {
 export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const header = useHeader()
-    const io = useIo()
-    const { list } = useCompany()
 
     const [isAddCompanyModalOpen, setAddCompanyModalOpen] = useState(false)
     const openCompanyModal = () => {
@@ -34,15 +32,10 @@ export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
     }
 
     useEffect(() => {
-        if (user) {
-            setCompanies(list)
-        }
+        header.setTitle("Selecionar empresa")
     }, [])
 
-    useEffect(() => {
-        header.setTitle("Selecionar empresa")
-        io.emit("company:list")
-    }, [])
+    useEffect(() => {}, [])
 
     return (
         <Box
