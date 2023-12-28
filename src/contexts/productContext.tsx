@@ -20,13 +20,15 @@ export const ProductProvider:React.FC<ProductProviderProps> = ({children}) => {
     const io = useIo()
 
     useEffect(() => {
-        console.log({ list })
+        console.log({ products: list })
     },[list])
 
     useEffect(() => {
         io.on('product:list', (data) =>{
             setList(data.product)
         })
+
+        io.emit("product:list")
 
         return () => {
             io.off('product:list')

@@ -32,6 +32,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
             cep: "82510-290",
             email: "fernando@agenciazop.com.br",
             phone: "41984556795",
+            businessName: "HENRIQUE",
             customerId: user?.id || 0
         },
         onSubmit: (values) => {
@@ -159,6 +160,16 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 3}>
                             <TextField required label="Telefone" fullWidth value={formik.values.phone} name="phone" onChange={formik.handleChange} />
+                        </Grid>
+                        <Grid item xs={isMobile ? 12 : 3}>
+                            <TextField
+                                required
+                                label="Nome Fantasia"
+                                fullWidth
+                                value={formik.values.businessName}
+                                name=".businessName"
+                                onChange={formik.handleChange}
+                            />
                         </Grid>
                     </Grid>
                 </DialogContent>

@@ -16,7 +16,6 @@ export declare interface NewUser {
     cep: string
     register_date: string
     certificateId: string
-    businessName: string
     regimeTributario: number
     inscricaoEstadual: string
     isento: boolean
@@ -38,6 +37,7 @@ export declare interface NewCompany {
     email: string
     phone: string
     customerId: number
+    businessName: string
 }
 
 export declare interface NewProduct {
