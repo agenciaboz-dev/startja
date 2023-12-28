@@ -30,6 +30,8 @@ import { RecipientBox } from "./RecipientBox"
 import { PricingBox } from "./PricingBox"
 import { useProduct } from "../../../hooks/useProduct"
 import { ProductForm } from "./ProductForm"
+import { useIo } from "../../../hooks/useIo"
+import { useSnackbar } from "burgos-snackbar"
 
 interface AddInvoiceModalProps {
     open: boolean
@@ -37,8 +39,11 @@ interface AddInvoiceModalProps {
 }
 
 const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
+    const io = useIo()
     const { user } = useUser()
     const customer = user as Customer
+
+    const { snackbar } = useSnackbar()
 
     const { selectedCompany } = useCompany()
     if (!selectedCompany) return null
@@ -50,6 +55,8 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
 
     const formik = useFormik<FocusNFeInvoiceForm>({
         initialValues: {
+            numero: "",
+            serie: "",
             consumidor_final: 0,
             destinatario: {
                 bairro: "",
@@ -92,7 +99,22 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
             produtos: []
         },
         onSubmit: (values) => {
-            console.log(values)
+            const data: { nota: FocusNFeInvoiceData; emitente_id: number } = {
+                emitente_id: selectedCompany.id,
+                nota: {
+                    ...values,
+                    numero: Number(values.numero),
+                    serie: Number(values.serie),
+                    emitente: { ...values.emitente, numero: Number(values.emitente.numero) },
+                    destinatario: {
+                        ...values.destinatario,
+                        telefone: Number(values.destinatario.telefone),
+                        numero: Number(values.destinatario.numero)
+                    }
+                }
+            }
+            console.log(data)
+            io.emit("nota:create", data)
         },
         enableReinitialize: true
     })
@@ -127,6 +149,24 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
         const values = formik.values.valor
         formik.setFieldValue("valor.total", Number((values.frete + formik.values.valor.produtos + formik.values.valor.seguro).toFixed(2)))
     }, [formik.values.valor])
+
+    useEffect(() => {
+        io.on("nota:create:response", (response) => {
+            console.log(response)
+            onClose()
+            snackbar({ severity: "success", text: "Nota fiscal criada, aguardando autorização" })
+        })
+
+        io.on("nota:create:error", (error) => {
+            console.log(error)
+            snackbar({ severity: "error", text: "erro na criação da nota sei que la" })
+        })
+
+        return () => {
+            io.off("nota:create:response")
+            io.off("nota:create:error")
+        }
+    }, [])
 
     return (
         <Dialog
@@ -168,6 +208,8 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                                 flexDirection: "column",
                                 gap: isMobile ? "5vw" : "1vw"
                             }}>
+                            <TextField label="numero" name="numero" value={formik.values.numero} onChange={formik.handleChange} required />
+                            <TextField label="serie" name="serie" value={formik.values.serie} onChange={formik.handleChange} required />
                             <FormControlLabel
                                 label="consumidor final"
                                 control={

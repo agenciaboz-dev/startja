@@ -1,6 +1,6 @@
 declare interface FocusNFeInvoiceData {
-    numero?: number
-    serie?: number
+    numero: number
+    serie: number
     natureza_operacao: string
     tipo_documento: number
     local_destino: number
@@ -46,6 +46,8 @@ declare interface FocusNFeInvoiceData {
 }
 
 declare interface FocusNFeInvoiceForm extends FocusNFeInvoiceData {
+    numero: string
+    serie: string
     emitente: {
         cnpj?: string
         cpf?: string

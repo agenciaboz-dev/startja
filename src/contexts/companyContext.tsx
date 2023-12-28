@@ -26,6 +26,16 @@ export const CompanyProvider: React.FC<CompanyProviderProps> = ({ children }) =>
 
     useEffect(() => {
         console.log({ selectedCompany })
+        io.on("nota:update", (nota: notaFiscal) => {
+            console.log(nota)
+            if (selectedCompany) {
+                setSelectedCompany({ ...selectedCompany, notas: [...selectedCompany.notas.filter((item) => item.id != nota.id), nota] })
+            }
+        })
+
+        return () => {
+            io.off("nota:update")
+        }
     }, [selectedCompany])
 
     useEffect(() => {

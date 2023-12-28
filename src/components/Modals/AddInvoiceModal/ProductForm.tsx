@@ -27,9 +27,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
             icms_modalidade_base_calculo: 0,
             icms_origem: 0,
             icms_situacao_tributaria: "00",
-            id: "",
-            name: "",
-            ncm: "",
+            id: list[0].id.toString(),
+            name: list[0].name,
+            ncm: list[0].ncm,
             pis_situacao_tributaria: "01",
             quantidade: 1,
             unidade_comercial: "un",
@@ -38,7 +38,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
             valor_unitario_tributavel: 0
         },
         onSubmit: (values) => {
-            addProduct(values)
+            addProduct({ ...values, unidade_tributavel: values.unidade_comercial, valor_unitario_tributavel: values.valor_unitario_comercial })
             formik.resetForm()
             setRightSideDisplay("produto")
             setCurrentProduct(list[0])
