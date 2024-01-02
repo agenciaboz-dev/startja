@@ -46,7 +46,6 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
             adjunct: "",
             street: "",
             cep: "",
-            businessName: "",
             regimeTributario: 0,
             inscricaoEstadual: "",
             isento: false,
@@ -145,16 +144,6 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                 <Grid item xs={12}>
                                     <TextField
                                         required
-                                        label="Nome Fantasia"
-                                        fullWidth
-                                        value={formik.values.businessName}
-                                        name="businessName"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        required
                                         label="Regime tributário"
                                         fullWidth
                                         value={formik.values.regimeTributario}
@@ -171,19 +160,6 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                 <Grid item xs={12}>
                                     <TextField
                                         required
-                                        label="ID de Certificado"
-                                        fullWidth
-                                        value={formik.values.certificateId}
-                                        name="certificateId"
-                                        onChange={formik.handleChange}
-                                        sx={{
-                                            backgroundColor: "#DDE37C",
-                                        }}
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        required
                                         label="Senha"
                                         fullWidth
                                         value={formik.values.password}
@@ -191,6 +167,8 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         onChange={formik.handleChange}
                                         sx={{
                                             backgroundColor: "#DDE37C",
+                                            /* cor de fundo estranha para lembrar que esse campo provavelmente será removido depois;
+                                            com o usuário recebendo uma senha por e-mail para alterar depois, ou algo assim */
                                         }}
                                     />
                                 </Grid>
@@ -232,7 +210,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                             </Grid>
 
                             <FormControlLabel
-                                control={<Checkbox value={formik.values.isento} name="isento" onChange={formik.handleChange} />}
+                                control={<Checkbox checked={formik.values.isento} name="isento" onChange={formik.handleChange} />}
                                 label="Não contribuinte / isento"
                                 sx={{ textAlign: "center" }}
                             />
