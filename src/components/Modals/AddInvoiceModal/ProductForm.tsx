@@ -16,7 +16,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const { list } = useProduct()
 
-    const [rightSideDisplay, setRightSideDisplay] = useState("produto")
+    const [productFormDisplay, setProductFormDisplay] = useState("produto")
     const [currentProduct, setCurrentProduct] = useState<Product>(list[0])
 
     const formik = useFormik<InvoiceProduct>({
@@ -35,15 +35,15 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
             unidade_comercial: "un",
             unidade_tributavel: "un",
             valor_unitario_comercial: 0,
-            valor_unitario_tributavel: 0
+            valor_unitario_tributavel: 0,
         },
         onSubmit: (values) => {
             addProduct({ ...values, unidade_tributavel: values.unidade_comercial, valor_unitario_tributavel: values.valor_unitario_comercial })
             formik.resetForm()
-            setRightSideDisplay("produto")
+            setProductFormDisplay("produto")
             setCurrentProduct(list[0])
         },
-        enableReinitialize: true
+        enableReinitialize: true,
     })
 
     const activeTabStyle = {
@@ -91,32 +91,32 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                     textColor="primary"
                     indicatorColor="primary"
                     sx={{ width: "100%" }}
-                    onChange={(_, value) => setRightSideDisplay(value)}
-                    value={rightSideDisplay}
+                    onChange={(_, value) => setProductFormDisplay(value)}
+                    value={productFormDisplay}
                 >
                     <Tab
                         value={"produto"}
                         label={
                             <Box sx={tabLabelBoxStyles}>
-                                <Radio checked={rightSideDisplay === "produto"} />
+                                <Radio checked={productFormDisplay === "produto"} />
                                 <p>Produto</p>
                             </Box>
                         }
-                        sx={rightSideDisplay === "produto" ? activeTabStyle : inactiveTabStyle}
+                        sx={productFormDisplay === "produto" ? activeTabStyle : inactiveTabStyle}
                     />
                     <Tab
                         value={"tributação"}
                         label={
                             <Box sx={tabLabelBoxStyles}>
-                                <Radio checked={rightSideDisplay === "tributação"} />
+                                <Radio checked={productFormDisplay === "tributação"} />
                                 <p>Tributação</p>
                             </Box>
                         }
-                        sx={rightSideDisplay === "tributação" ? activeTabStyle : inactiveTabStyle}
+                        sx={productFormDisplay === "tributação" ? activeTabStyle : inactiveTabStyle}
                     />
                 </Tabs>
             </Box>
-            {rightSideDisplay === "produto" && (
+            {productFormDisplay === "produto" && (
                 <Box
                     sx={{
                         flexDirection: "column",
@@ -186,7 +186,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                     </Grid>
                     <Button
                         variant="outlined"
-                        onClick={() => setRightSideDisplay("tributação")}
+                        onClick={() => setProductFormDisplay("tributação")}
                         sx={{
                             alignSelf: "end",
                             borderRadius: "20px",
@@ -197,7 +197,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                     </Button>
                 </Box>
             )}
-            {rightSideDisplay === "tributação" && (
+            {productFormDisplay === "tributação" && (
                 <Box
                     sx={{
                         flexDirection: "column",
