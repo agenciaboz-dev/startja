@@ -348,6 +348,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                             <Box
                                 sx={{
                                     gap: isMobile ? "5vw" : "2vw",
+                                    flexDirection: isMobile ? "column" : "row",
                                 }}
                             >
                                 <ProductForm addProduct={(product) => addInvoiceProduct(product)} />
