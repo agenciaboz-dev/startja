@@ -76,21 +76,24 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
             sx={{
                 flex: 1,
                 flexDirection: "column",
-                gap: isMobile ? "5vw" : "1vw"
-            }}>
-            <h3>Adicionar Produto</h3>
+                gap: isMobile ? "5vw" : "1vw",
+            }}
+        >
+            <h3>Adicionar Produto / Tributação</h3>
 
             <Box
                 sx={{
-                    width: "100%"
-                }}>
+                    width: "100%",
+                }}
+            >
                 <Tabs
                     variant="fullWidth"
                     textColor="primary"
                     indicatorColor="primary"
                     sx={{ width: "100%" }}
                     onChange={(_, value) => setRightSideDisplay(value)}
-                    value={rightSideDisplay}>
+                    value={rightSideDisplay}
+                >
                     <Tab
                         value={"produto"}
                         label={
@@ -117,15 +120,16 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                 <Box
                     sx={{
                         flexDirection: "column",
-                        gap: isMobile ? "5vw" : "1vw"
-                    }}>
+                        gap: isMobile ? "5vw" : "1vw",
+                    }}
+                >
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <Autocomplete
                                 disablePortal
                                 options={list}
                                 getOptionLabel={(option) => `${option.ncm} - ${option.name}`}
-                                renderInput={(params) => <TextField {...params} label="Produtos" />}
+                                renderInput={(params) => <TextField {...params} label="Produto" />}
                                 value={currentProduct}
                                 onChange={(_, value) => changeProduct(value)}
                             />
@@ -182,11 +186,13 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                     </Grid>
                     <Button
                         variant="outlined"
+                        onClick={() => setRightSideDisplay("tributação")}
                         sx={{
                             alignSelf: "end",
                             borderRadius: "20px",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         Próximo
                     </Button>
                 </Box>
@@ -195,64 +201,80 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                 <Box
                     sx={{
                         flexDirection: "column",
-                        gap: isMobile ? "5vw" : "1vw"
-                    }}>
-                    <TextField
-                        label="icms_modalidade_base_calculo"
-                        value={formik.values.icms_modalidade_base_calculo}
-                        name="icms_modalidade_base_calculo"
-                        onChange={formik.handleChange}
-                        select>
-                        <MenuItem value={0}>0 - margem de valor agregado (%)</MenuItem>
-                        <MenuItem value={1}>1 - pauta (valor)</MenuItem>
-                        <MenuItem value={2}>2 - preço tabelado máximo (valor)</MenuItem>
-                        <MenuItem value={3}>3 - valor da operação</MenuItem>
-                    </TextField>
-                    <TextField label="icms_origem" value={formik.values.icms_origem} name="icms_origem" onChange={formik.handleChange} select>
-                        {icms_origem_values.map((item) => (
-                            <MenuItem key={item.value} value={item.value}>
-                                {item.value} - {item.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                    <TextField
-                        label="icms_situacao_tributaria"
-                        value={formik.values.icms_situacao_tributaria}
-                        name="icms_situacao_tributaria"
-                        onChange={formik.handleChange}
-                        select>
-                        {icms_situacao_tributaria_values.map((item) => (
-                            <MenuItem key={item.value} value={item.value}>
-                                {item.value} - {item.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                    <TextField
-                        label="pis_situacao_tributaria"
-                        value={formik.values.pis_situacao_tributaria}
-                        name="pis_situacao_tributaria"
-                        onChange={formik.handleChange}
-                        select>
-                        {pis_situacao_tributaria.map((item) => (
-                            <MenuItem key={item.value} value={item.value}>
-                                {item.value} - {item.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-
+                        gap: isMobile ? "5vw" : "1vw",
+                    }}
+                >
                     <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField label="CFOP" fullWidth name="cfop" value={formik.values.cfop} onChange={formik.handleChange} />
+                        <Grid item xs={isMobile ? 12 : 6}>
+                            <TextField fullWidth label="CFOP" name="cfop" value={formik.values.cfop} onChange={formik.handleChange} />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField
-                                label="Situação tributária (CST)"
                                 fullWidth
+                                label="Origem do ICMS"
+                                value={formik.values.icms_origem}
+                                name="icms_origem"
+                                onChange={formik.handleChange}
                                 select
-                                value={formik.values.cofins_situacao_tributaria}
-                                name="cofins_situacao_tributaria"
-                                onChange={formik.handleChange}>
-                                {cofins_options.map((item) => (
+                            >
+                                {icms_origem_values.map((item) => (
+                                    <MenuItem key={item.value} value={item.value}>
+                                        {item.value} - {item.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Grid>
+                        <Grid item xs={isMobile ? 12 : 6}>
+                            <TextField
+                                fullWidth
+                                label="Modalidade para base de cálculo do ICMS"
+                                value={formik.values.icms_modalidade_base_calculo}
+                                name="icms_modalidade_base_calculo"
+                                onChange={formik.handleChange}
+                                select
+                            >
+                                <MenuItem value={0}>0 - margem de valor agregado (%)</MenuItem>
+                                <MenuItem value={1}>1 - pauta (valor)</MenuItem>
+                                <MenuItem value={2}>2 - preço tabelado máximo (valor)</MenuItem>
+                                <MenuItem value={3}>3 - valor da operação</MenuItem>
+                            </TextField>
+                        </Grid>
+                        <Grid item xs={isMobile ? 12 : 6}>
+                            <TextField
+                                fullWidth
+                                label="Alíquota ICMS"
+                                name="aliquota"
+                                value={formik.values.aliquota}
+                                onChange={formik.handleChange}
+                                type="number"
+                            />
+                        </Grid>
+                        <Grid item xs={isMobile ? 12 : 6}>
+                            <TextField
+                                fullWidth
+                                label="Situação Tributária do ICMS"
+                                value={formik.values.icms_situacao_tributaria}
+                                name="icms_situacao_tributaria"
+                                onChange={formik.handleChange}
+                                select
+                            >
+                                {icms_situacao_tributaria_values.map((item) => (
+                                    <MenuItem key={item.value} value={item.value}>
+                                        {item.value} - {item.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Grid>
+                        <Grid item xs={isMobile ? 12 : 6}>
+                            <TextField
+                                fullWidth
+                                label="Situação tributária do PIS"
+                                value={formik.values.pis_situacao_tributaria}
+                                name="pis_situacao_tributaria"
+                                onChange={formik.handleChange}
+                                select
+                            >
+                                {pis_situacao_tributaria.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
                                         {item.value} - {item.label}
                                     </MenuItem>
@@ -260,15 +282,21 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                             </TextField>
                         </Grid>
 
-                        <Grid item xs={6}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField
-                                label="Alíquota ICMS"
                                 fullWidth
-                                name="aliquota"
-                                value={formik.values.aliquota}
+                                label="Situação tributária do COFINS"
+                                select
+                                value={formik.values.cofins_situacao_tributaria}
+                                name="cofins_situacao_tributaria"
                                 onChange={formik.handleChange}
-                                type="number"
-                            />
+                            >
+                                {cofins_options.map((item) => (
+                                    <MenuItem key={item.value} value={item.value}>
+                                        {item.value} - {item.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
                         </Grid>
                     </Grid>
                     <Button
@@ -277,8 +305,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                         sx={{
                             alignSelf: "end",
                             borderRadius: "20px",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         Adicionar
                     </Button>
                 </Box>

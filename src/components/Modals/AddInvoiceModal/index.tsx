@@ -173,15 +173,16 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
             open={open}
             onClose={onClose}
             sx={{
-                justifyContent: "center"
+                justifyContent: "center",
             }}
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
                     minHeight: "90vh",
-                    minWidth: "90vw"
-                }
-            }}>
+                    minWidth: "90vw",
+                },
+            }}
+        >
             {!isMobile && <DialogTitle>Preencha os dados da nota de saída</DialogTitle>}
             {isMobile && <DialogTitle>Preencha a nota de saída</DialogTitle>}
             <CloseOutlinedIcon
@@ -189,7 +190,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                     position: "absolute",
                     top: isMobile ? "5vw" : "1vw",
                     right: isMobile ? "5vw" : "1vw",
-                    cursor: "pointer"
+                    cursor: "pointer",
                 }}
                 onClick={onClose}
             />
@@ -199,129 +200,198 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                     sx={{
                         flex: 1,
                         gap: isMobile ? "5vw" : "2vw",
-                        flexDirection: isMobile ? "column" : ""
-                    }}>
+                        flexDirection: isMobile ? "column" : "",
+                    }}
+                >
                     <form onSubmit={formik.handleSubmit}>
                         <Box
                             sx={{
                                 flex: 1,
                                 flexDirection: "column",
-                                gap: isMobile ? "5vw" : "1vw"
-                            }}>
-                            <TextField label="numero" name="numero" value={formik.values.numero} onChange={formik.handleChange} required />
-                            <TextField label="serie" name="serie" value={formik.values.serie} onChange={formik.handleChange} required />
-                            <FormControlLabel
-                                label="consumidor final"
-                                control={
-                                    <Checkbox
-                                        checked={!!formik.values.consumidor_final}
-                                        name="consumidor_final"
-                                        onChange={(_, checked) => formik.setFieldValue("consumidor_final", checked ? 1 : 0)}
-                                        disabled={formik.values.destinatario.indicador_inscricao_estadual == 9}
+                                gap: isMobile ? "5vw" : "1vw",
+                            }}
+                        >
+                            <Grid container spacing={2}>
+                                <Grid item xs={isMobile ? 12 : 6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Número"
+                                        name="numero"
+                                        value={formik.values.numero}
+                                        onChange={formik.handleChange}
+                                        required
                                     />
-                                }
+                                </Grid>
+                                <Grid item xs={isMobile ? 12 : 6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Série"
+                                        name="serie"
+                                        value={formik.values.serie}
+                                        onChange={formik.handleChange}
+                                        required
+                                    />
+                                </Grid>
+                                <Grid item xs={isMobile ? 12 : 6}>
+                                    <TextField fullWidth label="Propriedade" />
+                                </Grid>
+                                <Grid item xs={isMobile ? 12 : 6}>
+                                    <TextField label="Cliente / Fornecedor" fullWidth />
+                                </Grid>
+                                <Grid item xs={isMobile ? 12 : 6}>
+                                    <FormControlLabel
+                                        label="Consumidor final"
+                                        control={
+                                            <Checkbox
+                                                checked={!!formik.values.consumidor_final}
+                                                name="consumidor_final"
+                                                onChange={(_, checked) => formik.setFieldValue("consumidor_final", checked ? 1 : 0)}
+                                                disabled={formik.values.destinatario.indicador_inscricao_estadual == 9}
+                                            />
+                                        }
+                                    />
+                                </Grid>
+                            </Grid>
+
+                            <hr
+                                style={{
+                                    margin: isMobile ? "5vw 0" : "2vw 0",
+                                }}
                             />
-                            <TextField label="Propriedade" fullWidth />
-                            <p>destinatário</p>
+
+                            <h3>Destinatário</h3>
                             <RecipientBox formik={formik} />
 
-                            <TextField
-                                label="finalidade de emissão"
-                                name="finalidade_emissao"
-                                value={formik.values.finalidade_emissao}
-                                onChange={formik.handleChange}
-                                select>
-                                <MenuItem value={1}>Normal</MenuItem>
-                                <MenuItem value={2}>Complementar</MenuItem>
-                                <MenuItem value={3}>Nota de ajuste</MenuItem>
-                                <MenuItem value={4}>Devolução</MenuItem>
-                            </TextField>
-
-                            <TextField
-                                label="local destino"
-                                name="local_destino"
-                                value={formik.values.local_destino}
-                                onChange={formik.handleChange}
-                                select>
-                                <MenuItem value={1}>Operação Interna</MenuItem>
-                                <MenuItem value={2}>Operação interestadual</MenuItem>
-                                <MenuItem value={3}>Operação no exterior</MenuItem>
-                            </TextField>
-
-                            <TextField
-                                label="Natureza da operação"
-                                name="natureza_operacao"
-                                value={formik.values.natureza_operacao}
-                                onChange={formik.handleChange}
-                                required
+                            <hr
+                                style={{
+                                    margin: isMobile ? "5vw 0" : "2vw 0",
+                                }}
                             />
-
-                            <TextField
-                                label="presença comprador"
-                                name="presenca_comprador"
-                                value={formik.values.presenca_comprador}
-                                onChange={formik.handleChange}
-                                select>
-                                <MenuItem value={0}>Não se aplica</MenuItem>
-                                <MenuItem value={1}>Operação presencial</MenuItem>
-                                <MenuItem value={2}>Operação não presencial, pela Internet</MenuItem>
-                                <MenuItem value={3}>Operação não presencial, Teleatendimento</MenuItem>
-                                <MenuItem value={4}>NFC-e em operação com entrega em domicílio</MenuItem>
-                                <MenuItem value={9}>Operação não presencial, outros</MenuItem>
-                            </TextField>
-
-                            <RadioGroup
-                                value={formik.values.tipo_documento}
-                                onChange={(_, value) => formik.setFieldValue("tipo_documento", Number(value))}
-                                sx={{ flexDirection: "row" }}>
-                                <FormControlLabel label="nota de entrada" control={<Radio value={0} />} />
-                                <FormControlLabel label="nota de saída" control={<Radio value={1} />} />
-                            </RadioGroup>
 
                             <PricingBox formik={formik} />
 
-                            <TextField label="Cliente / Fornecedor" fullWidth />
+                            <Grid container spacing={2}>
+                                <Grid item xs={isMobile ? 12 : 6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Finalidade de emissão"
+                                        name="finalidade_emissao"
+                                        value={formik.values.finalidade_emissao}
+                                        onChange={formik.handleChange}
+                                        select
+                                    >
+                                        <MenuItem value={1}>Normal</MenuItem>
+                                        <MenuItem value={2}>Complementar</MenuItem>
+                                        <MenuItem value={3}>Nota de ajuste</MenuItem>
+                                        <MenuItem value={4}>Devolução</MenuItem>
+                                    </TextField>
+                                </Grid>
+                                <Grid item xs={isMobile ? 12 : 6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Local de destino"
+                                        name="local_destino"
+                                        value={formik.values.local_destino}
+                                        onChange={formik.handleChange}
+                                        select
+                                    >
+                                        <MenuItem value={1}>Operação Interna</MenuItem>
+                                        <MenuItem value={2}>Operação interestadual</MenuItem>
+                                        <MenuItem value={3}>Operação no exterior</MenuItem>
+                                    </TextField>
+                                </Grid>
+                                <Grid item xs={isMobile ? 12 : 6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Natureza da operação"
+                                        name="natureza_operacao"
+                                        value={formik.values.natureza_operacao}
+                                        onChange={formik.handleChange}
+                                        required
+                                    />
+                                </Grid>
+                                <Grid item xs={isMobile ? 12 : 6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Presença do Comprador"
+                                        name="presenca_comprador"
+                                        value={formik.values.presenca_comprador}
+                                        onChange={formik.handleChange}
+                                        select
+                                    >
+                                        <MenuItem value={0}>Não se aplica</MenuItem>
+                                        <MenuItem value={1}>Operação presencial</MenuItem>
+                                        <MenuItem value={2}>Operação não presencial, pela Internet</MenuItem>
+                                        <MenuItem value={3}>Operação não presencial, Teleatendimento</MenuItem>
+                                        <MenuItem value={4}>NFC-e em operação com entrega em domicílio</MenuItem>
+                                        <MenuItem value={9}>Operação não presencial, outros</MenuItem>
+                                    </TextField>
+                                </Grid>
+                                <Grid item xs={isMobile ? 12 : 6}>
+                                    <RadioGroup
+                                        value={formik.values.tipo_documento}
+                                        onChange={(_, value) => formik.setFieldValue("tipo_documento", Number(value))}
+                                        sx={{ flexDirection: "row", gap: "25%" }}
+                                    >
+                                        <FormControlLabel label="Nota de entrada" control={<Radio value={0} />} />
+                                        <FormControlLabel label="Nota de saída" control={<Radio value={1} />} />
+                                    </RadioGroup>
+                                </Grid>
+                            </Grid>
 
-                            {emptyList && (
-                                <Box
-                                    sx={{
-                                        alignItems: "center",
-                                        flexDirection: "column",
-                                        gap: "0.5vw"
-                                    }}>
-                                    <h3>Sem produtos adicionados</h3>
-                                    <p>Para emissão da nota fiscal, adicione os produtos ao lado.</p>
-                                </Box>
-                            )}
-                            {!emptyList && (
-                                <Box
-                                    sx={{
-                                        flex: 1,
-                                        overflow: isMobile ? "scroll" : "",
-                                        padding: isMobile ? "1vw 5vw" : "",
-                                        margin: isMobile ? "0 -5vw" : ""
-                                    }}>
-                                    <Box
-                                        sx={{
-                                            flexDirection: "column",
-                                            flex: 1
-                                        }}>
-                                        <InvoiceModalProductsListHeader />
-                                        <InvoiceModalProductsList list={formik.values.produtos} />
-                                    </Box>
-                                </Box>
-                            )}
-                        </Box>
-
-                        <Box>
                             <hr
                                 style={{
-                                    flex: 1
+                                    margin: isMobile ? "5vw 0" : "2vw 0",
                                 }}
                             />
-                        </Box>
 
-                        <ProductForm addProduct={(product) => addInvoiceProduct(product)} />
+                            <Box
+                                sx={{
+                                    gap: isMobile ? "5vw" : "2vw",
+                                }}
+                            >
+                                <ProductForm addProduct={(product) => addInvoiceProduct(product)} />
+                                <Box>
+                                    <hr
+                                        style={{
+                                            flex: 1,
+                                        }}
+                                    />
+                                </Box>
+                                {emptyList && (
+                                    <Box
+                                        sx={{
+                                            alignItems: "center",
+                                            flexDirection: "column",
+                                            gap: "0.5vw",
+                                        }}
+                                    >
+                                        <h3>Sem produtos adicionados</h3>
+                                        <p>Para emissão da nota fiscal, adicione os produtos ao lado.</p>
+                                    </Box>
+                                )}
+                                {!emptyList && (
+                                    <Box
+                                        sx={{
+                                            flex: 1,
+                                            overflow: isMobile ? "scroll" : "",
+                                            padding: isMobile ? "1vw 5vw" : "",
+                                            margin: isMobile ? "0 -5vw" : "",
+                                        }}
+                                    >
+                                        <Box
+                                            sx={{
+                                                flexDirection: "column",
+                                                flex: 1,
+                                            }}
+                                        >
+                                            <InvoiceModalProductsListHeader />
+                                            <InvoiceModalProductsList list={formik.values.produtos} />
+                                        </Box>
+                                    </Box>
+                                )}
+                            </Box>
+                        </Box>
                     </form>
                 </Box>
             </DialogContent>
@@ -329,14 +399,16 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
             <DialogActions
                 sx={{
                     margin: isMobile ? "0" : "0.5vw",
-                    padding: isMobile ? "5vw" : ""
-                }}>
+                    padding: isMobile ? "5vw" : "",
+                }}
+            >
                 <Box
                     sx={{
                         gap: isMobile ? "2vw" : "1vw",
                         flexDirection: isMobile ? "column" : "",
-                        width: "100%"
-                    }}>
+                        width: "100%",
+                    }}
+                >
                     <Button
                         onClick={onClose}
                         color="secondary"
@@ -345,8 +417,9 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                             color: "black",
                             borderRadius: "20px",
                             textTransform: "unset",
-                            marginRight: isMobile ? "" : "auto"
-                        }}>
+                            marginRight: isMobile ? "" : "auto",
+                        }}
+                    >
                         Cancelar
                     </Button>
                     <Button
@@ -355,8 +428,9 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                         variant="outlined"
                         sx={{
                             borderRadius: "20px",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         Adicionar informações
                     </Button>
                     <Button
@@ -366,8 +440,9 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         Salvar e visualizar
                     </Button>
                     <Button
@@ -377,8 +452,9 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         Salvar e emitir
                     </Button>
                 </Box>
