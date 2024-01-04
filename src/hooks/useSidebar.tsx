@@ -29,10 +29,6 @@ export const useSidebar = () => {
         height: isMobile ? "10vw" : "2vw",
         width: isMobile ? "10vw" : "2vw",
     }
-    const subItemStyle = {
-        height: isMobile ? "6vw" : "1vw",
-        width: isMobile ? "6vw" : "1vw",
-    }
 
     const sidebar: SidebarItem[] = [
         {
@@ -44,35 +40,35 @@ export const useSidebar = () => {
             subItens: [
                 {
                     id: 1,
-                    icon: <PersonOutlinedIcon sx={subItemStyle} />,
+                    icon: <PersonOutlinedIcon sx={itemStyle} />,
                     name: "Minha conta",
                     path: "/minha-conta",
                     onClick: () => navigate("/painel/configuracoes/minha-conta/"),
                 },
                 {
                     id: 2,
-                    icon: <PeopleOutlinedIcon sx={subItemStyle} />,
+                    icon: <PeopleOutlinedIcon sx={itemStyle} />,
                     name: "Usuários",
                     path: "/usuarios",
                     onClick: () => navigate("/painel/configuracoes/usuarios/"),
                 },
                 {
                     id: 3,
-                    icon: <SummarizeOutlinedIcon sx={subItemStyle} />,
+                    icon: <SummarizeOutlinedIcon sx={itemStyle} />,
                     name: "Opções",
                     path: "/opcoes",
                     onClick: () => navigate("/painel/configuracoes/opcoes/"),
                 },
                 {
                     id: 4,
-                    icon: <MonitorWeightOutlinedIcon sx={subItemStyle} />,
+                    icon: <MonitorWeightOutlinedIcon sx={itemStyle} />,
                     name: "Integrações",
                     path: "/integracoes",
                     onClick: () => navigate("/painel/configuracoes/integracoes/"),
                 },
                 {
                     id: 5,
-                    icon: <FileDownloadOutlinedIcon sx={subItemStyle} />,
+                    icon: <FileDownloadOutlinedIcon sx={itemStyle} />,
                     name: "Exportar LCDPR",
                     path: "/exportar-lcdpr",
                     onClick: () => navigate("/painel/configuracoes/exportar-lcdpr/"),
@@ -103,35 +99,35 @@ export const useSidebar = () => {
             subItens: [
                 {
                     id: 1,
-                    icon: <DomainAddOutlinedIcon sx={subItemStyle} />,
+                    icon: <DomainAddOutlinedIcon sx={itemStyle} />,
                     name: "Pessoas e empresas",
                     path: "/pessoas-e-empresas",
                     onClick: () => navigate("/painel/cadastros-gerais/pessoas-e-empresas/"),
                 },
                 {
                     id: 2,
-                    icon: <ControlPointDuplicateOutlinedIcon sx={subItemStyle} />,
+                    icon: <ControlPointDuplicateOutlinedIcon sx={itemStyle} />,
                     name: "Produtos",
                     path: "/produtos",
                     onClick: () => navigate("/painel/cadastros-gerais/produtos/"),
                 },
                 {
                     id: 3,
-                    icon: <NoteAddOutlinedIcon sx={subItemStyle} />,
+                    icon: <NoteAddOutlinedIcon sx={itemStyle} />,
                     name: "Naturezas de operação",
                     path: "/naturezas-de-operacao",
                     onClick: () => navigate("/painel/cadastros-gerais/naturezas-de-operacao/"),
                 },
                 {
                     id: 4,
-                    icon: <AddLocationAltOutlinedIcon sx={subItemStyle} />,
+                    icon: <AddLocationAltOutlinedIcon sx={itemStyle} />,
                     name: "Propriedades",
                     path: "/propriedades",
                     onClick: () => navigate("/painel/cadastros-gerais/propriedades/"),
                 },
                 {
                     id: 5,
-                    icon: <PersonAddAltOutlinedIcon sx={subItemStyle} />,
+                    icon: <PersonAddAltOutlinedIcon sx={itemStyle} />,
                     name: "Contas",
                     path: "/contas",
                     onClick: () => navigate("/painel/cadastros-gerais/contas/"),
@@ -147,28 +143,28 @@ export const useSidebar = () => {
             subItens: [
                 {
                     id: 1,
-                    icon: <ReceiptLongOutlinedIcon sx={subItemStyle} />,
+                    icon: <ReceiptLongOutlinedIcon sx={itemStyle} />,
                     name: "Notas fiscais emitidas",
                     path: "/notas-fiscais-emitidas",
                     onClick: () => navigate("/painel/relatorios/notas-fiscais-emitidas/"),
                 },
                 {
                     id: 2,
-                    icon: <LocalMallOutlinedIcon sx={subItemStyle} />,
+                    icon: <LocalMallOutlinedIcon sx={itemStyle} />,
                     name: "Produtos vendidos",
                     path: "/produtos-vendidos",
                     onClick: () => navigate("/painel/relatorios/produtos-vendidos/"),
                 },
                 {
                     id: 3,
-                    icon: <CollectionsBookmarkOutlinedIcon sx={subItemStyle} />,
+                    icon: <CollectionsBookmarkOutlinedIcon sx={itemStyle} />,
                     name: "Livro-caixa",
                     path: "/livro-caixa",
                     onClick: () => navigate("/painel/relatorios/livro-caixa/"),
                 },
                 {
                     id: 4,
-                    icon: <AssignmentOutlinedIcon sx={subItemStyle} />,
+                    icon: <AssignmentOutlinedIcon sx={itemStyle} />,
                     name: "Plano de contas",
                     path: "/plano-de-contas",
                     onClick: () => navigate("/painel/relatorios/plano-de-contas/"),
