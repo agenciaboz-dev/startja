@@ -430,6 +430,8 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                         sx={{
                             borderRadius: "20px",
                             textTransform: "unset",
+                            // botão escondido por enquanto, alguns campos do segundo modal estão repetidos aqui no primeiro
+                            display: "none",
                         }}
                     >
                         Adicionar informações
