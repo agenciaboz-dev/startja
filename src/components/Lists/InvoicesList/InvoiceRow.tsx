@@ -22,9 +22,9 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => {
                     {invoice.serie}/{invoice.numero}
                 </Box>
                 <Box sx={{ flex: 1, justifyContent: "center" }}>
-                    <p>{invoice.companyId}</p>
+                    <p>{invoice.destinatario.name}</p>
                 </Box>
-                <Box sx={{ flex: 1, justifyContent: "center" }}>{/* <p>{invoice.shippingCompany}</p> */}</Box>
+                <Box sx={{ flex: 1, justifyContent: "center" }}>{invoice.emitente.name}</Box>
                 <Box sx={{ flex: 1, justifyContent: "center" }}>
                     <IconButton
                         color="primary"

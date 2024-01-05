@@ -11,7 +11,9 @@ declare interface notaFiscal {
     presenca_comprador: number
 
     emitente_id: number
+    emitente: User
     destinatario_id: number
+    destinatario: Company
 
     valor_frete: number
     valor_seguro: number
@@ -26,7 +28,4 @@ declare interface notaFiscal {
     mensagem_sefaz?: string
 
     products: ProdutoNotaFiscal[]
-
-    companyId: number
-    company: Company
 }
