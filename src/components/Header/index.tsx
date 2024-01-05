@@ -15,7 +15,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const { title } = useHeader()
     const menus = useMenus()
-    const { user } = useUser()
+    const { user, admin } = useUser()
     const drawer = useDrawer()
 
     const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -27,9 +27,8 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                 flexDirection: isMobile ? "column" : "",
                 alignItems: isMobile ? "center" : "",
                 gap: isMobile ? "5vw" : "",
-                textAlign: "center",
-            }}
-        >
+                textAlign: "center"
+            }}>
             <Box sx={{ justifyContent: "space-between", alignItems: "center", width: "100%" }}>
                 {isMobile && <MenuIcon sx={{ transform: "scale(2)", marginLeft: "2vw" }} onClick={() => drawer.setOpenDrawer(true)} />}
                 {!isMobile && <h1>{title}</h1>}
@@ -41,9 +40,8 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                             padding: 0,
                             paddingRight: "2vw",
                             height: "100%",
-                            borderRight: "1px solid",
-                        }}
-                    >
+                            borderRight: "1px solid"
+                        }}>
                         <HelpOutlineOutlinedIcon sx={{ fill: "#323232", height: "2vw", width: "2vw", transform: isMobile ? "scale(3)" : "" }} />
                         <p style={{ fontWeight: "lighter" }}>Ajuda</p>
                     </MenuItem>
@@ -52,21 +50,20 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                             alignItems: "center",
                             gap: "0.5vw",
                             padding: 0,
-                            paddingLeft: isMobile ? "5vw" : "2vw",
+                            paddingLeft: isMobile ? "5vw" : "2vw"
                         }}
-                        onClick={(event) => setMenuAnchorEl(event.currentTarget)}
-                    >
+                        onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
                         <AccountCircleOutlinedIcon
                             sx={{
                                 fill: "#323232",
                                 height: "2vw",
                                 width: "2vw",
                                 transform: isMobile ? "scale(3)" : "",
-                                marginRight: isMobile ? "5vw" : "",
+                                marginRight: isMobile ? "5vw" : ""
                             }}
                         />
                         <Box sx={{ flexDirection: "column" }}>
-                            <p style={{ fontWeight: "lighter" }}>{user?.name}</p>
+                            <p style={{ fontWeight: "lighter" }}>{admin?.name || user?.name}</p>
                             <p style={{ fontSize: "1rem", fontWeight: "bold" }}>Menus e configurações</p>
                         </Box>
                         <ArrowDropDownOutlinedIcon />
@@ -76,8 +73,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                         open={menu_opened}
                         onClose={() => setMenuAnchorEl(null)}
                         slotProps={{ paper: { elevation: 3 } }}
-                        MenuListProps={{ sx: { width: "100%" } }}
-                    >
+                        MenuListProps={{ sx: { width: "100%" } }}>
                         {menus.list.map((menu) => {
                             const Icon = () => menu.icon
                             return (
