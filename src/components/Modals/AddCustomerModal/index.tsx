@@ -15,7 +15,6 @@ import {
     MenuItem,
 } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
-import { ToggleSwitch } from "../../ToggleSwitch"
 import { PermissionsCard } from "../../PermissionsCard"
 import { useFormik } from "formik"
 import { NewUser } from "../../../definitions/userOperations"
@@ -160,16 +159,11 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                 <Grid item xs={12}>
                                     <TextField
                                         required
-                                        label="Senha"
+                                        label="Senha provisória"
                                         fullWidth
                                         value={formik.values.password}
                                         name="password"
                                         onChange={formik.handleChange}
-                                        sx={{
-                                            backgroundColor: "#DDE37C",
-                                            /* cor de fundo estranha para lembrar que esse campo provavelmente será removido depois;
-                                            com o usuário recebendo uma senha por e-mail para alterar depois, ou algo assim */
-                                        }}
                                     />
                                 </Grid>
                             </Grid>
@@ -249,6 +243,9 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                     />
                                 </Grid>
                                 <Grid item xs={6}>
+                                    <TextField required label="CEP" fullWidth value={formik.values.cep} name="cep" onChange={formik.handleChange} />
+                                </Grid>
+                                <Grid item xs={6}>
                                     <TextField
                                         required
                                         label="Bairro"
@@ -257,9 +254,6 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         name="district"
                                         onChange={formik.handleChange}
                                     />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField required label="CEP" fullWidth value={formik.values.cep} name="cep" onChange={formik.handleChange} />
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField
