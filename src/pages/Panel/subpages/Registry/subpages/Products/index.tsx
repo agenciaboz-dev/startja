@@ -35,13 +35,6 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     useEffect(() => {
         header.setTitle("Cadastros gerais - Produtos")
         io.emit("product:list")
-        io.on("product:creation:successful", () => {
-            window.location.reload()
-        })
-
-        return () => {
-            io.off("product:creation:successful")
-        }
     }, [])
 
     return (

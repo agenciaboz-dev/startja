@@ -21,7 +21,17 @@ export const ProductProvider:React.FC<ProductProviderProps> = ({children}) => {
 
     useEffect(() => {
         console.log({ products: list })
-    },[list])
+    }, [list])
+
+    useEffect(() => {
+        io.on("product:new", (product: Product) => {
+            setList((list) => [...list, product])
+        })
+
+        return () => {
+            io.off("product:new")
+        }
+    }, [list])
 
     useEffect(() => {
         io.on('product:list', (data) =>{
