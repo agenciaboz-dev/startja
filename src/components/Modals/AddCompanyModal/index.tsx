@@ -19,20 +19,20 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
     const formik = useFormik<NewCompany>({
         initialValues: {
             type: "nacional",
-            name: "HENRIQUE DEL COLI BATISTA LIMA",
-            document: "06117933932",
-            inscricaoEstadual: "9586480810",
-            indicadorEstadual: "1",
-            city: "Curitiba",
-            state: "Paraná",
-            district: "Bacacheri",
-            street: "Rua Canadá",
+            name: "",
+            document: "",
+            inscricaoEstadual: "",
+            indicadorEstadual: "",
+            city: "",
+            state: "",
+            district: "",
+            street: "",
             adjunct: "",
-            number: "185",
-            cep: "82510-290",
-            email: "fernando@agenciazop.com.br",
-            phone: "41984556795",
-            businessName: "HENRIQUE",
+            number: "",
+            cep: "",
+            email: "r",
+            phone: "",
+            businessName: "",
             customerId: user?.id || 0
         },
         onSubmit: (values) => {
@@ -172,7 +172,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
                                 label="Nome Fantasia"
                                 fullWidth
                                 value={formik.values.businessName}
-                                name=".businessName"
+                                name="businessName"
                                 onChange={formik.handleChange}
                             />
                         </Grid>
