@@ -44,6 +44,7 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => {
                     <Tooltip title={invoice.mensagem_sefaz}>
                         <Button
                             variant="contained"
+                            color={invoice.status == "erro_autorizacao" ? "error" : "primary"}
                             sx={{
                                 flex: 1,
                                 borderRadius: "20px",
