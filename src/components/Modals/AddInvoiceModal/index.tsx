@@ -51,7 +51,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
     const formik = useFormik<FocusNFeInvoiceForm>({
         initialValues: {
             numero: "",
-            serie: "",
+            serie: is_cpf ? "922" : "",
             consumidor_final: 0,
             destinatario: {
                 bairro: user.companies[0].district,
@@ -247,6 +247,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                                         value={formik.values.serie}
                                         onChange={formik.handleChange}
                                         required
+                                        disabled={is_cpf}
                                     />
                                 </Grid>
                                 <Grid item xs={isMobile ? 12 : 6}>
