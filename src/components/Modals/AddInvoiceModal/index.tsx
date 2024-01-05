@@ -118,6 +118,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
             }
             console.log(data)
             io.emit("nota:create", data)
+            formik.setFieldValue("produtos", [])
         },
         enableReinitialize: true
     })
