@@ -5,15 +5,22 @@ import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined"
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined"
 import SettingsPhoneOutlinedIcon from "@mui/icons-material/SettingsPhoneOutlined"
 import { useNavigate } from "react-router-dom"
+import { useUser } from "../../hooks/useUser"
 
 interface CustomerCardProps {
-    customer: Customer
+    customer: User
     buttonColor: AlertColor | "primary" | "secondary"
 }
 
 export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColor }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const navigate = useNavigate()
+    const { setUser } = useUser()
+
+    const userClick = () => {
+        setUser(customer)
+        navigate("/painel")
+    }
 
     return (
         <Grid item xs={isMobile ? 12 : 3}>
@@ -26,31 +33,27 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
                     flexDirection: "column",
                     padding: isMobile ? "5vw" : "1vw",
                     gap: isMobile ? "5vw" : "1vw",
-                    color: colors.text.greyish,
+                    color: colors.text.greyish
                     // flex: 1,
-                }}
-            >
+                }}>
                 <Box
                     sx={{
                         alignItems: "center",
-                        gap: "1vw",
-                    }}
-                >
+                        gap: "1vw"
+                    }}>
                     <MuiAvatar
                         sx={{
-                            backgroundColor: colors.secondary,
+                            backgroundColor: colors.secondary
                         }}
                     />
                     <Box
                         sx={{
-                            flexDirection: "column",
-                        }}
-                    >
+                            flexDirection: "column"
+                        }}>
                         <p
                             style={{
-                                color: colors.text.darkgrey,
-                            }}
-                        >
+                                color: colors.text.darkgrey
+                            }}>
                             {customer.name}
                         </p>
                         <p>Cliente há x dias</p>
@@ -58,14 +61,12 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
                 </Box>
                 <Box
                     sx={{
-                        flexDirection: "column",
-                    }}
-                >
+                        flexDirection: "column"
+                    }}>
                     <Box
                         sx={{
-                            gap: "1vw",
-                        }}
-                    >
+                            gap: "1vw"
+                        }}>
                         <p>CPF: {customer.document}</p>
                         <p>
                             {customer.city}/{customer.state}
@@ -75,22 +76,19 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
                 </Box>
                 <Box
                     sx={{
-                        flexDirection: "column",
-                    }}
-                >
+                        flexDirection: "column"
+                    }}>
                     <Box
                         sx={{
-                            gap: "0.5vw",
-                        }}
-                    >
+                            gap: "0.5vw"
+                        }}>
                         <EmailOutlinedIcon />
                         <p>{customer.email}</p>
                     </Box>
                     <Box
                         sx={{
-                            gap: "0.5vw",
-                        }}
-                    >
+                            gap: "0.5vw"
+                        }}>
                         <SettingsPhoneOutlinedIcon />
                         <p>{customer.phone}</p>
                     </Box>
@@ -98,18 +96,16 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
                 <Box
                     sx={{
                         justifyContent: "space-between",
-                        gap: "3vw",
-                    }}
-                >
+                        gap: "3vw"
+                    }}>
                     <Button
                         color={buttonColor}
                         variant="outlined"
                         sx={{
                             textTransform: "unset",
                             borderRadius: "20px",
-                            pointerEvents: "none",
-                        }}
-                    >
+                            pointerEvents: "none"
+                        }}>
                         Sem pendências
                     </Button>
                     <Button
@@ -117,10 +113,9 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
                         sx={{
                             borderRadius: "20px",
                             textTransform: "unset",
-                            gap: "0.5vw",
+                            gap: "0.5vw"
                         }}
-                        onClick={() => navigate(`/selecionar-empresa/${customer.id}`)}
-                    >
+                        onClick={userClick}>
                         <LoginOutlinedIcon />
                         <p>Acessar Sistema</p>
                     </Button>

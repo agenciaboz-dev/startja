@@ -23,12 +23,13 @@ const UserRoutes: React.FC<{ user: User }> = ({ user }) => {
 }
 
 const AdminRoutes: React.FC<{ admin: Admin }> = ({ admin }) => {
+    const { user } = useUser()
     return (
         <ReactRoutes>
             <Route index element={<AdmPanel user={admin} />} />
             {/* <Route path="*" element={<AdmPanel user={user} />} /> */}
             <Route path="/adm/*" element={<AdmPanel user={admin} />} />
-            <Route path="/painel/:customerId/*" element={<CustomerPanelWrapper />} />
+            {user && <Route path="/painel/*" element={<Panel user={user} />} />}
         </ReactRoutes>
     )
 }

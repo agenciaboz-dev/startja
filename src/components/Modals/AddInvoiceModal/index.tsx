@@ -257,7 +257,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                                         disablePortal
                                         options={user.companies}
                                         getOptionLabel={(option: Company) => `${option.name}`}
-                                        renderInput={(params) => <TextField {...params} label="Produto" />}
+                                        renderInput={(params) => <TextField {...params} label="Destinatário" />}
                                         value={currentRecipient}
                                         onChange={(_, value) => changeRecipient(value)}
                                     />
