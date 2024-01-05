@@ -1,6 +1,7 @@
 import React from "react"
-import { Box, Checkbox } from "@mui/material"
+import { Box, Checkbox, Menu, MenuItem } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
+import { useActionsMenu_invoiceProduct } from "../../../hooks/useActionsMenu_invoiceProduct"
 
 interface InvoiceModalProductRowProps {
     product: InvoiceProduct
@@ -10,36 +11,58 @@ export const InvoiceModalProductRow: React.FC<InvoiceModalProductRowProps> = ({ 
     const slotStyle = {
         alignItems: "center",
         justifyContent: "center",
-        flex: 1
+        flex: 1,
     }
+
+    const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null)
+    const menu_opened = Boolean(menuAnchorEl)
+    const actions = useActionsMenu_invoiceProduct()
 
     return (
         <Box
             sx={{
                 alignItems: "center",
-                width: "100%"
-            }}>
+                width: "100%",
+            }}
+        >
             <Checkbox
                 inputProps={{
                     style: {
-                        padding: "0"
-                    }
+                        padding: "0",
+                    },
                 }}
             />
             <Box
                 sx={{
                     justifyContent: "space-between",
-                    flex: 1
-                }}>
+                    flex: 1,
+                }}
+            >
                 <Box sx={{ ...slotStyle, justifyContent: "start" }}>{product.name}</Box>
                 <Box sx={slotStyle}>{product.quantidade}</Box>
                 <Box sx={slotStyle}>{product.valor_unitario_comercial}</Box>
                 <Box sx={slotStyle}>{}</Box>
                 <Box sx={slotStyle}>{product.valor_unitario_comercial * product.quantidade}</Box>
                 <Box sx={slotStyle}></Box>
-                <Box sx={{ ...slotStyle, flex: 0.5 }}>
+                <Box sx={{ ...slotStyle, flex: 0.5, cursor: "pointer" }} onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
                     <FormatListBulletedOutlinedIcon />
                 </Box>
+                <Menu
+                    anchorEl={menuAnchorEl}
+                    open={menu_opened}
+                    onClose={() => setMenuAnchorEl(null)}
+                    slotProps={{ paper: { elevation: 3 } }}
+                    MenuListProps={{ sx: { width: "100%" } }}
+                >
+                    {actions.list.map((action) => {
+                        const Icon = () => action.icon
+                        return (
+                            <MenuItem sx={{ gap: "1vw" }} onClick={action.onClick} key={action.id}>
+                                <Icon /> {action.title}
+                            </MenuItem>
+                        )
+                    })}
+                </Menu>
             </Box>
         </Box>
     )
