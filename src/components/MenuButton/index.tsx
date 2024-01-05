@@ -107,26 +107,24 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                         const Icon = () => sideBarItem.icon
                         return (
                             <Box
+                                key={sideBarItem.id}
                                 sx={{
                                     alignItems: "center",
                                     position: "relative",
-                                    pointerEvents: active ? "none" : "auto",
-                                }}
-                            >
+                                    pointerEvents: active ? "none" : "auto"
+                                }}>
                                 <MenuItem
                                     key={sideBarItem.id}
                                     sx={{
                                         ...buildStyle(active, sideBarItem),
                                         whiteSpace: "normal",
-                                        overflow: "hidden",
+                                        overflow: "hidden"
                                     }}
-                                    onClick={() => handleMenuClick(sideBarItem)}
-                                >
+                                    onClick={() => handleMenuClick(sideBarItem)}>
                                     <Box
                                         sx={{
-                                            position: "relative",
-                                        }}
-                                    >
+                                            position: "relative"
+                                        }}>
                                         {active && (
                                             <Box
                                                 sx={{
@@ -136,9 +134,8 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                                                     position: "absolute",
                                                     height: "100%",
                                                     width: isMobile ? "2.5vw" : "0.5vw",
-                                                    left: isMobile ? "-30vw" : "-2vw",
-                                                }}
-                                            ></Box>
+                                                    left: isMobile ? "-30vw" : "-2vw"
+                                                }}></Box>
                                         )}
                                         <Box
                                             sx={{
@@ -146,9 +143,8 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                                                 color: active ? "white" : colors.text.darkgrey,
                                                 pointerEvents: active ? "none" : "auto",
                                                 padding: "0.5vw",
-                                                borderRadius: "20px",
-                                            }}
-                                        >
+                                                borderRadius: "20px"
+                                            }}>
                                             <Icon />
                                         </Box>
                                     </Box>

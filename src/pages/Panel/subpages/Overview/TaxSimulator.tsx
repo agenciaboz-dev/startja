@@ -3,11 +3,9 @@ import { Box, Button, Grid, MenuItem, Paper, SxProps, TextField, useMediaQuery }
 import { useFormik } from "formik"
 import { SectionTitle } from "../../../../components/SectionTitle"
 
-interface TaxSimulatorProps {
-    company: Company
-}
+interface TaxSimulatorProps {}
 
-export const TaxSimulator: React.FC<TaxSimulatorProps> = ({ company }) => {
+export const TaxSimulator: React.FC<TaxSimulatorProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const formik = useFormik({
         initialValues: {
@@ -16,22 +14,22 @@ export const TaxSimulator: React.FC<TaxSimulatorProps> = ({ company }) => {
             income: {
                 received: "",
                 to_receive: "",
-                simulated: "",
+                simulated: ""
             },
             expenses: {
                 dependents: "",
                 to_pay: "",
-                simulated: "",
+                simulated: ""
             },
             others: {
                 other_income: "",
                 deductible_expenses: "",
-                previous_losses: "",
-            },
+                previous_losses: ""
+            }
         },
         onSubmit: (values) => {
             console.log(values)
-        },
+        }
     })
 
     const columnBoxStyle: SxProps = { flexDirection: "column", gap: isMobile ? "5vw" : "1vw" }
@@ -40,8 +38,7 @@ export const TaxSimulator: React.FC<TaxSimulatorProps> = ({ company }) => {
     return (
         <form onSubmit={formik.handleSubmit} style={{ display: "contents" }}>
             <Box
-                sx={{ flex: "0.5", gap: isMobile ? "5vw" : "1vw", flexDirection: "column", alignItems: "center", width: isMobile ? "90vw" : "100%" }}
-            >
+                sx={{ flex: "0.5", gap: isMobile ? "5vw" : "1vw", flexDirection: "column", alignItems: "center", width: isMobile ? "90vw" : "100%" }}>
                 <Box sx={{ justifyContent: "space-between", alignItems: "center", width: "100%" }}>
                     {!isMobile && <SectionTitle>Simulador de Imposto de Renda</SectionTitle>}
                     {isMobile && <SectionTitle>Simulador de IR</SectionTitle>}
@@ -56,9 +53,8 @@ export const TaxSimulator: React.FC<TaxSimulatorProps> = ({ company }) => {
                         borderRadius: "20px",
                         flexDirection: "column",
                         padding: isMobile ? "5vw" : "1vw",
-                        width: "100%",
-                    }}
-                >
+                        width: "100%"
+                    }}>
                     <Box sx={{ flexDirection: "column", gap: isMobile ? "5vw" : "1vw" }}>
                         <Grid container spacing={2}>
                             <Grid item xs={isMobile ? 12 : 6}>
@@ -68,8 +64,7 @@ export const TaxSimulator: React.FC<TaxSimulatorProps> = ({ company }) => {
                                     fullWidth
                                     value={formik.values.producer}
                                     name="producer"
-                                    onChange={formik.handleChange}
-                                >
+                                    onChange={formik.handleChange}>
                                     <MenuItem sx={{ display: "none" }} value={0}></MenuItem>
                                     <MenuItem value={1}>Todos os produtores</MenuItem>
                                 </TextField>
@@ -82,8 +77,7 @@ export const TaxSimulator: React.FC<TaxSimulatorProps> = ({ company }) => {
                                     fullWidth
                                     value={formik.values.year}
                                     name="year"
-                                    onChange={formik.handleChange}
-                                >
+                                    onChange={formik.handleChange}>
                                     <MenuItem sx={{ display: "none" }} value={""}></MenuItem>
                                     <MenuItem value={"2023"}>2023</MenuItem>
                                 </TextField>

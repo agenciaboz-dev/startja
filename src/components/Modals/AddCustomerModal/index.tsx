@@ -49,20 +49,20 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
             regimeTributario: 0,
             inscricaoEstadual: "",
             isento: false,
-            certificateId: "",
+            certificateId: ""
         },
         onSubmit: (values) => {
             console.log(values)
             setLoading(true)
-            io.emit("customer:signup", values)
-        },
+            io.emit("user:signup", values)
+        }
     })
 
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         io.on("user:signup:success", (customer: Customer) => {
-            io.emit("customer:list")
+            io.emit("user:list")
             setLoading(false)
             onClose()
         })

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Grid, CircularProgress, useMediaQuery } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Grid, CircularProgress, useMediaQuery, MenuItem } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { useIo } from "../../../hooks/useIo"
 import { useFormik } from "formik"
@@ -119,13 +119,18 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose }) => {
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 3}>
                             <TextField
-                                required
-                                label="indicadorEstadual"
                                 fullWidth
+                                label="Indicador de inscrição estadual"
                                 value={formik.values.indicadorEstadual}
-                                name="indicadorEstadual"
+                                name=".indicadorEstadual"
                                 onChange={formik.handleChange}
-                            />
+                                select>
+                                <MenuItem value={1}>Contribuinte ICMS</MenuItem>
+                                <MenuItem value={2}>Contribuinte isento de Inscrição no cadastro de Contribuintes do ICMS</MenuItem>
+                                <MenuItem value={9}>
+                                    Não Contribuinte, que pode ou não possuir Inscrição Estadual no Cadastro de Contribuintes do ICMS
+                                </MenuItem>
+                            </TextField>
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 3}>
                             <TextField required label="Cidade" fullWidth value={formik.values.city} name="city" onChange={formik.handleChange} />

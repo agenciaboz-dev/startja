@@ -4,10 +4,10 @@ import { EnterpriseRow } from "./EnterpriseRow"
 // import { useEnterprise } from "../../hooks/useEnterprise"
 
 interface EnterprisesListProps {
-    // Enterprise: Enterprise
+    enterprises: Company[]
 }
 
-export const EnterprisesList: React.FC<EnterprisesListProps> = ({ Enterprise }) => {
+export const EnterprisesList: React.FC<EnterprisesListProps> = ({ enterprises }) => {
     // const Enterprises = useEnterprise()
 
     return (
@@ -16,11 +16,12 @@ export const EnterprisesList: React.FC<EnterprisesListProps> = ({ Enterprise }) 
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5vw 0",
-            }}
-        >
+                margin: "0.5vw 0"
+            }}>
             {/* {Enterprises.list.map(Enterprise => <EnterpriseRow key={Enterprise.id} Enterprise={Enterprise} />)} */}
-            <EnterpriseRow />
+            {enterprises.map((enterprise) => (
+                <EnterpriseRow key={enterprise.id} enterprise={enterprise} />
+            ))}
         </Box>
     )
 }

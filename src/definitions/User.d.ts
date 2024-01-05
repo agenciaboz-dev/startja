@@ -3,11 +3,7 @@ declare interface User {
     name: string
     email: string
     password: string
-}
 
-declare interface Admin extends User {}
-
-declare interface Customer extends User {
     register_date: string
     phone: string
     document: string
@@ -26,6 +22,14 @@ declare interface Customer extends User {
     certificateId: number
     certificate: DigitalCertificate
     companies: Company[]
+    notas: notaFiscal[]
+}
+
+declare interface Admin {
+    id: number
+    name: string
+    email: string
+    password: string
 }
 
 declare interface LoginValues {

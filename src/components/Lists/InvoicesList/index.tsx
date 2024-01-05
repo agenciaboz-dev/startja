@@ -8,9 +8,6 @@ interface InvoicesListProps {
 }
 
 export const InvoicesList: React.FC<InvoicesListProps> = ({ invoices }) => {
-    const { selectedCompany } = useCompany()
-    if (!selectedCompany) return null
-
     return (
         <Box
             sx={{
@@ -19,8 +16,9 @@ export const InvoicesList: React.FC<InvoicesListProps> = ({ invoices }) => {
                 overflowY: "auto",
                 margin: "0.5vw 0"
             }}>
-            {selectedCompany.notas
+            {invoices
                 .sort((a, b) => b.id - a.id)
+                .filter((invoice) => !!invoice.status)
                 .map((invoice) => (
                     <InvoiceRow key={invoice.id} invoice={invoice} />
                 ))}

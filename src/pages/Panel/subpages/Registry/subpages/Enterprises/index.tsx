@@ -6,6 +6,7 @@ import { EnterprisesListHeader } from "../../../../../../components/Lists/Enterp
 import { EnterprisesList } from "../../../../../../components/Lists/EnterprisesList"
 import AddEnterpriseModal from "../../../../../../components/Modals/AddEnterpriseModal"
 import { useLocation, useNavigate } from "react-router-dom"
+import AddCompanyModal from "../../../../../../components/Modals/AddCompanyModal"
 
 interface EnterprisesProps {
     user: User
@@ -36,9 +37,8 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ user }) => {
             sx={{
                 flexDirection: "column",
                 gap: isMobile ? "5vw" : "1vw",
-                flex: 1,
-            }}
-        >
+                flex: 1
+            }}>
             <Toolbar
                 searchPlaceholder="pessoas e empresas"
                 onSearch={handleSearch}
@@ -50,9 +50,8 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ user }) => {
                     flex: 1,
                     overflow: isMobile ? "scroll" : "",
                     padding: isMobile ? "1vw 5vw" : "",
-                    margin: isMobile ? "0 -5vw" : "",
-                }}
-            >
+                    margin: isMobile ? "0 -5vw" : ""
+                }}>
                 <Box
                     sx={{
                         flex: 1,
@@ -61,14 +60,14 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ user }) => {
                         borderRadius: "20px",
                         flexDirection: "column",
                         padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
-                        width: isMobile ? "fit-content" : "100%",
-                    }}
-                >
+                        width: isMobile ? "fit-content" : "100%"
+                    }}>
                     <EnterprisesListHeader />
-                    <EnterprisesList />
+                    <EnterprisesList enterprises={user.companies} />
                 </Box>
             </Box>
-            <AddEnterpriseModal open={isAddEnterpriseModalOpen} onClose={() => setAddEnterpriseModalOpen(false)} />
+            {/* <AddEnterpriseModal open={isAddEnterpriseModalOpen} onClose={() => setAddEnterpriseModalOpen(false)} /> */}
+            <AddCompanyModal open={isAddEnterpriseModalOpen} onClose={() => setAddEnterpriseModalOpen(false)} />
         </Box>
     )
 }

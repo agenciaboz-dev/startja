@@ -5,11 +5,9 @@ import AddInvoiceModal from "../../../../components/Modals/AddInvoiceModal"
 import { SectionTitle } from "../../../../components/SectionTitle"
 import { MovementsChart } from "./MovementsChart"
 
-interface LastNotesMovementsProps {
-    company: Company
-}
+interface LastNotesMovementsProps {}
 
-export const LastNotesMovements: React.FC<LastNotesMovementsProps> = ({ company }) => {
+export const LastNotesMovements: React.FC<LastNotesMovementsProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const [isAddInvoiceModalOpen, setAddInvoiceModalOpen] = useState(false)
     const openInvoiceModal = () => {
@@ -34,10 +32,9 @@ export const LastNotesMovements: React.FC<LastNotesMovementsProps> = ({ company 
                     borderRadius: "20px",
                     flex: 1,
                     flexDirection: "column",
-                    padding: "1vw 1vw 0 0",
-                }}
-            >
-                <MovementsChart company={company} />
+                    padding: "1vw 1vw 0 0"
+                }}>
+                <MovementsChart />
             </Paper>
             <AddInvoiceModal open={isAddInvoiceModalOpen} onClose={() => setAddInvoiceModalOpen(false)} />
         </Box>

@@ -12,38 +12,34 @@ import { CompanySelectWrapper } from "./pages/AdmPanel/CompanySelectWrapper"
 
 interface RoutesProps {}
 
-const CustomerRoutes: React.FC<{ user: Customer }> = ({ user }) => {
+const UserRoutes: React.FC<{ user: User }> = ({ user }) => {
     console.log({ customer: user })
     return (
         <ReactRoutes>
-            <Route index element={<CompanySelection user={user} />} />
-            <Route path="/selecionar-empresa/" element={<CompanySelection user={user} />} />
+            <Route index element={<Panel user={user} />} />
             <Route path="/painel/*" element={<Panel user={user} />} />
         </ReactRoutes>
     )
 }
 
-const AdminRoutes: React.FC<{ user: Admin }> = ({ user }) => {
+const AdminRoutes: React.FC<{ admin: Admin }> = ({ admin }) => {
     return (
         <ReactRoutes>
-            <Route index element={<AdmPanel user={user} />} />
+            <Route index element={<AdmPanel user={admin} />} />
             {/* <Route path="*" element={<AdmPanel user={user} />} /> */}
-            <Route path="/adm/*" element={<AdmPanel user={user} />} />
-            <Route path="/selecionar-empresa/:customerId/" element={<CompanySelectWrapper />} />
+            <Route path="/adm/*" element={<AdmPanel user={admin} />} />
             <Route path="/painel/:customerId/*" element={<CustomerPanelWrapper />} />
         </ReactRoutes>
     )
 }
 
 export const Routes: React.FC<RoutesProps> = ({}) => {
-    const { user } = useUser()
+    const { user, admin } = useUser()
 
-    return user ? (
-        getUserType(user) == "admin" ? (
-            <AdminRoutes user={user as Admin} />
-        ) : (
-            <CustomerRoutes user={user as Customer} />
-        )
+    return admin ? (
+        <AdminRoutes admin={admin} />
+    ) : user ? (
+        <UserRoutes user={user} />
     ) : (
         <ReactRoutes>
             <Route index element={<Login />} />

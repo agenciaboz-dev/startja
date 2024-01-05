@@ -9,10 +9,9 @@ import { FiscalMonitor } from "./FiscalMonitor"
 
 interface OverviewProps {
     user: User
-    company: Company
 }
 
-export const Overview: React.FC<OverviewProps> = ({ user, company }) => {
+export const Overview: React.FC<OverviewProps> = ({ user }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const header = useHeader()
     const pathname = useLocation().pathname
@@ -31,9 +30,8 @@ export const Overview: React.FC<OverviewProps> = ({ user, company }) => {
             sx={{
                 flexDirection: "column",
                 gap: isMobile ? "5vw" : "1vw",
-                flex: 1,
-            }}
-        >
+                flex: 1
+            }}>
             <Header />
             <Box sx={{ height: "100%", width: "100%" }}>
                 <Box sx={{ height: "100%", width: "100%", flex: 1, gap: isMobile ? "5vw" : "2vw", flexDirection: isMobile ? "column" : "row" }}>
@@ -43,14 +41,13 @@ export const Overview: React.FC<OverviewProps> = ({ user, company }) => {
                             height: "100%",
                             flex: isMobile ? 1 : 0.7,
                             gap: isMobile ? "5vw" : "2vw",
-                            alignItems: isMobile ? "center" : "normal",
-                        }}
-                    >
-                        <TaxSimulator company={company} />
-                        <LastNotesMovements company={company} />
+                            alignItems: isMobile ? "center" : "normal"
+                        }}>
+                        <TaxSimulator />
+                        <LastNotesMovements />
                     </Box>
                     <Box sx={{ height: "100%", flex: isMobile ? 1 : 0.3, justifyContent: "center" }}>
-                        <FiscalMonitor company={company} />
+                        <FiscalMonitor />
                     </Box>
                 </Box>
             </Box>

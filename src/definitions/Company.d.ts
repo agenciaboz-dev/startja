@@ -17,5 +17,4 @@ declare interface Company {
     phone: string
 
     customer: Customer
-    notas: notaFiscal[]
 }

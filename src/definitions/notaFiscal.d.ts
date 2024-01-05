@@ -23,6 +23,7 @@ declare interface notaFiscal {
     protocolo?: string
     url_xml?: string
     url_pdf?: string
+    mensagem_sefaz?: string
 
     products: ProdutoNotaFiscal[]
 

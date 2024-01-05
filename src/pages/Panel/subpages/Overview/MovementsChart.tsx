@@ -3,11 +3,9 @@ import { Box } from "@mui/material"
 import { Area, AreaChart, CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
 import useMeasure from "react-use-measure"
 
-interface MovementsChartProps {
-    company: Company
-}
+interface MovementsChartProps {}
 
-export const MovementsChart: React.FC<MovementsChartProps> = ({ company }) => {
+export const MovementsChart: React.FC<MovementsChartProps> = ({}) => {
     const [ref, { width, height }] = useMeasure()
     const data = [
         { name: "0", indice1: 1000, indice2: 250 },

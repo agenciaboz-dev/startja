@@ -5,12 +5,13 @@ import { useNavigate } from "react-router-dom"
 export const useUser = () => {
     const navigate = useNavigate()
     const userContext = useContext(UserContext)
-    const { user, setUser } = userContext
+    const { setUser, setAdmin } = userContext
 
     const logout = () => {
-        setUser(null)
+        setUser(undefined)
+        setAdmin(undefined)
         navigate("/")
     }
 
-    return { user, setUser, logout }
+    return { ...userContext, logout }
 }

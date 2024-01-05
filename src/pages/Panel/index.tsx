@@ -12,14 +12,13 @@ import { useCompany } from "../../hooks/useCompany"
 import { Reports } from "./subpages/Reports"
 
 interface PanelProps {
-    user: Customer
+    user: User
 }
 
 export const Panel: React.FC<PanelProps> = ({ user }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
-    const { selectedCompany } = useCompany()
 
-    return selectedCompany ? (
+    return (
         <Box sx={{ backgroundColor: colors.background, width: "100%", overflow: "hidden", height: "100%" }}>
             <Sidebar />
             <Box
@@ -28,21 +27,18 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
                     flexDirection: "column",
                     overflow: "auto",
                     padding: isMobile ? "5vw" : "2vw",
-                    gap: "2vw",
-                }}
-            >
+                    gap: "2vw"
+                }}>
                 <Routes>
                     <Route path="/configuracoes/*" element={<Config user={user} />} />
-                    <Route index element={<Overview user={user} company={selectedCompany} />} />
-                    <Route path="/visao-geral/" element={<Overview user={user} company={selectedCompany} />} />
-                    <Route path="/notas-fiscais/" element={<Issuance user={user} company={selectedCompany} />} />
+                    <Route index element={<Overview user={user} />} />
+                    <Route path="/visao-geral/" element={<Overview user={user} />} />
+                    <Route path="/notas-fiscais/" element={<Issuance user={user} />} />
                     <Route path="/cadastros-gerais/*" element={<Registry user={user} />} />
                     <Route path="/relatorios/*" element={<Reports user={user} />} />
                     {/* <Route path="/livro-caixa/" element={<Cashbook user={user} company={selectedCompany} />} /> */}
                 </Routes>
             </Box>
         </Box>
-    ) : (
-        <></>
     )
 }

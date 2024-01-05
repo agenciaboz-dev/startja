@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Button, Checkbox, IconButton } from "@mui/material"
+import { Box, Button, Checkbox, IconButton, Tooltip } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import { colors } from "../../../style/colors"
 import { Download, PictureAsPdf } from "@mui/icons-material"
@@ -41,16 +41,17 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => {
                 </Box>
                 <Box sx={{ flex: 1, color: colors.primary, justifyContent: "center" }}>R$ {invoice.valor_total.toString().replace(".", ",")}</Box>
                 <Box sx={{ flex: 1, justifyContent: "center" }}>
-                    <Button
-                        variant="contained"
-                        sx={{
-                            flex: 1,
-                            borderRadius: "20px",
-                            textTransform: "unset",
-                            pointerEvents: "none"
-                        }}>
-                        {invoice.status}
-                    </Button>
+                    <Tooltip title={invoice.mensagem_sefaz}>
+                        <Button
+                            variant="contained"
+                            sx={{
+                                flex: 1,
+                                borderRadius: "20px",
+                                textTransform: "unset"
+                            }}>
+                            {invoice.status}
+                        </Button>
+                    </Tooltip>
                 </Box>
                 <Box sx={{ width: "5%", justifyContent: "center" }}>
                     <IconButton>

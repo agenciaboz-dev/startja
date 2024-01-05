@@ -1,7 +1,6 @@
 import { Snackbar, SnackbarProvider } from "burgos-snackbar"
 import { IoProvider } from "./contexts/ioContext"
 import { UserProvider } from "./contexts/userContext"
-import { CustomersListProvider } from "./contexts/customersListContext"
 import { ProductProvider } from "./contexts/productContext"
 import { CompanyProvider } from "./contexts/companyContext"
 import { HeaderProvider } from "./contexts/headerContext"
@@ -19,16 +18,14 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
                 <UserProvider>
                     <CompanyProvider>
                         <ProductProvider>
-                            <CustomersListProvider>
-                                <NatureProvider>
-                                    <HeaderProvider>
-                                        <DrawerProvider>
-                                            <Snackbar />
-                                            {children}
-                                        </DrawerProvider>
-                                    </HeaderProvider>
-                                </NatureProvider>
-                            </CustomersListProvider>
+                            <NatureProvider>
+                                <HeaderProvider>
+                                    <DrawerProvider>
+                                        <Snackbar />
+                                        {children}
+                                    </DrawerProvider>
+                                </HeaderProvider>
+                            </NatureProvider>
                         </ProductProvider>
                     </CompanyProvider>
                 </UserProvider>

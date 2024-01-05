@@ -16,7 +16,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
     const navigate = useNavigate()
     const io = useIo()
     const [loading, setLoading] = useState(false)
-    const { setUser } = useUser()
+    const { setUser, setAdmin } = useUser()
     const { snackbar } = useSnackbar()
     const storage = useLocalStorage()
     const [rememberLogin, setRememberLogin] = useState(!!storage.get("startja:user"))
@@ -24,7 +24,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
 
     const initialValues: LoginValues = {
         email: "",
-        password: "",
+        password: ""
     }
 
     const formik = useFormik({ initialValues, onSubmit: (values) => handleLogin(values) })
@@ -39,26 +39,22 @@ export const Login: React.FC<LoginProps> = ({}) => {
     }
 
     useEffect(() => {
-        io.on("admin:login:success", (admin) => {
+        io.on("admin:login:success", (user) => {
             console.log("admin login")
             setLoading(false)
-            setUser(admin)
+            setAdmin(user)
             navigate("/")
             snackbar({ severity: "success", text: "Conectado!" })
-            rememberLogin
-                ? saveLoginData({ email: admin.email, password: admin.password })
-                : storage.set("startja:user", null)
+            rememberLogin ? saveLoginData({ email: user.email, password: user.password }) : storage.set("startja:user", null)
         })
 
-        io.on("customer:login:success", (customer) => {
+        io.on("user:login:success", (user) => {
             setLoading(false)
-            console.log(customer)
+            console.log(user)
             snackbar({ severity: "success", text: "Conectado!" })
             navigate("/")
-            setUser(customer)
-            rememberLogin
-                ? saveLoginData({ email: customer.email, password: customer.password })
-                : storage.set("startja:user", null)
+            setUser(user)
+            rememberLogin ? saveLoginData({ email: user.email, password: user.password }) : storage.set("startja:user", null)
         })
 
         io.on("user:login:failed", (error) => {
@@ -69,14 +65,14 @@ export const Login: React.FC<LoginProps> = ({}) => {
 
         return () => {
             io.off("admin:login:success")
-            io.off("customer:login:success")
+            io.off("user:login:success")
             io.off("user:login:failed")
         }
-    }, [])
+    }, [rememberLogin])
 
     useEffect(() => {
         if (savedUser) {
-            formik.setFieldValue("login", savedUser.email)
+            formik.setFieldValue("email", savedUser.email)
             formik.setFieldValue("password", savedUser.password)
         }
     }, [])

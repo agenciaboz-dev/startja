@@ -5,7 +5,6 @@ import { useArray } from "burgos-array"
 import { AddOutlined, BookOutlined, CancelOutlined } from "@mui/icons-material"
 
 interface FiscalMonitorProps {
-    company: Company
 }
 
 const DocumentComponent: React.FC<{ document?: any }> = ({ document }) => {
@@ -30,7 +29,7 @@ const DocumentComponent: React.FC<{ document?: any }> = ({ document }) => {
     )
 }
 
-export const FiscalMonitor: React.FC<FiscalMonitorProps> = ({ company }) => {
+export const FiscalMonitor: React.FC<FiscalMonitorProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const quantity = "x"
 
@@ -44,9 +43,8 @@ export const FiscalMonitor: React.FC<FiscalMonitorProps> = ({ company }) => {
                     variant="text"
                     sx={{
                         borderRadius: "20px",
-                        textTransform: "unset",
-                    }}
-                >
+                        textTransform: "unset"
+                    }}>
                     Ver Documentos
                 </Button>
             </Box>
@@ -59,17 +57,15 @@ export const FiscalMonitor: React.FC<FiscalMonitorProps> = ({ company }) => {
                     flexDirection: "column",
                     padding: isMobile ? "5vw" : "2vw",
                     gap: isMobile ? "5vw" : "2vw",
-                    position: "relative",
-                }}
-            >
+                    position: "relative"
+                }}>
                 <Box
                     sx={{
                         flexDirection: "column",
                         maxWidth: "80vw",
                         height: isMobile ? "85%" : "100%",
-                        overflow: "scroll",
-                    }}
-                >
+                        overflow: "scroll"
+                    }}>
                     Há {quantity} documentos restantes
                     {documents.map((document) => (
                         <DocumentComponent key={document} />
@@ -83,9 +79,8 @@ export const FiscalMonitor: React.FC<FiscalMonitorProps> = ({ company }) => {
                         position: "absolute",
                         bottom: isMobile ? "5vw" : "1vw",
                         right: isMobile ? "5vw" : "1vw",
-                        gap: "0.5vw",
-                    }}
-                >
+                        gap: "0.5vw"
+                    }}>
                     <AddOutlined />
                     Adicionar novo cliente
                 </Button>
