@@ -194,15 +194,16 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
             open={open}
             onClose={onClose}
             sx={{
-                justifyContent: "center"
+                justifyContent: "center",
             }}
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
                     minHeight: "90vh",
-                    minWidth: "90vw"
-                }
-            }}>
+                    minWidth: "90vw",
+                },
+            }}
+        >
             {!isMobile && <DialogTitle>Preencha os dados da nota de saída</DialogTitle>}
             {isMobile && <DialogTitle>Preencha a nota de saída</DialogTitle>}
             <CloseOutlinedIcon
@@ -210,7 +211,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                     position: "absolute",
                     top: isMobile ? "5vw" : "1vw",
                     right: isMobile ? "5vw" : "1vw",
-                    cursor: "pointer"
+                    cursor: "pointer",
                 }}
                 onClick={onClose}
             />
@@ -219,16 +220,17 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                 <Box
                     sx={{
                         flex: 1,
-                        gap: isMobile ? "5vw" : "2vw",
-                        flexDirection: isMobile ? "column" : ""
-                    }}>
+                        flexDirection: isMobile ? "column" : "",
+                    }}
+                >
                     <form onSubmit={formik.handleSubmit}>
                         <Box
                             sx={{
                                 flex: 1,
                                 flexDirection: "column",
-                                gap: isMobile ? "5vw" : "1vw"
-                            }}>
+                                gap: isMobile ? "10vw" : "2vw",
+                            }}
+                        >
                             <Grid container spacing={2}>
                                 <Grid item xs={isMobile ? 12 : 6}>
                                     <TextField
@@ -288,11 +290,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                             {/* <h3>Destinatário</h3>
                             <RecipientBox formik={formik} /> */}
 
-                            <hr
-                                style={{
-                                    margin: isMobile ? "5vw 0" : "2vw 0"
-                                }}
-                            />
+                            <hr />
 
                             <PricingBox formik={formik} />
 
@@ -304,7 +302,8 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                                         name="finalidade_emissao"
                                         value={formik.values.finalidade_emissao}
                                         onChange={formik.handleChange}
-                                        select>
+                                        select
+                                    >
                                         <MenuItem value={1}>Normal</MenuItem>
                                         <MenuItem value={2}>Complementar</MenuItem>
                                         <MenuItem value={3}>Nota de ajuste</MenuItem>
@@ -318,7 +317,8 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                                         name="local_destino"
                                         value={formik.values.local_destino}
                                         onChange={formik.handleChange}
-                                        select>
+                                        select
+                                    >
                                         <MenuItem value={1}>Operação Interna</MenuItem>
                                         <MenuItem value={2}>Operação interestadual</MenuItem>
                                         <MenuItem value={3}>Operação no exterior</MenuItem>
@@ -341,7 +341,8 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                                         name="presenca_comprador"
                                         value={formik.values.presenca_comprador}
                                         onChange={formik.handleChange}
-                                        select>
+                                        select
+                                    >
                                         <MenuItem value={0}>Não se aplica</MenuItem>
                                         <MenuItem value={1}>Operação presencial</MenuItem>
                                         <MenuItem value={2}>Operação não presencial, pela Internet</MenuItem>
@@ -354,29 +355,27 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                                     <RadioGroup
                                         value={formik.values.tipo_documento}
                                         onChange={(_, value) => formik.setFieldValue("tipo_documento", Number(value))}
-                                        sx={{ flexDirection: "row", gap: "25%" }}>
+                                        sx={{ flexDirection: "row", gap: "25%" }}
+                                    >
                                         <FormControlLabel label="Nota de entrada" control={<Radio value={0} />} />
                                         <FormControlLabel label="Nota de saída" control={<Radio value={1} />} />
                                     </RadioGroup>
                                 </Grid>
                             </Grid>
 
-                            <hr
-                                style={{
-                                    margin: isMobile ? "5vw 0" : "2vw 0"
-                                }}
-                            />
+                            <hr />
 
                             <Box
                                 sx={{
                                     gap: isMobile ? "5vw" : "2vw",
-                                    flexDirection: isMobile ? "column" : "row"
-                                }}>
+                                    flexDirection: isMobile ? "column" : "row",
+                                }}
+                            >
                                 <ProductForm addProduct={(product) => addInvoiceProduct(product)} />
                                 <Box>
                                     <hr
                                         style={{
-                                            flex: 1
+                                            flex: 1,
                                         }}
                                     />
                                 </Box>
@@ -385,8 +384,9 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                                         sx={{
                                             alignItems: "center",
                                             flexDirection: "column",
-                                            gap: "0.5vw"
-                                        }}>
+                                            gap: "0.5vw",
+                                        }}
+                                    >
                                         <h3>Sem produtos adicionados</h3>
                                         <p>Para emissão da nota fiscal, adicione os produtos ao lado.</p>
                                     </Box>
@@ -397,13 +397,15 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                                             flex: 1,
                                             overflow: isMobile ? "scroll" : "",
                                             padding: isMobile ? "1vw 5vw" : "",
-                                            margin: isMobile ? "0 -5vw" : ""
-                                        }}>
+                                            margin: isMobile ? "0 -5vw" : "",
+                                        }}
+                                    >
                                         <Box
                                             sx={{
                                                 flexDirection: "column",
-                                                flex: 1
-                                            }}>
+                                                flex: 1,
+                                            }}
+                                        >
                                             <InvoiceModalProductsListHeader />
                                             <InvoiceModalProductsList list={formik.values.produtos} />
                                         </Box>
@@ -418,14 +420,16 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
             <DialogActions
                 sx={{
                     margin: isMobile ? "0" : "0.5vw",
-                    padding: isMobile ? "5vw" : ""
-                }}>
+                    padding: isMobile ? "5vw" : "",
+                }}
+            >
                 <Box
                     sx={{
                         gap: isMobile ? "2vw" : "1vw",
                         flexDirection: isMobile ? "column" : "",
-                        width: "100%"
-                    }}>
+                        width: "100%",
+                    }}
+                >
                     <Button
                         onClick={onClose}
                         color="secondary"
@@ -434,8 +438,9 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                             color: "black",
                             borderRadius: "20px",
                             textTransform: "unset",
-                            marginRight: isMobile ? "" : "auto"
-                        }}>
+                            marginRight: isMobile ? "" : "auto",
+                        }}
+                    >
                         Cancelar
                     </Button>
                     <Button
@@ -446,8 +451,9 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                             borderRadius: "20px",
                             textTransform: "unset",
                             // botão escondido por enquanto, alguns campos do segundo modal estão repetidos aqui no primeiro
-                            display: "none"
-                        }}>
+                            display: "none",
+                        }}
+                    >
                         Adicionar informações
                     </Button>
                     <Button
@@ -457,8 +463,9 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         Salvar e visualizar
                     </Button>
                     <Button
@@ -468,8 +475,9 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         {loading ? <CircularProgress size="1.5rem" sx={{ color: "white" }} /> : "Salvar e emitir"}
                     </Button>
                 </Box>
