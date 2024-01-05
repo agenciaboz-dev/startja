@@ -172,6 +172,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
     useEffect(() => {
         io.on("nota:create:response", (response) => {
             console.log(response)
+            setLoading(false)
             onClose()
             snackbar({ severity: "info", text: "Nota fiscal criada, aguardando autorização" })
         })
