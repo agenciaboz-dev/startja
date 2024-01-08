@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Checkbox, Menu, MenuItem } from "@mui/material"
+import { Box, Checkbox, IconButton, Menu, MenuItem } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
 
@@ -52,9 +52,9 @@ export const InvoiceModalProductRow: React.FC<InvoiceModalProductRowProps> = ({ 
                 <Box sx={slotStyle}>{}</Box>
                 <Box sx={slotStyle}>{product.valor_unitario_comercial * product.quantidade}</Box>
                 <Box sx={slotStyle}></Box>
-                <Box sx={{ ...slotStyle, flex: 0.5, cursor: "pointer" }} onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
+                <IconButton sx={{ ...slotStyle, flex: 0.1, cursor: "pointer" }} onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
                     <FormatListBulletedOutlinedIcon />
-                </Box>
+                </IconButton>
                 <Menu
                     anchorEl={menuAnchorEl}
                     open={menu_opened}
