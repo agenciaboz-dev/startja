@@ -1,7 +1,5 @@
 import React, { useState } from "react"
 import { Box, Drawer, useMediaQuery } from "@mui/material"
-import { ReactSVG } from "react-svg"
-import startjaIcon from "../../assets/startja_icon.svg"
 import { useAdmSidebar } from "../../hooks/useAdmSidebar"
 import { MenuButton } from "../MenuButton"
 import { useDrawer } from "../../hooks/useDrawer"
@@ -29,15 +27,6 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
             >
                 <Box
                     sx={{
-                        marginBottom: "0.5vw",
-                        width: "100%",
-                        justifyContent: "center",
-                    }}
-                >
-                    <ReactSVG src={startjaIcon} />
-                </Box>
-                <Box
-                    sx={{
                         flexDirection: "column",
                         alignItems: "center",
                         width: "100%",
@@ -61,13 +50,6 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                 overflow: "auto",
             }}
         >
-            <Box
-                sx={{
-                    marginBottom: "0.5vw",
-                }}
-            >
-                <ReactSVG src={startjaIcon} />
-            </Box>
             <Box
                 sx={{
                     flexDirection: "column",

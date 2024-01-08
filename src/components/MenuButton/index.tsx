@@ -16,6 +16,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
     const location = useLocation()
     const { setOpenDrawer } = useDrawer()
     const active = location.pathname.split("/")[2] == sideBarItem.path.split("/")[1]
+    const disabled = sideBarItem.disabled
 
     // const [collapse, setCollapse] = useState(active)
 
@@ -59,7 +60,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                 onClick={() => handleMenuClick(sideBarItem)}
                 sx={{
                     alignItems: "center",
-                    pointerEvents: active ? "none" : "auto",
+                    pointerEvents: disabled || active ? "none" : "auto",
                     backgroundColor: active ? (sideBarItem.subItens ? "#e8e8e8" : "") : "",
                     position: "relative",
                     display: active ? (sideBarItem.subItens ? "none" : "") : "",
@@ -88,7 +89,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                             sx={{
                                 backgroundColor: active ? "secondary.main" : "#f4f4f4",
                                 color: active ? "white" : colors.text.darkgrey,
-                                pointerEvents: active ? "none" : "auto",
+                                pointerEvents: disabled || active ? "none" : "auto",
                                 padding: "0.5vw",
                                 borderRadius: "20px",
                             }}
@@ -111,20 +112,23 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                                 sx={{
                                     alignItems: "center",
                                     position: "relative",
-                                    pointerEvents: active ? "none" : "auto"
-                                }}>
+                                    pointerEvents: active ? "none" : "auto",
+                                }}
+                            >
                                 <MenuItem
                                     key={sideBarItem.id}
                                     sx={{
                                         ...buildStyle(active, sideBarItem),
                                         whiteSpace: "normal",
-                                        overflow: "hidden"
+                                        overflow: "hidden",
                                     }}
-                                    onClick={() => handleMenuClick(sideBarItem)}>
+                                    onClick={() => handleMenuClick(sideBarItem)}
+                                >
                                     <Box
                                         sx={{
-                                            position: "relative"
-                                        }}>
+                                            position: "relative",
+                                        }}
+                                    >
                                         {active && (
                                             <Box
                                                 sx={{
@@ -134,8 +138,9 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                                                     position: "absolute",
                                                     height: "100%",
                                                     width: isMobile ? "2.5vw" : "0.5vw",
-                                                    left: isMobile ? "-30vw" : "-2vw"
-                                                }}></Box>
+                                                    left: isMobile ? "-30vw" : "-2vw",
+                                                }}
+                                            ></Box>
                                         )}
                                         <Box
                                             sx={{
@@ -143,8 +148,9 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                                                 color: active ? "white" : colors.text.darkgrey,
                                                 pointerEvents: active ? "none" : "auto",
                                                 padding: "0.5vw",
-                                                borderRadius: "20px"
-                                            }}>
+                                                borderRadius: "20px",
+                                            }}
+                                        >
                                             <Icon />
                                         </Box>
                                     </Box>
