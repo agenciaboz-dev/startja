@@ -32,8 +32,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
             ncm: list[0].ncm,
             pis_situacao_tributaria: "01",
             quantidade: 1,
-            unidade_comercial: "unidade",
-            unidade_tributavel: "unidade",
+            unidade_comercial: "un",
+            unidade_tributavel: "un",
             valor_unitario_comercial: 0,
             valor_unitario_tributavel: 0,
         },
@@ -154,16 +154,16 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                                 onChange={formik.handleChange}
                                 select
                             >
-                                <MenuItem value="unidade">unidade(s)</MenuItem>
-                                <MenuItem value="bandeja">bandeja(s)</MenuItem>
-                                <MenuItem value="caixa">caixa(s)</MenuItem>
-                                <MenuItem value="duzia">dúzia(s)</MenuItem>
-                                <MenuItem value="grama">grama(s)</MenuItem>
-                                <MenuItem value="litro">litro(s)</MenuItem>
+                                <MenuItem value="un">unidade(s)</MenuItem>
+                                <MenuItem value="bdj">bandeja(s)</MenuItem>
+                                <MenuItem value="cx">caixa(s)</MenuItem>
+                                <MenuItem value="dz">dúzia(s)</MenuItem>
+                                <MenuItem value="g">grama(s)</MenuItem>
+                                <MenuItem value="L">litro(s)</MenuItem>
                                 <MenuItem value="saca">saca(s)</MenuItem>
-                                <MenuItem value="kg">Kg</MenuItem>
-                                <MenuItem value="ton">Ton</MenuItem>
-                                <MenuItem value="cb">Cb</MenuItem>
+                                <MenuItem value="Kg">Kg</MenuItem>
+                                <MenuItem value="Ton">Ton</MenuItem>
+                                <MenuItem value="Cb">Cb</MenuItem>
                             </TextField>
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 6}>
