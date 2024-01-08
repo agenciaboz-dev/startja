@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Menu, MenuItem, SxProps, useMediaQuery } from "@mui/material"
+import { Box, IconButton, Menu, MenuItem, SxProps, useMediaQuery } from "@mui/material"
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined"
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined"
 import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined"
@@ -8,6 +8,7 @@ import { useMenus } from "../../hooks/useMenus"
 import { useUser } from "../../hooks/useUser"
 import MenuIcon from "@mui/icons-material/Menu"
 import { useDrawer } from "../../hooks/useDrawer"
+import { colors } from "../../style/colors"
 
 interface HeaderProps {}
 
@@ -27,10 +28,20 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                 flexDirection: isMobile ? "column" : "",
                 alignItems: isMobile ? "center" : "",
                 gap: isMobile ? "5vw" : "",
-                textAlign: "center"
-            }}>
+                textAlign: "center",
+            }}
+        >
             <Box sx={{ justifyContent: "space-between", alignItems: "center", width: "100%" }}>
-                {isMobile && <MenuIcon sx={{ transform: "scale(2)", marginLeft: "2vw" }} onClick={() => drawer.setOpenDrawer(true)} />}
+                {isMobile && (
+                    <IconButton
+                        sx={{
+                            padding: 0,
+                            color: colors.text.darkgrey,
+                        }}
+                    >
+                        <MenuIcon sx={{ transform: "scale(2)", marginLeft: "2vw" }} onClick={() => drawer.setOpenDrawer(true)} />
+                    </IconButton>
+                )}
                 {!isMobile && <h1>{title}</h1>}
                 <Box sx={{ alignItems: "center", height: "100%" }}>
                     <MenuItem
@@ -40,8 +51,9 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                             padding: 0,
                             paddingRight: "2vw",
                             height: "100%",
-                            borderRight: "1px solid"
-                        }}>
+                            borderRight: "1px solid",
+                        }}
+                    >
                         <HelpOutlineOutlinedIcon sx={{ fill: "#323232", height: "2vw", width: "2vw", transform: isMobile ? "scale(3)" : "" }} />
                         <p style={{ fontWeight: "lighter" }}>Ajuda</p>
                     </MenuItem>
@@ -50,16 +62,17 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                             alignItems: "center",
                             gap: "0.5vw",
                             padding: 0,
-                            paddingLeft: isMobile ? "5vw" : "2vw"
+                            paddingLeft: isMobile ? "5vw" : "2vw",
                         }}
-                        onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
+                        onClick={(event) => setMenuAnchorEl(event.currentTarget)}
+                    >
                         <AccountCircleOutlinedIcon
                             sx={{
                                 fill: "#323232",
                                 height: "2vw",
                                 width: "2vw",
                                 transform: isMobile ? "scale(3)" : "",
-                                marginRight: isMobile ? "5vw" : ""
+                                marginRight: isMobile ? "5vw" : "",
                             }}
                         />
                         <Box sx={{ flexDirection: "column" }}>
@@ -73,7 +86,8 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                         open={menu_opened}
                         onClose={() => setMenuAnchorEl(null)}
                         slotProps={{ paper: { elevation: 3 } }}
-                        MenuListProps={{ sx: { width: "100%" } }}>
+                        MenuListProps={{ sx: { width: "100%" } }}
+                    >
                         {menus.list.map((menu) => {
                             const Icon = () => menu.icon
                             return (
