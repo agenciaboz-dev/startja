@@ -434,9 +434,9 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                     <Button
                         onClick={onClose}
                         color="secondary"
-                        variant="outlined"
+                        variant="contained"
                         sx={{
-                            color: "black",
+                            color: "white",
                             borderRadius: "20px",
                             textTransform: "unset",
                             marginRight: isMobile ? "" : "auto",
@@ -459,11 +459,10 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                     </Button>
                     <Button
                         onClick={onClose}
-                        color="secondary"
-                        variant="contained"
+                        color="primary"
+                        variant="outlined"
                         sx={{
                             borderRadius: "20px",
-                            color: "white",
                             textTransform: "unset",
                         }}
                     >
