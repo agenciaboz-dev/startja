@@ -1,7 +1,7 @@
 import React from "react"
 import { Box, Checkbox, Menu, MenuItem } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
-import { useActionsMenu_invoiceProduct } from "../../../hooks/useActionsMenu_invoiceProduct"
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
 
 interface InvoiceModalProductRowProps {
     product: InvoiceProduct
@@ -16,7 +16,15 @@ export const InvoiceModalProductRow: React.FC<InvoiceModalProductRowProps> = ({ 
 
     const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null)
     const menu_opened = Boolean(menuAnchorEl)
-    const actions = useActionsMenu_invoiceProduct()
+
+    const actions = [
+        {
+            id: 1,
+            title: "Remover",
+            icon: <RemoveCircleOutlineIcon />,
+            onClick: () => {},
+        },
+    ]
 
     return (
         <Box
@@ -54,7 +62,7 @@ export const InvoiceModalProductRow: React.FC<InvoiceModalProductRowProps> = ({ 
                     slotProps={{ paper: { elevation: 3 } }}
                     MenuListProps={{ sx: { width: "100%" } }}
                 >
-                    {actions.list.map((action) => {
+                    {actions.map((action) => {
                         const Icon = () => action.icon
                         return (
                             <MenuItem sx={{ gap: "1vw" }} onClick={action.onClick} key={action.id}>

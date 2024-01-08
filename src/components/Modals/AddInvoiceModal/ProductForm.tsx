@@ -121,6 +121,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                     sx={{
                         flexDirection: "column",
                         gap: isMobile ? "5vw" : "1vw",
+                        minHeight: "25vw",
                     }}
                 >
                     <Grid container spacing={2}>
@@ -202,12 +203,16 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                     sx={{
                         flexDirection: "column",
                         gap: isMobile ? "5vw" : "1vw",
+                        minHeight: "25vw",
                     }}
                 >
                     <Grid container spacing={2}>
-                        <Grid item xs={isMobile ? 12 : 6}>
+                        <Grid item xs={12}>
                             <TextField fullWidth label="CFOP" name="cfop" value={formik.values.cfop} onChange={formik.handleChange} />
                         </Grid>
+                    </Grid>
+                    <h3>ICMS</h3>
+                    <Grid container spacing={2}>
                         <Grid item xs={isMobile ? 12 : 6}>
                             <TextField
                                 fullWidth
@@ -265,7 +270,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                                 ))}
                             </TextField>
                         </Grid>
-                        <Grid item xs={isMobile ? 12 : 6}>
+                    </Grid>
+                    <h3>PIS</h3>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
                             <TextField
                                 fullWidth
                                 label="Situação tributária do PIS"
@@ -281,8 +289,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                                 ))}
                             </TextField>
                         </Grid>
-
-                        <Grid item xs={isMobile ? 12 : 6}>
+                    </Grid>
+                    <h3>COFINS</h3>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
                             <TextField
                                 fullWidth
                                 label="Situação tributária do COFINS"
