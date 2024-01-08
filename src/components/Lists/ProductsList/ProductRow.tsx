@@ -33,7 +33,7 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product }) => {
             >
                 <Box
                     sx={{
-                        flex: 0.35,
+                        flex: 0.45,
                         minWidth: isMobile ? "25vw" : "",
                     }}
                 >
@@ -41,19 +41,11 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product }) => {
                 </Box>
                 <Box
                     sx={{
-                        flex: 0.35,
+                        flex: 0.5,
                         minWidth: isMobile ? "25vw" : "",
                     }}
                 >
                     <p>{product.ncm}</p>
-                </Box>
-                <Box
-                    sx={{
-                        flex: 0.25,
-                        minWidth: isMobile ? "25vw" : "",
-                    }}
-                >
-                    <p>{product.icmsOrigin}</p>
                 </Box>
                 <Box
                     sx={{
