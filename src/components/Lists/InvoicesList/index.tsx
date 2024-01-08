@@ -14,8 +14,9 @@ export const InvoicesList: React.FC<InvoicesListProps> = ({ invoices }) => {
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5vw 0"
-            }}>
+                margin: "0.5vw 0",
+            }}
+        >
             {invoices
                 .sort((a, b) => b.id - a.id)
                 .filter((invoice) => !!invoice.status)
