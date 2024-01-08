@@ -18,13 +18,13 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => {
         {
             id: 1,
             title: "Download",
-            icon: <Download color="primary" />,
+            icon: <Download />,
             onClick: () => window.open(`https://homologacao.focusnfe.com.br${invoice.url_xml}`, "_new"),
         },
         {
             id: 2,
             title: "Visualizar",
-            icon: <PictureAsPdf color="primary" />,
+            icon: <PictureAsPdf />,
             onClick: () => window.open(`https://homologacao.focusnfe.com.br${invoice.url_pdf}`, "_new"),
         },
     ]
@@ -90,7 +90,7 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => {
                     {actions.map((action) => {
                         const Icon = () => action.icon
                         return (
-                            <MenuItem sx={{ gap: "0.5vw" }} onClick={action.onClick} key={action.id}>
+                            <MenuItem sx={{ gap: isMobile ? "2vw" : "0.5vw" }} onClick={action.onClick} key={action.id}>
                                 <Icon /> {action.title}
                             </MenuItem>
                         )

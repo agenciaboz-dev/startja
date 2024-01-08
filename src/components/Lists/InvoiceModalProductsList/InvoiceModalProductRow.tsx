@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Checkbox, IconButton, Menu, MenuItem } from "@mui/material"
+import { Box, Checkbox, IconButton, Menu, MenuItem, useMediaQuery } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
 
@@ -8,6 +8,8 @@ interface InvoiceModalProductRowProps {
 }
 
 export const InvoiceModalProductRow: React.FC<InvoiceModalProductRowProps> = ({ product }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
+
     const slotStyle = {
         alignItems: "center",
         justifyContent: "center",
@@ -65,7 +67,7 @@ export const InvoiceModalProductRow: React.FC<InvoiceModalProductRowProps> = ({ 
                     {actions.map((action) => {
                         const Icon = () => action.icon
                         return (
-                            <MenuItem sx={{ gap: "1vw" }} onClick={action.onClick} key={action.id}>
+                            <MenuItem sx={{ gap: isMobile ? "2vw" : "0.5vw" }} onClick={action.onClick} key={action.id}>
                                 <Icon /> {action.title}
                             </MenuItem>
                         )
