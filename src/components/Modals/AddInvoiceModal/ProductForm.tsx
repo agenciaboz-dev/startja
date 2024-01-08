@@ -32,8 +32,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
             ncm: list[0].ncm,
             pis_situacao_tributaria: "01",
             quantidade: 1,
-            unidade_comercial: "un",
-            unidade_tributavel: "un",
+            unidade_comercial: "unidade",
+            unidade_tributavel: "unidade",
             valor_unitario_comercial: 0,
             valor_unitario_tributavel: 0,
         },
@@ -51,14 +51,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
         flex: 1,
         borderBottom: `2px solid ${colors.primary}`,
         color: `${colors.primary}`,
-        fontWeight: "bold"
+        fontWeight: "bold",
     }
     const inactiveTabStyle = {
         textTransform: "unset",
         flex: 1,
         borderTopLeftRadius: "15px",
         borderTopRightRadius: "15px",
-        backgroundColor: `${colors.background}`
+        backgroundColor: `${colors.background}`,
     }
     const tabLabelBoxStyles = { alignItems: "center" }
 
@@ -147,12 +147,24 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 6}>
                             <TextField
-                                label="Unidade comercial"
+                                label="Unidade"
                                 fullWidth
                                 name="unidade_comercial"
                                 value={formik.values.unidade_comercial}
                                 onChange={formik.handleChange}
-                            />
+                                select
+                            >
+                                <MenuItem value="unidade">unidade(s)</MenuItem>
+                                <MenuItem value="bandeja">bandeja(s)</MenuItem>
+                                <MenuItem value="caixa">caixa(s)</MenuItem>
+                                <MenuItem value="duzia">dúzia(s)</MenuItem>
+                                <MenuItem value="grama">grama(s)</MenuItem>
+                                <MenuItem value="litro">litro(s)</MenuItem>
+                                <MenuItem value="saca">saca(s)</MenuItem>
+                                <MenuItem value="kg">Kg</MenuItem>
+                                <MenuItem value="ton">Ton</MenuItem>
+                                <MenuItem value="cb">Cb</MenuItem>
+                            </TextField>
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 6}>
                             <TextField
