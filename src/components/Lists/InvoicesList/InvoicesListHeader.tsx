@@ -36,14 +36,14 @@ export const InvoicesListHeader: React.FC<InvoicesListHeaderProps> = ({}) => {
                 >
                     <Box
                         sx={{
-                            flex: 1,
+                            flex: 0.1,
                         }}
                     >
                         <h3>Emissão</h3>
                     </Box>
                     <Box
                         sx={{
-                            flex: 1,
+                            flex: 0.1,
                             justifyContent: "center",
                         }}
                     >
@@ -51,7 +51,7 @@ export const InvoicesListHeader: React.FC<InvoicesListHeaderProps> = ({}) => {
                     </Box>
                     <Box
                         sx={{
-                            flex: 1,
+                            flex: 0.55,
                             justifyContent: "center",
                         }}
                     >
@@ -59,23 +59,7 @@ export const InvoicesListHeader: React.FC<InvoicesListHeaderProps> = ({}) => {
                     </Box>
                     <Box
                         sx={{
-                            flex: 1,
-                            justifyContent: "center",
-                        }}
-                    >
-                        <h3>Emitente</h3>
-                    </Box>
-                    <Box
-                        sx={{
-                            flex: 1,
-                            justifyContent: "center",
-                        }}
-                    >
-                        <h3>Propriedade</h3>
-                    </Box>
-                    <Box
-                        sx={{
-                            flex: 1,
+                            flex: 0.1,
                             justifyContent: "center",
                         }}
                     >
@@ -83,7 +67,7 @@ export const InvoicesListHeader: React.FC<InvoicesListHeaderProps> = ({}) => {
                     </Box>
                     <Box
                         sx={{
-                            flex: 1,
+                            flex: 0.1,
                             justifyContent: "center",
                         }}
                     >
@@ -91,7 +75,7 @@ export const InvoicesListHeader: React.FC<InvoicesListHeaderProps> = ({}) => {
                     </Box>
                     <Box
                         sx={{
-                            width: "5%",
+                            flex: 0.05,
                             justifyContent: "center",
                         }}
                     >
