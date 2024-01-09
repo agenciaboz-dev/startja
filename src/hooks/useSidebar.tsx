@@ -26,8 +26,8 @@ export const useSidebar = () => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const navigate = useNavigate()
     const itemStyle = {
-        height: isMobile ? "10vw" : "2vw",
-        width: isMobile ? "10vw" : "2vw",
+        height: isMobile ? "10vw" : "1.5vw",
+        width: isMobile ? "10vw" : "1.5vw",
     }
 
     const sidebar: SidebarItem[] = [

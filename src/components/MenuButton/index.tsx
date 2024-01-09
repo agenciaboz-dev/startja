@@ -29,7 +29,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
             width: "100%",
             fontSize: "1rem",
             color: colors.text.greyish,
-            gap: "0.5vw",
+            gap: "0.25vw",
             ...sx,
         }
 
@@ -81,7 +81,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                                     position: "absolute",
                                     height: "100%",
                                     width: isMobile ? "2.5vw" : "0.5vw",
-                                    left: isMobile ? "-30vw" : "-2vw",
+                                    left: isMobile ? "-30vw" : "-2.25vw",
                                 }}
                             ></Box>
                         )}
@@ -138,7 +138,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                                                     position: "absolute",
                                                     height: "100%",
                                                     width: isMobile ? "2.5vw" : "0.5vw",
-                                                    left: isMobile ? "-30vw" : "-2vw",
+                                                    left: isMobile ? "-30vw" : "-2.25vw",
                                                 }}
                                             ></Box>
                                         )}
@@ -154,7 +154,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                                             <Icon />
                                         </Box>
                                     </Box>
-                                    {active && sideBarItem.name}
+                                    {sideBarItem.name}
                                 </MenuItem>
                             </Box>
                         )
