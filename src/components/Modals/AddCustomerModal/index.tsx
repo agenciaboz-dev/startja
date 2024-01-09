@@ -30,6 +30,37 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
     const io = useIo()
     const todayDate = new Date()
     const formattedDate = todayDate.toISOString().split("T")[0]
+
+    const estados = [
+        { id: 1, value: "AC", label: "Acre" },
+        { id: 2, value: "AL", label: "Alagoas" },
+        { id: 3, value: "AP", label: "Amapá" },
+        { id: 4, value: "AM", label: "Amazonas" },
+        { id: 5, value: "BA", label: "Bahia" },
+        { id: 5, value: "CE", label: "Ceará" },
+        { id: 6, value: "DF", label: "Distrito Federal" },
+        { id: 7, value: "ES", label: "Espírito Santo" },
+        { id: 8, value: "GO", label: "Goiás" },
+        { id: 9, value: "MA", label: "Maranhão" },
+        { id: 10, value: "MT", label: "Mato Grosso" },
+        { id: 11, value: "MS", label: "Mato Grosso do Sul" },
+        { id: 12, value: "MG", label: "Minas Gerais" },
+        { id: 13, value: "PA", label: "Pará" },
+        { id: 14, value: "PB", label: "Paraíba" },
+        { id: 15, value: "PR", label: "Paraná" },
+        { id: 16, value: "PE", label: "Pernambuco" },
+        { id: 17, value: "PI", label: "Piauí" },
+        { id: 18, value: "RJ", label: "Rio de Janeiro" },
+        { id: 19, value: "RN", label: "Rio Grande do Norte" },
+        { id: 20, value: "RS", label: "Rio Grande do Sul" },
+        { id: 21, value: "RO", label: "Rondônia" },
+        { id: 22, value: "RR", label: "Roraima" },
+        { id: 23, value: "SC", label: "Santa Catarina" },
+        { id: 24, value: "SP", label: "São Paulo" },
+        { id: 25, value: "SE", label: "Sergipe" },
+        { id: 26, value: "TO", label: "Tocantins" },
+    ]
+
     const formik = useFormik<NewUser>({
         initialValues: {
             name: "",
@@ -48,13 +79,13 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
             regimeTributario: 0,
             inscricaoEstadual: "",
             isento: false,
-            certificateId: ""
+            certificateId: "",
         },
         onSubmit: (values) => {
             console.log(values)
             setLoading(true)
             io.emit("user:signup", values)
-        }
+        },
     })
 
     const [loading, setLoading] = useState(false)
@@ -268,12 +299,18 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                 <Grid item xs={6}>
                                     <TextField
                                         required
-                                        label="UF"
+                                        label="Estado"
                                         fullWidth
                                         value={formik.values.state}
                                         name="state"
                                         onChange={formik.handleChange}
-                                    />
+                                    >
+                                        {estados.map((estado) => (
+                                            <MenuItem key={estado.id} value={estado.value}>
+                                                {estado.label}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
                                 </Grid>
                             </Grid>
                         </Box>
