@@ -304,6 +304,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         value={formik.values.state}
                                         name="state"
                                         onChange={formik.handleChange}
+                                        select
                                     >
                                         {estados.map((estado) => (
                                             <MenuItem key={estado.id} value={estado.value}>
