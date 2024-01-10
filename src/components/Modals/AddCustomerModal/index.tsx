@@ -60,7 +60,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        io.on("user:signup:success", (customer: Customer) => {
+        io.on("user:signup:success", (customer: User) => {
             io.emit("user:list")
             setLoading(false)
             onClose()
