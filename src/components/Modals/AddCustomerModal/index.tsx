@@ -15,10 +15,13 @@ import {
     MenuItem,
 } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
-import { PermissionsCard } from "../../PermissionsCard"
 import { useFormik } from "formik"
 import { NewUser } from "../../../definitions/userOperations"
 import { useIo } from "../../../hooks/useIo"
+import { PermissionsContainer } from "./PermissionsContainer"
+import { InfoContainer } from "./InfoContainer"
+import { ExtFile } from "@files-ui/react"
+import { useSnackbar } from "burgos-snackbar"
 
 interface AddCustomerModalProps {
     open: boolean
@@ -27,39 +30,12 @@ interface AddCustomerModalProps {
 
 const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const { snackbar } = useSnackbar()
     const io = useIo()
     const todayDate = new Date()
     const formattedDate = todayDate.toISOString().split("T")[0]
 
-    const estados = [
-        { value: "AC", label: "Acre" },
-        { value: "AL", label: "Alagoas" },
-        { value: "AP", label: "Amapá" },
-        { value: "AM", label: "Amazonas" },
-        { value: "BA", label: "Bahia" },
-        { value: "CE", label: "Ceará" },
-        { value: "DF", label: "Distrito Federal" },
-        { value: "ES", label: "Espírito Santo" },
-        { value: "GO", label: "Goiás" },
-        { value: "MA", label: "Maranhão" },
-        { value: "MT", label: "Mato Grosso" },
-        { value: "MS", label: "Mato Grosso do Sul" },
-        { value: "MG", label: "Minas Gerais" },
-        { value: "PA", label: "Pará" },
-        { value: "PB", label: "Paraíba" },
-        { value: "PR", label: "Paraná" },
-        { value: "PE", label: "Pernambuco" },
-        { value: "PI", label: "Piauí" },
-        { value: "RJ", label: "Rio de Janeiro" },
-        { value: "RN", label: "Rio Grande do Norte" },
-        { value: "RS", label: "Rio Grande do Sul" },
-        { value: "RO", label: "Rondônia" },
-        { value: "RR", label: "Roraima" },
-        { value: "SC", label: "Santa Catarina" },
-        { value: "SP", label: "São Paulo" },
-        { value: "SE", label: "Sergipe" },
-        { value: "TO", label: "Tocantins" }
-    ]
+    const [certificateFile, setCertificateFile] = React.useState<ExtFile>()
 
     const formik = useFormik<NewUser>({
         initialValues: {
@@ -79,16 +55,36 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
             regimeTributario: 0,
             inscricaoEstadual: "",
             isento: false,
-            certificateId: "",
+            businessName: "",
+            discrimina_impostos: true,
+            enviar_email_destinatario: true,
+            habilita_nfce: false,
+            habilita_nfe: true,
+            inscricao_municipal: "",
+            proximo_numero_nfe: 1,
+            serie_nfe: 1,
+            certificate: null,
+            certificate_password: ""
         },
         onSubmit: (values) => {
+            if (!certificateFile) {
+                alert("certificado")
+                return
+            }
             console.log(values)
             setLoading(true)
             io.emit("user:signup", values)
-        },
+        }
     })
 
     const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        if (certificateFile) {
+            console.log(certificateFile)
+            formik.setFieldValue("certificate", certificateFile.file)
+        }
+    }, [certificateFile])
 
     useEffect(() => {
         io.on("user:signup:success", (customer: User) => {
@@ -99,6 +95,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
         io.on("user:signup:failed", ({ error }) => {
             setLoading(false)
             console.log(error)
+            snackbar({ severity: "error", text: `erro ao cadastrar usuário: ${error}` })
         })
 
         return () => {
@@ -141,176 +138,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                             gap: "2vw",
                             flexDirection: isMobile ? "column" : ""
                         }}>
-                        <Box
-                            sx={{
-                                flex: 1,
-                                flexDirection: "column",
-                                gap: isMobile ? "5vw" : "1vw"
-                            }}>
-                            <Grid container spacing={2}>
-                                <Grid item xs={isMobile ? 12 : 6}>
-                                    <TextField
-                                        required
-                                        label="CPF/CNPJ"
-                                        fullWidth
-                                        value={formik.values.document}
-                                        name="document"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={isMobile ? 12 : 6}>
-                                    <TextField
-                                        required
-                                        label="Nome completo"
-                                        fullWidth
-                                        value={formik.values.name}
-                                        name="name"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        label="Regime tributário"
-                                        fullWidth
-                                        value={formik.values.regimeTributario}
-                                        name="regimeTributario"
-                                        select
-                                        onChange={formik.handleChange}>
-                                        <MenuItem value={0} sx={{ display: "none" }}></MenuItem>
-                                        <MenuItem value={1}>1 – Simples Nacional</MenuItem>
-                                        <MenuItem value={2}>2 – Simples Nacional – excesso de sublimite de receita bruta</MenuItem>
-                                        <MenuItem value={3}>3 – Regime Normal</MenuItem>
-                                    </TextField>
-                                </Grid>
-
-                                <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        label="Senha provisória"
-                                        fullWidth
-                                        value={formik.values.password}
-                                        name="password"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                            </Grid>
-
-                            <h3>Contato</h3>
-
-                            <Grid container spacing={2}>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        required
-                                        label="E-mail"
-                                        fullWidth
-                                        value={formik.values.email}
-                                        name="email"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        required
-                                        label="Telefone"
-                                        fullWidth
-                                        value={formik.values.phone}
-                                        name="phone"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        label="Inscrição estadual"
-                                        fullWidth
-                                        value={formik.values.inscricaoEstadual}
-                                        name="inscricaoEstadual"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                            </Grid>
-
-                            <FormControlLabel
-                                control={<Checkbox checked={formik.values.isento} name="isento" onChange={formik.handleChange} />}
-                                label="Não contribuinte / isento"
-                                sx={{ textAlign: "center" }}
-                            />
-
-                            <h3>Endereço</h3>
-
-                            <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        label="Rua"
-                                        fullWidth
-                                        value={formik.values.street}
-                                        name="street"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        required
-                                        label="Número"
-                                        fullWidth
-                                        value={formik.values.number}
-                                        name="number"
-                                        type="number"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        label="Complemento"
-                                        fullWidth
-                                        value={formik.values.adjunct}
-                                        name="adjunct"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField required label="CEP" fullWidth value={formik.values.cep} name="cep" onChange={formik.handleChange} />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        required
-                                        label="Bairro"
-                                        fullWidth
-                                        value={formik.values.district}
-                                        name="district"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        required
-                                        label="Cidade"
-                                        fullWidth
-                                        value={formik.values.city}
-                                        name="city"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        required
-                                        label="Estado"
-                                        fullWidth
-                                        value={formik.values.state}
-                                        name="state"
-                                        onChange={formik.handleChange}
-                                        select>
-                                        {estados.map((estado) => (
-                                            <MenuItem key={estado.value} value={estado.value}>
-                                                {estado.label}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField>
-                                </Grid>
-                            </Grid>
-                        </Box>
+                        <InfoContainer formik={formik} file={certificateFile} setFile={setCertificateFile} />
 
                         <Box>
                             <hr
@@ -320,87 +148,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                             />
                         </Box>
 
-                        <Box
-                            sx={{
-                                flex: 1,
-                                flexDirection: "column",
-                                gap: isMobile ? "5vw" : "1vw"
-                            }}>
-                            <Box
-                                sx={{
-                                    justifyContent: "space-between",
-                                    alignItems: isMobile ? "start" : "center",
-                                    flexDirection: isMobile ? "column" : "",
-                                    gap: isMobile ? "4vw" : ""
-                                }}>
-                                <h3>Permissões</h3>
-                                <Box
-                                    sx={{
-                                        alignItems: "center",
-                                        gap: isMobile ? "4vw" : "1vw",
-                                        flexDirection: isMobile ? "column-reverse" : "",
-                                        width: isMobile ? "100%" : "fit-content"
-                                    }}>
-                                    <Button
-                                        variant="contained"
-                                        color="secondary"
-                                        sx={{
-                                            color: "white",
-                                            borderRadius: "20px",
-                                            textTransform: "unset"
-                                        }}>
-                                        Salvar Predefinição
-                                    </Button>
-                                    <TextField
-                                        label="Predefinição"
-                                        sx={{
-                                            width: isMobile ? "100%" : "10vw"
-                                        }}
-                                    />
-                                </Box>
-                            </Box>
-
-                            <Box
-                                sx={{
-                                    flexDirection: "column",
-                                    gap: isMobile ? "5vw" : "1vw",
-                                    marginTop: isMobile ? "5vw" : "1vw"
-                                }}>
-                                <h4>Responsável pelo Uso</h4>
-                                <p>
-                                    O "Responsável pelo uso" é o representante legal da conta StartJá, com acesso total, podendo adicionar, editar e
-                                    remover acessos e configurações.
-                                </p>
-                                <p>O Administrador responsável será o responsável legal por padrão, mas você pode atribuir ao seu cliente.</p>
-                            </Box>
-
-                            {/* <FormControlLabel control={<ToggleSwitch />} label="Atribuir cliente como responsável" /> */}
-
-                            <Grid container spacing={2}>
-                                <Grid item xs={isMobile ? 12 : 6}>
-                                    <TextField label="E-mail do Responsável" fullWidth />
-                                </Grid>
-                                <Grid item xs={isMobile ? 12 : 6}>
-                                    <TextField label="Telefone do Responsável" fullWidth />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField label="Nome do Responsável" fullWidth />
-                                </Grid>
-                            </Grid>
-
-                            <Box
-                                sx={{
-                                    flexDirection: "column",
-                                    gap: isMobile ? "4vw" : "2vw",
-                                    marginTop: isMobile ? "5vw" : "2vw"
-                                }}>
-                                <PermissionsCard header="Visão Geral" />
-                                <PermissionsCard header="Emissão de Nota Fiscal" />
-                                <PermissionsCard header="Cadastros Gerais" />
-                                <PermissionsCard header="Relatórios" />
-                                {/* <PermissionsCard header="Livro Caixa" /> */}
-                            </Box>
-                        </Box>
+                        <PermissionsContainer />
                     </Box>
                 </DialogContent>
 
