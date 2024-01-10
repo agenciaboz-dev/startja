@@ -16,6 +16,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
     const isMobile = useMediaQuery("(orientation: portrait)")
     const navigate = useNavigate()
     const { setUser } = useUser()
+    console.log(customer)
 
     const userClick = () => {
         setUser(customer)
@@ -72,7 +73,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
                             {customer.city}/{customer.state}
                         </p>
                     </Box>
-                    <p>Certificado digital expira em: 00/00/00</p>
+                    <p>Certificado digital expira em: {new Date(Number(customer.certificate.expiry)).toLocaleDateString("pt-br")}</p>
                 </Box>
                 <Box
                     sx={{
