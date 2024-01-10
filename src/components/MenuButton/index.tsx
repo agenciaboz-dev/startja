@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, Collapse, MenuItem, SxProps, useMediaQuery } from "@mui/material"
+import { Box, Collapse, MenuItem, SxProps, Tooltip, useMediaQuery } from "@mui/material"
 import { useLocation } from "react-router-dom"
 // import { KeyboardArrowDown } from "@mui/icons-material"
 import { colors } from "../../style/colors"
@@ -36,6 +36,8 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
         return menuItemStyle
     }
 
+    const logoItem = sideBarItem.id == 1
+
     const handleMenuClick = (item: SidebarItem) => {
         // if (!sideBarItem.subItens) {
         //     item.onClick()
@@ -66,43 +68,52 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                     display: active ? (sideBarItem.subItens ? "none" : "") : "",
                 }}
             >
-                <MenuItem key={sideBarItem.id} sx={buildStyle(active, sideBarItem)}>
-                    <Box
-                        sx={{
-                            position: "relative",
-                        }}
-                    >
-                        {active && !sideBarItem.subItens && (
-                            <Box
-                                sx={{
-                                    backgroundColor: colors.primary,
-                                    borderTopRightRadius: isMobile ? "2.5vw" : "1vw",
-                                    borderBottomRightRadius: isMobile ? "2.5vw" : "1vw",
-                                    position: "absolute",
-                                    height: "100%",
-                                    width: isMobile ? "2.5vw" : "0.5vw",
-                                    left: isMobile ? "-30vw" : "-2.25vw",
-                                }}
-                            ></Box>
-                        )}
+                <Tooltip title={logoItem ? "Configurações" : ""}>
+                    <MenuItem key={sideBarItem.id} sx={buildStyle(active, sideBarItem)}>
                         <Box
                             sx={{
-                                backgroundColor: active ? "secondary.main" : "#f4f4f4",
-                                color: active ? "white" : colors.text.darkgrey,
-                                pointerEvents: disabled || active ? "none" : "auto",
-                                padding: "0.5vw",
-                                borderRadius: "20px",
+                                position: "relative",
                             }}
                         >
-                            <Icon />
+                            {active && !sideBarItem.subItens && (
+                                <Box
+                                    sx={{
+                                        backgroundColor: colors.primary,
+                                        borderTopRightRadius: isMobile ? "2.5vw" : "1vw",
+                                        borderBottomRightRadius: isMobile ? "2.5vw" : "1vw",
+                                        position: "absolute",
+                                        height: "100%",
+                                        width: isMobile ? "2.5vw" : "0.5vw",
+                                        left: isMobile ? "-30vw" : "-2vw",
+                                    }}
+                                ></Box>
+                            )}
+                            <Box
+                                sx={{
+                                    backgroundColor: active ? "secondary.main" : "#f4f4f4",
+                                    color: active ? "white" : colors.text.darkgrey,
+                                    pointerEvents: disabled || active ? "none" : "auto",
+                                    padding: logoItem ? 0 : "0.5vw",
+                                    borderRadius: active ? "20px" : "50%",
+                                }}
+                            >
+                                <Icon />
+                            </Box>
                         </Box>
-                    </Box>
-                    {sideBarItem.name}
-                    {/* {sideBarItem.subItens && <KeyboardArrowDown sx={{ marginLeft: "auto", rotate: collapse ? "-180deg" : "", transition: "0.3s" }} />} */}
-                </MenuItem>
+                        {sideBarItem.name}
+                        {/* {sideBarItem.subItens && <KeyboardArrowDown sx={{ marginLeft: "auto", rotate: collapse ? "-180deg" : "", transition: "0.3s" }} />} */}
+                    </MenuItem>
+                </Tooltip>
             </Box>
             <Collapse in={active}>
-                <Box sx={{ flexDirection: "column", width: "100%", backgroundColor: "#e8e8e8" }}>
+                <Box
+                    sx={{
+                        flexDirection: "column",
+                        width: "100%",
+                        backgroundColor: "#e8e8e8",
+                        borderRadius: "2vw",
+                    }}
+                >
                     {sideBarItem.subItens?.map((sideBarItem) => {
                         const active = location.pathname.split("/")[3] == sideBarItem.path.split("/")[1]
                         const Icon = () => sideBarItem.icon
@@ -138,7 +149,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                                                     position: "absolute",
                                                     height: "100%",
                                                     width: isMobile ? "2.5vw" : "0.5vw",
-                                                    left: isMobile ? "-30vw" : "-2.25vw",
+                                                    left: isMobile ? "-30vw" : "-2vw",
                                                 }}
                                             ></Box>
                                         )}
@@ -148,7 +159,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                                                 color: active ? "white" : colors.text.darkgrey,
                                                 pointerEvents: active ? "none" : "auto",
                                                 padding: "0.5vw",
-                                                borderRadius: "20px",
+                                                borderRadius: active ? "20px" : "50%",
                                             }}
                                         >
                                             <Icon />
