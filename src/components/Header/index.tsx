@@ -9,15 +9,20 @@ import { useUser } from "../../hooks/useUser"
 import MenuIcon from "@mui/icons-material/Menu"
 import { useDrawer } from "../../hooks/useDrawer"
 import { colors } from "../../style/colors"
+import { useHelpMenu } from "../../hooks/useHelpMenu"
 
 interface HeaderProps {}
 
 export const Header: React.FC<HeaderProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const { title } = useHeader()
+    const helpMenu = useHelpMenu()
     const menus = useMenus()
     const { user, admin } = useUser()
     const drawer = useDrawer()
+
+    const [helpMenuAnchorEl, setHelpMenuAnchorEl] = React.useState<null | HTMLElement>(null)
+    const help_menu_opened = Boolean(helpMenuAnchorEl)
 
     const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null)
     const menu_opened = Boolean(menuAnchorEl)
@@ -53,10 +58,27 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                             height: "100%",
                             borderRight: "1px solid",
                         }}
+                        onClick={(event) => setHelpMenuAnchorEl(event.currentTarget)}
                     >
                         <HelpOutlineOutlinedIcon sx={{ fill: "#323232", height: "2vw", width: "2vw", transform: isMobile ? "scale(3)" : "" }} />
                         <p style={{ fontWeight: "lighter" }}>Ajuda</p>
                     </MenuItem>
+                    <Menu
+                        anchorEl={helpMenuAnchorEl}
+                        open={help_menu_opened}
+                        onClose={() => setHelpMenuAnchorEl(null)}
+                        slotProps={{ paper: { elevation: 3 } }}
+                        MenuListProps={{ sx: { width: "100%" } }}
+                    >
+                        {helpMenu.list.map((helpMenuItem) => {
+                            const Icon = () => helpMenuItem.icon
+                            return (
+                                <MenuItem sx={{ gap: "1vw" }} onClick={helpMenuItem.onClick} key={helpMenuItem.id}>
+                                    <Icon /> {helpMenuItem.title}
+                                </MenuItem>
+                            )
+                        })}
+                    </Menu>
                     <MenuItem
                         sx={{
                             alignItems: "center",
