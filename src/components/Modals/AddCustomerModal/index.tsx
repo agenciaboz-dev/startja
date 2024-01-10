@@ -32,33 +32,33 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
     const formattedDate = todayDate.toISOString().split("T")[0]
 
     const estados = [
-        { id: 1, value: "AC", label: "Acre" },
-        { id: 2, value: "AL", label: "Alagoas" },
-        { id: 3, value: "AP", label: "Amapá" },
-        { id: 4, value: "AM", label: "Amazonas" },
-        { id: 5, value: "BA", label: "Bahia" },
-        { id: 5, value: "CE", label: "Ceará" },
-        { id: 6, value: "DF", label: "Distrito Federal" },
-        { id: 7, value: "ES", label: "Espírito Santo" },
-        { id: 8, value: "GO", label: "Goiás" },
-        { id: 9, value: "MA", label: "Maranhão" },
-        { id: 10, value: "MT", label: "Mato Grosso" },
-        { id: 11, value: "MS", label: "Mato Grosso do Sul" },
-        { id: 12, value: "MG", label: "Minas Gerais" },
-        { id: 13, value: "PA", label: "Pará" },
-        { id: 14, value: "PB", label: "Paraíba" },
-        { id: 15, value: "PR", label: "Paraná" },
-        { id: 16, value: "PE", label: "Pernambuco" },
-        { id: 17, value: "PI", label: "Piauí" },
-        { id: 18, value: "RJ", label: "Rio de Janeiro" },
-        { id: 19, value: "RN", label: "Rio Grande do Norte" },
-        { id: 20, value: "RS", label: "Rio Grande do Sul" },
-        { id: 21, value: "RO", label: "Rondônia" },
-        { id: 22, value: "RR", label: "Roraima" },
-        { id: 23, value: "SC", label: "Santa Catarina" },
-        { id: 24, value: "SP", label: "São Paulo" },
-        { id: 25, value: "SE", label: "Sergipe" },
-        { id: 26, value: "TO", label: "Tocantins" },
+        { value: "AC", label: "Acre" },
+        { value: "AL", label: "Alagoas" },
+        { value: "AP", label: "Amapá" },
+        { value: "AM", label: "Amazonas" },
+        { value: "BA", label: "Bahia" },
+        { value: "CE", label: "Ceará" },
+        { value: "DF", label: "Distrito Federal" },
+        { value: "ES", label: "Espírito Santo" },
+        { value: "GO", label: "Goiás" },
+        { value: "MA", label: "Maranhão" },
+        { value: "MT", label: "Mato Grosso" },
+        { value: "MS", label: "Mato Grosso do Sul" },
+        { value: "MG", label: "Minas Gerais" },
+        { value: "PA", label: "Pará" },
+        { value: "PB", label: "Paraíba" },
+        { value: "PR", label: "Paraná" },
+        { value: "PE", label: "Pernambuco" },
+        { value: "PI", label: "Piauí" },
+        { value: "RJ", label: "Rio de Janeiro" },
+        { value: "RN", label: "Rio Grande do Norte" },
+        { value: "RS", label: "Rio Grande do Sul" },
+        { value: "RO", label: "Rondônia" },
+        { value: "RR", label: "Roraima" },
+        { value: "SC", label: "Santa Catarina" },
+        { value: "SP", label: "São Paulo" },
+        { value: "SE", label: "Sergipe" },
+        { value: "TO", label: "Tocantins" }
     ]
 
     const formik = useFormik<NewUser>({
@@ -112,16 +112,15 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
             open={open}
             onClose={onClose}
             sx={{
-                justifyContent: "center",
+                justifyContent: "center"
             }}
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
                     minWidth: "90vw",
-                    width: "fit-content",
-                },
-            }}
-        >
+                    width: "fit-content"
+                }
+            }}>
             <form style={{ display: "contents" }} onSubmit={formik.handleSubmit}>
                 <DialogTitle>Novo Cliente</DialogTitle>
                 <CloseOutlinedIcon
@@ -129,7 +128,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         position: "absolute",
                         top: isMobile ? "5vw" : "1vw",
                         right: isMobile ? "5vw" : "1vw",
-                        cursor: "pointer",
+                        cursor: "pointer"
                     }}
                     onClick={onClose}
                 />
@@ -140,16 +139,14 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                             flex: 1,
                             height: "fit-content",
                             gap: "2vw",
-                            flexDirection: isMobile ? "column" : "",
-                        }}
-                    >
+                            flexDirection: isMobile ? "column" : ""
+                        }}>
                         <Box
                             sx={{
                                 flex: 1,
                                 flexDirection: "column",
-                                gap: isMobile ? "5vw" : "1vw",
-                            }}
-                        >
+                                gap: isMobile ? "5vw" : "1vw"
+                            }}>
                             <Grid container spacing={2}>
                                 <Grid item xs={isMobile ? 12 : 6}>
                                     <TextField
@@ -179,8 +176,8 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         value={formik.values.regimeTributario}
                                         name="regimeTributario"
                                         select
-                                        onChange={formik.handleChange}
-                                    >
+                                        onChange={formik.handleChange}>
+                                        <MenuItem value={0} sx={{ display: "none" }}></MenuItem>
                                         <MenuItem value={1}>1 – Simples Nacional</MenuItem>
                                         <MenuItem value={2}>2 – Simples Nacional – excesso de sublimite de receita bruta</MenuItem>
                                         <MenuItem value={3}>3 – Regime Normal</MenuItem>
@@ -304,10 +301,9 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                         value={formik.values.state}
                                         name="state"
                                         onChange={formik.handleChange}
-                                        select
-                                    >
+                                        select>
                                         {estados.map((estado) => (
-                                            <MenuItem key={estado.id} value={estado.value}>
+                                            <MenuItem key={estado.value} value={estado.value}>
                                                 {estado.label}
                                             </MenuItem>
                                         ))}
@@ -319,7 +315,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         <Box>
                             <hr
                                 style={{
-                                    height: "100%",
+                                    height: "100%"
                                 }}
                             />
                         </Box>
@@ -328,41 +324,37 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                             sx={{
                                 flex: 1,
                                 flexDirection: "column",
-                                gap: isMobile ? "5vw" : "1vw",
-                            }}
-                        >
+                                gap: isMobile ? "5vw" : "1vw"
+                            }}>
                             <Box
                                 sx={{
                                     justifyContent: "space-between",
                                     alignItems: isMobile ? "start" : "center",
                                     flexDirection: isMobile ? "column" : "",
-                                    gap: isMobile ? "4vw" : "",
-                                }}
-                            >
+                                    gap: isMobile ? "4vw" : ""
+                                }}>
                                 <h3>Permissões</h3>
                                 <Box
                                     sx={{
                                         alignItems: "center",
                                         gap: isMobile ? "4vw" : "1vw",
                                         flexDirection: isMobile ? "column-reverse" : "",
-                                        width: isMobile ? "100%" : "fit-content",
-                                    }}
-                                >
+                                        width: isMobile ? "100%" : "fit-content"
+                                    }}>
                                     <Button
                                         variant="contained"
                                         color="secondary"
                                         sx={{
                                             color: "white",
                                             borderRadius: "20px",
-                                            textTransform: "unset",
-                                        }}
-                                    >
+                                            textTransform: "unset"
+                                        }}>
                                         Salvar Predefinição
                                     </Button>
                                     <TextField
                                         label="Predefinição"
                                         sx={{
-                                            width: isMobile ? "100%" : "10vw",
+                                            width: isMobile ? "100%" : "10vw"
                                         }}
                                     />
                                 </Box>
@@ -372,9 +364,8 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                 sx={{
                                     flexDirection: "column",
                                     gap: isMobile ? "5vw" : "1vw",
-                                    marginTop: isMobile ? "5vw" : "1vw",
-                                }}
-                            >
+                                    marginTop: isMobile ? "5vw" : "1vw"
+                                }}>
                                 <h4>Responsável pelo Uso</h4>
                                 <p>
                                     O "Responsável pelo uso" é o representante legal da conta StartJá, com acesso total, podendo adicionar, editar e
@@ -401,9 +392,8 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                                 sx={{
                                     flexDirection: "column",
                                     gap: isMobile ? "4vw" : "2vw",
-                                    marginTop: isMobile ? "5vw" : "2vw",
-                                }}
-                            >
+                                    marginTop: isMobile ? "5vw" : "2vw"
+                                }}>
                                 <PermissionsCard header="Visão Geral" />
                                 <PermissionsCard header="Emissão de Nota Fiscal" />
                                 <PermissionsCard header="Cadastros Gerais" />
@@ -417,9 +407,8 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                 <DialogActions
                     sx={{
                         margin: isMobile ? "0" : "0.5vw",
-                        padding: isMobile ? "5vw" : "",
-                    }}
-                >
+                        padding: isMobile ? "5vw" : ""
+                    }}>
                     <Button
                         onClick={onClose}
                         color="secondary"
@@ -427,9 +416,8 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset",
-                        }}
-                    >
+                            textTransform: "unset"
+                        }}>
                         Cancelar
                     </Button>
                     <Button
@@ -439,9 +427,8 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset",
-                        }}
-                    >
+                            textTransform: "unset"
+                        }}>
                         {loading ? <CircularProgress size="1.5rem" color="inherit" /> : "Adicionar"}
                     </Button>
                 </DialogActions>
