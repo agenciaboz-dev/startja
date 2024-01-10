@@ -53,19 +53,33 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
             numero: "",
             serie: is_cpf ? "922" : "",
             consumidor_final: 0,
-            destinatario: {
-                bairro: user.companies[0].district,
-                indicador_inscricao_estadual: Number(user.companies[0].indicadorEstadual),
-                inscricao_estadual: user.companies[0].inscricaoEstadual,
-                logradouro: user.companies[0].street,
-                municipio: user.companies[0].city,
-                nome: user.companies[0].name,
-                numero: user.companies[0].number,
-                telefone: user.companies[0].phone,
-                uf: user.companies[0].state,
-                cnpj: user.companies[0].document.length == 11 ? "" : user.companies[0].document,
-                cpf: user.companies[0].document.length == 11 ? user.companies[0].document : ""
-            },
+            destinatario: user.companies[0]
+                ? {
+                      bairro: user.companies[0].district,
+                      indicador_inscricao_estadual: Number(user.companies[0].indicadorEstadual),
+                      inscricao_estadual: user.companies[0].inscricaoEstadual,
+                      logradouro: user.companies[0].street,
+                      municipio: user.companies[0].city,
+                      nome: user.companies[0].name,
+                      numero: user.companies[0].number,
+                      telefone: user.companies[0].phone,
+                      uf: user.companies[0].state,
+                      cnpj: user.companies[0].document.length == 11 ? "" : user.companies[0].document,
+                      cpf: user.companies[0].document.length == 11 ? user.companies[0].document : ""
+                  }
+                : {
+                      bairro: "",
+                      indicador_inscricao_estadual: 0,
+                      inscricao_estadual: "",
+                      logradouro: "",
+                      municipio: "",
+                      nome: "",
+                      numero: "",
+                      telefone: "",
+                      uf: "",
+                      cnpj: "",
+                      cpf: ""
+                  },
             emitente: {
                 bairro: user.district,
                 inscricao_estadual: user.inscricaoEstadual,
