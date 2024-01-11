@@ -109,15 +109,16 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
             open={open}
             onClose={onClose}
             sx={{
-                justifyContent: "center"
+                justifyContent: "center",
             }}
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
                     minWidth: "90vw",
-                    width: "fit-content"
-                }
-            }}>
+                    width: "fit-content",
+                },
+            }}
+        >
             <form style={{ display: "contents" }} onSubmit={formik.handleSubmit}>
                 <DialogTitle>Novo Cliente</DialogTitle>
                 <CloseOutlinedIcon
@@ -125,7 +126,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         position: "absolute",
                         top: isMobile ? "5vw" : "1vw",
                         right: isMobile ? "5vw" : "1vw",
-                        cursor: "pointer"
+                        cursor: "pointer",
                     }}
                     onClick={onClose}
                 />
@@ -135,15 +136,16 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         sx={{
                             flex: 1,
                             height: "fit-content",
-                            gap: "2vw",
-                            flexDirection: isMobile ? "column" : ""
-                        }}>
+                            gap: isMobile ? "10vw" : "2vw",
+                            flexDirection: isMobile ? "column" : "",
+                        }}
+                    >
                         <InfoContainer formik={formik} file={certificateFile} setFile={setCertificateFile} />
 
                         <Box>
                             <hr
                                 style={{
-                                    height: "100%"
+                                    flex: 1,
                                 }}
                             />
                         </Box>
@@ -155,8 +157,9 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                 <DialogActions
                     sx={{
                         margin: isMobile ? "0" : "0.5vw",
-                        padding: isMobile ? "5vw" : ""
-                    }}>
+                        padding: isMobile ? "5vw" : "",
+                    }}
+                >
                     <Button
                         onClick={onClose}
                         color="secondary"
@@ -164,8 +167,9 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         Cancelar
                     </Button>
                     <Button
@@ -175,8 +179,9 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         {loading ? <CircularProgress size="1.5rem" color="inherit" /> : "Adicionar"}
                     </Button>
                 </DialogActions>

@@ -59,24 +59,14 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
             sx={{
                 flex: 1,
                 flexDirection: "column",
-                gap: isMobile ? "5vw" : "1vw"
-            }}>
+                gap: isMobile ? "5vw" : "1vw",
+            }}
+        >
             <Grid container spacing={2}>
                 <Grid item xs={isMobile ? 12 : 6}>
                     <TextField required label="CPF/CNPJ" fullWidth value={formik.values.document} name="document" onChange={formik.handleChange} />
                 </Grid>
                 <Grid item xs={isMobile ? 12 : 6}>
-                    <TextField required label="Nome completo" fullWidth value={formik.values.name} name="name" onChange={formik.handleChange} />
-                    <TextField
-                        required
-                        label="Nome Fantasia"
-                        fullWidth
-                        value={formik.values.businessName}
-                        name="businessName"
-                        onChange={formik.handleChange}
-                    />
-                </Grid>
-                <Grid item xs={12}>
                     <TextField
                         required
                         label="Regime tributário"
@@ -84,14 +74,27 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                         value={formik.values.regimeTributario}
                         name="regimeTributario"
                         select
-                        onChange={formik.handleChange}>
+                        onChange={formik.handleChange}
+                    >
                         <MenuItem value={0} sx={{ display: "none" }}></MenuItem>
                         <MenuItem value={1}>1 – Simples Nacional</MenuItem>
                         <MenuItem value={2}>2 – Simples Nacional – excesso de sublimite de receita bruta</MenuItem>
                         <MenuItem value={3}>3 – Regime Normal</MenuItem>
                     </TextField>
                 </Grid>
-
+                <Grid item xs={12}>
+                    <TextField required label="Nome completo" fullWidth value={formik.values.name} name="name" onChange={formik.handleChange} />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        label="Nome fantasia"
+                        fullWidth
+                        value={formik.values.businessName}
+                        name="businessName"
+                        onChange={formik.handleChange}
+                    />
+                </Grid>
                 <Grid item xs={12}>
                     <TextField
                         required
@@ -116,14 +119,6 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                 <Grid item xs={12}>
                     <TextField
                         required
-                        label="Inscrição estadual"
-                        fullWidth
-                        value={formik.values.inscricaoEstadual}
-                        name="inscricaoEstadual"
-                        onChange={formik.handleChange}
-                    />
-                    <TextField
-                        required
                         label="Inscrição municipal"
                         fullWidth
                         value={formik.values.inscricao_municipal}
@@ -131,13 +126,17 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                         onChange={formik.handleChange}
                     />
                 </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        label="Inscrição estadual"
+                        fullWidth
+                        value={formik.values.inscricaoEstadual}
+                        name="inscricaoEstadual"
+                        onChange={formik.handleChange}
+                    />
+                </Grid>
             </Grid>
-
-            <FormControlLabel
-                control={<Checkbox checked={formik.values.isento} name="isento" onChange={formik.handleChange} />}
-                label="Não contribuinte / isento"
-                sx={{ textAlign: "center" }}
-            />
 
             <h3>Endereço</h3>
 
@@ -179,7 +178,18 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                 </Grid>
             </Grid>
 
-            <Box>
+            <h3>Detalhes</h3>
+
+            <Box
+                sx={{
+                    flexDirection: isMobile ? "column" : "row",
+                }}
+            >
+                <FormControlLabel
+                    control={<Checkbox checked={formik.values.isento} name="isento" onChange={formik.handleChange} />}
+                    label="Não contribuinte / isento"
+                    sx={{ textAlign: "center" }}
+                />
                 <FormControlLabel
                     control={<Checkbox checked={formik.values.discrimina_impostos} name="discrimina_impostos" onChange={formik.handleChange} />}
                     label="discrimina_impostos"
@@ -205,8 +215,8 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                 />
             </Box>
 
-            <Grid container columns={2} spacing={1.5}>
-                <Grid item xs={1}>
+            <Grid container spacing={2}>
+                <Grid item xs={isMobile ? 12 : 6}>
                     <TextField
                         required
                         label="proximo_numero_nfe"
@@ -217,7 +227,7 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                         type="number"
                     />
                 </Grid>
-                <Grid item xs={1}>
+                <Grid item xs={isMobile ? 12 : 6}>
                     <TextField
                         required
                         label="serie_nfe"
@@ -230,13 +240,16 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                 </Grid>
             </Grid>
 
+            <h3>Certificado</h3>
+
             <Dropzone
                 onChange={updateFiles}
                 value={file ? [file] : []}
                 maxFiles={1}
                 accept=".pfx"
                 footerConfig={{ customMessage: "certificado .pfx" }}
-                label="Clique ou arraste o arquivo aqui">
+                label="Clique ou arraste o arquivo aqui"
+            >
                 {file && <FileMosaic key={file.id} {...file} onDelete={removeFile} info={true} />}
             </Dropzone>
             <TextField
