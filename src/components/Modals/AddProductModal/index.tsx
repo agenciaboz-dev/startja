@@ -87,15 +87,18 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
                                 onChange={formik.handleChange}
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={isMobile ? 12 : 6}>
                             <TextField
                                 required
-                                label="NCM - Classificação"
+                                label="Código de produto"
                                 fullWidth
-                                value={formik.values.ncm}
-                                name="ncm"
+                                // value={formik.values.productCode}
+                                name="productCode"
                                 onChange={formik.handleChange}
                             />
+                        </Grid>
+                        <Grid item xs={isMobile ? 12 : 6}>
+                            <TextField required label="NCM" fullWidth value={formik.values.ncm} name="ncm" onChange={formik.handleChange} />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
