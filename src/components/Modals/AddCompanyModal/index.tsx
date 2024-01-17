@@ -198,7 +198,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                 <Grid item xs={isMobile ? 12 : 3}>
                                     <TextField
                                         required
-                                        label="Documento"
+                                        label="CPF / CNPJ"
                                         fullWidth
                                         value={formik.values.document}
                                         name="document"
