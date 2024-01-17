@@ -81,15 +81,16 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
             open={open}
             onClose={onClose}
             sx={{
-                justifyContent: "center"
+                justifyContent: "center",
             }}
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
-                    minWidth: "60vw",
-                    width: "fit-content"
-                }
-            }}>
+                    minWidth: "90vw",
+                    width: "fit-content",
+                },
+            }}
+        >
             <form onSubmit={formik.handleSubmit} style={{ display: "contents" }}>
                 <DialogTitle>Adicionar propriedade</DialogTitle>
                 <CloseOutlinedIcon
@@ -97,7 +98,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                         position: "absolute",
                         top: isMobile ? "5vw" : "1vw",
                         right: isMobile ? "5vw" : "1vw",
-                        cursor: "pointer"
+                        cursor: "pointer",
                     }}
                     onClick={onClose}
                 />
@@ -107,8 +108,9 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                         sx={{
                             flexDirection: "column",
                             width: "100%",
-                            gap: isMobile ? "5vw" : "2vw"
-                        }}>
+                            gap: isMobile ? "5vw" : "2vw",
+                        }}
+                    >
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
@@ -140,7 +142,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                                     required
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField
                                     value={formik.values.nfe_number}
                                     name="nfe_number"
@@ -149,6 +151,8 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                                     onChange={formik.handleChange}
                                     required
                                 />
+                            </Grid>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField
                                     value={formik.values.nfe_series}
                                     name="nfe_series"
@@ -160,20 +164,13 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                             </Grid>
                         </Grid>
 
-                        <h4>Endereço da propriedade</h4>
+                        <h4>Endereço</h4>
 
                         <Grid container spacing={2}>
                             <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField value={formik.values.cep} name="cep" label="CEP" fullWidth onChange={formik.handleChange} required />
-                            </Grid>
-                            <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField value={formik.values.city} name="city" label="Cidade" fullWidth onChange={formik.handleChange} required />
-                                <TextField value={formik.values.state} name="state" label="UF" fullWidth onChange={formik.handleChange} required />
-                            </Grid>
-                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField value={formik.values.street} name="street" label="Rua" fullWidth onChange={formik.handleChange} required />
                             </Grid>
-                            <Grid item xs={isMobile ? 12 : 6}>
+                            <Grid item xs={isMobile ? 12 : 3}>
                                 <TextField
                                     value={formik.values.number}
                                     name="number"
@@ -183,7 +180,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                                     required
                                 />
                             </Grid>
-                            <Grid item xs={isMobile ? 12 : 6}>
+                            <Grid item xs={isMobile ? 12 : 3}>
                                 <TextField
                                     value={formik.values.adjunct}
                                     name="adjunct"
@@ -193,7 +190,10 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                                     required
                                 />
                             </Grid>
-                            <Grid item xs={isMobile ? 12 : 6}>
+                            <Grid item xs={isMobile ? 12 : 3}>
+                                <TextField value={formik.values.cep} name="cep" label="CEP" fullWidth onChange={formik.handleChange} required />
+                            </Grid>
+                            <Grid item xs={isMobile ? 12 : 3}>
                                 <TextField
                                     value={formik.values.district}
                                     name="district"
@@ -203,12 +203,18 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                                     required
                                 />
                             </Grid>
+                            <Grid item xs={isMobile ? 12 : 3}>
+                                <TextField value={formik.values.city} name="city" label="Cidade" fullWidth onChange={formik.handleChange} required />
+                            </Grid>
+                            <Grid item xs={isMobile ? 12 : 3}>
+                                <TextField value={formik.values.state} name="state" label="UF" fullWidth onChange={formik.handleChange} required />
+                            </Grid>
                         </Grid>
 
                         <h4>Exploração</h4>
 
                         <Grid container spacing={2}>
-                            <Grid item xs={12}>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField
                                     value={formik.values.exploration}
                                     name="exploration"
@@ -218,7 +224,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                                     required
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField
                                     value={formik.values.declarant}
                                     name="declarant"
@@ -235,8 +241,9 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                 <DialogActions
                     sx={{
                         margin: isMobile ? "0" : "0.5vw",
-                        padding: isMobile ? "5vw" : ""
-                    }}>
+                        padding: isMobile ? "5vw" : "",
+                    }}
+                >
                     <Button
                         onClick={onClose}
                         color="secondary"
@@ -244,8 +251,9 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         Cancelar
                     </Button>
                     <Button
@@ -255,8 +263,9 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         {loading ? <CircularProgress size="1.5rem" sx={{ color: "white" }} /> : currentProperty ? "Salvar" : "Cadastrar propriedade"}
                     </Button>
                 </DialogActions>
