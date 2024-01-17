@@ -152,7 +152,6 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
             }
             console.log(data)
             io.emit("nota:create", data)
-            formik.setFieldValue("produtos", [])
         },
         enableReinitialize: true
     })
@@ -221,6 +220,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
             setLoading(false)
             onClose()
             snackbar({ severity: "info", text: "Nota fiscal criada, aguardando autorização" })
+            formik.setFieldValue("produtos", [])
         })
 
         io.on("nota:create:error", (error) => {
