@@ -16,7 +16,6 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
     const isMobile = useMediaQuery("(orientation: portrait)")
     const navigate = useNavigate()
     const { setUser } = useUser()
-    console.log(customer)
 
     const userClick = () => {
         setUser(customer)

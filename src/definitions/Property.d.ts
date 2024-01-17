@@ -1,8 +1,8 @@
 declare interface Property {
     id: number
+    name: string
     ie: string
     nifr: string
-    series: string
     cep: string
     city: string
     state: string
@@ -12,6 +12,9 @@ declare interface Property {
     district: string
     exploration: string
     declarant: string
+    nfe_series: string
+    nfe_number: string
 
+    user: User
     notas: notaFiscal[]
 }

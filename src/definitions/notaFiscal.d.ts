@@ -14,6 +14,8 @@ declare interface notaFiscal {
     emitente: User
     destinatario_id: number
     destinatario: Company
+    propriedade_id: number
+    propriedade: Property
 
     valor_frete: number
     valor_seguro: number

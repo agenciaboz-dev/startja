@@ -49,6 +49,7 @@ export declare interface NewCompany {
     phone: string
     customerId: number
     businessName: string
+    final_consumer: boolean
 }
 
 export declare interface NewProduct {
@@ -58,47 +59,49 @@ export declare interface NewProduct {
     rules?: regraTributacao[]
     produtosNota?: ProdutoNotaFiscal[]
 }
-  
-  export declare interface NewNature {
-      operation: string
-      type: string
-      finality: string
-      motive: string
-      emissionFinality: string
-      rules: { id: number }[]
-  }
-  
-  export declare interface NewRule {
-      uf: string
-      aliquota: number
-      cfop: number
-      percentageBaseCalculo: number
-      deferralPercentage: string
-      additionalInfo: string
-      icmsOrigin: number
-      fiscalBenefit: string
-      icmsSituation: string
-      pisSituation: string
-      cofinsSituation: string
-      natures: Natureza[]
-      products: Product[]
-  }
 
-  export declare interface NewProperty {
-      ie: string
-      nifr: string
-      cep: string
-      city: string
-      state: string
-      street: string
-      number: string
-      adjunct: string
-      district: string
-      exploration: string
-      declarant: string
-      series: string
-      nota: notaFiscal[]
-  }
+export declare interface NewNature {
+    operation: string
+    type: string
+    finality: string
+    motive: string
+    emissionFinality: string
+    rules: { id: number }[]
+}
+
+export declare interface NewRule {
+    uf: string
+    aliquota: number
+    cfop: number
+    percentageBaseCalculo: number
+    deferralPercentage: string
+    additionalInfo: string
+    icmsOrigin: number
+    fiscalBenefit: string
+    icmsSituation: string
+    pisSituation: string
+    cofinsSituation: string
+    natures: Natureza[]
+    products: Product[]
+}
+
+export declare interface NewProperty {
+    name: string
+    ie: string
+    nifr: string
+    cep: string
+    city: string
+    state: string
+    street: string
+    number: string
+    adjunct: string
+    district: string
+    exploration: string
+    declarant: string
+    nfe_series: string
+    nfe_number: string
+    user_id: number
+}
   
   export declare interface NewNota {
       series: number

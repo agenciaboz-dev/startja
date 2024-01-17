@@ -23,6 +23,7 @@ declare interface User {
     certificate: DigitalCertificate
     companies: Company[]
     notas: notaFiscal[]
+    properties: Property[]
 }
 
 declare interface Admin {
