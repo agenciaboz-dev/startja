@@ -58,7 +58,6 @@ export declare interface NewProduct {
     codigo_externo: string
     icmsOrigin: number
     rules?: regraTributacao[]
-    produtosNota?: ProdutoNotaFiscal[]
 }
 
 export declare interface NewNature {

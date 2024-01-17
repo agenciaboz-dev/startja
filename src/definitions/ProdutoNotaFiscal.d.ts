@@ -1,10 +1,8 @@
 declare interface ProdutoNotaFiscal {
     id: number
-    unidadeComercial: string
     productQnty: number
-    unitaryComercialValue: number
-    unitaryTributableValue: number
-    buyerPresence: string
+    unidade: string
+    unitaryValue: number
 
     produto: Product
     produtoId: number

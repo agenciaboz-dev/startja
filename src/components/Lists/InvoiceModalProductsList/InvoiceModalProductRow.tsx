@@ -12,7 +12,6 @@ interface InvoiceModalProductRowProps {
 
 export const InvoiceModalProductRow: React.FC<InvoiceModalProductRowProps> = ({ product, products, updateList }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
-
     const slotStyle = {
         alignItems: "center",
         justifyContent: "center",

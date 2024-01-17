@@ -37,7 +37,9 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
                 console.log("connected")
             })
 
-            io.on("user:update", (updatedUser: User) => setUser(updatedUser))
+            io.on("user:update", (updatedUser: User) => {
+                if (updatedUser.id == user.id) setUser(updatedUser)
+            })
 
             io.on("nota:update", (invoice: notaFiscal) => {
                 const current_invoice = user.notas.find((item) => item.id == invoice.id)

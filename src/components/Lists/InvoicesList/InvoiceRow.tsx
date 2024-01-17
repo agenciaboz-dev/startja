@@ -2,32 +2,45 @@ import React from "react"
 import { Box, Button, Checkbox, IconButton, Menu, MenuItem, Tooltip, useMediaQuery } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import { colors } from "../../../style/colors"
-import { Download, PictureAsPdf } from "@mui/icons-material"
+import { Download, Edit, PictureAsPdf } from "@mui/icons-material"
 
 interface InvoiceRowProps {
     invoice: notaFiscal
+    editInvoice: (invoice: notaFiscal) => void
 }
 
-export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => {
+export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice, editInvoice }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
-    console.log(invoice)
 
     const notAuth = invoice.status != "autorizado"
 
-    const actions = [
-        {
-            id: 1,
-            title: "Download",
-            icon: <Download />,
-            onClick: () => window.open(`https://homologacao.focusnfe.com.br${invoice.url_xml}`, "_new"),
-        },
-        {
-            id: 2,
-            title: "Visualizar",
-            icon: <PictureAsPdf />,
-            onClick: () => window.open(`https://homologacao.focusnfe.com.br${invoice.url_pdf}`, "_new"),
-        },
-    ]
+    const actions =
+        invoice.status != "autorizado"
+            ? [
+                  {
+                      id: 1,
+                      title: "Reemitir",
+                      icon: <Edit />,
+                      onClick: () => {
+                          editInvoice(invoice)
+                          setMenuAnchorEl(null)
+                      }
+                  }
+              ]
+            : [
+                  {
+                      id: 1,
+                      title: "Download",
+                      icon: <Download />,
+                      onClick: () => window.open(`https://homologacao.focusnfe.com.br${invoice.url_xml}`, "_new")
+                  },
+                  {
+                      id: 2,
+                      title: "Visualizar",
+                      icon: <PictureAsPdf />,
+                      onClick: () => window.open(`https://homologacao.focusnfe.com.br${invoice.url_pdf}`, "_new")
+                  }
+              ]
 
     const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null)
     const menu_opened = Boolean(menuAnchorEl)
@@ -40,9 +53,8 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => {
                     alignItems: "center",
                     justifyContent: "space-between",
                     flex: 1,
-                    width: isMobile ? "250vw" : "",
-                }}
-            >
+                    width: isMobile ? "250vw" : ""
+                }}>
                 <Box sx={{ width: "10%" }}>
                     <p>{new Date(Number(invoice.emissionDatetime)).toLocaleString("pt-br")}</p>
                 </Box>
@@ -61,9 +73,8 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => {
                             sx={{
                                 flex: 1,
                                 borderRadius: "20px",
-                                textTransform: "unset",
-                            }}
-                        >
+                                textTransform: "unset"
+                            }}>
                             {invoice.status}
                         </Button>
                     </Tooltip>
@@ -72,11 +83,10 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => {
                     sx={{
                         width: "5%",
                         justifyContent: "center",
-                        marginLeft: "2vw",
+                        marginLeft: "2vw"
                     }}
-                    onClick={notAuth ? () => {} : (event) => setMenuAnchorEl(event.currentTarget)}
-                >
-                    <IconButton disabled={notAuth}>
+                    onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
+                    <IconButton>
                         <FormatListBulletedOutlinedIcon />
                     </IconButton>
                 </Box>
@@ -85,8 +95,7 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => {
                     open={menu_opened}
                     onClose={() => setMenuAnchorEl(null)}
                     slotProps={{ paper: { elevation: 3 } }}
-                    MenuListProps={{ sx: { width: "100%" } }}
-                >
+                    MenuListProps={{ sx: { width: "100%" } }}>
                     {actions.map((action) => {
                         const Icon = () => action.icon
                         return (

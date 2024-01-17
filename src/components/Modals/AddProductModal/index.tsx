@@ -15,8 +15,6 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
     const isMobile = useMediaQuery("(orientation: portrait)")
     const io = useIo()
 
-    console.log(current_product)
-
     const formik = useFormik<NewProduct>({
         initialValues: current_product || {
             name: "",
@@ -24,8 +22,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
             codigo_externo: "",
             icmsOrigin: 0,
 
-            rules: [],
-            produtosNota: []
+            rules: []
         },
         onSubmit: (values) => {
             console.log(values)

@@ -35,9 +35,10 @@ import AddCompanyModal from "../AddCompanyModal"
 interface AddInvoiceModalProps {
     open: boolean
     onClose: () => void
+    currentInvoice?: notaFiscal
 }
 
-const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
+const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, currentInvoice }) => {
     const io = useIo()
     const { user } = useUser()
 
@@ -47,9 +48,9 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
 
     const isMobile = useMediaQuery("(orientation: portrait)")
     const [emptyList, setEmptyList] = useState(false)
-    const [currentRecipient, setCurrentRecipient] = useState(user.companies[0])
+    const [currentRecipient, setCurrentRecipient] = useState(currentInvoice ? currentInvoice.destinatario : user.companies[0])
     const [isAddCompanyModalOpen, setAddCompanyModalOpen] = useState(false)
-    const [currentProperty, setCurrentProperty] = useState(user.properties[0])
+    const [currentProperty, setCurrentProperty] = useState(currentInvoice ? currentInvoice.propriedade : user.properties[0])
     const [isAddPropertyModalOpen, setAddPropertyModalOpen] = useState(false)
     const [loading, setLoading] = useState(false)
 
@@ -57,64 +58,128 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
     const first_property = user.properties[0]
 
     const formik = useFormik<FocusNFeInvoiceForm>({
-        initialValues: {
-            numero: "",
-            serie: is_cpf ? "922" : "",
-            consumidor_final: 0,
-            destinatario: user.companies[0]
-                ? {
-                      bairro: user.companies[0].district,
-                      indicador_inscricao_estadual: Number(user.companies[0].indicadorEstadual),
-                      inscricao_estadual: user.companies[0].inscricaoEstadual,
-                      logradouro: user.companies[0].street,
-                      municipio: user.companies[0].city,
-                      nome: user.companies[0].name,
-                      numero: user.companies[0].number,
-                      telefone: user.companies[0].phone,
-                      uf: user.companies[0].state,
-                      cnpj: user.companies[0].document.length == 11 ? "" : user.companies[0].document,
-                      cpf: user.companies[0].document.length == 11 ? user.companies[0].document : ""
-                  }
-                : {
-                      bairro: "",
-                      indicador_inscricao_estadual: 0,
-                      inscricao_estadual: "",
-                      logradouro: "",
-                      municipio: "",
-                      nome: "",
-                      numero: "",
-                      telefone: "",
-                      uf: "",
-                      cnpj: "",
-                      cpf: ""
+        initialValues: currentInvoice
+            ? {
+                  numero: currentInvoice.numero.toString(),
+                  serie: currentInvoice.serie.toString(),
+                  consumidor_final: currentInvoice.consumidor_final,
+                  destinatario: {
+                      bairro: currentInvoice.destinatario.district,
+                      indicador_inscricao_estadual: Number(currentInvoice.destinatario.indicadorEstadual),
+                      inscricao_estadual: currentInvoice.destinatario.inscricaoEstadual,
+                      logradouro: currentInvoice.destinatario.street,
+                      municipio: currentInvoice.destinatario.city,
+                      nome: currentInvoice.destinatario.name,
+                      numero: currentInvoice.destinatario.number,
+                      telefone: currentInvoice.destinatario.phone,
+                      uf: currentInvoice.destinatario.state,
+                      cnpj: currentInvoice.destinatario.document.length == 11 ? "" : currentInvoice.destinatario.document,
+                      cpf: currentInvoice.destinatario.document.length == 11 ? currentInvoice.destinatario.document : ""
                   },
-            emitente: {
-                bairro: first_property ? first_property.district : user.district,
-                inscricao_estadual: first_property ? first_property.ie : user.inscricaoEstadual,
-                logradouro: first_property ? first_property.street : user.street,
-                municipio: first_property ? first_property.city : user.city,
-                nome: user.name,
-                nome_fantasia: user.businessName,
-                numero: first_property ? first_property.number : user.number.toString(),
-                uf: first_property ? first_property.state : user.state,
-                cpf: is_cpf ? user.document : undefined,
-                cnpj: is_cpf ? undefined : user.document,
 
-                regime_tributario: user.regimeTributario
-            },
-            finalidade_emissao: 1,
-            local_destino: 1,
-            natureza_operacao: "",
-            presenca_comprador: 1,
-            tipo_documento: 1,
-            valor: {
-                frete: 0,
-                produtos: 0,
-                seguro: 0,
-                total: 0
-            },
-            produtos: []
-        },
+                  emitente: {
+                      bairro: currentInvoice.propriedade.district,
+                      inscricao_estadual: currentInvoice.propriedade.ie,
+                      logradouro: currentInvoice.propriedade.street,
+                      municipio: currentInvoice.propriedade.city,
+                      nome: currentInvoice.emitente.name,
+                      nome_fantasia: currentInvoice.emitente.businessName,
+                      numero: currentInvoice.propriedade.number,
+                      regime_tributario: currentInvoice.emitente.regimeTributario,
+                      uf: currentInvoice.propriedade.state,
+                      cnpj: currentInvoice.emitente.document.length == 11 ? "" : currentInvoice.emitente.document,
+                      cpf: currentInvoice.emitente.document.length == 11 ? currentInvoice.emitente.document : ""
+                  },
+
+                  finalidade_emissao: currentInvoice.finalidade_emissao,
+                  local_destino: currentInvoice.local_destino,
+                  natureza_operacao: currentInvoice.natureza_operacao,
+                  presenca_comprador: currentInvoice.presenca_comprador,
+                  tipo_documento: currentInvoice.tipo_documento,
+                  valor: {
+                      frete: currentInvoice.valor_frete,
+                      produtos: currentInvoice.valor_produtos,
+                      seguro: currentInvoice.valor_seguro,
+                      total: currentInvoice.valor_total
+                  },
+
+                  produtos: currentInvoice.products.map((product) => ({
+                      aliquota: 0,
+                      cfop: 0,
+                      codigo_externo: product.produto.codigo_externo,
+                      cofins_situacao_tributaria: "",
+                      icms_modalidade_base_calculo: 0,
+                      icms_origem: product.produto.icmsOrigin,
+                      icms_situacao_tributaria: "",
+                      id: product.produto.id.toString(),
+                      name: product.produto.name,
+                      ncm: product.produto.ncm,
+                      pis_situacao_tributaria: "",
+                      quantidade: product.productQnty,
+                      unidade_comercial: product.unidade,
+                      unidade_tributavel: product.unidade,
+                      valor_unitario_comercial: product.unitaryValue,
+                      valor_unitario_tributavel: product.unitaryValue
+                  }))
+              }
+            : {
+                  numero: "",
+                  serie: is_cpf ? "922" : "",
+                  consumidor_final: 0,
+                  destinatario: user.companies[0]
+                      ? {
+                            bairro: user.companies[0].district,
+                            indicador_inscricao_estadual: Number(user.companies[0].indicadorEstadual),
+                            inscricao_estadual: user.companies[0].inscricaoEstadual,
+                            logradouro: user.companies[0].street,
+                            municipio: user.companies[0].city,
+                            nome: user.companies[0].name,
+                            numero: user.companies[0].number,
+                            telefone: user.companies[0].phone,
+                            uf: user.companies[0].state,
+                            cnpj: user.companies[0].document.length == 11 ? "" : user.companies[0].document,
+                            cpf: user.companies[0].document.length == 11 ? user.companies[0].document : ""
+                        }
+                      : {
+                            bairro: "",
+                            indicador_inscricao_estadual: 0,
+                            inscricao_estadual: "",
+                            logradouro: "",
+                            municipio: "",
+                            nome: "",
+                            numero: "",
+                            telefone: "",
+                            uf: "",
+                            cnpj: "",
+                            cpf: ""
+                        },
+                  emitente: {
+                      bairro: first_property ? first_property.district : user.district,
+                      inscricao_estadual: first_property ? first_property.ie : user.inscricaoEstadual,
+                      logradouro: first_property ? first_property.street : user.street,
+                      municipio: first_property ? first_property.city : user.city,
+                      nome: user.name,
+                      nome_fantasia: user.businessName,
+                      numero: first_property ? first_property.number : user.number.toString(),
+                      uf: first_property ? first_property.state : user.state,
+                      cpf: is_cpf ? user.document : undefined,
+                      cnpj: is_cpf ? undefined : user.document,
+
+                      regime_tributario: user.regimeTributario
+                  },
+                  finalidade_emissao: 1,
+                  local_destino: 1,
+                  natureza_operacao: "",
+                  presenca_comprador: 1,
+                  tipo_documento: 1,
+                  valor: {
+                      frete: 0,
+                      produtos: 0,
+                      seguro: 0,
+                      total: 0
+                  },
+                  produtos: []
+              },
         onSubmit: (values) => {
             if (loading) return
             if (!values.natureza_operacao) {
@@ -142,6 +207,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                     ...values,
                     numero: Number(values.numero),
                     serie: Number(values.serie),
+                    consumidor_final: Number(values.consumidor_final),
                     emitente: { ...values.emitente, numero: Number(values.emitente.numero) },
                     destinatario: {
                         ...values.destinatario,
