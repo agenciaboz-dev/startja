@@ -1,5 +1,17 @@
 import React, { useEffect, useState } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery, CircularProgress } from "@mui/material"
+import {
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    Button,
+    Box,
+    TextField,
+    Grid,
+    useMediaQuery,
+    CircularProgress,
+    MenuItem,
+} from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { useFormik } from "formik"
 import { NewProperty } from "../../../definitions/userOperations"
@@ -19,6 +31,36 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
     const io = useIo()
     const { user } = useUser()
     const { snackbar } = useSnackbar()
+
+    const estados = [
+        { id: 1, value: "AC", label: "Acre" },
+        { id: 2, value: "AL", label: "Alagoas" },
+        { id: 3, value: "AP", label: "Amapá" },
+        { id: 4, value: "AM", label: "Amazonas" },
+        { id: 5, value: "BA", label: "Bahia" },
+        { id: 5, value: "CE", label: "Ceará" },
+        { id: 6, value: "DF", label: "Distrito Federal" },
+        { id: 7, value: "ES", label: "Espírito Santo" },
+        { id: 8, value: "GO", label: "Goiás" },
+        { id: 9, value: "MA", label: "Maranhão" },
+        { id: 10, value: "MT", label: "Mato Grosso" },
+        { id: 11, value: "MS", label: "Mato Grosso do Sul" },
+        { id: 12, value: "MG", label: "Minas Gerais" },
+        { id: 13, value: "PA", label: "Pará" },
+        { id: 14, value: "PB", label: "Paraíba" },
+        { id: 15, value: "PR", label: "Paraná" },
+        { id: 16, value: "PE", label: "Pernambuco" },
+        { id: 17, value: "PI", label: "Piauí" },
+        { id: 18, value: "RJ", label: "Rio de Janeiro" },
+        { id: 19, value: "RN", label: "Rio Grande do Norte" },
+        { id: 20, value: "RS", label: "Rio Grande do Sul" },
+        { id: 21, value: "RO", label: "Rondônia" },
+        { id: 22, value: "RR", label: "Roraima" },
+        { id: 23, value: "SC", label: "Santa Catarina" },
+        { id: 24, value: "SP", label: "São Paulo" },
+        { id: 25, value: "SE", label: "Sergipe" },
+        { id: 26, value: "TO", label: "Tocantins" },
+    ]
 
     if (!user) return null
 
@@ -40,7 +82,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
             nifr: "",
             number: "",
             state: "",
-            street: ""
+            street: "",
         },
         onSubmit: (values) => {
             if (loading) return
@@ -48,7 +90,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
             setLoading(true)
             io.emit(currentProperty ? "property:update" : "property:create", values, currentProperty?.id)
         },
-        enableReinitialize: true
+        enableReinitialize: true,
     })
 
     useEffect(() => {
@@ -108,9 +150,10 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                         sx={{
                             flexDirection: "column",
                             width: "100%",
-                            gap: isMobile ? "5vw" : "2vw",
+                            gap: isMobile ? "5vw" : "1vw",
                         }}
                     >
+                        <h3>Dados de Identificação</h3>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
@@ -164,7 +207,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                             </Grid>
                         </Grid>
 
-                        <h4>Endereço</h4>
+                        <h3>Endereço</h3>
 
                         <Grid container spacing={2}>
                             <Grid item xs={isMobile ? 12 : 6}>
@@ -207,11 +250,25 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                                 <TextField value={formik.values.city} name="city" label="Cidade" fullWidth onChange={formik.handleChange} required />
                             </Grid>
                             <Grid item xs={isMobile ? 12 : 3}>
-                                <TextField value={formik.values.state} name="state" label="UF" fullWidth onChange={formik.handleChange} required />
+                                <TextField
+                                    value={formik.values.state}
+                                    name="state"
+                                    label="Estado"
+                                    fullWidth
+                                    onChange={formik.handleChange}
+                                    required
+                                    select
+                                >
+                                    {estados.map((estado) => (
+                                        <MenuItem key={estado.id} value={estado.value}>
+                                            {estado.label}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
                             </Grid>
                         </Grid>
 
-                        <h4>Exploração</h4>
+                        <h3>Exploração</h3>
 
                         <Grid container spacing={2}>
                             <Grid item xs={isMobile ? 12 : 6}>
