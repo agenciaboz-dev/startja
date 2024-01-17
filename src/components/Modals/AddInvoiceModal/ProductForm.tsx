@@ -70,6 +70,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
         formik.setFieldValue("id", product.id)
         formik.setFieldValue("name", product.name)
         formik.setFieldValue("ncm", product.ncm)
+        formik.setFieldValue("codigo_externo", product.codigo_externo)
     }
 
     return (

@@ -60,8 +60,8 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
     const formik = useFormik<FocusNFeInvoiceForm>({
         initialValues: currentInvoice
             ? {
-                  numero: currentInvoice.numero.toString(),
-                  serie: currentInvoice.serie.toString(),
+                  numero: currentInvoice.propriedade.nfe_number,
+                  serie: currentInvoice.propriedade.nfe_series,
                   consumidor_final: currentInvoice.consumidor_final,
                   destinatario: {
                       bairro: currentInvoice.destinatario.district,
@@ -267,6 +267,13 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
         formik.setFieldValue("destinatario.uf", recipient.state)
         formik.setFieldValue(`destinatario.${recipient.document.length == 11 ? "cpf" : "cnpj"}`, recipient.document)
     }
+
+    useEffect(() => {
+        if (currentInvoice) {
+            setCurrentProperty(currentInvoice.propriedade)
+            setCurrentRecipient(currentInvoice.destinatario)
+        }
+    }, [currentInvoice])
 
     useEffect(() => {
         formik.setFieldValue(
