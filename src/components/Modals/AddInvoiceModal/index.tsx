@@ -449,7 +449,10 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose }) => {
                                                 flex: 1
                                             }}>
                                             <InvoiceModalProductsListHeader />
-                                            <InvoiceModalProductsList list={formik.values.produtos} />
+                                            <InvoiceModalProductsList
+                                                list={formik.values.produtos}
+                                                updateList={(list: InvoiceProduct[]) => formik.setFieldValue("produtos", list)}
+                                            />
                                         </Box>
                                     </Box>
                                 )}
