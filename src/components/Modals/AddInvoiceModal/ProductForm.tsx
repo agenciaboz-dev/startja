@@ -21,8 +21,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
 
     const formik = useFormik<InvoiceProduct>({
         initialValues: {
-            aliquota: 0,
-            cfop: 0,
+            aliquota: 10,
+            cfop: 5102,
             cofins_situacao_tributaria: "01",
             icms_modalidade_base_calculo: 0,
             icms_origem: list[0].icmsOrigin,
@@ -52,14 +52,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
         flex: 1,
         borderBottom: `2px solid ${colors.primary}`,
         color: `${colors.primary}`,
-        fontWeight: "bold",
+        fontWeight: "bold"
     }
     const inactiveTabStyle = {
         textTransform: "unset",
         flex: 1,
         borderTopLeftRadius: "15px",
         borderTopRightRadius: "15px",
-        backgroundColor: `${colors.background}`,
+        backgroundColor: `${colors.background}`
     }
     const tabLabelBoxStyles = { alignItems: "center" }
 
@@ -196,7 +196,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                     </Grid>
                     <Button
                         variant="outlined"
-                        onClick={() => setProductFormDisplay("tributação")}
+                        onClick={formik.submitForm}
                         sx={{
                             alignSelf: "end",
                             borderRadius: "20px",
