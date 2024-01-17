@@ -11,9 +11,10 @@ interface AddPropertyModalProps {
     open: boolean
     onClose: () => void
     setProperty?: (property: Property) => void
+    currentProperty?: Property
 }
 
-const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setProperty }) => {
+const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setProperty, currentProperty }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const io = useIo()
     const { user } = useUser()
@@ -24,7 +25,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
     const [loading, setLoading] = useState(false)
 
     const formik = useFormik<NewProperty>({
-        initialValues: {
+        initialValues: currentProperty || {
             user_id: user.id,
             name: "",
             adjunct: "",
@@ -45,8 +46,9 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
             if (loading) return
 
             setLoading(true)
-            io.emit("property:create", values)
-        }
+            io.emit(currentProperty ? "property:update" : "property:create", values, currentProperty?.id)
+        },
+        enableReinitialize: true
     })
 
     useEffect(() => {
@@ -255,7 +257,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                             color: "white",
                             textTransform: "unset"
                         }}>
-                        {loading ? <CircularProgress size="1.5rem" sx={{ color: "white" }} /> : "Cadastrar propriedade"}
+                        {loading ? <CircularProgress size="1.5rem" sx={{ color: "white" }} /> : currentProperty ? "Salvar" : "Cadastrar propriedade"}
                     </Button>
                 </DialogActions>
             </form>

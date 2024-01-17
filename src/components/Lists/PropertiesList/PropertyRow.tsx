@@ -2,12 +2,14 @@ import React from "react"
 import { Box, Checkbox, IconButton, Menu, MenuItem, useMediaQuery } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
+import { Edit } from "@mui/icons-material"
 
 interface PropertyRowProps {
-    // property : Property
+    property: Property
+    editProperty: (property: Property) => void
 }
 
-export const PropertyRow: React.FC<PropertyRowProps> = ({ property }) => {
+export const PropertyRow: React.FC<PropertyRowProps> = ({ property, editProperty }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
 
     const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -16,24 +18,32 @@ export const PropertyRow: React.FC<PropertyRowProps> = ({ property }) => {
     const actions = [
         {
             id: 1,
+            title: "Editar",
+            icon: <Edit />,
+            onClick: () => {
+                editProperty(property)
+                setMenuAnchorEl(null)
+            }
+        },
+        {
+            id: 2,
             title: "Remover",
             icon: <RemoveCircleOutlineIcon />,
-            onClick: () => {},
-        },
+            onClick: () => {}
+        }
     ]
 
     return (
         <Box
             sx={{
                 alignItems: "center",
-                width: "100%",
-            }}
-        >
+                width: "100%"
+            }}>
             <Checkbox
                 inputProps={{
                     style: {
-                        padding: "0",
-                    },
+                        padding: "0"
+                    }
                 }}
             />
             <Box
@@ -42,46 +52,40 @@ export const PropertyRow: React.FC<PropertyRowProps> = ({ property }) => {
 
                     justifyContent: "space-between",
                     flex: 1,
-                    gap: isMobile ? "20vw" : "2vw",
-                }}
-            >
+                    gap: isMobile ? "20vw" : "2vw"
+                }}>
                 <Box
                     sx={{
-                        flex: 1,
-                    }}
-                >
-                    <p>Elementum senectus diam neque aliquet</p>
+                        flex: 1
+                    }}>
+                    <p>{property.name}</p>
                 </Box>
                 <Box
                     sx={{
                         flex: 1,
-                        justifyContent: "center",
-                    }}
-                >
-                    <p>95522</p>
+                        justifyContent: "center"
+                    }}>
+                    <p>{property.nifr}</p>
                 </Box>
                 <Box
                     sx={{
                         flex: 1,
-                        justifyContent: "center",
-                    }}
-                >
-                    <p>12315/85</p>
+                        justifyContent: "center"
+                    }}>
+                    <p>{property.ie}</p>
                 </Box>
                 <Box
                     sx={{
                         flex: 1,
-                        justifyContent: "center",
-                    }}
-                >
-                    <p>Cras lobortis sollicitudin consectetur aliquet</p>
+                        justifyContent: "center"
+                    }}>
+                    <p>{property.street}</p>
                 </Box>
                 <Box
                     sx={{
                         width: "5%",
-                        justifyContent: "center",
-                    }}
-                >
+                        justifyContent: "center"
+                    }}>
                     <IconButton onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
                         <FormatListBulletedOutlinedIcon />
                     </IconButton>
@@ -91,8 +95,7 @@ export const PropertyRow: React.FC<PropertyRowProps> = ({ property }) => {
                     open={menu_opened}
                     onClose={() => setMenuAnchorEl(null)}
                     slotProps={{ paper: { elevation: 3 } }}
-                    MenuListProps={{ sx: { width: "100%" } }}
-                >
+                    MenuListProps={{ sx: { width: "100%" } }}>
                     {actions.map((action) => {
                         const Icon = () => action.icon
                         return (

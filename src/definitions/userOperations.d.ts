@@ -101,7 +101,7 @@ export declare interface NewProperty {
     declarant: string
     nfe_series: string
     nfe_number: string
-    user_id: number
+    user_id?: number
 }
   
   export declare interface NewNota {
