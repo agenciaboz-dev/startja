@@ -1,8 +1,9 @@
 declare interface Product {
     id: number
     name: string
+    codigo_externo: string
     ncm: string
-    icmsOrigin: string
+    icmsOrigin: number
 
     rules: regraTributacao[]
     produtosNota: ProdutoNotaFiscal[]

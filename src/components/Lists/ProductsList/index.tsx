@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Box, useMediaQuery } from "@mui/material"
 import { ProductRow } from "./ProductRow"
+import AddProductModal from "../../Modals/AddProductModal"
 
 interface ProductsListProps {
     products: Product[]
@@ -8,6 +9,19 @@ interface ProductsListProps {
 
 export const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [currentProduct, setCurrentProduct] = useState<Product>()
+
+    const closeModal = () => {
+        setIsModalOpen(false)
+        setCurrentProduct(undefined)
+    }
+
+    useEffect(() => {
+        setIsModalOpen(!!currentProduct)
+    }, [currentProduct])
+
     return (
         <Box
             sx={{
@@ -20,8 +34,9 @@ export const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
             {products
                 .sort((a, b) => (a.name < b.name ? -1 : 1))
                 .map((product) => (
-                    <ProductRow key={product.id} product={product} />
+                    <ProductRow key={product.id} product={product} editProduct={setCurrentProduct} />
                 ))}
+            <AddProductModal open={isModalOpen} onClose={closeModal} current_product={currentProduct} />
         </Box>
     )
 }

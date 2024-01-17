@@ -55,7 +55,8 @@ export declare interface NewCompany {
 export declare interface NewProduct {
     name: string
     ncm: string
-    icmsOrigin: string
+    codigo_externo: string
+    icmsOrigin: number
     rules?: regraTributacao[]
     produtosNota?: ProdutoNotaFiscal[]
 }

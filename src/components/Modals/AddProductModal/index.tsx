@@ -8,26 +8,31 @@ import { NewProduct } from "../../../definitions/userOperations"
 interface AddProductModalProps {
     open: boolean
     onClose: () => void
+    current_product?: Product
 }
 
-const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
+const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, current_product }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const io = useIo()
 
+    console.log(current_product)
+
     const formik = useFormik<NewProduct>({
-        initialValues: {
+        initialValues: current_product || {
             name: "",
             ncm: "",
-            icmsOrigin: "",
+            codigo_externo: "",
+            icmsOrigin: 0,
 
             rules: [],
-            produtosNota: [],
+            produtosNota: []
         },
         onSubmit: (values) => {
             console.log(values)
             setLoading(true)
-            io.emit("product:create", values)
+            io.emit(current_product ? "product:update" : "product:create", values, current_product?.id)
         },
+        enableReinitialize: true
     })
 
     const [loading, setLoading] = useState(false)
@@ -55,15 +60,14 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
             open={open}
             onClose={onClose}
             sx={{
-                justifyContent: "center",
+                justifyContent: "center"
             }}
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
-                    minWidth: "90vw",
-                },
-            }}
-        >
+                    minWidth: "90vw"
+                }
+            }}>
             <form style={{ display: "contents" }} onSubmit={formik.handleSubmit}>
                 <DialogTitle>Adicionar Produto</DialogTitle>
                 <CloseOutlinedIcon
@@ -71,7 +75,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
                         position: "absolute",
                         top: isMobile ? "5vw" : "1vw",
                         right: isMobile ? "5vw" : "1vw",
-                        cursor: "pointer",
+                        cursor: "pointer"
                     }}
                     onClick={onClose}
                 />
@@ -92,8 +96,8 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
                                 required
                                 label="Código de produto"
                                 fullWidth
-                                // value={formik.values.productCode}
-                                name="productCode"
+                                value={formik.values.codigo_externo}
+                                name="codigo_externo"
                                 onChange={formik.handleChange}
                             />
                         </Grid>
@@ -109,16 +113,15 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
                                 name="icmsOrigin"
                                 onChange={formik.handleChange}
                                 select
-                                InputLabelProps={{ shrink: true }}
-                            >
-                                <MenuItem value="0">0 – Nacional</MenuItem>
-                                <MenuItem value="1">1 – Estrangeira (importação direta)</MenuItem>
-                                <MenuItem value="2">2 – Estrangeira (adquirida no mercado interno)</MenuItem>
-                                <MenuItem value="3">3 – Nacional com mais de 40% de conteúdo estrangeiro</MenuItem>
-                                <MenuItem value="4">4 – Nacional produzida através de processos produtivos básicos</MenuItem>
-                                <MenuItem value="5">5 – Nacional com menos de 40% de conteúdo estrangeiro</MenuItem>
-                                <MenuItem value="6">6 – Estrangeira (importação direta) sem produto nacional similar</MenuItem>
-                                <MenuItem value="7">7 – Estrangeira (adquirida no mercado interno) sem produto nacional similar</MenuItem>
+                                InputLabelProps={{ shrink: true }}>
+                                <MenuItem value={0}>0 – Nacional</MenuItem>
+                                <MenuItem value={1}>1 – Estrangeira (importação direta)</MenuItem>
+                                <MenuItem value={2}>2 – Estrangeira (adquirida no mercado interno)</MenuItem>
+                                <MenuItem value={3}>3 – Nacional com mais de 40% de conteúdo estrangeiro</MenuItem>
+                                <MenuItem value={4}>4 – Nacional produzida através de processos produtivos básicos</MenuItem>
+                                <MenuItem value={5}>5 – Nacional com menos de 40% de conteúdo estrangeiro</MenuItem>
+                                <MenuItem value={6}>6 – Estrangeira (importação direta) sem produto nacional similar</MenuItem>
+                                <MenuItem value={7}>7 – Estrangeira (adquirida no mercado interno) sem produto nacional similar</MenuItem>
                             </TextField>
                         </Grid>
                     </Grid>
@@ -126,9 +129,8 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
                 <DialogActions
                     sx={{
                         margin: isMobile ? "0" : "0.5vw",
-                        padding: isMobile ? "5vw" : "",
-                    }}
-                >
+                        padding: isMobile ? "5vw" : ""
+                    }}>
                     <Button
                         onClick={onClose}
                         color="secondary"
@@ -136,9 +138,8 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset",
-                        }}
-                    >
+                            textTransform: "unset"
+                        }}>
                         Cancelar
                     </Button>
                     <Button
@@ -148,10 +149,9 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset",
-                        }}
-                    >
-                        {loading ? <CircularProgress size="1.5rem" color="inherit" /> : "Adicionar"}
+                            textTransform: "unset"
+                        }}>
+                        {loading ? <CircularProgress size="1.5rem" color="inherit" /> : current_product ? "Salvar" : "Adicionar"}
                     </Button>
                 </DialogActions>
             </form>

@@ -2,12 +2,14 @@ import React from "react"
 import { Box, Checkbox, IconButton, Menu, MenuItem, useMediaQuery } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
+import { Edit } from "@mui/icons-material"
 
 interface ProductRowProps {
     product: Product
+    editProduct: (product: Product) => void
 }
 
-export const ProductRow: React.FC<ProductRowProps> = ({ product }) => {
+export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
 
     const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -16,24 +18,27 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product }) => {
     const actions = [
         {
             id: 1,
-            title: "Remover",
-            icon: <RemoveCircleOutlineIcon />,
-            onClick: () => {},
+            title: "Editar",
+            icon: <Edit />,
+            onClick: () => {
+                editProduct(product)
+                setMenuAnchorEl(null)
+            }
         },
+        { id: 2, title: "Remover", icon: <RemoveCircleOutlineIcon />, onClick: () => {} }
     ]
 
     return (
         <Box
             sx={{
                 alignItems: "center",
-                width: "100%",
-            }}
-        >
+                width: "100%"
+            }}>
             <Checkbox
                 inputProps={{
                     style: {
-                        padding: "0",
-                    },
+                        padding: "0"
+                    }
                 }}
             />
             <Box
@@ -41,31 +46,27 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product }) => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     flex: 1,
-                    gap: isMobile ? "20vw" : "2vw",
-                }}
-            >
+                    gap: isMobile ? "20vw" : "2vw"
+                }}>
                 <Box
                     sx={{
                         flex: 0.45,
-                        minWidth: isMobile ? "25vw" : "",
-                    }}
-                >
+                        minWidth: isMobile ? "25vw" : ""
+                    }}>
                     <p>{product.name}</p>
                 </Box>
                 <Box
                     sx={{
                         flex: 0.5,
-                        minWidth: isMobile ? "25vw" : "",
-                    }}
-                >
+                        minWidth: isMobile ? "25vw" : ""
+                    }}>
                     <p>{product.ncm}</p>
                 </Box>
                 <Box
                     sx={{
                         flex: 0.05,
-                        justifyContent: "center",
-                    }}
-                >
+                        justifyContent: "center"
+                    }}>
                     <IconButton onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
                         <FormatListBulletedOutlinedIcon />
                     </IconButton>
@@ -75,8 +76,7 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product }) => {
                     open={menu_opened}
                     onClose={() => setMenuAnchorEl(null)}
                     slotProps={{ paper: { elevation: 3 } }}
-                    MenuListProps={{ sx: { width: "100%" } }}
-                >
+                    MenuListProps={{ sx: { width: "100%" } }}>
                     {actions.map((action) => {
                         const Icon = () => action.icon
                         return (

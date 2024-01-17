@@ -25,9 +25,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
             cfop: 0,
             cofins_situacao_tributaria: "01",
             icms_modalidade_base_calculo: 0,
-            icms_origem: 0,
+            icms_origem: list[0].icmsOrigin,
             icms_situacao_tributaria: "00",
-            id: list[0].id.toString(),
+            id: list[0].codigo_externo,
             name: list[0].name,
             ncm: list[0].ncm,
             pis_situacao_tributaria: "01",
@@ -35,7 +35,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
             unidade_comercial: "un",
             unidade_tributavel: "un",
             valor_unitario_comercial: 0,
-            valor_unitario_tributavel: 0,
+            valor_unitario_tributavel: 0
         },
         onSubmit: (values) => {
             addProduct({ ...values, unidade_tributavel: values.unidade_comercial, valor_unitario_tributavel: values.valor_unitario_comercial })
@@ -43,7 +43,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
             setProductFormDisplay("produto")
             setCurrentProduct(list[0])
         },
-        enableReinitialize: true,
+        enableReinitialize: true
     })
 
     const activeTabStyle = {
@@ -76,24 +76,21 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
             sx={{
                 flex: 1,
                 flexDirection: "column",
-                gap: isMobile ? "5vw" : "1vw",
-            }}
-        >
+                gap: isMobile ? "5vw" : "1vw"
+            }}>
             <h3>Adicionar Produto / Tributação</h3>
 
             <Box
                 sx={{
-                    width: "100%",
-                }}
-            >
+                    width: "100%"
+                }}>
                 <Tabs
                     variant="fullWidth"
                     textColor="primary"
                     indicatorColor="primary"
                     sx={{ width: "100%" }}
                     onChange={(_, value) => setProductFormDisplay(value)}
-                    value={productFormDisplay}
-                >
+                    value={productFormDisplay}>
                     <Tab
                         value={"produto"}
                         label={
@@ -121,9 +118,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                     sx={{
                         flexDirection: "column",
                         gap: isMobile ? "5vw" : "1vw",
-                        minHeight: "25vw",
-                    }}
-                >
+                        minHeight: "25vw"
+                    }}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <Autocomplete
@@ -152,8 +148,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                                 name="unidade_comercial"
                                 value={formik.values.unidade_comercial}
                                 onChange={formik.handleChange}
-                                select
-                            >
+                                select>
                                 <MenuItem value="un">unidade(s)</MenuItem>
                                 <MenuItem value="bdj">bandeja(s)</MenuItem>
                                 <MenuItem value="cx">caixa(s)</MenuItem>
@@ -203,9 +198,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                         sx={{
                             alignSelf: "end",
                             borderRadius: "20px",
-                            textTransform: "unset",
-                        }}
-                    >
+                            textTransform: "unset"
+                        }}>
                         Próximo
                     </Button>
                 </Box>
@@ -215,9 +209,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                     sx={{
                         flexDirection: "column",
                         gap: isMobile ? "5vw" : "1vw",
-                        minHeight: "25vw",
-                    }}
-                >
+                        minHeight: "25vw"
+                    }}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField fullWidth label="CFOP" name="cfop" value={formik.values.cfop} onChange={formik.handleChange} />
@@ -233,7 +226,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                                 name="icms_origem"
                                 onChange={formik.handleChange}
                                 select
-                            >
+                                disabled>
                                 {icms_origem_values.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
                                         {item.value} - {item.label}
@@ -248,8 +241,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                                 value={formik.values.icms_modalidade_base_calculo}
                                 name="icms_modalidade_base_calculo"
                                 onChange={formik.handleChange}
-                                select
-                            >
+                                select>
                                 <MenuItem value={0}>0 - margem de valor agregado (%)</MenuItem>
                                 <MenuItem value={1}>1 - pauta (valor)</MenuItem>
                                 <MenuItem value={2}>2 - preço tabelado máximo (valor)</MenuItem>
@@ -273,8 +265,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                                 value={formik.values.icms_situacao_tributaria}
                                 name="icms_situacao_tributaria"
                                 onChange={formik.handleChange}
-                                select
-                            >
+                                select>
                                 {icms_situacao_tributaria_values.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
                                         {item.value} - {item.label}
@@ -292,8 +283,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                                 value={formik.values.pis_situacao_tributaria}
                                 name="pis_situacao_tributaria"
                                 onChange={formik.handleChange}
-                                select
-                            >
+                                select>
                                 {pis_situacao_tributaria.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
                                         {item.value} - {item.label}
@@ -311,8 +301,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                                 select
                                 value={formik.values.cofins_situacao_tributaria}
                                 name="cofins_situacao_tributaria"
-                                onChange={formik.handleChange}
-                            >
+                                onChange={formik.handleChange}>
                                 {cofins_options.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
                                         {item.value} - {item.label}
@@ -327,9 +316,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                         sx={{
                             alignSelf: "end",
                             borderRadius: "20px",
-                            textTransform: "unset",
-                        }}
-                    >
+                            textTransform: "unset"
+                        }}>
                         Adicionar
                     </Button>
                 </Box>
