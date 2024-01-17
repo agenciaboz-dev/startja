@@ -10,7 +10,7 @@ declare interface Company {
     state: string
     district: string
     street: string
-    adjunct?: string
+    adjunct: string
     number: string
     cep: string
     email: string
@@ -18,4 +18,5 @@ declare interface Company {
     final_consumer: boolean
 
     customer: Customer
+    customerId: number
 }

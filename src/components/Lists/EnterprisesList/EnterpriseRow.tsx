@@ -2,12 +2,14 @@ import React from "react"
 import { Box, Checkbox, IconButton, Menu, MenuItem, useMediaQuery } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
+import { Edit } from "@mui/icons-material"
 
 interface EnterpriseRowProps {
     enterprise: Company
+    editCompany: (company: Company) => void
 }
 
-export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ enterprise }) => {
+export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ enterprise, editCompany }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
 
     const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -16,24 +18,32 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ enterprise }) => {
     const actions = [
         {
             id: 1,
+            title: "Editar",
+            icon: <Edit />,
+            onClick: () => {
+                editCompany(enterprise)
+                setMenuAnchorEl(null)
+            }
+        },
+        {
+            id: 2,
             title: "Remover",
             icon: <RemoveCircleOutlineIcon />,
-            onClick: () => {},
-        },
+            onClick: () => {}
+        }
     ]
 
     return (
         <Box
             sx={{
                 alignItems: "center",
-                width: "100%",
-            }}
-        >
+                width: "100%"
+            }}>
             <Checkbox
                 inputProps={{
                     style: {
-                        padding: "0",
-                    },
+                        padding: "0"
+                    }
                 }}
             />
             <Box
@@ -41,54 +51,47 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ enterprise }) => {
                     alignItems: "center",
                     justifyContent: "space-between",
                     flex: 1,
-                    gap: isMobile ? "20vw" : "2vw",
-                }}
-            >
+                    gap: isMobile ? "20vw" : "2vw"
+                }}>
                 <Box
                     sx={{
-                        flex: 0.2,
-                    }}
-                >
+                        flex: 0.2
+                    }}>
                     {enterprise.name}
                 </Box>
                 <Box
                     sx={{
                         flex: 0.2,
-                        justifyContent: "center",
-                    }}
-                >
+                        justifyContent: "center"
+                    }}>
                     {enterprise.document}
                 </Box>
                 <Box
                     sx={{
                         flex: 0.2,
-                        justifyContent: "center",
-                    }}
-                >
+                        justifyContent: "center"
+                    }}>
                     {enterprise.type}
                 </Box>
                 <Box
                     sx={{
                         flex: 0.2,
-                        justifyContent: "center",
-                    }}
-                >
+                        justifyContent: "center"
+                    }}>
                     {enterprise.city} / {enterprise.state}
                 </Box>
                 <Box
                     sx={{
                         flex: 0.15,
-                        justifyContent: "center",
-                    }}
-                >
+                        justifyContent: "center"
+                    }}>
                     {enterprise.phone}
                 </Box>
                 <Box
                     sx={{
                         flex: 0.05,
-                        justifyContent: "center",
-                    }}
-                >
+                        justifyContent: "center"
+                    }}>
                     <IconButton onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
                         <FormatListBulletedOutlinedIcon />
                     </IconButton>
@@ -98,8 +101,7 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ enterprise }) => {
                     open={menu_opened}
                     onClose={() => setMenuAnchorEl(null)}
                     slotProps={{ paper: { elevation: 3 } }}
-                    MenuListProps={{ sx: { width: "100%" } }}
-                >
+                    MenuListProps={{ sx: { width: "100%" } }}>
                     {actions.map((action) => {
                         const Icon = () => action.icon
                         return (

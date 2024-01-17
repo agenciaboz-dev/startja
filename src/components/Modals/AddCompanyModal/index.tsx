@@ -25,9 +25,10 @@ interface AddCompanyModalProps {
     open: boolean
     onClose: () => void
     setCompany?: (company: Company) => void
+    currentCompany?: Company
 }
 
-const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCompany }) => {
+const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCompany, currentCompany }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const io = useIo()
     const { user } = useUser()
@@ -64,7 +65,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
     ]
 
     const formik = useFormik<NewCompany>({
-        initialValues: {
+        initialValues: currentCompany || {
             type: "nacional",
             name: "",
             document: "",
@@ -86,8 +87,9 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
         onSubmit: (values) => {
             console.log(values)
             setLoading(true)
-            io.emit("company:create", values)
-        }
+            io.emit(currentCompany ? "company:update" : "company:create", values, currentCompany?.id)
+        },
+        enableReinitialize: true
     })
 
     const [loading, setLoading] = useState(false)
@@ -234,7 +236,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                         <Checkbox
                                             checked={!!formik.values.final_consumer}
                                             name="final_consumer"
-                                            onChange={(_, checked) => formik.setFieldValue("final_consumer", checked ? 1 : 0)}
+                                            onChange={(_, checked) => formik.setFieldValue("final_consumer", checked)}
                                             disabled={Number(formik.values.indicadorEstadual) == 9}
                                         />
                                     }
@@ -376,7 +378,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                             color: "white",
                             textTransform: "unset"
                         }}>
-                        {loading ? <CircularProgress size="1.5rem" color="inherit" /> : "Adicionar"}
+                        {loading ? <CircularProgress size="1.5rem" color="inherit" /> : currentCompany ? "salvar" : "Adicionar"}
                     </Button>
                 </DialogActions>
             </form>
