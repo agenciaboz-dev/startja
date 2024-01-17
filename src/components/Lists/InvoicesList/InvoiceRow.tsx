@@ -12,8 +12,6 @@ interface InvoiceRowProps {
 export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice, editInvoice }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
 
-    const notAuth = invoice.status != "autorizado"
-
     const actions =
         invoice.status != "autorizado"
             ? [

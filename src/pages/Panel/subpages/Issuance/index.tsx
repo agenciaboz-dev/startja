@@ -29,21 +29,24 @@ export const Issuance: React.FC<IssuanceProps> = ({ user }) => {
             sx={{
                 flexDirection: "column",
                 gap: isMobile ? "5vw" : "1vw",
-                flex: 1
-            }}>
+                flex: 1,
+            }}
+        >
             <Header />
             <Box
                 sx={{
                     height: "100%",
-                    width: "100%"
-                }}>
+                    width: "100%",
+                }}
+            >
                 <Box
                     sx={{
                         height: "100%",
                         width: "100%",
                         flexDirection: "column",
-                        gap: isMobile ? "5vw" : "2vw"
-                    }}>
+                        gap: isMobile ? "5vw" : "1vw",
+                    }}
+                >
                     <Toolbar
                         searchPlaceholder="produto"
                         hasFilterButton
@@ -57,8 +60,9 @@ export const Issuance: React.FC<IssuanceProps> = ({ user }) => {
                             flex: 1,
                             overflow: isMobile ? "scroll" : "",
                             padding: isMobile ? "1vw 5vw" : "",
-                            margin: isMobile ? "0 -5vw" : ""
-                        }}>
+                            margin: isMobile ? "0 -5vw" : "",
+                        }}
+                    >
                         <Box
                             sx={{
                                 flex: 1,
@@ -67,8 +71,9 @@ export const Issuance: React.FC<IssuanceProps> = ({ user }) => {
                                 borderRadius: "20px",
                                 boxShadow: "0 2px 2px 2px #d1d1d1",
                                 padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
-                                width: isMobile ? "fit-content" : "100%"
-                            }}>
+                                width: isMobile ? "fit-content" : "100%",
+                            }}
+                        >
                             <InvoicesListHeader />
                             <InvoicesList invoices={user.notas} />
                         </Box>
