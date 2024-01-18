@@ -51,8 +51,9 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice, editInvoice }) 
                     alignItems: "center",
                     justifyContent: "space-between",
                     flex: 1,
-                    width: isMobile ? "250vw" : ""
-                }}>
+                    width: isMobile ? "250vw" : "",
+                }}
+            >
                 <Box sx={{ width: "10%" }}>
                     <p>{new Date(Number(invoice.emissionDatetime)).toLocaleString("pt-br")}</p>
                 </Box>
@@ -67,12 +68,15 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice, editInvoice }) 
                     <Tooltip title={invoice.mensagem_sefaz}>
                         <Button
                             variant="contained"
-                            color={invoice.status == "erro_autorizacao" ? "error" : "primary"}
+                            color={
+                                invoice.status == "processando_autorizacao" ? "warning" : invoice.status == "erro_autorizacao" ? "error" : "primary"
+                            }
                             sx={{
                                 flex: 1,
                                 borderRadius: "20px",
-                                textTransform: "unset"
-                            }}>
+                                textTransform: "unset",
+                            }}
+                        >
                             {invoice.status}
                         </Button>
                     </Tooltip>
@@ -81,9 +85,10 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice, editInvoice }) 
                     sx={{
                         width: "5%",
                         justifyContent: "center",
-                        marginLeft: "2vw"
+                        marginLeft: "2vw",
                     }}
-                    onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
+                    onClick={(event) => setMenuAnchorEl(event.currentTarget)}
+                >
                     <IconButton>
                         <FormatListBulletedOutlinedIcon />
                     </IconButton>
@@ -93,7 +98,8 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice, editInvoice }) 
                     open={menu_opened}
                     onClose={() => setMenuAnchorEl(null)}
                     slotProps={{ paper: { elevation: 3 } }}
-                    MenuListProps={{ sx: { width: "100%" } }}>
+                    MenuListProps={{ sx: { width: "100%" } }}
+                >
                     {actions.map((action) => {
                         const Icon = () => action.icon
                         return (

@@ -78,21 +78,24 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
             sx={{
                 flex: 1,
                 flexDirection: "column",
-                gap: isMobile ? "5vw" : "1vw"
-            }}>
+                gap: isMobile ? "5vw" : "1vw",
+            }}
+        >
             <h3>Adicionar Produto / Tributação</h3>
 
             <Box
                 sx={{
-                    width: "100%"
-                }}>
+                    width: "100%",
+                }}
+            >
                 <Tabs
                     variant="fullWidth"
                     textColor="primary"
                     indicatorColor="primary"
                     sx={{ width: "100%" }}
                     onChange={(_, value) => setProductFormDisplay(value)}
-                    value={productFormDisplay}>
+                    value={productFormDisplay}
+                >
                     <Tab
                         value={"produto"}
                         label={
@@ -120,8 +123,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                     sx={{
                         flexDirection: "column",
                         gap: isMobile ? "5vw" : "1vw",
-                        minHeight: "25vw"
-                    }}>
+                        minHeight: "25vw",
+                    }}
+                >
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <Autocomplete
@@ -150,7 +154,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                                 name="unidade_comercial"
                                 value={formik.values.unidade_comercial}
                                 onChange={formik.handleChange}
-                                select>
+                                select
+                            >
                                 <MenuItem value="un">unidade(s)</MenuItem>
                                 <MenuItem value="bdj">bandeja(s)</MenuItem>
                                 <MenuItem value="cx">caixa(s)</MenuItem>
@@ -195,14 +200,15 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                         </Grid>
                     </Grid>
                     <Button
-                        variant="outlined"
+                        variant="contained"
                         onClick={formik.submitForm}
                         sx={{
                             alignSelf: "end",
                             borderRadius: "20px",
-                            textTransform: "unset"
-                        }}>
-                        Próximo
+                            textTransform: "unset",
+                        }}
+                    >
+                        Adicionar produto
                     </Button>
                 </Box>
             )}
@@ -211,8 +217,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                     sx={{
                         flexDirection: "column",
                         gap: isMobile ? "5vw" : "1vw",
-                        minHeight: "25vw"
-                    }}>
+                        minHeight: "25vw",
+                    }}
+                >
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField fullWidth label="CFOP" name="cfop" value={formik.values.cfop} onChange={formik.handleChange} />
@@ -228,7 +235,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                                 name="icms_origem"
                                 onChange={formik.handleChange}
                                 select
-                                disabled>
+                                disabled
+                            >
                                 {icms_origem_values.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
                                         {item.value} - {item.label}
@@ -243,7 +251,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                                 value={formik.values.icms_modalidade_base_calculo}
                                 name="icms_modalidade_base_calculo"
                                 onChange={formik.handleChange}
-                                select>
+                                select
+                            >
                                 <MenuItem value={0}>0 - margem de valor agregado (%)</MenuItem>
                                 <MenuItem value={1}>1 - pauta (valor)</MenuItem>
                                 <MenuItem value={2}>2 - preço tabelado máximo (valor)</MenuItem>
@@ -267,7 +276,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                                 value={formik.values.icms_situacao_tributaria}
                                 name="icms_situacao_tributaria"
                                 onChange={formik.handleChange}
-                                select>
+                                select
+                            >
                                 {icms_situacao_tributaria_values.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
                                         {item.value} - {item.label}
@@ -285,7 +295,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                                 value={formik.values.pis_situacao_tributaria}
                                 name="pis_situacao_tributaria"
                                 onChange={formik.handleChange}
-                                select>
+                                select
+                            >
                                 {pis_situacao_tributaria.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
                                         {item.value} - {item.label}
@@ -303,7 +314,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                                 select
                                 value={formik.values.cofins_situacao_tributaria}
                                 name="cofins_situacao_tributaria"
-                                onChange={formik.handleChange}>
+                                onChange={formik.handleChange}
+                            >
                                 {cofins_options.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
                                         {item.value} - {item.label}
@@ -318,9 +330,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct }) => {
                         sx={{
                             alignSelf: "end",
                             borderRadius: "20px",
-                            textTransform: "unset"
-                        }}>
-                        Adicionar
+                            textTransform: "unset",
+                        }}
+                    >
+                        Adicionar produto
                     </Button>
                 </Box>
             )}
