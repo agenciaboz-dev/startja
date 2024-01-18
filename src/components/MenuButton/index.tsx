@@ -30,6 +30,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
             fontSize: "1rem",
             color: colors.text.greyish,
             gap: "0.25vw",
+            position: "relative",
             ...sx,
         }
 
@@ -70,35 +71,29 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
             >
                 <Tooltip title={logoItem ? "Configurações" : ""}>
                     <MenuItem key={sideBarItem.id} sx={buildStyle(active, sideBarItem)}>
-                        <Box
-                            sx={{
-                                position: "relative",
-                            }}
-                        >
-                            {active && !sideBarItem.subItens && (
-                                <Box
-                                    sx={{
-                                        backgroundColor: colors.primary,
-                                        borderTopRightRadius: isMobile ? "2.5vw" : "1vw",
-                                        borderBottomRightRadius: isMobile ? "2.5vw" : "1vw",
-                                        position: "absolute",
-                                        height: "100%",
-                                        width: isMobile ? "2.5vw" : "0.5vw",
-                                        left: isMobile ? "-30vw" : "-2vw",
-                                    }}
-                                ></Box>
-                            )}
+                        {active && !sideBarItem.subItens && (
                             <Box
                                 sx={{
-                                    backgroundColor: active ? "secondary.main" : "#f4f4f4",
-                                    color: active ? "white" : colors.text.darkgrey,
-                                    pointerEvents: disabled || active ? "none" : "auto",
-                                    padding: logoItem ? 0 : "0.5vw",
-                                    borderRadius: active ? "20px" : "50%",
+                                    backgroundColor: colors.primary,
+                                    borderTopRightRadius: isMobile ? "2.5vw" : "1vw",
+                                    borderBottomRightRadius: isMobile ? "2.5vw" : "1vw",
+                                    position: "absolute",
+                                    height: isMobile ? "10vw" : "3vw",
+                                    width: isMobile ? "2.5vw" : "0.5vw",
+                                    left: 0,
                                 }}
-                            >
-                                <Icon />
-                            </Box>
+                            ></Box>
+                        )}
+                        <Box
+                            sx={{
+                                backgroundColor: active ? "secondary.main" : "#f4f4f4",
+                                color: active ? "white" : colors.text.darkgrey,
+                                pointerEvents: disabled || active ? "none" : "auto",
+                                padding: logoItem ? 0 : isMobile ? "2vw" : "0.5vw",
+                                borderRadius: active ? "20px" : "50%",
+                            }}
+                        >
+                            <Icon />
                         </Box>
                         {sideBarItem.name}
                         {/* {sideBarItem.subItens && <KeyboardArrowDown sx={{ marginLeft: "auto", rotate: collapse ? "-180deg" : "", transition: "0.3s" }} />} */}
@@ -111,7 +106,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                         flexDirection: "column",
                         width: "100%",
                         backgroundColor: "#e8e8e8",
-                        borderRadius: "2vw",
+                        borderRadius: isMobile ? "10vw" : "2vw",
                     }}
                 >
                     {sideBarItem.subItens?.map((sideBarItem) => {
@@ -130,40 +125,32 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                                     key={sideBarItem.id}
                                     sx={{
                                         ...buildStyle(active, sideBarItem),
-                                        whiteSpace: "normal",
-                                        overflow: "hidden",
                                     }}
                                     onClick={() => handleMenuClick(sideBarItem)}
                                 >
-                                    <Box
-                                        sx={{
-                                            position: "relative",
-                                        }}
-                                    >
-                                        {active && (
-                                            <Box
-                                                sx={{
-                                                    backgroundColor: colors.primary,
-                                                    borderTopRightRadius: isMobile ? "2.5vw" : "1vw",
-                                                    borderBottomRightRadius: isMobile ? "2.5vw" : "1vw",
-                                                    position: "absolute",
-                                                    height: "100%",
-                                                    width: isMobile ? "2.5vw" : "0.5vw",
-                                                    left: isMobile ? "-30vw" : "-2vw",
-                                                }}
-                                            ></Box>
-                                        )}
+                                    {active && (
                                         <Box
                                             sx={{
-                                                backgroundColor: active ? "secondary.main" : "#f4f4f4",
-                                                color: active ? "white" : colors.text.darkgrey,
-                                                pointerEvents: active ? "none" : "auto",
-                                                padding: "0.5vw",
-                                                borderRadius: active ? "20px" : "50%",
+                                                backgroundColor: colors.primary,
+                                                borderTopRightRadius: isMobile ? "2.5vw" : "1vw",
+                                                borderBottomRightRadius: isMobile ? "2.5vw" : "1vw",
+                                                position: "absolute",
+                                                height: isMobile ? "10vw" : "3vw",
+                                                width: isMobile ? "2.5vw" : "0.5vw",
+                                                left: 0,
                                             }}
-                                        >
-                                            <Icon />
-                                        </Box>
+                                        ></Box>
+                                    )}
+                                    <Box
+                                        sx={{
+                                            backgroundColor: active ? "secondary.main" : "#f4f4f4",
+                                            color: active ? "white" : colors.text.darkgrey,
+                                            pointerEvents: active ? "none" : "auto",
+                                            padding: isMobile ? "2vw" : "0.5vw",
+                                            borderRadius: active ? "20px" : "50%",
+                                        }}
+                                    >
+                                        <Icon />
                                     </Box>
                                     {sideBarItem.name}
                                 </MenuItem>

@@ -42,7 +42,7 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
         <Box
             sx={{
                 height: "100%",
-                width: "7vw",
+                width: "10vw",
                 backgroundColor: "white",
                 boxShadow: "0 2px 2px 2px #d1d1d1",
                 flexDirection: "column",
