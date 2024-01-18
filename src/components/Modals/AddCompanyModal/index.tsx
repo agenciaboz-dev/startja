@@ -34,6 +34,12 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
     const { user } = useUser()
     const { snackbar } = useSnackbar()
 
+    const [loading, setLoading] = useState(false)
+
+    function isCNPJ(value: any) {
+        return value.length === 18
+    }
+
     const estados = [
         { id: 1, value: "AC", label: "Acre" },
         { id: 2, value: "AL", label: "Alagoas" },
@@ -61,12 +67,12 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
         { id: 23, value: "SC", label: "Santa Catarina" },
         { id: 24, value: "SP", label: "São Paulo" },
         { id: 25, value: "SE", label: "Sergipe" },
-        { id: 26, value: "TO", label: "Tocantins" }
+        { id: 26, value: "TO", label: "Tocantins" },
     ]
 
     const formik = useFormik<NewCompany>({
         initialValues: currentCompany || {
-            type: "nacional",
+            type: "Nacional",
             name: "",
             document: "",
             inscricaoEstadual: "",
@@ -82,17 +88,40 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
             phone: "",
             businessName: "",
             final_consumer: false,
-            customerId: user?.id || 0
+            customerId: user?.id || 0,
         },
         onSubmit: (values) => {
             console.log(values)
             setLoading(true)
             io.emit(currentCompany ? "company:update" : "company:create", values, currentCompany?.id)
         },
-        enableReinitialize: true
+        enableReinitialize: true,
     })
 
-    const [loading, setLoading] = useState(false)
+    const handleDocChange = (event: any) => {
+        const { name, value } = event.target
+
+        // Remover não-dígitos
+        const numericValue = value.replace(/\D/g, "")
+
+        // Determinar o tipo de documento (CPF ou CNPJ)
+        const isCpf = numericValue.length <= 11
+
+        // Formatar de acordo com o tipo de documento
+        let formattedValue
+        if (isCpf) {
+            formattedValue = numericValue.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
+        } else {
+            formattedValue = numericValue.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5")
+        }
+
+        // Aplicar as restrições de comprimento
+        const maxLength = isCpf ? 14 : 18
+        const finalValue = formattedValue.slice(0, maxLength)
+
+        // Atualizar o valor no estado do Formik
+        formik.setFieldValue(name, finalValue)
+    }
 
     useEffect(() => {
         // console.log(formik.values)
@@ -168,24 +197,14 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                         >
                             <h3>Dados de Identificação</h3>
                             <Grid container spacing={2}>
-                                <Grid item xs={isMobile ? 12 : 6}>
+                                <Grid item xs={isMobile ? 12 : 3}>
                                     <TextField
                                         required
-                                        label="Nome"
+                                        label="CPF / CNPJ"
                                         fullWidth
-                                        value={formik.values.name}
-                                        name="name"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={isMobile ? 12 : 6}>
-                                    <TextField
-                                        required
-                                        label="Nome Fantasia"
-                                        fullWidth
-                                        value={formik.values.businessName}
-                                        name="businessName"
-                                        onChange={formik.handleChange}
+                                        value={formik.values.document}
+                                        name="document"
+                                        onChange={handleDocChange}
                                     />
                                 </Grid>
                                 <Grid item xs={isMobile ? 12 : 3}>
@@ -196,19 +215,13 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                         value={formik.values.type}
                                         name="type"
                                         onChange={formik.handleChange}
-                                    />
+                                        select
+                                    >
+                                        <MenuItem value={"Nacional"}>Nacional</MenuItem>
+                                        <MenuItem value={"Exterior"}>Exterior</MenuItem>
+                                    </TextField>
                                 </Grid>
-                                <Grid item xs={isMobile ? 12 : 3}>
-                                    <TextField
-                                        required
-                                        label="CPF / CNPJ"
-                                        fullWidth
-                                        value={formik.values.document}
-                                        name="document"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={isMobile ? 12 : 3}>
+                                <Grid item xs={isMobile ? 12 : formik.values.indicadorEstadual == "1" ? 3 : 6}>
                                     <TextField
                                         fullWidth
                                         label="Indicador de inscrição estadual"
@@ -224,16 +237,40 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                         </MenuItem>
                                     </TextField>
                                 </Grid>
-                                <Grid item xs={isMobile ? 12 : 3}>
+                                {formik.values.indicadorEstadual == "1" && (
+                                    <Grid item xs={isMobile ? 12 : 3}>
+                                        <TextField
+                                            required
+                                            label="Inscrição estadual"
+                                            fullWidth
+                                            value={formik.values.inscricaoEstadual}
+                                            name="inscricaoEstadual"
+                                            onChange={formik.handleChange}
+                                        />
+                                    </Grid>
+                                )}
+                                <Grid item xs={isMobile || !isCNPJ(formik.values.document) ? 12 : 6}>
                                     <TextField
                                         required
-                                        label="Inscrição estadual"
+                                        label="Nome"
                                         fullWidth
-                                        value={formik.values.inscricaoEstadual}
-                                        name="inscricaoEstadual"
+                                        value={formik.values.name}
+                                        name="name"
                                         onChange={formik.handleChange}
                                     />
                                 </Grid>
+                                {isCNPJ(formik.values.document) && (
+                                    <Grid item xs={isMobile ? 12 : 6}>
+                                        <TextField
+                                            required
+                                            label="Nome Fantasia"
+                                            fullWidth
+                                            value={formik.values.businessName}
+                                            name="businessName"
+                                            onChange={formik.handleChange}
+                                        />
+                                    </Grid>
+                                )}
                                 <Grid item>
                                     <FormControlLabel
                                         label="Consumidor final"

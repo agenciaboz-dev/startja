@@ -54,6 +54,7 @@ export const AdmSidebar: React.FC<AdmSidebarProps> = ({}) => {
                 sx={{
                     flexDirection: "column",
                     alignItems: "center",
+                    width: "100%",
                 }}
             >
                 {admSideBar.map((sideBarItem) => (
