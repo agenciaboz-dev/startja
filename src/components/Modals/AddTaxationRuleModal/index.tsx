@@ -1,5 +1,5 @@
-import React from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery, MenuItem } from "@mui/material"
+import React, { useEffect } from "react"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery, MenuItem, Autocomplete } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { useFormik } from "formik"
 import icms_situacao_tributaria_values from "../AddInvoiceModal/icms_situacao_tributaria"
@@ -7,32 +7,55 @@ import pis_situacao_tributaria from "../AddInvoiceModal/pis_situacao_tributaria"
 import cofins_options from "../AddInvoiceModal/cofins_situacao_tributaria"
 import { useNumberMask } from "burgos-masks"
 import MaskedInput from "../../MaskedInput"
+import { estados } from "../../../tools/estadosBrasil"
+import { useProduct } from "../../../hooks/useProduct"
+import { TaxRulesForm } from "../../../definitions/TaxRulesForm"
+import { useSnackbar } from "burgos-snackbar"
 
 interface AddTaxationRuleModalProps {
     open: boolean
     onClose: () => void
+    addTaxRule: (rule: TaxRulesForm) => void
 }
 
-const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClose }) => {
+const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClose, addTaxRule }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const pStyles = { minWidth: "fit-content" }
     const selectStyles = { maxWidth: isMobile ? "100%" : "10vw" }
-    const number_mask = useNumberMask({})
+    const number_mask = useNumberMask({ allowDecimal: true, decimalLimit: 2 })
+    const product = useProduct()
+    const { snackbar } = useSnackbar()
 
-    const formik = useFormik({
+    const formik = useFormik<TaxRulesForm>({
         initialValues: {
             aliquota: 10,
             cfop: 5102,
-            cofins_situacao_tributaria: "01",
             icms_modalidade_base_calculo: 0,
+            cofins_situacao_tributaria: "01",
             icms_situacao_tributaria: "00",
-            pis_situacao_tributaria: "01"
+            pis_situacao_tributaria: "01",
+
+            origem: "",
+            destino: "",
+            product_id: 0
         },
         onSubmit(values, formikHelpers) {
+            if (values.cfop.toString().length != 4) {
+                snackbar({ severity: "warning", text: "cfop inválido" })
+                return
+            }
             console.log(values)
+            const data: TaxRulesForm = { ...values, aliquota: Number(values.aliquota), cfop: Number(values.cfop) }
+            addTaxRule(data)
+            onClose()
+            formik.resetForm()
         },
         enableReinitialize: true
     })
+
+    useEffect(() => {
+        if (!!product.list.length) formik.setFieldValue("product_id", product.list[0].id)
+    }, [])
 
     return (
         <Dialog
@@ -78,24 +101,70 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                 flexDirection: isMobile ? "column" : ""
                             }}>
                             <p style={pStyles}>Quando sair de</p>
-                            <TextField select label="UF" variant="standard" size="small" fullWidth sx={selectStyles} value={1}>
-                                <MenuItem value={1}>eita</MenuItem>
+                            <TextField
+                                select
+                                label="UF"
+                                variant="standard"
+                                size="small"
+                                name="origem"
+                                onChange={formik.handleChange}
+                                fullWidth
+                                required
+                                sx={selectStyles}
+                                value={formik.values.origem}>
+                                <MenuItem value="" sx={{ display: "none" }}></MenuItem>
+                                {estados.map((item) => (
+                                    <MenuItem key={item.value} value={item.value}>
+                                        {item.label}
+                                    </MenuItem>
+                                ))}
                             </TextField>
                             <p style={pStyles}>para</p>
-                            <TextField select label="UF" variant="standard" fullWidth sx={selectStyles} value={1}>
-                                <MenuItem value={1}>eita</MenuItem>
+                            <TextField
+                                select
+                                label="UF"
+                                variant="standard"
+                                required
+                                fullWidth
+                                sx={selectStyles}
+                                onChange={formik.handleChange}
+                                name="destino"
+                                value={formik.values.destino}>
+                                <MenuItem value="" sx={{ display: "none" }}></MenuItem>
+                                {estados.map((item) => (
+                                    <MenuItem key={item.value} value={item.value}>
+                                        {item.label}
+                                    </MenuItem>
+                                ))}
                             </TextField>
                             <p style={pStyles}> e quando for</p>
-                            <TextField select label="Produto" variant="standard" fullWidth sx={selectStyles} value={1}>
-                                <MenuItem value={1}>eita</MenuItem>
-                            </TextField>
+                            <Autocomplete
+                                disablePortal
+                                options={product.list}
+                                getOptionLabel={(option) => `${option.codigo_externo} - ${option.name}`}
+                                renderInput={(params) => <TextField {...params} label="Produto" variant="standard" name="product_id" />}
+                                value={product.list.find((item) => item.id == formik.values.product_id) || product.list[0]}
+                                onChange={(_, value) => {
+                                    if (value) formik.setFieldValue("product_id", value.id)
+                                }}
+                            />
                         </Box>
 
                         <p>Use a regra de tributação a seguir:</p>
 
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <TextField fullWidth label="CFOP" name="cfop" value={formik.values.cfop} onChange={formik.handleChange} />
+                                <TextField
+                                    fullWidth
+                                    label="CFOP"
+                                    name="cfop"
+                                    value={formik.values.cfop}
+                                    onChange={formik.handleChange}
+                                    InputProps={{
+                                        inputComponent: MaskedInput,
+                                        inputProps: { mask: [/\d/, /\d/, /\d/, /\d/], inputMode: "numeric" }
+                                    }}
+                                />
                             </Grid>
                         </Grid>
                         <h3>ICMS</h3>

@@ -1,5 +1,17 @@
 import React, { useEffect, useState } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery, MenuItem } from "@mui/material"
+import {
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    Button,
+    Box,
+    TextField,
+    Grid,
+    useMediaQuery,
+    MenuItem,
+    CircularProgress
+} from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import AddTaxationRuleModal from "../AddTaxationRuleModal"
 import { AddedTaxationRulesListHeader } from "../../../../src/components/Lists/AddedTaxationRulesList/AddedTaxationRulesListHeader"
@@ -7,6 +19,10 @@ import { AddedTaxationRuleRowsList } from "../../../../src/components/Lists/Adde
 import { colors } from "../../../style/colors"
 import { useFormik } from "formik"
 import { NatureForm } from "../../../definitions/userOperations"
+import { TaxRulesForm } from "../../../definitions/TaxRulesForm"
+import { useIo } from "../../../hooks/useIo"
+import { useNature } from "../../../hooks/useNature"
+import { useSnackbar } from "burgos-snackbar"
 
 interface AddNatureModalProps {
     open: boolean
@@ -16,8 +32,12 @@ interface AddNatureModalProps {
 
 const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_nature }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const io = useIo()
+    const { updateNature } = useNature()
+    const { snackbar } = useSnackbar()
 
     const [isAddTaxationRuleModalOpen, setAddTaxationRuleModalOpen] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const formik = useFormik<NatureForm>({
         initialValues: current_nature || {
@@ -25,16 +45,33 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
             finality: "",
             motive: "",
             operation: "",
-            type: 0
+            type: 0,
+            rules: []
         },
         onSubmit(values, formikHelpers) {
+            if (loading) return
+            setLoading(true)
+
             console.log(values)
+
+            io.emit("nature:create", values)
         },
         enableReinitialize: true
     })
 
     const openTaxationRuleModal = () => {
         setAddTaxationRuleModalOpen(true)
+    }
+
+    const addTaxRule = (rule: TaxRulesForm) => {
+        formik.setFieldValue("rules", [...formik.values.rules, rule])
+    }
+
+    const deleteTaxRule = (rule: TaxRulesForm) => {
+        formik.setFieldValue(
+            "rules",
+            formik.values.rules.filter((item) => item != rule)
+        )
     }
 
     const handleOperationChange = (new_operation: string) => {
@@ -62,6 +99,25 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
             handleOperationChange(formik.values.operation)
         }
     }, [formik.values.operation])
+
+    useEffect(() => {
+        io.on("nature:creation:success", (nature: Natureza) => {
+            setLoading(false)
+            updateNature(nature)
+            formik.resetForm()
+            onClose()
+            snackbar({ severity: "success", text: "natureza criada com sucesso" })
+        })
+        io.on("nature:error", (error) => {
+            console.log(error)
+            snackbar({ severity: "error", text: "erro ao criar natureza, verifique o log" })
+        })
+
+        return () => {
+            io.off("nature:create:success")
+            io.off("nature:error")
+        }
+    }, [])
 
     return (
         <Dialog
@@ -208,7 +264,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                     width: isMobile ? "fit-content" : "100%"
                                 }}>
                                 <AddedTaxationRulesListHeader />
-                                <AddedTaxationRuleRowsList />
+                                <AddedTaxationRuleRowsList list={formik.values.rules} deleteTaxRule={deleteTaxRule} />
                             </Box>
                         </Box>
                     </Box>
@@ -239,10 +295,10 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                             color: "white",
                             textTransform: "unset"
                         }}>
-                        Adicionar
+                        {loading ? <CircularProgress size="1.5rem" sx={{ color: "white" }} /> : "Adicionar"}
                     </Button>
                 </DialogActions>
-                <AddTaxationRuleModal open={isAddTaxationRuleModalOpen} onClose={() => setAddTaxationRuleModalOpen(false)} />
+                <AddTaxationRuleModal open={isAddTaxationRuleModalOpen} onClose={() => setAddTaxationRuleModalOpen(false)} addTaxRule={addTaxRule} />
             </form>
         </Dialog>
     )

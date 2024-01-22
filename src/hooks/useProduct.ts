@@ -11,5 +11,7 @@ export const useProduct = () => {
         io.emit("product:list", {})
     }
 
-    return { makeList, list, setList }
+    const find = (id: number) => list.find((item) => item.id === id)
+
+    return { makeList, list, setList, find }
 }

@@ -66,6 +66,8 @@ export declare interface NatureForm {
     finality: string
     motive: string
     emissionFinality: number
+
+    rules: TaxRuleForm[]
 }
 
 export declare interface NewRule {
