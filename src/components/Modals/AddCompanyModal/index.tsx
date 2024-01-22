@@ -50,7 +50,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
 
     const formik = useFormik<NewCompany>({
         initialValues: currentCompany || {
-            type: "nacional",
+            type: "",
             name: "",
             document: "",
             inscricaoEstadual: "",
@@ -70,10 +70,26 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
         },
         onSubmit: (values) => {
             if (loading) return
+
             if (!validateCNPJ(values.document.replace(/\D/g, "")) && !validateCPF(values.document.replace(/\D/g, ""))) {
                 snackbar({ severity: "warning", text: "insira um cpf ou cnpj " })
                 return
             }
+
+            if (values.type == "exterior") {
+                values.document = ""
+                values.indicadorEstadual = ""
+                values.inscricaoEstadual = ""
+            }
+
+            if (!validateCNPJ(values.document)) {
+                values.businessName = values.name
+            }
+
+            if (values.indicadorEstadual != "1") {
+                values.inscricaoEstadual = ""
+            }
+
             console.log(values)
             setLoading(true)
             io.emit(currentCompany ? "company:update" : "company:create", values, currentCompany?.id)
@@ -191,48 +207,54 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                         />
                                     </Grid>
                                 )}
-                                <Grid item xs={isMobile ? 12 : 3}>
-                                    <TextField
-                                        required
-                                        label="CPF / CNPJ"
-                                        fullWidth
-                                        value={formik.values.document}
-                                        name="document"
-                                        onChange={formik.handleChange}
-                                        InputProps={{
-                                            inputComponent: MaskedInput,
-                                            inputProps: { mask: document_mask, inputMode: "numeric" },
-                                        }}
-                                    />
-                                </Grid>
-                                <Grid item xs={isMobile ? 12 : formik.values.indicadorEstadual == "1" ? 3 : 6}>
-                                    <TextField
-                                        fullWidth
-                                        label="Indicador de inscrição estadual"
-                                        value={formik.values.indicadorEstadual}
-                                        name="indicadorEstadual"
-                                        onChange={formik.handleChange}
-                                        select
-                                    >
-                                        <MenuItem value={1}>Contribuinte ICMS</MenuItem>
-                                        <MenuItem value={2}>Contribuinte isento de Inscrição no cadastro de Contribuintes do ICMS</MenuItem>
-                                        <MenuItem value={9}>
-                                            Não Contribuinte, que pode ou não possuir Inscrição Estadual no Cadastro de Contribuintes do ICMS
-                                        </MenuItem>
-                                    </TextField>
-                                </Grid>
-                                {formik.values.indicadorEstadual == "1" && (
-                                    <Grid item xs={isMobile ? 12 : 3}>
+                            </Grid>
+                            {formik.values.type == "nacional" && (
+                                <Grid container spacing={2}>
+                                    <Grid item xs={isMobile ? 12 : 4}>
                                         <TextField
                                             required
-                                            label="Inscrição estadual"
+                                            label="CPF / CNPJ"
                                             fullWidth
-                                            value={formik.values.inscricaoEstadual}
-                                            name="inscricaoEstadual"
+                                            value={formik.values.document}
+                                            name="document"
                                             onChange={formik.handleChange}
+                                            InputProps={{
+                                                inputComponent: MaskedInput,
+                                                inputProps: { mask: document_mask, inputMode: "numeric" },
+                                            }}
                                         />
                                     </Grid>
-                                )}
+                                    <Grid item xs={isMobile ? 12 : formik.values.indicadorEstadual == "1" ? 4 : 8}>
+                                        <TextField
+                                            fullWidth
+                                            label="Indicador de inscrição estadual"
+                                            value={formik.values.indicadorEstadual}
+                                            name="indicadorEstadual"
+                                            onChange={formik.handleChange}
+                                            select
+                                        >
+                                            <MenuItem value={1}>1 - Contribuinte ICMS (informar a IE do destinatário)</MenuItem>
+                                            <MenuItem value={2}>2 - Contribuinte isento de Inscrição no cadastro de Contribuintes do ICMS</MenuItem>
+                                            <MenuItem value={9}>
+                                                9 - Não Contribuinte, que pode ou não possuir Inscrição Estadual no Cadastro de Contribuintes do ICMS
+                                            </MenuItem>
+                                        </TextField>
+                                    </Grid>
+                                    {formik.values.indicadorEstadual == "1" && (
+                                        <Grid item xs={isMobile ? 12 : 4}>
+                                            <TextField
+                                                required
+                                                label="Inscrição estadual"
+                                                fullWidth
+                                                value={formik.values.inscricaoEstadual}
+                                                name="inscricaoEstadual"
+                                                onChange={formik.handleChange}
+                                            />
+                                        </Grid>
+                                    )}
+                                </Grid>
+                            )}
+                            <Grid container spacing={2}>
                                 <Grid item>
                                     <FormControlLabel
                                         label="Consumidor final"
@@ -245,6 +267,85 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                             />
                                         }
                                     />
+                                </Grid>
+                            </Grid>
+                        </Box>
+                        <Box
+                            sx={{
+                                flexDirection: "column",
+                                gap: isMobile ? "5vw" : "1vw",
+                            }}
+                        >
+                            <h3>Endereço</h3>
+                            <Grid container spacing={2}>
+                                <Grid item xs={isMobile ? 12 : 4}>
+                                    <TextField
+                                        required
+                                        label="Rua"
+                                        fullWidth
+                                        value={formik.values.street}
+                                        name="street"
+                                        onChange={formik.handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={isMobile ? 12 : 2}>
+                                    <TextField
+                                        required
+                                        label="Número"
+                                        fullWidth
+                                        value={formik.values.number}
+                                        name="number"
+                                        onChange={formik.handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={isMobile ? 12 : 2}>
+                                    <TextField
+                                        label="Complemento"
+                                        fullWidth
+                                        value={formik.values.adjunct}
+                                        name="adjunct"
+                                        onChange={formik.handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={isMobile ? 12 : 4}>
+                                    <TextField
+                                        required
+                                        label="Bairro"
+                                        fullWidth
+                                        value={formik.values.district}
+                                        name="district"
+                                        onChange={formik.handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={isMobile ? 12 : 4}>
+                                    <TextField required label="CEP" fullWidth value={formik.values.cep} name="cep" onChange={formik.handleChange} />
+                                </Grid>
+                                <Grid item xs={isMobile ? 12 : 4}>
+                                    <TextField
+                                        required
+                                        label="Cidade"
+                                        fullWidth
+                                        value={formik.values.city}
+                                        name="city"
+                                        onChange={formik.handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={isMobile ? 12 : 4}>
+                                    <TextField
+                                        required
+                                        label="Estado"
+                                        fullWidth
+                                        value={formik.values.state}
+                                        name="state"
+                                        onChange={formik.handleChange}
+                                        select
+                                    >
+                                        {estados.map((estado) => (
+                                            <MenuItem key={estado.id} value={estado.value}>
+                                                {estado.label}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
                                 </Grid>
                             </Grid>
                         </Box>
@@ -275,85 +376,6 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                         name="phone"
                                         onChange={formik.handleChange}
                                     />
-                                </Grid>
-                            </Grid>
-                        </Box>
-                        <Box
-                            sx={{
-                                flexDirection: "column",
-                                gap: isMobile ? "5vw" : "1vw",
-                            }}
-                        >
-                            <h3>Endereço</h3>
-                            <Grid container spacing={2}>
-                                <Grid item xs={isMobile ? 12 : 6}>
-                                    <TextField
-                                        required
-                                        label="Rua"
-                                        fullWidth
-                                        value={formik.values.street}
-                                        name="street"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={isMobile ? 12 : 3}>
-                                    <TextField
-                                        required
-                                        label="Número"
-                                        fullWidth
-                                        value={formik.values.number}
-                                        name="number"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={isMobile ? 12 : 3}>
-                                    <TextField
-                                        label="Complemento"
-                                        fullWidth
-                                        value={formik.values.adjunct}
-                                        name="adjunct"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={isMobile ? 12 : 3}>
-                                    <TextField required label="CEP" fullWidth value={formik.values.cep} name="cep" onChange={formik.handleChange} />
-                                </Grid>
-                                <Grid item xs={isMobile ? 12 : 3}>
-                                    <TextField
-                                        required
-                                        label="Bairro"
-                                        fullWidth
-                                        value={formik.values.district}
-                                        name="district"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={isMobile ? 12 : 3}>
-                                    <TextField
-                                        required
-                                        label="Cidade"
-                                        fullWidth
-                                        value={formik.values.city}
-                                        name="city"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={isMobile ? 12 : 3}>
-                                    <TextField
-                                        required
-                                        label="Estado"
-                                        fullWidth
-                                        value={formik.values.state}
-                                        name="state"
-                                        onChange={formik.handleChange}
-                                        select
-                                    >
-                                        {estados.map((estado) => (
-                                            <MenuItem key={estado.id} value={estado.value}>
-                                                {estado.label}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField>
                                 </Grid>
                             </Grid>
                         </Box>
