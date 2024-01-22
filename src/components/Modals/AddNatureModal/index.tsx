@@ -67,23 +67,22 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
             open={open}
             onClose={onClose}
             sx={{
-                justifyContent: "center",
+                justifyContent: "center"
             }}
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
                     minWidth: "90vw",
-                    width: "fit-content",
-                },
-            }}
-        >
+                    width: "fit-content"
+                }
+            }}>
             <DialogTitle>Adicionar natureza da operação</DialogTitle>
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
                     top: isMobile ? "5vw" : "1vw",
                     right: isMobile ? "5vw" : "1vw",
-                    cursor: "pointer",
+                    cursor: "pointer"
                 }}
                 onClick={onClose}
             />
@@ -93,9 +92,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                     sx={{
                         flexDirection: "column",
                         width: "100%",
-                        gap: isMobile ? "5vw" : "2vw",
-                    }}
-                >
+                        gap: isMobile ? "5vw" : "2vw"
+                    }}>
                     <Grid container spacing={2}>
                         <Grid item xs={isMobile ? 12 : 4}>
                             <TextField label="Operação" select fullWidth onChange={handleOperationChange} value={selectedOperation}>
@@ -118,9 +116,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                                 value={selectedType}
                                 disabled
                                 sx={{
-                                    backgroundColor: colors.background,
-                                }}
-                            >
+                                    backgroundColor: colors.background
+                                }}>
                                 <MenuItem value="Entrada">Entrada</MenuItem>
                                 <MenuItem value="Saída">Saída</MenuItem>
                             </TextField>
@@ -133,9 +130,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                                 value={selectedFinality}
                                 disabled
                                 sx={{
-                                    backgroundColor: colors.background,
-                                }}
-                            >
+                                    backgroundColor: colors.background
+                                }}>
                                 <MenuItem value="Normal">Normal</MenuItem>
                                 <MenuItem value="Devolução">Devolução</MenuItem>
                                 <MenuItem value="Ajuste">Ajuste</MenuItem>
@@ -146,28 +142,26 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField label="Finalidade de emissão" select fullWidth>
-                                <MenuItem value="1">1 – Normal</MenuItem>
-                                <MenuItem value="2">2 – Complementar</MenuItem>
-                                <MenuItem value="3">3 – Nota de ajuste</MenuItem>
-                                <MenuItem value="4">4 – Devolução</MenuItem>
+                                <MenuItem value={1}>1 – Normal</MenuItem>
+                                <MenuItem value={2}>2 – Complementar</MenuItem>
+                                <MenuItem value={3}>3 – Nota de ajuste</MenuItem>
+                                <MenuItem value={4}>4 – Devolução</MenuItem>
                             </TextField>
                         </Grid>
                     </Grid>
 
                     <Box
                         sx={{
-                            justifyContent: "space-between",
-                        }}
-                    >
+                            justifyContent: "space-between"
+                        }}>
                         <p>Regras de tributação adicionadas</p>
                         <Button
                             variant="contained"
                             sx={{
                                 borderRadius: "20px",
-                                textTransform: "unset",
+                                textTransform: "unset"
                             }}
-                            onClick={openTaxationRuleModal}
-                        >
+                            onClick={openTaxationRuleModal}>
                             Adicionar Regra
                         </Button>
                     </Box>
@@ -177,9 +171,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                             flex: 1,
                             overflow: isMobile ? "scroll" : "",
                             padding: isMobile ? "1vw 5vw" : "",
-                            margin: isMobile ? "0 -5vw" : "",
-                        }}
-                    >
+                            margin: isMobile ? "0 -5vw" : ""
+                        }}>
                         <Box
                             sx={{
                                 flex: 1,
@@ -188,9 +181,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                                 borderRadius: "20px",
                                 flexDirection: "column",
                                 padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
-                                width: isMobile ? "fit-content" : "100%",
-                            }}
-                        >
+                                width: isMobile ? "fit-content" : "100%"
+                            }}>
                             <AddedTaxationRulesListHeader />
                             <AddedTaxationRuleRowsList />
                         </Box>
@@ -201,9 +193,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
             <DialogActions
                 sx={{
                     margin: isMobile ? "0" : "0.5vw",
-                    padding: isMobile ? "5vw" : "",
-                }}
-            >
+                    padding: isMobile ? "5vw" : ""
+                }}>
                 <Button
                     onClick={onClose}
                     color="secondary"
@@ -211,9 +202,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                     sx={{
                         borderRadius: "20px",
                         color: "white",
-                        textTransform: "unset",
-                    }}
-                >
+                        textTransform: "unset"
+                    }}>
                     Cancelar
                 </Button>
                 <Button
@@ -223,9 +213,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
                     sx={{
                         borderRadius: "20px",
                         color: "white",
-                        textTransform: "unset",
-                    }}
-                >
+                        textTransform: "unset"
+                    }}>
                     Adicionar
                 </Button>
             </DialogActions>
