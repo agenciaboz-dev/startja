@@ -1,10 +1,10 @@
 declare interface Natureza {
     id: number
     operation: string
-    type: string
+    type: number
     finality: string
     motive: string
-    emissionFinality: string
+    emissionFinality: number
 
     rules: regraTributacao[]
     notas: notaFiscal[]

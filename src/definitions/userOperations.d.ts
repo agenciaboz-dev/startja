@@ -60,13 +60,12 @@ export declare interface NewProduct {
     rules?: regraTributacao[]
 }
 
-export declare interface NewNature {
+export declare interface NatureForm {
     operation: string
-    type: string
+    type: number
     finality: string
     motive: string
-    emissionFinality: string
-    rules: { id: number }[]
+    emissionFinality: number
 }
 
 export declare interface NewRule {
