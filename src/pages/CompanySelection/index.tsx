@@ -11,7 +11,7 @@ import AddCompanyModal from "../../components/Modals/AddCompanyModal"
 import { useCompany } from "../../hooks/useCompany"
 
 interface CompanySelectionProps {
-    user: Customer
+    user: User
 }
 
 export const CompanySelection: React.FC<CompanySelectionProps> = ({ user }) => {
