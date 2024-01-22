@@ -20,6 +20,10 @@ import { useFormik } from "formik"
 import { NewCompany } from "../../../definitions/userOperations"
 import { useUser } from "../../../hooks/useUser"
 import { useSnackbar } from "burgos-snackbar"
+import MaskedInput from "../../MaskedInput"
+import { useDocumentMask } from "burgos-masks"
+import { useValidateCPF } from "../../../hooks/useValidateCPF"
+import { useValidateCNPJ } from "../../../hooks/useValidateCNPJ"
 
 interface AddCompanyModalProps {
     open: boolean
@@ -30,7 +34,10 @@ interface AddCompanyModalProps {
 
 const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCompany, currentCompany }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const document_mask = useDocumentMask()
     const io = useIo()
+    const validateCPF = useValidateCPF()
+    const validateCNPJ = useValidateCNPJ()
     const { user } = useUser()
     const { snackbar } = useSnackbar()
 
@@ -67,7 +74,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
         { id: 23, value: "SC", label: "Santa Catarina" },
         { id: 24, value: "SP", label: "São Paulo" },
         { id: 25, value: "SE", label: "Sergipe" },
-        { id: 26, value: "TO", label: "Tocantins" },
+        { id: 26, value: "TO", label: "Tocantins" }
     ]
 
     const formik = useFormik<NewCompany>({
@@ -88,14 +95,19 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
             phone: "",
             businessName: "",
             final_consumer: false,
-            customerId: user?.id || 0,
+            customerId: user?.id || 0
         },
         onSubmit: (values) => {
+            if (loading) return
+            if (!validateCNPJ(values.document.replace(/\D/g, "")) && !validateCPF(values.document.replace(/\D/g, ""))) {
+                snackbar({ severity: "warning", text: "insira um cpf ou cnpj " })
+                return
+            }
             console.log(values)
             setLoading(true)
             io.emit(currentCompany ? "company:update" : "company:create", values, currentCompany?.id)
         },
-        enableReinitialize: true,
+        enableReinitialize: true
     })
 
     const handleDocChange = (event: any) => {
@@ -162,15 +174,14 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
             open={open}
             onClose={onClose}
             sx={{
-                justifyContent: "center",
+                justifyContent: "center"
             }}
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
-                    minWidth: "90vw",
-                },
-            }}
-        >
+                    minWidth: "90vw"
+                }
+            }}>
             <form style={{ display: "contents" }} onSubmit={formik.handleSubmit}>
                 <DialogTitle>Adicionar Pessoa ou Empresa</DialogTitle>
                 <CloseOutlinedIcon
@@ -178,7 +189,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                         position: "absolute",
                         top: isMobile ? "5vw" : "1vw",
                         right: isMobile ? "5vw" : "1vw",
-                        cursor: "pointer",
+                        cursor: "pointer"
                     }}
                     onClick={onClose}
                 />
@@ -186,15 +197,13 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                     <Box
                         sx={{
                             flexDirection: "column",
-                            gap: isMobile ? "10vw" : "2vw",
-                        }}
-                    >
+                            gap: isMobile ? "10vw" : "2vw"
+                        }}>
                         <Box
                             sx={{
                                 flexDirection: "column",
-                                gap: isMobile ? "5vw" : "1vw",
-                            }}
-                        >
+                                gap: isMobile ? "5vw" : "1vw"
+                            }}>
                             <h3>Dados de Identificação</h3>
                             <Grid container spacing={2}>
                                 <Grid item xs={isMobile ? 12 : 3}>
@@ -204,7 +213,11 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                         fullWidth
                                         value={formik.values.document}
                                         name="document"
-                                        onChange={handleDocChange}
+                                        onChange={formik.handleChange}
+                                        InputProps={{
+                                            inputComponent: MaskedInput,
+                                            inputProps: { mask: document_mask, inputMode: "numeric" }
+                                        }}
                                     />
                                 </Grid>
                                 <Grid item xs={isMobile ? 12 : 3}>
@@ -215,8 +228,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                         value={formik.values.type}
                                         name="type"
                                         onChange={formik.handleChange}
-                                        select
-                                    >
+                                        select>
                                         <MenuItem value={"Nacional"}>Nacional</MenuItem>
                                         <MenuItem value={"Exterior"}>Exterior</MenuItem>
                                     </TextField>
@@ -228,8 +240,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                         value={formik.values.indicadorEstadual}
                                         name="indicadorEstadual"
                                         onChange={formik.handleChange}
-                                        select
-                                    >
+                                        select>
                                         <MenuItem value={1}>Contribuinte ICMS</MenuItem>
                                         <MenuItem value={2}>Contribuinte isento de Inscrição no cadastro de Contribuintes do ICMS</MenuItem>
                                         <MenuItem value={9}>
@@ -289,9 +300,8 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                         <Box
                             sx={{
                                 flexDirection: "column",
-                                gap: isMobile ? "5vw" : "1vw",
-                            }}
-                        >
+                                gap: isMobile ? "5vw" : "1vw"
+                            }}>
                             <h3>Contato</h3>
                             <Grid container spacing={2}>
                                 <Grid item xs={isMobile ? 12 : 6}>
@@ -319,9 +329,8 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                         <Box
                             sx={{
                                 flexDirection: "column",
-                                gap: isMobile ? "5vw" : "1vw",
-                            }}
-                        >
+                                gap: isMobile ? "5vw" : "1vw"
+                            }}>
                             <h3>Endereço</h3>
                             <Grid container spacing={2}>
                                 <Grid item xs={isMobile ? 12 : 6}>
@@ -384,8 +393,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                         value={formik.values.state}
                                         name="state"
                                         onChange={formik.handleChange}
-                                        select
-                                    >
+                                        select>
                                         {estados.map((estado) => (
                                             <MenuItem key={estado.id} value={estado.value}>
                                                 {estado.label}
@@ -400,9 +408,8 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                 <DialogActions
                     sx={{
                         margin: isMobile ? "0" : "0.5vw",
-                        padding: isMobile ? "5vw" : "",
-                    }}
-                >
+                        padding: isMobile ? "5vw" : ""
+                    }}>
                     <Button
                         onClick={onClose}
                         color="secondary"
@@ -410,9 +417,8 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset",
-                        }}
-                    >
+                            textTransform: "unset"
+                        }}>
                         Cancelar
                     </Button>
                     <Button
@@ -422,9 +428,8 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset",
-                        }}
-                    >
+                            textTransform: "unset"
+                        }}>
                         {loading ? <CircularProgress size="1.5rem" color="inherit" /> : currentCompany ? "salvar" : "Adicionar"}
                     </Button>
                 </DialogActions>

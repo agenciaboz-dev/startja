@@ -18,12 +18,14 @@
     "axios": "^1.5.1",
     "burgos-array": "^1.0.2",
     "burgos-confirm": "^1.3.1",
+    "burgos-masks": "^1.0.45",
     "burgos-snackbar": "^2.1.0",
     "formik": "^2.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.17.0",
     "react-svg": "^16.1.30",
+    "react-text-mask": "^5.5.0",
     "react-use-measure": "^2.1.1",
     "recharts": "^2.10.2",
     "socket.io-client": "^4.7.2"
@@ -31,6 +33,7 @@
   "devDependencies": {
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@types/react-text-mask": "^5.4.14",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
