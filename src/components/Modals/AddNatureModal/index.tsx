@@ -30,30 +30,14 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose }) => {
         const options = [
             { operation: "Compra de mercadorias", type: "Entrada", finality: "Normal" },
             { operation: "Retorno de mercadoria", type: "Entrada", finality: "Normal" },
-            { operation: "Anulação de valores", type: "Saída", finality: "Ajuste" }
+            { operation: "Transferência de entrada", type: "Entrada", finality: "Normal" },
+            { operation: "Devolução de venda", type: "Entrada", finality: "Devolução" },
+            { operation: "Remessa de mercadoria", type: "Saída", finality: "Normal" },
+            { operation: "Transferência de saída", type: "Saída", finality: "Normal" },
+            { operation: "Venda", type: "Saída", finality: "Normal" },
+            { operation: "Devolução de compra", type: "Saída", finality: "Devolução" },
+            { operation: "Anulação de valores", type: "Saída", finality: "Ajuste" },
         ]
-
-        //     if (
-        //         selectedOperation === "Compra de mercadorias" ||
-        //         selectedOperation === "Retorno de mercadoria" ||
-        //         selectedOperation === "Transferência de entrada"
-        //     ) {
-        //         setSelectedType("Entrada")
-        //         setSelectedFinality("Normal")
-        //     } else if (selectedOperation === "Devolução de venda") {
-        //         setSelectedType("Entrada")
-        //         setSelectedFinality("Devolução")
-        //     } else if (selectedOperation === "Remessa de mercadoria" || selectedOperation === "Transferência de saída" || selectedOperation === "Venda") {
-        //         setSelectedType("Saída")
-        //         setSelectedFinality("Normal")
-        //     } else if (selectedOperation === "Devolução de compra") {
-        //         setSelectedType("Saída")
-        //         setSelectedFinality("Devolução")
-        //     } else if (selectedOperation === "Anulação de valores") {
-        //         setSelectedType("Saída")
-        //         setSelectedFinality("Ajuste")
-        //     }
-        // }
 
         const operation = options.find((item) => item.operation == selectedOperation)
         if (operation) {
