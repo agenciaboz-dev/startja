@@ -8,6 +8,7 @@ import icms_origem_values from "./icms_origem"
 import icms_situacao_tributaria_values from "./icms_situacao_tributaria"
 import pis_situacao_tributaria from "./pis_situacao_tributaria"
 import { PricingBox } from "./PricingBox"
+import { PaymentBox } from "./paymentBox"
 
 interface ProductFormProps {
     addProduct: (product: InvoiceProduct) => void
@@ -86,7 +87,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                 flexDirection: "column",
                 gap: isMobile ? "5vw" : "1vw",
                 height: "100%",
-                maxWidth: "49%",
+                maxWidth: isMobile ? "100%" : "49%",
             }}
         >
             <Box
@@ -336,17 +337,17 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                         gap: isMobile ? "5vw" : "1vw",
                     }}
                 >
+                    <RadioGroup
+                        value={focusNFEInvoiceFormik.values.tipo_documento}
+                        onChange={(_, value) => focusNFEInvoiceFormik.setFieldValue("tipo_documento", Number(value))}
+                        sx={{ flexDirection: isMobile ? "column" : "row", gap: isMobile ? "" : "5vw" }}
+                    >
+                        <FormControlLabel label="Nota de entrada" control={<Radio value={0} />} />
+                        <FormControlLabel label="Nota de saída" control={<Radio value={1} />} />
+                    </RadioGroup>
+                    <PaymentBox formik={focusNFEInvoiceFormik} />
+                    <PricingBox formik={focusNFEInvoiceFormik} />
                     <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <RadioGroup
-                                value={focusNFEInvoiceFormik.values.tipo_documento}
-                                onChange={(_, value) => focusNFEInvoiceFormik.setFieldValue("tipo_documento", Number(value))}
-                                sx={{ flexDirection: isMobile ? "column" : "row", gap: isMobile ? "" : "5vw" }}
-                            >
-                                <FormControlLabel label="Nota de entrada" control={<Radio value={0} />} />
-                                <FormControlLabel label="Nota de saída" control={<Radio value={1} />} />
-                            </RadioGroup>
-                        </Grid>
                         <Grid item xs={12}>
                             <TextField
                                 fullWidth
@@ -394,8 +395,11 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 <MenuItem value={9}>Operação não presencial, outros</MenuItem>
                             </TextField>
                         </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField fullWidth label="Informações adicionais da nota" />
+                        </Grid>
                     </Grid>
-                    <PricingBox formik={focusNFEInvoiceFormik} />
                 </Box>
             )}
             <Button
