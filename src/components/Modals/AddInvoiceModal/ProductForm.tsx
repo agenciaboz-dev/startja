@@ -59,10 +59,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                 aliquota: unmaskNumber(values.aliquota.toString())
             }
             console.log(data)
-            // addProduct(data)
-            // formik.resetForm()
-            // setProductFormDisplay("produto")
-            // setCurrentProduct(list[0])
+            addProduct(data)
+            formik.resetForm()
+            setProductFormDisplay("produto")
+            setCurrentProduct(list[0])
         },
         enableReinitialize: true
     })
