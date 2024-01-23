@@ -12,7 +12,9 @@ import {
     MenuItem,
     Box,
     FormControlLabel,
-    Checkbox
+    Checkbox,
+    RadioGroup,
+    Radio,
 } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { useIo } from "../../../hooks/useIo"
@@ -48,9 +50,13 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
         return value.length === 18
     }
 
+    function isNational(value: any) {
+        return value == "nacional"
+    }
+
     const formik = useFormik<NewCompany>({
         initialValues: currentCompany || {
-            type: "",
+            type: "nacional",
             name: "",
             document: "",
             inscricaoEstadual: "",
@@ -82,7 +88,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                 values.inscricaoEstadual = ""
             }
 
-            if (!validateCNPJ(values.document)) {
+            if (!validateCNPJ(values.document) || values.businessName == "") {
                 values.businessName = values.name
             }
 
@@ -169,47 +175,13 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                 gap: isMobile ? "5vw" : "1vw",
                             }}
                         >
-                            <h3>Dados de Identificação</h3>
+                            <h3>Informações básicas</h3>
+                            <RadioGroup aria-label="Tipo" name="type" value={formik.values.type} onChange={formik.handleChange} row>
+                                <FormControlLabel value="nacional" control={<Radio />} label="Nacional" />
+                                <FormControlLabel value="exterior" control={<Radio />} label="Exterior" />
+                            </RadioGroup>
                             <Grid container spacing={2}>
-                                <Grid item xs={isMobile ? 12 : 4}>
-                                    <TextField
-                                        required
-                                        label="Tipo"
-                                        fullWidth
-                                        value={formik.values.type}
-                                        name="type"
-                                        onChange={formik.handleChange}
-                                        select
-                                    >
-                                        <MenuItem value={"nacional"}>Nacional</MenuItem>
-                                        <MenuItem value={"exterior"}>Exterior</MenuItem>
-                                    </TextField>
-                                </Grid>
-                                <Grid item xs={isMobile ? 12 : !isCNPJ(formik.values.document) ? 8 : 4}>
-                                    <TextField
-                                        required
-                                        label="Nome"
-                                        fullWidth
-                                        value={formik.values.name}
-                                        name="name"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                {isCNPJ(formik.values.document) && (
-                                    <Grid item xs={isMobile ? 12 : 4}>
-                                        <TextField
-                                            required
-                                            label="Nome Fantasia"
-                                            fullWidth
-                                            value={formik.values.businessName}
-                                            name="businessName"
-                                            onChange={formik.handleChange}
-                                        />
-                                    </Grid>
-                                )}
-                            </Grid>
-                            {formik.values.type == "nacional" && (
-                                <Grid container spacing={2}>
+                                {formik.values.type == "nacional" && (
                                     <Grid item xs={isMobile ? 12 : 4}>
                                         <TextField
                                             required
@@ -224,7 +196,32 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                             }}
                                         />
                                     </Grid>
-                                    <Grid item xs={isMobile ? 12 : formik.values.indicadorEstadual == "1" ? 4 : 8}>
+                                )}
+                                <Grid item xs={isMobile || formik.values.type != "nacional" ? 12 : !isCNPJ(formik.values.document) ? 8 : 4}>
+                                    <TextField
+                                        required
+                                        label="Nome"
+                                        fullWidth
+                                        value={formik.values.name}
+                                        name="name"
+                                        onChange={formik.handleChange}
+                                    />
+                                </Grid>
+                                {isCNPJ(formik.values.document) && isNational(formik.values.type) && (
+                                    <Grid item xs={isMobile ? 12 : 4}>
+                                        <TextField
+                                            label="Nome Fantasia"
+                                            fullWidth
+                                            value={formik.values.businessName}
+                                            name="businessName"
+                                            onChange={formik.handleChange}
+                                        />
+                                    </Grid>
+                                )}
+                            </Grid>
+                            {isNational(formik.values.type) && (
+                                <Grid container spacing={2}>
+                                    <Grid item xs={isMobile ? 12 : formik.values.indicadorEstadual == "1" ? 6 : 12}>
                                         <TextField
                                             fullWidth
                                             label="Indicador de inscrição estadual"
@@ -241,7 +238,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                         </TextField>
                                     </Grid>
                                     {formik.values.indicadorEstadual == "1" && (
-                                        <Grid item xs={isMobile ? 12 : 4}>
+                                        <Grid item xs={isMobile ? 12 : 6}>
                                             <TextField
                                                 required
                                                 label="Inscrição estadual"
@@ -317,37 +314,55 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                         onChange={formik.handleChange}
                                     />
                                 </Grid>
-                                <Grid item xs={isMobile ? 12 : 4}>
-                                    <TextField required label="CEP" fullWidth value={formik.values.cep} name="cep" onChange={formik.handleChange} />
-                                </Grid>
-                                <Grid item xs={isMobile ? 12 : 4}>
-                                    <TextField
-                                        required
-                                        label="Cidade"
-                                        fullWidth
-                                        value={formik.values.city}
-                                        name="city"
-                                        onChange={formik.handleChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={isMobile ? 12 : 4}>
-                                    <TextField
-                                        required
-                                        label="Estado"
-                                        fullWidth
-                                        value={formik.values.state}
-                                        name="state"
-                                        onChange={formik.handleChange}
-                                        select
-                                    >
-                                        {estados.map((estado) => (
-                                            <MenuItem key={estado.id} value={estado.value}>
-                                                {estado.label}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField>
-                                </Grid>
                             </Grid>
+                            {isNational(formik.values.type) && (
+                                <Grid container spacing={2}>
+                                    <Grid item xs={isMobile ? 12 : 4}>
+                                        <TextField
+                                            required
+                                            label="CEP"
+                                            fullWidth
+                                            value={formik.values.cep}
+                                            name="cep"
+                                            onChange={formik.handleChange}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={isMobile ? 12 : 4}>
+                                        <TextField
+                                            required
+                                            label="Cidade"
+                                            fullWidth
+                                            value={formik.values.city}
+                                            name="city"
+                                            onChange={formik.handleChange}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={isMobile ? 12 : 4}>
+                                        <TextField
+                                            required
+                                            label="Estado"
+                                            fullWidth
+                                            value={formik.values.state}
+                                            name="state"
+                                            onChange={formik.handleChange}
+                                            select
+                                        >
+                                            {estados.map((estado) => (
+                                                <MenuItem key={estado.id} value={estado.value}>
+                                                    {estado.label}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField>
+                                    </Grid>
+                                </Grid>
+                            )}
+                            {!isNational(formik.values.type) && (
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12}>
+                                        <TextField required label="País" fullWidth />
+                                    </Grid>
+                                </Grid>
+                            )}
                         </Box>
                         <Box
                             sx={{
