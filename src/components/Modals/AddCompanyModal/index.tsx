@@ -59,8 +59,8 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
             type: "nacional",
             name: "",
             document: "",
+            indicadorEstadual: "",
             inscricaoEstadual: "",
-            indicadorEstadual: "1",
             city: "",
             state: "",
             district: "",
@@ -223,6 +223,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                 <Grid container spacing={2}>
                                     <Grid item xs={isMobile ? 12 : formik.values.indicadorEstadual == "1" ? 6 : 12}>
                                         <TextField
+                                            required
                                             fullWidth
                                             label="Indicador de inscrição estadual"
                                             value={formik.values.indicadorEstadual}

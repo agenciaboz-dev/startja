@@ -17,7 +17,6 @@ export const PricingBox: React.FC<PricingBoxProps> = ({ formik }) => {
             sx={{
                 flexDirection: "column",
                 gap: "1vw",
-                // border: "1px solid blue",
             }}
         >
             <Grid container spacing={2}>
