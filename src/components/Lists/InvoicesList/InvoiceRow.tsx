@@ -2,7 +2,7 @@ import React from "react"
 import { Box, Button, Checkbox, IconButton, Menu, MenuItem, Tooltip, useMediaQuery } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import { colors } from "../../../style/colors"
-import { Download, Edit, PictureAsPdf } from "@mui/icons-material"
+import { Edit, PictureAsPdf, FileOpen } from "@mui/icons-material"
 
 interface InvoiceRowProps {
     invoice: notaFiscal
@@ -22,22 +22,22 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice, editInvoice }) 
                       onClick: () => {
                           editInvoice(invoice)
                           setMenuAnchorEl(null)
-                      }
-                  }
+                      },
+                  },
               ]
             : [
                   {
                       id: 1,
-                      title: "Download",
-                      icon: <Download />,
-                      onClick: () => window.open(`https://homologacao.focusnfe.com.br${invoice.url_xml}`, "_new")
+                      title: "Visualizar XML",
+                      icon: <FileOpen />,
+                      onClick: () => window.open(`https://homologacao.focusnfe.com.br${invoice.url_xml}`, "_new"),
                   },
                   {
                       id: 2,
-                      title: "Visualizar",
+                      title: "Visualizar PDF",
                       icon: <PictureAsPdf />,
-                      onClick: () => window.open(`https://homologacao.focusnfe.com.br${invoice.url_pdf}`, "_new")
-                  }
+                      onClick: () => window.open(`https://homologacao.focusnfe.com.br${invoice.url_pdf}`, "_new"),
+                  },
               ]
 
     const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null)

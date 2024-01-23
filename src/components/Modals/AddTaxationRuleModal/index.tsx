@@ -62,15 +62,16 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
             open={open}
             onClose={onClose}
             sx={{
-                justifyContent: "center"
+                justifyContent: "center",
             }}
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
                     minWidth: "80vw",
-                    width: "fit-content"
-                }
-            }}>
+                    width: "fit-content",
+                },
+            }}
+        >
             <form onSubmit={formik.handleSubmit}>
                 <DialogTitle>Adicionar Regra de Tributação</DialogTitle>
                 <CloseOutlinedIcon
@@ -78,7 +79,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                         position: "absolute",
                         top: isMobile ? "5vw" : "1vw",
                         right: isMobile ? "5vw" : "1vw",
-                        cursor: "pointer"
+                        cursor: "pointer",
                     }}
                     onClick={onClose}
                 />
@@ -86,20 +87,21 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                 <DialogContent>
                     <Box
                         sx={{
-                            alignItems: "center",
                             flexDirection: "column",
                             gap: isMobile ? "5vw" : "1vw",
-                            width: "100%"
-                        }}>
+                            width: "100%",
+                        }}
+                    >
                         <Box
                             sx={{
                                 height: "fit-content",
                                 width: "100%",
                                 justifyContent: "center",
-                                alignItems: "baseline",
-                                gap: "0.5vw",
-                                flexDirection: isMobile ? "column" : ""
-                            }}>
+                                alignItems: "center",
+                                gap: "1vw",
+                                flexDirection: isMobile ? "column" : "",
+                            }}
+                        >
                             <p style={pStyles}>Quando sair de</p>
                             <TextField
                                 select
@@ -111,7 +113,8 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                 fullWidth
                                 required
                                 sx={selectStyles}
-                                value={formik.values.origem}>
+                                value={formik.values.origem}
+                            >
                                 <MenuItem value="" sx={{ display: "none" }}></MenuItem>
                                 {estados.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
@@ -129,7 +132,8 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                 sx={selectStyles}
                                 onChange={formik.handleChange}
                                 name="destino"
-                                value={formik.values.destino}>
+                                value={formik.values.destino}
+                            >
                                 <MenuItem value="" sx={{ display: "none" }}></MenuItem>
                                 {estados.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
@@ -142,7 +146,17 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                 disablePortal
                                 options={product.list}
                                 getOptionLabel={(option) => `${option.codigo_externo} - ${option.name}`}
-                                renderInput={(params) => <TextField {...params} label="Produto" variant="standard" name="product_id" />}
+                                renderInput={(params) => (
+                                    <TextField
+                                        {...params}
+                                        label="Produto"
+                                        variant="standard"
+                                        name="product_id"
+                                        sx={{
+                                            minWidth: "20vw",
+                                        }}
+                                    />
+                                )}
                                 value={product.list.find((item) => item.id == formik.values.product_id) || product.list[0]}
                                 onChange={(_, value) => {
                                     if (value) formik.setFieldValue("product_id", value.id)
@@ -163,7 +177,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                     InputProps={{
                                         // @ts-ignore
                                         inputComponent: MaskedInput,
-                                        inputProps: { mask: [/\d/, /\d/, /\d/, /\d/], inputMode: "numeric" }
+                                        inputProps: { mask: [/\d/, /\d/, /\d/, /\d/], inputMode: "numeric" },
                                     }}
                                 />
                             </Grid>
@@ -177,7 +191,8 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                     value={formik.values.icms_modalidade_base_calculo}
                                     name="icms_modalidade_base_calculo"
                                     onChange={formik.handleChange}
-                                    select>
+                                    select
+                                >
                                     <MenuItem value={0}>0 - margem de valor agregado (%)</MenuItem>
                                     <MenuItem value={1}>1 - pauta (valor)</MenuItem>
                                     <MenuItem value={2}>2 - preço tabelado máximo (valor)</MenuItem>
@@ -194,18 +209,19 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                     InputProps={{
                                         // @ts-ignore
                                         inputComponent: MaskedInput,
-                                        inputProps: { mask: number_mask, inputMode: "numeric" }
+                                        inputProps: { mask: number_mask, inputMode: "numeric" },
                                     }}
                                 />
                             </Grid>
-                            <Grid item xs={isMobile ? 12 : 6}>
+                            <Grid item xs={12}>
                                 <TextField
                                     fullWidth
                                     label="Situação Tributária do ICMS"
                                     value={formik.values.icms_situacao_tributaria}
                                     name="icms_situacao_tributaria"
                                     onChange={formik.handleChange}
-                                    select>
+                                    select
+                                >
                                     {icms_situacao_tributaria_values.map((item) => (
                                         <MenuItem key={item.value} value={item.value}>
                                             {item.value} - {item.label}
@@ -223,7 +239,8 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                     value={formik.values.pis_situacao_tributaria}
                                     name="pis_situacao_tributaria"
                                     onChange={formik.handleChange}
-                                    select>
+                                    select
+                                >
                                     {pis_situacao_tributaria.map((item) => (
                                         <MenuItem key={item.value} value={item.value}>
                                             {item.value} - {item.label}
@@ -241,7 +258,8 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                     select
                                     value={formik.values.cofins_situacao_tributaria}
                                     name="cofins_situacao_tributaria"
-                                    onChange={formik.handleChange}>
+                                    onChange={formik.handleChange}
+                                >
                                     {cofins_options.map((item) => (
                                         <MenuItem key={item.value} value={item.value}>
                                             {item.value} - {item.label}
@@ -255,8 +273,9 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
 
                 <DialogActions
                     sx={{
-                        margin: "0.5vw"
-                    }}>
+                        margin: "0.5vw",
+                    }}
+                >
                     <Button
                         onClick={onClose}
                         color="secondary"
@@ -264,8 +283,9 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         Cancelar
                     </Button>
                     <Button
@@ -275,8 +295,9 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         Adicionar
                     </Button>
                 </DialogActions>
