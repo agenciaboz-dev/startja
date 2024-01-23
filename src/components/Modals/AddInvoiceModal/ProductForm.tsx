@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Autocomplete, Box, Button, FormControlLabel, Grid, MenuItem, Radio, RadioGroup, Tab, Tabs, TextField, useMediaQuery } from "@mui/material"
 import { useProduct } from "../../../hooks/useProduct"
 import { FormikErrors, useFormik } from "formik"
@@ -9,6 +9,9 @@ import icms_situacao_tributaria_values from "./icms_situacao_tributaria"
 import pis_situacao_tributaria from "./pis_situacao_tributaria"
 import { PricingBox } from "./PricingBox"
 import { PaymentBox } from "./paymentBox"
+import { useNumberMask } from "burgos-masks"
+import MaskedInput from "../../MaskedInput"
+import { unmaskNumber } from "../../../tools/unmaskNumber"
 
 interface ProductFormProps {
     addProduct: (product: InvoiceProduct) => void
@@ -17,10 +20,12 @@ interface ProductFormProps {
         handleChange: (e: React.ChangeEvent<any>) => void
         setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => Promise<void> | Promise<FormikErrors<FocusNFeInvoiceForm>>
     }
+    nature: Natureza | null
 }
 
-export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEInvoiceFormik }) => {
+export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEInvoiceFormik, nature }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const number_mask = useNumberMask({})
     const { list } = useProduct()
 
     const [productFormDisplay, setProductFormDisplay] = useState("produto")
@@ -28,8 +33,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
 
     const formik = useFormik<InvoiceProduct>({
         initialValues: {
-            aliquota: 10,
-            cfop: 5102,
+            aliquota: 0,
+            cfop: 0,
             cofins_situacao_tributaria: "01",
             icms_modalidade_base_calculo: 0,
             icms_origem: list[0].icmsOrigin,
@@ -43,15 +48,23 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
             unidade_comercial: "un",
             unidade_tributavel: "un",
             valor_unitario_comercial: 0,
-            valor_unitario_tributavel: 0,
+            valor_unitario_tributavel: 0
         },
         onSubmit: (values) => {
-            addProduct({ ...values, unidade_tributavel: values.unidade_comercial, valor_unitario_tributavel: values.valor_unitario_comercial })
-            formik.resetForm()
-            setProductFormDisplay("produto")
-            setCurrentProduct(list[0])
+            const data = {
+                ...values,
+                unidade_tributavel: values.unidade_comercial,
+                valor_unitario_tributavel: values.valor_unitario_comercial,
+                cfop: unmaskNumber(values.cfop.toString()),
+                aliquota: unmaskNumber(values.aliquota.toString())
+            }
+            console.log(data)
+            // addProduct(data)
+            // formik.resetForm()
+            // setProductFormDisplay("produto")
+            // setCurrentProduct(list[0])
         },
-        enableReinitialize: true,
+        enableReinitialize: true
     })
 
     const activeTabStyle = {
@@ -59,14 +72,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
         flex: 1,
         borderBottom: `2px solid ${colors.primary}`,
         color: `${colors.primary}`,
-        fontWeight: "bold",
+        fontWeight: "bold"
     }
     const inactiveTabStyle = {
         textTransform: "unset",
         flex: 1,
         borderTopLeftRadius: "15px",
         borderTopRightRadius: "15px",
-        backgroundColor: `${colors.background}`,
+        backgroundColor: `${colors.background}`
     }
     const tabLabelBoxStyles = { alignItems: "center" }
 
@@ -80,6 +93,28 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
         formik.setFieldValue("codigo_externo", product.codigo_externo)
     }
 
+    const checkTaxRules = () => {
+        const tax_rule = nature?.rules.find(
+            (rule) =>
+                rule.origem == focusNFEInvoiceFormik.values.emitente.uf &&
+                rule.destino == focusNFEInvoiceFormik.values.destinatario.uf &&
+                rule.product_id == currentProduct.id
+        )
+
+        if (tax_rule) {
+            formik.setFieldValue("aliquota", tax_rule.aliquota)
+            formik.setFieldValue("cfop", tax_rule.cfop)
+            formik.setFieldValue("cofins_situacao_tributaria", tax_rule.cofins_situacao_tributaria)
+            formik.setFieldValue("icms_modalidade_base_calculo", tax_rule.icms_modalidade_base_calculo)
+            formik.setFieldValue("icms_situacao_tributaria", tax_rule.icms_situacao_tributaria)
+            formik.setFieldValue("pis_situacao_tributaria", tax_rule.pis_situacao_tributaria)
+        }
+    }
+
+    useEffect(() => {
+        checkTaxRules()
+    }, [currentProduct, nature, focusNFEInvoiceFormik.values.emitente.uf, focusNFEInvoiceFormik.values.destinatario.uf])
+
     return (
         <Box
             sx={{
@@ -87,22 +122,19 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                 flexDirection: "column",
                 gap: isMobile ? "5vw" : "1vw",
                 height: "100%",
-                maxWidth: isMobile ? "100%" : "49%",
-            }}
-        >
+                maxWidth: isMobile ? "100%" : "49%"
+            }}>
             <Box
                 sx={{
-                    width: "100%",
-                }}
-            >
+                    width: "100%"
+                }}>
                 <Tabs
                     variant="fullWidth"
                     textColor="primary"
                     indicatorColor="primary"
                     sx={{ width: "100%" }}
                     onChange={(_, value) => setProductFormDisplay(value)}
-                    value={productFormDisplay}
-                >
+                    value={productFormDisplay}>
                     <Tab
                         value={"produto"}
                         label={
@@ -139,9 +171,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                 <Box
                     sx={{
                         flexDirection: "column",
-                        gap: isMobile ? "5vw" : "1vw",
-                    }}
-                >
+                        gap: isMobile ? "5vw" : "1vw"
+                    }}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <Autocomplete
@@ -170,8 +201,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 name="unidade_comercial"
                                 value={formik.values.unidade_comercial}
                                 onChange={formik.handleChange}
-                                select
-                            >
+                                select>
                                 <MenuItem value="un">unidade(s)</MenuItem>
                                 <MenuItem value="bdj">bandeja(s)</MenuItem>
                                 <MenuItem value="cx">caixa(s)</MenuItem>
@@ -221,12 +251,22 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                 <Box
                     sx={{
                         flexDirection: "column",
-                        gap: isMobile ? "5vw" : "1vw",
-                    }}
-                >
+                        gap: isMobile ? "5vw" : "1vw"
+                    }}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <TextField fullWidth label="CFOP" name="cfop" value={formik.values.cfop} onChange={formik.handleChange} />
+                            <TextField
+                                fullWidth
+                                label="CFOP"
+                                name="cfop"
+                                value={formik.values.cfop}
+                                onChange={formik.handleChange}
+                                InputProps={{
+                                    // @ts-ignore
+                                    inputComponent: MaskedInput,
+                                    inputProps: { mask: [/\d/, /\d/, /\d/, /\d/], inputMode: "numeric" }
+                                }}
+                            />
                         </Grid>
                     </Grid>
                     <h3>ICMS</h3>
@@ -239,8 +279,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 name="icms_origem"
                                 onChange={formik.handleChange}
                                 select
-                                disabled
-                            >
+                                disabled>
                                 {icms_origem_values.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
                                         {item.value} - {item.label}
@@ -255,8 +294,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 value={formik.values.icms_modalidade_base_calculo}
                                 name="icms_modalidade_base_calculo"
                                 onChange={formik.handleChange}
-                                select
-                            >
+                                select>
                                 <MenuItem value={0}>0 - margem de valor agregado (%)</MenuItem>
                                 <MenuItem value={1}>1 - pauta (valor)</MenuItem>
                                 <MenuItem value={2}>2 - preço tabelado máximo (valor)</MenuItem>
@@ -270,7 +308,11 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 name="aliquota"
                                 value={formik.values.aliquota}
                                 onChange={formik.handleChange}
-                                type="number"
+                                InputProps={{
+                                    // @ts-ignore
+                                    inputComponent: MaskedInput,
+                                    inputProps: { mask: useNumberMask({ allowDecimal: true }), inputMode: "numeric" }
+                                }}
                             />
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 6}>
@@ -280,8 +322,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 value={formik.values.icms_situacao_tributaria}
                                 name="icms_situacao_tributaria"
                                 onChange={formik.handleChange}
-                                select
-                            >
+                                select>
                                 {icms_situacao_tributaria_values.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
                                         {item.value} - {item.label}
@@ -299,8 +340,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 value={formik.values.pis_situacao_tributaria}
                                 name="pis_situacao_tributaria"
                                 onChange={formik.handleChange}
-                                select
-                            >
+                                select>
                                 {pis_situacao_tributaria.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
                                         {item.value} - {item.label}
@@ -318,8 +358,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 select
                                 value={formik.values.cofins_situacao_tributaria}
                                 name="cofins_situacao_tributaria"
-                                onChange={formik.handleChange}
-                            >
+                                onChange={formik.handleChange}>
                                 {cofins_options.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
                                         {item.value} - {item.label}
@@ -334,14 +373,12 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                 <Box
                     sx={{
                         flexDirection: "column",
-                        gap: isMobile ? "5vw" : "1vw",
-                    }}
-                >
+                        gap: isMobile ? "5vw" : "1vw"
+                    }}>
                     <RadioGroup
                         value={focusNFEInvoiceFormik.values.tipo_documento}
                         onChange={(_, value) => focusNFEInvoiceFormik.setFieldValue("tipo_documento", Number(value))}
-                        sx={{ flexDirection: isMobile ? "column" : "row", gap: isMobile ? "" : "5vw" }}
-                    >
+                        sx={{ flexDirection: isMobile ? "column" : "row", gap: isMobile ? "" : "5vw" }}>
                         <FormControlLabel label="Nota de entrada" control={<Radio value={0} />} />
                         <FormControlLabel label="Nota de saída" control={<Radio value={1} />} />
                     </RadioGroup>
@@ -355,8 +392,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 name="finalidade_emissao"
                                 value={focusNFEInvoiceFormik.values.finalidade_emissao}
                                 onChange={focusNFEInvoiceFormik.handleChange}
-                                select
-                            >
+                                select>
                                 <MenuItem value={1}>Normal</MenuItem>
                                 <MenuItem value={2}>Complementar</MenuItem>
                                 <MenuItem value={3}>Nota de ajuste</MenuItem>
@@ -370,8 +406,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 name="local_destino"
                                 value={focusNFEInvoiceFormik.values.local_destino}
                                 onChange={focusNFEInvoiceFormik.handleChange}
-                                select
-                            >
+                                select>
                                 <MenuItem value={1}>Operação Interna</MenuItem>
                                 <MenuItem value={2}>Operação interestadual</MenuItem>
                                 <MenuItem value={3}>Operação no exterior</MenuItem>
@@ -385,8 +420,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 name="presenca_comprador"
                                 value={focusNFEInvoiceFormik.values.presenca_comprador}
                                 onChange={focusNFEInvoiceFormik.handleChange}
-                                select
-                            >
+                                select>
                                 <MenuItem value={0}>Não se aplica</MenuItem>
                                 <MenuItem value={1}>Operação presencial</MenuItem>
                                 <MenuItem value={2}>Operação não presencial, pela Internet</MenuItem>
@@ -409,9 +443,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                     alignSelf: "end",
                     borderRadius: "20px",
                     textTransform: "unset",
-                    marginTop: "auto",
-                }}
-            >
+                    marginTop: "auto"
+                }}>
                 Adicionar produto
             </Button>
         </Box>

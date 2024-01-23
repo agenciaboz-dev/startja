@@ -14,14 +14,13 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
         <Box
             sx={{
                 alignItems: "center",
-                width: "100%",
-            }}
-        >
+                width: "100%"
+            }}>
             <Checkbox
                 inputProps={{
                     style: {
-                        padding: "0",
-                    },
+                        padding: "0"
+                    }
                 }}
             />
             <Box
@@ -29,15 +28,13 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     flex: 1,
-                    gap: isMobile ? "20vw" : "2vw",
-                }}
-            >
+                    gap: isMobile ? "20vw" : "2vw"
+                }}>
                 <Box
                     sx={{
                         flex: 0.7,
-                        alignItems: "center",
-                    }}
-                >
+                        alignItems: "center"
+                    }}>
                     <p>{nature.motive}</p>
                     {/* <p>Elementum senectus diam neque aliquet</p> */}
                 </Box>
@@ -45,28 +42,25 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
                     sx={{
                         alignItems: "center",
                         flex: 0.1,
-                        justifyContent: "center",
-                    }}
-                >
+                        justifyContent: "center"
+                    }}>
                     <VisibilityOutlinedIcon />
                 </Box>
                 <Box
                     sx={{
                         alignItems: "center",
                         flex: 0.1,
-                        justifyContent: "center",
-                    }}
-                >
+                        justifyContent: "center"
+                    }}>
                     <EditOutlinedIcon />
                 </Box>
                 <Box
                     sx={{
                         alignItems: "center",
                         flex: 0.1,
-                        justifyContent: "center",
-                    }}
-                >
-                    <ToggleSwitch />
+                        justifyContent: "center"
+                    }}>
+                    <ToggleSwitch nature={nature} />
                 </Box>
             </Box>
         </Box>

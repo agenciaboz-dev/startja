@@ -5,6 +5,7 @@ declare interface Natureza {
     finality: string
     motive: string
     emissionFinality: number
+    active: boolean
 
     rules: regraTributacao[]
     notas: notaFiscal[]
