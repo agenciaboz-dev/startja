@@ -32,6 +32,7 @@ import { Add } from "@mui/icons-material"
 import AddPropertyModal from "../AddPropertyModal"
 import AddCompanyModal from "../AddCompanyModal"
 import { colors } from "../../../style/colors"
+import { useNature } from "../../../hooks/useNature"
 
 interface AddInvoiceModalProps {
     open: boolean
@@ -309,6 +310,9 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
         }
     }, [])
 
+    const natures = useNature()
+    const [naturesList, setNaturesList] = useState(natures.list)
+
     return (
         <Dialog
             open={open}
@@ -408,7 +412,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                             </Grid>
 
                             <Grid container spacing={2}>
-                                <Grid item xs={12}>
+                                {/* <Grid item xs={12}>
                                     <TextField
                                         fullWidth
                                         label="Natureza da operação"
@@ -416,6 +420,25 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                                         value={formik.values.natureza_operacao}
                                         onChange={formik.handleChange}
                                         required
+                                    />
+                                </Grid> */}
+                                <Grid item xs={12}>
+                                    <Autocomplete
+                                        disablePortal
+                                        options={naturesList}
+                                        getOptionLabel={(option: Natureza) => `${option.motive}`}
+                                        isOptionEqualToValue={(option: Natureza, value) => option.id === value.id}
+                                        renderInput={(params) => (
+                                            <TextField
+                                                {...params}
+                                                label="Natureza de Operação"
+                                                InputProps={{
+                                                    ...params.InputProps,
+                                                }}
+                                            />
+                                        )}
+                                        // value={formik.values.natureza_operacao}
+                                        onChange={formik.handleChange}
                                     />
                                 </Grid>
                             </Grid>
