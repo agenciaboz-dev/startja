@@ -161,6 +161,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                     value={formik.values.cfop}
                                     onChange={formik.handleChange}
                                     InputProps={{
+                                        // @ts-ignore
                                         inputComponent: MaskedInput,
                                         inputProps: { mask: [/\d/, /\d/, /\d/, /\d/], inputMode: "numeric" }
                                     }}
@@ -191,6 +192,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                     value={formik.values.aliquota}
                                     onChange={formik.handleChange}
                                     InputProps={{
+                                        // @ts-ignore
                                         inputComponent: MaskedInput,
                                         inputProps: { mask: number_mask, inputMode: "numeric" }
                                     }}
