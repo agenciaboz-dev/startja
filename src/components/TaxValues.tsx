@@ -26,6 +26,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         disablePortal
                         options={cfop_values}
                         getOptionLabel={(option) => `${option.value} - ${option.label}`}
+                        getOptionDisabled={(option) => option.value.toString().length != 4}
                         renderInput={(params) => <TextField {...params} label="CFOP" variant="standard" name="cfop" />}
                         value={cfop_values.find((cfop) => cfop.value == formik.values.cfop) || cfop_values[0]}
                         onChange={(_, value) => {
