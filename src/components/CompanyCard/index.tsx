@@ -34,7 +34,7 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({ company }) => {
                 }}
             >
                 <MuiAvatar sx={{ backgroundColor: colors.secondary }} />
-                <Box sx={{ flexDirection: "column", alignItems: "center", gap: isMobile ? "2.5vw" : "0.5vw" }}>
+                <Box sx={{ flexDirection: "column", alignItems: "center", gap: isMobile ? "2vw" : "0.5vw" }}>
                     <p>CNPJ: {company.document}</p>
                     <p style={{ fontWeight: "bold", textTransform: "unset" }}>{company.name}</p>
                     <p>

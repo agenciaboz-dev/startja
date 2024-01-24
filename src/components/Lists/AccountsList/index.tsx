@@ -1,17 +1,18 @@
 import React from "react"
-import { Box } from "@mui/material"
+import { Box, useMediaQuery } from "@mui/material"
 import { AccountRow } from "./AccountRow"
 
 interface AccountsListProps {}
 
 export const AccountsList: React.FC<AccountsListProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
-                overflowY: "auto",
-                margin: "0.5vw 0",
+                margin: isMobile ? "2vw 0" : "0.5vw 0",
+                gap: isMobile ? "2vw" : "",
             }}
         >
             <AccountRow />
