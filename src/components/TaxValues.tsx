@@ -1,12 +1,11 @@
 import React from "react"
-import { Box, Grid, MenuItem, TextField, useMediaQuery } from "@mui/material"
-import { useNumberMask } from "burgos-masks"
+import { Autocomplete, Box, Grid, MenuItem, TextField, useMediaQuery } from "@mui/material"
 import icms_situacao_tributaria_values from "./Modals/AddInvoiceModal/icms_situacao_tributaria"
 import pis_situacao_tributaria from "./Modals/AddInvoiceModal/pis_situacao_tributaria"
 import cofins_options from "./Modals/AddInvoiceModal/cofins_situacao_tributaria"
 import { TaxRulesForm } from "../definitions/TaxRulesForm"
 import { FormikErrors } from "formik"
-import MaskedInput from "./MaskedInput"
+import cfop_values from "./Modals/AddTaxationRuleModal/cfop_values"
 
 interface TaxValuesProps {
     formik: {
@@ -19,26 +18,23 @@ interface TaxValuesProps {
 export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
 
-    const number_mask = useNumberMask({ allowDecimal: true, decimalLimit: 2 })
-
     return (
         <>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <TextField
-                        fullWidth
-                        label="CFOP"
-                        name="cfop"
-                        value={formik.values.cfop}
-                        onChange={formik.handleChange}
-                        InputProps={{
-                            // @ts-ignore
-                            inputComponent: MaskedInput,
-                            inputProps: { mask: [/\d/, /\d/, /\d/, /\d/], inputMode: "numeric" },
+                    <Autocomplete
+                        disablePortal
+                        options={cfop_values}
+                        getOptionLabel={(option) => `${option.value} - ${option.label}`}
+                        renderInput={(params) => <TextField {...params} label="CFOP" variant="standard" name="cfop" />}
+                        value={cfop_values.find((cfop) => cfop.value == formik.values.cfop)}
+                        onChange={(_, value) => {
+                            formik.setFieldValue("cfop", value?.value || "")
                         }}
                     />
                 </Grid>
             </Grid>
+
             <h3>ICMS</h3>
             <Grid container spacing={2}>
                 {/* <Grid item xs={isMobile ? 12 : 6}>
@@ -79,6 +75,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                             <TextField
                                 fullWidth
                                 label={item.field}
+                                // @ts-ignore
                                 value={formik.values[item.field] ? formik.values[item.field] : item.type == "number" ? 0 : ""}
                                 name={item.field}
                                 onChange={formik.handleChange}
@@ -87,6 +84,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         </Grid>
                     ))}
             </Grid>
+
             <h3>PIS</h3>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
@@ -106,6 +104,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                     </TextField>
                 </Grid>
             </Grid>
+
             <h3>COFINS</h3>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
