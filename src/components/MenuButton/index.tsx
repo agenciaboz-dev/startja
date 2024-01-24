@@ -75,11 +75,11 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                             <Box
                                 sx={{
                                     backgroundColor: colors.primary,
-                                    borderTopRightRadius: isMobile ? "2.5vw" : "1vw",
-                                    borderBottomRightRadius: isMobile ? "2.5vw" : "1vw",
+                                    borderTopRightRadius: isMobile ? "2vw" : "1vw",
+                                    borderBottomRightRadius: isMobile ? "2vw" : "1vw",
                                     position: "absolute",
                                     height: isMobile ? "10vw" : "3vw",
-                                    width: isMobile ? "2.5vw" : "0.5vw",
+                                    width: isMobile ? "2vw" : "0.5vw",
                                     left: 0,
                                 }}
                             ></Box>
@@ -132,11 +132,11 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                                         <Box
                                             sx={{
                                                 backgroundColor: colors.primary,
-                                                borderTopRightRadius: isMobile ? "2.5vw" : "1vw",
-                                                borderBottomRightRadius: isMobile ? "2.5vw" : "1vw",
+                                                borderTopRightRadius: isMobile ? "2vw" : "1vw",
+                                                borderBottomRightRadius: isMobile ? "2vw" : "1vw",
                                                 position: "absolute",
                                                 height: isMobile ? "10vw" : "3vw",
-                                                width: isMobile ? "2.5vw" : "0.5vw",
+                                                width: isMobile ? "2vw" : "0.5vw",
                                                 left: 0,
                                             }}
                                         ></Box>

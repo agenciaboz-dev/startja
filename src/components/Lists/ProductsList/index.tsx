@@ -27,10 +27,10 @@ export const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
-                overflowY: "auto",
                 margin: isMobile ? "2vw 0" : "0.5vw 0",
-                gap: isMobile ? "2vw" : ""
-            }}>
+                gap: isMobile ? "2vw" : "",
+            }}
+        >
             {products
                 .sort((a, b) => (a.name < b.name ? -1 : 1))
                 .map((product) => (

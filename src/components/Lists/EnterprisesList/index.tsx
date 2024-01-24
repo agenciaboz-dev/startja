@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box } from "@mui/material"
+import { Box, useMediaQuery } from "@mui/material"
 import { EnterpriseRow } from "./EnterpriseRow"
 import AddCompanyModal from "../../Modals/AddCompanyModal"
 
@@ -8,6 +8,7 @@ interface EnterprisesListProps {
 }
 
 export const EnterprisesList: React.FC<EnterprisesListProps> = ({ enterprises }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [currentCompany, setCurrentCompany] = useState<Company>()
 
@@ -25,8 +26,8 @@ export const EnterprisesList: React.FC<EnterprisesListProps> = ({ enterprises })
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
-                overflowY: "auto",
-                margin: "0.5vw 0",
+                margin: isMobile ? "2vw 0" : "0.5vw 0",
+                gap: isMobile ? "2vw" : "",
             }}
         >
             {enterprises.map((enterprise) => (

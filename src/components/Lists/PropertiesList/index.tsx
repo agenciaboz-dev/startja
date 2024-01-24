@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box } from "@mui/material"
+import { Box, useMediaQuery } from "@mui/material"
 import { PropertyRow } from "./PropertyRow"
 import AddPropertyModal from "../../Modals/AddPropertyModal"
 
@@ -8,6 +8,7 @@ interface PropertiesListProps {
 }
 
 export const PropertiesList: React.FC<PropertiesListProps> = ({ properties }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [currentProperty, setCurrentProperty] = useState<Property>()
 
@@ -25,8 +26,8 @@ export const PropertiesList: React.FC<PropertiesListProps> = ({ properties }) =>
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
-                overflowY: "auto",
-                margin: "0.5vw 0",
+                margin: isMobile ? "2vw 0" : "0.5vw 0",
+                gap: isMobile ? "2vw" : "",
             }}
         >
             {properties.map((property) => (

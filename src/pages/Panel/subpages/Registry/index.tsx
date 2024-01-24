@@ -34,7 +34,6 @@ export const Registry: React.FC<RegistryProps> = ({ user }) => {
                     sx={{
                         flex: 1,
                         flexDirection: "column",
-                        gap: isMobile ? "5vw" : "2vw",
                         height: "100%",
                         width: isMobile ? "90vw" : "100%",
                     }}
