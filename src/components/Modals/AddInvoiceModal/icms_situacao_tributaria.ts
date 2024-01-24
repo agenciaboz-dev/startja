@@ -29,9 +29,23 @@ export const icms_situacao_tributaria_values = [
 
     { value: "30", label: "Isenta ou não tributada e com cobrança do ICMS por substituição tributária" },
 
-    { value: "40", label: "Isenta" },
+    {
+        value: "40",
+        label: "Isenta",
+        fields: [
+            { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
+            { field: "icms_valor_desonerado", label: "Valor do ICMS desonerado", type: "number" },
+        ],
+    },
 
-    { value: "41", label: "Não tributada" },
+    {
+        value: "41",
+        label: "Não tributada",
+        fields: [
+            { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
+            { field: "icms_valor_desonerado", label: "Valor do ICMS desonerado", type: "number" },
+        ],
+    },
 
     { value: "50", label: "Suspensão" },
 
