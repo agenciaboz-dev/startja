@@ -53,7 +53,8 @@ export const Accounts: React.FC<AccountsProps> = ({}) => {
                             justifyContent: "center",
                             alignItems: "center",
                             flexDirection: "column",
-                            gap: "1vw",
+                            gap: isMobile ? "5vw" : "1vw",
+                            textAlign: "center",
                         }}
                     >
                         <h2>Sem contas cadastradas</h2>
@@ -63,7 +64,7 @@ export const Accounts: React.FC<AccountsProps> = ({}) => {
                             sx={{
                                 borderRadius: "20px",
                                 textTransform: "unset",
-                                height: "3vw",
+                                height: isMobile ? "8vw" : "2vw",
                                 verticalAlign: "middle",
                                 gap: "0.5vw",
                             }}
