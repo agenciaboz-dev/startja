@@ -1,8 +1,9 @@
-import React from "react"
-import { Box, Checkbox, useMediaQuery } from "@mui/material"
+import React, { useState } from "react"
+import { Box, Checkbox, IconButton, useMediaQuery } from "@mui/material"
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined"
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined"
 import { ToggleSwitch } from "../../ToggleSwitch"
+import AddNatureModal from "../../Modals/AddNatureModal"
 
 interface NatureRowProps {
     nature: Natureza
@@ -10,6 +11,8 @@ interface NatureRowProps {
 
 export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const [openModal, setOpenModal] = useState(false)
+
     return (
         <Box
             sx={{
@@ -52,7 +55,9 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
                         flex: 0.1,
                         justifyContent: "center"
                     }}>
-                    <EditOutlinedIcon />
+                    <IconButton color="inherit" onClick={() => setOpenModal(true)}>
+                        <EditOutlinedIcon />
+                    </IconButton>
                 </Box>
                 <Box
                     sx={{
@@ -63,6 +68,7 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
                     <ToggleSwitch nature={nature} />
                 </Box>
             </Box>
+            <AddNatureModal open={openModal} onClose={() => setOpenModal(false)} current_nature={nature} />
         </Box>
     )
 }
