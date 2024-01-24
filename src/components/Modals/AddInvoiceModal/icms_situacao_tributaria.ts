@@ -48,7 +48,7 @@ export const icms_situacao_tributaria_values = [
             {
                 field: "icms_origem",
                 label: "Origem da Mercadoria",
-                type: "select",
+                select: true,
                 options: [
                     { value: 0, label: "nacional" },
                     { value: 1, label: "estrangeira (importação direta)" },
