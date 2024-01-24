@@ -27,7 +27,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         options={cfop_values}
                         getOptionLabel={(option) => `${option.value} - ${option.label}`}
                         renderInput={(params) => <TextField {...params} label="CFOP" variant="standard" name="cfop" />}
-                        value={cfop_values.find((cfop) => cfop.value == formik.values.cfop)}
+                        value={cfop_values.find((cfop) => cfop.value == formik.values.cfop) || cfop_values[0]}
                         onChange={(_, value) => {
                             formik.setFieldValue("cfop", value?.value || "")
                         }}
@@ -58,8 +58,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         value={formik.values.icms_situacao_tributaria}
                         name="icms_situacao_tributaria"
                         onChange={formik.handleChange}
-                        select
-                    >
+                        select>
                         {icms_situacao_tributaria_values.map((item) => (
                             <MenuItem key={item.value} value={item.value}>
                                 {item.value} - {item.label}
@@ -80,6 +79,13 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                                 name={item.field}
                                 onChange={formik.handleChange}
                                 type={item.type}
+                                select={item.select}
+                                children={item.options?.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                        {option.value} - {option.label}
+                                    </MenuItem>
+                                ))}
+                                required
                             />
                         </Grid>
                     ))}
@@ -94,8 +100,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         value={formik.values.pis_situacao_tributaria}
                         name="pis_situacao_tributaria"
                         onChange={formik.handleChange}
-                        select
-                    >
+                        select>
                         {pis_situacao_tributaria.map((item) => (
                             <MenuItem key={item.value} value={item.value}>
                                 {item.value} - {item.label}
@@ -114,8 +119,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         select
                         value={formik.values.cofins_situacao_tributaria}
                         name="cofins_situacao_tributaria"
-                        onChange={formik.handleChange}
-                    >
+                        onChange={formik.handleChange}>
                         {cofins_options.map((item) => (
                             <MenuItem key={item.value} value={item.value}>
                                 {item.value} - {item.label}
