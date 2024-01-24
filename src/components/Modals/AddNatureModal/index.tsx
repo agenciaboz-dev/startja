@@ -54,7 +54,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
 
             console.log(values)
 
-            io.emit("nature:create", values)
+            io.emit(current_nature ? "nature:update" : "nature:create", values, current_nature?.id)
         },
         enableReinitialize: true
     })
@@ -94,6 +94,13 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
         }
     }
 
+    const onUpdateCallback = (nature: Natureza) => {
+        setLoading(false)
+        updateNature(nature)
+        formik.resetForm()
+        onClose()
+    }
+
     useEffect(() => {
         if (formik.values.operation) {
             handleOperationChange(formik.values.operation)
@@ -102,20 +109,30 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
 
     useEffect(() => {
         io.on("nature:creation:success", (nature: Natureza) => {
-            setLoading(false)
-            updateNature(nature)
-            formik.resetForm()
-            onClose()
+            onUpdateCallback(nature)
             snackbar({ severity: "success", text: "natureza criada com sucesso" })
         })
-        io.on("nature:error", (error) => {
+
+        io.on("nature:update:success", (nature: Natureza) => {
+            onUpdateCallback(nature)
+            snackbar({ severity: "info", text: "natureza atualizada com sucesso" })
+        })
+
+        io.on("nature:create:error", (error) => {
+            console.log(error)
+            snackbar({ severity: "error", text: "erro ao criar natureza, verifique o log" })
+        })
+
+        io.on("nature:update:error", (error) => {
             console.log(error)
             snackbar({ severity: "error", text: "erro ao criar natureza, verifique o log" })
         })
 
         return () => {
             io.off("nature:create:success")
-            io.off("nature:error")
+            io.off("nature:update:success")
+            io.off("nature:create:error")
+            io.off("nature:update:error")
         }
     }, [])
 
@@ -134,7 +151,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                 }
             }}>
             <form onSubmit={formik.handleSubmit}>
-                <DialogTitle>Adicionar natureza da operação</DialogTitle>
+                <DialogTitle>{`${current_nature ? "Editar" : "Adicionar"} natureza da operação`}</DialogTitle>
                 <CloseOutlinedIcon
                     sx={{
                         position: "absolute",
@@ -295,7 +312,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                             color: "white",
                             textTransform: "unset"
                         }}>
-                        {loading ? <CircularProgress size="1.5rem" sx={{ color: "white" }} /> : "Adicionar"}
+                        {loading ? <CircularProgress size="1.5rem" sx={{ color: "white" }} /> : current_nature ? "Salvar" : "Adicionar"}
                     </Button>
                 </DialogActions>
                 <AddTaxationRuleModal open={isAddTaxationRuleModalOpen} onClose={() => setAddTaxationRuleModalOpen(false)} addTaxRule={addTaxRule} />

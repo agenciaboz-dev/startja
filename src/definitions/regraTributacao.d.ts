@@ -13,4 +13,6 @@ declare interface regraTributacao {
 
     product_id: number
     product: Product
+
+    natureza_id: number
 }
