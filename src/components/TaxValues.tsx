@@ -73,7 +73,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         <Grid item xs={12} key={item.field}>
                             <TextField
                                 fullWidth
-                                label={item.field}
+                                label={item.label}
                                 // @ts-ignore
                                 value={formik.values[item.field] ? formik.values[item.field] : item.type == "number" ? 0 : ""}
                                 name={item.field}
