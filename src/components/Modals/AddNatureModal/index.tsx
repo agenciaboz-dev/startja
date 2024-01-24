@@ -50,11 +50,11 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
         },
         onSubmit(values, formikHelpers) {
             if (loading) return
-            // setLoading(true)
+            setLoading(true)
 
             console.log(values)
 
-            // io.emit(current_nature ? "nature:update" : "nature:create", values, current_nature?.id)
+            io.emit(current_nature ? "nature:update" : "nature:create", values, current_nature?.id)
         },
         enableReinitialize: true
     })
@@ -120,11 +120,13 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
 
         io.on("nature:create:error", (error) => {
             console.log(error)
+            setLoading(false)
             snackbar({ severity: "error", text: "erro ao criar natureza, verifique o log" })
         })
 
         io.on("nature:update:error", (error) => {
             console.log(error)
+            setLoading(false)
             snackbar({ severity: "error", text: "erro ao criar natureza, verifique o log" })
         })
 

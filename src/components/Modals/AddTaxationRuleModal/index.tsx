@@ -24,7 +24,6 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
 
     const formik = useFormik<TaxRulesForm>({
         initialValues: {
-            aliquota: 10,
             cfop: 0,
             icms_modalidade_base_calculo: 0,
             cofins_situacao_tributaria: "01",
@@ -53,6 +52,14 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
         },
         enableReinitialize: true
     })
+
+    useEffect(() => {
+        if (formik.values.product_id) {
+            const icms_origem = product.list.find((item) => item.id == formik.values.product_id)!.icmsOrigin
+            formik.setFieldValue("icms_origem", icms_origem)
+        }
+    }, [formik.values.product_id])
+
     useEffect(() => {
         formik.setFieldValue("cfop", formik.values.origem == formik.values.destino ? 5101 : 6101)
     }, [formik.values.origem, formik.values.destino])

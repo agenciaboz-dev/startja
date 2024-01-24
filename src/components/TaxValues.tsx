@@ -75,7 +75,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                                 fullWidth
                                 label={item.label}
                                 // @ts-ignore
-                                value={formik.values[item.field] ? formik.values[item.field] : item.type == "number" ? 0 : ""}
+                                value={formik.values[item.field] != undefined ? formik.values[item.field] : item.type == "number" ? 0 : ""}
                                 name={item.field}
                                 onChange={formik.handleChange}
                                 type={item.type}

@@ -56,8 +56,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                 ...values,
                 unidade_tributavel: values.unidade_comercial,
                 valor_unitario_tributavel: values.valor_unitario_comercial,
-                cfop: unmaskNumber(values.cfop.toString()),
-                aliquota: unmaskNumber(values.aliquota.toString())
+                cfop: unmaskNumber(values.cfop.toString())
             }
             console.log(data)
             addProduct(data)
@@ -87,14 +86,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
         flex: 1,
         borderBottom: `2px solid ${colors.primary}`,
         color: `${colors.primary}`,
-        fontWeight: "bold",
+        fontWeight: "bold"
     }
     const inactiveTabStyle = {
         textTransform: "unset",
         flex: 1,
         borderTopLeftRadius: "15px",
         borderTopRightRadius: "15px",
-        backgroundColor: `${colors.background}`,
+        backgroundColor: `${colors.background}`
     }
 
     const changeProduct = (product: Product | null) => {
@@ -116,12 +115,11 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
         )
 
         if (tax_rule) {
-            formik.setFieldValue("aliquota", tax_rule.aliquota)
-            formik.setFieldValue("cfop", tax_rule.cfop)
-            formik.setFieldValue("cofins_situacao_tributaria", tax_rule.cofins_situacao_tributaria)
-            formik.setFieldValue("icms_modalidade_base_calculo", tax_rule.icms_modalidade_base_calculo)
-            formik.setFieldValue("icms_situacao_tributaria", tax_rule.icms_situacao_tributaria)
-            formik.setFieldValue("pis_situacao_tributaria", tax_rule.pis_situacao_tributaria)
+            Object.entries(tax_rule).map(([param, value]) => {
+                if (["id", "product", "product_id", "origem", "destino"].includes(param)) return
+                formik.setFieldValue(param, value)
+                console.log(param, value)
+            })
         }
     }
 
