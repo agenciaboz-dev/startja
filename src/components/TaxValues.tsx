@@ -34,14 +34,14 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         InputProps={{
                             // @ts-ignore
                             inputComponent: MaskedInput,
-                            inputProps: { mask: [/\d/, /\d/, /\d/, /\d/], inputMode: "numeric" }
+                            inputProps: { mask: [/\d/, /\d/, /\d/, /\d/], inputMode: "numeric" },
                         }}
                     />
                 </Grid>
             </Grid>
             <h3>ICMS</h3>
             <Grid container spacing={2}>
-                <Grid item xs={isMobile ? 12 : 6}>
+                {/* <Grid item xs={isMobile ? 12 : 6}>
                     <TextField
                         fullWidth
                         label="Modalidade para base de cálculo do ICMS"
@@ -54,7 +54,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         <MenuItem value={2}>2 - preço tabelado máximo (valor)</MenuItem>
                         <MenuItem value={3}>3 - valor da operação</MenuItem>
                     </TextField>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12}>
                     <TextField
                         fullWidth
@@ -62,7 +62,8 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         value={formik.values.icms_situacao_tributaria}
                         name="icms_situacao_tributaria"
                         onChange={formik.handleChange}
-                        select>
+                        select
+                    >
                         {icms_situacao_tributaria_values.map((item) => (
                             <MenuItem key={item.value} value={item.value}>
                                 {item.value} - {item.label}
@@ -95,7 +96,8 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         value={formik.values.pis_situacao_tributaria}
                         name="pis_situacao_tributaria"
                         onChange={formik.handleChange}
-                        select>
+                        select
+                    >
                         {pis_situacao_tributaria.map((item) => (
                             <MenuItem key={item.value} value={item.value}>
                                 {item.value} - {item.label}
@@ -113,7 +115,8 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         select
                         value={formik.values.cofins_situacao_tributaria}
                         name="cofins_situacao_tributaria"
-                        onChange={formik.handleChange}>
+                        onChange={formik.handleChange}
+                    >
                         {cofins_options.map((item) => (
                             <MenuItem key={item.value} value={item.value}>
                                 {item.value} - {item.label}

@@ -2,22 +2,30 @@ export const icms_situacao_tributaria_values = [
     {
         value: "00",
         label: "Tributada integralmente",
-        fields: [{ field: "aliquota", type: "number" }]
+        fields: [{ field: "aliquota", type: "number" }],
     },
 
     {
         value: "10",
         label: "Tributada e com cobrança do ICMS por substituição tributária",
         fields: [
-            { field: "aliquota", type: "number" },
-            { field: "codigo_beneficio_fiscal", type: "text" },
             { field: "cest", type: "number" },
-            { field: "icms_aliquota_st", type: "number" }
+            { field: "codigo_beneficio_fiscal", type: "text" },
             // valor unitário da pauta
-        ]
+            { field: "aliquota", type: "number" },
+            { field: "icms_aliquota_st", type: "number" },
+        ],
     },
 
-    { value: "20", label: "Tributada com redução de base de cálculo" },
+    {
+        value: "20",
+        label: "Tributada com redução de base de cálculo",
+        fields: [
+            { field: "codigo_beneficio_fiscal", type: "text" },
+            { field: "icms_reducao_base_calculo", type: "number" },
+            { field: "aliquota", type: "number" },
+        ],
+    },
 
     { value: "30", label: "Isenta ou não tributada e com cobrança do ICMS por substituição tributária" },
 
@@ -53,7 +61,7 @@ export const icms_situacao_tributaria_values = [
 
     { value: "500", label: "ICMS cobrado anteriormente por substituição tributária (substituído) ou por antecipação" },
 
-    { value: "900", label: "Outras (regime Simples Nacional)" }
+    { value: "900", label: "Outras (regime Simples Nacional)" },
 ]
 
 export default icms_situacao_tributaria_values
