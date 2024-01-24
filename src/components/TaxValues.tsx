@@ -55,20 +55,6 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         <MenuItem value={3}>3 - valor da operação</MenuItem>
                     </TextField>
                 </Grid>
-                <Grid item xs={isMobile ? 12 : 6}>
-                    <TextField
-                        fullWidth
-                        label="Alíquota ICMS"
-                        name="aliquota"
-                        value={formik.values.aliquota}
-                        onChange={formik.handleChange}
-                        InputProps={{
-                            // @ts-ignore
-                            inputComponent: MaskedInput,
-                            inputProps: { mask: number_mask, inputMode: "numeric" }
-                        }}
-                    />
-                </Grid>
                 <Grid item xs={12}>
                     <TextField
                         fullWidth
@@ -84,6 +70,21 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         ))}
                     </TextField>
                 </Grid>
+
+                {icms_situacao_tributaria_values
+                    .find((item) => item.value == formik.values.icms_situacao_tributaria)
+                    ?.fields?.map((item) => (
+                        <Grid item xs={12} key={item.field}>
+                            <TextField
+                                fullWidth
+                                label={item.field}
+                                value={formik.values[item.field] ? formik.values[item.field] : item.type == "number" ? 0 : ""}
+                                name={item.field}
+                                onChange={formik.handleChange}
+                                type={item.type}
+                            />
+                        </Grid>
+                    ))}
             </Grid>
             <h3>PIS</h3>
             <Grid container spacing={2}>

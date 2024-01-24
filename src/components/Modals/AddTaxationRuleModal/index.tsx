@@ -39,8 +39,8 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                 snackbar({ severity: "warning", text: "cfop inválido" })
                 return
             }
-            console.log(values)
             const data: TaxRulesForm = { ...values, aliquota: Number(values.aliquota), cfop: Number(values.cfop) }
+            console.log(data)
             addTaxRule(data)
             onClose()
             formik.resetForm()

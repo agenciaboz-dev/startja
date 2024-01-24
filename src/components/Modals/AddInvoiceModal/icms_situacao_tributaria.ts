@@ -1,7 +1,21 @@
 export const icms_situacao_tributaria_values = [
-    { value: "00", label: "Tributada integralmente" },
+    {
+        value: "00",
+        label: "Tributada integralmente",
+        fields: [{ field: "aliquota", type: "number" }]
+    },
 
-    { value: "10", label: "Tributada e com cobrança do ICMS por substituição tributária" },
+    {
+        value: "10",
+        label: "Tributada e com cobrança do ICMS por substituição tributária",
+        fields: [
+            { field: "aliquota", type: "number" },
+            { field: "codigo_beneficio_fiscal", type: "text" },
+            { field: "cest", type: "number" },
+            { field: "icms_aliquota_st", type: "number" }
+            // valor unitário da pauta
+        ]
+    },
 
     { value: "20", label: "Tributada com redução de base de cálculo" },
 
