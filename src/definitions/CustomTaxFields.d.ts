@@ -3,5 +3,5 @@ declare interface CustomTaxFields {
     label: string
     type?: "number" | "text"
     select?: boolean
-    options: { value: number | string; label: string }[]
+    options?: { value: number | string; label: string }[]
 }
