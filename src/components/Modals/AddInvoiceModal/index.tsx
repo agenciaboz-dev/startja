@@ -27,6 +27,7 @@ import AddCompanyModal from "../AddCompanyModal"
 import { colors } from "../../../style/colors"
 import { useNature } from "../../../hooks/useNature"
 import AddNatureModal from "../AddNatureModal"
+import { unmaskCurrency } from "../../../tools/unmaskNumber"
 
 interface AddInvoiceModalProps {
     open: boolean
@@ -274,10 +275,9 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
     }, [currentInvoice])
 
     useEffect(() => {
-        formik.setFieldValue(
-            "valor.produtos",
-            formik.values.produtos.reduce((total, product) => total + product.valor_unitario_comercial * product.quantidade, 0)
-        )
+        const value = formik.values.produtos.reduce((total, product) => total + product.valor_unitario_comercial * product.quantidade, 0)
+        console.log(value)
+        formik.setFieldValue("valor.produtos", value)
     }, [formik.values.produtos])
 
     useEffect(() => {

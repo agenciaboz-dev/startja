@@ -3,6 +3,7 @@ import { Box, Checkbox, IconButton, Menu, MenuItem, useMediaQuery } from "@mui/m
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
 import { FormikErrors } from "formik"
+import { CurrencyText } from "../../CurrencyText"
 
 interface InvoiceModalProductRowProps {
     product: InvoiceProduct
@@ -52,7 +53,9 @@ export const InvoiceModalProductRow: React.FC<InvoiceModalProductRowProps> = ({ 
                 }}>
                 <Box sx={{ ...slotStyle, justifyContent: "start" }}>{product.name}</Box>
                 <Box sx={slotStyle}>{product.quantidade}</Box>
-                <Box sx={slotStyle}>{product.valor_unitario_comercial}</Box>
+                <Box sx={slotStyle}>
+                    <CurrencyText value={product.valor_unitario_comercial} />
+                </Box>
                 <Box sx={slotStyle}>{}</Box>
                 <Box sx={slotStyle}>{product.valor_unitario_comercial * product.quantidade}</Box>
                 <Box sx={slotStyle}></Box>
