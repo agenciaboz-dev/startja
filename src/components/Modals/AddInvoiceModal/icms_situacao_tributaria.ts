@@ -1,4 +1,8 @@
-export const icms_situacao_tributaria_values = [
+export const icms_situacao_tributaria_values: {
+    value: string
+    label: string
+    fields?: CustomTaxFields[]
+}[] = [
     {
         value: "00",
         label: "Tributada integralmente",
