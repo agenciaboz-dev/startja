@@ -71,7 +71,33 @@ export const icms_situacao_tributaria_values: {
         ],
     },
 
-    { value: "60", label: "Cobrado anteriormente por substituição tributária" },
+    {
+        value: "60",
+        label: "Cobrado anteriormente por substituição tributária",
+        fields: [
+            { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
+            {
+                field: "icms_origem",
+                label: "Origem da Mercadoria",
+                select: true,
+                options: [
+                    { value: 0, label: "0 - Nacional - Exceto as indicadas nos códigos 3, 4, 5 e 8" },
+                    { value: 1, label: "1 - Estrangeira - Importação direta, exceto a indicada no código 6" },
+                    { value: 2, label: "2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7" },
+                    { value: 3, label: "3 - Nacional - Mercadoria ou bem com Conteúdo de Importação superior a 40% e inferior ou igual a 70%" },
+                    {
+                        value: 4,
+                        label: "4 - Nacional - Produção feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes",
+                    },
+                    { value: 5, label: "5 - Nacional - Mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%" },
+                    { value: 6, label: "6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural" },
+                    { value: 7, label: "7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural" },
+                    { value: 8, label: "8 - Nacional - Mercadoria ou bem com Conteúdo de Importação superior a 70%" },
+                ],
+            },
+            { field: "cest", label: "CEST", type: "number" },
+        ],
+    },
 
     { value: "70", label: "Tributada com redução de base de cálculo e com cobrança do ICMS por substituição tributária" },
 
@@ -79,20 +105,24 @@ export const icms_situacao_tributaria_values: {
         value: "90",
         label: "Outras(regime Normal)",
         fields: [
+            { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
             {
                 field: "icms_origem",
                 label: "Origem da Mercadoria",
                 select: true,
                 options: [
-                    { value: 0, label: "nacional" },
-                    { value: 1, label: "estrangeira (importação direta)" },
-                    { value: 2, label: "estrangeira (adquirida no mercado interno)" },
-                    { value: 3, label: "nacional com mais de 40% de conteúdo estrangeiro" },
-                    { value: 4, label: "nacional produzida através de processos produtivos básicos" },
-                    { value: 5, label: "nacional com menos de 40% de conteúdo estrangeiro" },
-                    { value: 6, label: "estrangeira (importação direta) sem produto nacional similar" },
-                    { value: 7, label: "estrangeira (adquirida no mercado interno) sem produto nacional similar" },
-                    { value: 8, label: "nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%;" },
+                    { value: 0, label: "0 - Nacional - Exceto as indicadas nos códigos 3, 4, 5 e 8" },
+                    { value: 1, label: "1 - Estrangeira - Importação direta, exceto a indicada no código 6" },
+                    { value: 2, label: "2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7" },
+                    { value: 3, label: "3 - Nacional - Mercadoria ou bem com Conteúdo de Importação superior a 40% e inferior ou igual a 70%" },
+                    {
+                        value: 4,
+                        label: "4 - Nacional - Produção feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes",
+                    },
+                    { value: 5, label: "5 - Nacional - Mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%" },
+                    { value: 6, label: "6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural" },
+                    { value: 7, label: "7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural" },
+                    { value: 8, label: "8 - Nacional - Mercadoria ou bem com Conteúdo de Importação superior a 70%" },
                 ],
             },
         ],
