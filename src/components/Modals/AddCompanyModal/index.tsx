@@ -142,14 +142,15 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
             open={open}
             onClose={onClose}
             sx={{
-                justifyContent: "center"
+                justifyContent: "center",
             }}
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
-                    minWidth: "90vw"
-                }
-            }}>
+                    minWidth: "90vw",
+                },
+            }}
+        >
             <form style={{ display: "contents" }} onSubmit={formik.handleSubmit}>
                 <DialogTitle>Adicionar Pessoa ou Empresa</DialogTitle>
                 <CloseOutlinedIcon
@@ -157,7 +158,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                         position: "absolute",
                         top: isMobile ? "5vw" : "1vw",
                         right: isMobile ? "5vw" : "1vw",
-                        cursor: "pointer"
+                        cursor: "pointer",
                     }}
                     onClick={onClose}
                 />
@@ -165,8 +166,9 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                     <Box
                         sx={{
                             flexDirection: "column",
-                            gap: isMobile ? "10vw" : "2vw"
-                        }}>
+                            gap: isMobile ? "10vw" : "2vw",
+                        }}
+                    >
                         <Box
                             sx={{
                                 flexDirection: "column",
@@ -191,7 +193,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                             InputProps={{
                                                 // @ts-ignore
                                                 inputComponent: MaskedInput,
-                                                inputProps: { mask: document_mask, inputMode: "numeric" }
+                                                inputProps: { mask: document_mask, inputMode: "numeric" },
                                             }}
                                         />
                                     </Grid>
@@ -228,7 +230,8 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                                             value={formik.values.indicadorEstadual}
                                             name="indicadorEstadual"
                                             onChange={formik.handleChange}
-                                            select>
+                                            select
+                                        >
                                             <MenuItem value={1}>1 - Contribuinte ICMS (informar a IE do destinatário)</MenuItem>
                                             <MenuItem value={2}>2 - Contribuinte isento de Inscrição no cadastro de Contribuintes do ICMS</MenuItem>
                                             <MenuItem value={9}>
@@ -269,8 +272,9 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                         <Box
                             sx={{
                                 flexDirection: "column",
-                                gap: isMobile ? "5vw" : "1vw"
-                            }}>
+                                gap: isMobile ? "5vw" : "1vw",
+                            }}
+                        >
                             <h3>Endereço</h3>
                             <Grid container spacing={2}>
                                 <Grid item xs={isMobile ? 12 : 4}>
@@ -365,8 +369,9 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                         <Box
                             sx={{
                                 flexDirection: "column",
-                                gap: isMobile ? "5vw" : "1vw"
-                            }}>
+                                gap: isMobile ? "5vw" : "1vw",
+                            }}
+                        >
                             <h3>Contato</h3>
                             <Grid container spacing={2}>
                                 <Grid item xs={isMobile ? 12 : 6}>
@@ -396,8 +401,9 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                 <DialogActions
                     sx={{
                         margin: isMobile ? "0" : "0.5vw",
-                        padding: isMobile ? "5vw" : ""
-                    }}>
+                        padding: isMobile ? "5vw" : "",
+                    }}
+                >
                     <Button
                         onClick={onClose}
                         color="secondary"
@@ -405,8 +411,9 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         Cancelar
                     </Button>
                     <Button
@@ -416,9 +423,10 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
-                        {loading ? <CircularProgress size="1.5rem" color="inherit" /> : currentCompany ? "salvar" : "Adicionar"}
+                            textTransform: "unset",
+                        }}
+                    >
+                        {loading ? <CircularProgress size="1.5rem" color="inherit" /> : currentCompany ? "Salvar" : "Adicionar"}
                     </Button>
                 </DialogActions>
             </form>

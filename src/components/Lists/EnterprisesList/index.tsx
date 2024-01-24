@@ -2,15 +2,12 @@ import React, { useEffect, useState } from "react"
 import { Box } from "@mui/material"
 import { EnterpriseRow } from "./EnterpriseRow"
 import AddCompanyModal from "../../Modals/AddCompanyModal"
-// import { useEnterprise } from "../../hooks/useEnterprise"
 
 interface EnterprisesListProps {
     enterprises: Company[]
 }
 
 export const EnterprisesList: React.FC<EnterprisesListProps> = ({ enterprises }) => {
-    // const Enterprises = useEnterprise()
-
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [currentCompany, setCurrentCompany] = useState<Company>()
 
@@ -29,9 +26,9 @@ export const EnterprisesList: React.FC<EnterprisesListProps> = ({ enterprises })
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5vw 0"
-            }}>
-            {/* {Enterprises.list.map(Enterprise => <EnterpriseRow key={Enterprise.id} Enterprise={Enterprise} />)} */}
+                margin: "0.5vw 0",
+            }}
+        >
             {enterprises.map((enterprise) => (
                 <EnterpriseRow key={enterprise.id} enterprise={enterprise} editCompany={setCurrentCompany} />
             ))}

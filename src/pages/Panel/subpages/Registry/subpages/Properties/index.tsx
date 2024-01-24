@@ -95,7 +95,6 @@ export const Properties: React.FC<PropertiesProps> = ({}) => {
                             flexDirection: "column",
                             padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
                             width: isMobile ? "fit-content" : "100%",
-                            gap: isMobile ? "2.5vw" : "",
                         }}
                     >
                         <PropertiesListHeader />

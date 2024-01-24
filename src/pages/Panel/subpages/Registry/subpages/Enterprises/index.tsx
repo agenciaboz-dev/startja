@@ -103,7 +103,6 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ user }) => {
                     </Box>
                 )}
             </Box>
-            {/* <AddEnterpriseModal open={isAddEnterpriseModalOpen} onClose={() => setAddEnterpriseModalOpen(false)} /> */}
             <AddCompanyModal open={isAddEnterpriseModalOpen} onClose={() => setAddEnterpriseModalOpen(false)} />
         </Box>
     )
