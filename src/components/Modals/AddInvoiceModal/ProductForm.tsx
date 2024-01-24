@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { Autocomplete, Box, Button, FormControlLabel, Grid, MenuItem, Radio, RadioGroup, Tab, Tabs, TextField, useMediaQuery } from "@mui/material"
 import { useProduct } from "../../../hooks/useProduct"
 import { FormikErrors, useFormik } from "formik"
@@ -12,6 +12,7 @@ import { PaymentBox } from "./paymentBox"
 import { useNumberMask } from "burgos-masks"
 import MaskedInput from "../../MaskedInput"
 import { unmaskNumber } from "../../../tools/unmaskNumber"
+import { TaxValues } from "../../TaxValues"
 
 interface ProductFormProps {
     addProduct: (product: InvoiceProduct) => void
@@ -67,6 +68,18 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
         enableReinitialize: true
     })
 
+    const tax_formik = useMemo(
+        () => ({
+            ...formik,
+            values: {
+                ...formik.values,
+                product_id: 0,
+                origem: focusNFEInvoiceFormik.values.emitente.uf,
+                destino: focusNFEInvoiceFormik.values.destinatario.uf
+            }
+        }),
+        [formik]
+    )
     const tabLabelBoxStyles = { alignItems: "center" }
 
     const activeTabStyle = {
@@ -254,120 +267,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                         flexDirection: "column",
                         gap: isMobile ? "5vw" : "1vw"
                     }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                label="CFOP"
-                                name="cfop"
-                                value={formik.values.cfop}
-                                onChange={formik.handleChange}
-                                InputProps={{
-                                    // @ts-ignore
-                                    inputComponent: MaskedInput,
-                                    inputProps: { mask: [/\d/, /\d/, /\d/, /\d/], inputMode: "numeric" }
-                                }}
-                            />
-                        </Grid>
-                    </Grid>
-                    <h3>ICMS</h3>
-                    <Grid container spacing={2}>
-                        <Grid item xs={isMobile ? 12 : 6}>
-                            <TextField
-                                fullWidth
-                                label="Origem do ICMS"
-                                value={formik.values.icms_origem}
-                                name="icms_origem"
-                                onChange={formik.handleChange}
-                                select
-                                disabled>
-                                {icms_origem_values.map((item) => (
-                                    <MenuItem key={item.value} value={item.value}>
-                                        {item.value} - {item.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                        </Grid>
-                        <Grid item xs={isMobile ? 12 : 6}>
-                            <TextField
-                                fullWidth
-                                label="Modalidade para base de cálculo do ICMS"
-                                value={formik.values.icms_modalidade_base_calculo}
-                                name="icms_modalidade_base_calculo"
-                                onChange={formik.handleChange}
-                                select>
-                                <MenuItem value={0}>0 - margem de valor agregado (%)</MenuItem>
-                                <MenuItem value={1}>1 - pauta (valor)</MenuItem>
-                                <MenuItem value={2}>2 - preço tabelado máximo (valor)</MenuItem>
-                                <MenuItem value={3}>3 - valor da operação</MenuItem>
-                            </TextField>
-                        </Grid>
-                        <Grid item xs={isMobile ? 12 : 6}>
-                            <TextField
-                                fullWidth
-                                label="Alíquota ICMS"
-                                name="aliquota"
-                                value={formik.values.aliquota}
-                                onChange={formik.handleChange}
-                                InputProps={{
-                                    // @ts-ignore
-                                    inputComponent: MaskedInput,
-                                    inputProps: { mask: useNumberMask({ allowDecimal: true }), inputMode: "numeric" }
-                                }}
-                            />
-                        </Grid>
-                        <Grid item xs={isMobile ? 12 : 6}>
-                            <TextField
-                                fullWidth
-                                label="Situação Tributária do ICMS"
-                                value={formik.values.icms_situacao_tributaria}
-                                name="icms_situacao_tributaria"
-                                onChange={formik.handleChange}
-                                select>
-                                {icms_situacao_tributaria_values.map((item) => (
-                                    <MenuItem key={item.value} value={item.value}>
-                                        {item.value} - {item.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                        </Grid>
-                    </Grid>
-                    <h3>PIS</h3>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                label="Situação tributária do PIS"
-                                value={formik.values.pis_situacao_tributaria}
-                                name="pis_situacao_tributaria"
-                                onChange={formik.handleChange}
-                                select>
-                                {pis_situacao_tributaria.map((item) => (
-                                    <MenuItem key={item.value} value={item.value}>
-                                        {item.value} - {item.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                        </Grid>
-                    </Grid>
-                    <h3>COFINS</h3>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                label="Situação tributária do COFINS"
-                                select
-                                value={formik.values.cofins_situacao_tributaria}
-                                name="cofins_situacao_tributaria"
-                                onChange={formik.handleChange}>
-                                {cofins_options.map((item) => (
-                                    <MenuItem key={item.value} value={item.value}>
-                                        {item.value} - {item.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                        </Grid>
-                    </Grid>
+                    <TaxValues formik={tax_formik} />
                 </Box>
             )}
             {productFormDisplay === "outrosDados" && (
