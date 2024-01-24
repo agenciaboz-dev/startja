@@ -7,6 +7,7 @@ import { useProduct } from "../../../hooks/useProduct"
 import { TaxRulesForm } from "../../../definitions/TaxRulesForm"
 import { useSnackbar } from "burgos-snackbar"
 import { TaxValues } from "../../TaxValues"
+import icms_situacao_tributaria_values from "../AddInvoiceModal/icms_situacao_tributaria"
 
 interface AddTaxationRuleModalProps {
     open: boolean
@@ -24,7 +25,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
     const formik = useFormik<TaxRulesForm>({
         initialValues: {
             aliquota: 10,
-            cfop: 5102,
+            cfop: 0,
             icms_modalidade_base_calculo: 0,
             cofins_situacao_tributaria: "01",
             icms_situacao_tributaria: "00",
@@ -35,11 +36,16 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
             product_id: 0
         },
         onSubmit(values, formikHelpers) {
-            if (values.cfop.toString().length != 4) {
-                snackbar({ severity: "warning", text: "cfop inválido" })
-                return
+            const additional_fields = icms_situacao_tributaria_values.find((item) => item.value == values.icms_situacao_tributaria)?.fields || []
+            const data: TaxRulesForm = {
+                ...values,
+                cfop: Number(values.cfop)
             }
-            const data: TaxRulesForm = { ...values, aliquota: Number(values.aliquota), cfop: Number(values.cfop) }
+            additional_fields.map((field) => {
+                // @ts-ignore
+                data[field.field] = values[field.field]
+            })
+
             console.log(data)
             addTaxRule(data)
             onClose()
@@ -47,6 +53,9 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
         },
         enableReinitialize: true
     })
+    useEffect(() => {
+        formik.setFieldValue("cfop", formik.values.origem == formik.values.destino ? 5101 : 6101)
+    }, [formik.values.origem, formik.values.destino])
 
     useEffect(() => {
         if (!!product.list.length) formik.setFieldValue("product_id", product.list[0].id)
