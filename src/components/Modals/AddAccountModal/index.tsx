@@ -1,10 +1,7 @@
 import React, { useState } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, Tabs, Tab, useMediaQuery } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, Tabs, Tab, useMediaQuery, Radio } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
-// import { AccountsListHeader } from "../../../../components/AccountsList/AccountsListHeader"
-// import { AccountsList } from "../../../../components/AccountsList"
-import { AddedTaxationRulesListHeader } from "../../../../../../components/AddedTaxationRulesList/AddedTaxationRulesListHeader"
-import { AddedTaxationRuleRowsList } from "../../../../../../components/AddedTaxationRulesList"
+import { colors } from "../../../style/colors"
 
 interface AddAccountModalProps {
     open: boolean
@@ -13,7 +10,25 @@ interface AddAccountModalProps {
 
 const AddAccountModal: React.FC<AddAccountModalProps> = ({ open, onClose }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
-    const [accountType, setAccountType] = useState("bank")
+
+    const [accountFormDisplay, setAccountFormDisplay] = useState("bank")
+
+    const tabLabelBoxStyles = { alignItems: "center" }
+
+    const activeTabStyle = {
+        textTransform: "unset",
+        flex: 1,
+        borderBottom: `2px solid ${colors.primary}`,
+        color: `${colors.primary}`,
+        fontWeight: "bold",
+    }
+    const inactiveTabStyle = {
+        textTransform: "unset",
+        flex: 1,
+        borderTopLeftRadius: "15px",
+        borderTopRightRadius: "15px",
+        backgroundColor: `${colors.background}`,
+    }
 
     return (
         <Dialog
@@ -51,13 +66,40 @@ const AddAccountModal: React.FC<AddAccountModalProps> = ({ open, onClose }) => {
                     }}
                 >
                     <Box>
-                        <Tabs variant="scrollable" indicatorColor="primary">
-                            <Tab label="Conta bancária" onClick={() => setAccountType("bank")} sx={{ textTransform: "unset" }} />
-                            <Tab label="Caixa interno" onClick={() => setAccountType("internal")} sx={{ textTransform: "unset" }} />
+                        <Tabs
+                            variant="fullWidth"
+                            textColor="primary"
+                            indicatorColor="primary"
+                            sx={{ width: "100%" }}
+                            onChange={(_, value) => setAccountFormDisplay(value)}
+                            value={accountFormDisplay}
+                        >
+                            <Tab
+                                value={"bank"}
+                                label={
+                                    <Box sx={tabLabelBoxStyles}>
+                                        {!isMobile && <Radio checked={accountFormDisplay === "bank"} />}
+                                        <p>Conta bancária</p>
+                                    </Box>
+                                }
+                                // onClick={() => setAccountType("bank")}
+                                sx={accountFormDisplay === "bank" ? activeTabStyle : inactiveTabStyle}
+                            />
+                            <Tab
+                                value={"internal"}
+                                label={
+                                    <Box sx={tabLabelBoxStyles}>
+                                        {!isMobile && <Radio checked={accountFormDisplay === "internal"} />}
+                                        <p>Caixa interno</p>
+                                    </Box>
+                                }
+                                // onClick={() => setAccountType("internal")}
+                                sx={accountFormDisplay === "internal" ? activeTabStyle : inactiveTabStyle}
+                            />
                         </Tabs>
                     </Box>
 
-                    {accountType === "bank" && (
+                    {accountFormDisplay === "bank" && (
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField label="Nome da conta" fullWidth />
@@ -74,7 +116,7 @@ const AddAccountModal: React.FC<AddAccountModalProps> = ({ open, onClose }) => {
                         </Grid>
                     )}
 
-                    {accountType === "internal" && (
+                    {accountFormDisplay === "internal" && (
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField label="Nome da conta" fullWidth />

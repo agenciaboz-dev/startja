@@ -80,22 +80,22 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
         }),
         [formik]
     )
+    const tabLabelBoxStyles = { alignItems: "center" }
 
     const activeTabStyle = {
         textTransform: "unset",
         flex: 1,
         borderBottom: `2px solid ${colors.primary}`,
         color: `${colors.primary}`,
-        fontWeight: "bold"
+        fontWeight: "bold",
     }
     const inactiveTabStyle = {
         textTransform: "unset",
         flex: 1,
         borderTopLeftRadius: "15px",
         borderTopRightRadius: "15px",
-        backgroundColor: `${colors.background}`
+        backgroundColor: `${colors.background}`,
     }
-    const tabLabelBoxStyles = { alignItems: "center" }
 
     const changeProduct = (product: Product | null) => {
         if (!product) return

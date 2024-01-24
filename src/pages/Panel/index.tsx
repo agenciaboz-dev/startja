@@ -8,7 +8,6 @@ import { Issuance } from "./subpages/Issuance"
 import { Registry } from "./subpages/Registry"
 import { Cashbook } from "./subpages/Cashbook"
 import { Config } from "./subpages/Config"
-import { useCompany } from "../../hooks/useCompany"
 import { Reports } from "./subpages/Reports"
 
 interface PanelProps {

@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react"
 import { Box } from "@mui/material"
 import { PropertyRow } from "./PropertyRow"
-import { useUser } from "../../../hooks/useUser"
 import AddPropertyModal from "../../Modals/AddPropertyModal"
-// import { useProperty } from "../../hooks/useProperty"
 
-interface PropertiesListProps {}
+interface PropertiesListProps {
+    properties: Property[]
+}
 
-export const PropertiesList: React.FC<PropertiesListProps> = ({}) => {
-    const { user } = useUser()
-    if (!user) return null
-
-    const properties = user.properties
-
+export const PropertiesList: React.FC<PropertiesListProps> = ({ properties }) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [currentProperty, setCurrentProperty] = useState<Property>()
 
@@ -31,8 +26,9 @@ export const PropertiesList: React.FC<PropertiesListProps> = ({}) => {
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5vw 0"
-            }}>
+                margin: "0.5vw 0",
+            }}
+        >
             {properties.map((property) => (
                 <PropertyRow key={property.id} property={property} editProperty={setCurrentProperty} />
             ))}

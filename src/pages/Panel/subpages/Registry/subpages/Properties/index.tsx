@@ -7,6 +7,7 @@ import { useIo } from "../../../../../../hooks/useIo"
 import { Toolbar } from "../../../../../../components/Toolbar"
 import AddPropertyModal from "../../../../../../components/Modals/AddPropertyModal"
 import { useHeader } from "../../../../../../hooks/useHeader"
+import { useUser } from "../../../../../../hooks/useUser"
 
 interface PropertiesProps {}
 
@@ -14,7 +15,10 @@ export const Properties: React.FC<PropertiesProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const header = useHeader()
     const io = useIo()
-    const [emptyPropertiesList, setEmptyPropertiesList] = useState(false)
+    const { user } = useUser()
+    if (!user) return null
+    const properties = user.properties
+    const emptyPropertiesList = !user.properties
     const [isAddPropertyModalOpen, setAddPropertyModalOpen] = useState(false)
     const openPropertyModal = () => {
         setAddPropertyModalOpen(true)
@@ -58,24 +62,25 @@ export const Properties: React.FC<PropertiesProps> = ({}) => {
                             justifyContent: "center",
                             alignItems: "center",
                             flexDirection: "column",
-                            gap: "1vw",
+                            gap: isMobile ? "5vw" : "1vw",
+                            textAlign: "center",
                         }}
                     >
-                        <h2>Sem naturezas de operação cadastradas</h2>
-                        <p>Pressione o botão para cadastrar uma natureza de operação.</p>
+                        <h2>Sem propriedades cadastradas</h2>
+                        <p>Pressione o botão para cadastrar uma propriedade.</p>
                         <Button
                             variant="contained"
                             sx={{
                                 borderRadius: "20px",
                                 textTransform: "unset",
-                                height: "3vw",
+                                height: isMobile ? "8vw" : "2vw",
                                 verticalAlign: "middle",
                                 gap: "0.5vw",
                             }}
                             onClick={openPropertyModal}
                         >
                             <AddOutlinedIcon />
-                            Adicionar nova natureza de operação
+                            Adicionar propriedade
                         </Button>
                     </Box>
                 )}
@@ -90,11 +95,10 @@ export const Properties: React.FC<PropertiesProps> = ({}) => {
                             flexDirection: "column",
                             padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
                             width: isMobile ? "fit-content" : "100%",
-                            gap: isMobile ? "2.5vw" : "",
                         }}
                     >
                         <PropertiesListHeader />
-                        <PropertiesList />
+                        <PropertiesList properties={properties} />
                     </Box>
                 )}
             </Box>
