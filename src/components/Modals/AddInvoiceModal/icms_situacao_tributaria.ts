@@ -51,9 +51,25 @@ export const icms_situacao_tributaria_values: {
         ],
     },
 
-    { value: "50", label: "Suspensão" },
+    {
+        value: "50",
+        label: "Suspensão",
+        fields: [
+            { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
+            { field: "icms_valor_desonerado", label: "Valor do ICMS desonerado", type: "number" },
+        ],
+    },
 
-    { value: "51", label: "Diferimento (a exigência do preenchimento das informações do ICMS diferido fica a critério de cada UF)" },
+    {
+        value: "51",
+        label: "Diferimento (a exigência do preenchimento das informações do ICMS diferido fica a critério de cada UF)",
+        fields: [
+            { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
+            { field: "icms_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number" },
+            { field: "aliquota", label: "Alíquota ICMS", type: "number" },
+            { field: "icms_percentual_diferimento", label: "Percentual de diferimento", type: "number" },
+        ],
+    },
 
     { value: "60", label: "Cobrado anteriormente por substituição tributária" },
 
@@ -67,7 +83,6 @@ export const icms_situacao_tributaria_values: {
                 field: "icms_origem",
                 label: "Origem da Mercadoria",
                 select: true,
-                type: undefined,
                 options: [
                     { value: 0, label: "nacional" },
                     { value: 1, label: "estrangeira (importação direta)" },
