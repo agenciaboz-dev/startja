@@ -7,7 +7,7 @@ import { PricingBox } from "./PricingBox"
 import { PaymentBox } from "./paymentBox"
 import { useCurrencyMask, useNumberMask } from "burgos-masks"
 import MaskedInput from "../../MaskedInput"
-import { unmaskCurrency } from "../../../tools/unmaskNumber"
+import { unmaskCurrency, unmaskNumber } from "../../../tools/unmaskNumber"
 import { TaxValues } from "../../TaxValues"
 
 interface ProductFormProps {
@@ -47,14 +47,15 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
             unidade_tributavel: "un",
             // @ts-ignore
             valor_unitario_comercial: "",
-            valor_unitario_tributavel: 0
+            valor_unitario_tributavel: 0,
+            informacoes_adicionais_item: ""
         },
         onSubmit: (values) => {
             const data = {
                 ...values,
                 unidade_tributavel: values.unidade_comercial,
                 cfop: unmaskCurrency(values.cfop.toString()),
-                quantidade: Number(values.quantidade),
+                quantidade: unmaskNumber(values.quantidade),
                 valor_unitario_comercial: unmaskCurrency(values.valor_unitario_comercial.toString()),
                 valor_unitario_tributavel: unmaskCurrency(values.valor_unitario_comercial.toString())
             }
@@ -244,15 +245,23 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 label="Valor total"
                                 fullWidth
                                 disabled
-                                value={Number((Number(formik.values.quantidade) * unmaskCurrency(formik.values.valor_unitario_comercial)).toFixed(2))}
+                                value={Number(
+                                    (unmaskNumber(formik.values.quantidade) * unmaskCurrency(formik.values.valor_unitario_comercial)).toFixed(2)
+                                )}
                                 InputProps={{ startAdornment: <>R$</>, sx: { gap: "0.3rem" } }}
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField label="Informações adicionais do produto" fullWidth />
+                            <TextField
+                                label="Informações adicionais do produto"
+                                fullWidth
+                                name="informacoes_adicionais_item"
+                                value={formik.values.informacoes_adicionais_item}
+                                onChange={formik.handleChange}
+                            />
                         </Grid>
                     </Grid>
-                    <h4>Integração com pedido de compra</h4>
+                    {/* <h4>Integração com pedido de compra</h4>
                     <Grid container spacing={2}>
                         <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="Ordem de compra" fullWidth />
@@ -260,7 +269,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                         <Grid item xs={isMobile ? 12 : 6}>
                             <TextField label="Nº do item" fullWidth />
                         </Grid>
-                    </Grid>
+                    </Grid> */}
                 </Box>
             )}
             {productFormDisplay === "tributação" && (

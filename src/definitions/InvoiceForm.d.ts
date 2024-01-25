@@ -89,6 +89,9 @@ declare interface InvoiceProduct {
     valor_unitario_tributavel: number
     ncm: string
     icms_origem: number
+
+    informacoes_adicionais_item: string
+
     icms_situacao_tributaria: string
     cofins_situacao_tributaria: string
     pis_situacao_tributaria: string

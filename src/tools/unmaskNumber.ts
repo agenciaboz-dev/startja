@@ -7,4 +7,4 @@ export const unmaskCurrency = (value: string | number) => {
     )
 }
 
-export const unmaskNumber = (value: string) => Number(value.replace(/\D/g, ""))
+export const unmaskNumber = (value: string | number) => Number(value.toString().replace(/\D/g, ""))

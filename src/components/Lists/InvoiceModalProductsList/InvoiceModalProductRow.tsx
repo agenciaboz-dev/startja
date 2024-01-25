@@ -4,6 +4,7 @@ import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBullet
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
 import { FormikErrors } from "formik"
 import { CurrencyText } from "../../CurrencyText"
+import { unmaskNumber } from "../../../tools/unmaskNumber"
 
 interface InvoiceModalProductRowProps {
     product: InvoiceProduct
@@ -58,7 +59,7 @@ export const InvoiceModalProductRow: React.FC<InvoiceModalProductRowProps> = ({ 
                 </Box>
                 <Box sx={slotStyle}>{}</Box>
                 <Box sx={slotStyle}>
-                    <CurrencyText value={(product.valor_unitario_comercial * product.quantidade).toFixed(2)} />
+                    <CurrencyText value={(product.valor_unitario_comercial * unmaskNumber(product.quantidade)).toFixed(2)} />
                 </Box>
                 <Box sx={slotStyle}></Box>
                 <IconButton sx={{ ...slotStyle, flex: 0.1, cursor: "pointer" }} onClick={(event) => setMenuAnchorEl(event.currentTarget)}>

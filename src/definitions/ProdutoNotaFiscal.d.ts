@@ -3,6 +3,7 @@ declare interface ProdutoNotaFiscal {
     productQnty: number
     unidade: string
     unitaryValue: number
+    informacoes_adicionais_item: string
 
     produto: Product
     produtoId: number

@@ -27,7 +27,7 @@ import AddCompanyModal from "../AddCompanyModal"
 import { colors } from "../../../style/colors"
 import { useNature } from "../../../hooks/useNature"
 import AddNatureModal from "../AddNatureModal"
-import { unmaskCurrency } from "../../../tools/unmaskNumber"
+import { unmaskCurrency, unmaskNumber } from "../../../tools/unmaskNumber"
 
 interface AddInvoiceModalProps {
     open: boolean
@@ -118,7 +118,8 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                       unidade_comercial: product.unidade,
                       unidade_tributavel: product.unidade,
                       valor_unitario_comercial: product.unitaryValue,
-                      valor_unitario_tributavel: product.unitaryValue
+                      valor_unitario_tributavel: product.unitaryValue,
+                      informacoes_adicionais_item: product.informacoes_adicionais_item
                   }))
               }
             : {
@@ -271,6 +272,30 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
     }
 
     useEffect(() => {
+        user.properties.map((property) => {
+            if (property.id == currentProperty.id) {
+                setCurrentProperty(property)
+            }
+        })
+    }, [user.properties])
+
+    useEffect(() => {
+        user.companies.map((company) => {
+            if (company.id == currentRecipient.id) {
+                setCurrentRecipient(company)
+            }
+        })
+    }, [user.companies])
+
+    useEffect(() => {
+        natures.list.map((nature) => {
+            if (nature.id == selectedNature?.id) {
+                setSelectedNature(nature)
+            }
+        })
+    }, [natures.list])
+
+    useEffect(() => {
         if (currentInvoice) {
             setCurrentProperty(currentInvoice.propriedade)
             setCurrentRecipient(currentInvoice.destinatario)
@@ -279,7 +304,10 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
     }, [currentInvoice])
 
     useEffect(() => {
-        const value = formik.values.produtos.reduce((total, product) => total + product.valor_unitario_comercial * product.quantidade, 0)
+        const value = formik.values.produtos.reduce(
+            (total, product) => total + product.valor_unitario_comercial * unmaskNumber(product.quantidade),
+            0
+        )
         console.log(value)
         formik.setFieldValue("valor.produtos", value)
     }, [formik.values.produtos])
@@ -290,12 +318,20 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
     }, [formik.values.valor])
 
     useEffect(() => {
+        if (open)
+            console.log({
+                next_invoice_number: Number(formik.values.numero) || Number(currentProperty.nfe_number),
+                property_number: Number(currentProperty.nfe_number)
+            })
+    }, [open])
+
+    useEffect(() => {
         io.on("nota:create:response", (response) => {
             console.log(response)
             setLoading(false)
             onClose()
             snackbar({ severity: "info", text: "Nota fiscal criada, aguardando autorização" })
-            formik.setFieldValue("produtos", [])
+            formik.resetForm()
         })
 
         io.on("nota:create:error", (error) => {
