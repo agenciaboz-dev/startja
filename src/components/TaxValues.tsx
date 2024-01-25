@@ -59,8 +59,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         value={formik.values.icms_situacao_tributaria}
                         name="icms_situacao_tributaria"
                         onChange={formik.handleChange}
-                        select
-                    >
+                        select>
                         {icms_situacao_tributaria_values.map((item) => (
                             <MenuItem key={item.value} value={item.value}>
                                 {item.value} - {item.label}
@@ -102,8 +101,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         value={formik.values.pis_situacao_tributaria}
                         name="pis_situacao_tributaria"
                         onChange={formik.handleChange}
-                        select
-                    >
+                        select>
                         {pis_situacao_tributaria_values.map((item) => (
                             <MenuItem key={item.value} value={item.value}>
                                 {item.value} - {item.label}
@@ -111,6 +109,22 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         ))}
                     </TextField>
                 </Grid>
+                {pis_situacao_tributaria_values
+                    .find((item) => item.value == formik.values.pis_situacao_tributaria)
+                    ?.fields?.map((item) => (
+                        <Grid item xs={12} key={item.field}>
+                            <TextField
+                                fullWidth
+                                label={item.label}
+                                // @ts-ignore
+                                value={formik.values[item.field] != undefined ? formik.values[item.field] : item.type == "number" ? 0 : ""}
+                                name={item.field}
+                                onChange={formik.handleChange}
+                                type={item.type}
+                                required
+                            />
+                        </Grid>
+                    ))}
             </Grid>
 
             <h3>COFINS</h3>
@@ -122,8 +136,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         select
                         value={formik.values.cofins_situacao_tributaria}
                         name="cofins_situacao_tributaria"
-                        onChange={formik.handleChange}
-                    >
+                        onChange={formik.handleChange}>
                         {cofins_situacao_tributaria_values.map((item) => (
                             <MenuItem key={item.value} value={item.value}>
                                 {item.value} - {item.label}
@@ -131,6 +144,22 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         ))}
                     </TextField>
                 </Grid>
+                {pis_situacao_tributaria_values
+                    .find((item) => item.value == formik.values.cofins_situacao_tributaria)
+                    ?.fields?.map((item) => (
+                        <Grid item xs={12} key={item.field}>
+                            <TextField
+                                fullWidth
+                                label={item.label}
+                                // @ts-ignore
+                                value={formik.values[item.field] != undefined ? formik.values[item.field] : item.type == "number" ? 0 : ""}
+                                name={item.field}
+                                onChange={formik.handleChange}
+                                type={item.type}
+                                required
+                            />
+                        </Grid>
+                    ))}
             </Grid>
         </>
     )
