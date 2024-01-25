@@ -9,6 +9,7 @@ declare interface notaFiscal {
     finalidade_emissao: number
     consumidor_final: number
     presenca_comprador: number
+    informacoes_adicionais_contribuinte: string
 
     emitente_id: number
     emitente: User

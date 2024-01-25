@@ -62,6 +62,8 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                   numero: currentInvoice.propriedade.nfe_number,
                   serie: currentInvoice.propriedade.nfe_series,
                   consumidor_final: currentInvoice.consumidor_final,
+                  informacoes_adicionais_contribuinte: currentInvoice.informacoes_adicionais_contribuinte,
+
                   destinatario: {
                       bairro: currentInvoice.destinatario.district,
                       indicador_inscricao_estadual: Number(currentInvoice.destinatario.indicadorEstadual),
@@ -126,6 +128,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                   numero: "",
                   serie: is_cpf ? "922" : "",
                   consumidor_final: 0,
+                  informacoes_adicionais_contribuinte: "",
                   destinatario: user.companies[0]
                       ? {
                             bairro: user.companies[0].district,
@@ -182,10 +185,6 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
               },
         onSubmit: (values) => {
             if (loading) return
-            if (!values.natureza_operacao) {
-                snackbar({ severity: "warning", text: "Natureza de operação não pode ser vazia" })
-                return
-            }
 
             if (!currentRecipient) {
                 snackbar({ severity: "warning", text: "Destinatário não pode ser vazio" })
@@ -210,6 +209,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                     numero: Number(values.numero) || Number(currentProperty.nfe_number),
                     serie: Number(values.serie),
                     consumidor_final: Number(values.consumidor_final),
+                    natureza_operacao: selectedNature.operation,
                     emitente: { ...values.emitente, numero: Number(values.emitente.numero) },
                     destinatario: {
                         ...values.destinatario,
@@ -318,11 +318,12 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
     }, [formik.values.valor])
 
     useEffect(() => {
-        if (open)
+        if (open) {
             console.log({
                 next_invoice_number: Number(formik.values.numero) || Number(currentProperty.nfe_number),
                 property_number: Number(currentProperty.nfe_number)
             })
+        }
     }, [open])
 
     useEffect(() => {

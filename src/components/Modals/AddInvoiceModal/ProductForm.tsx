@@ -344,7 +344,13 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                         </Grid>
 
                         <Grid item xs={12}>
-                            <TextField fullWidth label="Informações adicionais da nota" />
+                            <TextField
+                                fullWidth
+                                label="Informações adicionais da nota"
+                                name="informacoes_adicionais_contribuinte"
+                                value={focusNFEInvoiceFormik.values.informacoes_adicionais_contribuinte}
+                                onChange={focusNFEInvoiceFormik.handleChange}
+                            />
                         </Grid>
                     </Grid>
                 </Box>
