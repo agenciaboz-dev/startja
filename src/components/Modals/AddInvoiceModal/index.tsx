@@ -103,17 +103,17 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                   },
 
                   produtos: currentInvoice.products.map((product) => ({
-                      aliquota: 0,
-                      cfop: 0,
+                      aliquota: product.tax_rules.aliquota,
+                      cfop: product.tax_rules.cfop,
                       codigo_externo: product.produto.codigo_externo,
-                      cofins_situacao_tributaria: "",
-                      icms_modalidade_base_calculo: 0,
+                      cofins_situacao_tributaria: product.tax_rules.cofins_situacao_tributaria,
+                      icms_modalidade_base_calculo: product.tax_rules.icms_modalidade_base_calculo,
                       icms_origem: product.produto.icmsOrigin,
-                      icms_situacao_tributaria: "",
+                      icms_situacao_tributaria: product.tax_rules.icms_situacao_tributaria,
                       id: product.produto.id.toString(),
                       name: product.produto.name,
                       ncm: product.produto.ncm,
-                      pis_situacao_tributaria: "",
+                      pis_situacao_tributaria: product.tax_rules.pis_situacao_tributaria,
                       quantidade: product.productQnty,
                       unidade_comercial: product.unidade,
                       unidade_tributavel: product.unidade,
@@ -195,15 +195,18 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                 snackbar({ severity: "warning", text: "Propriedade não pode ser vazia" })
                 return
             }
+            if (!selectedNature) return
+
             setLoading(true)
 
-            const data: { nota: FocusNFeInvoiceData; emitente_id: number; destinatario_id: number; propriedade_id: number } = {
+            const data: { nota: FocusNFeInvoiceData; emitente_id: number; destinatario_id: number; propriedade_id: number; nature_id: number } = {
                 emitente_id: user.id,
                 destinatario_id: currentRecipient.id,
                 propriedade_id: currentProperty.id,
+                nature_id: selectedNature.id,
                 nota: {
                     ...values,
-                    numero: Number(values.numero),
+                    numero: Number(values.numero) || Number(currentProperty.nfe_number),
                     serie: Number(values.serie),
                     consumidor_final: Number(values.consumidor_final),
                     emitente: { ...values.emitente, numero: Number(values.emitente.numero) },
@@ -271,6 +274,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
         if (currentInvoice) {
             setCurrentProperty(currentInvoice.propriedade)
             setCurrentRecipient(currentInvoice.destinatario)
+            setSelectedNature(currentInvoice.nature)
         }
     }, [currentInvoice])
 

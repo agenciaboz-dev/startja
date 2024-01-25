@@ -9,4 +9,5 @@ declare interface ProdutoNotaFiscal {
 
     nota: notaFiscal
     notaId: number
+    tax_rules: regraTributacao
 }

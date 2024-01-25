@@ -30,4 +30,6 @@ declare interface notaFiscal {
     mensagem_sefaz?: string
 
     products: ProdutoNotaFiscal[]
+    nature: Natureza
+    nature_id: number
 }
