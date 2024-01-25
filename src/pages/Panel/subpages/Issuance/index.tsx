@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react"
-import { Box, useMediaQuery } from "@mui/material"
+import { Box, Button, useMediaQuery } from "@mui/material"
 import { Header } from "../../../../components/Header"
 import { Toolbar } from "../../../../components/Toolbar"
 import { InvoicesList } from "../../../../components/Lists/InvoicesList"
 import { InvoicesListHeader } from "../../../../components/Lists/InvoicesList/InvoicesListHeader"
 import AddInvoiceModal from "../../../../components/Modals/AddInvoiceModal"
 import { useHeader } from "../../../../hooks/useHeader"
+import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
 
 interface IssuanceProps {
     user: User
@@ -18,6 +19,8 @@ export const Issuance: React.FC<IssuanceProps> = ({ user }) => {
     const openInvoiceModal = () => {
         setAddInvoiceModalOpen(true)
     }
+
+    const emptyInvoicesList = !user.notas.length
 
     const handleSearch = () => {}
 
@@ -48,7 +51,7 @@ export const Issuance: React.FC<IssuanceProps> = ({ user }) => {
                     }}
                 >
                     <Toolbar
-                        searchPlaceholder="produto"
+                        searchPlaceholder="notas fiscais"
                         hasFilterButton
                         importButtonPlaceholder="notas fiscais"
                         addButtonText="Adicionar nota fiscal"
@@ -63,20 +66,53 @@ export const Issuance: React.FC<IssuanceProps> = ({ user }) => {
                             margin: isMobile ? "0 -5vw" : "",
                         }}
                     >
-                        <Box
-                            sx={{
-                                flex: 1,
-                                flexDirection: "column",
-                                backgroundColor: "white",
-                                borderRadius: "20px",
-                                boxShadow: "0 2px 2px 2px #d1d1d1",
-                                padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
-                                width: isMobile ? "fit-content" : "100%",
-                            }}
-                        >
-                            <InvoicesListHeader />
-                            <InvoicesList invoices={user.notas} />
-                        </Box>
+                        {emptyInvoicesList && (
+                            <Box
+                                sx={{
+                                    height: "100%",
+                                    width: "100%",
+                                    padding: "2vw",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    flexDirection: "column",
+                                    gap: isMobile ? "5vw" : "1vw",
+                                    textAlign: "center",
+                                }}
+                            >
+                                <h2>Sem notas fiscais emitidas</h2>
+                                <p>Pressione o botão para emitir uma nota fiscal.</p>
+                                <Button
+                                    variant="contained"
+                                    sx={{
+                                        borderRadius: "20px",
+                                        textTransform: "unset",
+                                        height: isMobile ? "8vw" : "2vw",
+                                        verticalAlign: "middle",
+                                        gap: "0.5vw",
+                                    }}
+                                    onClick={openInvoiceModal}
+                                >
+                                    <AddOutlinedIcon />
+                                    Adicionar nota fiscal
+                                </Button>
+                            </Box>
+                        )}
+                        {!emptyInvoicesList && (
+                            <Box
+                                sx={{
+                                    flex: 1,
+                                    flexDirection: "column",
+                                    backgroundColor: "white",
+                                    borderRadius: "20px",
+                                    boxShadow: "0 2px 2px 2px #d1d1d1",
+                                    padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
+                                    width: isMobile ? "fit-content" : "100%",
+                                }}
+                            >
+                                <InvoicesListHeader />
+                                <InvoicesList invoices={user.notas} />
+                            </Box>
+                        )}
                     </Box>
                 </Box>
             </Box>
