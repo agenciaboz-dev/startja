@@ -1,9 +1,33 @@
-export const pis_situacao_tributaria = [
-    { value: "01", label: "Operação tributável: base de cálculo = valor da operação (alíquota normal - cumulativo/não cumulativo)" },
+export const pis_situacao_tributaria_values = [
+    {
+        value: "01",
+        label: "Operação tributável: base de cálculo = valor da operação (alíquota normal - cumulativo/não cumulativo)",
+        fields: [
+            { field: "pis_base_calculo", label: "Percentual base de cálculo", type: "number" },
+            { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number" },
+            { field: "pis_aliquota_valor", label: "Valor alíquota", type: "number" },
+        ],
+    },
 
-    { value: "02", label: "Operação tributável: base de cálculo = valor da operação (alíquota diferenciada)" },
+    {
+        value: "02",
+        label: "Operação tributável: base de cálculo = valor da operação (alíquota diferenciada)",
+        fields: [
+            { field: "pis_base_calculo", label: "Percentual base de cálculo", type: "number" },
+            { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number" },
+            { field: "pis_aliquota_valor", label: "Valor alíquota", type: "number" },
+        ],
+    },
 
-    { value: "03", label: "Operação tributável: base de cálculo = quantidade vendida × alíquota por unidade de produto" },
+    {
+        value: "03",
+        label: "Operação tributável: base de cálculo = quantidade vendida × alíquota por unidade de produto",
+        fields: [
+            { field: "pis_quantidade_vendida", label: "Quantidade base de cálculo", type: "number" },
+            { field: "pis_aliquota_valor", label: "Alíquota (em reais)", type: "number" },
+            { field: "pis_valor", label: "Valor", type: "number" },
+        ],
+    },
 
     { value: "04", label: "Operação tributável: tributação monofásica (alíquota zero)" },
 
@@ -17,7 +41,15 @@ export const pis_situacao_tributaria = [
 
     { value: "09", label: "Operação com suspensão da contribuição" },
 
-    { value: "49", label: "Outras operações de saída" },
+    {
+        value: "49",
+        label: "Outras operações de saída",
+        fields: [
+            { field: "pis_base_calculo", label: "Percentual base de cálculo", type: "number" },
+            { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number" },
+            { field: "pis_aliquota_valor", label: "Valor alíquota", type: "number" },
+        ],
+    },
 
     { value: "50", label: "Operação com direito a crédito: vinculada exclusivamente a receita tributada no mercado interno" },
 
@@ -47,7 +79,7 @@ export const pis_situacao_tributaria = [
 
     {
         value: "66",
-        label: "Crédito presumido: operação de aquisição vinculada a receitas tributadas e não-tributadas no mercado interno e de exportação"
+        label: "Crédito presumido: operação de aquisição vinculada a receitas tributadas e não-tributadas no mercado interno e de exportação",
     },
 
     { value: "67", label: "Crédito presumido: outras operações" },
@@ -64,9 +96,25 @@ export const pis_situacao_tributaria = [
 
     { value: "75", label: "Operação de aquisição por substituição tributária" },
 
-    { value: "98", label: "Outras operações de entrada" },
+    {
+        value: "98",
+        label: "Outras operações de entrada",
+        fields: [
+            { field: "pis_base_calculo", label: "Percentual base de cálculo", type: "number" },
+            { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number" },
+            { field: "pis_aliquota_valor", label: "Valor alíquota", type: "number" },
+        ],
+    },
 
-    { value: "99", label: "Outras operações" }
+    {
+        value: "99",
+        label: "Outras operações",
+        fields: [
+            { field: "pis_base_calculo", label: "Percentual base de cálculo", type: "number" },
+            { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number" },
+            { field: "pis_aliquota_valor", label: "Valor alíquota", type: "number" },
+        ],
+    },
 ]
 
-export default pis_situacao_tributaria
+export default pis_situacao_tributaria_values
