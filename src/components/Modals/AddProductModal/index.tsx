@@ -57,14 +57,15 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
             open={open}
             onClose={onClose}
             sx={{
-                justifyContent: "center"
+                justifyContent: "center",
             }}
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
-                    minWidth: "90vw"
-                }
-            }}>
+                    minWidth: "90vw",
+                },
+            }}
+        >
             <form style={{ display: "contents" }} onSubmit={formik.handleSubmit}>
                 <DialogTitle>Adicionar Produto</DialogTitle>
                 <CloseOutlinedIcon
@@ -72,7 +73,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
                         position: "absolute",
                         top: isMobile ? "5vw" : "1vw",
                         right: isMobile ? "5vw" : "1vw",
-                        cursor: "pointer"
+                        cursor: "pointer",
                     }}
                     onClick={onClose}
                 />
@@ -110,15 +111,26 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
                                 name="icmsOrigin"
                                 onChange={formik.handleChange}
                                 select
-                                InputLabelProps={{ shrink: true }}>
-                                <MenuItem value={0}>0 – Nacional</MenuItem>
-                                <MenuItem value={1}>1 – Estrangeira (importação direta)</MenuItem>
-                                <MenuItem value={2}>2 – Estrangeira (adquirida no mercado interno)</MenuItem>
-                                <MenuItem value={3}>3 – Nacional com mais de 40% de conteúdo estrangeiro</MenuItem>
-                                <MenuItem value={4}>4 – Nacional produzida através de processos produtivos básicos</MenuItem>
-                                <MenuItem value={5}>5 – Nacional com menos de 40% de conteúdo estrangeiro</MenuItem>
-                                <MenuItem value={6}>6 – Estrangeira (importação direta) sem produto nacional similar</MenuItem>
-                                <MenuItem value={7}>7 – Estrangeira (adquirida no mercado interno) sem produto nacional similar</MenuItem>
+                                InputLabelProps={{ shrink: true }}
+                            >
+                                <MenuItem value={0}>0 – Nacional - Exceto as indicadas nos códigos 3, 4, 5 e 8</MenuItem>
+                                <MenuItem value={1}>1 – Estrangeira - Importação direta, exceto a indicada no código 6</MenuItem>
+                                <MenuItem value={2}>2 – Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7</MenuItem>
+                                <MenuItem value={3}>
+                                    3 – Nacional - Mercadoria ou bem com Conteúdo de Importação superior a 40% e inferior ou igual a 70%
+                                </MenuItem>
+                                <MenuItem value={4}>
+                                    4 – Nacional - Produção feita em conformidade com os processos produtivos básicos de que tratam as legislações
+                                    citadas nos Ajustes
+                                </MenuItem>
+                                <MenuItem value={5}>5 – Nacional - Mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%</MenuItem>
+                                <MenuItem value={6}>
+                                    6 – Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural
+                                </MenuItem>
+                                <MenuItem value={7}>
+                                    7 – Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural
+                                </MenuItem>
+                                <MenuItem value={8}>8 – Nacional - Mercadoria ou bem com Conteúdo de Importação superior a 70%</MenuItem>
                             </TextField>
                         </Grid>
                     </Grid>
@@ -126,8 +138,9 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
                 <DialogActions
                     sx={{
                         margin: isMobile ? "0" : "0.5vw",
-                        padding: isMobile ? "5vw" : ""
-                    }}>
+                        padding: isMobile ? "5vw" : "",
+                    }}
+                >
                     <Button
                         onClick={onClose}
                         color="secondary"
@@ -135,8 +148,9 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         Cancelar
                     </Button>
                     <Button
@@ -146,8 +160,9 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         {loading ? <CircularProgress size="1.5rem" color="inherit" /> : current_product ? "Salvar" : "Adicionar"}
                     </Button>
                 </DialogActions>
