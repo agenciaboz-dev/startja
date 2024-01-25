@@ -18,7 +18,7 @@ export const Properties: React.FC<PropertiesProps> = ({}) => {
     const { user } = useUser()
     if (!user) return null
     const properties = user.properties
-    const emptyPropertiesList = !user.properties
+    const emptyPropertiesList = !user.properties.length
     const [isAddPropertyModalOpen, setAddPropertyModalOpen] = useState(false)
     const openPropertyModal = () => {
         setAddPropertyModalOpen(true)

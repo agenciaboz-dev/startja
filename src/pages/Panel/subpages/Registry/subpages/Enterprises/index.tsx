@@ -17,7 +17,7 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ user }) => {
     const header = useHeader()
     const pathname = useLocation().pathname
     const navigate = useNavigate()
-    const emptyEnterprisesList = !user.companies
+    const emptyEnterprisesList = !user.companies.length
 
     useEffect(() => {
         if (pathname.split("/painel").length < 3) {
