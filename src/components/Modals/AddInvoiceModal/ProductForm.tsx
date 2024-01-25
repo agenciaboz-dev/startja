@@ -244,7 +244,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 label="Valor total"
                                 fullWidth
                                 disabled
-                                value={Number(formik.values.quantidade) * unmaskCurrency(formik.values.valor_unitario_comercial)}
+                                value={Number((Number(formik.values.quantidade) * unmaskCurrency(formik.values.valor_unitario_comercial)).toFixed(2))}
+                                InputProps={{ startAdornment: <>R$</>, sx: { gap: "0.3rem" } }}
                             />
                         </Grid>
                         <Grid item xs={12}>

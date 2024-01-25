@@ -3,6 +3,7 @@ import { Box, Button, Checkbox, IconButton, Menu, MenuItem, Tooltip, useMediaQue
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import { colors } from "../../../style/colors"
 import { Edit, PictureAsPdf, FileOpen } from "@mui/icons-material"
+import { CurrencyText } from "../../CurrencyText"
 
 interface InvoiceRowProps {
     invoice: notaFiscal
@@ -51,9 +52,8 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice, editInvoice }) 
                     alignItems: "center",
                     justifyContent: "space-between",
                     flex: 1,
-                    width: isMobile ? "250vw" : "",
-                }}
-            >
+                    width: isMobile ? "250vw" : ""
+                }}>
                 <Box sx={{ width: "10%" }}>
                     <p>{new Date(Number(invoice.emissionDatetime)).toLocaleString("pt-br")}</p>
                 </Box>
@@ -63,7 +63,9 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice, editInvoice }) 
                 <Box sx={{ flex: 1, justifyContent: "center" }}>
                     <p>{invoice.destinatario.name}</p>
                 </Box>
-                <Box sx={{ flex: 1, color: colors.primary, justifyContent: "center" }}>R$ {invoice.valor_total.toString().replace(".", ",")}</Box>
+                <Box sx={{ flex: 1, color: colors.primary, justifyContent: "center" }}>
+                    <CurrencyText value={invoice.valor_total} />
+                </Box>
                 <Box sx={{ flex: 1, justifyContent: "center" }}>
                     <Tooltip title={invoice.mensagem_sefaz}>
                         <Button
@@ -74,9 +76,8 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice, editInvoice }) 
                             sx={{
                                 flex: 1,
                                 borderRadius: "20px",
-                                textTransform: "unset",
-                            }}
-                        >
+                                textTransform: "unset"
+                            }}>
                             {invoice.status}
                         </Button>
                     </Tooltip>
@@ -85,10 +86,9 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice, editInvoice }) 
                     sx={{
                         width: "5%",
                         justifyContent: "center",
-                        marginLeft: "2vw",
+                        marginLeft: "2vw"
                     }}
-                    onClick={(event) => setMenuAnchorEl(event.currentTarget)}
-                >
+                    onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
                     <IconButton>
                         <FormatListBulletedOutlinedIcon />
                     </IconButton>
@@ -98,8 +98,7 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice, editInvoice }) 
                     open={menu_opened}
                     onClose={() => setMenuAnchorEl(null)}
                     slotProps={{ paper: { elevation: 3 } }}
-                    MenuListProps={{ sx: { width: "100%" } }}
-                >
+                    MenuListProps={{ sx: { width: "100%" } }}>
                     {actions.map((action) => {
                         const Icon = () => action.icon
                         return (

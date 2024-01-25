@@ -57,7 +57,9 @@ export const InvoiceModalProductRow: React.FC<InvoiceModalProductRowProps> = ({ 
                     <CurrencyText value={product.valor_unitario_comercial} />
                 </Box>
                 <Box sx={slotStyle}>{}</Box>
-                <Box sx={slotStyle}>{product.valor_unitario_comercial * product.quantidade}</Box>
+                <Box sx={slotStyle}>
+                    <CurrencyText value={(product.valor_unitario_comercial * product.quantidade).toFixed(2)} />
+                </Box>
                 <Box sx={slotStyle}></Box>
                 <IconButton sx={{ ...slotStyle, flex: 0.1, cursor: "pointer" }} onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
                     <FormatListBulletedOutlinedIcon />
