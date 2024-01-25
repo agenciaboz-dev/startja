@@ -182,17 +182,17 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
         onSubmit: (values) => {
             if (loading) return
             if (!values.natureza_operacao) {
-                snackbar({ severity: "warning", text: "Natureza operação não pode ser vazio" })
+                snackbar({ severity: "warning", text: "Natureza de operação não pode ser vazia" })
                 return
             }
 
             if (!currentRecipient) {
-                snackbar({ severity: "warning", text: "destinatário não pode ser vazia" })
+                snackbar({ severity: "warning", text: "Destinatário não pode ser vazio" })
                 return
             }
 
             if (!currentProperty) {
-                snackbar({ severity: "warning", text: "propriedade não pode ser vazia" })
+                snackbar({ severity: "warning", text: "Propriedade não pode ser vazia" })
                 return
             }
             setLoading(true)

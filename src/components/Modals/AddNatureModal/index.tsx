@@ -110,24 +110,24 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
     useEffect(() => {
         io.on("nature:creation:success", (nature: Natureza) => {
             onUpdateCallback(nature)
-            snackbar({ severity: "success", text: "natureza criada com sucesso" })
+            snackbar({ severity: "success", text: "Natureza de operação criada com sucesso" })
         })
 
         io.on("nature:update:success", (nature: Natureza) => {
             onUpdateCallback(nature)
-            snackbar({ severity: "info", text: "natureza atualizada com sucesso" })
+            snackbar({ severity: "info", text: "Natureza de operação atualizada com sucesso" })
         })
 
         io.on("nature:create:error", (error) => {
             console.log(error)
             setLoading(false)
-            snackbar({ severity: "error", text: "erro ao criar natureza, verifique o log" })
+            snackbar({ severity: "error", text: "Erro ao criar natureza de operação, verifique o log no console" })
         })
 
         io.on("nature:update:error", (error) => {
             console.log(error)
             setLoading(false)
-            snackbar({ severity: "error", text: "erro ao criar natureza, verifique o log" })
+            snackbar({ severity: "error", text: "Erro ao atualizar natureza de operação, verifique o log no console" })
         })
 
         return () => {

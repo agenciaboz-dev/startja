@@ -78,7 +78,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
             if (loading) return
 
             if (!validateCNPJ(values.document.replace(/\D/g, "")) && !validateCPF(values.document.replace(/\D/g, ""))) {
-                snackbar({ severity: "warning", text: "insira um cpf ou cnpj " })
+                snackbar({ severity: "warning", text: "Insira um CPF ou CNPJ válido" })
                 return
             }
 
@@ -113,7 +113,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
 
     useEffect(() => {
         io.on("company:creation:success", (company: Company) => {
-            console.log("Empresa criada com sucesso: ", company)
+            console.log("Pessoa ou empresa adicionada com sucesso: ", company)
             io.emit("company:list")
             setLoading(false)
             onClose()
@@ -127,7 +127,7 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({ open, onClose, setCom
             console.log(error)
 
             if (error.name === "PrismaClientKnownRequestError") {
-                snackbar({ severity: "error", text: `erro ao criar empresa: ${error.meta.target}` })
+                snackbar({ severity: "error", text: `Erro ao adicionar pessoa ou empresa: ${error.meta.target}` })
             }
         })
 

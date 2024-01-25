@@ -108,7 +108,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
             console.log(error)
 
             if (error.name === "PrismaClientKnownRequestError") {
-                snackbar({ severity: "error", text: `erro ao criar propriedade: ${error.meta.target}` })
+                snackbar({ severity: "error", text: `Erro ao criar propriedade: ${error.meta.target}` })
             }
         })
 

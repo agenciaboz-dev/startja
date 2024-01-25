@@ -95,7 +95,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
         io.on("user:signup:failed", ({ error }) => {
             setLoading(false)
             console.log(error)
-            snackbar({ severity: "error", text: `erro ao cadastrar usuário: ${error}` })
+            snackbar({ severity: "error", text: `Erro ao cadastrar usuário: ${error}` })
         })
 
         return () => {

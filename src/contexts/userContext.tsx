@@ -46,11 +46,11 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
                 if (current_invoice) {
                     setUser({ ...user, notas: [...user.notas.filter((item) => item.id != invoice.id), invoice] })
                     if (invoice.status == "erro_autorizacao") {
-                        snackbar({ severity: "error", text: `erro ao autorizar nota: ${invoice.mensagem_sefaz}` })
+                        snackbar({ severity: "error", text: `Erro ao autorizar nota: ${invoice.mensagem_sefaz}` })
                     }
 
                     if (invoice.status == "autorizado") {
-                        snackbar({ severity: "success", text: `${invoice.mensagem_sefaz}` || "nota autorizada" })
+                        snackbar({ severity: "success", text: `${invoice.mensagem_sefaz}` || "Nota autorizada" })
                     }
                 }
             })
