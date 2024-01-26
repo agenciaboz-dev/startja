@@ -1,6 +1,7 @@
 import React from "react"
 import { Box, Grid, MenuItem, TextField, useMediaQuery } from "@mui/material"
 import { FormikErrors } from "formik"
+import { indicador_pagamento, forma_pagamento } from "./formas_pagamento"
 
 interface PaymentBoxProps {
     formik: {
@@ -21,23 +22,37 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
         >
             <Grid container spacing={2}>
                 <Grid item xs={isMobile ? 12 : 6}>
-                    <TextField fullWidth label="Condição de pagamento" select required>
-                        <MenuItem value={"vista"}>À vista</MenuItem>
-                        <MenuItem value={"prazo"}>A prazo</MenuItem>
+                    <TextField
+                        fullWidth
+                        label="Condição de pagamento"
+                        select
+                        required
+                        // value={formik.values.condicaoPagamento}
+                        onChange={formik.handleChange}
+                        name="condicaoPagamento"
+                    >
+                        {indicador_pagamento.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>
+                        ))}
                     </TextField>
                 </Grid>
                 <Grid item xs={isMobile ? 12 : 6}>
-                    <TextField fullWidth label="Tipo de pagamento" select required>
-                        <MenuItem value={"pix"}>PIX</MenuItem>
-                        <MenuItem value={"cartaoDeCredito"}>Cartão de crédito</MenuItem>
-                        <MenuItem value={"cartaoDeDebito"}>Cartão de débito</MenuItem>
-                        <MenuItem value={"dinheiro"}>Dinheiro</MenuItem>
-                        <MenuItem value={"cheque"}>Cheque</MenuItem>
-                        <MenuItem value={"boletoBancario"}>Boleto bancário</MenuItem>
-                        <MenuItem value={"depositoBancario"}>Depósito bancário</MenuItem>
-                        <MenuItem value={"transferenciaBancaria"}>Transferência bancária</MenuItem>
-                        <MenuItem value={"semPagamento"}>Sem pagamento</MenuItem>
-                        <MenuItem value={"outros"}>Outros</MenuItem>
+                    <TextField
+                        fullWidth
+                        label="Tipo de pagamento"
+                        select
+                        required
+                        // value={formik.values.tipoPagamento}
+                        onChange={formik.handleChange}
+                        name="tipoPagamento"
+                    >
+                        {forma_pagamento.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>
+                        ))}
                     </TextField>
                 </Grid>
             </Grid>
