@@ -71,7 +71,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                 {icms_situacao_tributaria_values
                     .find((item) => item.value == formik.values.icms_situacao_tributaria)
                     ?.fields?.map((item) => (
-                        <Grid item xs={12} key={item.field}>
+                        <Grid item xs={item.xs || 12} key={item.field}>
                             <TextField
                                 fullWidth
                                 label={item.label}
