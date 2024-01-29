@@ -10,6 +10,7 @@ import MaskedInput from "../../MaskedInput"
 import { unmaskCurrency, unmaskNumber } from "../../../tools/unmaskNumber"
 import { TaxValues } from "../../TaxValues"
 import { useSnackbar } from "burgos-snackbar"
+import icms_situacao_tributaria_values from "./icms_situacao_tributaria"
 
 interface ProductFormProps {
     addProduct: (product: InvoiceProduct) => void
@@ -131,6 +132,22 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
             })
         }
     }
+
+    useEffect(() => {
+        const fields = icms_situacao_tributaria_values
+            .find((st) => st.value == formik.values.icms_situacao_tributaria)!
+            .fields?.map((field) => field.field)
+
+        icms_situacao_tributaria_values
+            .map((item) => item.fields?.map((item) => item.field))
+            .flatMap((item) => item)
+            .map((item) => {
+                if (!item) return
+                if (fields?.includes(item)) return
+
+                formik.setFieldValue(item, null)
+            })
+    }, [formik.values.icms_situacao_tributaria])
 
     useEffect(() => {
         checkTaxRules()
