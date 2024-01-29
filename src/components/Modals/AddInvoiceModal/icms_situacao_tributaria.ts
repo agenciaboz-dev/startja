@@ -6,19 +6,54 @@ export const icms_situacao_tributaria_values: {
     {
         value: "00",
         label: "Tributada integralmente",
-        fields: [{ field: "aliquota", label: "Alíquota ICMS", type: "number" }]
+        fields: [
+            { field: "aliquota", label: "Alíquota ICMS", type: "number", xs: 6 },
+            {
+                field: "icms_valor",
+                label: "Valor do ICMS",
+                type: "number",
+                disabled: true,
+                formula: "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+        ],
     },
 
     {
         value: "10",
         label: "Tributada e com cobrança do ICMS por substituição tributária",
         fields: [
-            { field: "cest", label: "CEST", type: "number" },
-            { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
-            // valor unitário da pauta
-            { field: "aliquota", label: "Alíquota ICMS", type: "number" },
-            { field: "icms_aliquota_st", label: "Alíquota ICMS-ST", type: "number" }
-        ]
+            { field: "cest", label: "CEST", type: "number", xs: 6 },
+            { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text", xs: 6 },
+            {
+                field: "icms_modalidade_base_calculo",
+                label: "Modalidade de Base de Cálculo do ICMS",
+                type: "text",
+                disabled: true,
+                formula: "1",
+                xs: 6,
+            },
+            // valor unitário da pauta não encontrado no NotaFiscalXML.html, corrigir depois que vier a resposta do focusNFE
+            { field: "valor_unitario_pauta", label: "Valor unitário da pauta", type: "text", xs: 6 },
+            { field: "icms_base_calculo", label: "Base de Cálculo ICMS", type: "text", disabled: true, xs: 4 },
+            { field: "aliquota", label: "Alíquota ICMS", type: "number", xs: 4 },
+            {
+                field: "icms_valor",
+                label: "Valor do ICMS",
+                type: "number",
+                disabled: true,
+                xs: 4,
+            },
+            { field: "icms_base_calculo_st", label: "Base de Cálculo ICMS-ST", type: "text", disabled: true, xs: 4 },
+            { field: "icms_aliquota_st", label: "Alíquota ICMS-ST", type: "number", xs: 4 },
+            {
+                field: "icms_valor_st",
+                label: "Valor do ICMS-ST",
+                type: "number",
+                disabled: true,
+                xs: 4,
+            },
+        ],
     },
 
     {
@@ -26,9 +61,17 @@ export const icms_situacao_tributaria_values: {
         label: "Tributada com redução de base de cálculo",
         fields: [
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
-            { field: "icms_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number" },
-            { field: "aliquota", label: "Alíquota ICMS", type: "number" }
-        ]
+            { field: "icms_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number", xs: 6 },
+            { field: "icms_base_calculo", label: "Base de Cálculo ICMS", type: "text", disabled: true, xs: 6 },
+            { field: "aliquota", label: "Alíquota ICMS", type: "number", xs: 6 },
+            { field: "icms_valor_operacao", label: "Valor do ICMS da operação", type: "text", disabled: true, xs: 6 },
+            {
+                field: "icms_valor",
+                label: "Valor do ICMS",
+                type: "number",
+                disabled: true,
+            },
+        ],
     },
 
     { value: "30", label: "Isenta ou não tributada e com cobrança do ICMS por substituição tributária" },
@@ -38,8 +81,8 @@ export const icms_situacao_tributaria_values: {
         label: "Isenta",
         fields: [
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
-            { field: "icms_valor_desonerado", label: "Valor do ICMS desonerado", type: "number" }
-        ]
+            { field: "icms_valor_desonerado", label: "Valor do ICMS desonerado", type: "number" },
+        ],
     },
 
     {
@@ -47,8 +90,8 @@ export const icms_situacao_tributaria_values: {
         label: "Não tributada",
         fields: [
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
-            { field: "icms_valor_desonerado", label: "Valor do ICMS desonerado", type: "number" }
-        ]
+            { field: "icms_valor_desonerado", label: "Valor do ICMS desonerado", type: "number" },
+        ],
     },
 
     {
@@ -56,8 +99,8 @@ export const icms_situacao_tributaria_values: {
         label: "Suspensão",
         fields: [
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
-            { field: "icms_valor_desonerado", label: "Valor do ICMS desonerado", type: "number" }
-        ]
+            { field: "icms_valor_desonerado", label: "Valor do ICMS desonerado", type: "number" },
+        ],
     },
 
     {
@@ -65,17 +108,26 @@ export const icms_situacao_tributaria_values: {
         label: "Diferimento (a exigência do preenchimento das informações do ICMS diferido fica a critério de cada UF)",
         fields: [
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
-            { field: "icms_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number" },
-            { field: "aliquota", label: "Alíquota ICMS", type: "number" },
-            { field: "icms_percentual_diferimento", label: "Percentual de diferimento", type: "number" },
+            { field: "icms_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number", xs: 6 },
+            { field: "icms_base_calculo", label: "Base de Cálculo ICMS", type: "text", disabled: true, xs: 6 },
+            { field: "aliquota", label: "Alíquota ICMS", type: "number", xs: 6 },
+            { field: "icms_valor_operacao", label: "Valor do ICMS da operação", type: "text", disabled: true, xs: 6 },
+            { field: "icms_percentual_diferimento", label: "Percentual de diferimento", type: "number", xs: 6 },
             {
-                field: "valor sei la oq",
-                label: "valor de diferimento",
+                field: "icms_valor_diferido",
+                label: "Valor do ICMS diferido",
                 type: "number",
                 disabled: true,
-                formula: "{formik.values.icms_percentual_diferimento} * {valor_total}"
-            }
-        ]
+                formula: "{formik.values.icms_percentual_diferimento} * {valor_total}",
+                xs: 6,
+            },
+            {
+                field: "icms_valor",
+                label: "Valor do ICMS",
+                type: "number",
+                disabled: true,
+            },
+        ],
     },
 
     {
@@ -94,16 +146,16 @@ export const icms_situacao_tributaria_values: {
                     { value: 3, label: "Nacional - Mercadoria ou bem com Conteúdo de Importação superior a 40% e inferior ou igual a 70%" },
                     {
                         value: 4,
-                        label: "Nacional - Produção feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes"
+                        label: "Nacional - Produção feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes",
                     },
                     { value: 5, label: "Nacional - Mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%" },
                     { value: 6, label: "Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural" },
                     { value: 7, label: "Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural" },
-                    { value: 8, label: "Nacional - Mercadoria ou bem com Conteúdo de Importação superior a 70%" }
-                ]
+                    { value: 8, label: "Nacional - Mercadoria ou bem com Conteúdo de Importação superior a 70%" },
+                ],
             },
-            { field: "cest", label: "CEST", type: "number" }
-        ]
+            { field: "cest", label: "CEST", type: "number" },
+        ],
     },
 
     { value: "70", label: "Tributada com redução de base de cálculo e com cobrança do ICMS por substituição tributária" },
@@ -124,15 +176,15 @@ export const icms_situacao_tributaria_values: {
                     { value: 3, label: "Nacional - Mercadoria ou bem com Conteúdo de Importação superior a 40% e inferior ou igual a 70%" },
                     {
                         value: 4,
-                        label: "Nacional - Produção feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes"
+                        label: "Nacional - Produção feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes",
                     },
                     { value: 5, label: "Nacional - Mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%" },
                     { value: 6, label: "Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural" },
                     { value: 7, label: "Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural" },
-                    { value: 8, label: "Nacional - Mercadoria ou bem com Conteúdo de Importação superior a 70%" }
-                ]
-            }
-        ]
+                    { value: 8, label: "Nacional - Mercadoria ou bem com Conteúdo de Importação superior a 70%" },
+                ],
+            },
+        ],
     },
 
     { value: "101", label: "Tributada pelo Simples Nacional com permissão de crédito" },
@@ -153,7 +205,7 @@ export const icms_situacao_tributaria_values: {
 
     { value: "500", label: "ICMS cobrado anteriormente por substituição tributária (substituído) ou por antecipação" },
 
-    { value: "900", label: "Outras (regime Simples Nacional)" }
+    { value: "900", label: "Outras (regime Simples Nacional)" },
 ]
 
 export default icms_situacao_tributaria_values
