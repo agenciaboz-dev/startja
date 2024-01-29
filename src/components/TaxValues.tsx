@@ -1,5 +1,5 @@
 import React from "react"
-import { Autocomplete, Box, Grid, MenuItem, TextField, useMediaQuery } from "@mui/material"
+import { Autocomplete, Box, Grid, MenuItem, TextField, darken, useMediaQuery } from "@mui/material"
 import icms_situacao_tributaria_values from "./Modals/AddInvoiceModal/icms_situacao_tributaria"
 import pis_situacao_tributaria_values from "./Modals/AddInvoiceModal/pis_situacao_tributaria"
 import cofins_situacao_tributaria_values from "./Modals/AddInvoiceModal/cofins_situacao_tributaria"
@@ -14,9 +14,15 @@ interface TaxValuesProps {
         handleChange: (e: React.ChangeEvent<any>) => void
         setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => Promise<void> | Promise<FormikErrors<TaxRulesForm>>
     }
+    isInvoice?: boolean
+    product_formik?: {
+        values: InvoiceProduct
+        handleChange: (e: React.ChangeEvent<any>) => void
+        setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => Promise<void> | Promise<FormikErrors<InvoiceProduct>>
+    }
 }
 
-export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
+export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product_formik }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
 
     return (
@@ -72,7 +78,8 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
 
                 {icms_situacao_tributaria_values
                     .find((item) => item.value == formik.values.icms_situacao_tributaria)
-                    ?.fields?.map((item) => (
+                    ?.fields?.filter((item) => (isInvoice ? item : !item.disabled))
+                    .map((item) => (
                         <Grid item xs={item.xs || 12} key={item.field}>
                             <TextField
                                 fullWidth
@@ -91,7 +98,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                                 required
                                 disabled={item.disabled}
                                 sx={{
-                                    backgroundColor: item.disabled ? colors.background : "",
+                                    backgroundColor: item.disabled ? darken(colors.background, 0.05) : "",
                                 }}
                             />
                         </Grid>
