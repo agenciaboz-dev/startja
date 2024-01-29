@@ -112,7 +112,6 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                       icms_modalidade_base_calculo: product.tax_rules.icms_modalidade_base_calculo,
                       icms_origem: product.produto.icmsOrigin,
                       icms_situacao_tributaria: product.tax_rules.icms_situacao_tributaria,
-                      id: product.produto.id.toString(),
                       name: product.produto.name,
                       ncm: product.produto.ncm,
                       pis_situacao_tributaria: product.tax_rules.pis_situacao_tributaria,
@@ -121,7 +120,14 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                       unidade_tributavel: product.unidade,
                       valor_unitario_comercial: product.unitaryValue,
                       valor_unitario_tributavel: product.unitaryValue,
-                      informacoes_adicionais_item: product.informacoes_adicionais_item
+                      informacoes_adicionais_item: product.informacoes_adicionais_item,
+                      id: product.produto.id.toString(),
+                      cest: product.tax_rules.cest,
+                      codigo_beneficio_fiscal: product.tax_rules.codigo_beneficio_fiscal,
+                      icms_aliquota_st: product.tax_rules.icms_aliquota_st,
+                      icms_percentual_diferimento: product.tax_rules.icms_percentual_diferimento,
+                      icms_reducao_base_calculo: product.tax_rules.icms_reducao_base_calculo,
+                      icms_valor_desonerado: product.tax_rules.icms_valor_desonerado
                   }))
               }
             : {
@@ -238,7 +244,10 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
 
     const onNatureChange = (value: Natureza | null) => {
         setSelectedNature(value)
-        if (value) formik.setFieldValue("natureza_operacao", value.operation)
+        if (value) {
+            formik.setFieldValue("natureza_operacao", value.operation)
+            formik.setFieldValue("finalidade_emissao", value.finality)
+        }
     }
 
     const changeProperty = (property: Property | null) => {

@@ -9,6 +9,7 @@ import { useCurrencyMask, useNumberMask } from "burgos-masks"
 import MaskedInput from "../../MaskedInput"
 import { unmaskCurrency, unmaskNumber } from "../../../tools/unmaskNumber"
 import { TaxValues } from "../../TaxValues"
+import { useSnackbar } from "burgos-snackbar"
 
 interface ProductFormProps {
     addProduct: (product: InvoiceProduct) => void
@@ -24,14 +25,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
     const isMobile = useMediaQuery("(orientation: portrait)")
     const number_mask = useNumberMask({})
     const { list } = useProduct()
+    const { snackbar } = useSnackbar()
 
     const [productFormDisplay, setProductFormDisplay] = useState("produto")
     const [currentProduct, setCurrentProduct] = useState<Product>(list[0])
 
     const formik = useFormik<InvoiceProduct>({
         initialValues: {
-            aliquota: 0,
-            cfop: 0,
+            cfop: 1101,
             cofins_situacao_tributaria: "01",
             icms_modalidade_base_calculo: 0,
             icms_origem: list[0].icmsOrigin,
@@ -51,6 +52,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
             informacoes_adicionais_item: ""
         },
         onSubmit: (values) => {
+            if (!values.quantidade) {
+                snackbar({ severity: "error", text: "insira a quantidade" })
+                return
+            }
+            if (!values.quantidade) {
+                snackbar({ severity: "error", text: "insira o valor unitário" })
+                return
+            }
             const data = {
                 ...values,
                 unidade_tributavel: values.unidade_comercial,
@@ -304,21 +313,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                     {/* <PaymentBox formik={focusNFEInvoiceFormik} /> */}
                     <PricingBox formik={focusNFEInvoiceFormik} />
                     <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                label="Finalidade de emissão"
-                                name="finalidade_emissao"
-                                value={focusNFEInvoiceFormik.values.finalidade_emissao}
-                                onChange={focusNFEInvoiceFormik.handleChange}
-                                select
-                            >
-                                <MenuItem value={1}>1 - Normal</MenuItem>
-                                <MenuItem value={2}>2 - Complementar</MenuItem>
-                                <MenuItem value={3}>3 - Nota de ajuste</MenuItem>
-                                <MenuItem value={4}>4 - Devolução</MenuItem>
-                            </TextField>
-                        </Grid>
                         <Grid item xs={12}>
                             <TextField
                                 fullWidth

@@ -2,9 +2,8 @@ declare interface Natureza {
     id: number
     operation: string
     type: number
-    finality: string
+    finality: number
     motive: string
-    emissionFinality: number
     active: boolean
 
     rules: regraTributacao[]
