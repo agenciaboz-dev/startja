@@ -238,7 +238,10 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
 
     const onNatureChange = (value: Natureza | null) => {
         setSelectedNature(value)
-        if (value) formik.setFieldValue("natureza_operacao", value.operation)
+        if (value) {
+            formik.setFieldValue("natureza_operacao", value.operation)
+            formik.setFieldValue("finalidade_emissao", value.finality)
+        }
     }
 
     const changeProperty = (property: Property | null) => {

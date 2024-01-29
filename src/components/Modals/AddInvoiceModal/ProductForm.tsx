@@ -300,20 +300,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                         <Grid item xs={12}>
                             <TextField
                                 fullWidth
-                                label="Finalidade de emissão"
-                                name="finalidade_emissao"
-                                value={focusNFEInvoiceFormik.values.finalidade_emissao}
-                                onChange={focusNFEInvoiceFormik.handleChange}
-                                select>
-                                <MenuItem value={1}>1 - Normal</MenuItem>
-                                <MenuItem value={2}>2 - Complementar</MenuItem>
-                                <MenuItem value={3}>3 - Nota de ajuste</MenuItem>
-                                <MenuItem value={4}>4 - Devolução</MenuItem>
-                            </TextField>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
                                 label="Local de destino"
                                 name="local_destino"
                                 value={focusNFEInvoiceFormik.values.local_destino}

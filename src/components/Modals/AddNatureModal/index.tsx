@@ -41,12 +41,11 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
 
     const formik = useFormik<NatureForm>({
         initialValues: current_nature || {
-            emissionFinality: 1,
-            finality: "",
+            finality: 1,
             motive: "",
             operation: "",
             type: 0,
-            rules: [],
+            rules: []
         },
         onSubmit(values, formikHelpers) {
             if (loading) return
@@ -56,7 +55,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
 
             io.emit(current_nature ? "nature:update" : "nature:create", values, current_nature?.id)
         },
-        enableReinitialize: true,
+        enableReinitialize: true
     })
 
     const openTaxationRuleModal = () => {
@@ -76,15 +75,15 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
 
     const handleOperationChange = (new_operation: string) => {
         const options = [
-            { operation: "Compra de mercadorias", type: "Entrada", finality: "Normal" },
-            { operation: "Retorno de mercadoria", type: "Entrada", finality: "Normal" },
-            { operation: "Transferência de entrada", type: "Entrada", finality: "Normal" },
-            { operation: "Devolução de venda", type: "Entrada", finality: "Devolução" },
-            { operation: "Remessa de mercadoria", type: "Saída", finality: "Normal" },
-            { operation: "Transferência de saída", type: "Saída", finality: "Normal" },
-            { operation: "Venda", type: "Saída", finality: "Normal" },
-            { operation: "Devolução de compra", type: "Saída", finality: "Devolução" },
-            { operation: "Anulação de valores", type: "Saída", finality: "Ajuste" }
+            { operation: "Compra de mercadorias", type: "Entrada", finality: 1 },
+            { operation: "Retorno de mercadoria", type: "Entrada", finality: 1 },
+            { operation: "Transferência de entrada", type: "Entrada", finality: 1 },
+            { operation: "Devolução de venda", type: "Entrada", finality: 4 },
+            { operation: "Remessa de mercadoria", type: "Saída", finality: 1 },
+            { operation: "Transferência de saída", type: "Saída", finality: 1 },
+            { operation: "Venda", type: "Saída", finality: 1 },
+            { operation: "Devolução de compra", type: "Saída", finality: 4 },
+            { operation: "Anulação de valores", type: "Saída", finality: 3 }
         ]
 
         const operation = options.find((item) => item.operation == new_operation)
@@ -143,16 +142,15 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
             open={open}
             onClose={onClose}
             sx={{
-                justifyContent: "center",
+                justifyContent: "center"
             }}
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
                     minWidth: "90vw",
-                    width: "fit-content",
-                },
-            }}
-        >
+                    width: "fit-content"
+                }
+            }}>
             <form onSubmit={formik.handleSubmit}>
                 <DialogTitle>{`${current_nature ? "Editar" : "Adicionar"} natureza da operação`}</DialogTitle>
                 <CloseOutlinedIcon
@@ -160,7 +158,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                         position: "absolute",
                         top: isMobile ? "5vw" : "1vw",
                         right: isMobile ? "5vw" : "1vw",
-                        cursor: "pointer",
+                        cursor: "pointer"
                     }}
                     onClick={onClose}
                 />
@@ -170,9 +168,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                         sx={{
                             flexDirection: "column",
                             width: "100%",
-                            gap: isMobile ? "5vw" : "2vw",
-                        }}
-                    >
+                            gap: isMobile ? "5vw" : "2vw"
+                        }}>
                         <Grid container spacing={2}>
                             <Grid item xs={isMobile ? 12 : 4}>
                                 <TextField
@@ -182,8 +179,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                     fullWidth
                                     required
                                     onChange={formik.handleChange}
-                                    value={formik.values.operation}
-                                >
+                                    value={formik.values.operation}>
                                     <MenuItem value="" sx={{ display: "none" }}></MenuItem>
                                     <MenuItem value="Compra de mercadorias">Compra de mercadorias</MenuItem>
                                     <MenuItem value="Devolução de compra">Devolução de compra</MenuItem>
@@ -204,9 +200,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                     value={formik.values.type}
                                     disabled
                                     sx={{
-                                        backgroundColor: colors.background,
-                                    }}
-                                >
+                                        backgroundColor: colors.background
+                                    }}>
                                     <MenuItem value={0}>0 - Entrada</MenuItem>
                                     <MenuItem value={1}>1 - Saída</MenuItem>
                                 </TextField>
@@ -219,12 +214,12 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                     value={formik.values.finality}
                                     disabled
                                     sx={{
-                                        backgroundColor: colors.background,
-                                    }}
-                                >
-                                    <MenuItem value="Normal">Normal</MenuItem>
-                                    <MenuItem value="Devolução">Devolução</MenuItem>
-                                    <MenuItem value="Ajuste">Ajuste</MenuItem>
+                                        backgroundColor: colors.background
+                                    }}>
+                                    <MenuItem value={1}>1 - Nota normal</MenuItem>
+                                    <MenuItem value={2}>2 - Nota complementar</MenuItem>
+                                    <MenuItem value={3}>3 - Nota de ajuste</MenuItem>
+                                    <MenuItem value={4}>4 - Devolução de mercadoria</MenuItem>
                                 </TextField>
                             </Grid>
                             <Grid item xs={12}>
@@ -238,37 +233,20 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                     required
                                 />
                             </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    label="Finalidade de emissão"
-                                    name="emissionFinality"
-                                    select
-                                    fullWidth
-                                    value={formik.values.emissionFinality}
-                                    onChange={formik.handleChange}
-                                >
-                                    <MenuItem value={1}>1 – Normal</MenuItem>
-                                    <MenuItem value={2}>2 – Complementar</MenuItem>
-                                    <MenuItem value={3}>3 – Nota de ajuste</MenuItem>
-                                    <MenuItem value={4}>4 – Devolução</MenuItem>
-                                </TextField>
-                            </Grid>
                         </Grid>
 
                         <Box
                             sx={{
-                                justifyContent: "space-between",
-                            }}
-                        >
+                                justifyContent: "space-between"
+                            }}>
                             <p>Regras de tributação adicionadas</p>
                             <Button
                                 variant="contained"
                                 sx={{
                                     borderRadius: "20px",
-                                    textTransform: "unset",
+                                    textTransform: "unset"
                                 }}
-                                onClick={openTaxationRuleModal}
-                            >
+                                onClick={openTaxationRuleModal}>
                                 Adicionar Regra
                             </Button>
                         </Box>
@@ -278,9 +256,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                 flex: 1,
                                 overflow: isMobile ? "scroll" : "",
                                 padding: isMobile ? "1vw 5vw" : "",
-                                margin: isMobile ? "0 -5vw" : "",
-                            }}
-                        >
+                                margin: isMobile ? "0 -5vw" : ""
+                            }}>
                             <Box
                                 sx={{
                                     flex: 1,
@@ -289,9 +266,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                     borderRadius: "20px",
                                     flexDirection: "column",
                                     padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
-                                    width: isMobile ? "fit-content" : "100%",
-                                }}
-                            >
+                                    width: isMobile ? "fit-content" : "100%"
+                                }}>
                                 <AddedTaxationRulesListHeader />
                                 <AddedTaxationRuleRowsList list={formik.values.rules} deleteTaxRule={deleteTaxRule} />
                             </Box>
@@ -302,9 +278,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                 <DialogActions
                     sx={{
                         margin: isMobile ? "0" : "0.5vw",
-                        padding: isMobile ? "5vw" : "",
-                    }}
-                >
+                        padding: isMobile ? "5vw" : ""
+                    }}>
                     <Button
                         onClick={onClose}
                         color="secondary"
@@ -312,9 +287,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset",
-                        }}
-                    >
+                            textTransform: "unset"
+                        }}>
                         Cancelar
                     </Button>
                     <Button
@@ -324,9 +298,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset",
-                        }}
-                    >
+                            textTransform: "unset"
+                        }}>
                         {loading ? <CircularProgress size="1.5rem" sx={{ color: "white" }} /> : current_nature ? "Salvar" : "Adicionar"}
                     </Button>
                 </DialogActions>
