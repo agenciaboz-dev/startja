@@ -1,11 +1,12 @@
 import React from "react"
-import { Autocomplete, Box, Grid, MenuItem, TextField, useMediaQuery } from "@mui/material"
+import { Autocomplete, Box, Grid, MenuItem, TextField, darken, useMediaQuery } from "@mui/material"
 import icms_situacao_tributaria_values from "./Modals/AddInvoiceModal/icms_situacao_tributaria"
 import pis_situacao_tributaria_values from "./Modals/AddInvoiceModal/pis_situacao_tributaria"
 import cofins_situacao_tributaria_values from "./Modals/AddInvoiceModal/cofins_situacao_tributaria"
 import { TaxRulesForm } from "../definitions/TaxRulesForm"
 import { FormikErrors } from "formik"
 import cfop_values from "./Modals/AddTaxationRuleModal/cfop_values"
+import { colors } from "../style/colors"
 
 interface TaxValuesProps {
     formik: {
@@ -13,9 +14,15 @@ interface TaxValuesProps {
         handleChange: (e: React.ChangeEvent<any>) => void
         setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => Promise<void> | Promise<FormikErrors<TaxRulesForm>>
     }
+    isInvoice?: boolean
+    product_formik?: {
+        values: InvoiceProduct
+        handleChange: (e: React.ChangeEvent<any>) => void
+        setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => Promise<void> | Promise<FormikErrors<InvoiceProduct>>
+    }
 }
 
-export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
+export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product_formik }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
 
     return (
@@ -59,7 +66,8 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         value={formik.values.icms_situacao_tributaria}
                         name="icms_situacao_tributaria"
                         onChange={formik.handleChange}
-                        select>
+                        select
+                    >
                         {icms_situacao_tributaria_values.map((item) => (
                             <MenuItem key={item.value} value={item.value}>
                                 {item.value} - {item.label}
@@ -70,7 +78,8 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
 
                 {icms_situacao_tributaria_values
                     .find((item) => item.value == formik.values.icms_situacao_tributaria)
-                    ?.fields?.map((item) => (
+                    ?.fields?.filter((item) => (isInvoice ? item : !item.disabled))
+                    .map((item) => (
                         <Grid item xs={item.xs || 12} key={item.field}>
                             <TextField
                                 fullWidth
@@ -87,6 +96,10 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                                     </MenuItem>
                                 ))}
                                 required
+                                disabled={item.disabled}
+                                sx={{
+                                    backgroundColor: item.disabled ? darken(colors.background, 0.05) : "",
+                                }}
                             />
                         </Grid>
                     ))}
@@ -101,7 +114,8 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         value={formik.values.pis_situacao_tributaria}
                         name="pis_situacao_tributaria"
                         onChange={formik.handleChange}
-                        select>
+                        select
+                    >
                         {pis_situacao_tributaria_values.map((item) => (
                             <MenuItem key={item.value} value={item.value}>
                                 {item.value} - {item.label}
@@ -136,7 +150,8 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik }) => {
                         select
                         value={formik.values.cofins_situacao_tributaria}
                         name="cofins_situacao_tributaria"
-                        onChange={formik.handleChange}>
+                        onChange={formik.handleChange}
+                    >
                         {cofins_situacao_tributaria_values.map((item) => (
                             <MenuItem key={item.value} value={item.value}>
                                 {item.value} - {item.label}
