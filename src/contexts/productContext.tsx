@@ -19,13 +19,17 @@ export const ProductProvider:React.FC<ProductProviderProps> = ({children}) => {
     const [list, setList] = useState<Product[]>([])
     const io = useIo()
 
+    const addProduct = (product: Product) => {
+        setList((list) => [...list.filter((item) => item.id != product.id), product])
+    }
+
     useEffect(() => {
         console.log({ products: list })
     }, [list])
 
     useEffect(() => {
         io.on("product:new", (product: Product) => {
-            setList((list) => [...list, product])
+            addProduct(product)
         })
 
         return () => {
