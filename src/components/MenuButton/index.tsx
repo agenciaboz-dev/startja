@@ -105,7 +105,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                     sx={{
                         flexDirection: "column",
                         width: "100%",
-                        backgroundColor: "#e8e8e8",
+                        backgroundColor: colors.background2,
                         borderRadius: isMobile ? "10vw" : "2vw",
                     }}
                 >

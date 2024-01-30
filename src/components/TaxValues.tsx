@@ -98,7 +98,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                                 required
                                 disabled={item.disabled}
                                 sx={{
-                                    backgroundColor: item.disabled ? darken(colors.background, 0.05) : "",
+                                    backgroundColor: item.disabled ? colors.background2 : "",
                                 }}
                             />
                         </Grid>
