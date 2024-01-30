@@ -162,7 +162,7 @@ export const icms_situacao_tributaria_values: {
 
     {
         value: "90",
-        label: "Outras(regime Normal)",
+        label: "Outras (regime Normal)",
         fields: [
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
             // {
