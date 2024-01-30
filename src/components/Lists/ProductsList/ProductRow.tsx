@@ -1,9 +1,11 @@
-import React from "react"
-import { Box, Checkbox, IconButton, Menu, MenuItem, useMediaQuery } from "@mui/material"
+import React, { useEffect } from "react"
+import { Box, Checkbox, CircularProgress, IconButton, Menu, MenuItem, useMediaQuery } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
-import { Edit } from "@mui/icons-material"
+import { DeleteForever, Edit } from "@mui/icons-material"
 import { colors } from "../../../style/colors"
+import { useProduct } from "../../../hooks/useProduct"
+import { useIo } from "../../../hooks/useIo"
 
 interface ProductRowProps {
     product: Product
@@ -11,10 +13,16 @@ interface ProductRowProps {
 }
 
 export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct }) => {
+    const io = useIo()
     const isMobile = useMediaQuery("(orientation: portrait)")
+
+    const { isPresentOnInvoice } = useProduct()
+    const can_delete = !isPresentOnInvoice(product)
 
     const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null)
     const menu_opened = Boolean(menuAnchorEl)
+
+    const [deleting, setDeleting] = React.useState(false)
 
     const actions = [
         {
@@ -26,8 +34,27 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct }) 
                 setMenuAnchorEl(null)
             },
         },
-        { id: 2, title: "Remover", icon: <RemoveCircleOutlineIcon />, onClick: () => {} },
+        {
+            id: 2,
+            title: can_delete ? "Remover" : "Desabilitar",
+            icon: deleting ? <CircularProgress size="1.4rem" color="warning" /> : can_delete ? <DeleteForever /> : <RemoveCircleOutlineIcon />,
+            onClick: () => {
+                if (deleting) return
+                setDeleting(true)
+                io.emit(can_delete ? "product:delete" : "product:disable", product.id)
+            },
+        },
     ]
+
+    useEffect(() => {
+        io.on("product:delete:success", (product: Product) => {
+            setDeleting(false)
+        })
+
+        return () => {
+            io.off("product:delete:success")
+        }
+    }, [])
 
     return (
         <Box
