@@ -83,7 +83,7 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
             >
                 <Box
                     sx={{
-                        flex: 0.4,
+                        flex: 0.5,
                         alignItems: "center",
                     }}
                 >
