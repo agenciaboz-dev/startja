@@ -56,6 +56,14 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct }) 
             >
                 <Box
                     sx={{
+                        flex: 0.05,
+                        minWidth: isMobile ? "25vw" : "",
+                    }}
+                >
+                    <p>{product.codigo_externo}</p>
+                </Box>
+                <Box
+                    sx={{
                         flex: 0.45,
                         minWidth: isMobile ? "25vw" : "",
                     }}
@@ -64,7 +72,7 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct }) 
                 </Box>
                 <Box
                     sx={{
-                        flex: 0.5,
+                        flex: 0.4,
                         minWidth: isMobile ? "25vw" : "",
                     }}
                 >

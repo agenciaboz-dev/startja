@@ -36,6 +36,14 @@ export const ProductsListHeader: React.FC<ProductsListHeaderProps> = ({}) => {
                 >
                     <Box
                         sx={{
+                            flex: 0.05,
+                            minWidth: isMobile ? "25vw" : "",
+                        }}
+                    >
+                        <h3>Código</h3>
+                    </Box>
+                    <Box
+                        sx={{
                             flex: 0.45,
                             minWidth: isMobile ? "25vw" : "",
                         }}
@@ -44,11 +52,11 @@ export const ProductsListHeader: React.FC<ProductsListHeaderProps> = ({}) => {
                     </Box>
                     <Box
                         sx={{
-                            flex: 0.5,
+                            flex: 0.4,
                             minWidth: isMobile ? "25vw" : "",
                         }}
                     >
-                        <h3>NCM - Classificação</h3>
+                        <h3>NCM</h3>
                     </Box>
                     <Box
                         sx={{
