@@ -47,15 +47,15 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct, di
         },
     ]
 
-    useEffect(() => {
-        io.on("product:delete:success", (product: Product) => {
-            setDeleting(false)
-        })
+    // useEffect(() => {
+    //     io.on("product:delete:success", (product: Product) => {
+    //         setDeleting(false)
+    //     })
 
-        return () => {
-            io.off("product:delete:success")
-        }
-    }, [])
+    //     return () => {
+    //         io.off("product:delete:success")
+    //     }
+    // }, [])
 
     return (
         <Box

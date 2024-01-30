@@ -38,12 +38,17 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({ children }) =>
             addProduct(product)
         })
 
+        io.on("product:update", (product: Product) => {
+            addProduct(product)
+        })
+
         io.on("product:delete", (product: Product) => {
             deleteProduct(product)
         })
 
         return () => {
             io.off("product:new")
+            io.off("product:update")
             io.off("product:delete")
         }
     }, [list])
