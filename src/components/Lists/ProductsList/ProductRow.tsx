@@ -29,16 +29,18 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct }) 
     ]
 
     return (
-        <Box
+        <MenuItem
             sx={{
                 alignItems: "center",
-                width: "100%"
-            }}>
+                width: "100%",
+                padding: 0,
+            }}
+        >
             <Checkbox
                 inputProps={{
                     style: {
-                        padding: "0"
-                    }
+                        padding: "0",
+                    },
                 }}
             />
             <Box
@@ -46,27 +48,31 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct }) 
                     justifyContent: "space-between",
                     alignItems: "center",
                     flex: 1,
-                    gap: isMobile ? "20vw" : "2vw"
-                }}>
+                    gap: isMobile ? "20vw" : "2vw",
+                }}
+            >
                 <Box
                     sx={{
                         flex: 0.45,
-                        minWidth: isMobile ? "25vw" : ""
-                    }}>
+                        minWidth: isMobile ? "25vw" : "",
+                    }}
+                >
                     <p>{product.name}</p>
                 </Box>
                 <Box
                     sx={{
                         flex: 0.5,
-                        minWidth: isMobile ? "25vw" : ""
-                    }}>
+                        minWidth: isMobile ? "25vw" : "",
+                    }}
+                >
                     <p>{product.ncm}</p>
                 </Box>
                 <Box
                     sx={{
                         flex: 0.05,
-                        justifyContent: "center"
-                    }}>
+                        justifyContent: "center",
+                    }}
+                >
                     <IconButton onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
                         <FormatListBulletedOutlinedIcon />
                     </IconButton>
@@ -76,7 +82,8 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct }) 
                     open={menu_opened}
                     onClose={() => setMenuAnchorEl(null)}
                     slotProps={{ paper: { elevation: 3 } }}
-                    MenuListProps={{ sx: { width: "100%" } }}>
+                    MenuListProps={{ sx: { width: "100%" } }}
+                >
                     {actions.map((action) => {
                         const Icon = () => action.icon
                         return (
@@ -87,6 +94,6 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct }) 
                     })}
                 </Menu>
             </Box>
-        </Box>
+        </MenuItem>
     )
 }
