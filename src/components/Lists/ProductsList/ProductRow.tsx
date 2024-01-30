@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { Box, Checkbox, CircularProgress, IconButton, Menu, MenuItem, darken, useMediaQuery } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
-import { DeleteForever, Edit } from "@mui/icons-material"
+import { DeleteForever, Edit, ThumbsUpDown } from "@mui/icons-material"
 import { colors } from "../../../style/colors"
 import { useProduct } from "../../../hooks/useProduct"
 import { useIo } from "../../../hooks/useIo"
@@ -25,27 +25,38 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct, di
 
     const [deleting, setDeleting] = React.useState(false)
 
-    const actions = [
-        {
-            id: 1,
-            title: "Editar",
-            icon: <Edit />,
-            onClick: () => {
-                editProduct(product)
-                setMenuAnchorEl(null)
-            },
-        },
-        {
-            id: 2,
-            title: can_delete ? "Remover" : "Desabilitar",
-            icon: deleting ? <CircularProgress size="1.4rem" color="warning" /> : can_delete ? <DeleteForever /> : <RemoveCircleOutlineIcon />,
-            onClick: () => {
-                if (deleting) return
-                setDeleting(true)
-                io.emit(can_delete ? "product:delete" : "product:disable", product.id)
-            },
-        },
-    ]
+    const actions = product.active
+        ? [
+              {
+                  id: 1,
+                  title: "Editar",
+                  icon: <Edit />,
+                  onClick: () => {
+                      editProduct(product)
+                      setMenuAnchorEl(null)
+                  },
+              },
+              {
+                  id: 2,
+                  title: can_delete ? "Remover" : "Desabilitar",
+                  icon: deleting ? <CircularProgress size="1.4rem" color="warning" /> : can_delete ? <DeleteForever /> : <RemoveCircleOutlineIcon />,
+                  onClick: () => {
+                      if (deleting) return
+                      setDeleting(true)
+                      io.emit(can_delete ? "product:delete" : "product:disable", product.id)
+                  },
+              },
+          ]
+        : [
+              {
+                  id: 1,
+                  title: "Habilitar",
+                  icon: <ThumbsUpDown />,
+                  onClick: () => {
+                      io.emit("product:enable", product.id)
+                  },
+              },
+          ]
 
     // useEffect(() => {
     //     io.on("product:delete:success", (product: Product) => {
@@ -62,7 +73,6 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct, di
             sx={{
                 alignItems: "center",
                 width: "100%",
-                pointerEvents: disabled ? "none" : "",
                 bgcolor: disabled ? darken(colors.background2, 0.1) : "",
                 ":hover": {
                     backgroundColor: colors.background2,
