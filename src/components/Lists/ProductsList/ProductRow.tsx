@@ -3,6 +3,7 @@ import { Box, Checkbox, IconButton, Menu, MenuItem, useMediaQuery } from "@mui/m
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
 import { Edit } from "@mui/icons-material"
+import { colors } from "../../../style/colors"
 
 interface ProductRowProps {
     product: Product
@@ -23,17 +24,19 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct }) 
             onClick: () => {
                 editProduct(product)
                 setMenuAnchorEl(null)
-            }
+            },
         },
-        { id: 2, title: "Remover", icon: <RemoveCircleOutlineIcon />, onClick: () => {} }
+        { id: 2, title: "Remover", icon: <RemoveCircleOutlineIcon />, onClick: () => {} },
     ]
 
     return (
-        <MenuItem
+        <Box
             sx={{
                 alignItems: "center",
                 width: "100%",
-                padding: 0,
+                ":hover": {
+                    backgroundColor: colors.background2,
+                },
             }}
         >
             <Checkbox
@@ -94,6 +97,6 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct }) 
                     })}
                 </Menu>
             </Box>
-        </MenuItem>
+        </Box>
     )
 }

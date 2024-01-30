@@ -3,6 +3,7 @@ import { Box, Checkbox, IconButton, Menu, MenuItem, useMediaQuery } from "@mui/m
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
 import { Edit } from "@mui/icons-material"
+import { colors } from "../../../style/colors"
 
 interface EnterpriseRowProps {
     enterprise: Company
@@ -23,14 +24,14 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ enterprise, editCo
             onClick: () => {
                 editCompany(enterprise)
                 setMenuAnchorEl(null)
-            }
+            },
         },
         {
             id: 2,
             title: "Remover",
             icon: <RemoveCircleOutlineIcon />,
-            onClick: () => {}
-        }
+            onClick: () => {},
+        },
     ]
 
     return (
@@ -38,6 +39,9 @@ export const EnterpriseRow: React.FC<EnterpriseRowProps> = ({ enterprise, editCo
             sx={{
                 alignItems: "center",
                 width: "100%",
+                ":hover": {
+                    backgroundColor: colors.background2,
+                },
             }}
         >
             <Checkbox
