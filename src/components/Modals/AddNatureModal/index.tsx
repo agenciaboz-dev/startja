@@ -22,6 +22,7 @@ import { TaxRulesForm } from "../../../definitions/TaxRulesForm"
 import { useIo } from "../../../hooks/useIo"
 import { useNature } from "../../../hooks/useNature"
 import { useSnackbar } from "burgos-snackbar"
+import { colors } from "../../../style/colors"
 
 interface AddNatureModalProps {
     open: boolean
@@ -56,6 +57,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
         },
         enableReinitialize: true,
     })
+
+    const emptyRulesList = !formik.values.rules.length
 
     const openTaxationRuleModal = () => {
         setAddTaxationRuleModalOpen(true)
@@ -142,7 +145,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                         sx={{
                             flexDirection: "column",
                             width: "100%",
-                            gap: isMobile ? "5vw" : "2vw",
+                            gap: isMobile ? "5vw" : "1vw",
                         }}
                     >
                         <Grid container spacing={2}>
@@ -192,9 +195,10 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                         <Box
                             sx={{
                                 justifyContent: "space-between",
+                                alignItems: "center",
                             }}
                         >
-                            <p>Regras de tributação adicionadas</p>
+                            <h3>Regras de tributação:</h3>
                             <Button
                                 variant="contained"
                                 sx={{
@@ -203,7 +207,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                 }}
                                 onClick={openTaxationRuleModal}
                             >
-                                Adicionar Regra
+                                Adicionar regra de tributação
                             </Button>
                         </Box>
 
@@ -215,20 +219,37 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                 margin: isMobile ? "0 -5vw" : "",
                             }}
                         >
-                            <Box
-                                sx={{
-                                    flex: 1,
-                                    boxShadow: "0 2px 2px 2px #d1d1d1",
-                                    backgroundColor: "white",
-                                    borderRadius: "20px",
-                                    flexDirection: "column",
-                                    padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
-                                    width: isMobile ? "fit-content" : "100%",
-                                }}
-                            >
-                                <AddedTaxationRulesListHeader />
-                                <AddedTaxationRuleRowsList list={formik.values.rules} deleteTaxRule={deleteTaxRule} />
-                            </Box>
+                            {emptyRulesList && (
+                                <Box
+                                    sx={{
+                                        height: "100%",
+                                        width: "100%",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        flexDirection: "column",
+                                        textAlign: "center",
+                                        color: colors.text.greyish,
+                                    }}
+                                >
+                                    <h3>Sem regras de tributação</h3>
+                                </Box>
+                            )}
+                            {!emptyRulesList && (
+                                <Box
+                                    sx={{
+                                        flex: 1,
+                                        boxShadow: "0 2px 2px 2px #d1d1d1",
+                                        backgroundColor: "white",
+                                        borderRadius: "20px",
+                                        flexDirection: "column",
+                                        padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
+                                        width: isMobile ? "fit-content" : "100%",
+                                    }}
+                                >
+                                    <AddedTaxationRulesListHeader />
+                                    <AddedTaxationRuleRowsList list={formik.values.rules} deleteTaxRule={deleteTaxRule} />
+                                </Box>
+                            )}
                         </Box>
                     </Box>
                 </DialogContent>
