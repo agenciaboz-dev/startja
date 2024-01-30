@@ -4,20 +4,22 @@ import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBullet
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
 import { TaxRulesForm } from "../../../definitions/TaxRulesForm"
 import { useProduct } from "../../../hooks/useProduct"
+import { Edit } from "@mui/icons-material"
 
 interface AddedTaxationRuleRowProps {
     tax_rule: TaxRulesForm
     deleteTaxRule: (rule: TaxRulesForm) => void
+    updateTaxRule: (rule: TaxRulesForm) => void
 }
 
-export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_rule, deleteTaxRule }) => {
+export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_rule, deleteTaxRule, updateTaxRule }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const product = useProduct()
 
     const cellStyle = {
         alignItems: "center",
         justifyContent: "center",
-        textAlign: "center"
+        textAlign: "center",
     }
 
     const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -26,73 +28,89 @@ export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_
     const actions = [
         {
             id: 1,
+            title: "Editar",
+            icon: <Edit />,
+            onClick: () => {
+                updateTaxRule(tax_rule)
+            },
+        },
+        {
+            id: 2,
             title: "Remover",
             icon: <RemoveCircleOutlineIcon />,
             onClick: () => {
                 deleteTaxRule(tax_rule)
-            }
-        }
+            },
+        },
     ]
 
     return (
         <Box
             sx={{
                 alignItems: "center",
-                width: "100%"
-            }}>
+                width: "100%",
+            }}
+        >
             <Checkbox
                 inputProps={{
                     style: {
-                        padding: "0"
-                    }
+                        padding: "0",
+                    },
                 }}
             />
             <Box
                 sx={{
                     justifyContent: "space-between",
                     flex: 1,
-                    gap: isMobile ? "10vw" : ""
-                }}>
+                    gap: isMobile ? "10vw" : "",
+                }}
+            >
                 <Box
                     sx={{
                         alignItems: "center",
-                        flex: 0.1
-                    }}>
+                        flex: 0.1,
+                    }}
+                >
                     <p>{tax_rule.destino}</p>
                 </Box>
                 <Box
                     sx={{
                         ...cellStyle,
-                        flex: 0.1
-                    }}>
+                        flex: 0.1,
+                    }}
+                >
                     <p>{product.find(tax_rule.product_id)?.ncm}</p>
                 </Box>
                 <Box
                     sx={{
                         ...cellStyle,
-                        flex: 0.25
-                    }}>
+                        flex: 0.25,
+                    }}
+                >
                     <p>{product.find(tax_rule.product_id)?.name}</p>
                 </Box>
                 <Box
                     sx={{
                         ...cellStyle,
-                        flex: 0.2
-                    }}>
+                        flex: 0.2,
+                    }}
+                >
                     <p>{tax_rule.cfop}</p>
                 </Box>
                 <Box
                     sx={{
                         ...cellStyle,
-                        flex: 0.25
-                    }}>
+                        flex: 0.25,
+                    }}
+                >
                     <p>{tax_rule.icms_situacao_tributaria}</p>
                 </Box>
                 <Box
                     sx={{
                         ...cellStyle,
-                        flex: 0.05
-                    }}>
+                        flex: 0.05,
+                    }}
+                >
                     <IconButton onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
                         <FormatListBulletedOutlinedIcon />
                     </IconButton>
@@ -102,7 +120,8 @@ export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_
                     open={menu_opened}
                     onClose={() => setMenuAnchorEl(null)}
                     slotProps={{ paper: { elevation: 3 } }}
-                    MenuListProps={{ sx: { width: "100%" } }}>
+                    MenuListProps={{ sx: { width: "100%" } }}
+                >
                     {actions.map((action) => {
                         const Icon = () => action.icon
                         return (

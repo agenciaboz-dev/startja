@@ -7,9 +7,10 @@ import { TaxRulesForm } from "../../../definitions/TaxRulesForm"
 interface AddedTaxationRuleRowsListProps {
     list: TaxRulesForm[]
     deleteTaxRule: (rule: TaxRulesForm) => void
+    updateTaxRule: (rule: TaxRulesForm) => void
 }
 
-export const AddedTaxationRuleRowsList: React.FC<AddedTaxationRuleRowsListProps> = ({ list, deleteTaxRule }) => {
+export const AddedTaxationRuleRowsList: React.FC<AddedTaxationRuleRowsListProps> = ({ list, deleteTaxRule, updateTaxRule }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
 
     return (
@@ -18,13 +19,15 @@ export const AddedTaxationRuleRowsList: React.FC<AddedTaxationRuleRowsListProps>
                 flexDirection: "column",
                 alignItems: "center",
                 overflowY: "auto",
-                margin: "0.5vw 0"
-            }}>
+                margin: "0.5vw 0",
+            }}
+        >
             {list.map((item, index) => (
                 <AddedTaxationRuleRow
                     key={`${index}:${item.product_id}:${item.origem}:${item.destino}`}
                     tax_rule={item}
                     deleteTaxRule={deleteTaxRule}
+                    updateTaxRule={updateTaxRule}
                 />
             ))}
         </Box>

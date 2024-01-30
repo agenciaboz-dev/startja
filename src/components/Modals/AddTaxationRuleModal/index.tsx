@@ -8,14 +8,18 @@ import { TaxRulesForm } from "../../../definitions/TaxRulesForm"
 import { useSnackbar } from "burgos-snackbar"
 import { TaxValues } from "../../TaxValues"
 import icms_situacao_tributaria_values from "../AddInvoiceModal/icms_situacao_tributaria"
+import { uid } from "uid"
 
 interface AddTaxationRuleModalProps {
     open: boolean
     onClose: () => void
     addTaxRule: (rule: TaxRulesForm) => void
+    current_rule?: TaxRulesForm
 }
 
-const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClose, addTaxRule }) => {
+const random_id = uid()
+
+const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClose, addTaxRule, current_rule }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const pStyles = { minWidth: "fit-content" }
     const selectStyles = { maxWidth: isMobile ? "100%" : "10vw" }
@@ -23,7 +27,8 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
     const { snackbar } = useSnackbar()
 
     const formik = useFormik<TaxRulesForm>({
-        initialValues: {
+        initialValues: current_rule || {
+            id: random_id,
             cfop: 0,
             icms_modalidade_base_calculo: 0,
             cofins_situacao_tributaria: "01",
@@ -32,13 +37,13 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
 
             origem: "",
             destino: "",
-            product_id: 0
+            product_id: 0,
         },
         onSubmit(values, formikHelpers) {
             const additional_fields = icms_situacao_tributaria_values.find((item) => item.value == values.icms_situacao_tributaria)?.fields || []
             const data: TaxRulesForm = {
                 ...values,
-                cfop: Number(values.cfop)
+                cfop: Number(values.cfop),
             }
             additional_fields.map((field) => {
                 // @ts-ignore
@@ -50,7 +55,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
             onClose()
             formik.resetForm()
         },
-        enableReinitialize: true
+        enableReinitialize: true,
     })
 
     useEffect(() => {
@@ -65,7 +70,8 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
     }, [formik.values.origem, formik.values.destino])
 
     useEffect(() => {
-        if (!!product.list.length) formik.setFieldValue("product_id", product.list[0].id)
+        if (!!product.list.length && !current_rule) formik.setFieldValue("product_id", product.list[0].id)
+        if (current_rule) console.log(current_rule)
     }, [])
 
     return (
@@ -73,23 +79,24 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
             open={open}
             onClose={onClose}
             sx={{
-                justifyContent: "center"
+                justifyContent: "center",
             }}
             PaperProps={{
                 sx: {
                     borderRadius: "20px",
                     minWidth: "80vw",
-                    width: "fit-content"
-                }
-            }}>
+                    width: "fit-content",
+                },
+            }}
+        >
             <form onSubmit={formik.handleSubmit}>
-                <DialogTitle>Adicionar Regra de Tributação</DialogTitle>
+                <DialogTitle>{current_rule ? "Editar Regra de Tributação" : "Adicionar Regra de Tributação"}</DialogTitle>
                 <CloseOutlinedIcon
                     sx={{
                         position: "absolute",
                         top: isMobile ? "5vw" : "1vw",
                         right: isMobile ? "5vw" : "1vw",
-                        cursor: "pointer"
+                        cursor: "pointer",
                     }}
                     onClick={onClose}
                 />
@@ -99,8 +106,9 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                         sx={{
                             flexDirection: "column",
                             gap: isMobile ? "5vw" : "1vw",
-                            width: "100%"
-                        }}>
+                            width: "100%",
+                        }}
+                    >
                         <Box
                             sx={{
                                 height: "fit-content",
@@ -108,8 +116,9 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                 justifyContent: "center",
                                 alignItems: "center",
                                 gap: "1vw",
-                                flexDirection: isMobile ? "column" : ""
-                            }}>
+                                flexDirection: isMobile ? "column" : "",
+                            }}
+                        >
                             <p style={pStyles}>Quando sair de</p>
                             <TextField
                                 select
@@ -121,7 +130,8 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                 fullWidth
                                 required
                                 sx={selectStyles}
-                                value={formik.values.origem}>
+                                value={formik.values.origem}
+                            >
                                 <MenuItem value="" sx={{ display: "none" }}></MenuItem>
                                 {estados.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
@@ -139,7 +149,8 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                 sx={selectStyles}
                                 onChange={formik.handleChange}
                                 name="destino"
-                                value={formik.values.destino}>
+                                value={formik.values.destino}
+                            >
                                 <MenuItem value="" sx={{ display: "none" }}></MenuItem>
                                 {estados.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
@@ -159,7 +170,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                         variant="standard"
                                         name="product_id"
                                         sx={{
-                                            minWidth: "20vw"
+                                            minWidth: "20vw",
                                         }}
                                     />
                                 )}
@@ -178,8 +189,9 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
 
                 <DialogActions
                     sx={{
-                        margin: "0.5vw"
-                    }}>
+                        margin: "0.5vw",
+                    }}
+                >
                     <Button
                         onClick={onClose}
                         color="secondary"
@@ -187,8 +199,9 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
+                            textTransform: "unset",
+                        }}
+                    >
                         Cancelar
                     </Button>
                     <Button
@@ -198,9 +211,10 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                         sx={{
                             borderRadius: "20px",
                             color: "white",
-                            textTransform: "unset"
-                        }}>
-                        Adicionar
+                            textTransform: "unset",
+                        }}
+                    >
+                        {current_rule ? "Salvar" : "Adicionar"}
                     </Button>
                 </DialogActions>
             </form>

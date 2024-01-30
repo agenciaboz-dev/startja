@@ -1,4 +1,5 @@
 export declare interface TaxRulesForm {
+    id: string | number
     cfop: number
     cofins_situacao_tributaria: string
     icms_modalidade_base_calculo: number
