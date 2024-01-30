@@ -4,6 +4,8 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { useIo } from "../../../hooks/useIo"
 import { useFormik } from "formik"
 import { NewProduct } from "../../../definitions/userOperations"
+import { useProduct } from "../../../hooks/useProduct"
+import { useSnackbar } from "burgos-snackbar"
 
 interface AddProductModalProps {
     open: boolean
@@ -14,6 +16,8 @@ interface AddProductModalProps {
 const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, current_product }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const io = useIo()
+    const { addProduct } = useProduct()
+    const { snackbar } = useSnackbar()
 
     const formik = useFormik<NewProduct>({
         initialValues: current_product || {
@@ -22,14 +26,14 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
             codigo_externo: "",
             icmsOrigin: 0,
 
-            rules: []
+            rules: [],
         },
         onSubmit: (values) => {
             console.log(values)
             setLoading(true)
             io.emit(current_product ? "product:update" : "product:create", values, current_product?.id)
         },
-        enableReinitialize: true
+        enableReinitialize: true,
     })
 
     const [loading, setLoading] = useState(false)
@@ -37,10 +41,12 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
     useEffect(() => {
         io.on("product:creation:successful", (product: Product) => {
             console.log("Produto criado com sucesso: ", product)
-            io.emit("product:list")
+            addProduct(product)
             setLoading(false)
+            snackbar({ severity: "success", text: "produto criado com sucesso" })
             onClose()
         })
+
         io.on("product:creation:error", ({ error }) => {
             setLoading(false)
             console.log(error)

@@ -4,7 +4,7 @@ import { useIo } from "./useIo"
 
 export const useProduct = () => {
     const productContext = useContext(ProductContext)
-    const { list, setList } = productContext
+    const { list, setList, addProduct } = productContext
     const io = useIo()
 
     const makeList = () => {
@@ -13,5 +13,5 @@ export const useProduct = () => {
 
     const find = (id: number) => list.find((item) => item.id === id)
 
-    return { makeList, list, setList, find }
+    return { makeList, list, setList, find, addProduct }
 }
