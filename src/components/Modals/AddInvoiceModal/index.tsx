@@ -201,7 +201,11 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                 snackbar({ severity: "warning", text: "Propriedade não pode ser vazia" })
                 return
             }
-            if (!selectedNature) return
+            
+            if (!selectedNature) {
+                snackbar({ severity: "warning", text: "selecione uma natureza de operação" })
+                return
+            }
 
             setLoading(true)
 
