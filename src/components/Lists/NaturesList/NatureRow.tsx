@@ -33,17 +33,40 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
         }
     }, [])
 
+    const types = [
+        { number: 0, type: "0 - Entrada" },
+        { number: 1, type: "1 - Saída" },
+    ]
+
+    const getTypeText = (typeNumber: number) => {
+        const typeObj = types.find((t) => t.number === typeNumber)
+        return typeObj ? typeObj.type : ""
+    }
+
+    const finalities = [
+        { number: 1, finality: "1 - Nota normal" },
+        { number: 2, finality: "2 - Nota complementar" },
+        { number: 3, finality: "3 - Nota de ajuste" },
+        { number: 4, finality: "4 - Devolução de mercadoria" },
+    ]
+
+    const getFinalityText = (finalityNumber: number) => {
+        const finalityObj = finalities.find((t) => t.number === finalityNumber)
+        return finalityObj ? finalityObj.finality : ""
+    }
+
     return (
         <Box
             sx={{
                 alignItems: "center",
-                width: "100%"
-            }}>
+                width: "100%",
+            }}
+        >
             <Checkbox
                 inputProps={{
                     style: {
-                        padding: "0"
-                    }
+                        padding: "0",
+                    },
                 }}
             />
             <Box
@@ -51,30 +74,51 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     flex: 1,
-                    gap: isMobile ? "20vw" : "2vw"
-                }}>
+                    gap: isMobile ? "20vw" : "2vw",
+                }}
+            >
                 <Box
                     sx={{
-                        flex: 0.7,
-                        alignItems: "center"
-                    }}>
+                        flex: 0.5,
+                        alignItems: "center",
+                    }}
+                >
                     <p>{nature.motive}</p>
-                    {/* <p>Elementum senectus diam neque aliquet</p> */}
                 </Box>
                 <Box
                     sx={{
                         alignItems: "center",
                         flex: 0.1,
-                        justifyContent: "center"
-                    }}>
-                    <VisibilityOutlinedIcon />
+                        justifyContent: "center",
+                    }}
+                >
+                    <p>{nature.operation}</p>
                 </Box>
                 <Box
                     sx={{
                         alignItems: "center",
                         flex: 0.1,
-                        justifyContent: "center"
-                    }}>
+                        justifyContent: "center",
+                    }}
+                >
+                    <p>{getTypeText(nature.type)}</p>
+                </Box>
+                <Box
+                    sx={{
+                        alignItems: "center",
+                        flex: 0.1,
+                        justifyContent: "center",
+                    }}
+                >
+                    <p>{getFinalityText(nature.finality)}</p>
+                </Box>
+                <Box
+                    sx={{
+                        alignItems: "center",
+                        flex: 0.1,
+                        justifyContent: "center",
+                    }}
+                >
                     <IconButton color="inherit" onClick={() => setOpenModal(true)}>
                         <EditOutlinedIcon />
                     </IconButton>
@@ -83,8 +127,9 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
                     sx={{
                         alignItems: "center",
                         flex: 0.1,
-                        justifyContent: "center"
-                    }}>
+                        justifyContent: "center",
+                    }}
+                >
                     <ToggleSwitch checked={nature.active} handleChange={handleChange} />
                 </Box>
             </Box>
