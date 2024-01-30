@@ -38,6 +38,7 @@ export const ProductsListHeader: React.FC<ProductsListHeaderProps> = ({}) => {
                         sx={{
                             flex: 0.05,
                             minWidth: isMobile ? "25vw" : "",
+                            justifyContent: "center",
                         }}
                     >
                         <h3>Código</h3>

@@ -88,6 +88,7 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct, di
                     sx={{
                         flex: 0.05,
                         minWidth: isMobile ? "25vw" : "",
+                        justifyContent: "center",
                     }}
                 >
                     <p>{product.codigo_externo}</p>
