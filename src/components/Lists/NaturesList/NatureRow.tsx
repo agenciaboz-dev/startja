@@ -6,6 +6,7 @@ import { ToggleSwitch } from "../../ToggleSwitch"
 import AddNatureModal from "../../Modals/AddNatureModal"
 import { useIo } from "../../../hooks/useIo"
 import { useNature } from "../../../hooks/useNature"
+import { colors } from "../../../style/colors"
 
 interface NatureRowProps {
     nature: Natureza
@@ -60,6 +61,9 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
             sx={{
                 alignItems: "center",
                 width: "100%",
+                ":hover": {
+                    backgroundColor: colors.background2,
+                },
             }}
         >
             <Checkbox
@@ -79,7 +83,7 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
             >
                 <Box
                     sx={{
-                        flex: 0.5,
+                        flex: 0.4,
                         alignItems: "center",
                     }}
                 >

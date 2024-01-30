@@ -3,6 +3,7 @@ import { Box, Checkbox, IconButton, Menu, MenuItem, useMediaQuery } from "@mui/m
 import { ToggleSwitch } from "../../ToggleSwitch"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
+import { colors } from "../../../style/colors"
 
 interface CollaboratorRowProps {
     // collaborator: Collaborator
@@ -28,6 +29,9 @@ export const CollaboratorRow: React.FC<CollaboratorRowProps> = ({ collaborator }
             sx={{
                 alignItems: "center",
                 width: "100%",
+                ":hover": {
+                    backgroundColor: colors.background2,
+                },
             }}
         >
             <Checkbox

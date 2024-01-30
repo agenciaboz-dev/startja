@@ -2,6 +2,7 @@ import React from "react"
 import { Box, Checkbox, IconButton, Menu, MenuItem, useMediaQuery } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
+import { colors } from "../../../style/colors"
 
 interface AccountRowProps {
     // account : Account
@@ -27,6 +28,9 @@ export const AccountRow: React.FC<AccountRowProps> = ({ account }) => {
             sx={{
                 alignItems: "center",
                 width: "100%",
+                ":hover": {
+                    backgroundColor: colors.background2,
+                },
             }}
         >
             <Checkbox

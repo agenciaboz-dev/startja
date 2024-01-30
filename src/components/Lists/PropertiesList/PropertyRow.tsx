@@ -3,6 +3,7 @@ import { Box, Checkbox, IconButton, Menu, MenuItem, useMediaQuery } from "@mui/m
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
 import { Edit } from "@mui/icons-material"
+import { colors } from "../../../style/colors"
 
 interface PropertyRowProps {
     property: Property
@@ -37,13 +38,17 @@ export const PropertyRow: React.FC<PropertyRowProps> = ({ property, editProperty
         <Box
             sx={{
                 alignItems: "center",
-                width: "100%"
-            }}>
+                width: "100%",
+                ":hover": {
+                    backgroundColor: colors.background2,
+                },
+            }}
+        >
             <Checkbox
                 inputProps={{
                     style: {
-                        padding: "0"
-                    }
+                        padding: "0",
+                    },
                 }}
             />
             <Box
@@ -52,40 +57,46 @@ export const PropertyRow: React.FC<PropertyRowProps> = ({ property, editProperty
 
                     justifyContent: "space-between",
                     flex: 1,
-                    gap: isMobile ? "20vw" : "2vw"
-                }}>
+                    gap: isMobile ? "20vw" : "2vw",
+                }}
+            >
                 <Box
                     sx={{
-                        flex: 1
-                    }}>
+                        flex: 1,
+                    }}
+                >
                     <p>{property.name}</p>
                 </Box>
                 <Box
                     sx={{
                         flex: 1,
-                        justifyContent: "center"
-                    }}>
+                        justifyContent: "center",
+                    }}
+                >
                     <p>{property.nifr}</p>
                 </Box>
                 <Box
                     sx={{
                         flex: 1,
-                        justifyContent: "center"
-                    }}>
+                        justifyContent: "center",
+                    }}
+                >
                     <p>{property.ie}</p>
                 </Box>
                 <Box
                     sx={{
                         flex: 1,
-                        justifyContent: "center"
-                    }}>
+                        justifyContent: "center",
+                    }}
+                >
                     <p>{property.street}</p>
                 </Box>
                 <Box
                     sx={{
                         width: "5%",
-                        justifyContent: "center"
-                    }}>
+                        justifyContent: "center",
+                    }}
+                >
                     <IconButton onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
                         <FormatListBulletedOutlinedIcon />
                     </IconButton>
@@ -95,7 +106,8 @@ export const PropertyRow: React.FC<PropertyRowProps> = ({ property, editProperty
                     open={menu_opened}
                     onClose={() => setMenuAnchorEl(null)}
                     slotProps={{ paper: { elevation: 3 } }}
-                    MenuListProps={{ sx: { width: "100%" } }}>
+                    MenuListProps={{ sx: { width: "100%" } }}
+                >
                     {actions.map((action) => {
                         const Icon = () => action.icon
                         return (

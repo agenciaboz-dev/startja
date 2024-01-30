@@ -5,6 +5,7 @@ import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
 import { TaxRulesForm } from "../../../definitions/TaxRulesForm"
 import { useProduct } from "../../../hooks/useProduct"
 import { Edit } from "@mui/icons-material"
+import { colors } from "../../../style/colors"
 
 interface AddedTaxationRuleRowProps {
     tax_rule: TaxRulesForm
@@ -49,6 +50,9 @@ export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_
             sx={{
                 alignItems: "center",
                 width: "100%",
+                ":hover": {
+                    backgroundColor: colors.background2,
+                },
             }}
         >
             <Checkbox

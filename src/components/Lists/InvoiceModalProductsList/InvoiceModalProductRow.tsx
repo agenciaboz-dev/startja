@@ -5,6 +5,7 @@ import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
 import { FormikErrors } from "formik"
 import { CurrencyText } from "../../CurrencyText"
 import { unmaskNumber } from "../../../tools/unmaskNumber"
+import { colors } from "../../../style/colors"
 
 interface InvoiceModalProductRowProps {
     product: InvoiceProduct
@@ -38,20 +39,25 @@ export const InvoiceModalProductRow: React.FC<InvoiceModalProductRowProps> = ({ 
         <Box
             sx={{
                 alignItems: "center",
-                width: "100%"
-            }}>
+                width: "100%",
+                ":hover": {
+                    backgroundColor: colors.background2,
+                },
+            }}
+        >
             <Checkbox
                 inputProps={{
                     style: {
-                        padding: "0"
-                    }
+                        padding: "0",
+                    },
                 }}
             />
             <Box
                 sx={{
                     justifyContent: "space-between",
-                    flex: 1
-                }}>
+                    flex: 1,
+                }}
+            >
                 <Box sx={{ ...slotStyle, justifyContent: "start" }}>{product.name}</Box>
                 <Box sx={slotStyle}>{product.quantidade}</Box>
                 <Box sx={slotStyle}>
@@ -70,7 +76,8 @@ export const InvoiceModalProductRow: React.FC<InvoiceModalProductRowProps> = ({ 
                     open={menu_opened}
                     onClose={() => setMenuAnchorEl(null)}
                     slotProps={{ paper: { elevation: 3 } }}
-                    MenuListProps={{ sx: { width: "100%" } }}>
+                    MenuListProps={{ sx: { width: "100%" } }}
+                >
                     {actions.map((action) => {
                         const Icon = () => action.icon
                         return (
