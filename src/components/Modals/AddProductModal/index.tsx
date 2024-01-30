@@ -38,13 +38,21 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
 
     const [loading, setLoading] = useState(false)
 
+    const onUpdateProduct = (product: Product) => {
+        addProduct(product)
+        onClose()
+        setLoading(false)
+    }
+
     useEffect(() => {
         io.on("product:creation:successful", (product: Product) => {
-            console.log("Produto criado com sucesso: ", product)
-            addProduct(product)
-            setLoading(false)
             snackbar({ severity: "success", text: "produto criado com sucesso" })
-            onClose()
+            onUpdateProduct(product)
+        })
+
+        io.on("product:update:successful", (product: Product) => {
+            snackbar({ severity: "info", text: "produto atualizado" })
+            onUpdateProduct(product)
         })
 
         io.on("product:creation:error", ({ error }) => {
@@ -52,9 +60,16 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
             console.log(error)
         })
 
+        io.on("product:update:error", ({ error }) => {
+            setLoading(false)
+            console.log(error)
+        })
+
         return () => {
             io.off("product:creation:successful")
             io.off("product:creation:error")
+            io.off("product:update:successful")
+            io.off("product:update:error")
         }
     }, [])
 
