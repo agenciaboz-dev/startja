@@ -16,13 +16,13 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import AddTaxationRuleModal from "../AddTaxationRuleModal"
 import { AddedTaxationRulesListHeader } from "../../../../src/components/Lists/AddedTaxationRulesList/AddedTaxationRulesListHeader"
 import { AddedTaxationRuleRowsList } from "../../../../src/components/Lists/AddedTaxationRulesList"
-import { colors } from "../../../style/colors"
 import { useFormik } from "formik"
 import { NatureForm } from "../../../definitions/userOperations"
 import { TaxRulesForm } from "../../../definitions/TaxRulesForm"
 import { useIo } from "../../../hooks/useIo"
 import { useNature } from "../../../hooks/useNature"
 import { useSnackbar } from "burgos-snackbar"
+import { colors } from "../../../style/colors"
 
 interface AddNatureModalProps {
     open: boolean
@@ -39,6 +39,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
     const [isAddTaxationRuleModalOpen, setAddTaxationRuleModalOpen] = useState(false)
     const [loading, setLoading] = useState(false)
     const [currentTaxRule, setCurrentTaxRule] = useState<TaxRulesForm>()
+    
 
     const formik = useFormik<NatureForm>({
         initialValues: current_nature || {
@@ -59,8 +60,11 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
         enableReinitialize: true,
     })
 
+    const emptyRulesList = !formik.values.rules.length
+    
     const openTaxationRuleModal = (rule?: TaxRulesForm) => {
         rule && setCurrentTaxRule(rule)
+
         setAddTaxationRuleModalOpen(true)
     }
 
@@ -78,38 +82,12 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
         )
     }
 
-    const handleOperationChange = (new_operation: string) => {
-        const options = [
-            { operation: "Compra de mercadorias", type: "Entrada", finality: 1 },
-            { operation: "Retorno de mercadoria", type: "Entrada", finality: 1 },
-            { operation: "Transferência de entrada", type: "Entrada", finality: 1 },
-            { operation: "Devolução de venda", type: "Entrada", finality: 4 },
-            { operation: "Remessa de mercadoria", type: "Saída", finality: 1 },
-            { operation: "Transferência de saída", type: "Saída", finality: 1 },
-            { operation: "Venda", type: "Saída", finality: 1 },
-            { operation: "Devolução de compra", type: "Saída", finality: 4 },
-            { operation: "Anulação de valores", type: "Saída", finality: 3 },
-        ]
-
-        const operation = options.find((item) => item.operation == new_operation)
-        if (operation) {
-            formik.setFieldValue("type", operation.type == "Entrada" ? 0 : 1)
-            formik.setFieldValue("finality", operation.finality)
-        }
-    }
-
     const onUpdateCallback = (nature: Natureza) => {
         setLoading(false)
         updateNature(nature)
         formik.resetForm()
         onClose()
     }
-
-    useEffect(() => {
-        if (formik.values.operation) {
-            handleOperationChange(formik.values.operation)
-        }
-    }, [formik.values.operation])
 
     useEffect(() => {
         io.on("nature:creation:success", (nature: Natureza) => {
@@ -174,43 +152,22 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                         sx={{
                             flexDirection: "column",
                             width: "100%",
-                            gap: isMobile ? "5vw" : "2vw",
+                            gap: isMobile ? "5vw" : "1vw",
                         }}
                     >
                         <Grid container spacing={2}>
                             <Grid item xs={isMobile ? 12 : 4}>
                                 <TextField
                                     label="Operação"
-                                    select
                                     name="operation"
                                     fullWidth
                                     required
                                     onChange={formik.handleChange}
                                     value={formik.values.operation}
-                                >
-                                    <MenuItem value="" sx={{ display: "none" }}></MenuItem>
-                                    <MenuItem value="Compra de mercadorias">Compra de mercadorias</MenuItem>
-                                    <MenuItem value="Devolução de compra">Devolução de compra</MenuItem>
-                                    <MenuItem value="Devolução de venda">Devolução de venda</MenuItem>
-                                    <MenuItem value="Remessa de mercadoria">Remessa de mercadoria</MenuItem>
-                                    <MenuItem value="Retorno de mercadoria">Retorno de mercadoria</MenuItem>
-                                    <MenuItem value="Transferência de entrada">Transferência de entrada</MenuItem>
-                                    <MenuItem value="Transferência de saída">Transferência de saída</MenuItem>
-                                    <MenuItem value="Anulação de valores">Anulação de valores</MenuItem>
-                                    <MenuItem value="Venda">Venda</MenuItem>
-                                </TextField>
+                                />
                             </Grid>
                             <Grid item xs={isMobile ? 12 : 4}>
-                                <TextField
-                                    label="Tipo"
-                                    select
-                                    fullWidth
-                                    value={formik.values.type}
-                                    disabled
-                                    sx={{
-                                        backgroundColor: colors.background,
-                                    }}
-                                >
+                                <TextField label="Tipo" select fullWidth name="type" onChange={formik.handleChange} value={formik.values.type}>
                                     <MenuItem value={0}>0 - Entrada</MenuItem>
                                     <MenuItem value={1}>1 - Saída</MenuItem>
                                 </TextField>
@@ -220,11 +177,9 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                     label="Finalidade"
                                     select
                                     fullWidth
+                                    name="finality"
+                                    onChange={formik.handleChange}
                                     value={formik.values.finality}
-                                    disabled
-                                    sx={{
-                                        backgroundColor: colors.background,
-                                    }}
                                 >
                                     <MenuItem value={1}>1 - Nota normal</MenuItem>
                                     <MenuItem value={2}>2 - Nota complementar</MenuItem>
@@ -235,7 +190,6 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                             <Grid item xs={12}>
                                 <TextField
                                     label="Natureza da operação (motivo)"
-                                    placeholder="Busque pelo nome do produto ou NCM"
                                     name="motive"
                                     value={formik.values.motive}
                                     onChange={formik.handleChange}
@@ -248,9 +202,10 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                         <Box
                             sx={{
                                 justifyContent: "space-between",
+                                alignItems: "center",
                             }}
                         >
-                            <p>Regras de tributação adicionadas</p>
+                            <h3>Regras de tributação:</h3>
                             <Button
                                 variant="contained"
                                 sx={{
@@ -259,7 +214,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                 }}
                                 onClick={() => openTaxationRuleModal()}
                             >
-                                Adicionar Regra
+                                Adicionar regra de tributação
                             </Button>
                         </Box>
 
@@ -271,24 +226,37 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                 margin: isMobile ? "0 -5vw" : "",
                             }}
                         >
-                            <Box
-                                sx={{
-                                    flex: 1,
-                                    boxShadow: "0 2px 2px 2px #d1d1d1",
-                                    backgroundColor: "white",
-                                    borderRadius: "20px",
-                                    flexDirection: "column",
-                                    padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
-                                    width: isMobile ? "fit-content" : "100%",
-                                }}
-                            >
-                                <AddedTaxationRulesListHeader />
-                                <AddedTaxationRuleRowsList
-                                    list={formik.values.rules}
-                                    deleteTaxRule={deleteTaxRule}
-                                    updateTaxRule={openTaxationRuleModal}
-                                />
-                            </Box>
+                            {emptyRulesList && (
+                                <Box
+                                    sx={{
+                                        height: "100%",
+                                        width: "100%",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        flexDirection: "column",
+                                        textAlign: "center",
+                                        color: colors.text.greyish,
+                                    }}
+                                >
+                                    <h3>Sem regras de tributação</h3>
+                                </Box>
+                            )}
+                            {!emptyRulesList && (
+                                <Box
+                                    sx={{
+                                        flex: 1,
+                                        boxShadow: "0 2px 2px 2px #d1d1d1",
+                                        backgroundColor: "white",
+                                        borderRadius: "20px",
+                                        flexDirection: "column",
+                                        padding: isMobile ? "5vw" : "1vw 1.5vw 1vw 0.5vw",
+                                        width: isMobile ? "fit-content" : "100%",
+                                    }}
+                                >
+                                    <AddedTaxationRulesListHeader />
+                                    <AddedTaxationRuleRowsList list={formik.values.rules} deleteTaxRule={deleteTaxRule} updateTaxRule={openTaxationRuleModal} />
+                                </Box>
+                            )}
                         </Box>
                     </Box>
                 </DialogContent>

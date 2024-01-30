@@ -36,7 +36,7 @@ export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
                 >
                     <Box
                         sx={{
-                            flex: 0.7,
+                            flex: 0.5,
                         }}
                     >
                         <h3>Natureza da Operação</h3>
@@ -47,7 +47,23 @@ export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
                             justifyContent: "center",
                         }}
                     >
-                        <h3>Tributação</h3>
+                        <h3>Operação</h3>
+                    </Box>
+                    <Box
+                        sx={{
+                            flex: 0.1,
+                            justifyContent: "center",
+                        }}
+                    >
+                        <h3>Tipo</h3>
+                    </Box>
+                    <Box
+                        sx={{
+                            flex: 0.1,
+                            justifyContent: "center",
+                        }}
+                    >
+                        <h3>Finalidade</h3>
                     </Box>
                     <Box
                         sx={{
@@ -63,7 +79,7 @@ export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
                             justifyContent: "center",
                         }}
                     >
-                        <h3>Ativar/Desativar</h3>
+                        <h3>Ativar / Desativar</h3>
                     </Box>
                 </Box>
             </Box>
