@@ -3,8 +3,9 @@ import React from 'react'
 import { useIo } from '../hooks/useIo';
 
 interface ProductContextValue {
-    list: Product[];
-    setList: (value:Product[]) => void;
+    list: Product[]
+    setList: (value: Product[]) => void
+    addProduct: (product: Product) => void
 }
 
 interface ProductProviderProps {
@@ -49,9 +50,5 @@ export const ProductProvider:React.FC<ProductProviderProps> = ({children}) => {
         }
     },[])
 
-    return (
-         <ProductContext.Provider value={{list, setList}}>
-              {children}
-         </ProductContext.Provider>
-    )
+    return <ProductContext.Provider value={{ list, setList, addProduct }}>{children}</ProductContext.Provider>
 }
