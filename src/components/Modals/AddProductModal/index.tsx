@@ -57,11 +57,13 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
 
         io.on("product:creation:error", ({ error }) => {
             setLoading(false)
+            snackbar({ severity: "error", text: error })
             console.log(error)
         })
 
         io.on("product:update:error", ({ error }) => {
             setLoading(false)
+            snackbar({ severity: "error", text: error })
             console.log(error)
         })
 
