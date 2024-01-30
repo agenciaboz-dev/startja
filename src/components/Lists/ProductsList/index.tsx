@@ -32,9 +32,16 @@ export const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
             }}
         >
             {products
+                .filter((product) => product.active)
                 .sort((a, b) => (a.name < b.name ? -1 : 1))
                 .map((product) => (
                     <ProductRow key={product.id} product={product} editProduct={setCurrentProduct} />
+                ))}
+            {products
+                .filter((product) => !product.active)
+                .sort((a, b) => (a.name < b.name ? -1 : 1))
+                .map((product) => (
+                    <ProductRow key={product.id} product={product} editProduct={setCurrentProduct} disabled />
                 ))}
             <AddProductModal open={isModalOpen} onClose={closeModal} current_product={currentProduct} />
         </Box>

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Box, Checkbox, CircularProgress, IconButton, Menu, MenuItem, useMediaQuery } from "@mui/material"
+import { Box, Checkbox, CircularProgress, IconButton, Menu, MenuItem, darken, useMediaQuery } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
 import { DeleteForever, Edit } from "@mui/icons-material"
@@ -10,9 +10,10 @@ import { useIo } from "../../../hooks/useIo"
 interface ProductRowProps {
     product: Product
     editProduct: (product: Product) => void
+    disabled?: boolean
 }
 
-export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct }) => {
+export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct, disabled }) => {
     const io = useIo()
     const isMobile = useMediaQuery("(orientation: portrait)")
 
@@ -61,6 +62,8 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct }) 
             sx={{
                 alignItems: "center",
                 width: "100%",
+                pointerEvents: disabled ? "none" : "",
+                bgcolor: disabled ? darken(colors.background2, 0.1) : "",
                 ":hover": {
                     backgroundColor: colors.background2,
                 },
