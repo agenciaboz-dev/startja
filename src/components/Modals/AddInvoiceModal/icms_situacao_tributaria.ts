@@ -66,7 +66,8 @@ export const icms_situacao_tributaria_values: {
                 label: "Valor do ICMS-ST",
                 type: "number",
                 disabled: true,
-                formula: "{formik.values.icms_base_calculo_st} * {formik.values.icms_aliquota_st}",
+                // formula: "(({formik.values.icms_aliquota_st} / 100) * {formik.values.icms_base_calculo_st}) - {formik.values.icms_valor}",
+                // esta fórmula foi inferida observando o sistema anterior, não é certeza, necessário tirar a dúvida
                 xs: 4,
             },
         ],
