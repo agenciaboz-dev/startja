@@ -27,6 +27,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
 
     return (
         <>
+            <h3>CFOP</h3>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Autocomplete
@@ -34,7 +35,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                         options={cfop_values}
                         getOptionLabel={(option) => `${option.value} - ${option.label}`}
                         getOptionDisabled={(option) => option.value.toString().length != 4}
-                        renderInput={(params) => <TextField {...params} label="CFOP" variant="standard" name="cfop" />}
+                        renderInput={(params) => <TextField {...params} label="CFOP" variant="outlined" name="cfop" />}
                         value={cfop_values.find((cfop) => cfop.value == formik.values.cfop) || cfop_values[0]}
                         onChange={(_, value) => {
                             formik.setFieldValue("cfop", value?.value || "")
@@ -45,20 +46,6 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
 
             <h3>ICMS</h3>
             <Grid container spacing={2}>
-                {/* <Grid item xs={isMobile ? 12 : 6}>
-                    <TextField
-                        fullWidth
-                        label="Modalidade para base de cálculo do ICMS"
-                        value={formik.values.icms_modalidade_base_calculo}
-                        name="icms_modalidade_base_calculo"
-                        onChange={formik.handleChange}
-                        select>
-                        <MenuItem value={0}>0 - margem de valor agregado (%)</MenuItem>
-                        <MenuItem value={1}>1 - pauta (valor)</MenuItem>
-                        <MenuItem value={2}>2 - preço tabelado máximo (valor)</MenuItem>
-                        <MenuItem value={3}>3 - valor da operação</MenuItem>
-                    </TextField>
-                </Grid> */}
                 <Grid item xs={12}>
                     <TextField
                         fullWidth
