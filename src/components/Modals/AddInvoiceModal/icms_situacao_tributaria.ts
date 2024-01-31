@@ -84,7 +84,8 @@ export const icms_situacao_tributaria_values: {
                 label: "Base de Cálculo ICMS",
                 type: "text",
                 disabled: true,
-                formula: "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - {formik.icms_reducao_base_calculo}",
+                formula:
+                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.icms_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
                 xs: 6,
             },
             { field: "aliquota", label: "Alíquota ICMS", type: "number", xs: 6 },
@@ -147,7 +148,7 @@ export const icms_situacao_tributaria_values: {
                 label: "Base de Cálculo ICMS",
                 type: "text",
                 disabled: true,
-                formula: "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - {formik.icms_reducao_base_calculo}",
+                formula: "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.icms_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
                 xs: 6,
             },
             { field: "aliquota", label: "Alíquota ICMS", type: "number", xs: 6 },
