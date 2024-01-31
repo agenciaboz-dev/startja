@@ -66,7 +66,7 @@ export const icms_situacao_tributaria_values: {
                 label: "Valor do ICMS-ST",
                 type: "number",
                 disabled: true,
-                // formula: "(({formik.values.icms_aliquota_st} / 100) * {formik.values.icms_base_calculo_st}) - {formik.values.icms_valor}",
+                // formula: "({formik.values.icms_aliquota_st} / 100) * {formik.values.icms_base_calculo_st} - {formik.values.icms_valor}",
                 // esta fórmula foi inferida observando o sistema anterior, não é certeza, necessário tirar a dúvida
                 xs: 4,
             },
@@ -79,15 +79,31 @@ export const icms_situacao_tributaria_values: {
         fields: [
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
             { field: "icms_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number", xs: 6 },
-            { field: "icms_base_calculo", label: "Base de Cálculo ICMS", type: "text", disabled: true, xs: 6 },
+            {
+                field: "icms_base_calculo",
+                label: "Base de Cálculo ICMS",
+                type: "text",
+                disabled: true,
+                formula: "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - {formik.icms_reducao_base_calculo}",
+                xs: 6,
+            },
             { field: "aliquota", label: "Alíquota ICMS", type: "number", xs: 6 },
-            { field: "icms_valor_operacao", label: "Valor do ICMS da operação", type: "text", disabled: true, xs: 6 },
+            {
+                field: "icms_valor",
+                label: "Valor do ICMS da operação",
+                type: "text",
+                disabled: true,
+                formula: "({formik.values.aliquota} / 100) * {formik.icms_base_calculo}",
+                xs: 6,
+            },
             {
                 field: "icms_valor",
                 label: "Valor do ICMS",
                 type: "number",
                 disabled: true,
+                formula: "({formik.values.aliquota} / 100) * {formik.icms_base_calculo}",
             },
+            // os dois campos acima estão iguais, mas os dois constam no sistema anterior, perguntar para o cliente se podemos remover um deles
         ],
     },
 
