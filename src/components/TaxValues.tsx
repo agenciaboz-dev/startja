@@ -113,7 +113,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                 {pis_situacao_tributaria_values
                     .find((item) => item.value == formik.values.pis_situacao_tributaria)
                     ?.fields?.map((item) => (
-                        <Grid item xs={12} key={item.field}>
+                        <Grid item xs={item.xs || 12} key={item.field}>
                             <TextField
                                 fullWidth
                                 label={item.label}
@@ -123,6 +123,10 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                                 onChange={formik.handleChange}
                                 type={item.type}
                                 required
+                                disabled={item.disabled}
+                                sx={{
+                                    backgroundColor: item.disabled ? colors.background2 : "",
+                                }}
                             />
                         </Grid>
                     ))}
@@ -146,10 +150,10 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                         ))}
                     </TextField>
                 </Grid>
-                {pis_situacao_tributaria_values
+                {cofins_situacao_tributaria_values
                     .find((item) => item.value == formik.values.cofins_situacao_tributaria)
                     ?.fields?.map((item) => (
-                        <Grid item xs={12} key={item.field}>
+                        <Grid item xs={item.xs || 12} key={item.field}>
                             <TextField
                                 fullWidth
                                 label={item.label}
@@ -159,6 +163,10 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                                 onChange={formik.handleChange}
                                 type={item.type}
                                 required
+                                disabled={item.disabled}
+                                sx={{
+                                    backgroundColor: item.disabled ? colors.background2 : "",
+                                }}
                             />
                         </Grid>
                     ))}
