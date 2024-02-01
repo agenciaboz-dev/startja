@@ -34,6 +34,7 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                     borderRadius: "20px",
                     minWidth: "80vw",
                     width: "fit-content",
+                    height: "60vh",
                 },
             }}
         >
@@ -128,6 +129,7 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                         borderRadius: "20px",
                         color: "white",
                         textTransform: "unset",
+                        marginRight: isMobile ? "" : "auto",
                     }}
                 >
                     Cancelar

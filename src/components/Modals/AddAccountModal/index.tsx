@@ -123,6 +123,7 @@ const AddAccountModal: React.FC<AddAccountModalProps> = ({ open, onClose }) => {
                         borderRadius: "20px",
                         color: "white",
                         textTransform: "unset",
+                        marginRight: isMobile ? "" : "auto",
                     }}
                 >
                     Cancelar

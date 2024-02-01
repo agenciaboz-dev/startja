@@ -200,6 +200,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                             borderRadius: "20px",
                             color: "white",
                             textTransform: "unset",
+                            marginRight: isMobile ? "" : "auto",
                         }}
                     >
                         Cancelar

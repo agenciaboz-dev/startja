@@ -309,6 +309,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({ open, onClose, setP
                             borderRadius: "20px",
                             color: "white",
                             textTransform: "unset",
+                            marginRight: isMobile ? "" : "auto",
                         }}
                     >
                         Cancelar

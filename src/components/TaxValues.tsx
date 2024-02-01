@@ -5,7 +5,7 @@ import pis_situacao_tributaria_values from "./Modals/AddInvoiceModal/pis_situaca
 import cofins_situacao_tributaria_values from "./Modals/AddInvoiceModal/cofins_situacao_tributaria"
 import { TaxRulesForm } from "../definitions/TaxRulesForm"
 import { FormikErrors } from "formik"
-import cfop_values from "./Modals/AddTaxationRuleModal/cfop_values"
+import cfop_values from "../tools/cfop_values"
 import { colors } from "../style/colors"
 import Accordion from "@mui/material/Accordion"
 import AccordionSummary from "@mui/material/AccordionSummary"

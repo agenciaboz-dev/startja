@@ -138,6 +138,7 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
                         borderRadius: "20px",
                         color: "white",
                         textTransform: "unset",
+                        marginRight: isMobile ? "" : "auto",
                     }}
                 >
                     Cancelar

@@ -22,7 +22,7 @@ export const GeneralInfoBox: React.FC<GeneralInfoBoxProps> = ({ formik }) => {
             <RadioGroup
                 value={formik.values.tipo_documento}
                 onChange={(_, value) => formik.setFieldValue("tipo_documento", Number(value))}
-                sx={{ flexDirection: isMobile ? "column" : "row", gap: isMobile ? "" : "5vw" }}
+                sx={{ flexDirection: isMobile ? "column" : "row", gap: isMobile ? "" : "1vw" }}
             >
                 <FormControlLabel label="Nota de entrada" control={<Radio value={0} />} />
                 <FormControlLabel label="Nota de saída" control={<Radio value={1} />} />
