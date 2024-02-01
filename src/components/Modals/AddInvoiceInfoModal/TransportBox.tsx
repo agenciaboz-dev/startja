@@ -2,7 +2,7 @@ import React from "react"
 import { Box, Grid, TextField, useMediaQuery } from "@mui/material"
 import { FormikErrors } from "formik"
 
-interface PricingBoxProps {
+interface TransportBoxProps {
     formik: {
         values: FocusNFeInvoiceForm
         handleChange: (e: React.ChangeEvent<any>) => void
@@ -10,7 +10,7 @@ interface PricingBoxProps {
     }
 }
 
-export const PricingBox: React.FC<PricingBoxProps> = ({ formik }) => {
+export const TransportBox: React.FC<TransportBoxProps> = ({ formik }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box

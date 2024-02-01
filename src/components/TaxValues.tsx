@@ -1,5 +1,5 @@
 import React from "react"
-import { Autocomplete, Box, Grid, MenuItem, TextField, darken, useMediaQuery } from "@mui/material"
+import { Autocomplete, Box, Grid, MenuItem, TextField, useMediaQuery } from "@mui/material"
 import icms_situacao_tributaria_values from "./Modals/AddInvoiceModal/icms_situacao_tributaria"
 import pis_situacao_tributaria_values from "./Modals/AddInvoiceModal/pis_situacao_tributaria"
 import cofins_situacao_tributaria_values from "./Modals/AddInvoiceModal/cofins_situacao_tributaria"

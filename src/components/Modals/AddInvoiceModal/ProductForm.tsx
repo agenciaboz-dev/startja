@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react"
 import { Autocomplete, Box, Button, Grid, MenuItem, Radio, Tab, Tabs, TextField, useMediaQuery } from "@mui/material"
 import { useProduct } from "../../../hooks/useProduct"
 import { FormikErrors, useFormik } from "formik"
-import { colors } from "../../../style/colors"
+import { tabStyles } from "../../../style/tabStyles"
 import { useCurrencyMask, useNumberMask } from "burgos-masks"
 import MaskedInput from "../../MaskedInput"
 import { unmaskCurrency, unmaskNumber } from "../../../tools/unmaskNumber"
@@ -48,7 +48,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
             // @ts-ignore
             valor_unitario_comercial: "",
             valor_unitario_tributavel: 0,
-            informacoes_adicionais_item: ""
+            informacoes_adicionais_item: "",
         },
         onSubmit: (values) => {
             if (!values.quantidade) {
@@ -65,7 +65,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                 cfop: unmaskCurrency(values.cfop.toString()),
                 quantidade: unmaskNumber(values.quantidade),
                 valor_unitario_comercial: unmaskCurrency(values.valor_unitario_comercial.toString()),
-                valor_unitario_tributavel: unmaskCurrency(values.valor_unitario_comercial.toString())
+                valor_unitario_tributavel: unmaskCurrency(values.valor_unitario_comercial.toString()),
             }
             console.log(data)
             addProduct(data)
@@ -73,7 +73,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
             setProductFormDisplay("produto")
             setCurrentProduct(list[0])
         },
-        enableReinitialize: true
+        enableReinitialize: true,
     })
 
     const tax_formik = useMemo(
@@ -83,27 +83,11 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                 ...formik.values,
                 product_id: 0,
                 origem: focusNFEInvoiceFormik.values.emitente.uf,
-                destino: focusNFEInvoiceFormik.values.destinatario.uf
-            }
+                destino: focusNFEInvoiceFormik.values.destinatario.uf,
+            },
         }),
         [formik]
     )
-    const tabLabelBoxStyles = { alignItems: "center" }
-
-    const activeTabStyle = {
-        textTransform: "unset",
-        flex: 1,
-        borderBottom: `2px solid ${colors.primary}`,
-        color: `${colors.primary}`,
-        fontWeight: "bold"
-    }
-    const inactiveTabStyle = {
-        textTransform: "unset",
-        flex: 1,
-        borderTopLeftRadius: "15px",
-        borderTopRightRadius: "15px",
-        backgroundColor: `${colors.background}`
-    }
 
     const changeProduct = (product: Product | null) => {
         if (!product) return
@@ -177,22 +161,22 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                     <Tab
                         value={"produto"}
                         label={
-                            <Box sx={tabLabelBoxStyles}>
+                            <Box sx={tabStyles.label}>
                                 {!isMobile && <Radio checked={productFormDisplay === "produto"} />}
                                 <p>Produto</p>
                             </Box>
                         }
-                        sx={productFormDisplay === "produto" ? activeTabStyle : inactiveTabStyle}
+                        sx={productFormDisplay === "produto" ? tabStyles.active : tabStyles.inactive}
                     />
                     <Tab
                         value={"tributação"}
                         label={
-                            <Box sx={tabLabelBoxStyles}>
+                            <Box sx={tabStyles.label}>
                                 {!isMobile && <Radio checked={productFormDisplay === "tributação"} />}
                                 <p>Tributação</p>
                             </Box>
                         }
-                        sx={productFormDisplay === "tributação" ? activeTabStyle : inactiveTabStyle}
+                        sx={productFormDisplay === "tributação" ? tabStyles.active : tabStyles.inactive}
                     />
                 </Tabs>
             </Box>
