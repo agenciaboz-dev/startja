@@ -1,20 +1,37 @@
-import React, { useState } from "react"
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery, MenuItem } from "@mui/material"
+import React from "react"
+import {
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    Button,
+    Box,
+    TextField,
+    Grid,
+    useMediaQuery,
+    MenuItem,
+    RadioGroup,
+    Radio,
+    FormControlLabel,
+} from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
-import { ToggleSwitch } from "../../ToggleSwitch"
+import { PricingBox } from "../AddInvoiceModal/PricingBox"
+import { PaymentBox } from "../AddInvoiceModal/paymentBox"
+import { FormikErrors } from "formik"
 
 interface AddInvoiceInfoModalProps {
     open: boolean
     onClose: () => void
+    focusNFEInvoiceFormik: {
+        values: FocusNFeInvoiceForm
+        handleChange: (e: React.ChangeEvent<any>) => void
+        setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => Promise<void> | Promise<FormikErrors<FocusNFeInvoiceForm>>
+    }
 }
 
-const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose }) => {
+const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose, focusNFEInvoiceFormik }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
-    const [informTime, setInformTime] = useState(false)
 
-    const handleSwitchToggle = () => {
-        setInformTime(!informTime)
-    }
     return (
         <Dialog
             open={open}
@@ -30,7 +47,7 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                 },
             }}
         >
-            <DialogTitle>Adicionar Informações</DialogTitle>
+            <DialogTitle>Adicionar informações</DialogTitle>
             <CloseOutlinedIcon
                 sx={{
                     position: "absolute",
@@ -45,7 +62,6 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                 <Box
                     sx={{
                         width: "100%",
-                        gap: isMobile ? "5vw" : "2vw",
                         flexDirection: isMobile ? "column" : "",
                     }}
                 >
@@ -56,116 +72,59 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                             gap: isMobile ? "5vw" : "1vw",
                         }}
                     >
-                        <p>Informações gerais</p>
+                        <RadioGroup
+                            value={focusNFEInvoiceFormik.values.tipo_documento}
+                            onChange={(_, value) => focusNFEInvoiceFormik.setFieldValue("tipo_documento", Number(value))}
+                            sx={{ flexDirection: isMobile ? "column" : "row", gap: isMobile ? "" : "5vw" }}
+                        >
+                            <FormControlLabel label="Nota de entrada" control={<Radio value={0} />} />
+                            <FormControlLabel label="Nota de saída" control={<Radio value={1} />} />
+                        </RadioGroup>
+                        <PaymentBox formik={focusNFEInvoiceFormik} />
+                        <PricingBox formik={focusNFEInvoiceFormik} />
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <TextField label="Informações complementares" fullWidth />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField label="Presença do Comprador" select fullWidth>
-                                    <MenuItem value="0">0 – Não se aplica (por exemplo, para a Nota Fiscal complementar ou de ajuste)</MenuItem>
-                                    <MenuItem value="1">1 – Operação presencial</MenuItem>
-                                    <MenuItem value="2">2 – Operação não presencial, pela Internet</MenuItem>
-                                    <MenuItem value="3">3 – Operação não presencial, Teleatendimento</MenuItem>
-                                    <MenuItem value="4">4 – NFC-e em operação com entrega em domicílio</MenuItem>
-                                    <MenuItem value="9">9 – Operação não presencial, outros.</MenuItem>
+                                <TextField
+                                    fullWidth
+                                    label="Local de destino"
+                                    name="local_destino"
+                                    value={focusNFEInvoiceFormik.values.local_destino}
+                                    onChange={focusNFEInvoiceFormik.handleChange}
+                                    select
+                                >
+                                    <MenuItem value={1}>1 - Operação Interna</MenuItem>
+                                    <MenuItem value={2}>2 - Operação interestadual</MenuItem>
+                                    <MenuItem value={3}>3 - Operação no exterior</MenuItem>
                                 </TextField>
                             </Grid>
+
                             <Grid item xs={12}>
-                                <Box
-                                    sx={{
-                                        alignItems: "center",
-                                    }}
+                                <TextField
+                                    fullWidth
+                                    label="Presença do Comprador"
+                                    name="presenca_comprador"
+                                    value={focusNFEInvoiceFormik.values.presenca_comprador}
+                                    onChange={focusNFEInvoiceFormik.handleChange}
+                                    select
                                 >
-                                    <ToggleSwitch toggleSwitchCallback={handleSwitchToggle} checked={informTime} />
-                                    <p>Informar data e hora de saída</p>
-                                </Box>
+                                    <MenuItem value={0}>0 - Não se aplica</MenuItem>
+                                    <MenuItem value={1}>1 - Operação presencial</MenuItem>
+                                    <MenuItem value={2}>2 - Operação não presencial, pela Internet</MenuItem>
+                                    <MenuItem value={3}>3 - Operação não presencial, Teleatendimento</MenuItem>
+                                    <MenuItem value={4}>4 - NFC-e em operação com entrega em domicílio</MenuItem>
+                                    <MenuItem value={5}>5 - Operação presencial, fora do estabelecimento</MenuItem>
+                                    <MenuItem value={9}>9 - Operação não presencial, outros</MenuItem>
+                                </TextField>
                             </Grid>
-                        </Grid>
-                        {informTime && (
-                            <Box>
-                                <Grid container spacing={2}>
-                                    <Grid item xs={6}>
-                                        <TextField label="Data de saída" fullWidth />
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <TextField label="Hora de saída" fullWidth />
-                                    </Grid>
-                                </Grid>
-                            </Box>
-                        )}
-                        <p>Pagamento</p>
-                        <Grid container spacing={2}>
-                            <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField label="Condição de pagamento" fullWidth />
-                            </Grid>
-                            <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField label="Tipo de pagamento" fullWidth />
-                            </Grid>
-                        </Grid>
-                        <p>Adicionar faturas</p>
-                        <Grid container spacing={2}>
-                            <Grid item xs={isMobile ? 12 : 4}>
-                                <TextField label="Quantidade de parcelas" fullWidth />
-                            </Grid>
-                            <Grid item xs={isMobile ? 12 : 4}>
-                                <TextField label="Valor" fullWidth />
-                            </Grid>
-                            <Grid item xs={isMobile ? 12 : 4}>
-                                <TextField label="Vencimento" fullWidth />
-                            </Grid>
-                        </Grid>
-                    </Box>
 
-                    <Box>
-                        <hr
-                            style={{
-                                flex: 1,
-                            }}
-                        />
-                    </Box>
-
-                    <Box
-                        sx={{
-                            flex: 1,
-                            flexDirection: "column",
-                            gap: isMobile ? "5vw" : "1vw",
-                        }}
-                    >
-                        <p>Transporte e frete</p>
-                        <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <TextField label="Tipo de frete" fullWidth />
-                            </Grid>
-                            <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField label="Valor do frete" fullWidth />
-                            </Grid>
-                            <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField label="Valor do seguro" fullWidth />
-                            </Grid>
-                            <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField label="Placa do veículo" fullWidth />
-                            </Grid>
-                            <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField label="UF do veículo" fullWidth />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField label="Transportadora" fullWidth />
-                            </Grid>
-                        </Grid>
-                        <p>Volumes do transporte</p>
-                        <Grid container spacing={2}>
-                            <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField label="Quantidade dos produtos transportados" fullWidth />
-                            </Grid>
-                            <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField label="Espécie dos produtos transportados" fullWidth />
-                            </Grid>
-                            <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField label="Peso bruto (Kg)" fullWidth />
-                            </Grid>
-                            <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField label="Peso líquido (Kg)" fullWidth />
+                                <TextField
+                                    fullWidth
+                                    label="Informações adicionais da nota"
+                                    name="informacoes_adicionais_contribuinte"
+                                    value={focusNFEInvoiceFormik.values.informacoes_adicionais_contribuinte}
+                                    onChange={focusNFEInvoiceFormik.handleChange}
+                                />
                             </Grid>
                         </Grid>
                     </Box>

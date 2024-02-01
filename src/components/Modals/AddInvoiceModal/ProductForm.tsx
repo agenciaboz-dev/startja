@@ -1,10 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react"
-import { Autocomplete, Box, Button, FormControlLabel, Grid, MenuItem, Radio, RadioGroup, Tab, Tabs, TextField, useMediaQuery } from "@mui/material"
+import { Autocomplete, Box, Button, Grid, MenuItem, Radio, Tab, Tabs, TextField, useMediaQuery } from "@mui/material"
 import { useProduct } from "../../../hooks/useProduct"
 import { FormikErrors, useFormik } from "formik"
 import { colors } from "../../../style/colors"
-import { PricingBox } from "./PricingBox"
-import { PaymentBox } from "./paymentBox"
 import { useCurrencyMask, useNumberMask } from "burgos-masks"
 import MaskedInput from "../../MaskedInput"
 import { unmaskCurrency, unmaskNumber } from "../../../tools/unmaskNumber"
@@ -196,16 +194,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                         }
                         sx={productFormDisplay === "tributação" ? activeTabStyle : inactiveTabStyle}
                     />
-                    <Tab
-                        value={"outrosDados"}
-                        label={
-                            <Box sx={tabLabelBoxStyles}>
-                                {!isMobile && <Radio checked={productFormDisplay === "outrosDados"} />}
-                                <p>Outros dados</p>
-                            </Box>
-                        }
-                        sx={productFormDisplay === "outrosDados" ? activeTabStyle : inactiveTabStyle}
-                    />
                 </Tabs>
             </Box>
             {productFormDisplay === "produto" && (
@@ -312,84 +300,18 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                     <TaxValues formik={tax_formik} isInvoice />
                 </Box>
             )}
-            {productFormDisplay === "outrosDados" && (
-                <Box
-                    sx={{
-                        flexDirection: "column",
-                        gap: isMobile ? "5vw" : "1vw",
-                    }}
-                >
-                    <RadioGroup
-                        value={focusNFEInvoiceFormik.values.tipo_documento}
-                        onChange={(_, value) => focusNFEInvoiceFormik.setFieldValue("tipo_documento", Number(value))}
-                        sx={{ flexDirection: isMobile ? "column" : "row", gap: isMobile ? "" : "5vw" }}
-                    >
-                        <FormControlLabel label="Nota de entrada" control={<Radio value={0} />} />
-                        <FormControlLabel label="Nota de saída" control={<Radio value={1} />} />
-                    </RadioGroup>
-                    {/* <PaymentBox formik={focusNFEInvoiceFormik} /> */}
-                    <PricingBox formik={focusNFEInvoiceFormik} />
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                label="Local de destino"
-                                name="local_destino"
-                                value={focusNFEInvoiceFormik.values.local_destino}
-                                onChange={focusNFEInvoiceFormik.handleChange}
-                                select
-                            >
-                                <MenuItem value={1}>1 - Operação Interna</MenuItem>
-                                <MenuItem value={2}>2 - Operação interestadual</MenuItem>
-                                <MenuItem value={3}>3 - Operação no exterior</MenuItem>
-                            </TextField>
-                        </Grid>
-
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                label="Presença do Comprador"
-                                name="presenca_comprador"
-                                value={focusNFEInvoiceFormik.values.presenca_comprador}
-                                onChange={focusNFEInvoiceFormik.handleChange}
-                                select
-                            >
-                                <MenuItem value={0}>0 - Não se aplica</MenuItem>
-                                <MenuItem value={1}>1 - Operação presencial</MenuItem>
-                                <MenuItem value={2}>2 - Operação não presencial, pela Internet</MenuItem>
-                                <MenuItem value={3}>3 - Operação não presencial, Teleatendimento</MenuItem>
-                                <MenuItem value={4}>4 - NFC-e em operação com entrega em domicílio</MenuItem>
-                                <MenuItem value={5}>5 - Operação presencial, fora do estabelecimento</MenuItem>
-                                <MenuItem value={9}>9 - Operação não presencial, outros</MenuItem>
-                            </TextField>
-                        </Grid>
-
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                label="Informações adicionais da nota"
-                                name="informacoes_adicionais_contribuinte"
-                                value={focusNFEInvoiceFormik.values.informacoes_adicionais_contribuinte}
-                                onChange={focusNFEInvoiceFormik.handleChange}
-                            />
-                        </Grid>
-                    </Grid>
-                </Box>
-            )}
-            {productFormDisplay != "outrosDados" && (
-                <Button
-                    variant="contained"
-                    onClick={formik.submitForm}
-                    sx={{
-                        alignSelf: "end",
-                        borderRadius: "20px",
-                        textTransform: "unset",
-                        marginTop: "auto",
-                    }}
-                >
-                    Adicionar produto
-                </Button>
-            )}
+            <Button
+                variant="contained"
+                onClick={formik.submitForm}
+                sx={{
+                    alignSelf: "end",
+                    borderRadius: "20px",
+                    textTransform: "unset",
+                    marginTop: "auto",
+                }}
+            >
+                Adicionar produto
+            </Button>
         </Box>
     )
 }
