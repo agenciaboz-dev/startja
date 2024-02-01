@@ -492,7 +492,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                                 sx={{
                                     gap: isMobile ? "5vw" : "1vw",
                                     flexDirection: isMobile ? "column" : "row",
-                                    minHeight: "30vw",
+                                    height: "30vw",
                                 }}
                             >
                                 <ProductForm
@@ -573,6 +573,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                             color: "white",
                             borderRadius: "20px",
                             textTransform: "unset",
+                            marginRight: isMobile ? "" : "auto",
                         }}
                     >
                         Cancelar
@@ -583,10 +584,8 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                         variant="outlined"
                         sx={{
                             color: "black",
-                            fontWeight: "bold",
                             borderRadius: "20px",
                             textTransform: "unset",
-                            marginRight: isMobile ? "" : "auto",
                         }}
                     >
                         Adicionar informações
