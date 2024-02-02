@@ -121,14 +121,6 @@ export const icms_situacao_tributaria_values: {
                 type: "number", // decimal[3.2-4]
                 xs: 6,
             },
-            // {
-            //     field: "icms_valor",
-            //     label: "Valor do ICMS da operação",
-            //     type: "number",  // decimal[13.2]
-            //     disabled: true,
-            //     formula: "({formik.values.aliquota} / 100) * {formik.icms_base_calculo}",
-            //     xs: 6,
-            // },
             {
                 field: "icms_valor",
                 label: "Valor do ICMS",
@@ -137,7 +129,6 @@ export const icms_situacao_tributaria_values: {
                 formula: "({formik.values.aliquota} / 100) * {formik.icms_base_calculo}",
                 xs: 6,
             },
-            // os dois campos acima estão iguais, mas os dois constam no sistema anterior, perguntar para o cliente se podemos remover um deles
         ],
     },
 
