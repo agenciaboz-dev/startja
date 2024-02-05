@@ -30,7 +30,12 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
     }, [natures.list])
 
     const handleSearch = (text: string) => {
-        setNaturesList(natures.list.filter((item) => normalize(item.motive).includes(text)))
+        setNaturesList(
+            natures.list.filter((item) => {
+                const normalizedText = normalize(text)
+                return normalize(item.motive).includes(normalizedText) || normalize(item.operation).includes(normalizedText)
+            })
+        )
     }
 
     useEffect(() => {

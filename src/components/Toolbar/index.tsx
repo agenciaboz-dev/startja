@@ -10,7 +10,7 @@ interface ToolbarProps {
     onSearch: (text: string) => void
     greyBackground?: boolean
     selectList?: any[]
-    hasFilterButton?: boolean
+    filterButtonCallback?: () => void
     importButtonPlaceholder?: string
     addButtonText?: string
     addButtonCallback?: () => void
@@ -21,7 +21,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
     onSearch,
     greyBackground,
     selectList,
-    hasFilterButton,
+    filterButtonCallback,
     importButtonPlaceholder,
     addButtonText,
     addButtonCallback,
@@ -74,7 +74,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 }}
             />
             {/* {!!filterButtonCallback && */}
-            {hasFilterButton && (
+            {filterButtonCallback && (
                 <Button
                     variant="outlined"
                     sx={{

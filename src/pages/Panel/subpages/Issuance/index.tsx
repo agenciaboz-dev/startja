@@ -52,7 +52,7 @@ export const Issuance: React.FC<IssuanceProps> = ({ user }) => {
                 >
                     <Toolbar
                         searchPlaceholder="notas fiscais"
-                        hasFilterButton
+                        filterButtonCallback={() => {}}
                         importButtonPlaceholder="notas fiscais"
                         addButtonText="Adicionar nota fiscal"
                         addButtonCallback={openInvoiceModal}
