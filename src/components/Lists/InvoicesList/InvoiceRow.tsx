@@ -4,6 +4,7 @@ import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBullet
 import { colors } from "../../../style/colors"
 import { Edit, PictureAsPdf, FileOpen } from "@mui/icons-material"
 import { CurrencyText } from "../../CurrencyText"
+import { url as backend } from "../../../api/backend"
 
 interface InvoiceRowProps {
     invoice: notaFiscal
@@ -29,9 +30,12 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice, editInvoice }) 
             : [
                   {
                       id: 1,
-                      title: "Visualizar XML",
+                      title: "Baixar XML",
                       icon: <FileOpen />,
-                      onClick: () => window.open(`https://homologacao.focusnfe.com.br${invoice.url_xml}`, "_new"),
+                      onClick: async () => {
+                          const url = `http${backend}/api/nfefocus/xml?url=${invoice.url_xml}`
+                          window.open(url, "_blank")
+                      },
                   },
                   {
                       id: 2,
