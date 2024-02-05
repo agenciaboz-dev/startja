@@ -39,7 +39,7 @@ export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
                             flex: 0.5,
                         }}
                     >
-                        <h3>Natureza da Operação</h3>
+                        <h3>Nome</h3>
                     </Box>
                     <Box
                         sx={{

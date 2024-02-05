@@ -49,7 +49,7 @@ export const ProductsListHeader: React.FC<ProductsListHeaderProps> = ({}) => {
                             minWidth: isMobile ? "25vw" : "",
                         }}
                     >
-                        <h3>Nome do Produto</h3>
+                        <h3>Nome</h3>
                     </Box>
                     <Box
                         sx={{

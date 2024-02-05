@@ -7,11 +7,16 @@ export const icms_situacao_tributaria_values: {
         value: "00",
         label: "Tributada integralmente",
         fields: [
-            { field: "aliquota", label: "Alíquota ICMS", type: "number", xs: 6 },
+            {
+                field: "aliquota",
+                label: "Alíquota ICMS",
+                type: "number", // decimal[3.2-4]
+                xs: 6,
+            },
             {
                 field: "icms_valor",
                 label: "Valor do ICMS",
-                type: "number",
+                type: "number", // decimal[13.2]
                 disabled: true,
                 formula: "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
                 xs: 6,
@@ -23,31 +28,41 @@ export const icms_situacao_tributaria_values: {
         value: "10",
         label: "Tributada e com cobrança do ICMS por substituição tributária",
         fields: [
-            { field: "cest", label: "CEST", type: "number", xs: 6 },
-            { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text", xs: 6 },
+            {
+                field: "cest",
+                label: "CEST",
+                type: "number", // int[7]
+                xs: 4,
+            },
+            { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text", xs: 4 },
             {
                 field: "icms_modalidade_base_calculo",
                 label: "Modalidade para Base de Cálculo do ICMS",
-                type: "text",
+                type: "number", // int[1]
                 disabled: true,
                 formula: "1",
-                xs: 6,
+                xs: 4,
             },
-            { field: "valor_unitario_pauta", label: "Valor unitário da pauta", type: "text", xs: 6 },
-            // valor unitário da pauta não encontrado no NotaFiscalXML.html, tirar essa dúvida
+            // { field: "???", label: "Valor unitário da pauta", type: "text", xs: 6 },
+            // // valor unitário da pauta é um campo que havia no sistema anterior, aqui o cliente mandou tirar
             {
                 field: "icms_base_calculo",
                 label: "Base de Cálculo ICMS",
-                type: "text",
+                type: "number", // decimal[13.2]
                 disabled: true,
                 formula: "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
                 xs: 4,
             },
-            { field: "aliquota", label: "Alíquota ICMS", type: "number", xs: 4 },
+            {
+                field: "aliquota",
+                label: "Alíquota ICMS",
+                type: "number", // decimal[3.2-4]
+                xs: 4,
+            },
             {
                 field: "icms_valor",
                 label: "Valor do ICMS",
-                type: "number",
+                type: "number", // decimal[13.2]
                 disabled: true,
                 formula: "({formik.values.aliquota} / 100) * {formik.values.icms_base_calculo}",
                 xs: 4,
@@ -55,16 +70,21 @@ export const icms_situacao_tributaria_values: {
             {
                 field: "icms_base_calculo_st",
                 label: "Base de Cálculo ICMS-ST",
-                type: "text",
+                type: "number", // decimal[13.2]
                 disabled: true,
                 // formula: no sistema anterior, parece ser {product_formik.values.quantidade} * {formik.values.valor_unitario_pauta}, é preciso tirar a dúvida
                 xs: 4,
             },
-            { field: "icms_aliquota_st", label: "Alíquota ICMS-ST", type: "number", xs: 4 },
+            {
+                field: "icms_aliquota_st",
+                label: "Alíquota ICMS-ST",
+                type: "number", // decimal[3.2-4]
+                xs: 4,
+            },
             {
                 field: "icms_valor_st",
                 label: "Valor do ICMS-ST",
-                type: "number",
+                type: "number", // decimal[13.2]
                 disabled: true,
                 // formula: "({formik.values.icms_aliquota_st} / 100) * {formik.values.icms_base_calculo_st} - {formik.values.icms_valor}",
                 // esta fórmula foi inferida observando o sistema anterior, não é certeza, necessário tirar a dúvida
@@ -78,32 +98,35 @@ export const icms_situacao_tributaria_values: {
         label: "Tributada com redução de base de cálculo",
         fields: [
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
-            { field: "icms_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number", xs: 6 },
+            {
+                field: "icms_reducao_base_calculo",
+                label: "Percentual de redução da base de cálculo",
+                type: "number", // decimal[3.2-4]
+                xs: 6,
+            },
             {
                 field: "icms_base_calculo",
                 label: "Base de Cálculo ICMS",
-                type: "text",
+                type: "number", // decimal[13.2]
                 disabled: true,
-                formula: "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - {formik.icms_reducao_base_calculo}",
+                formula:
+                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.icms_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
                 xs: 6,
             },
-            { field: "aliquota", label: "Alíquota ICMS", type: "number", xs: 6 },
             {
-                field: "icms_valor",
-                label: "Valor do ICMS da operação",
-                type: "text",
-                disabled: true,
-                formula: "({formik.values.aliquota} / 100) * {formik.icms_base_calculo}",
+                field: "aliquota",
+                label: "Alíquota ICMS",
+                type: "number", // decimal[3.2-4]
                 xs: 6,
             },
             {
                 field: "icms_valor",
                 label: "Valor do ICMS",
-                type: "number",
+                type: "number", // decimal[13.2]
                 disabled: true,
                 formula: "({formik.values.aliquota} / 100) * {formik.icms_base_calculo}",
+                xs: 6,
             },
-            // os dois campos acima estão iguais, mas os dois constam no sistema anterior, perguntar para o cliente se podemos remover um deles
         ],
     },
 
@@ -114,7 +137,11 @@ export const icms_situacao_tributaria_values: {
         label: "Isenta",
         fields: [
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
-            { field: "icms_valor_desonerado", label: "Valor do ICMS desonerado", type: "number" },
+            {
+                field: "icms_valor_desonerado",
+                label: "Valor do ICMS desonerado",
+                type: "number", // decimal[13.2]
+            },
         ],
     },
 
@@ -123,7 +150,11 @@ export const icms_situacao_tributaria_values: {
         label: "Não tributada",
         fields: [
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
-            { field: "icms_valor_desonerado", label: "Valor do ICMS desonerado", type: "number" },
+            {
+                field: "icms_valor_desonerado",
+                label: "Valor do ICMS desonerado",
+                type: "number", // decimal[13.2]
+            },
         ],
     },
 
@@ -132,7 +163,11 @@ export const icms_situacao_tributaria_values: {
         label: "Suspensão",
         fields: [
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
-            { field: "icms_valor_desonerado", label: "Valor do ICMS desonerado", type: "number" },
+            {
+                field: "icms_valor_desonerado",
+                label: "Valor do ICMS desonerado",
+                type: "number", // decimal[13.2]
+            },
         ],
     },
 
@@ -141,24 +176,50 @@ export const icms_situacao_tributaria_values: {
         label: "Diferimento (a exigência do preenchimento das informações do ICMS diferido fica a critério de cada UF)",
         fields: [
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
-            { field: "icms_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number", xs: 6 },
-            { field: "icms_base_calculo", label: "Base de Cálculo ICMS", type: "text", disabled: true, xs: 6 },
-            { field: "aliquota", label: "Alíquota ICMS", type: "number", xs: 6 },
-            { field: "icms_valor_operacao", label: "Valor do ICMS da operação", type: "text", disabled: true, xs: 6 },
+            {
+                field: "icms_reducao_base_calculo",
+                label: "Percentual de redução da base de cálculo",
+                type: "number", // decimal[3.2-4]
+                xs: 6,
+            },
+            {
+                field: "icms_base_calculo",
+                label: "Base de Cálculo ICMS",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula:
+                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.icms_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+            {
+                field: "aliquota",
+                label: "Alíquota ICMS",
+                type: "number", // decimal[3.2-4]
+                xs: 6,
+            },
+            {
+                field: "icms_valor_operacao",
+                label: "Valor do ICMS da operação",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula: "({formik.values.aliquota} / 100) * {formik.icms_base_calculo}",
+                xs: 6,
+            },
             { field: "icms_percentual_diferimento", label: "Percentual de diferimento", type: "number", xs: 6 },
             {
                 field: "icms_valor_diferido",
                 label: "Valor do ICMS diferido",
-                type: "number",
+                type: "number", // decimal[13.2]
                 disabled: true,
-                formula: "{formik.values.icms_percentual_diferimento} * {valor_total}",
+                formula: "({formik.values.icms_percentual_diferimento} / 100) * {formik.icms_valor_operacao}",
                 xs: 6,
             },
             {
                 field: "icms_valor",
                 label: "Valor do ICMS",
-                type: "number",
+                type: "number", // decimal[13.2]
                 disabled: true,
+                formula: "{formik.icms_valor_operacao} - {formik.icms_valor_diferido}",
             },
         ],
     },
@@ -187,7 +248,11 @@ export const icms_situacao_tributaria_values: {
             //         { value: 8, label: "Nacional - Mercadoria ou bem com Conteúdo de Importação superior a 70%" },
             //     ],
             // },
-            { field: "cest", label: "CEST", type: "number" },
+            {
+                field: "cest",
+                label: "CEST",
+                type: "number", // int[7]
+            },
         ],
     },
 

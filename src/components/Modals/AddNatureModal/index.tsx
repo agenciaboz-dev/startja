@@ -254,7 +254,11 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                     }}
                                 >
                                     <AddedTaxationRulesListHeader />
-                                    <AddedTaxationRuleRowsList list={formik.values.rules} deleteTaxRule={deleteTaxRule} updateTaxRule={openTaxationRuleModal} />
+                                    <AddedTaxationRuleRowsList
+                                        list={formik.values.rules}
+                                        deleteTaxRule={deleteTaxRule}
+                                        updateTaxRule={openTaxationRuleModal}
+                                    />
                                 </Box>
                             )}
                         </Box>
@@ -275,6 +279,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                             borderRadius: "20px",
                             color: "white",
                             textTransform: "unset",
+                            marginRight: isMobile ? "" : "auto",
                         }}
                     >
                         Cancelar

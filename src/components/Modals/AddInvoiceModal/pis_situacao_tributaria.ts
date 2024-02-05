@@ -1,11 +1,25 @@
-export const pis_situacao_tributaria_values = [
+export const pis_situacao_tributaria_values: {
+    value: string
+    label: string
+    fields?: CustomTaxFields[]
+}[] = [
     {
         value: "01",
         label: "Operação tributável: base de cálculo = valor da operação (alíquota normal - cumulativo/não cumulativo)",
         fields: [
-            { field: "pis_base_calculo", label: "Percentual base de cálculo", type: "number" },
-            { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number" },
-            { field: "pis_aliquota_valor", label: "Valor alíquota", type: "number" },
+            { field: "pis_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number", xs: 6 },
+            // Este campo pis_reducao_base_calculo não existe no NotaFiscalXML.html, provavelmente só é usado aqui internamente
+            {
+                field: "pis_base_calculo",
+                label: "Base de cálculo PIS",
+                type: "number", //decimal[13.2],
+                disabled: true,
+                formula:
+                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.pis_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+            { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number", xs: 6 },
+            { field: "pis_aliquota_valor", label: "Valor alíquota", type: "number", xs: 6 },
         ],
     },
 
@@ -13,9 +27,19 @@ export const pis_situacao_tributaria_values = [
         value: "02",
         label: "Operação tributável: base de cálculo = valor da operação (alíquota diferenciada)",
         fields: [
-            { field: "pis_base_calculo", label: "Percentual base de cálculo", type: "number" },
-            { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number" },
-            { field: "pis_aliquota_valor", label: "Valor alíquota", type: "number" },
+            { field: "pis_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number", xs: 6 },
+            // Este campo pis_reducao_base_calculo não existe no NotaFiscalXML.html, provavelmente só é usado aqui internamente
+            {
+                field: "pis_base_calculo",
+                label: "Base de cálculo PIS",
+                type: "number", //decimal[13.2],
+                disabled: true,
+                formula:
+                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.pis_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+            { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number", xs: 6 },
+            { field: "pis_aliquota_valor", label: "Valor alíquota", type: "number", xs: 6 },
         ],
     },
 
@@ -23,8 +47,15 @@ export const pis_situacao_tributaria_values = [
         value: "03",
         label: "Operação tributável: base de cálculo = quantidade vendida × alíquota por unidade de produto",
         fields: [
-            { field: "pis_quantidade_vendida", label: "Quantidade base de cálculo", type: "number" },
-            { field: "pis_aliquota_valor", label: "Alíquota (em reais)", type: "number" },
+            {
+                field: "quantidade_comercial",
+                label: "Quantidade base de cálculo",
+                type: "number",
+                disabled: true,
+                formula: "product_formik.values.quantidade",
+                xs: 6,
+            },
+            { field: "pis_aliquota_valor", label: "Alíquota (em reais)", type: "number", xs: 6 },
             { field: "pis_valor", label: "Valor", type: "number" },
         ],
     },
@@ -45,9 +76,19 @@ export const pis_situacao_tributaria_values = [
         value: "49",
         label: "Outras operações de saída",
         fields: [
-            { field: "pis_base_calculo", label: "Percentual base de cálculo", type: "number" },
-            { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number" },
-            { field: "pis_aliquota_valor", label: "Valor alíquota", type: "number" },
+            { field: "pis_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number", xs: 6 },
+            // Este campo pis_reducao_base_calculo não existe no NotaFiscalXML.html, provavelmente só é usado aqui internamente
+            {
+                field: "pis_base_calculo",
+                label: "Base de cálculo PIS",
+                type: "number", //decimal[13.2],
+                disabled: true,
+                formula:
+                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.pis_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+            { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number", xs: 6 },
+            { field: "pis_aliquota_valor", label: "Valor alíquota", type: "number", xs: 6 },
         ],
     },
 
@@ -100,9 +141,19 @@ export const pis_situacao_tributaria_values = [
         value: "98",
         label: "Outras operações de entrada",
         fields: [
-            { field: "pis_base_calculo", label: "Percentual base de cálculo", type: "number" },
-            { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number" },
-            { field: "pis_aliquota_valor", label: "Valor alíquota", type: "number" },
+            { field: "pis_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number", xs: 6 },
+            // Este campo pis_reducao_base_calculo não existe no NotaFiscalXML.html, provavelmente só é usado aqui internamente
+            {
+                field: "pis_base_calculo",
+                label: "Base de cálculo PIS",
+                type: "number", //decimal[13.2],
+                disabled: true,
+                formula:
+                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.pis_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+            { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number", xs: 6 },
+            { field: "pis_aliquota_valor", label: "Valor alíquota", type: "number", xs: 6 },
         ],
     },
 
@@ -110,9 +161,19 @@ export const pis_situacao_tributaria_values = [
         value: "99",
         label: "Outras operações",
         fields: [
-            { field: "pis_base_calculo", label: "Percentual base de cálculo", type: "number" },
-            { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number" },
-            { field: "pis_aliquota_valor", label: "Valor alíquota", type: "number" },
+            { field: "pis_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number", xs: 6 },
+            // Este campo pis_reducao_base_calculo não existe no NotaFiscalXML.html, provavelmente só é usado aqui internamente
+            {
+                field: "pis_base_calculo",
+                label: "Base de cálculo PIS",
+                type: "number", //decimal[13.2],
+                disabled: true,
+                formula:
+                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.pis_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+            { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number", xs: 6 },
+            { field: "pis_aliquota_valor", label: "Valor alíquota", type: "number", xs: 6 },
         ],
     },
 ]

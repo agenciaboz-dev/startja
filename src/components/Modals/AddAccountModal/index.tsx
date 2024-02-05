@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, Tabs, Tab, useMediaQuery, Radio } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
-import { colors } from "../../../style/colors"
+import { tabStyles } from "../../../style/tabStyles"
 
 interface AddAccountModalProps {
     open: boolean
@@ -12,23 +12,6 @@ const AddAccountModal: React.FC<AddAccountModalProps> = ({ open, onClose }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
 
     const [accountFormDisplay, setAccountFormDisplay] = useState("bank")
-
-    const tabLabelBoxStyles = { alignItems: "center" }
-
-    const activeTabStyle = {
-        textTransform: "unset",
-        flex: 1,
-        borderBottom: `2px solid ${colors.primary}`,
-        color: `${colors.primary}`,
-        fontWeight: "bold",
-    }
-    const inactiveTabStyle = {
-        textTransform: "unset",
-        flex: 1,
-        borderTopLeftRadius: "15px",
-        borderTopRightRadius: "15px",
-        backgroundColor: `${colors.background}`,
-    }
 
     return (
         <Dialog
@@ -77,24 +60,24 @@ const AddAccountModal: React.FC<AddAccountModalProps> = ({ open, onClose }) => {
                             <Tab
                                 value={"bank"}
                                 label={
-                                    <Box sx={tabLabelBoxStyles}>
+                                    <Box sx={tabStyles.label}>
                                         {!isMobile && <Radio checked={accountFormDisplay === "bank"} />}
                                         <p>Conta bancária</p>
                                     </Box>
                                 }
                                 // onClick={() => setAccountType("bank")}
-                                sx={accountFormDisplay === "bank" ? activeTabStyle : inactiveTabStyle}
+                                sx={accountFormDisplay === "bank" ? tabStyles.active : tabStyles.inactive}
                             />
                             <Tab
                                 value={"internal"}
                                 label={
-                                    <Box sx={tabLabelBoxStyles}>
+                                    <Box sx={tabStyles.label}>
                                         {!isMobile && <Radio checked={accountFormDisplay === "internal"} />}
                                         <p>Caixa interno</p>
                                     </Box>
                                 }
                                 // onClick={() => setAccountType("internal")}
-                                sx={accountFormDisplay === "internal" ? activeTabStyle : inactiveTabStyle}
+                                sx={accountFormDisplay === "internal" ? tabStyles.active : tabStyles.inactive}
                             />
                         </Tabs>
                     </Box>
@@ -140,6 +123,7 @@ const AddAccountModal: React.FC<AddAccountModalProps> = ({ open, onClose }) => {
                         borderRadius: "20px",
                         color: "white",
                         textTransform: "unset",
+                        marginRight: isMobile ? "" : "auto",
                     }}
                 >
                     Cancelar

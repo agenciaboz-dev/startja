@@ -1,7 +1,7 @@
 import React from "react"
 import { Box, Grid, MenuItem, TextField, useMediaQuery } from "@mui/material"
 import { FormikErrors } from "formik"
-import { indicador_pagamento, forma_pagamento } from "./formas_pagamento"
+import { indicador_pagamento, forma_pagamento } from "../AddInvoiceModal/formas_pagamento"
 
 interface PaymentBoxProps {
     formik: {

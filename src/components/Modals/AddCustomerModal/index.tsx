@@ -168,6 +168,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                             borderRadius: "20px",
                             color: "white",
                             textTransform: "unset",
+                            marginRight: isMobile ? "" : "auto",
                         }}
                     >
                         Cancelar
