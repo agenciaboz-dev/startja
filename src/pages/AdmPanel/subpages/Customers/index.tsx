@@ -33,8 +33,21 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
     }, [user.list])
 
     const handleSearch = (text: string) => {
-        setCustomersList(user.list.filter((item) => normalize(item.name).includes(text)))
+        setCustomersList(
+            user.list.filter((item) => {
+                const normalizedText = normalize(text)
+                return (
+                    normalize(item.name).includes(normalizedText) ||
+                    normalize(item.document).includes(normalizedText) ||
+                    normalize(item.city).includes(normalizedText) ||
+                    normalize(item.state).includes(normalizedText) ||
+                    normalize(item.email).includes(normalizedText) ||
+                    normalize(item.phone).includes(normalizedText)
+                )
+            })
+        )
     }
+      
 
     useEffect(() => {
         if (pathname.split("/adm").length < 3) {
@@ -50,8 +63,9 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
             sx={{
                 flexDirection: "column",
                 gap: isMobile ? "2vw" : "1vw",
-                flex: 1
-            }}>
+                flex: 1,
+            }}
+        >
             <Header />
             <Toolbar
                 searchPlaceholder="cliente"
@@ -63,8 +77,9 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
             <Box
                 sx={{
                     height: emptyCustomersList ? "100%" : "",
-                    width: "100%"
-                }}>
+                    width: "100%",
+                }}
+            >
                 {emptyCustomersList ? (
                     <Box
                         sx={{
@@ -75,8 +90,9 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                             alignItems: "center",
                             flexDirection: "column",
                             gap: isMobile ? "5vw" : "1vw",
-                            textAlign: "center"
-                        }}>
+                            textAlign: "center",
+                        }}
+                    >
                         <h2>Sem clientes cadastrados</h2>
                         <p>Pressione o botão para cadastrar um cliente.</p>
                         <Button
@@ -86,9 +102,10 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                                 textTransform: "unset",
                                 height: isMobile ? "8vw" : "2vw",
                                 verticalAlign: "middle",
-                                gap: "0.5vw"
+                                gap: "0.5vw",
                             }}
-                            onClick={openCustomerModal}>
+                            onClick={openCustomerModal}
+                        >
                             <AddOutlinedIcon />
                             Adicionar novo cliente
                         </Button>
@@ -97,8 +114,9 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
                     <Box
                         sx={{
                             marginTop: isMobile ? "5vw" : "",
-                            width: "100%"
-                        }}>
+                            width: "100%",
+                        }}
+                    >
                         <Grid container spacing={2}>
                             {customersList.map((customer) => (
                                 <CustomerCard buttonColor="primary" key={customer.id} customer={customer} />
