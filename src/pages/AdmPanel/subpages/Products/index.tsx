@@ -30,7 +30,16 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     }, [products.list])
 
     const handleSearch = (text: string) => {
-        setProductsList(products.list.filter((item) => normalize(item.name).includes(text)))
+        setProductsList(
+            products.list.filter((item) => {
+                const normalizedText = normalize(text)
+                return (
+                    normalize(item.codigo_externo).includes(normalizedText) ||
+                    normalize(item.name).includes(normalizedText) ||
+                    normalize(item.ncm).includes(normalizedText)
+                )
+            })
+        )
     }
 
     useEffect(() => {
