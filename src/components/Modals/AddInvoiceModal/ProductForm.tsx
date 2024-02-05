@@ -239,7 +239,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 value={formik.values.valor_unitario_comercial}
                                 onChange={formik.handleChange}
                                 // @ts-ignore
-                                InputProps={{ inputComponent: MaskedInput, inputProps: { mask: useCurrencyMask(), inputMode: "numeric" } }}
+                                InputProps={{
+                                    inputComponent: MaskedInput,
+                                    inputProps: { mask: useCurrencyMask({ decimalLimit: 6 }), inputMode: "numeric" },
+                                }}
                                 required
                             />
                         </Grid>
