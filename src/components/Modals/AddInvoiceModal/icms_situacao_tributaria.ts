@@ -32,21 +32,19 @@ export const icms_situacao_tributaria_values: {
                 field: "cest",
                 label: "CEST",
                 type: "number", // int[7]
-                xs: 6,
+                xs: 4,
             },
-            { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text", xs: 6 },
+            { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text", xs: 4 },
             {
                 field: "icms_modalidade_base_calculo",
                 label: "Modalidade para Base de Cálculo do ICMS",
                 type: "number", // int[1]
                 disabled: true,
                 formula: "1",
-                xs: 6,
+                xs: 4,
             },
-            { field: "valor_unitario_pauta", label: "Valor unitário da pauta", type: "text", xs: 6 },
-            // valor unitário da pauta não encontrado no NotaFiscalXML.html,
-            // provavelmente é um campo que não é enviado para a API e só é usado internamente no sistema,
-            // tirar essa dúvida
+            // { field: "???", label: "Valor unitário da pauta", type: "text", xs: 6 },
+            // // valor unitário da pauta é um campo que havia no sistema anterior, aqui o cliente mandou tirar
             {
                 field: "icms_base_calculo",
                 label: "Base de Cálculo ICMS",
