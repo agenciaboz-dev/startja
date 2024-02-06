@@ -320,6 +320,10 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
     }, [currentInvoice])
 
     useEffect(() => {
+        formik.setFieldValue("produtos", [])
+    }, [selectedNature])
+
+    useEffect(() => {
         const value = formik.values.produtos.reduce(
             (total, product) => total + product.valor_unitario_comercial * unmaskNumber(product.quantidade),
             0
@@ -495,18 +499,22 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                                     height: "30vw",
                                 }}
                             >
-                                <ProductForm
-                                    focusNFEInvoiceFormik={formik}
-                                    addProduct={(product) => addInvoiceProduct(product)}
-                                    nature={selectedNature}
-                                />
-                                <Box>
-                                    <hr
-                                        style={{
-                                            flex: 1,
-                                        }}
+                                {selectedNature && (
+                                    <ProductForm
+                                        focusNFEInvoiceFormik={formik}
+                                        addProduct={(product) => addInvoiceProduct(product)}
+                                        nature={selectedNature}
                                     />
-                                </Box>
+                                )}
+                                {selectedNature && (
+                                    <Box>
+                                        <hr
+                                            style={{
+                                                flex: 1,
+                                            }}
+                                        />
+                                    </Box>
+                                )}
                                 {emptyList && (
                                     <Box
                                         sx={{

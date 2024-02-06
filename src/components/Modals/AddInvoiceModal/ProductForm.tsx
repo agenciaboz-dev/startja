@@ -23,23 +23,24 @@ interface ProductFormProps {
 export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEInvoiceFormik, nature }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const number_mask = useNumberMask({})
-    const { list } = useProduct()
+    const products = useProduct()
     const { snackbar } = useSnackbar()
 
     const [productFormDisplay, setProductFormDisplay] = useState("produto")
-    const [currentProduct, setCurrentProduct] = useState<Product>(list[0])
+    const [list, setList] = useState<Product[]>([])
+    const [currentProduct, setCurrentProduct] = useState<Product | null>(null)
 
     const formik = useFormik<InvoiceProduct>({
         initialValues: {
             cfop: 1101,
             cofins_situacao_tributaria: "01",
             icms_modalidade_base_calculo: 0,
-            icms_origem: list[0].icmsOrigin,
+            icms_origem: list.length ? list[0].icmsOrigin : 0,
             icms_situacao_tributaria: "00",
-            id: list[0].id.toString(),
-            codigo_externo: list[0].codigo_externo,
-            name: list[0].name,
-            ncm: list[0].ncm,
+            id: list.length ? list[0].id.toString() : "",
+            codigo_externo: list.length ? list[0].codigo_externo : "",
+            name: list.length ? list[0].name : "",
+            ncm: list.length ? list[0].ncm : "",
             pis_situacao_tributaria: "01",
             // @ts-ignore
             quantidade: "",
@@ -104,7 +105,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
             (rule) =>
                 rule.origem == focusNFEInvoiceFormik.values.emitente.uf &&
                 rule.destino == focusNFEInvoiceFormik.values.destinatario.uf &&
-                rule.product_id == currentProduct.id
+                rule.product_id == currentProduct?.id
         )
 
         if (tax_rule) {
@@ -114,6 +115,17 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
             })
         }
     }
+
+    useEffect(() => {
+        const available_products = nature?.rules.flatMap((rule) => products.list.find((item) => item.id == rule.product.id)).filter((item) => !!item)
+        let filtered_products: Product[] = []
+        available_products?.map((item) => {
+            if (!item || filtered_products.find((product) => product.id == item.id)) return
+            filtered_products.push(item)
+        })
+        setList(filtered_products)
+        setCurrentProduct(null)
+    }, [nature])
 
     useEffect(() => {
         const fields = icms_situacao_tributaria_values
@@ -196,6 +208,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 renderInput={(params) => <TextField {...params} label="Produto" />}
                                 value={currentProduct}
                                 onChange={(_, value) => changeProduct(value)}
+                                isOptionEqualToValue={(option, value) => option.id == value.id}
                             />
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 6}>
