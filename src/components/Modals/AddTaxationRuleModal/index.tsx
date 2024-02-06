@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, useMediaQuery, MenuItem, Autocomplete } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { useFormik } from "formik"
@@ -26,6 +26,9 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
     const product = useProduct()
     const { snackbar } = useSnackbar()
 
+    const [selectedProducts, setSelectedProducts] = useState<Product[]>(current_rule?.products || [])
+    const [selectedDestinations, setSelectedDestinations] = useState<string[]>(current_rule?.destino.split(", ") || [])
+
     const formik = useFormik<TaxRulesForm>({
         initialValues: current_rule || {
             id: random_id,
@@ -37,13 +40,19 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
 
             origem: "",
             destino: "",
-            product_id: 0,
+
+            products: [],
         },
         onSubmit(values, formikHelpers) {
+            if (!selectedProducts.length) return
+
             const additional_fields = icms_situacao_tributaria_values.find((item) => item.value == values.icms_situacao_tributaria)?.fields || []
             const data: TaxRulesForm = {
                 ...values,
                 cfop: Number(values.cfop),
+                icms_origem: selectedProducts[0].icmsOrigin,
+                products: selectedProducts,
+                destino: selectedDestinations.join(", "),
             }
             additional_fields.map((field) => {
                 // @ts-ignore
@@ -58,16 +67,21 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
         enableReinitialize: true,
     })
 
-    useEffect(() => {
-        if (formik.values.product_id) {
-            const icms_origem = product.list.find((item) => item.id == formik.values.product_id)!.icmsOrigin
-            formik.setFieldValue("icms_origem", icms_origem)
-        }
-    }, [formik.values.product_id])
+    const handleDestinationsChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        // @ts-ignore
+        const value = event.target.value as string[]
+        setSelectedDestinations(value)
+        console.log(value)
+    }
 
     useEffect(() => {
         formik.setFieldValue("cfop", formik.values.origem == formik.values.destino ? 5101 : 6101)
     }, [formik.values.origem, formik.values.destino])
+
+    useEffect(() => {
+        setSelectedProducts(current_rule?.products || [])
+        setSelectedDestinations(current_rule?.destino.split(", ") || [])
+    }, [current_rule])
 
     useEffect(() => {
         if (!!product.list.length && !current_rule) formik.setFieldValue("product_id", product.list[0].id)
@@ -146,10 +160,19 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                 variant="standard"
                                 required
                                 fullWidth
+                                value={selectedDestinations}
+                                onChange={(event) => handleDestinationsChange(event)}
+                                SelectProps={{
+                                    renderValue: (selected: string[]) =>
+                                        estados
+                                            .filter((item) => selected.includes(item.value))
+                                            .map((item) => item.value)
+                                            .join(", "),
+                                    multiple: true,
+                                    MenuProps: { MenuListProps: { sx: { width: "100%" } } },
+                                }}
                                 sx={selectStyles}
-                                onChange={formik.handleChange}
                                 name="destino"
-                                value={formik.values.destino}
                             >
                                 <MenuItem value="" sx={{ display: "none" }}></MenuItem>
                                 {estados.map((item) => (
@@ -163,21 +186,20 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                 disablePortal
                                 options={product.list}
                                 getOptionLabel={(option) => `${option.codigo_externo} - ${option.name}`}
+                                isOptionEqualToValue={(option, value) => option.id == value.id}
+                                multiple
                                 renderInput={(params) => (
                                     <TextField
                                         {...params}
                                         label="Produto"
                                         variant="standard"
-                                        name="product_id"
                                         sx={{
                                             minWidth: "20vw",
                                         }}
                                     />
                                 )}
-                                value={product.list.find((item) => item.id == formik.values.product_id) || product.list[0]}
-                                onChange={(_, value) => {
-                                    if (value) formik.setFieldValue("product_id", value.id)
-                                }}
+                                value={selectedProducts}
+                                onChange={(_, value) => setSelectedProducts(value)}
                             />
                         </Box>
 

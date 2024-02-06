@@ -24,7 +24,7 @@ export const AddedTaxationRuleRowsList: React.FC<AddedTaxationRuleRowsListProps>
         >
             {list.map((item, index) => (
                 <AddedTaxationRuleRow
-                    key={`${index}:${item.product_id}:${item.origem}:${item.destino}`}
+                    key={`${index}:${item.destino}:${item.origem}:${item.destino}`}
                     tax_rule={item}
                     deleteTaxRule={deleteTaxRule}
                     updateTaxRule={updateTaxRule}

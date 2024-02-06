@@ -83,7 +83,7 @@ export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_
                         flex: 0.1,
                     }}
                 >
-                    <p>{product.find(tax_rule.product_id)?.ncm}</p>
+                    <p>{tax_rule.products.map((product) => product.ncm).join(", ")}</p>
                 </Box>
                 <Box
                     sx={{
@@ -91,7 +91,7 @@ export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_
                         flex: 0.25,
                     }}
                 >
-                    <p>{product.find(tax_rule.product_id)?.name}</p>
+                    <p>{tax_rule.products.map((product) => product.name).join(", ")}</p>
                 </Box>
                 <Box
                     sx={{

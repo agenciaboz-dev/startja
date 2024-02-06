@@ -27,7 +27,8 @@ export declare interface TaxRulesForm {
     cofins_valor?: number
     cofins_quantidade_vendida?: number
 
-    product_id: number
     origem: string
     destino: string
+
+    products: Product[]
 }

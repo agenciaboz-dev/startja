@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { Autocomplete, Box, Button, Grid, MenuItem, Radio, Tab, Tabs, TextField, useMediaQuery } from "@mui/material"
 import { useProduct } from "../../../hooks/useProduct"
 import { FormikErrors, useFormik } from "formik"
@@ -82,9 +82,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
             ...formik,
             values: {
                 ...formik.values,
-                product_id: 0,
                 origem: focusNFEInvoiceFormik.values.emitente.uf,
                 destino: focusNFEInvoiceFormik.values.destinatario.uf,
+                products: [],
             },
         }),
         [formik]
@@ -100,13 +100,16 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
         formik.setFieldValue("codigo_externo", product.codigo_externo)
     }
 
-    const checkTaxRules = () => {
-        const tax_rule = nature?.rules.find(
-            (rule) =>
-                rule.origem == focusNFEInvoiceFormik.values.emitente.uf &&
-                rule.destino == focusNFEInvoiceFormik.values.destinatario.uf &&
-                rule.product_id == currentProduct?.id
-        )
+    const checkTaxRules = useCallback(() => {
+        const tax_rule = nature?.rules.find((rule) => {
+            console.log(rule)
+            const origem = rule.origem == focusNFEInvoiceFormik.values.emitente.uf
+            const destino = rule.destino.split(", ").includes(focusNFEInvoiceFormik.values.destinatario.uf)
+            const produto = rule.products.find((item) => item.id == currentProduct?.id)
+            console.log({ origem, destino, produto, currentProduct })
+            return origem && destino && produto
+        })
+        console.log(tax_rule)
 
         if (tax_rule) {
             Object.entries(tax_rule).map(([param, value]) => {
@@ -114,10 +117,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                 formik.setFieldValue(param, value)
             })
         }
-    }
+    }, [currentProduct])
 
     useEffect(() => {
-        const available_products = nature?.rules.flatMap((rule) => products.list.find((item) => item.id == rule.product.id)).filter((item) => !!item)
+        const available_products = nature?.rules.flatMap((rule) => rule.products)
         let filtered_products: Product[] = []
         available_products?.map((item) => {
             if (!item || filtered_products.find((product) => product.id == item.id)) return

@@ -19,8 +19,7 @@ declare interface regraTributacao {
     origem: string
     destino: string
 
-    product_id: number
-    product: Product
+    products: Product[]
 
     natureza_id: number
 }

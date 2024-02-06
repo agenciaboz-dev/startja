@@ -68,6 +68,11 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
         setAddTaxationRuleModalOpen(true)
     }
 
+    const onCloseTaxModal = () => {
+        setAddTaxationRuleModalOpen(false)
+        setCurrentTaxRule(undefined)
+    }
+
     const addTaxRule = (rule: TaxRulesForm) => {
         const new_rules = [...formik.values.rules.filter((item: TaxRulesForm) => item.id != rule.id), rule]
         console.log(new_rules)
@@ -299,7 +304,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                 </DialogActions>
                 <AddTaxationRuleModal
                     open={isAddTaxationRuleModalOpen}
-                    onClose={() => setAddTaxationRuleModalOpen(false)}
+                    onClose={onCloseTaxModal}
                     addTaxRule={addTaxRule}
                     current_rule={currentTaxRule}
                 />
