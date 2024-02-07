@@ -10,9 +10,10 @@ import { colors } from "../../../style/colors"
 
 interface NatureRowProps {
     nature: Natureza
+    disabled?: boolean
 }
 
-export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
+export const NatureRow: React.FC<NatureRowProps> = ({ nature, disabled }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const io = useIo()
 
@@ -67,6 +68,7 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
             }}
         >
             <Checkbox
+                disabled={disabled}
                 inputProps={{
                     style: {
                         padding: "0",
@@ -123,7 +125,7 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
                         justifyContent: "center",
                     }}
                 >
-                    <IconButton color="inherit" onClick={() => setOpenModal(true)}>
+                    <IconButton color="inherit" onClick={() => setOpenModal(true)} disabled={disabled}>
                         <EditOutlinedIcon />
                     </IconButton>
                 </Box>
@@ -134,7 +136,7 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature }) => {
                         justifyContent: "center",
                     }}
                 >
-                    <ToggleSwitch checked={nature.active} handleChange={handleChange} />
+                    <ToggleSwitch checked={nature.active} handleChange={handleChange} disabled={disabled} />
                 </Box>
             </Box>
             <AddNatureModal open={openModal} onClose={() => setOpenModal(false)} current_nature={nature} />

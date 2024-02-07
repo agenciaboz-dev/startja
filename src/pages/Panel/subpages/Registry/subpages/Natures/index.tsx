@@ -9,6 +9,7 @@ import AddNatureModal from "../../../../../../components/Modals/AddNatureModal"
 import { useHeader } from "../../../../../../hooks/useHeader"
 import { useNature } from "../../../../../../hooks/useNature"
 import normalize from "../../../../../../tools/normalize"
+import { useUser } from "../../../../../../hooks/useUser"
 
 interface NaturesProps {}
 
@@ -17,6 +18,8 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
     const natures = useNature()
     const header = useHeader()
     const io = useIo()
+    const { user } = useUser()
+
     const emptyNaturesList = !natures.list.length
     const [isAddNatureModalOpen, setAddNatureModalOpen] = useState(false)
     const openNatureModal = () => {
@@ -110,7 +113,8 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                         }}
                     >
                         <NaturesListHeader />
-                        <NaturesList natures={naturesList} />
+                        <NaturesList natures={naturesList.filter((nature) => !nature.user_id)} disabled />
+                        <NaturesList natures={naturesList.filter((nature) => nature.user_id == user?.id)} />
                     </Box>
                 )}
             </Box>

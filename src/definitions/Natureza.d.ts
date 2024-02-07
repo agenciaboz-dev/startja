@@ -6,6 +6,9 @@ declare interface Natureza {
     motive: string
     active: boolean
 
+    user_id?: number
+    user?: User
+
     rules: regraTributacao[]
     notas: notaFiscal[]
 }

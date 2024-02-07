@@ -8,16 +8,16 @@ interface ToggleSwitchProps extends SwitchProps {
     handleChange?: () => void
 }
 
-export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ checked, handleChange }) => {
+export const ToggleSwitch: React.FC<ToggleSwitchProps> = (props) => {
     return (
         <Box
             sx={{
                 padding: 0,
-                margin: 0
-            }}>
+                margin: 0,
+            }}
+        >
             <Switch
-                checked={checked}
-                onChange={handleChange}
+                {...props}
                 sx={{}}
                 icon={<CircleIcon sx={{ color: "gray", transform: "scale(1.5)" }} />}
                 checkedIcon={<CheckCircleIcon sx={{ transform: "scale(1.5)" }} />}

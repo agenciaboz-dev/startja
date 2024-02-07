@@ -113,7 +113,7 @@ export const Natures: React.FC<NaturesProps> = ({}) => {
                         }}
                     >
                         <NaturesListHeader />
-                        <NaturesList natures={naturesList} />
+                        <NaturesList natures={naturesList.filter((nature) => !nature.user_id)} />
                     </Box>
                 )}
             </Box>

@@ -23,6 +23,7 @@ import { useIo } from "../../../hooks/useIo"
 import { useNature } from "../../../hooks/useNature"
 import { useSnackbar } from "burgos-snackbar"
 import { colors } from "../../../style/colors"
+import { useUser } from "../../../hooks/useUser"
 
 interface AddNatureModalProps {
     open: boolean
@@ -35,11 +36,11 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
     const io = useIo()
     const { updateNature } = useNature()
     const { snackbar } = useSnackbar()
+    const { user } = useUser()
 
     const [isAddTaxationRuleModalOpen, setAddTaxationRuleModalOpen] = useState(false)
     const [loading, setLoading] = useState(false)
     const [currentTaxRule, setCurrentTaxRule] = useState<TaxRulesForm>()
-    
 
     const formik = useFormik<NatureForm>({
         initialValues: current_nature || {
@@ -47,6 +48,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
             motive: "",
             operation: "",
             type: 0,
+            user_id: user?.id,
             rules: [],
         },
         onSubmit(values, formikHelpers) {
@@ -61,7 +63,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
     })
 
     const emptyRulesList = !formik.values.rules.length
-    
+
     const openTaxationRuleModal = (rule?: TaxRulesForm) => {
         rule && setCurrentTaxRule(rule)
 
