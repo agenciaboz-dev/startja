@@ -76,6 +76,11 @@ declare interface FocusNFeInvoiceForm extends FocusNFeInvoiceData {
         uf: string
         indicador_inscricao_estadual: number
     }
+
+    formas_pagamento: {
+        indicador_pagamento: number
+        forma_pagamento: string
+    }
 }
 
 declare interface InvoiceProduct {

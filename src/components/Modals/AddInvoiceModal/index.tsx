@@ -132,6 +132,10 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                       icms_reducao_base_calculo: product.tax_rules.icms_reducao_base_calculo,
                       icms_valor_desonerado: product.tax_rules.icms_valor_desonerado,
                   })),
+                  formas_pagamento: {
+                      indicador_pagamento: 0,
+                      forma_pagamento: "01",
+                  },
               }
             : {
                   numero: "",
@@ -191,6 +195,10 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                       total: 0,
                   },
                   produtos: [],
+                  formas_pagamento: {
+                      indicador_pagamento: 0,
+                      forma_pagamento: "01",
+                  },
               },
         onSubmit: (values) => {
             if (loading) return

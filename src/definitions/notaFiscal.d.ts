@@ -33,4 +33,7 @@ declare interface notaFiscal {
     products: ProdutoNotaFiscal[]
     nature: Natureza
     nature_id: number
+
+    pagamento_indicador?: Int
+    pagamento_forma?: String
 }
