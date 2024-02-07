@@ -14,6 +14,7 @@ declare interface Property {
     declarant: string
     nfe_series: string
     nfe_number: string
+    active: boolean
 
     user: User
     notas: notaFiscal[]

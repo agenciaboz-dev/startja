@@ -98,7 +98,8 @@ export const Properties: React.FC<PropertiesProps> = ({}) => {
                         }}
                     >
                         <PropertiesListHeader />
-                        <PropertiesList properties={properties} />
+                        <PropertiesList properties={properties.filter((property) => property.active)} />
+                        <PropertiesList properties={properties.filter((property) => !property.active)} />
                     </Box>
                 )}
             </Box>

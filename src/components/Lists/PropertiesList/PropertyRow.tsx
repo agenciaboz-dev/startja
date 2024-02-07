@@ -1,9 +1,11 @@
-import React from "react"
-import { Box, Checkbox, IconButton, Menu, MenuItem, useMediaQuery } from "@mui/material"
+import React, { useEffect } from "react"
+import { Box, Checkbox, CircularProgress, IconButton, Menu, MenuItem, darken, useMediaQuery } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
-import { Edit } from "@mui/icons-material"
+import { DeleteForever, Edit } from "@mui/icons-material"
 import { colors } from "../../../style/colors"
+import { useInvoice } from "../../../hooks/useInvoice"
+import { useIo } from "../../../hooks/useIo"
 
 interface PropertyRowProps {
     property: Property
@@ -12,9 +14,14 @@ interface PropertyRowProps {
 
 export const PropertyRow: React.FC<PropertyRowProps> = ({ property, editProperty }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const io = useIo()
 
     const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null)
     const menu_opened = Boolean(menuAnchorEl)
+    const invoices = useInvoice()
+
+    const is_present_on_invoices = !!invoices.list.find((invoice) => invoice.propriedade_id == property.id)
+    const [deleting, setDeleting] = React.useState(false)
 
     const actions = [
         {
@@ -24,21 +31,47 @@ export const PropertyRow: React.FC<PropertyRowProps> = ({ property, editProperty
             onClick: () => {
                 editProperty(property)
                 setMenuAnchorEl(null)
-            }
+            },
         },
         {
             id: 2,
-            title: "Remover",
-            icon: <RemoveCircleOutlineIcon />,
-            onClick: () => {}
-        }
+            title: is_present_on_invoices ? "Desabilitar" : "Remover",
+            icon: deleting ? (
+                <CircularProgress size="1.4rem" color="warning" />
+            ) : !is_present_on_invoices ? (
+                <DeleteForever />
+            ) : (
+                <RemoveCircleOutlineIcon />
+            ),
+            onClick: () => {
+                if (deleting) return
+                setDeleting(true)
+                io.emit(is_present_on_invoices ? "property:disable" : "property:delete", property.id)
+            },
+        },
     ]
+
+    useEffect(() => {
+        io.on("property:disable:success", () => {
+            setDeleting(false)
+        })
+
+        io.on("property:disable:error", () => {
+            setDeleting(false)
+        })
+
+        return () => {
+            io.off("property:disable:success")
+            io.off("property:disable:error")
+        }
+    })
 
     return (
         <Box
             sx={{
                 alignItems: "center",
                 width: "100%",
+                bgcolor: !property.active ? darken(colors.background2, 0.1) : "",
                 ":hover": {
                     backgroundColor: colors.background2,
                 },
