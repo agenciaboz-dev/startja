@@ -18,6 +18,9 @@ declare interface User {
     regimeTributario: number
     inscricaoEstadual: string
     isento: boolean
+    observations: string
+    show_funrural_on_invoices: boolean
+    recolhimento: number
 
     certificateId: number
     certificate: DigitalCertificate
@@ -36,4 +39,13 @@ declare interface Admin {
 declare interface LoginValues {
     email: string
     password: string
+}
+
+declare interface ObservationsForm {
+    observations: string
+}
+
+declare interface FunruralForm {
+    recolhimento: number
+    show_funrural_on_invoices: boolean
 }

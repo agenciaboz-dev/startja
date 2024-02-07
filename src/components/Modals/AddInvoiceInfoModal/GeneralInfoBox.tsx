@@ -69,6 +69,8 @@ export const GeneralInfoBox: React.FC<GeneralInfoBoxProps> = ({ formik }) => {
                         name="informacoes_adicionais_contribuinte"
                         value={formik.values.informacoes_adicionais_contribuinte}
                         onChange={formik.handleChange}
+                        multiline
+                        minRows={3}
                     />
                 </Grid>
             </Grid>
