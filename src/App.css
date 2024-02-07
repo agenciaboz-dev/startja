@@ -69,3 +69,9 @@ img {
 h1 {
     color: #009F4A
 }
+
+::selection {
+    color: white;
+    background-color: #009F4A
+    
+}
