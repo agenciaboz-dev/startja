@@ -18,6 +18,7 @@ export const InstallmentRow: React.FC<InstallmentRowProps> = ({}) => {
             sx={{
                 alignItems: "center",
                 width: "100%",
+                padding: "0.5vw 0",
                 ":hover": {
                     backgroundColor: colors.background2,
                 },

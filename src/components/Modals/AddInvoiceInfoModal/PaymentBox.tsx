@@ -18,15 +18,33 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
 
     const [installmentsPay, setInstallmentsPay] = useState(false)
     const [installmentsNumber, setInstallmentsNumber] = useState(1)
+    const [installmentsArray, setInstallmentsArray] = useState<{ id: number }[]>([])
 
     useEffect(() => {
         if (formik.values.formas_pagamento.indicador_pagamento === 1) {
             setInstallmentsPay(true)
+
+            const newInstallmentsArray = Array.from({ length: installmentsNumber }, (_, index) => ({
+                id: index + 1,
+            }))
+
+            setInstallmentsArray(newInstallmentsArray)
         } else {
             setInstallmentsPay(false)
             setInstallmentsNumber(1)
+            setInstallmentsArray([])
         }
-    }, [formik.values.formas_pagamento.indicador_pagamento])
+    }, [formik.values.formas_pagamento.indicador_pagamento, installmentsNumber])
+
+    const handleInstallmentsChange = (event: any) => {
+        const value = event.target.value
+        if (/^\d+$/.test(value)) {
+            const intValue = parseInt(value, 10)
+            if (intValue >= 1 && intValue <= 120) {
+                setInstallmentsNumber(intValue)
+            }
+        }
+    }
 
     return (
         <Box
@@ -75,19 +93,11 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
                         <TextField
                             fullWidth
                             label="Quantidade de parcelas"
-                            select
-                            required
+                            type="number"
+                            inputProps={{ min: 1, max: 120 }}
                             value={installmentsNumber}
-                            onChange={(input) => {
-                                setInstallmentsNumber(Number(input.target.value))
-                            }}
-                        >
-                            {Array.from({ length: 120 }, (_, index) => index + 1).map((option) => (
-                                <MenuItem key={option} value={option}>
-                                    {option}
-                                </MenuItem>
-                            ))}
-                        </TextField>
+                            onChange={handleInstallmentsChange}
+                        />
                     </Grid>
                 )}
             </Grid>
@@ -112,7 +122,7 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
                         }}
                     >
                         <InstallmentsListHeader />
-                        <InstallmentsList />
+                        <InstallmentsList installmentsArray={installmentsArray} />
                     </Box>
                 </Box>
             )}
