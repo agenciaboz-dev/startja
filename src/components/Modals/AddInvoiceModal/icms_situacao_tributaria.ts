@@ -32,63 +32,51 @@ export const icms_situacao_tributaria_values: {
                 field: "cest",
                 label: "CEST",
                 type: "number", // int[7]
-                xs: 4,
+                xs: 6,
             },
-            { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text", xs: 4 },
-            {
-                field: "icms_modalidade_base_calculo",
-                label: "Modalidade para Base de Cálculo do ICMS",
-                type: "number", // int[1]
-                disabled: true,
-                formula: "1",
-                xs: 4,
-            },
-            // { field: "???", label: "Valor unitário da pauta", type: "text", xs: 6 },
-            // // valor unitário da pauta é um campo que havia no sistema anterior, aqui o cliente mandou tirar
-            {
-                field: "icms_base_calculo",
-                label: "Base de Cálculo ICMS",
-                type: "number", // decimal[13.2]
-                disabled: true,
-                formula: "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
-                xs: 4,
-            },
+            { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text", xs: 6 },
             {
                 field: "aliquota",
-                label: "Alíquota ICMS",
+                label: "Alíquota ICMS normal",
                 type: "number", // decimal[3.2-4]
-                xs: 4,
+                xs: 6,
             },
             {
                 field: "icms_valor",
-                label: "Valor do ICMS",
+                label: "Valor do ICMS normal",
                 type: "number", // decimal[13.2]
                 disabled: true,
-                formula: "({formik.values.aliquota} / 100) * {formik.values.icms_base_calculo}",
-                xs: 4,
+                formula: "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+            {
+                field: "icms_aliquota_st",
+                label: "Alíquota ICMS-ST",
+                type: "number", // decimal[3.2-4]
+                xs: 6,
+            },
+            {
+                field: "icms_margem_valor_adicionado_st",
+                label: "Percentual da MVA do ICMS-ST",
+                type: "number", // decimal[3.2-4]
+                xs: 6,
             },
             {
                 field: "icms_base_calculo_st",
                 label: "Base de Cálculo ICMS-ST",
                 type: "number", // decimal[13.2]
                 disabled: true,
-                // formula: no sistema anterior, parece ser {product_formik.values.quantidade} * {formik.values.valor_unitario_pauta}, é preciso tirar a dúvida
-                xs: 4,
-            },
-            {
-                field: "icms_aliquota_st",
-                label: "Alíquota ICMS-ST",
-                type: "number", // decimal[3.2-4]
-                xs: 4,
+                formula:
+                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} * {1 + (icms_margem_valor_adicionado_st / 100)}",
+                xs: 6,
             },
             {
                 field: "icms_valor_st",
                 label: "Valor do ICMS-ST",
                 type: "number", // decimal[13.2]
                 disabled: true,
-                // formula: "({formik.values.icms_aliquota_st} / 100) * {formik.values.icms_base_calculo_st} - {formik.values.icms_valor}",
-                // esta fórmula foi inferida observando o sistema anterior, não é certeza, necessário tirar a dúvida
-                xs: 4,
+                formula: "{formik.values.icms_base_calculo_st} * ({formik.values.icms_aliquota_st} / 100) - {formik.values.icms_valor}",
+                xs: 6,
             },
         ],
     },
