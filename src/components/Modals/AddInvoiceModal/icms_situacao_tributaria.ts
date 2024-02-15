@@ -98,7 +98,7 @@ export const icms_situacao_tributaria_values: {
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula:
-                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.icms_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.values.icms_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
                 xs: 6,
             },
             {
@@ -112,7 +112,7 @@ export const icms_situacao_tributaria_values: {
                 label: "Valor do ICMS",
                 type: "number", // decimal[13.2]
                 disabled: true,
-                formula: "({formik.values.aliquota} / 100) * {formik.icms_base_calculo}",
+                formula: "({formik.values.aliquota} / 100) * {formik.values.icms_base_calculo}",
                 xs: 6,
             },
         ],
