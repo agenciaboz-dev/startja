@@ -481,9 +481,121 @@ export const icms_situacao_tributaria_values: {
 
     { value: "103", label: "Isenção do ICMS no Simples Nacional para faixa de receita bruta" },
 
-    { value: "201", label: "Tributada pelo Simples Nacional com permissão de crédito e com cobrança do ICMS por substituição tributária" },
+    {
+        value: "201",
+        label: "Tributada pelo Simples Nacional com permissão de crédito e com cobrança do ICMS por substituição tributária",
+        fields: [
+            {
+                field: "cest",
+                label: "CEST",
+                type: "number", // int[7]
+                xs: 6,
+            },
+            { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text", xs: 6 },
+            {
+                field: "aliquota_icms_simulado",
+                label: "Alíquota ICMS normal simulado",
+                type: "number", // decimal[3.2-4]
+                xs: 6,
+            },
+            {
+                field: "icms_valor_simulado",
+                label: "Valor de ICMS normal simulado",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula:
+                    "({formik.values.aliquota_icms_simulado} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+            {
+                field: "icms_aliquota_st",
+                label: "Alíquota ICMS-ST",
+                type: "number", // decimal[3.2-4]
+                xs: 6,
+            },
+            {
+                field: "icms_margem_valor_adicionado_st",
+                label: "Percentual da MVA do ICMS-ST",
+                type: "number", // decimal[3.2-4]
+                xs: 6,
+            },
+            {
+                field: "icms_base_calculo_st",
+                label: "Base de Cálculo ICMS-ST",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula:
+                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} * (1 + {formik.values.icms_margem_valor_adicionado_st} / 100)",
+                xs: 6,
+            },
+            {
+                field: "icms_valor_st",
+                label: "Valor do ICMS-ST",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula: "{formik.values.icms_base_calculo_st} * ({formik.values.icms_aliquota_st} / 100) - {formik.values.icms_valor}",
+                xs: 6,
+            },
+        ],
+    },
 
-    { value: "202", label: "Tributada pelo Simples Nacional sem permissão de crédito e com cobrança do ICMS por substituição tributária" },
+    {
+        value: "202",
+        label: "Tributada pelo Simples Nacional sem permissão de crédito e com cobrança do ICMS por substituição tributária",
+        fields: [
+            {
+                field: "cest",
+                label: "CEST",
+                type: "number", // int[7]
+                xs: 6,
+            },
+            { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text", xs: 6 },
+            {
+                field: "aliquota_icms_simulado",
+                label: "Alíquota ICMS normal simulado",
+                type: "number", // decimal[3.2-4]
+                xs: 6,
+            },
+            {
+                field: "icms_valor_simulado",
+                label: "Valor de ICMS normal simulado",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula:
+                    "({formik.values.aliquota_icms_simulado} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+            {
+                field: "icms_aliquota_st",
+                label: "Alíquota ICMS-ST",
+                type: "number", // decimal[3.2-4]
+                xs: 6,
+            },
+            {
+                field: "icms_margem_valor_adicionado_st",
+                label: "Percentual da MVA do ICMS-ST",
+                type: "number", // decimal[3.2-4]
+                xs: 6,
+            },
+            {
+                field: "icms_base_calculo_st",
+                label: "Base de Cálculo ICMS-ST",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula:
+                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} * (1 + {formik.values.icms_margem_valor_adicionado_st} / 100)",
+                xs: 6,
+            },
+            {
+                field: "icms_valor_st",
+                label: "Valor do ICMS-ST",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula: "{formik.values.icms_base_calculo_st} * ({formik.values.icms_aliquota_st} / 100) - {formik.values.icms_valor}",
+                xs: 6,
+            },
+        ],
+    },
 
     { value: "203", label: "Isenção do ICMS nos Simples Nacional para faixa de receita bruta e com cobrança do ICMS por substituição tributária" },
 
