@@ -55,8 +55,6 @@ export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik
     const formulaFields = item.formula ? extractFieldsFromFormula(item.formula) : []
 
     const evaluateFormula = (formula: string, formik: TaxFormik, product_formik: ProductFormik) => {
-        console.log({ formula })
-
         let _formik: TaxFormik | ProductFormik = formik
 
         const replacedFormula =
@@ -65,23 +63,19 @@ export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik
                 if (key.startsWith("formik.")) {
                     const actualKey = key.slice("formik.values.".length)
                     value = actualKey.split(".").reduce((acc: string, k: number) => acc[k] || 0, formik.values)
-                    console.log(value)
                 } else if (key.startsWith("product_formik.")) {
                     const actualKey = key.slice("product_formik.values.".length)
                     value = actualKey.split(".").reduce((acc: string, k: number) => acc[k] || 0, product_formik?.values)
-                    console.log(value)
                     _formik = product_formik
                 } else {
                     value = 0 // Default fallback value
                 }
-                console.log({ value })
                 return unmaskCurrency(value).toString()
             }) || "0"
 
         try {
             const value = eval(replacedFormula)
             _formik.setFieldValue(item.field, value)
-            console.log({ eval: value })
             return value
         } catch (error) {
             console.error("Error evaluating formula:", error)
