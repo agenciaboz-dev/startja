@@ -67,7 +67,7 @@ export const icms_situacao_tributaria_values: {
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula:
-                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} * (1 + {formik.icms_margem_valor_adicionado_st} / 100)",
+                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} * (1 + {formik.values.icms_margem_valor_adicionado_st} / 100)",
                 xs: 6,
             },
             {
