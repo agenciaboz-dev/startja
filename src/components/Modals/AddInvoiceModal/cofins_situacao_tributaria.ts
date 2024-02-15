@@ -7,15 +7,14 @@ export const cofins_situacao_tributaria_values: {
         value: "01",
         label: "Operação tributável: base de cálculo = valor da operação (alíquota normal - cumulativo/não cumulativo)",
         fields: [
-            { field: "cofins_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number", xs: 6 },
-            // Este campo cofins_reducao_base_calculo não existe no NotaFiscalXML.html, provavelmente só é usado aqui internamente
+            { field: "cofins_percentual_base_calculo", label: "Percentual da base de cálculo", type: "number", xs: 6 },
             {
                 field: "cofins_base_calculo",
                 label: "Base de cálculo cofins",
                 type: "number", //decimal[13.2],
                 disabled: true,
                 formula:
-                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.cofins_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                    "({formik.values.cofins_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
                 xs: 6,
             },
             { field: "cofins_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number", xs: 6 },
@@ -23,25 +22,7 @@ export const cofins_situacao_tributaria_values: {
         ],
     },
 
-    {
-        value: "02",
-        label: "Operação tributável: base de cálculo = valor da operação (alíquota diferenciada)",
-        fields: [
-            { field: "cofins_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number", xs: 6 },
-            // Este campo cofins_reducao_base_calculo não existe no NotaFiscalXML.html, provavelmente só é usado aqui internamente
-            {
-                field: "cofins_base_calculo",
-                label: "Base de cálculo cofins",
-                type: "number", //decimal[13.2],
-                disabled: true,
-                formula:
-                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.cofins_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
-                xs: 6,
-            },
-            { field: "cofins_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number", xs: 6 },
-            { field: "cofins_aliquota_valor", label: "Valor alíquota", type: "number", xs: 6 },
-        ],
-    },
+    { value: "02", label: "Operação tributável: base de cálculo = valor da operação (alíquota diferenciada)" },
 
     {
         value: "03",
@@ -72,25 +53,7 @@ export const cofins_situacao_tributaria_values: {
 
     { value: "09", label: "Operação com suspensão da contribuição" },
 
-    {
-        value: "49",
-        label: "Outras operações de saída",
-        fields: [
-            { field: "cofins_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number", xs: 6 },
-            // Este campo cofins_reducao_base_calculo não existe no NotaFiscalXML.html, provavelmente só é usado aqui internamente
-            {
-                field: "cofins_base_calculo",
-                label: "Base de cálculo cofins",
-                type: "number", //decimal[13.2],
-                disabled: true,
-                formula:
-                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.cofins_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
-                xs: 6,
-            },
-            { field: "cofins_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number", xs: 6 },
-            { field: "cofins_aliquota_valor", label: "Valor alíquota", type: "number", xs: 6 },
-        ],
-    },
+    { value: "49", label: "Outras operações de saída" },
 
     { value: "50", label: "Operação com direito a crédito: vinculada exclusivamente a receita tributada no mercado interno" },
 
@@ -137,45 +100,9 @@ export const cofins_situacao_tributaria_values: {
 
     { value: "75", label: "Operação de aquisição por substituição tributária" },
 
-    {
-        value: "98",
-        label: "Outras operações de entrada",
-        fields: [
-            { field: "cofins_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number", xs: 6 },
-            // Este campo cofins_reducao_base_calculo não existe no NotaFiscalXML.html, provavelmente só é usado aqui internamente
-            {
-                field: "cofins_base_calculo",
-                label: "Base de cálculo cofins",
-                type: "number", //decimal[13.2],
-                disabled: true,
-                formula:
-                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.cofins_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
-                xs: 6,
-            },
-            { field: "cofins_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number", xs: 6 },
-            { field: "cofins_aliquota_valor", label: "Valor alíquota", type: "number", xs: 6 },
-        ],
-    },
+    { value: "98", label: "Outras operações de entrada" },
 
-    {
-        value: "99",
-        label: "Outras operações",
-        fields: [
-            { field: "cofins_reducao_base_calculo", label: "Percentual de redução da base de cálculo", type: "number", xs: 6 },
-            // Este campo cofins_reducao_base_calculo não existe no NotaFiscalXML.html, provavelmente só é usado aqui internamente
-            {
-                field: "cofins_base_calculo",
-                label: "Base de cálculo cofins",
-                type: "number", //decimal[13.2],
-                disabled: true,
-                formula:
-                    "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.cofins_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
-                xs: 6,
-            },
-            { field: "cofins_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number", xs: 6 },
-            { field: "cofins_aliquota_valor", label: "Valor alíquota", type: "number", xs: 6 },
-        ],
-    },
+    { value: "99", label: "Outras operações" },
 ]
 
 export default cofins_situacao_tributaria_values
