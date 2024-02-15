@@ -185,6 +185,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                     />
                     <Tab
                         value={"tributação"}
+                        disabled={!formik.values.quantidade || !formik.values.valor_unitario_comercial || !currentProduct}
                         label={
                             <Box sx={tabStyles.label}>
                                 {!isMobile && <Radio checked={productFormDisplay === "tributação"} />}
