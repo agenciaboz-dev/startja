@@ -301,7 +301,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                         gap: isMobile ? "5vw" : "1vw",
                     }}
                 >
-                    <TaxValues formik={tax_formik} isInvoice />
+                    <TaxValues formik={tax_formik} product_formik={formik} isInvoice />
                 </Box>
             )}
             <Button

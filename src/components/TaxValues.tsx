@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Autocomplete, Box, Grid, MenuItem, TextField, useMediaQuery } from "@mui/material"
 import icms_situacao_tributaria_values from "./Modals/AddInvoiceModal/icms_situacao_tributaria"
 import pis_situacao_tributaria_values from "./Modals/AddInvoiceModal/pis_situacao_tributaria"
@@ -11,20 +11,28 @@ import Accordion from "@mui/material/Accordion"
 import AccordionSummary from "@mui/material/AccordionSummary"
 import AccordionDetails from "@mui/material/AccordionDetails"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
+import { unmaskCurrency } from "../tools/unmaskNumber"
+import { TaxField } from "./TaxField"
+
+interface TaxFormik {
+    values: TaxRulesForm
+    handleChange: (e: React.ChangeEvent<any>) => void
+    setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => Promise<void> | Promise<FormikErrors<TaxRulesForm>>
+}
+
+interface ProductFormik {
+    values: InvoiceProduct
+    handleChange: (e: React.ChangeEvent<any>) => void
+    setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => Promise<void> | Promise<FormikErrors<InvoiceProduct>>
+}
 
 interface TaxValuesProps {
-    formik: {
-        values: TaxRulesForm
-        handleChange: (e: React.ChangeEvent<any>) => void
-        setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => Promise<void> | Promise<FormikErrors<TaxRulesForm>>
-    }
+    formik: TaxFormik
     isInvoice?: boolean
-    product_formik?: {
-        values: InvoiceProduct
-        handleChange: (e: React.ChangeEvent<any>) => void
-        setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => Promise<void> | Promise<FormikErrors<InvoiceProduct>>
-    }
+    product_formik?: ProductFormik
 }
+
+
 
 export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product_formik }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
@@ -34,6 +42,10 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
     const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
         setExpanded(isExpanded ? panel : false)
     }
+
+    useEffect(() => {
+        console.log(Object.entries(formik.values))
+    }, [])
 
     return (
         <Box
@@ -96,28 +108,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                             .find((item) => item.value == formik.values.icms_situacao_tributaria)
                             ?.fields?.filter((item) => (isInvoice ? item : !item.disabled))
                             .map((item) => (
-                                <Grid item xs={item.xs || 12} key={item.field}>
-                                    <TextField
-                                        fullWidth
-                                        label={item.label}
-                                        // @ts-ignore
-                                        value={formik.values[item.field] != undefined ? formik.values[item.field] : item.type == "number" ? 0 : ""}
-                                        name={item.field}
-                                        onChange={formik.handleChange}
-                                        type={item.type}
-                                        select={item.select}
-                                        children={item.options?.map((option) => (
-                                            <MenuItem key={option.value} value={option.value}>
-                                                {option.value} - {option.label}
-                                            </MenuItem>
-                                        ))}
-                                        required
-                                        disabled={item.disabled}
-                                        sx={{
-                                            backgroundColor: item.disabled ? colors.background2 : "",
-                                        }}
-                                    />
-                                </Grid>
+                                <TaxField item={item} formik={formik} product_formik={product_formik} key={item.field} />
                             ))}
                     </Grid>
                 </AccordionDetails>
