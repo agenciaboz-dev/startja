@@ -75,7 +75,8 @@ export const icms_situacao_tributaria_values: {
                 label: "Valor do ICMS-ST",
                 type: "number", // decimal[13.2]
                 disabled: true,
-                formula: "({formik.values.icms_base_calculo_st} * ({formik.values.icms_aliquota_st} / 100)) - {formik.values.icms_valor}",
+                formula:
+                    "({product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} * (1 + ({formik.values.icms_margem_valor_adicionado_st} / 100)) * ({formik.values.icms_aliquota_st} / 100)) - {formik.values.icms_valor}",
                 xs: 6,
             },
         ],
