@@ -4,6 +4,7 @@ import { TaxRulesForm } from "../definitions/TaxRulesForm"
 import { FormikErrors } from "formik"
 import { unmaskCurrency } from "../tools/unmaskNumber"
 import { colors } from "../style/colors"
+import { Parser } from "expr-eval"
 
 interface TaxFormik {
     values: TaxRulesForm
@@ -22,6 +23,8 @@ interface TaxFieldProps {
     formik: TaxFormik
     product_formik?: ProductFormik
 }
+
+const parser = new Parser()
 
 const extractFieldsFromFormula = (formula: string) => {
     const regex = /\{(formik\.values|product_formik\.values)\.([^\}]+)\}/g
@@ -74,7 +77,7 @@ export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik
             }) || "0"
 
         try {
-            const value = eval(replacedFormula)
+            const value = parser.parse(replacedFormula).evaluate()
             _formik.setFieldValue(item.field, value)
             return value
         } catch (error) {
