@@ -21,6 +21,7 @@ interface TaxFieldProps {
     item: CustomTaxFields
     formik: TaxFormik
     product_formik?: ProductFormik
+    isInvoice?: boolean
 }
 
 const parser = new Parser()
@@ -43,7 +44,7 @@ const extractFieldsFromFormula = (formula: string) => {
     return fields
 }
 
-export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik }) => {
+export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik, isInvoice }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const [value, setValue] = useState(
         // @ts-ignore
@@ -114,7 +115,7 @@ export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik
     ])
 
     return (
-        <Grid item xs={isMobile ? 12 : item.xs || 12}>
+        <Grid item xs={isMobile ? 12 : isInvoice ? item.xs || 12 : 12}>
             <TextField
                 fullWidth
                 label={item.label}

@@ -108,7 +108,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                             .find((item) => item.value == formik.values.icms_situacao_tributaria)
                             ?.fields?.filter((item) => (isInvoice ? item : !item.disabled))
                             .map((item) => (
-                                <TaxField item={item} formik={formik} product_formik={product_formik} key={item.field} />
+                                <TaxField item={item} formik={formik} product_formik={product_formik} key={item.field} isInvoice={isInvoice} />
                             ))}
                     </Grid>
                 </AccordionDetails>
