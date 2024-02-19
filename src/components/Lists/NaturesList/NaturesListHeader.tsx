@@ -5,6 +5,7 @@ interface NaturesListHeaderProps {}
 
 export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const cellStyle = { flex: 0.12, justifyContent: "center", textAlign: "center" }
     return (
         <Box
             sx={{
@@ -36,49 +37,24 @@ export const NaturesListHeader: React.FC<NaturesListHeaderProps> = ({}) => {
                 >
                     <Box
                         sx={{
-                            flex: 0.5,
+                            flex: 0.4,
                         }}
                     >
                         <h3>Nome</h3>
                     </Box>
-                    <Box
-                        sx={{
-                            flex: 0.1,
-                            justifyContent: "center",
-                        }}
-                    >
+                    <Box sx={cellStyle}>
                         <h3>Operação</h3>
                     </Box>
-                    <Box
-                        sx={{
-                            flex: 0.1,
-                            justifyContent: "center",
-                        }}
-                    >
+                    <Box sx={cellStyle}>
                         <h3>Tipo</h3>
                     </Box>
-                    <Box
-                        sx={{
-                            flex: 0.1,
-                            justifyContent: "center",
-                        }}
-                    >
+                    <Box sx={cellStyle}>
                         <h3>Finalidade</h3>
                     </Box>
-                    <Box
-                        sx={{
-                            flex: 0.1,
-                            justifyContent: "center",
-                        }}
-                    >
+                    <Box sx={cellStyle}>
                         <h3>Editar</h3>
                     </Box>
-                    <Box
-                        sx={{
-                            flex: 0.1,
-                            justifyContent: "center",
-                        }}
-                    >
+                    <Box sx={cellStyle}>
                         <h3>Ativar / Desativar</h3>
                     </Box>
                 </Box>

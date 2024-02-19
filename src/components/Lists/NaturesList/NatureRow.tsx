@@ -57,6 +57,13 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature, disabled }) => {
         return finalityObj ? finalityObj.finality : ""
     }
 
+    const cellStyle = {
+        alignItems: "center",
+        flex: 0.12,
+        justifyContent: "center",
+        textAlign: "center",
+    }
+
     return (
         <Box
             sx={{
@@ -85,57 +92,27 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature, disabled }) => {
             >
                 <Box
                     sx={{
-                        flex: 0.5,
+                        flex: 0.4,
                         alignItems: "center",
                     }}
                 >
                     <p>{nature.motive}</p>
                 </Box>
-                <Box
-                    sx={{
-                        alignItems: "center",
-                        flex: 0.1,
-                        justifyContent: "center",
-                    }}
-                >
+                <Box sx={cellStyle}>
                     <p>{nature.operation}</p>
                 </Box>
-                <Box
-                    sx={{
-                        alignItems: "center",
-                        flex: 0.1,
-                        justifyContent: "center",
-                    }}
-                >
+                <Box sx={cellStyle}>
                     <p>{getTypeText(nature.type)}</p>
                 </Box>
-                <Box
-                    sx={{
-                        alignItems: "center",
-                        flex: 0.1,
-                        justifyContent: "center",
-                    }}
-                >
+                <Box sx={cellStyle}>
                     <p>{getFinalityText(nature.finality)}</p>
                 </Box>
-                <Box
-                    sx={{
-                        alignItems: "center",
-                        flex: 0.1,
-                        justifyContent: "center",
-                    }}
-                >
+                <Box sx={cellStyle}>
                     <IconButton color="inherit" onClick={() => setOpenModal(true)} disabled={disabled}>
                         <EditOutlinedIcon />
                     </IconButton>
                 </Box>
-                <Box
-                    sx={{
-                        alignItems: "center",
-                        flex: 0.1,
-                        justifyContent: "center",
-                    }}
-                >
+                <Box sx={cellStyle}>
                     <ToggleSwitch checked={nature.active} handleChange={handleChange} disabled={disabled} />
                 </Box>
             </Box>
