@@ -160,7 +160,7 @@ export const icms_situacao_tributaria_values: {
             },
             {
                 field: "icms_valor_operacao",
-                label: "Valor do ICMS normal sem isenção",
+                label: "Valor do ICMS normal antes da isenção",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula: "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
@@ -236,7 +236,7 @@ export const icms_situacao_tributaria_values: {
             },
             {
                 field: "icms_valor_operacao",
-                label: "Valor do ICMS da operação",
+                label: "Valor do ICMS antes da isenção",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula: "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
@@ -296,7 +296,7 @@ export const icms_situacao_tributaria_values: {
             },
             {
                 field: "icms_valor_operacao",
-                label: "Valor do ICMS da operação",
+                label: "Valor do ICMS antes da suspensão",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula: "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
@@ -343,7 +343,7 @@ export const icms_situacao_tributaria_values: {
             },
             {
                 field: "icms_valor_operacao",
-                label: "Valor do ICMS da operação",
+                label: "Valor do ICMS antes do diferimento",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula: "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
@@ -415,7 +415,7 @@ export const icms_situacao_tributaria_values: {
                 xs: 6,
             },
             {
-                field: "icms_valor_operacao",
+                field: "icms_valor",
                 label: "Valor do ICMS normal",
                 type: "number", // decimal[13.2]
                 disabled: true,
