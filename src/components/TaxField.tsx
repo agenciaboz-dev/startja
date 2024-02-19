@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Box, Grid, MenuItem, TextField } from "@mui/material"
+import { Box, Grid, MenuItem, TextField, useMediaQuery } from "@mui/material"
 import { TaxRulesForm } from "../definitions/TaxRulesForm"
 import { FormikErrors } from "formik"
-import { unmaskCurrency } from "../tools/unmaskNumber"
 import { colors } from "../style/colors"
 import { Parser } from "expr-eval"
 
@@ -45,6 +44,7 @@ const extractFieldsFromFormula = (formula: string) => {
 }
 
 export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const [value, setValue] = useState(
         // @ts-ignore
         formik.values[item.field] != undefined
@@ -113,10 +113,8 @@ export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik
         }),
     ])
 
-    useEffect(() => {}, [])
-
     return (
-        <Grid item xs={item.xs || 12}>
+        <Grid item xs={isMobile ? 12 : item.xs || 12}>
             <TextField
                 fullWidth
                 label={item.label}
@@ -136,6 +134,13 @@ export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik
                     backgroundColor: item.disabled ? colors.background2 : "",
                 }}
             />
+            {item.hr && (
+                <hr
+                    style={{
+                        margin: isMobile ? "5vw 0 2.5vw 0" : "1vw 0 0.5vw 0",
+                    }}
+                />
+            )}
         </Grid>
     )
 }

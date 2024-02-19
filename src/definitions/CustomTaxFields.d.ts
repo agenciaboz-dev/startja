@@ -7,4 +7,5 @@ declare interface CustomTaxFields {
     disabled?: boolean
     formula?: string
     xs?: number
+    hr?: boolean
 }

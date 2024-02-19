@@ -62,6 +62,7 @@ export const icms_situacao_tributaria_values: {
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula: "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                hr: true,
             },
             {
                 field: "icms_margem_valor_adicionado_st",
@@ -182,6 +183,7 @@ export const icms_situacao_tributaria_values: {
                 disabled: true,
                 formula:
                     "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.values.icms_percentual_isencao} / 100) * ({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                hr: true,
             },
             {
                 field: "icms_margem_valor_adicionado_st",
@@ -412,7 +414,6 @@ export const icms_situacao_tributaria_values: {
                 field: "aliquota",
                 label: "Alíquota do ICMS normal",
                 type: "number", // decimal[3.2-4]
-                xs: 6,
             },
             {
                 field: "icms_valor",
@@ -421,7 +422,7 @@ export const icms_situacao_tributaria_values: {
                 disabled: true,
                 formula:
                     "({formik.values.aliquota} / 100) * ({product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.values.icms_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
-                xs: 6,
+                hr: true,
             },
             {
                 field: "icms_margem_valor_adicionado_st",
@@ -482,7 +483,6 @@ export const icms_situacao_tributaria_values: {
                 field: "aliquota_icms_simulado",
                 label: "Alíquota do ICMS normal simulado",
                 type: "number", // decimal[3.2-4]
-                xs: 6,
             },
             {
                 field: "icms_valor_simulado",
@@ -491,7 +491,7 @@ export const icms_situacao_tributaria_values: {
                 disabled: true,
                 formula:
                     "({formik.values.aliquota_icms_simulado} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
-                xs: 6,
+                hr: true,
             },
             {
                 field: "icms_margem_valor_adicionado_st",
@@ -541,7 +541,6 @@ export const icms_situacao_tributaria_values: {
                 field: "aliquota_icms_simulado",
                 label: "Alíquota do ICMS normal simulado",
                 type: "number", // decimal[3.2-4]
-                xs: 6,
             },
             {
                 field: "icms_valor_simulado",
@@ -550,7 +549,7 @@ export const icms_situacao_tributaria_values: {
                 disabled: true,
                 formula:
                     "({formik.values.aliquota_icms_simulado} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
-                xs: 6,
+                hr: true,
             },
             {
                 field: "icms_margem_valor_adicionado_st",
