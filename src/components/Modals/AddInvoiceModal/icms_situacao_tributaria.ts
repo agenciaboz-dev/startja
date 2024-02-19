@@ -108,7 +108,7 @@ export const icms_situacao_tributaria_values: {
             },
             {
                 field: "icms_base_calculo",
-                label: "Base de Cálculo ICMS com a redução",
+                label: "Base de Cálculo do ICMS com a redução",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula:
@@ -117,7 +117,7 @@ export const icms_situacao_tributaria_values: {
             },
             {
                 field: "aliquota",
-                label: "Alíquota ICMS",
+                label: "Alíquota do ICMS",
                 type: "number", // decimal[3.2-4]
                 xs: 6,
             },
@@ -127,7 +127,7 @@ export const icms_situacao_tributaria_values: {
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula:
-                    "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.values.icms_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                    "({formik.values.aliquota} / 100) * ({product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.values.icms_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
                 xs: 6,
             },
         ],
@@ -191,7 +191,7 @@ export const icms_situacao_tributaria_values: {
             },
             {
                 field: "icms_base_calculo_st",
-                label: "Base de Cálculo ICMS-ST",
+                label: "Base de Cálculo do ICMS-ST",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula:
@@ -200,7 +200,7 @@ export const icms_situacao_tributaria_values: {
             },
             {
                 field: "icms_aliquota_st",
-                label: "Alíquota ICMS-ST",
+                label: "Alíquota do ICMS-ST",
                 type: "number", // decimal[3.2-4]
                 xs: 6,
             },
@@ -222,13 +222,13 @@ export const icms_situacao_tributaria_values: {
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
             {
                 field: "aliquota",
-                label: "Alíquota ICMS",
+                label: "Alíquota do ICMS",
                 type: "number", // decimal[3.2-4]
                 xs: 6,
             },
             {
                 field: "icms_base_calculo",
-                label: "Base de Cálculo ICMS",
+                label: "Base de Cálculo do ICMS",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula: "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
@@ -282,13 +282,13 @@ export const icms_situacao_tributaria_values: {
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
             {
                 field: "aliquota",
-                label: "Alíquota ICMS",
+                label: "Alíquota do ICMS",
                 type: "number", // decimal[3.2-4]
                 xs: 6,
             },
             {
                 field: "icms_base_calculo",
-                label: "Base de Cálculo ICMS",
+                label: "Base de Cálculo do ICMS",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula: "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
@@ -329,13 +329,13 @@ export const icms_situacao_tributaria_values: {
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
             {
                 field: "aliquota",
-                label: "Alíquota ICMS",
+                label: "Alíquota do ICMS",
                 type: "number", // decimal[3.2-4]
                 xs: 6,
             },
             {
                 field: "icms_base_calculo",
-                label: "Base de Cálculo ICMS",
+                label: "Base de Cálculo do ICMS",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula: "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
@@ -401,7 +401,7 @@ export const icms_situacao_tributaria_values: {
             },
             {
                 field: "icms_base_calculo",
-                label: "Base de Cálculo ICMS com a redução",
+                label: "Base de Cálculo do ICMS com a redução",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula:
@@ -480,23 +480,17 @@ export const icms_situacao_tributaria_values: {
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text", xs: 6 },
             {
                 field: "aliquota_icms_simulado",
-                label: "Alíquota ICMS normal simulado",
+                label: "Alíquota do ICMS normal simulado",
                 type: "number", // decimal[3.2-4]
                 xs: 6,
             },
             {
                 field: "icms_valor_simulado",
-                label: "Valor de ICMS normal simulado",
+                label: "Valor do ICMS normal simulado",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula:
                     "({formik.values.aliquota_icms_simulado} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
-                xs: 6,
-            },
-            {
-                field: "icms_aliquota_st",
-                label: "Alíquota ICMS-ST",
-                type: "number", // decimal[3.2-4]
                 xs: 6,
             },
             {
@@ -507,7 +501,7 @@ export const icms_situacao_tributaria_values: {
             },
             {
                 field: "icms_base_calculo_st",
-                label: "Base de Cálculo ICMS-ST",
+                label: "Base de Cálculo do ICMS-ST",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula:
@@ -515,11 +509,18 @@ export const icms_situacao_tributaria_values: {
                 xs: 6,
             },
             {
+                field: "icms_aliquota_st",
+                label: "Alíquota do ICMS-ST",
+                type: "number", // decimal[3.2-4]
+                xs: 6,
+            },
+            {
                 field: "icms_valor_st",
                 label: "Valor do ICMS-ST",
                 type: "number", // decimal[13.2]
                 disabled: true,
-                formula: "({formik.values.icms_base_calculo_st} * ({formik.values.icms_aliquota_st} / 100)) - {formik.values.icms_valor}",
+                formula:
+                    "({formik.values.icms_base_calculo_st} * ({formik.values.icms_aliquota_st} / 100)) - (({formik.values.aliquota_icms_simulado} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
                 xs: 6,
             },
         ],
@@ -538,23 +539,17 @@ export const icms_situacao_tributaria_values: {
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text", xs: 6 },
             {
                 field: "aliquota_icms_simulado",
-                label: "Alíquota ICMS normal simulado",
+                label: "Alíquota do ICMS normal simulado",
                 type: "number", // decimal[3.2-4]
                 xs: 6,
             },
             {
                 field: "icms_valor_simulado",
-                label: "Valor de ICMS normal simulado",
+                label: "Valor do ICMS normal simulado",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula:
                     "({formik.values.aliquota_icms_simulado} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
-                xs: 6,
-            },
-            {
-                field: "icms_aliquota_st",
-                label: "Alíquota ICMS-ST",
-                type: "number", // decimal[3.2-4]
                 xs: 6,
             },
             {
@@ -565,7 +560,7 @@ export const icms_situacao_tributaria_values: {
             },
             {
                 field: "icms_base_calculo_st",
-                label: "Base de Cálculo ICMS-ST",
+                label: "Base de Cálculo do ICMS-ST",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula:
@@ -573,11 +568,18 @@ export const icms_situacao_tributaria_values: {
                 xs: 6,
             },
             {
+                field: "icms_aliquota_st",
+                label: "Alíquota do ICMS-ST",
+                type: "number", // decimal[3.2-4]
+                xs: 6,
+            },
+            {
                 field: "icms_valor_st",
                 label: "Valor do ICMS-ST",
                 type: "number", // decimal[13.2]
                 disabled: true,
-                formula: "({formik.values.icms_base_calculo_st} * ({formik.values.icms_aliquota_st} / 100)) - {formik.values.icms_valor}",
+                formula:
+                    "({formik.values.icms_base_calculo_st} * ({formik.values.icms_aliquota_st} / 100)) - (({formik.values.aliquota_icms_simulado} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
                 xs: 6,
             },
         ],
