@@ -73,7 +73,10 @@ export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik
                 } else {
                     value = 0 // Default fallback value
                 }
-                return unmaskCurrency(value).toString()
+                return value
+                    .toString()
+                    .replace(",", ".")
+                    .replace(/[^.\d]/g, "")
             }) || "0"
 
         try {
