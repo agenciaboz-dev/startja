@@ -22,6 +22,13 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
         navigate("/painel")
     }
 
+    const calculateDays = (registerDate: number): number => {
+        const registerDateObj = new Date(registerDate)
+        const currentDate = new Date()
+        const timeDiff = currentDate.getTime() - registerDateObj.getTime()
+        return Math.floor(timeDiff / (1000 * 60 * 60 * 24))
+    }
+
     return (
         <Grid item xs={isMobile ? 12 : 3}>
             <Box
@@ -33,40 +40,46 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
                     flexDirection: "column",
                     padding: isMobile ? "5vw" : "1vw",
                     gap: isMobile ? "5vw" : "1vw",
-                    color: colors.text.greyish
+                    color: colors.text.greyish,
                     // flex: 1,
-                }}>
+                }}
+            >
                 <Box
                     sx={{
                         alignItems: "center",
-                        gap: "1vw"
-                    }}>
+                        gap: "1vw",
+                    }}
+                >
                     <MuiAvatar
                         sx={{
-                            backgroundColor: colors.secondary
+                            backgroundColor: colors.secondary,
                         }}
                     />
                     <Box
                         sx={{
-                            flexDirection: "column"
-                        }}>
+                            flexDirection: "column",
+                        }}
+                    >
                         <p
                             style={{
-                                color: colors.text.darkgrey
-                            }}>
+                                color: colors.text.darkgrey,
+                            }}
+                        >
                             {customer.name}
                         </p>
-                        <p>Cliente há x dias</p>
+                        <p>Cliente há {calculateDays(Number(customer.register_date))} dias</p>
                     </Box>
                 </Box>
                 <Box
                     sx={{
-                        flexDirection: "column"
-                    }}>
+                        flexDirection: "column",
+                    }}
+                >
                     <Box
                         sx={{
-                            gap: "1vw"
-                        }}>
+                            gap: "1vw",
+                        }}
+                    >
                         <p>CPF: {customer.document}</p>
                         <p>
                             {customer.city}/{customer.state}
@@ -76,19 +89,22 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
                 </Box>
                 <Box
                     sx={{
-                        flexDirection: "column"
-                    }}>
+                        flexDirection: "column",
+                    }}
+                >
                     <Box
                         sx={{
-                            gap: "0.5vw"
-                        }}>
+                            gap: "0.5vw",
+                        }}
+                    >
                         <EmailOutlinedIcon />
                         <p>{customer.email}</p>
                     </Box>
                     <Box
                         sx={{
-                            gap: "0.5vw"
-                        }}>
+                            gap: "0.5vw",
+                        }}
+                    >
                         <SettingsPhoneOutlinedIcon />
                         <p>{customer.phone}</p>
                     </Box>
@@ -96,16 +112,18 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
                 <Box
                     sx={{
                         justifyContent: "space-between",
-                        gap: "3vw"
-                    }}>
+                        gap: "3vw",
+                    }}
+                >
                     <Button
                         color={buttonColor}
                         variant="outlined"
                         sx={{
                             textTransform: "unset",
                             borderRadius: "20px",
-                            pointerEvents: "none"
-                        }}>
+                            pointerEvents: "none",
+                        }}
+                    >
                         Sem pendências
                     </Button>
                     <Button
@@ -113,9 +131,10 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
                         sx={{
                             borderRadius: "20px",
                             textTransform: "unset",
-                            gap: "0.5vw"
+                            gap: "0.5vw",
                         }}
-                        onClick={userClick}>
+                        onClick={userClick}
+                    >
                         <LoginOutlinedIcon />
                         <p>Acessar Sistema</p>
                     </Button>
