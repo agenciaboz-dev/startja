@@ -81,7 +81,7 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice, editInvoice }) 
                     <CurrencyText value={invoice.valor_total} />
                 </Box>
                 <Box sx={{ flex: 1, justifyContent: "center" }}>
-                    <Tooltip title={<Box sx={toolTipStyle}>{invoice.mensagem_sefaz}</Box>}>
+                    <Tooltip enterTouchDelay={100} title={<Box sx={toolTipStyle}>{invoice.mensagem_sefaz}</Box>}>
                         <Button
                             variant="contained"
                             color={

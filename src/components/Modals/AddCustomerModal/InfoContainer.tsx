@@ -197,7 +197,10 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                         label="Não contribuinte / isento"
                         sx={{ textAlign: "center" }}
                     />
-                    <Tooltip title={<Box sx={toolTipStyle}>Informa se empresa será habilitada para discriminar impostos de NFe e NFCe.</Box>}>
+                    <Tooltip
+                        enterTouchDelay={100}
+                        title={<Box sx={toolTipStyle}>Informa se empresa será habilitada para discriminar impostos de NFe e NFCe.</Box>}
+                    >
                         <FormControlLabel
                             control={
                                 <Checkbox checked={formik.values.discrimina_impostos} name="discrimina_impostos" onChange={formik.handleChange} />
@@ -206,7 +209,10 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                             sx={{ textAlign: "center" }}
                         />
                     </Tooltip>
-                    <Tooltip title={<Box sx={toolTipStyle}>Informa se empresa será habilitada para enviar email ao destinatário em produção</Box>}>
+                    <Tooltip
+                        enterTouchDelay={100}
+                        title={<Box sx={toolTipStyle}>Informa se empresa será habilitada para enviar email ao destinatário em produção</Box>}
+                    >
                         <FormControlLabel
                             control={
                                 <Checkbox
@@ -227,6 +233,7 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                     }}
                 >
                     <Tooltip
+                        enterTouchDelay={100}
                         title={
                             <Box sx={toolTipStyle}>Informa se empresa será habilitada para emissão de NFe – Nota Fiscal Eletrônica modelo 55.</Box>
                         }
@@ -238,6 +245,7 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                         />
                     </Tooltip>
                     <Tooltip
+                        enterTouchDelay={100}
                         title={
                             <Box sx={toolTipStyle}>
                                 Informa se empresa será habilitada para emissão de NFCe – Nota Fiscal ao Consumidor Eletrônica modelo 65
@@ -256,7 +264,10 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
 
             <Grid container spacing={2}>
                 <Grid item xs={isMobile ? 12 : 6}>
-                    <Tooltip title={<Box sx={toolTipStyle}>Próximo número da NFe a ser emitida. Depois, será incrementado automaticamente.</Box>}>
+                    <Tooltip
+                        enterTouchDelay={100}
+                        title={<Box sx={toolTipStyle}>Próximo número da NFe a ser emitida. Depois, será incrementado automaticamente.</Box>}
+                    >
                         <TextField
                             required
                             label="proximo_numero_nfe"
@@ -269,7 +280,7 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                     </Tooltip>
                 </Grid>
                 <Grid item xs={isMobile ? 12 : 6}>
-                    <Tooltip title={<Box sx={toolTipStyle}>Série da NFe a ser emitida. Valor padrão: 1</Box>}>
+                    <Tooltip enterTouchDelay={100} title={<Box sx={toolTipStyle}>Série da NFe a ser emitida. Valor padrão: 1</Box>}>
                         <TextField
                             required
                             label="serie_nfe"
