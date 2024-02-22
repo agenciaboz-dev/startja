@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom"
 // import { KeyboardArrowDown } from "@mui/icons-material"
 import { colors } from "../../style/colors"
 import { useDrawer } from "../../hooks/useDrawer"
+import { toolTipStyle } from "../../style/toolTipStyle"
 
 interface MenuButtonProps {
     sideBarItem: SidebarItem
@@ -69,7 +70,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                     display: active ? (sideBarItem.subItens ? "none" : "") : "",
                 }}
             >
-                <Tooltip title={logoItem ? "Configurações" : ""}>
+                <Tooltip title={logoItem ? <Box sx={toolTipStyle}>"Configurações"</Box> : ""}>
                     <MenuItem key={sideBarItem.id} sx={buildStyle(active, sideBarItem)}>
                         {active && !sideBarItem.subItens && (
                             <Box

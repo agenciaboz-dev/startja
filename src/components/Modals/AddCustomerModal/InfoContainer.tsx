@@ -1,7 +1,8 @@
 import React from "react"
-import { Box, Checkbox, FormControlLabel, Grid, MenuItem, TextField, useMediaQuery } from "@mui/material"
+import { Box, Checkbox, FormControlLabel, Grid, MenuItem, TextField, Tooltip, useMediaQuery } from "@mui/material"
 import { NewUser } from "../../../definitions/userOperations"
 import { Dropzone, ExtFile, FileMosaic } from "@files-ui/react"
+import { toolTipStyle } from "../../../style/toolTipStyle"
 
 interface InfoContainerProps {
     formik: {
@@ -51,7 +52,7 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
         { value: "SC", label: "Santa Catarina" },
         { value: "SP", label: "São Paulo" },
         { value: "SE", label: "Sergipe" },
-        { value: "TO", label: "Tocantins" }
+        { value: "TO", label: "Tocantins" },
     ]
 
     return (
@@ -59,8 +60,9 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
             sx={{
                 flex: 1,
                 flexDirection: "column",
-                gap: isMobile ? "5vw" : "1vw"
-            }}>
+                gap: isMobile ? "5vw" : "1vw",
+            }}
+        >
             <Grid container spacing={2}>
                 <Grid item xs={isMobile ? 12 : 6}>
                     <TextField required label="CPF/CNPJ" fullWidth value={formik.values.document} name="document" onChange={formik.handleChange} />
@@ -73,7 +75,8 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                         value={formik.values.regimeTributario}
                         name="regimeTributario"
                         select
-                        onChange={formik.handleChange}>
+                        onChange={formik.handleChange}
+                    >
                         <MenuItem value={0} sx={{ display: "none" }}></MenuItem>
                         <MenuItem value={1}>1 – Simples Nacional</MenuItem>
                         <MenuItem value={2}>2 – Simples Nacional – excesso de sublimite de receita bruta</MenuItem>
@@ -179,60 +182,104 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
 
             <Box
                 sx={{
-                    flexDirection: isMobile ? "column" : "row"
-                }}>
-                <FormControlLabel
-                    control={<Checkbox checked={formik.values.isento} name="isento" onChange={formik.handleChange} />}
-                    label="Não contribuinte / isento"
-                    sx={{ textAlign: "center" }}
-                />
-                <FormControlLabel
-                    control={<Checkbox checked={formik.values.discrimina_impostos} name="discrimina_impostos" onChange={formik.handleChange} />}
-                    label="discrimina_impostos"
-                    sx={{ textAlign: "center" }}
-                />
-                <FormControlLabel
-                    control={<Checkbox checked={formik.values.habilita_nfe} name="habilita_nfe" onChange={formik.handleChange} />}
-                    label="habilita_nfe"
-                    sx={{ textAlign: "center" }}
-                />
-                <FormControlLabel
-                    control={<Checkbox checked={formik.values.habilita_nfce} name="habilita_nfce" onChange={formik.handleChange} />}
-                    label="habilita_nfce"
-                    sx={{ textAlign: "center" }}
-                    disabled
-                />
-                <FormControlLabel
-                    control={
-                        <Checkbox checked={formik.values.enviar_email_destinatario} name="enviar_email_destinatario" onChange={formik.handleChange} />
-                    }
-                    label="enviar_email_destinatario"
-                    sx={{ textAlign: "center" }}
-                />
+                    flexDirection: isMobile ? "column" : "row",
+                    gap: isMobile ? "5vw" : "1vw",
+                }}
+            >
+                <Box
+                    sx={{
+                        flexDirection: "column",
+                        width: "50%",
+                    }}
+                >
+                    <FormControlLabel
+                        control={<Checkbox checked={formik.values.isento} name="isento" onChange={formik.handleChange} />}
+                        label="Não contribuinte / isento"
+                        sx={{ textAlign: "center" }}
+                    />
+                    <Tooltip title={<Box sx={toolTipStyle}>Informa se empresa será habilitada para discriminar impostos de NFe e NFCe.</Box>}>
+                        <FormControlLabel
+                            control={
+                                <Checkbox checked={formik.values.discrimina_impostos} name="discrimina_impostos" onChange={formik.handleChange} />
+                            }
+                            label="discrimina_impostos"
+                            sx={{ textAlign: "center" }}
+                        />
+                    </Tooltip>
+                    <Tooltip title={<Box sx={toolTipStyle}>Informa se empresa será habilitada para enviar email ao destinatário em produção</Box>}>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={formik.values.enviar_email_destinatario}
+                                    name="enviar_email_destinatario"
+                                    onChange={formik.handleChange}
+                                />
+                            }
+                            label="enviar_email_destinatario"
+                            sx={{ textAlign: "center" }}
+                        />
+                    </Tooltip>
+                </Box>
+                <Box
+                    sx={{
+                        flexDirection: "column",
+                        width: "50%",
+                    }}
+                >
+                    <Tooltip
+                        title={
+                            <Box sx={toolTipStyle}>Informa se empresa será habilitada para emissão de NFe – Nota Fiscal Eletrônica modelo 55.</Box>
+                        }
+                    >
+                        <FormControlLabel
+                            control={<Checkbox checked={formik.values.habilita_nfe} name="habilita_nfe" onChange={formik.handleChange} />}
+                            label="habilita_nfe"
+                            sx={{ textAlign: "center" }}
+                        />
+                    </Tooltip>
+                    <Tooltip
+                        title={
+                            <Box sx={toolTipStyle}>
+                                Informa se empresa será habilitada para emissão de NFCe – Nota Fiscal ao Consumidor Eletrônica modelo 65
+                            </Box>
+                        }
+                    >
+                        <FormControlLabel
+                            control={<Checkbox checked={formik.values.habilita_nfce} name="habilita_nfce" onChange={formik.handleChange} />}
+                            label="habilita_nfce"
+                            sx={{ textAlign: "center" }}
+                            disabled
+                        />
+                    </Tooltip>
+                </Box>
             </Box>
 
             <Grid container spacing={2}>
                 <Grid item xs={isMobile ? 12 : 6}>
-                    <TextField
-                        required
-                        label="proximo_numero_nfe"
-                        value={formik.values.proximo_numero_nfe}
-                        name="proximo_numero_nfe"
-                        onChange={formik.handleChange}
-                        fullWidth
-                        type="number"
-                    />
+                    <Tooltip title={<Box sx={toolTipStyle}>Próximo número da NFe a ser emitida. Depois, será incrementado automaticamente.</Box>}>
+                        <TextField
+                            required
+                            label="proximo_numero_nfe"
+                            value={formik.values.proximo_numero_nfe}
+                            name="proximo_numero_nfe"
+                            onChange={formik.handleChange}
+                            fullWidth
+                            type="number"
+                        />
+                    </Tooltip>
                 </Grid>
                 <Grid item xs={isMobile ? 12 : 6}>
-                    <TextField
-                        required
-                        label="serie_nfe"
-                        value={formik.values.serie_nfe}
-                        name="serie_nfe"
-                        onChange={formik.handleChange}
-                        fullWidth
-                        type="number"
-                    />
+                    <Tooltip title={<Box sx={toolTipStyle}>Série da NFe a ser emitida. Valor padrão: 1</Box>}>
+                        <TextField
+                            required
+                            label="serie_nfe"
+                            value={formik.values.serie_nfe}
+                            name="serie_nfe"
+                            onChange={formik.handleChange}
+                            fullWidth
+                            type="number"
+                        />
+                    </Tooltip>
                 </Grid>
             </Grid>
 
@@ -244,12 +291,13 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                 maxFiles={1}
                 accept=".pfx"
                 footerConfig={{ customMessage: "certificado .pfx" }}
-                label="Clique ou arraste o arquivo aqui">
+                label="Clique ou arraste o arquivo aqui"
+            >
                 {file && <FileMosaic key={file.id} {...file} onDelete={removeFile} info={true} />}
             </Dropzone>
             <TextField
                 required
-                label="certificate_password"
+                label="Senha do certificado"
                 value={formik.values.certificate_password}
                 name="certificate_password"
                 onChange={formik.handleChange}

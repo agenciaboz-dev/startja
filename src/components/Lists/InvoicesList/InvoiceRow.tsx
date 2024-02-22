@@ -5,6 +5,7 @@ import { colors } from "../../../style/colors"
 import { Edit, PictureAsPdf, FileOpen } from "@mui/icons-material"
 import { CurrencyText } from "../../CurrencyText"
 import { url as backend } from "../../../api/backend"
+import { toolTipStyle } from "../../../style/toolTipStyle"
 
 interface InvoiceRowProps {
     invoice: notaFiscal
@@ -80,7 +81,7 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice, editInvoice }) 
                     <CurrencyText value={invoice.valor_total} />
                 </Box>
                 <Box sx={{ flex: 1, justifyContent: "center" }}>
-                    <Tooltip title={invoice.mensagem_sefaz}>
+                    <Tooltip title={<Box sx={toolTipStyle}>invoice.mensagem_sefaz</Box>}>
                         <Button
                             variant="contained"
                             color={

@@ -68,7 +68,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
         },
         onSubmit: (values) => {
             if (!certificateFile) {
-                alert("certificado")
+                alert("Anexar certificado")
                 return
             }
             console.log(values)
