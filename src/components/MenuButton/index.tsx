@@ -70,7 +70,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                     display: active ? (sideBarItem.subItens ? "none" : "") : "",
                 }}
             >
-                <Tooltip title={logoItem ? <Box sx={toolTipStyle}>"Configurações"</Box> : ""}>
+                <Tooltip title={logoItem ? <Box sx={toolTipStyle}>Configurações</Box> : ""}>
                     <MenuItem key={sideBarItem.id} sx={buildStyle(active, sideBarItem)}>
                         {active && !sideBarItem.subItens && (
                             <Box
