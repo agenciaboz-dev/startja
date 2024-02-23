@@ -519,7 +519,29 @@ export const icms_situacao_tributaria_values: {
     {
         value: "90",
         label: "Outras (regime Normal)",
-        fields: [{ field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" }],
+        fields: [
+            {
+                field: "icms_base_calculo",
+                label: "Base de Cálculo do ICMS",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula: "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+            {
+                field: "aliquota",
+                label: "Alíquota do ICMS",
+                type: "number", // decimal[3.2-4]
+                xs: 6,
+            },
+            {
+                field: "icms_valor",
+                label: "Valor do ICMS",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula: "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+            },
+        ],
     },
 
     { value: "101", label: "Tributada pelo Simples Nacional com permissão de crédito" },
