@@ -1,18 +1,17 @@
 import React, { useEffect } from "react"
 import { Autocomplete, Box, Grid, MenuItem, TextField, useMediaQuery } from "@mui/material"
-import icms_situacao_tributaria_values from "./Modals/AddInvoiceModal/icms_situacao_tributaria"
-import pis_situacao_tributaria_values from "./Modals/AddInvoiceModal/pis_situacao_tributaria"
-import cofins_situacao_tributaria_values from "./Modals/AddInvoiceModal/cofins_situacao_tributaria"
 import { TaxRulesForm } from "../definitions/TaxRulesForm"
 import { FormikErrors } from "formik"
-import cfop_values from "../tools/cfop_values"
 import { colors } from "../style/colors"
 import Accordion from "@mui/material/Accordion"
 import AccordionSummary from "@mui/material/AccordionSummary"
 import AccordionDetails from "@mui/material/AccordionDetails"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
-import { unmaskCurrency } from "../tools/unmaskNumber"
 import { TaxField } from "./TaxField"
+import cfop_values from "../tools/cfop_values"
+import icms_situacao_tributaria_values from "./Modals/AddInvoiceModal/icms_situacao_tributaria"
+import pis_situacao_tributaria_values from "./Modals/AddInvoiceModal/pis_situacao_tributaria"
+import cofins_situacao_tributaria_values from "./Modals/AddInvoiceModal/cofins_situacao_tributaria"
 
 interface TaxFormik {
     values: TaxRulesForm
