@@ -1,3 +1,6 @@
+// Lembrar que campos iniciados em underline, como "_icms_exemplo_alguma_coisa", não existem na API da FocusNFE;
+// e só existem aqui para serem usados aqui (internamente neste sistema)
+
 export const icms_situacao_tributaria_values: {
     value: string
     label: string
@@ -102,6 +105,14 @@ export const icms_situacao_tributaria_values: {
         fields: [
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
             {
+                field: "_icms_base_calculo_antes_da_reducao",
+                label: "Base de Cálculo do ICMS antes da redução",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula: "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+            {
                 field: "icms_reducao_base_calculo",
                 label: "Percentual de redução da base de cálculo",
                 type: "number", // decimal[3.2-4]
@@ -129,7 +140,6 @@ export const icms_situacao_tributaria_values: {
                 disabled: true,
                 formula:
                     "({formik.values.aliquota} / 100) * ({product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.values.icms_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
-                xs: 6,
             },
         ],
     },
@@ -166,23 +176,23 @@ export const icms_situacao_tributaria_values: {
                 disabled: true,
                 formula: "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
             },
-            { field: "icms_percentual_isencao", label: "Percentual de isenção", type: "number", xs: 6 },
+            { field: "_icms_percentual_isencao", label: "Percentual de isenção", type: "number", xs: 6 },
             {
                 field: "icms_valor_isentado",
                 label: "Valor do ICMS isentado",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula:
-                    "({formik.values.icms_percentual_isencao} / 100) * ({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                    "({formik.values._icms_percentual_isencao} / 100) * ({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
                 xs: 6,
             },
             {
                 field: "icms_valor",
-                label: "Valor do ICMS normal",
+                label: "Valor do ICMS normal após isenção",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula:
-                    "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.values.icms_percentual_isencao} / 100) * ({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                    "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.values._icms_percentual_isencao} / 100) * ({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
                 hr: true,
             },
             {
@@ -211,7 +221,7 @@ export const icms_situacao_tributaria_values: {
                 label: "Valor do ICMS-ST",
                 type: "number", // decimal[13.2]
                 disabled: true,
-                formula: `({product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} * (1 + ({formik.values.icms_margem_valor_adicionado_st} / 100)) * ({formik.values.icms_aliquota_st} / 100)) - (({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.values.icms_percentual_isencao} / 100) * ({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})`,
+                formula: `({product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} * (1 + ({formik.values.icms_margem_valor_adicionado_st} / 100)) * ({formik.values.icms_aliquota_st} / 100)) - (({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})`,
                 xs: 6,
             },
         ],
@@ -243,14 +253,14 @@ export const icms_situacao_tributaria_values: {
                 disabled: true,
                 formula: "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
             },
-            { field: "icms_percentual_isencao", label: "Percentual de isenção", type: "number", xs: 6 },
+            { field: "_icms_percentual_isencao", label: "Percentual de isenção", type: "number", xs: 6 },
             {
                 field: "icms_valor_isentado",
                 label: "Valor do ICMS isentado",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula:
-                    "({formik.values.icms_percentual_isencao} / 100) * ({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                    "({formik.values._icms_percentual_isencao} / 100) * ({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
                 xs: 6,
             },
             {
@@ -259,7 +269,7 @@ export const icms_situacao_tributaria_values: {
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula:
-                    "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.values.icms_percentual_isencao} / 100) * ({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                    "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.values._icms_percentual_isencao} / 100) * ({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
             },
         ],
     },
@@ -270,9 +280,43 @@ export const icms_situacao_tributaria_values: {
         fields: [
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text" },
             {
+                field: "aliquota",
+                label: "Alíquota do ICMS",
+                type: "number", // decimal[3.2-4]
+                xs: 6,
+            },
+            {
+                field: "icms_base_calculo",
+                label: "Base de Cálculo do ICMS",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula: "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+            {
+                field: "icms_valor_operacao",
+                label: "Valor do ICMS antes da desoneração",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula: "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+            },
+            { field: "_icms_percentual_desoneracao", label: "Percentual de desoneração", type: "number", xs: 6 },
+            {
                 field: "icms_valor_desonerado",
                 label: "Valor do ICMS desonerado",
                 type: "number", // decimal[13.2]
+                disabled: true,
+                formula:
+                    "({formik.values._icms_percentual_desoneracao} / 100) * ({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+            {
+                field: "icms_valor",
+                label: "Valor do ICMS",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula:
+                    "({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.values._icms_percentual_desoneracao} / 100) * ({formik.values.aliquota} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
             },
         ],
     },
@@ -396,6 +440,14 @@ export const icms_situacao_tributaria_values: {
             },
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text", xs: 6 },
             {
+                field: "_icms_base_calculo_antes_da_reducao",
+                label: "Base de Cálculo do ICMS antes da redução",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula: "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+            {
                 field: "icms_reducao_base_calculo",
                 label: "Percentual de redução da base de cálculo",
                 type: "number", // decimal[3.2-4]
@@ -414,10 +466,18 @@ export const icms_situacao_tributaria_values: {
                 field: "aliquota",
                 label: "Alíquota do ICMS normal",
                 type: "number", // decimal[3.2-4]
+                xs: 6,
+            },
+            {
+                field: "_icms_valor_sem_reducao",
+                label: "Valor do ICMS normal sem redução",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula: "({formik.values.aliquota} / 100) * ({product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
             },
             {
                 field: "icms_valor",
-                label: "Valor do ICMS normal",
+                label: "Valor do ICMS normal com redução",
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula:
@@ -436,7 +496,7 @@ export const icms_situacao_tributaria_values: {
                 type: "number", // decimal[13.2]
                 disabled: true,
                 formula:
-                    "({product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.values.icms_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}) * (1 + ({formik.values.icms_margem_valor_adicionado_st} / 100))",
+                    "({product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}) * (1 + ({formik.values.icms_margem_valor_adicionado_st} / 100))",
                 xs: 6,
             },
             {
@@ -450,7 +510,7 @@ export const icms_situacao_tributaria_values: {
                 label: "Valor do ICMS-ST",
                 type: "number", // decimal[13.2]
                 disabled: true,
-                formula: `(({product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.values.icms_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}) * (1 + ({formik.values.icms_margem_valor_adicionado_st} / 100)) * ({formik.values.icms_aliquota_st} / 100)) - ({formik.values.aliquota} / 100) * ({product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade} - ({formik.values.icms_reducao_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})`,
+                formula: `(({product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}) * (1 + ({formik.values.icms_margem_valor_adicionado_st} / 100)) * ({formik.values.icms_aliquota_st} / 100)) - ({formik.values.aliquota} / 100) * ({product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})`,
                 xs: 6,
             },
         ],
@@ -480,9 +540,18 @@ export const icms_situacao_tributaria_values: {
             },
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text", xs: 6 },
             {
+                field: "_icms_base_calculo_simulado",
+                label: "Base de Cálculo do ICMS normal simulado",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula: "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+            {
                 field: "aliquota_icms_simulado",
                 label: "Alíquota do ICMS normal simulado",
                 type: "number", // decimal[3.2-4]
+                xs: 6,
             },
             {
                 field: "icms_valor_simulado",
@@ -538,9 +607,18 @@ export const icms_situacao_tributaria_values: {
             },
             { field: "codigo_beneficio_fiscal", label: "Benefício fiscal", type: "text", xs: 6 },
             {
+                field: "_icms_base_calculo_simulado",
+                label: "Base de Cálculo do ICMS normal simulado",
+                type: "number", // decimal[13.2]
+                disabled: true,
+                formula: "{product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                xs: 6,
+            },
+            {
                 field: "aliquota_icms_simulado",
                 label: "Alíquota do ICMS normal simulado",
                 type: "number", // decimal[3.2-4]
+                xs: 6,
             },
             {
                 field: "icms_valor_simulado",
