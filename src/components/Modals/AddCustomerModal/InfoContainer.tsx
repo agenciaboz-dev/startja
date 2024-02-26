@@ -294,6 +294,27 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                 </Grid>
             </Grid>
 
+            <h3>Funrural</h3>
+
+            <Box
+                sx={{
+                    flexDirection: "column",
+                }}
+            >
+                <p>Escolha uma configuração como padrão para o recolhimento Funrural:</p>
+                <RadioGroup value={formik.values.recolhimento} onChange={formik.handleChange} name="recolhimento" sx={{ marginTop: "0.5vw" }}>
+                    <FormControlLabel value={1} control={<Radio />} defaultChecked label="Recolhimento pela folha de pagamento" />
+                    <FormControlLabel value={2} control={<Radio />} label="Recolhimento pelo valor da produção agrícola" />
+                </RadioGroup>
+                {/* <hr style={{ margin: "0.5vw 0" }} />
+                <FormControlLabel
+                    control={
+                        <Checkbox checked={formik.values.show_funrural_on_invoices} onChange={formik.handleChange} name="show_funrural_on_invoices" />
+                    }
+                    label="Exibir recolhimento do Funrural nas observações da nota fiscal"
+                /> */}
+            </Box>
+
             <h3>Certificado</h3>
 
             <Dropzone
@@ -314,26 +335,6 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                 onChange={formik.handleChange}
                 fullWidth
             />
-
-<Box
-                    sx={{
-                        justifyContent: "space-between",
-                    }}
-                >
-                    <h2>Funrural</h2>
-                </Box>
-                <p>Escolha uma configuração como padrão para o recolhimento Funrural</p>
-                <RadioGroup value={formik.values.recolhimento} onChange={formik.handleChange} name="recolhimento" sx={{ marginTop: "0.5vw" }}>
-                    <FormControlLabel value={1} control={<Radio />} defaultChecked label="Recolhimento pela folha de pagamento" />
-                    <FormControlLabel value={2} control={<Radio />} label="Recolhimento pelo valor da produção agrícola" />
-                </RadioGroup>
-                <hr style={{ margin: "0.5vw 0" }} />
-                <FormControlLabel
-                    control={
-                        <Checkbox checked={formik.values.show_funrural_on_invoices} onChange={formik.handleChange} name="show_funrural_on_invoices" />
-                    }
-                    label="Exibir recolhimento do Funrural nas observações da nota fiscal"
-                />
         </Box>
     )
 }
