@@ -27,6 +27,31 @@ export const useMuiTheme = () => {
                 // disabled: colors.primary,
             },
         },
+
+        components: {
+            MuiInputLabel: {
+                styleOverrides: {
+                    // root: {
+                    //     fontSize: "1.25rem",
+                    // },
+                    outlined: {
+                        "&.MuiInputLabel-shrink": {
+                            fontSize: "1.25rem",
+                        },
+                    },
+                },
+            },
+
+            MuiOutlinedInput: {
+                styleOverrides: {
+                    notchedOutline: {
+                        "& legend": {
+                            fontSize: "1rem",
+                        },
+                    },
+                },
+            },
+        },
     })
 
     return THEME
