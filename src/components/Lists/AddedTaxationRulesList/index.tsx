@@ -22,14 +22,16 @@ export const AddedTaxationRuleRowsList: React.FC<AddedTaxationRuleRowsListProps>
                 margin: "0.5vw 0",
             }}
         >
-            {list.map((item, index) => (
-                <AddedTaxationRuleRow
-                    key={`${index}:${item.destino}:${item.origem}:${item.destino}`}
-                    tax_rule={item}
-                    deleteTaxRule={deleteTaxRule}
-                    updateTaxRule={updateTaxRule}
-                />
-            ))}
+            {list
+                .sort((a, b) => Number(a.id) - Number(b.id))
+                .map((item, index) => (
+                    <AddedTaxationRuleRow
+                        key={`${index}:${item.destino}:${item.origem}:${item.destino}`}
+                        tax_rule={item}
+                        deleteTaxRule={deleteTaxRule}
+                        updateTaxRule={updateTaxRule}
+                    />
+                ))}
         </Box>
     )
 }

@@ -43,7 +43,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
     }
 
     useEffect(() => {
-        console.log(Object.entries(formik.values))
+        // console.log(Object.entries(formik.values))
     }, [])
 
     return (

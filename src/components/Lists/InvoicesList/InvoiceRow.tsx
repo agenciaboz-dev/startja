@@ -30,16 +30,20 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice, editInvoice }) 
               ]
             : [
                   {
-                      id: 1,
-                      title: "Baixar XML",
+                      id: 2,
+                      title: "Baixar PDF e XML",
                       icon: <FileOpen />,
                       onClick: async () => {
-                          const url = `http${backend}/api/nfefocus/xml?url=${invoice.url_xml}`
+                          const url = `http${backend}/api/nfefocus/pdf?url=${invoice.url_pdf}`
                           window.open(url, "_blank")
+                          setTimeout(() => {
+                              const url2 = `http${backend}/api/nfefocus/xml?url=${invoice.url_xml}`
+                              window.open(url2, "_blank")
+                          }, 1000)
                       },
                   },
                   {
-                      id: 2,
+                      id: 3,
                       title: "Visualizar PDF",
                       icon: <PictureAsPdf />,
                       onClick: () => window.open(`https://homologacao.focusnfe.com.br${invoice.url_pdf}`, "_new"),

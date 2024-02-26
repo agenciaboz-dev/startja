@@ -129,7 +129,14 @@ export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_
                     {actions.map((action) => {
                         const Icon = () => action.icon
                         return (
-                            <MenuItem sx={{ gap: isMobile ? "2vw" : "0.5vw" }} onClick={action.onClick} key={action.id}>
+                            <MenuItem
+                                sx={{ gap: isMobile ? "2vw" : "0.5vw" }}
+                                onClick={() => {
+                                    action.onClick()
+                                    setMenuAnchorEl(null)
+                                }}
+                                key={action.id}
+                            >
                                 <Icon /> {action.title}
                             </MenuItem>
                         )
