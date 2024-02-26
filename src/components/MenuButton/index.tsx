@@ -70,7 +70,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                     display: active ? (sideBarItem.subItens ? "none" : "") : "",
                 }}
             >
-                <Tooltip enterTouchDelay={100} title={logoItem ? <Box sx={toolTipStyle}>Configurações</Box> : ""}>
+                <Tooltip enterTouchDelay={100} title={logoItem && !isMobile ? <Box sx={toolTipStyle}>Configurações</Box> : ""}>
                     <MenuItem key={sideBarItem.id} sx={buildStyle(active, sideBarItem)}>
                         {active && !sideBarItem.subItens && (
                             <Box
@@ -79,7 +79,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                                     borderTopRightRadius: isMobile ? "2vw" : "1vw",
                                     borderBottomRightRadius: isMobile ? "2vw" : "1vw",
                                     position: "absolute",
-                                    height: isMobile ? "10vw" : "3vw",
+                                    height: isMobile ? "14vw" : "3vw",
                                     width: isMobile ? "2vw" : "0.5vw",
                                     left: 0,
                                 }}
@@ -96,7 +96,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                         >
                             <Icon />
                         </Box>
-                        {sideBarItem.name}
+                        {((!isMobile && !logoItem) || isMobile) && sideBarItem.name}
                         {/* {sideBarItem.subItens && <KeyboardArrowDown sx={{ marginLeft: "auto", rotate: collapse ? "-180deg" : "", transition: "0.3s" }} />} */}
                     </MenuItem>
                 </Tooltip>
@@ -136,7 +136,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ sideBarItem, sx }) => {
                                                 borderTopRightRadius: isMobile ? "2vw" : "1vw",
                                                 borderBottomRightRadius: isMobile ? "2vw" : "1vw",
                                                 position: "absolute",
-                                                height: isMobile ? "10vw" : "3vw",
+                                                height: isMobile ? "14vw" : "3vw",
                                                 width: isMobile ? "2vw" : "0.5vw",
                                                 left: 0,
                                             }}

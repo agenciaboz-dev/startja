@@ -33,7 +33,7 @@ export const useSidebar = () => {
     const sidebar: SidebarItem[] = [
         {
             id: 1,
-            name: "",
+            name: "Configurações",
             path: "/configuracoes",
             icon: <ReactSVG src={startjaIcon} style={{ transform: "scale(0.8)" }} />,
             onClick: () => navigate("/painel/configuracoes"),
