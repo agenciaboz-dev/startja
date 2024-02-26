@@ -98,10 +98,11 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                                 select
                             >
                                 {icms_situacao_tributaria_values
-                                    .filter(
-                                        (item) =>
-                                            (item.value.length == 2 && (user?.regimeTributario == 2 || user?.regimeTributario == 3)) ||
-                                            (item.value.length == 3 && user?.regimeTributario == 1)
+                                    .filter((item) =>
+                                        !isInvoice
+                                            ? item
+                                            : (item.value.length == 2 && (user?.regimeTributario == 2 || user?.regimeTributario == 3)) ||
+                                              (item.value.length == 3 && user?.regimeTributario == 1)
                                     )
                                     .map((item) => (
                                         <MenuItem key={item.value} value={item.value}>
