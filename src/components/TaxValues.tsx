@@ -12,6 +12,7 @@ import cfop_values from "../tools/cfop_values"
 import icms_situacao_tributaria_values from "./Modals/AddInvoiceModal/icms_situacao_tributaria"
 import pis_situacao_tributaria_values from "./Modals/AddInvoiceModal/pis_situacao_tributaria"
 import cofins_situacao_tributaria_values from "./Modals/AddInvoiceModal/cofins_situacao_tributaria"
+import { useUser } from "../hooks/useUser"
 
 interface TaxFormik {
     values: TaxRulesForm
@@ -31,10 +32,10 @@ interface TaxValuesProps {
     product_formik?: ProductFormik
 }
 
-
-
 export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product_formik }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+
+    const { user } = useUser()
 
     const [expanded, setExpanded] = React.useState<string | false>(false)
 
@@ -96,11 +97,17 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                                 onChange={formik.handleChange}
                                 select
                             >
-                                {icms_situacao_tributaria_values.map((item) => (
-                                    <MenuItem key={item.value} value={item.value}>
-                                        {item.value} - {item.label}
-                                    </MenuItem>
-                                ))}
+                                {icms_situacao_tributaria_values
+                                    .filter(
+                                        (item) =>
+                                            (item.value.length == 2 && (user?.regimeTributario == 2 || user?.regimeTributario == 3)) ||
+                                            (item.value.length == 3 && user?.regimeTributario == 1)
+                                    )
+                                    .map((item) => (
+                                        <MenuItem key={item.value} value={item.value}>
+                                            {item.value} - {item.label}
+                                        </MenuItem>
+                                    ))}
                             </TextField>
                         </Grid>
                         {icms_situacao_tributaria_values
