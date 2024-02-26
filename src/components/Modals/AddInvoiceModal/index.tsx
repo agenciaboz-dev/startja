@@ -141,7 +141,13 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                   numero: "",
                   serie: is_cpf ? "922" : "",
                   consumidor_final: 0,
-                  informacoes_adicionais_contribuinte: user.show_funrural_on_invoices ? user.observations : "",
+                  informacoes_adicionais_contribuinte: `${user.observations}\n\n${
+                      user.show_funrural_on_invoices
+                          ? `Funrural: ${
+                                user.recolhimento == 1 ? "Recolhimento pela folha de pagamento" : "Recolhimento pelo valor da produção agrícola"
+                            }`
+                          : ""
+                  }`,
                   destinatario: user.companies[0]
                       ? {
                             bairro: user.companies[0].district,
