@@ -147,7 +147,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                                 user.recolhimento == 1 ? "Recolhimento pela folha de pagamento" : "Recolhimento pelo valor da produção agrícola"
                             }`
                           : ""
-                  }`,
+                  }\n\n${selectedNature?.observations}`,
                   destinatario: user.companies[0]
                       ? {
                             bairro: user.companies[0].district,
