@@ -134,7 +134,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                   })),
                   formas_pagamento: {
                       indicador_pagamento: 0,
-                      forma_pagamento: "01",
+                      forma_pagamento: "00",
                   },
               }
             : {
@@ -203,11 +203,16 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                   produtos: [],
                   formas_pagamento: {
                       indicador_pagamento: 0,
-                      forma_pagamento: "01",
+                      forma_pagamento: "00",
                   },
               },
         onSubmit: (values) => {
             if (loading) return
+
+            if (values.formas_pagamento.forma_pagamento == "00") {
+                snackbar({ severity: "warning", text: "Selecione uma forma de pagamento" })
+                return
+            }
 
             if (!currentRecipient) {
                 snackbar({ severity: "warning", text: "Destinatário não pode ser vazio" })
@@ -357,6 +362,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                 next_invoice_number: Number(formik.values.numero) || Number(currentProperty.nfe_number),
                 property_number: Number(currentProperty.nfe_number),
             })
+            console.log(formik.values.formas_pagamento)
         }
     }, [open])
 

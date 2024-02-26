@@ -46,6 +46,7 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
         }
     }
 
+
     return (
         <Box
             sx={{
@@ -66,6 +67,7 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
                         onChange={formik.handleChange}
                         name="formas_pagamento.forma_pagamento"
                     >
+                        <MenuItem value={"00"} sx={{ display: "none" }}></MenuItem>
                         {forma_pagamento.map((option) => (
                             <MenuItem key={option.value} value={option.value}>
                                 {option.label}
