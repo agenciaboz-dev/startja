@@ -65,8 +65,8 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
             serie_nfe: 1,
             certificate: null,
             certificate_password: "",
-            show_funrural_on_invoices: true,
             recolhimento: 1,
+            show_funrural_on_invoices: true,
         },
         onSubmit: (values) => {
             if (!certificateFile) {
