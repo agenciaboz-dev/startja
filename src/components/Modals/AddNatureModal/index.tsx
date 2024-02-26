@@ -96,6 +96,11 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
         onClose()
     }
 
+    const onCloseNatureModal = () => {
+        onClose()
+        formik.resetForm()
+    }
+
     useEffect(() => {
         io.on("nature:creation:success", (nature: Natureza) => {
             onUpdateCallback(nature)
@@ -279,7 +284,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                     }}
                 >
                     <Button
-                        onClick={onClose}
+                        onClick={onCloseNatureModal}
                         color="secondary"
                         variant="contained"
                         sx={{
