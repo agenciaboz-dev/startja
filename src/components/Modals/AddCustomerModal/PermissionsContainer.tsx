@@ -55,7 +55,7 @@ export const PermissionsContainer:React.FC<PermissionsContainerProps> = ({  }) =
                                     gap: isMobile ? "5vw" : "1vw",
                                     marginTop: isMobile ? "5vw" : "1vw"
                                 }}>
-                                <h4>Responsável pelo Uso</h4>
+                                <h3>Responsável pelo Uso</h3>
                                 <p>
                                     O "Responsável pelo uso" é o representante legal da conta StartJá, com acesso total, podendo adicionar, editar e
                                     remover acessos e configurações.
