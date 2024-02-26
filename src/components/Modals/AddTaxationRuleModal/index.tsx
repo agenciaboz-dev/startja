@@ -17,21 +17,21 @@ interface AddTaxationRuleModalProps {
     current_rule?: TaxRulesForm
 }
 
-const random_id = uid()
-
 const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClose, addTaxRule, current_rule }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const pStyles = { minWidth: "fit-content" }
     const selectStyles = { maxWidth: isMobile ? "100%" : "10vw" }
     const product = useProduct()
+
     const { snackbar } = useSnackbar()
 
+    const [randomId, setRandomId] = useState(uid())
     const [selectedProducts, setSelectedProducts] = useState<Product[]>(current_rule?.products || [])
     const [selectedDestinations, setSelectedDestinations] = useState<string[]>(current_rule?.destino.split(", ") || [])
 
     const formik = useFormik<TaxRulesForm>({
         initialValues: current_rule || {
-            id: random_id,
+            id: randomId,
             cfop: 0,
             icms_modalidade_base_calculo: 0,
             cofins_situacao_tributaria: "01",
@@ -81,7 +81,8 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
     useEffect(() => {
         setSelectedProducts(current_rule?.products || [])
         setSelectedDestinations(current_rule?.destino.split(", ") || [])
-    }, [current_rule])
+        setRandomId(uid())
+    }, [open])
 
     useEffect(() => {
         if (!!product.list.length && !current_rule) formik.setFieldValue("product_id", product.list[0].id)
