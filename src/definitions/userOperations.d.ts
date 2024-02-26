@@ -30,6 +30,9 @@ export declare interface NewUser {
 
     certificate: File | null
     certificate_password: string
+
+    show_funrural_on_invoices: boolean
+    recolhimento: number
 }
 
 export declare interface NewCompany {

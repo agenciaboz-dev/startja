@@ -64,7 +64,9 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
             proximo_numero_nfe: 1,
             serie_nfe: 1,
             certificate: null,
-            certificate_password: ""
+            certificate_password: "",
+            show_funrural_on_invoices: true,
+            recolhimento: 1,
         },
         onSubmit: (values) => {
             if (!certificateFile) {
@@ -74,7 +76,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
             console.log(values)
             setLoading(true)
             io.emit("user:signup", values)
-        }
+        },
     })
 
     const [loading, setLoading] = useState(false)
