@@ -47,6 +47,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
             finality: 1,
             motive: "",
             operation: "",
+            observations: "",
             type: 0,
             user_id: user?.id,
             rules: [],
@@ -199,7 +200,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                     <MenuItem value={4}>4 - Devolução de mercadoria</MenuItem>
                                 </TextField>
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={6}>
                                 <TextField
                                     label="Natureza da operação (motivo)"
                                     name="motive"
@@ -207,6 +208,15 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                     onChange={formik.handleChange}
                                     fullWidth
                                     required
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    label="Observações"
+                                    name="observations"
+                                    value={formik.values.observations}
+                                    onChange={formik.handleChange}
+                                    fullWidth
                                 />
                             </Grid>
                         </Grid>
