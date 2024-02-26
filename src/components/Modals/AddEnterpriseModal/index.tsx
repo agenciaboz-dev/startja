@@ -88,7 +88,7 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
                         </Grid>
                     </Grid>
 
-                    <h4>Endereço</h4>
+                    <h3>Endereço</h3>
 
                     <Grid container spacing={2}>
                         <Grid item xs={isMobile ? 12 : 6}>
@@ -111,7 +111,7 @@ const AddEnterpriseModal: React.FC<AddEnterpriseModalProps> = ({ open, onClose }
                         </Grid>
                     </Grid>
 
-                    <h4>Informar contato (opcional)</h4>
+                    <h3>Informar contato (opcional)</h3>
 
                     <Grid container spacing={2}>
                         <Grid item xs={isMobile ? 12 : 6}>

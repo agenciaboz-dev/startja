@@ -19,6 +19,7 @@ export const GeneralInfoBox: React.FC<GeneralInfoBoxProps> = ({ formik }) => {
                 gap: "1vw",
             }}
         >
+            <h3>Tipo da nota</h3>
             <RadioGroup
                 value={formik.values.tipo_documento}
                 onChange={(_, value) => formik.setFieldValue("tipo_documento", Number(value))}
@@ -27,6 +28,9 @@ export const GeneralInfoBox: React.FC<GeneralInfoBoxProps> = ({ formik }) => {
                 <FormControlLabel label="Nota de entrada" control={<Radio value={0} />} />
                 <FormControlLabel label="Nota de saída" control={<Radio value={1} />} />
             </RadioGroup>
+
+            <h3>Outras informações</h3>
+
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <TextField

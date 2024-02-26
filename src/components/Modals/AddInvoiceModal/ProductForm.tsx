@@ -283,7 +283,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                             />
                         </Grid>
                     </Grid>
-                    {/* <h4>Integração com pedido de compra</h4>
+                    {/* <h3>Integração com pedido de compra</h3>
                         <Grid container spacing={2}>
                             <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField label="Ordem de compra" fullWidth />

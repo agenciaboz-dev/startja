@@ -53,6 +53,8 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
                 gap: "1vw",
             }}
         >
+            <h3>Detalhes de pagamento</h3>
+
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <TextField
