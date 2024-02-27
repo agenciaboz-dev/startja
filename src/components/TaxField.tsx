@@ -4,6 +4,9 @@ import { TaxRulesForm } from "../definitions/TaxRulesForm"
 import { FormikErrors } from "formik"
 import { colors } from "../style/colors"
 import { Parser } from "expr-eval"
+import MaskedInput from "./MaskedInput"
+import { useNumberMask } from "burgos-masks"
+import { unmaskCurrency } from "../tools/unmaskNumber"
 
 interface TaxFormik {
     values: TaxRulesForm
@@ -46,6 +49,9 @@ const extractFieldsFromFormula = (formula: string) => {
 
 export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik, isInvoice }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+
+    const float_mask = useNumberMask({ allowDecimal: true, decimalLimit: 5, thousandsSeparatorSymbol: "a", decimalSymbol: "" })
+
     const [value, setValue] = useState(
         // @ts-ignore
         formik.values[item.field] != undefined
@@ -90,6 +96,28 @@ export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik
         }
     }
 
+    const inputRef = useRef<HTMLInputElement>(null)
+    const [cursor, setCursor] = useState<number>(0)
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (item.type == "number") {
+            const is_number = !!Number(event.target.value)
+            if (is_number) {
+                formik.handleChange(event)
+            }
+        } else {
+            formik.handleChange(event)
+        }
+        // item.type == "number" ? formik.setFieldValue(item.field, unmaskCurrency(event.target.value)) : formik.handleChange(event)
+        const newCursorPosition = event.target.selectionStart ? event.target.selectionStart + 1 : 0
+        setCursor(newCursorPosition)
+    }
+
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.setSelectionRange(cursor, cursor)
+        }
+    }, [cursor, value])
+
     useEffect(() => {
         if (item.formula && product_formik) {
             evaluateFormula(item.formula, formik, product_formik)
@@ -118,11 +146,11 @@ export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik
         <Grid item xs={isMobile ? 12 : isInvoice ? item.xs || 12 : 12}>
             <TextField
                 fullWidth
+                inputRef={inputRef}
                 label={item.label}
-                value={value}
+                value={value || ""}
                 name={item.field}
-                onChange={formik.handleChange}
-                type={item.type}
+                onChange={handleChange}
                 select={item.select}
                 children={item.options?.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
@@ -134,6 +162,7 @@ export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik
                 sx={{
                     backgroundColor: item.disabled ? colors.background2 : "",
                 }}
+                // InputProps={item.type == "number" ? { inputComponent: MaskedInput, inputProps: { mask: float_mask, inputMode: "numeric" } } : {}}
             />
             {item.hr && (
                 <hr
