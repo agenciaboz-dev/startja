@@ -40,7 +40,7 @@ export const InstallmentsListHeader: React.FC<InstallmentsListHeaderProps> = ({}
                             flex: 1,
                         }}
                     >
-                        <h3>Número</h3>
+                        <h3>Parcela</h3>
                     </Box>
                     <Box
                         sx={{

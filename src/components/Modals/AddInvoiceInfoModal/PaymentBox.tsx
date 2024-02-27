@@ -18,7 +18,9 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
 
     const [installmentsPay, setInstallmentsPay] = useState(false)
     const [installmentsNumber, setInstallmentsNumber] = useState(1)
-    const [installmentsArray, setInstallmentsArray] = useState<{ id: number }[]>([])
+    const [installmentsArray, setInstallmentsArray] = useState<{ id: number; value: number }[]>([])
+
+    const valor_total = formik.values.valor.total
 
     useEffect(() => {
         if (formik.values.formas_pagamento.indicador_pagamento === 1) {
@@ -26,6 +28,7 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
 
             const newInstallmentsArray = Array.from({ length: installmentsNumber }, (_, index) => ({
                 id: index + 1,
+                value: valor_total / installmentsNumber,
             }))
 
             setInstallmentsArray(newInstallmentsArray)
@@ -45,7 +48,6 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
             }
         }
     }
-
 
     return (
         <Box
@@ -126,7 +128,7 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
                         }}
                     >
                         <InstallmentsListHeader />
-                        <InstallmentsList installmentsArray={installmentsArray} />
+                        <InstallmentsList installmentsArray={installmentsArray} formik={formik} />
                     </Box>
                 </Box>
             )}

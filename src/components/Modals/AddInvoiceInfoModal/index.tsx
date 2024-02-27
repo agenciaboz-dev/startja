@@ -87,16 +87,6 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                                     sx={infoTabDisplay === "generalInfo" ? tabStyles.active : tabStyles.inactive}
                                 />
                                 <Tab
-                                    value={"paymentInfo"}
-                                    label={
-                                        <Box sx={tabStyles.label}>
-                                            {!isMobile && <Radio checked={infoTabDisplay === "paymentInfo"} />}
-                                            <p>Pagamento</p>
-                                        </Box>
-                                    }
-                                    sx={infoTabDisplay === "paymentInfo" ? tabStyles.active : tabStyles.inactive}
-                                />
-                                <Tab
                                     value={"transportInfo"}
                                     label={
                                         <Box sx={tabStyles.label}>
@@ -106,11 +96,21 @@ const AddInvoiceInfoModal: React.FC<AddInvoiceInfoModalProps> = ({ open, onClose
                                     }
                                     sx={infoTabDisplay === "transportInfo" ? tabStyles.active : tabStyles.inactive}
                                 />
+                                <Tab
+                                    value={"paymentInfo"}
+                                    label={
+                                        <Box sx={tabStyles.label}>
+                                            {!isMobile && <Radio checked={infoTabDisplay === "paymentInfo"} />}
+                                            <p>Pagamento</p>
+                                        </Box>
+                                    }
+                                    sx={infoTabDisplay === "paymentInfo" ? tabStyles.active : tabStyles.inactive}
+                                />
                             </Tabs>
                         </Box>
                         {infoTabDisplay === "generalInfo" && <GeneralInfoBox formik={focusNFEInvoiceFormik} />}
-                        {infoTabDisplay === "paymentInfo" && <PaymentBox formik={focusNFEInvoiceFormik} />}
                         {infoTabDisplay === "transportInfo" && <TransportBox formik={focusNFEInvoiceFormik} />}
+                        {infoTabDisplay === "paymentInfo" && <PaymentBox formik={focusNFEInvoiceFormik} />}
                     </Box>
                 </Box>
             </DialogContent>

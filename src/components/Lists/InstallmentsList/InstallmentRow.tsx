@@ -2,9 +2,17 @@ import React from "react"
 import { Box, Checkbox, IconButton, Menu, MenuItem, useMediaQuery } from "@mui/material"
 import { colors } from "../../../style/colors"
 
-interface InstallmentRowProps {}
+interface InstallmentRowProps {
+    installmentNumber: number
+    installmentValue: number
+    formik: {
+        values: FocusNFeInvoiceForm
+        handleChange: (e: React.ChangeEvent<any>) => void
+        setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => Promise<void> | Promise<FormikErrors<FocusNFeInvoiceForm>>
+    }
+}
 
-export const InstallmentRow: React.FC<InstallmentRowProps> = ({}) => {
+export const InstallmentRow: React.FC<InstallmentRowProps> = ({ installmentNumber, installmentValue, formik }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
 
     const cellStyle = {
@@ -12,6 +20,9 @@ export const InstallmentRow: React.FC<InstallmentRowProps> = ({}) => {
         justifyContent: "center",
         textAlign: "center",
     }
+
+    const valor_total = formik.values.valor.total
+    // const valor_parcela = valor_total / formik.values.
 
     return (
         <Box
@@ -37,7 +48,7 @@ export const InstallmentRow: React.FC<InstallmentRowProps> = ({}) => {
                         flex: 1,
                     }}
                 >
-                    <p>1</p>
+                    <p>{installmentNumber}</p>
                 </Box>
                 <Box
                     sx={{
@@ -45,7 +56,7 @@ export const InstallmentRow: React.FC<InstallmentRowProps> = ({}) => {
                         flex: 1,
                     }}
                 >
-                    <p>R$129,90</p>
+                    <p>R$ {installmentValue}</p>
                 </Box>
                 <Box
                     sx={{
