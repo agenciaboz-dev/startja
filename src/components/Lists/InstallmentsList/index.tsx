@@ -3,7 +3,7 @@ import { Box, useMediaQuery } from "@mui/material"
 import { InstallmentRow } from "./InstallmentRow"
 
 interface InstallmentsListProps {
-    installmentsArray: { id: number; value: number }[]
+    installmentsArray: { id: number; value: string; expiry: string }[]
     formik: {
         values: FocusNFeInvoiceForm
         handleChange: (e: React.ChangeEvent<any>) => void
@@ -24,7 +24,13 @@ export const InstallmentsList: React.FC<InstallmentsListProps> = ({ installments
             }}
         >
             {installmentsArray.map((installment) => (
-                <InstallmentRow key={installment.id} installmentNumber={installment.id} installmentValue={installment.value} formik={formik} />
+                <InstallmentRow
+                    key={installment.id}
+                    installmentNumber={installment.id}
+                    installmentValue={installment.value}
+                    installmentExpiry={installment.expiry}
+                    formik={formik}
+                />
             ))}
         </Box>
     )

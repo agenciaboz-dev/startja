@@ -4,6 +4,7 @@ import { FormikErrors } from "formik"
 import { indicador_pagamento, forma_pagamento } from "../AddInvoiceModal/formas_pagamento"
 import { InstallmentsList } from "../../Lists/InstallmentsList"
 import { InstallmentsListHeader } from "../../Lists/InstallmentsList/InstallmentsListHeader"
+import { addDays } from "date-fns"
 
 interface PaymentBoxProps {
     formik: {
@@ -18,7 +19,7 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
 
     const [installmentsPay, setInstallmentsPay] = useState(false)
     const [installmentsNumber, setInstallmentsNumber] = useState(1)
-    const [installmentsArray, setInstallmentsArray] = useState<{ id: number; value: number }[]>([])
+    const [installmentsArray, setInstallmentsArray] = useState<{ id: number; value: string; expiry: string }[]>([])
 
     const valor_total = formik.values.valor.total
 
@@ -26,10 +27,20 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
         if (formik.values.formas_pagamento.indicador_pagamento === 1) {
             setInstallmentsPay(true)
 
-            const newInstallmentsArray = Array.from({ length: installmentsNumber }, (_, index) => ({
-                id: index + 1,
-                value: valor_total / installmentsNumber,
-            }))
+            let currentDate = new Date()
+            const newInstallmentsArray = Array.from({ length: installmentsNumber }, (_, index) => {
+                let expiryDate = addDays(currentDate, 30 * (index + 1))
+                let expiry = [
+                    ("0" + expiryDate.getDate()).slice(-2), // Add leading zero to day if necessary
+                    ("0" + (expiryDate.getMonth() + 1)).slice(-2), // Add leading zero to month if necessary (months are 0-indexed)
+                    expiryDate.getFullYear(),
+                ].join("/")
+                return {
+                    id: index + 1,
+                    value: (valor_total / installmentsNumber).toFixed(2),
+                    expiry: expiry,
+                }
+            })
 
             setInstallmentsArray(newInstallmentsArray)
         } else {

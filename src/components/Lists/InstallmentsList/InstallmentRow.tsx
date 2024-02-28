@@ -4,7 +4,8 @@ import { colors } from "../../../style/colors"
 
 interface InstallmentRowProps {
     installmentNumber: number
-    installmentValue: number
+    installmentValue: string
+    installmentExpiry: string
     formik: {
         values: FocusNFeInvoiceForm
         handleChange: (e: React.ChangeEvent<any>) => void
@@ -12,7 +13,7 @@ interface InstallmentRowProps {
     }
 }
 
-export const InstallmentRow: React.FC<InstallmentRowProps> = ({ installmentNumber, installmentValue, formik }) => {
+export const InstallmentRow: React.FC<InstallmentRowProps> = ({ installmentNumber, installmentValue, installmentExpiry, formik }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
 
     const cellStyle = {
@@ -20,9 +21,6 @@ export const InstallmentRow: React.FC<InstallmentRowProps> = ({ installmentNumbe
         justifyContent: "center",
         textAlign: "center",
     }
-
-    const valor_total = formik.values.valor.total
-    // const valor_parcela = valor_total / formik.values.
 
     return (
         <Box
@@ -64,7 +62,7 @@ export const InstallmentRow: React.FC<InstallmentRowProps> = ({ installmentNumbe
                         flex: 1,
                     }}
                 >
-                    <p>06/02/2025</p>
+                    <p>{installmentExpiry}</p>
                 </Box>
             </Box>
         </Box>
