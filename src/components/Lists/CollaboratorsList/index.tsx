@@ -1,5 +1,5 @@
 import React from "react"
-import { Box } from "@mui/material"
+import { Box, useMediaQuery } from "@mui/material"
 import { CollaboratorRow } from "./CollaboratorRow"
 
 interface CollaboratorsListProps {
@@ -7,13 +7,14 @@ interface CollaboratorsListProps {
 }
 
 export const CollaboratorsList: React.FC<CollaboratorsListProps> = ({ collaborators }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
-                overflowY: "auto",
-                margin: "0.5vw 0",
+                margin: isMobile ? "5vw 0" : "0.5vw 0",
+                gap: isMobile ? "5vw" : "",
             }}
         >
             {/* {collaborators.map((collaborator) => (

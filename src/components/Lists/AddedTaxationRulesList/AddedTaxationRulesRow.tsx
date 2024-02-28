@@ -72,7 +72,15 @@ export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_
                 <Box
                     sx={{
                         alignItems: "center",
-                        flex: 0.1,
+                        width: isMobile ? "30vw" : "10%",
+                    }}
+                >
+                    <p>{tax_rule.origem}</p>
+                </Box>
+                <Box
+                    sx={{
+                        alignItems: "center",
+                        width: isMobile ? "30vw" : "10%",
                     }}
                 >
                     <p>{tax_rule.destino}</p>
@@ -80,7 +88,7 @@ export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_
                 <Box
                     sx={{
                         ...cellStyle,
-                        flex: 0.1,
+                        width: isMobile ? "30vw" : "10%",
                     }}
                 >
                     <p>{tax_rule.products.map((product) => product.ncm).join(", ")}</p>
@@ -88,7 +96,7 @@ export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_
                 <Box
                     sx={{
                         ...cellStyle,
-                        flex: 0.25,
+                        width: isMobile ? "30vw" : "25%",
                     }}
                 >
                     <p>{tax_rule.products.map((product) => product.name).join(", ")}</p>
@@ -96,7 +104,7 @@ export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_
                 <Box
                     sx={{
                         ...cellStyle,
-                        flex: 0.2,
+                        width: isMobile ? "30vw" : "10%",
                     }}
                 >
                     <p>{tax_rule.cfop}</p>
@@ -104,7 +112,7 @@ export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_
                 <Box
                     sx={{
                         ...cellStyle,
-                        flex: 0.25,
+                        width: isMobile ? "30vw" : "10%",
                     }}
                 >
                     <p>{tax_rule.icms_situacao_tributaria}</p>
@@ -112,7 +120,24 @@ export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_
                 <Box
                     sx={{
                         ...cellStyle,
-                        flex: 0.05,
+                        width: isMobile ? "30vw" : "10%",
+                    }}
+                >
+                    <p>{tax_rule.pis_situacao_tributaria}</p>
+                </Box>
+                <Box
+                    sx={{
+                        ...cellStyle,
+                        width: isMobile ? "30vw" : "10%",
+                    }}
+                >
+                    <p>{tax_rule.cofins_situacao_tributaria}</p>
+                </Box>
+                <Box
+                    sx={{
+                        ...cellStyle,
+                        justifyContent: "right",
+                        width: isMobile ? "30vw" : "5%",
                     }}
                 >
                     <IconButton onClick={(event) => setMenuAnchorEl(event.currentTarget)}>

@@ -18,8 +18,9 @@ export const AddedTaxationRuleRowsList: React.FC<AddedTaxationRuleRowsListProps>
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
-                overflowY: "auto",
-                margin: "0.5vw 0",
+                margin: isMobile ? "5vw 0" : "0.5vw 0",
+                gap: isMobile ? "5vw" : "",
+                // overflowY: "auto",
             }}
         >
             {list

@@ -44,15 +44,23 @@ export const AddedTaxationRulesListHeader: React.FC<AddedTaxationRulesListHeader
                     <Box
                         sx={{
                             alignItems: "center",
-                            flex: 0.1,
+                            width: isMobile ? "30vw" : "10%",
                         }}
                     >
-                        <h3>Destino</h3>
+                        <h3>Origem</h3>
+                    </Box>
+                    <Box
+                        sx={{
+                            alignItems: "center",
+                            width: isMobile ? "30vw" : "10%",
+                        }}
+                    >
+                        <h3>Destino(s)</h3>
                     </Box>
                     <Box
                         sx={{
                             ...cellStyle,
-                            flex: 0.1,
+                            width: isMobile ? "30vw" : "10%",
                         }}
                     >
                         <h3>NCM</h3>
@@ -60,15 +68,15 @@ export const AddedTaxationRulesListHeader: React.FC<AddedTaxationRulesListHeader
                     <Box
                         sx={{
                             ...cellStyle,
-                            flex: 0.25,
+                            width: isMobile ? "30vw" : "25%",
                         }}
                     >
-                        <h3>Produto</h3>
+                        <h3>Produto(s)</h3>
                     </Box>
                     <Box
                         sx={{
                             ...cellStyle,
-                            flex: 0.2,
+                            width: isMobile ? "30vw" : "10%",
                         }}
                     >
                         <h3>CFOP</h3>
@@ -76,15 +84,32 @@ export const AddedTaxationRulesListHeader: React.FC<AddedTaxationRulesListHeader
                     <Box
                         sx={{
                             ...cellStyle,
-                            flex: 0.25,
+                            width: isMobile ? "30vw" : "10%",
                         }}
                     >
-                        <h3>Situação tributária</h3>
+                        <h3>Situação tributária do ICMS</h3>
                     </Box>
                     <Box
                         sx={{
                             ...cellStyle,
-                            flex: 0.05,
+                            width: isMobile ? "30vw" : "10%",
+                        }}
+                    >
+                        <h3>Situação tributária do PIS</h3>
+                    </Box>
+                    <Box
+                        sx={{
+                            ...cellStyle,
+                            width: isMobile ? "30vw" : "10%",
+                        }}
+                    >
+                        <h3>Situação tributária do COFINS</h3>
+                    </Box>
+                    <Box
+                        sx={{
+                            ...cellStyle,
+                            justifyContent: "right",
+                            width: isMobile ? "30vw" : "5%",
                         }}
                     >
                         <h3>Ações</h3>

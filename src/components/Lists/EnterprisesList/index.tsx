@@ -26,8 +26,8 @@ export const EnterprisesList: React.FC<EnterprisesListProps> = ({ enterprises })
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
-                margin: isMobile ? "2vw 0" : "0.5vw 0",
-                gap: isMobile ? "2vw" : "",
+                margin: isMobile ? "5vw 0" : "0.5vw 0",
+                gap: isMobile ? "5vw" : "",
             }}
         >
             {enterprises.map((enterprise) => (

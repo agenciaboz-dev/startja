@@ -14,8 +14,8 @@ export const NaturesList: React.FC<NaturesListProps> = ({ natures, disabled }) =
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
-                margin: isMobile ? "2vw 0" : "0.5vw 0",
-                gap: isMobile ? "2vw" : "",
+                margin: isMobile ? "5vw 0" : "0.5vw 0",
+                gap: isMobile ? "5vw" : "",
             }}
         >
             {natures

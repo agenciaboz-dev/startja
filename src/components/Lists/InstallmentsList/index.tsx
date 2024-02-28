@@ -19,8 +19,9 @@ export const InstallmentsList: React.FC<InstallmentsListProps> = ({ installments
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
-                overflowY: "auto",
-                margin: "0.5vw 0",
+                margin: isMobile ? "5vw 0" : "0.5vw 0",
+                gap: isMobile ? "5vw" : "",
+                // overflowY: "auto",
             }}
         >
             {installmentsArray.map((installment) => (

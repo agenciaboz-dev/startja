@@ -11,8 +11,8 @@ export const AccountsList: React.FC<AccountsListProps> = ({}) => {
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
-                margin: isMobile ? "2vw 0" : "0.5vw 0",
-                gap: isMobile ? "2vw" : "",
+                margin: isMobile ? "5vw 0" : "0.5vw 0",
+                gap: isMobile ? "5vw" : "",
             }}
         >
             <AccountRow />

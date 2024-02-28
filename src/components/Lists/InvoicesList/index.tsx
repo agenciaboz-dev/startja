@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box } from "@mui/material"
+import { Box, useMediaQuery } from "@mui/material"
 import { InvoiceRow } from "./InvoiceRow"
 import { useCompany } from "../../../hooks/useCompany"
 import AddInvoiceModal from "../../Modals/AddInvoiceModal"
@@ -9,6 +9,7 @@ interface InvoicesListProps {
 }
 
 export const InvoicesList: React.FC<InvoicesListProps> = ({ invoices }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [currentInvoice, setCurrentInvoice] = useState<notaFiscal>()
 
@@ -26,9 +27,11 @@ export const InvoicesList: React.FC<InvoicesListProps> = ({ invoices }) => {
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
-                overflowY: "auto",
-                margin: "0.5vw 0"
-            }}>
+                margin: isMobile ? "5vw 0" : "0.5vw 0",
+                gap: isMobile ? "5vw" : "",
+                // overflowY: "auto",
+            }}
+        >
             {invoices
                 .sort((a, b) => b.id - a.id)
                 .filter((invoice) => !!invoice.status)

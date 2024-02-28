@@ -1,5 +1,5 @@
 import React from "react"
-import { Box } from "@mui/material"
+import { Box, useMediaQuery } from "@mui/material"
 import { CategoryRow } from "./CategoryRow"
 import { useCategory } from "../../../hooks/useCategory"
 
@@ -8,6 +8,7 @@ interface CategoriesListProps {
 }
 
 export const CategoriesList: React.FC<CategoriesListProps> = ({ category }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const categories = useCategory()
 
     return (
@@ -15,8 +16,8 @@ export const CategoriesList: React.FC<CategoriesListProps> = ({ category }) => {
             sx={{
                 flexDirection: "column",
                 alignItems: "center",
-                overflowY: "auto",
-                margin: "0.5vw 0",
+                margin: isMobile ? "5vw 0" : "0.5vw 0",
+                gap: isMobile ? "5vw" : "",
             }}
         >
             {/* {categories.list.map(category => <CategoryRow key={category.id} category={category} />)} */}
