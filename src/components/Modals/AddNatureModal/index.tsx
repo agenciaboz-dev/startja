@@ -18,12 +18,14 @@ import { AddedTaxationRulesListHeader } from "../../../../src/components/Lists/A
 import { AddedTaxationRuleRowsList } from "../../../../src/components/Lists/AddedTaxationRulesList"
 import { useFormik } from "formik"
 import { NatureForm } from "../../../definitions/userOperations"
-import { TaxRulesForm } from "../../../definitions/TaxRulesForm"
 import { useIo } from "../../../hooks/useIo"
 import { useNature } from "../../../hooks/useNature"
 import { useSnackbar } from "burgos-snackbar"
 import { colors } from "../../../style/colors"
 import { useUser } from "../../../hooks/useUser"
+import icms_situacao_tributaria_values from "../AddInvoiceModal/icms_situacao_tributaria"
+import pis_situacao_tributaria_values from "../AddInvoiceModal/pis_situacao_tributaria"
+import cofins_situacao_tributaria_values from "../AddInvoiceModal/cofins_situacao_tributaria"
 
 interface AddNatureModalProps {
     open: boolean
@@ -57,6 +59,25 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
             setLoading(true)
 
             console.log(values)
+            const combined_list = [
+                ...icms_situacao_tributaria_values.flatMap((item) => item.fields),
+                ...cofins_situacao_tributaria_values.flatMap((item) => item.fields),
+                ...pis_situacao_tributaria_values.flatMap((item) => item.fields),
+            ]
+            const unique_list = combined_list.filter((obj, index, self) => {
+                return index === self.findIndex((t) => t?.field === obj?.field)
+            })
+
+            values.rules.forEach((item) => {
+                Object.entries(item).forEach(([key, value], index) => {
+                    const field = unique_list.find((item) => item?.field == key)
+                    if (field && field.type == "number") {
+                        // @ts-ignore
+                        item[key] = Number(value)
+                    }
+                })
+            }),
+                console.log(values)
 
             io.emit(current_nature ? "nature:update" : "nature:create", values, current_nature?.id)
         },

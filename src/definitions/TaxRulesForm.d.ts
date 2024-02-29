@@ -1,4 +1,4 @@
-export declare interface TaxRulesForm {
+declare interface TaxRulesForm {
     id: string | number
     cfop: number
     cofins_situacao_tributaria: string

@@ -72,7 +72,7 @@ export declare interface NatureForm {
 
     user_id?: number
 
-    rules: TaxRuleForm[]
+    rules: TaxRulesForm[]
 }
 
 export declare interface NewRule {

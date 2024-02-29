@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import { Autocomplete, Box, Grid, MenuItem, TextField, useMediaQuery } from "@mui/material"
-import { TaxRulesForm } from "../definitions/TaxRulesForm"
 import { FormikErrors } from "formik"
 import { colors } from "../style/colors"
 import Accordion from "@mui/material/Accordion"
