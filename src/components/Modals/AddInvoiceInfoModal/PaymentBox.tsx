@@ -4,7 +4,7 @@ import { FormikErrors } from "formik"
 import { indicador_pagamento, forma_pagamento } from "../AddInvoiceModal/formas_pagamento"
 import { InstallmentsList } from "../../Lists/InstallmentsList"
 import { InstallmentsListHeader } from "../../Lists/InstallmentsList/InstallmentsListHeader"
-import { addDays } from "date-fns"
+import { addMonths } from "date-fns"
 
 interface PaymentBoxProps {
     formik: {
@@ -29,7 +29,7 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
 
             let currentDate = new Date()
             const newInstallmentsArray = Array.from({ length: installmentsNumber }, (_, index) => {
-                let expiryDate = addDays(currentDate, 30 * (index + 1))
+                let expiryDate = addMonths(currentDate, index + 1)
                 let expiry = [
                     ("0" + expiryDate.getDate()).slice(-2), // Add leading zero to day if necessary
                     ("0" + (expiryDate.getMonth() + 1)).slice(-2), // Add leading zero to month if necessary (months are 0-indexed)
