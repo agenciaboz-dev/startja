@@ -73,9 +73,17 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                 alert("Anexar certificado")
                 return
             }
-            console.log(values)
+
+            const data = {
+                ...values,
+                number: Number(values.number),
+                proximo_numero_nfe: Number(values.proximo_numero_nfe),
+                serie_nfe: Number(values.serie_nfe),
+            }
+
+            console.log(data)
             setLoading(true)
-            io.emit("user:signup", values)
+            io.emit("user:signup", data)
         },
     })
 

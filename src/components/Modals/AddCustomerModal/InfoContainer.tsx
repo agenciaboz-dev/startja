@@ -3,6 +3,8 @@ import { Box, Checkbox, FormControlLabel, Grid, MenuItem, Radio, RadioGroup, Tex
 import { NewUser } from "../../../definitions/userOperations"
 import { Dropzone, ExtFile, FileMosaic } from "@files-ui/react"
 import { toolTipStyle } from "../../../style/toolTipStyle"
+import { useNumberMask } from "burgos-masks"
+import MaskedInput from "../../MaskedInput"
 
 interface InfoContainerProps {
     formik: {
@@ -54,6 +56,8 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
         { value: "SE", label: "Sergipe" },
         { value: "TO", label: "Tocantins" },
     ]
+
+    const mask = useNumberMask({ allowDecimal: false, allowNegative: false, thousandsSeparatorSymbol: "" })
 
     return (
         <Box
@@ -149,10 +153,10 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                         required
                         label="Número"
                         fullWidth
-                        value={formik.values.number}
+                        value={formik.values.number || ""}
                         name="number"
-                        type="number"
                         onChange={formik.handleChange}
+                        InputProps={{ inputComponent: MaskedInput, inputProps: { mask, inputMode: "numeric" } }}
                     />
                 </Grid>
                 <Grid item xs={6}>
@@ -270,12 +274,12 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                     >
                         <TextField
                             required
-                            label="proximo_numero_nfe"
+                            label="Próximo número de NFE"
                             value={formik.values.proximo_numero_nfe}
                             name="proximo_numero_nfe"
                             onChange={formik.handleChange}
                             fullWidth
-                            type="number"
+                            InputProps={{ inputComponent: MaskedInput, inputProps: { mask, inputMode: "numeric" } }}
                         />
                     </Tooltip>
                 </Grid>
@@ -283,12 +287,12 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                     <Tooltip enterTouchDelay={100} title={<Box sx={toolTipStyle}>Série da NFe a ser emitida. Valor padrão: 1</Box>}>
                         <TextField
                             required
-                            label="serie_nfe"
+                            label="Série de NFE"
                             value={formik.values.serie_nfe}
                             name="serie_nfe"
                             onChange={formik.handleChange}
                             fullWidth
-                            type="number"
+                            InputProps={{ inputComponent: MaskedInput, inputProps: { mask, inputMode: "numeric" } }}
                         />
                     </Tooltip>
                 </Grid>
