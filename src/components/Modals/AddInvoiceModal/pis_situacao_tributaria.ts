@@ -1,3 +1,6 @@
+// Lembrar que campos iniciados em underline, como "_pis_exemplo_alguma_coisa", não existem na API da FocusNFE;
+// e só existem aqui para serem usados aqui (internamente neste sistema)
+
 export const pis_situacao_tributaria_values: {
     value: string
     label: string
@@ -7,18 +10,34 @@ export const pis_situacao_tributaria_values: {
         value: "01",
         label: "Operação tributável: base de cálculo = valor da operação (alíquota normal - cumulativo/não cumulativo)",
         fields: [
-            { field: "pis_percentual_base_calculo", label: "Percentual da base de cálculo", type: "number", xs: 6 },
+            { field: "_pis_percentual_base_calculo", label: "Percentual da base de cálculo", type: "number", xs: 6 },
             {
                 field: "pis_base_calculo",
                 label: "Base de cálculo PIS",
                 type: "number", //decimal[13.2],
                 disabled: true,
                 formula:
-                    "({formik.values.pis_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                    "({formik.values._pis_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
                 xs: 6,
             },
             { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number", xs: 6 },
-            { field: "pis_aliquota_valor", label: "Valor alíquota", type: "number", xs: 6 },
+            {
+                field: "pis_aliquota_valor",
+                label: "Valor alíquota",
+                type: "number",
+                disabled: true,
+                formula:
+                    "({formik.values.pis_aliquota_porcentual} / 100) * (({formik.values._pis_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
+                xs: 6,
+            },
+            {
+                field: "pis_valor",
+                label: "Valor do PIS",
+                type: "number",
+                disabled: true,
+                formula:
+                    "({formik.values.pis_aliquota_porcentual} / 100) * (({formik.values._pis_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
+            },
         ],
     },
 
