@@ -48,15 +48,21 @@ export const pis_situacao_tributaria_values: {
         label: "Operação tributável: base de cálculo = quantidade vendida × alíquota por unidade de produto",
         fields: [
             {
-                field: "quantidade_comercial",
+                field: "_pis_quantidade_base_de_calculo",
                 label: "Quantidade base de cálculo",
                 type: "number",
                 disabled: true,
-                formula: "product_formik.values.quantidade",
+                formula: "{product_formik.values.quantidade}",
                 xs: 6,
             },
             { field: "pis_aliquota_valor", label: "Alíquota (em reais)", type: "number", xs: 6 },
-            { field: "pis_valor", label: "Valor", type: "number" },
+            {
+                field: "pis_valor",
+                label: "Valor do PIS",
+                type: "number",
+                disabled: true,
+                formula: "{product_formik.values.quantidade} * {formik.values.pis_aliquota_valor}",
+            },
         ],
     },
 
