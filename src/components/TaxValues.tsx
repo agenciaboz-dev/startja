@@ -143,23 +143,9 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                         </Grid>
                         {pis_situacao_tributaria_values
                             .find((item) => item.value == formik.values.pis_situacao_tributaria)
-                            ?.fields?.map((item) => (
-                                <Grid item xs={item.xs || 12} key={item.field}>
-                                    <TextField
-                                        fullWidth
-                                        label={item.label}
-                                        // @ts-ignore
-                                        value={formik.values[item.field] != undefined ? formik.values[item.field] : item.type == "number" ? 0 : ""}
-                                        name={item.field}
-                                        onChange={formik.handleChange}
-                                        type={item.type}
-                                        required
-                                        disabled={item.disabled}
-                                        sx={{
-                                            backgroundColor: item.disabled ? colors.background2 : "",
-                                        }}
-                                    />
-                                </Grid>
+                            ?.fields?.filter((item) => (isInvoice ? item : !item.disabled))
+                            .map((item) => (
+                                <TaxField item={item} formik={formik} product_formik={product_formik} key={item.field} isInvoice={isInvoice} />
                             ))}
                     </Grid>
                 </AccordionDetails>
@@ -188,23 +174,9 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                         </Grid>
                         {cofins_situacao_tributaria_values
                             .find((item) => item.value == formik.values.cofins_situacao_tributaria)
-                            ?.fields?.map((item) => (
-                                <Grid item xs={item.xs || 12} key={item.field}>
-                                    <TextField
-                                        fullWidth
-                                        label={item.label}
-                                        // @ts-ignore
-                                        value={formik.values[item.field] != undefined ? formik.values[item.field] : item.type == "number" ? 0 : ""}
-                                        name={item.field}
-                                        onChange={formik.handleChange}
-                                        type={item.type}
-                                        required
-                                        disabled={item.disabled}
-                                        sx={{
-                                            backgroundColor: item.disabled ? colors.background2 : "",
-                                        }}
-                                    />
-                                </Grid>
+                            ?.fields?.filter((item) => (isInvoice ? item : !item.disabled))
+                            .map((item) => (
+                                <TaxField item={item} formik={formik} product_formik={product_formik} key={item.field} isInvoice={isInvoice} />
                             ))}
                     </Grid>
                 </AccordionDetails>
