@@ -18,10 +18,19 @@ declare interface notaFiscal {
     propriedade_id: number
     propriedade: Property
 
-    valor_frete: number
-    valor_seguro: number
     valor_produtos: number
     valor_total: number
+
+    modalidade_frete: number
+    transportadora: string
+    veiculo_placa: string
+    veiculo_uf: string
+    valor_frete: number
+    valor_seguro: number
+    volumes_quantidade: string
+    volumes_especie: string
+    peso_bruto: string
+    peso_liquido: string
 
     status?: string
     chave?: string

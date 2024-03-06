@@ -37,8 +37,6 @@ declare interface FocusNFeInvoiceData {
     }
 
     valor: {
-        frete: number
-        seguro: number
         produtos: number
         total: number
     }
@@ -80,6 +78,22 @@ declare interface FocusNFeInvoiceForm extends FocusNFeInvoiceData {
     formas_pagamento: {
         indicador_pagamento: number
         forma_pagamento: string
+    }
+
+    transporte: {
+        modalidade_frete: number
+        transportadora: string
+        veiculo_placa: string
+        veiculo_uf: string
+        valor_frete: number
+        valor_seguro: number
+
+        volumes: {
+            volumes_quantidade: string
+            volumes_especie: string
+            peso_bruto: string
+            peso_liquido: string
+        }
     }
 }
 

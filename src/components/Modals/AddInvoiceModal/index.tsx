@@ -101,10 +101,23 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                   presenca_comprador: currentInvoice.presenca_comprador,
                   tipo_documento: currentInvoice.tipo_documento,
                   valor: {
-                      frete: currentInvoice.valor_frete,
                       produtos: currentInvoice.valor_produtos,
-                      seguro: currentInvoice.valor_seguro,
                       total: currentInvoice.valor_total,
+                  },
+
+                  transporte: {
+                      modalidade_frete: currentInvoice.modalidade_frete,
+                      transportadora: currentInvoice.transportadora,
+                      veiculo_placa: currentInvoice.veiculo_placa,
+                      veiculo_uf: currentInvoice.veiculo_uf,
+                      valor_frete: currentInvoice.valor_frete,
+                      valor_seguro: currentInvoice.valor_seguro,
+                      volumes: {
+                          volumes_quantidade: currentInvoice.volumes_quantidade,
+                          volumes_especie: currentInvoice.volumes_especie,
+                          peso_bruto: currentInvoice.peso_bruto,
+                          peso_liquido: currentInvoice.peso_liquido,
+                      },
                   },
 
                   produtos: currentInvoice.products.map((product) => ({
@@ -195,11 +208,25 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                   presenca_comprador: 1,
                   tipo_documento: 1,
                   valor: {
-                      frete: 0,
                       produtos: 0,
-                      seguro: 0,
                       total: 0,
                   },
+
+                  transporte: {
+                      modalidade_frete: 9,
+                      transportadora: "",
+                      veiculo_placa: "",
+                      veiculo_uf: "",
+                      valor_frete: 0,
+                      valor_seguro: 0,
+                      volumes: {
+                          volumes_quantidade: "",
+                          volumes_especie: "",
+                          peso_bruto: "",
+                          peso_liquido: "",
+                      },
+                  },
+
                   produtos: [],
                   formas_pagamento: {
                       indicador_pagamento: 0,
@@ -352,8 +379,10 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
     }, [formik.values.produtos])
 
     useEffect(() => {
-        const values = formik.values.valor
-        formik.setFieldValue("valor.total", Number((values.frete + formik.values.valor.produtos + formik.values.valor.seguro).toFixed(2)))
+        formik.setFieldValue(
+            "valor.total",
+            Number((formik.values.transporte.valor_frete + formik.values.valor.produtos + formik.values.transporte.valor_seguro).toFixed(2))
+        )
     }, [formik.values.valor])
 
     useEffect(() => {
