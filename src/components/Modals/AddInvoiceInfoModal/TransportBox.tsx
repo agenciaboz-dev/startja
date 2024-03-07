@@ -80,38 +80,44 @@ export const TransportBox: React.FC<TransportBoxProps> = ({ formik }) => {
                 )}
             </Grid>
 
-            {formik.values.transporte.modalidade_frete == 0 && formik.values.emitente.uf == formik.values.destinatario.uf && (
-                <Box
-                    sx={{
-                        flexDirection: "column",
-                        gap: "1vw",
-                    }}
-                >
-                    <h3>Dados do Veículo (Propriedade emitente e Destinatário encontram-se na mesma UF)</h3>
-                    <Grid container spacing={2}>
-                        <Grid item xs={isMobile ? 12 : 6}>
-                            <TextField
-                                fullWidth
-                                label="Placa do veículo"
-                                name="transporte.veiculo_placa"
-                                value={formik.values.transporte.veiculo_placa}
-                                onChange={formik.handleChange}
-                                required
-                            />
+            {formik.values.transporte.modalidade_frete == 0 &&
+                (formik.values.emitente.uf == formik.values.destinatario.uf ? (
+                    <Box
+                        sx={{
+                            flexDirection: "column",
+                            gap: "1vw",
+                        }}
+                    >
+                        <h3>Dados do Veículo</h3>
+                        <Grid container spacing={2}>
+                            <Grid item xs={isMobile ? 12 : 6}>
+                                <TextField
+                                    fullWidth
+                                    label="Placa do veículo"
+                                    name="transporte.veiculo_placa"
+                                    value={formik.values.transporte.veiculo_placa}
+                                    onChange={formik.handleChange}
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={isMobile ? 12 : 6}>
+                                <TextField
+                                    fullWidth
+                                    label="UF do veículo"
+                                    name="transporte.veiculo_uf"
+                                    value={formik.values.transporte.veiculo_uf}
+                                    onChange={formik.handleChange}
+                                    required
+                                />
+                            </Grid>
                         </Grid>
-                        <Grid item xs={isMobile ? 12 : 6}>
-                            <TextField
-                                fullWidth
-                                label="UF do veículo"
-                                name="transporte.veiculo_uf"
-                                value={formik.values.transporte.veiculo_uf}
-                                onChange={formik.handleChange}
-                                required
-                            />
-                        </Grid>
-                    </Grid>
-                </Box>
-            )}
+                    </Box>
+                ) : (
+                    <p>
+                        Os campos para dados do veículo (placa e UF) foram ocultados nesta nota, pois só são incluidos quando a UF da propriedade
+                        emitente é a mesma UF do destinatário.
+                    </p>
+                ))}
 
             {formik.values.transporte.modalidade_frete == 0 && (
                 <Box
