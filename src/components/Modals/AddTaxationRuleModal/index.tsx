@@ -14,9 +14,10 @@ interface AddTaxationRuleModalProps {
     onClose: () => void
     addTaxRule: (rule: TaxRulesForm) => void
     current_rule?: TaxRulesForm
+    block_editing?: boolean
 }
 
-const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClose, addTaxRule, current_rule }) => {
+const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClose, addTaxRule, current_rule, block_editing }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const pStyles = { minWidth: "fit-content" }
     const selectStyles = { maxWidth: isMobile ? "100%" : "10vw" }
@@ -145,6 +146,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                 required
                                 sx={selectStyles}
                                 value={formik.values.origem}
+                                disabled={block_editing}
                             >
                                 <MenuItem value="" sx={{ display: "none" }}></MenuItem>
                                 {estados.map((item) => (
@@ -162,6 +164,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                 fullWidth
                                 value={selectedDestinations}
                                 onChange={(event) => handleDestinationsChange(event)}
+                                disabled={block_editing}
                                 SelectProps={{
                                     renderValue: (selected: string[]) =>
                                         estados
@@ -188,6 +191,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                 getOptionLabel={(option) => `${option.codigo_externo} - ${option.name}`}
                                 isOptionEqualToValue={(option, value) => option.id == value.id}
                                 multiple
+                                disabled={block_editing}
                                 renderInput={(params) => (
                                     <TextField
                                         {...params}
@@ -208,11 +212,12 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                             value={formik.values.observations}
                             onChange={formik.handleChange}
                             fullWidth
+                            disabled={block_editing}
                         />
 
                         <p>Use a regra de tributação a seguir:</p>
 
-                        <TaxValues formik={formik} />
+                        <TaxValues formik={formik} block_editing={block_editing} />
                     </Box>
                 </DialogContent>
 
@@ -243,6 +248,7 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                             color: "white",
                             textTransform: "unset",
                         }}
+                        disabled={block_editing}
                     >
                         {current_rule ? "Salvar" : "Adicionar"}
                     </Button>

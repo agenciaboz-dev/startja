@@ -8,6 +8,7 @@ import { useIo } from "../../../hooks/useIo"
 import { useNature } from "../../../hooks/useNature"
 import { colors } from "../../../style/colors"
 import { useUser } from "../../../hooks/useUser"
+import { RemoveRedEye } from "@mui/icons-material"
 
 interface NatureRowProps {
     nature: Natureza
@@ -101,9 +102,21 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature, disabled }) => {
                     <p>{getFinalityText(nature.finality)}</p>
                 </Box>
                 <Box sx={cellStyle}>
-                    <IconButton color="inherit" onClick={() => setOpenModal(true)} disabled={disabled}>
-                        <EditOutlinedIcon />
-                    </IconButton>
+                    {user ? (
+                        nature.user_id ? (
+                            <IconButton color="inherit" onClick={() => setOpenModal(true)}>
+                                <EditOutlinedIcon />
+                            </IconButton>
+                        ) : (
+                            <IconButton color="inherit" onClick={() => setOpenModal(true)}>
+                                <RemoveRedEye />
+                            </IconButton>
+                        )
+                    ) : (
+                        <IconButton color="inherit" onClick={() => setOpenModal(true)}>
+                            <EditOutlinedIcon />
+                        </IconButton>
+                    )}
                 </Box>
                 <Box sx={cellStyle}>
                     <ToggleSwitch

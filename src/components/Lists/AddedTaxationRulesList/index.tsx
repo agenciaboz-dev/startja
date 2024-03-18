@@ -1,16 +1,16 @@
 import React from "react"
 import { Box, useMediaQuery } from "@mui/material"
 import { AddedTaxationRuleRow } from "./AddedTaxationRulesRow"
-import { TaxRulesForm } from "../../../definitions/TaxRulesForm"
 // import { useAddedTaxationRuleRow } from "../../hooks/useAddedTaxationRuleRow"
 
 interface AddedTaxationRuleRowsListProps {
     list: TaxRulesForm[]
     deleteTaxRule: (rule: TaxRulesForm) => void
     updateTaxRule: (rule: TaxRulesForm) => void
+    block_editing?: boolean
 }
 
-export const AddedTaxationRuleRowsList: React.FC<AddedTaxationRuleRowsListProps> = ({ list, deleteTaxRule, updateTaxRule }) => {
+export const AddedTaxationRuleRowsList: React.FC<AddedTaxationRuleRowsListProps> = ({ list, deleteTaxRule, updateTaxRule, block_editing }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
 
     return (
@@ -31,6 +31,7 @@ export const AddedTaxationRuleRowsList: React.FC<AddedTaxationRuleRowsListProps>
                         tax_rule={item}
                         deleteTaxRule={deleteTaxRule}
                         updateTaxRule={updateTaxRule}
+                        block_editing={block_editing}
                     />
                 ))}
         </Box>

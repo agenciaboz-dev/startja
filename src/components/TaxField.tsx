@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Box, Grid, MenuItem, TextField, useMediaQuery } from "@mui/material"
-import { TaxRulesForm } from "../definitions/TaxRulesForm"
 import { FormikErrors } from "formik"
 import { colors } from "../style/colors"
 import { Parser } from "expr-eval"
@@ -25,6 +24,7 @@ interface TaxFieldProps {
     formik: TaxFormik
     product_formik?: ProductFormik
     isInvoice?: boolean
+    block_editing?: boolean
 }
 
 const parser = new Parser()
@@ -47,7 +47,7 @@ const extractFieldsFromFormula = (formula: string) => {
     return fields
 }
 
-export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik, isInvoice }) => {
+export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik, isInvoice, block_editing }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
 
     const float_mask = useNumberMask({ allowDecimal: true, decimalLimit: 5, thousandsSeparatorSymbol: "a", decimalSymbol: "" })
@@ -158,7 +158,7 @@ export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik
                     </MenuItem>
                 ))}
                 required
-                disabled={item.disabled}
+                disabled={block_editing || item.disabled}
                 sx={{
                     backgroundColor: item.disabled ? colors.background2 : "",
                 }}

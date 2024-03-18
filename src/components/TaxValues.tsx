@@ -29,9 +29,10 @@ interface TaxValuesProps {
     formik: TaxFormik
     isInvoice?: boolean
     product_formik?: ProductFormik
+    block_editing?: boolean
 }
 
-export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product_formik }) => {
+export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product_formik, block_editing }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
 
     const { user } = useUser()
@@ -66,6 +67,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                                 getOptionDisabled={(option) => option.value.toString().length != 4}
                                 renderInput={(params) => <TextField {...params} label="CFOP" variant="outlined" name="cfop" />}
                                 value={cfop_values.find((cfop) => cfop.value == formik.values.cfop) || cfop_values[0]}
+                                disabled={block_editing}
                                 onChange={(_, value) => {
                                     formik.setFieldValue("cfop", value?.value || "")
                                 }}
@@ -95,6 +97,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                                 name="icms_situacao_tributaria"
                                 onChange={formik.handleChange}
                                 select
+                                disabled={block_editing}
                             >
                                 {icms_situacao_tributaria_values
                                     .filter((item) =>
@@ -114,7 +117,14 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                             .find((item) => item.value == formik.values.icms_situacao_tributaria)
                             ?.fields?.filter((item) => (isInvoice ? item : !item.disabled))
                             .map((item) => (
-                                <TaxField item={item} formik={formik} product_formik={product_formik} key={item.field} isInvoice={isInvoice} />
+                                <TaxField
+                                    item={item}
+                                    formik={formik}
+                                    product_formik={product_formik}
+                                    key={item.field}
+                                    isInvoice={isInvoice}
+                                    block_editing={block_editing}
+                                />
                             ))}
                     </Grid>
                 </AccordionDetails>
@@ -132,6 +142,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                                 value={formik.values.pis_situacao_tributaria}
                                 name="pis_situacao_tributaria"
                                 onChange={formik.handleChange}
+                                disabled={block_editing}
                                 select
                             >
                                 {pis_situacao_tributaria_values.map((item) => (
@@ -145,7 +156,14 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                             .find((item) => item.value == formik.values.pis_situacao_tributaria)
                             ?.fields?.filter((item) => (isInvoice ? item : !item.disabled))
                             .map((item) => (
-                                <TaxField item={item} formik={formik} product_formik={product_formik} key={item.field} isInvoice={isInvoice} />
+                                <TaxField
+                                    item={item}
+                                    formik={formik}
+                                    product_formik={product_formik}
+                                    key={item.field}
+                                    isInvoice={isInvoice}
+                                    block_editing={block_editing}
+                                />
                             ))}
                     </Grid>
                 </AccordionDetails>
@@ -164,6 +182,7 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                                 value={formik.values.cofins_situacao_tributaria}
                                 name="cofins_situacao_tributaria"
                                 onChange={formik.handleChange}
+                                disabled={block_editing}
                             >
                                 {cofins_situacao_tributaria_values.map((item) => (
                                     <MenuItem key={item.value} value={item.value}>
@@ -176,7 +195,14 @@ export const TaxValues: React.FC<TaxValuesProps> = ({ formik, isInvoice, product
                             .find((item) => item.value == formik.values.cofins_situacao_tributaria)
                             ?.fields?.filter((item) => (isInvoice ? item : !item.disabled))
                             .map((item) => (
-                                <TaxField item={item} formik={formik} product_formik={product_formik} key={item.field} isInvoice={isInvoice} />
+                                <TaxField
+                                    item={item}
+                                    formik={formik}
+                                    product_formik={product_formik}
+                                    key={item.field}
+                                    isInvoice={isInvoice}
+                                    block_editing={block_editing}
+                                />
                             ))}
                     </Grid>
                 </AccordionDetails>

@@ -2,18 +2,18 @@ import React from "react"
 import { Box, Checkbox, IconButton, Menu, MenuItem, useMediaQuery } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
-import { TaxRulesForm } from "../../../definitions/TaxRulesForm"
 import { useProduct } from "../../../hooks/useProduct"
-import { Edit } from "@mui/icons-material"
+import { Edit, RemoveRedEye } from "@mui/icons-material"
 import { colors } from "../../../style/colors"
 
 interface AddedTaxationRuleRowProps {
     tax_rule: TaxRulesForm
     deleteTaxRule: (rule: TaxRulesForm) => void
     updateTaxRule: (rule: TaxRulesForm) => void
+    block_editing?: boolean
 }
 
-export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_rule, deleteTaxRule, updateTaxRule }) => {
+export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_rule, deleteTaxRule, updateTaxRule, block_editing }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const product = useProduct()
 
@@ -29,13 +29,13 @@ export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_
     const actions = [
         {
             id: 1,
-            title: "Editar",
-            icon: <Edit />,
+            title: block_editing ? "Visualizar" : "Editar",
+            icon: block_editing ? <RemoveRedEye /> : <Edit />,
             onClick: () => {
                 updateTaxRule(tax_rule)
             },
         },
-        {
+        !block_editing && {
             id: 2,
             title: "Remover",
             icon: <RemoveCircleOutlineIcon />,

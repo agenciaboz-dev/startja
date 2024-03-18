@@ -44,6 +44,8 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
     const [loading, setLoading] = useState(false)
     const [currentTaxRule, setCurrentTaxRule] = useState<TaxRulesForm>()
 
+    const block_editing = current_nature ? (current_nature.user_id ? false : true) : false
+
     const formik = useFormik<NatureForm>({
         initialValues: current_nature || {
             finality: 1,
@@ -197,10 +199,19 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                     required
                                     onChange={formik.handleChange}
                                     value={formik.values.operation}
+                                    disabled={block_editing}
                                 />
                             </Grid>
                             <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField label="Tipo" select fullWidth name="type" onChange={formik.handleChange} value={formik.values.type}>
+                                <TextField
+                                    label="Tipo"
+                                    select
+                                    fullWidth
+                                    name="type"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.type}
+                                    disabled={block_editing}
+                                >
                                     <MenuItem value={0}>0 - Entrada</MenuItem>
                                     <MenuItem value={1}>1 - Saída</MenuItem>
                                 </TextField>
@@ -213,6 +224,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                     onChange={formik.handleChange}
                                     fullWidth
                                     required
+                                    disabled={block_editing}
                                 />
                             </Grid>
                             <Grid item xs={isMobile ? 12 : 6}>
@@ -223,6 +235,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                     name="finality"
                                     onChange={formik.handleChange}
                                     value={formik.values.finality}
+                                    disabled={block_editing}
                                 >
                                     <MenuItem value={1}>1 - Nota normal</MenuItem>
                                     <MenuItem value={2}>2 - Nota complementar</MenuItem>
@@ -245,6 +258,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                     borderRadius: "20px",
                                     textTransform: "unset",
                                 }}
+                                disabled={block_editing}
                                 onClick={() => openTaxationRuleModal()}
                             >
                                 Adicionar regra de tributação
@@ -291,6 +305,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                                         list={formik.values.rules}
                                         deleteTaxRule={deleteTaxRule}
                                         updateTaxRule={openTaxationRuleModal}
+                                        block_editing={block_editing}
                                     />
                                 </Box>
                             )}
@@ -321,6 +336,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                         type="submit"
                         color="primary"
                         variant="contained"
+                        disabled={block_editing}
                         sx={{
                             borderRadius: "20px",
                             color: "white",
@@ -335,6 +351,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
                     onClose={onCloseTaxModal}
                     addTaxRule={addTaxRule}
                     current_rule={currentTaxRule}
+                    block_editing={block_editing}
                 />
             </form>
         </Dialog>
