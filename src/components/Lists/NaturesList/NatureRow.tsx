@@ -78,7 +78,7 @@ export const NatureRow: React.FC<NatureRowProps> = ({ nature, disabled }) => {
     }
 
     return (
-        <Box sx={{ alignItems: "center", width: "100%", ":hover": { backgroundColor: colors.background2 } }}>
+        <Box sx={{ alignItems: "center", width: "100%", color: nature.user_id ? "" : "blue", ":hover": { backgroundColor: colors.background2 } }}>
             <Checkbox disabled={disabled} inputProps={{ style: { padding: "0" } }} />
             <Box
                 sx={{
