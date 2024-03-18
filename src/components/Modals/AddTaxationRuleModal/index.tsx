@@ -4,7 +4,6 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { useFormik } from "formik"
 import { estados } from "../../../tools/estadosBrasil"
 import { useProduct } from "../../../hooks/useProduct"
-import { TaxRulesForm } from "../../../definitions/TaxRulesForm"
 import { useSnackbar } from "burgos-snackbar"
 import { TaxValues } from "../../TaxValues"
 import icms_situacao_tributaria_values from "../AddInvoiceModal/icms_situacao_tributaria"
@@ -32,12 +31,12 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
     const formik = useFormik<TaxRulesForm>({
         initialValues: current_rule || {
             id: randomId,
+            observations: "",
             cfop: 0,
             icms_modalidade_base_calculo: 0,
             cofins_situacao_tributaria: "01",
             icms_situacao_tributaria: "00",
             pis_situacao_tributaria: "01",
-
             origem: "",
             destino: "",
 
@@ -203,6 +202,13 @@ const AddTaxationRuleModal: React.FC<AddTaxationRuleModalProps> = ({ open, onClo
                                 onChange={(_, value) => setSelectedProducts(value)}
                             />
                         </Box>
+                        <TextField
+                            label="Observações"
+                            name="observations"
+                            value={formik.values.observations}
+                            onChange={formik.handleChange}
+                            fullWidth
+                        />
 
                         <p>Use a regra de tributação a seguir:</p>
 

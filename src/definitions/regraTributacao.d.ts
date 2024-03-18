@@ -1,6 +1,7 @@
 declare interface regraTributacao {
     id: number
 
+    observations: string
     cfop: number
     icms_modalidade_base_calculo: number
     cofins_situacao_tributaria: string

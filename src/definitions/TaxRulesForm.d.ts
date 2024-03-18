@@ -1,4 +1,5 @@
 declare interface TaxRulesForm {
+    observations: string
     id: string | number
     cfop: number
     cofins_situacao_tributaria: string

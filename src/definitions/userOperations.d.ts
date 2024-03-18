@@ -68,7 +68,6 @@ export declare interface NatureForm {
     type: number
     finality: number
     motive: string
-    observations: string
 
     user_id?: number
 
@@ -76,6 +75,7 @@ export declare interface NatureForm {
 }
 
 export declare interface NewRule {
+    observations: string
     uf: string
     aliquota: number
     cfop: number
