@@ -35,15 +35,18 @@ export const AddedTaxationRuleRow: React.FC<AddedTaxationRuleRowProps> = ({ tax_
                 updateTaxRule(tax_rule)
             },
         },
-        !block_editing && {
+    ]
+
+    if (!block_editing) {
+        actions.push({
             id: 2,
             title: "Remover",
             icon: <RemoveCircleOutlineIcon />,
             onClick: () => {
                 deleteTaxRule(tax_rule)
             },
-        },
-    ]
+        })
+    }
 
     return (
         <Box
