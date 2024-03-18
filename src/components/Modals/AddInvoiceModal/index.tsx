@@ -518,7 +518,12 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                                 <Grid item xs={12}>
                                     <Autocomplete
                                         disablePortal
-                                        options={natures.list.filter((item) => item.active && (item.user_id == user.id || !item.user_id))}
+                                        options={natures.list.filter(
+                                            (item) =>
+                                                item.active &&
+                                                (item.user_id == user.id || !item.user_id) &&
+                                                !item.hidden_by.split(",").includes(user.id.toString())
+                                        )}
                                         getOptionLabel={(option: Natureza) => `${option.motive}`}
                                         isOptionEqualToValue={(option: Natureza, value) => option.id === value.id}
                                         renderInput={(params) => (

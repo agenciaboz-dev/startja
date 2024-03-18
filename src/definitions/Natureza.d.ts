@@ -5,6 +5,7 @@ declare interface Natureza {
     finality: number
     motive: string
     active: boolean
+    hidden_by: string
 
     user_id?: number
     user?: User
