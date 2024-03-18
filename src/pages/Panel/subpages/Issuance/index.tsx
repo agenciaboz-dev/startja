@@ -55,6 +55,7 @@ export const Issuance: React.FC<IssuanceProps> = ({ user }) => {
                         filterButtonCallback={() => {}}
                         importButtonPlaceholder="notas fiscais"
                         addButtonText="Adicionar nota fiscal"
+                        disabledButton={user.properties.length === 0}
                         addButtonCallback={openInvoiceModal}
                         onSearch={handleSearch}
                     />
@@ -91,6 +92,7 @@ export const Issuance: React.FC<IssuanceProps> = ({ user }) => {
                                         gap: "0.5vw",
                                     }}
                                     onClick={openInvoiceModal}
+                                    disabled={user.properties.length === 0}
                                 >
                                     <AddOutlinedIcon />
                                     Adicionar nota fiscal

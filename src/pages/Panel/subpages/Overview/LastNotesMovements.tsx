@@ -5,9 +5,11 @@ import AddInvoiceModal from "../../../../components/Modals/AddInvoiceModal"
 import { SectionTitle } from "../../../../components/SectionTitle"
 import { MovementsChart } from "./MovementsChart"
 
-interface LastNotesMovementsProps {}
+interface LastNotesMovementsProps {
+    user: User
+}
 
-export const LastNotesMovements: React.FC<LastNotesMovementsProps> = ({}) => {
+export const LastNotesMovements: React.FC<LastNotesMovementsProps> = ({ user }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const [isAddInvoiceModalOpen, setAddInvoiceModalOpen] = useState(false)
     const openInvoiceModal = () => {
@@ -20,7 +22,12 @@ export const LastNotesMovements: React.FC<LastNotesMovementsProps> = ({}) => {
                     <SectionTitle>Movimentação das últimas notas</SectionTitle>
                     <Button sx={{ textTransform: "none", borderRadius: "20px" }}>Ver últimas notas</Button>
                 </Box>
-                <Button variant="contained" onClick={openInvoiceModal} sx={{ borderRadius: "20px", textTransform: "unset" }}>
+                <Button
+                    variant="contained"
+                    onClick={openInvoiceModal}
+                    sx={{ borderRadius: "20px", textTransform: "unset" }}
+                    disabled={user.properties.length === 0}
+                >
                     <AddOutlinedIcon />
                     Emitir Nota Fiscal
                 </Button>
@@ -32,8 +39,9 @@ export const LastNotesMovements: React.FC<LastNotesMovementsProps> = ({}) => {
                     borderRadius: "20px",
                     flex: 1,
                     flexDirection: "column",
-                    padding: "1vw 1vw 0 0"
-                }}>
+                    padding: "1vw 1vw 0 0",
+                }}
+            >
                 <MovementsChart />
             </Paper>
             <AddInvoiceModal open={isAddInvoiceModalOpen} onClose={() => setAddInvoiceModalOpen(false)} />

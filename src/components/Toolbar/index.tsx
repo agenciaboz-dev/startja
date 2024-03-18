@@ -12,6 +12,7 @@ interface ToolbarProps {
     selectList?: any[]
     filterButtonCallback?: () => void
     importButtonPlaceholder?: string
+    disabledButton?: boolean
     addButtonText?: string
     addButtonCallback?: () => void
 }
@@ -25,6 +26,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
     importButtonPlaceholder,
     addButtonText,
     addButtonCallback,
+    disabledButton,
 }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const [searchValue, setSearchValue] = useState("")
@@ -174,6 +176,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                         minWidth: "15vw",
                     }}
                     onClick={addButtonCallback}
+                    disabled={disabledButton}
                 >
                     <AddOutlinedIcon />
                     <p>{addButtonText}</p>
