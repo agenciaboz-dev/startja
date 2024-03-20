@@ -44,7 +44,7 @@ const AddNatureModal: React.FC<AddNatureModalProps> = ({ open, onClose, current_
     const [loading, setLoading] = useState(false)
     const [currentTaxRule, setCurrentTaxRule] = useState<TaxRulesForm>()
 
-    const block_editing = current_nature ? (current_nature.user_id ? false : true) : false
+    const block_editing = current_nature ? (current_nature.user_id ? false : !!user) : false
 
     const formik = useFormik<NatureForm>({
         initialValues: current_nature || {
