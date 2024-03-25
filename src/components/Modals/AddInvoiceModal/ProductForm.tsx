@@ -84,6 +84,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                 ...formik.values,
                 origem: focusNFEInvoiceFormik.values.emitente.uf,
                 destino: focusNFEInvoiceFormik.values.destinatario.uf,
+
                 products: [],
             },
         }),
@@ -109,7 +110,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
             console.log({ origem, destino, produto, currentProduct })
             return origem && destino && produto
         })
-        console.log(tax_rule)
+        console.log({ tax_rule })
 
         if (tax_rule) {
             Object.entries(tax_rule).map(([param, value]) => {
