@@ -1,6 +1,7 @@
 import React from "react"
 import { Box, useMediaQuery } from "@mui/material"
 import { NatureRow } from "./NatureRow"
+import { useUser } from "../../../hooks/useUser"
 
 interface NaturesListProps {
     natures: Natureza[]
@@ -9,6 +10,8 @@ interface NaturesListProps {
 
 export const NaturesList: React.FC<NaturesListProps> = ({ natures, disabled }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const { user } = useUser()
+
     return (
         <Box
             sx={{
@@ -19,6 +22,7 @@ export const NaturesList: React.FC<NaturesListProps> = ({ natures, disabled }) =
             }}
         >
             {natures
+                .filter((nature) => (user ? nature.active : nature))
                 .sort((a, b) => a.id - b.id)
                 .map((nature) => (
                     <NatureRow key={nature.id} nature={nature} disabled={disabled} />
