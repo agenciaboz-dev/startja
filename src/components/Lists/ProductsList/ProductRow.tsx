@@ -7,6 +7,7 @@ import { colors } from "../../../style/colors"
 import { useProduct } from "../../../hooks/useProduct"
 import { useIo } from "../../../hooks/useIo"
 import { useUser } from "../../../hooks/useUser"
+import { useConfirmDialog } from "burgos-confirm"
 
 interface ProductRowProps {
     product: Product
@@ -18,6 +19,7 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct, di
     const io = useIo()
     const isMobile = useMediaQuery("(orientation: portrait)")
     const { user } = useUser()
+    const { confirm } = useConfirmDialog()
 
     const { isPresentOnInvoice } = useProduct()
     const can_delete = product.user_id == user?.id ? !isPresentOnInvoice(product) : false
@@ -40,16 +42,6 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct, di
                       setMenuAnchorEl(null)
                   },
               },
-              {
-                  id: 2,
-                  title: can_delete ? "Remover" : "Desabilitar",
-                  icon: deleting ? <CircularProgress size="1.4rem" color="warning" /> : can_delete ? <DeleteForever /> : <RemoveCircleOutlineIcon />,
-                  onClick: () => {
-                      if (deleting) return
-                      setDeleting(true)
-                      io.emit(can_delete ? "product:delete" : "product:disable", product.id)
-                  },
-              },
           ]
         : [
               {
@@ -61,6 +53,31 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct, di
                   },
               },
           ]
+
+    if (!block_editing && product.active) {
+        actions.push({
+            id: 2,
+            title: can_delete ? "Remover" : "Desabilitar",
+            icon: deleting ? <CircularProgress size="1.4rem" color="warning" /> : can_delete ? <DeleteForever /> : <RemoveCircleOutlineIcon />,
+            onClick: () => {
+                if (deleting) return
+
+                if (can_delete) {
+                    confirm({
+                        title: "deletar produto",
+                        content: "certeza que deseja deletar?",
+                        onConfirm: () => {
+                            setDeleting(true)
+                            io.emit("product:delete", product.id)
+                        },
+                    })
+                } else {
+                    setDeleting(true)
+                    io.emit("product:disable", product.id)
+                }
+            },
+        })
+    }
 
     // useEffect(() => {
     //     io.on("product:delete:success", (product: Product) => {

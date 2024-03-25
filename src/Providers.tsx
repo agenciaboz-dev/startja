@@ -7,6 +7,7 @@ import { HeaderProvider } from "./contexts/headerContext"
 import { NatureProvider } from "./contexts/natureContext"
 import { DrawerProvider } from "./contexts/drawerContext"
 import { InvoiceProvider } from "./contexts/invoiceContext"
+import { ConfirmDialog, ConfirmDialogProvider } from "burgos-confirm"
 
 interface ProvidersProps {
     children: React.ReactNode
@@ -15,24 +16,27 @@ interface ProvidersProps {
 export const Providers: React.FC<ProvidersProps> = ({ children }) => {
     return (
         <SnackbarProvider>
-            <IoProvider>
-                <UserProvider>
-                    <CompanyProvider>
-                        <InvoiceProvider>
-                            <ProductProvider>
-                                <NatureProvider>
-                                    <HeaderProvider>
-                                        <DrawerProvider>
-                                            <Snackbar />
-                                            {children}
-                                        </DrawerProvider>
-                                    </HeaderProvider>
-                                </NatureProvider>
-                            </ProductProvider>
-                        </InvoiceProvider>
-                    </CompanyProvider>
-                </UserProvider>
-            </IoProvider>
+            <ConfirmDialogProvider>
+                <IoProvider>
+                    <UserProvider>
+                        <CompanyProvider>
+                            <InvoiceProvider>
+                                <ProductProvider>
+                                    <NatureProvider>
+                                        <HeaderProvider>
+                                            <DrawerProvider>
+                                                <Snackbar />
+                                                <ConfirmDialog />
+                                                {children}
+                                            </DrawerProvider>
+                                        </HeaderProvider>
+                                    </NatureProvider>
+                                </ProductProvider>
+                            </InvoiceProvider>
+                        </CompanyProvider>
+                    </UserProvider>
+                </IoProvider>
+            </ConfirmDialogProvider>
         </SnackbarProvider>
     )
 }
