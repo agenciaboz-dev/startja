@@ -6,6 +6,7 @@ import { useFormik } from "formik"
 import { NewProduct } from "../../../definitions/userOperations"
 import { useProduct } from "../../../hooks/useProduct"
 import { useSnackbar } from "burgos-snackbar"
+import { useUser } from "../../../hooks/useUser"
 
 interface AddProductModalProps {
     open: boolean
@@ -18,6 +19,9 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
     const io = useIo()
     const { addProduct } = useProduct()
     const { snackbar } = useSnackbar()
+    const { user } = useUser()
+
+    const block_editing = current_product ? (current_product.user_id ? false : !!user) : false
 
     const formik = useFormik<NewProduct>({
         initialValues: current_product || {
@@ -26,6 +30,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
             codigo_externo: "",
             icmsOrigin: 0,
 
+            user_id: user?.id,
             rules: [],
         },
         onSubmit: (values) => {
@@ -48,11 +53,13 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
         io.on("product:creation:successful", (product: Product) => {
             snackbar({ severity: "success", text: "produto criado com sucesso" })
             onUpdateProduct(product)
+            formik.resetForm()
         })
 
         io.on("product:update:successful", (product: Product) => {
             snackbar({ severity: "info", text: "produto atualizado" })
             onUpdateProduct(product)
+            formik.resetForm()
         })
 
         io.on("product:creation:error", ({ error }) => {
@@ -110,6 +117,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
                                 value={formik.values.name}
                                 name="name"
                                 onChange={formik.handleChange}
+                                disabled={block_editing}
                             />
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 6}>
@@ -120,10 +128,19 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
                                 value={formik.values.codigo_externo}
                                 name="codigo_externo"
                                 onChange={formik.handleChange}
+                                disabled={block_editing}
                             />
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 6}>
-                            <TextField required label="NCM" fullWidth value={formik.values.ncm} name="ncm" onChange={formik.handleChange} />
+                            <TextField
+                                required
+                                label="NCM"
+                                fullWidth
+                                value={formik.values.ncm}
+                                name="ncm"
+                                onChange={formik.handleChange}
+                                disabled={block_editing}
+                            />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
@@ -133,6 +150,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
                                 value={formik.values.icmsOrigin}
                                 name="icmsOrigin"
                                 onChange={formik.handleChange}
+                                disabled={block_editing}
                                 select
                                 InputLabelProps={{ shrink: true }}
                             >
@@ -181,6 +199,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose, curren
                         type="submit"
                         color="primary"
                         variant="contained"
+                        disabled={block_editing}
                         sx={{
                             borderRadius: "20px",
                             color: "white",

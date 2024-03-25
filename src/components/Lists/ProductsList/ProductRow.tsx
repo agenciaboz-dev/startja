@@ -2,10 +2,11 @@ import React, { useEffect } from "react"
 import { Box, Checkbox, CircularProgress, IconButton, Menu, MenuItem, darken, useMediaQuery } from "@mui/material"
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
-import { DeleteForever, Edit, ThumbsUpDown } from "@mui/icons-material"
+import { DeleteForever, Edit, RemoveRedEye, ThumbsUpDown } from "@mui/icons-material"
 import { colors } from "../../../style/colors"
 import { useProduct } from "../../../hooks/useProduct"
 import { useIo } from "../../../hooks/useIo"
+import { useUser } from "../../../hooks/useUser"
 
 interface ProductRowProps {
     product: Product
@@ -16,21 +17,24 @@ interface ProductRowProps {
 export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct, disabled }) => {
     const io = useIo()
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const { user } = useUser()
 
     const { isPresentOnInvoice } = useProduct()
-    const can_delete = !isPresentOnInvoice(product)
+    const can_delete = product.user_id == user?.id ? !isPresentOnInvoice(product) : false
 
     const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null)
     const menu_opened = Boolean(menuAnchorEl)
 
     const [deleting, setDeleting] = React.useState(false)
 
+    const block_editing = product ? (product.user_id ? false : !!user) : false
+
     const actions = product.active
         ? [
               {
                   id: 1,
-                  title: "Editar",
-                  icon: <Edit />,
+                  title: block_editing ? "Visualizar" : "Editar",
+                  icon: block_editing ? <RemoveRedEye /> : <Edit />,
                   onClick: () => {
                       editProduct(product)
                       setMenuAnchorEl(null)
@@ -77,6 +81,7 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct, di
                 ":hover": {
                     backgroundColor: colors.background2,
                 },
+                color: !product.user_id ? "blue" : "",
             }}
         >
             <Checkbox

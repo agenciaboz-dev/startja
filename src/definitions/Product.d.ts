@@ -8,4 +8,5 @@ declare interface Product {
 
     rules: regraTributacao[]
     produtosNota: ProdutoNotaFiscal[]
+    user_id?: number
 }

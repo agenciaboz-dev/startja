@@ -9,6 +9,7 @@ import AddProductModal from "../../../../../../components/Modals/AddProductModal
 import { useProduct } from "../../../../../../hooks/useProduct"
 import { useHeader } from "../../../../../../hooks/useHeader"
 import normalize from "../../../../../../tools/normalize"
+import { useUser } from "../../../../../../hooks/useUser"
 
 interface ProductsProps {}
 
@@ -18,14 +19,16 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     const header = useHeader()
     const io = useIo()
     const emptyProductsList = !products.list.length
+    const { user } = useUser()
+
     const [isAddProductModalOpen, setAddProductModalOpen] = useState(false)
     const openProductModal = () => {
         setAddProductModalOpen(true)
     }
-    const [productsList, setProductsList] = useState(products.list)
+    const [productsList, setProductsList] = useState(products.list.filter((product) => product.user_id == user?.id || !product.user_id))
 
     useEffect(() => {
-        setProductsList(products.list)
+        setProductsList(products.list.filter((product) => product.user_id == user?.id || !product.user_id))
     }, [products.list])
 
     const handleSearch = (text: string) => {
@@ -108,7 +111,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                         }}
                     >
                         <ProductsListHeader />
-                        <ProductsList products={productsList} />
+                        <ProductsList products={productsList.sort((a, b) => (a.user_id ? 1 : -1))} />
                     </Box>
                 )}
             </Box>

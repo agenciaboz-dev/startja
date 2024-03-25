@@ -23,10 +23,10 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     const openProductModal = () => {
         setAddProductModalOpen(true)
     }
-    const [productsList, setProductsList] = useState(products.list)
+    const [productsList, setProductsList] = useState(products.list.filter((product) => !product.user_id))
 
     useEffect(() => {
-        setProductsList(products.list)
+        setProductsList(products.list.filter((product) => !product.user_id))
     }, [products.list])
 
     const handleSearch = (text: string) => {

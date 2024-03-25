@@ -61,6 +61,7 @@ export declare interface NewProduct {
     codigo_externo: string
     icmsOrigin: number
     rules?: regraTributacao[]
+    user_id?: number
 }
 
 export declare interface NatureForm {
