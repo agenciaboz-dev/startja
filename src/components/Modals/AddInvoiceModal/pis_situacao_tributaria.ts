@@ -10,14 +10,14 @@ export const pis_situacao_tributaria_values: {
         value: "01",
         label: "Operação tributável: base de cálculo = valor da operação (alíquota normal - cumulativo/não cumulativo)",
         fields: [
-            { field: "_pis_percentual_base_calculo", label: "Percentual da base de cálculo", type: "number", xs: 6 },
+            { field: "interno_pis_percentual_base_calculo", label: "Percentual da base de cálculo", type: "number", xs: 6 },
             {
                 field: "pis_base_calculo",
                 label: "Base de cálculo PIS",
                 type: "number", //decimal[13.2],
                 disabled: true,
                 formula:
-                    "({formik.values._pis_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
+                    "({formik.values.interno_pis_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade}",
                 xs: 6,
             },
             { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number", xs: 6 },
@@ -27,7 +27,7 @@ export const pis_situacao_tributaria_values: {
                 type: "number",
                 disabled: true,
                 formula:
-                    "({formik.values.pis_aliquota_porcentual} / 100) * (({formik.values._pis_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
+                    "({formik.values.pis_aliquota_porcentual} / 100) * (({formik.values.interno_pis_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
                 xs: 6,
             },
             {
@@ -36,7 +36,7 @@ export const pis_situacao_tributaria_values: {
                 type: "number",
                 disabled: true,
                 formula:
-                    "({formik.values.pis_aliquota_porcentual} / 100) * (({formik.values._pis_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
+                    "({formik.values.pis_aliquota_porcentual} / 100) * (({formik.values.interno_pis_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
             },
         ],
     },
@@ -48,7 +48,7 @@ export const pis_situacao_tributaria_values: {
         label: "Operação tributável: base de cálculo = quantidade vendida × alíquota por unidade de produto",
         fields: [
             {
-                field: "_pis_quantidade_base_de_calculo",
+                field: "interno_pis_quantidade_base_de_calculo",
                 label: "Quantidade base de cálculo",
                 type: "number",
                 disabled: true,
