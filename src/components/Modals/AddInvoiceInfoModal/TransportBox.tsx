@@ -1,6 +1,7 @@
-import React from "react"
-import { Box, Grid, MenuItem, TextField, useMediaQuery } from "@mui/material"
+import React, { useEffect, useState } from "react"
+import { Autocomplete, Box, Grid, MenuItem, TextField, useMediaQuery } from "@mui/material"
 import { FormikErrors } from "formik"
+import { useUser } from "../../../hooks/useUser"
 
 interface TransportBoxProps {
     formik: {
@@ -11,8 +12,20 @@ interface TransportBoxProps {
 }
 
 export const TransportBox: React.FC<TransportBoxProps> = ({ formik }) => {
+    const { user } = useUser()
     const isMobile = useMediaQuery("(orientation: portrait)")
-    return (
+
+    const [selectedShippingCompany, setSelectedShippingCompany] = useState<Company | null>(null)
+
+    useEffect(() => {
+        if (selectedShippingCompany) {
+            formik.setFieldValue("transporte.transportadora", selectedShippingCompany.name)
+        } else {
+            setSelectedShippingCompany(user?.companies.find((company) => company.name == formik.values.transporte.transportadora) || null)
+        }
+    }, [selectedShippingCompany])
+
+    return user ? (
         <Box
             sx={{
                 flexDirection: "column",
@@ -42,14 +55,23 @@ export const TransportBox: React.FC<TransportBoxProps> = ({ formik }) => {
                 </Grid>
                 {formik.values.transporte.modalidade_frete == 0 && (
                     <Grid item xs={isMobile ? 12 : 6}>
-                        <TextField
+                        <Autocomplete
+                            disablePortal
+                            options={user.companies}
+                            getOptionLabel={(option: Company) => `${option.name}`}
+                            isOptionEqualToValue={(option: Company, value) => option.id === value.id}
+                            renderInput={(params) => <TextField {...params} label="Transportadora" name="transporte.transportadora" />}
+                            value={selectedShippingCompany}
+                            onChange={(_, value) => setSelectedShippingCompany(value)}
+                        />
+                        {/* <TextField
                             fullWidth
                             label="Transportadora"
                             name="transporte.transportadora"
                             value={formik.values.transporte.transportadora}
                             onChange={formik.handleChange}
                             required
-                        />
+                        /> */}
                     </Grid>
                 )}
                 {formik.values.transporte.modalidade_frete == 0 && (
@@ -172,5 +194,5 @@ export const TransportBox: React.FC<TransportBoxProps> = ({ formik }) => {
                 </Box>
             )}
         </Box>
-    )
+    ) : null
 }
