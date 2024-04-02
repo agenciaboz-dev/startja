@@ -6,6 +6,8 @@ import { InstallmentsList } from "../../Lists/InstallmentsList"
 import { InstallmentsListHeader } from "../../Lists/InstallmentsList/InstallmentsListHeader"
 import { addMonths } from "date-fns"
 import { InstallmentData } from "../../../definitions/Installments"
+import CheckIcon from "@mui/icons-material/Check"
+import CloseIcon from "@mui/icons-material/Close"
 
 interface PaymentBoxProps {
     formik: {
@@ -95,11 +97,14 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
                     <Box
                         sx={{
                             justifyContent: "space-evenly",
-                            alignItems: "start",
+                            alignItems: "center",
                             flexDirection: "column",
                         }}
                     >
-                        <p>Valor total da nota: R$ {valor_total}</p>
+                        <Box sx={{ fontSize: "1.7rem", alignItems: "center", gap: "0.5vw" }}>
+                            Valor total da nota: R$ {valor_total}
+                            {totalError ? <CloseIcon color="error" /> : <CheckIcon color="primary" />}
+                        </Box>
                         {totalError && <p style={{ color: "red" }}>O valor da soma das parcelas deve corresponder ao valor total da nota</p>}
                     </Box>
                 </Grid>
