@@ -1,9 +1,13 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Box, useMediaQuery } from "@mui/material"
 import { InstallmentRow } from "./InstallmentRow"
+import { FormikErrors } from "formik"
+import { InstallmentData } from "../../../definitions/Installments"
 
 interface InstallmentsListProps {
-    installmentsArray: { id: number; value: string; expiry: string }[]
+    installmentsArray: InstallmentData[]
+    setInstallmentsArray: React.Dispatch<React.SetStateAction<InstallmentData[]>>
+    setTotalError: React.Dispatch<React.SetStateAction<boolean>>
     formik: {
         values: FocusNFeInvoiceForm
         handleChange: (e: React.ChangeEvent<any>) => void
@@ -11,8 +15,27 @@ interface InstallmentsListProps {
     }
 }
 
-export const InstallmentsList: React.FC<InstallmentsListProps> = ({ installmentsArray, formik }) => {
+export const InstallmentsList: React.FC<InstallmentsListProps> = ({ installmentsArray, formik, setInstallmentsArray, setTotalError }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+
+    const onValueChange = (id: number, new_value: number) => {
+        const installments = [...installmentsArray]
+        installments[id - 1] = { id, expiry: installments[id - 1].expiry, value: new_value.toFixed(2) }
+        setInstallmentsArray(installments)
+    }
+
+    useEffect(() => {
+        console.log(installmentsArray)
+        const total = installmentsArray.reduce((total, item) => (total += Number(item.value)), 0)
+
+        if (total != formik.values.valor.total) {
+            setTotalError(true)
+            console.log("cu")
+        } else {
+            console.log("valor certo")
+            setTotalError(false)
+        }
+    }, [installmentsArray])
 
     return (
         <Box
@@ -31,6 +54,7 @@ export const InstallmentsList: React.FC<InstallmentsListProps> = ({ installments
                     installmentValue={installment.value}
                     installmentExpiry={installment.expiry}
                     formik={formik}
+                    onValueChange={onValueChange}
                 />
             ))}
         </Box>

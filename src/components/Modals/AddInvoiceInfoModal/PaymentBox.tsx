@@ -5,6 +5,7 @@ import { indicador_pagamento, forma_pagamento } from "../AddInvoiceModal/formas_
 import { InstallmentsList } from "../../Lists/InstallmentsList"
 import { InstallmentsListHeader } from "../../Lists/InstallmentsList/InstallmentsListHeader"
 import { addMonths } from "date-fns"
+import { InstallmentData } from "../../../definitions/Installments"
 
 interface PaymentBoxProps {
     formik: {
@@ -19,15 +20,17 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
 
     const [installmentsPay, setInstallmentsPay] = useState(false)
     const [installmentsNumber, setInstallmentsNumber] = useState(1)
-    const [installmentsArray, setInstallmentsArray] = useState<{ id: number; value: string; expiry: string }[]>([])
+    const [installmentsArray, setInstallmentsArray] = useState<InstallmentData[]>([])
 
     const valor_total = formik.values.valor.total
+    const [totalError, setTotalError] = useState(false)
 
     useEffect(() => {
         if (formik.values.formas_pagamento.indicador_pagamento === 1) {
             setInstallmentsPay(true)
 
             let currentDate = new Date()
+
             const newInstallmentsArray = Array.from({ length: installmentsNumber }, (_, index) => {
                 let expiryDate = addMonths(currentDate, index + 1)
                 let expiry = [
@@ -70,7 +73,7 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
             <h3>Detalhes do pagamento</h3>
 
             <Grid container spacing={2}>
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                     <TextField
                         fullWidth
                         label="Tipo de pagamento"
@@ -87,6 +90,18 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
                             </MenuItem>
                         ))}
                     </TextField>
+                </Grid>
+                <Grid item xs={6}>
+                    <Box
+                        sx={{
+                            justifyContent: "space-evenly",
+                            alignItems: "start",
+                            flexDirection: "column",
+                        }}
+                    >
+                        <p>Valor total da nota: R$ {valor_total}</p>
+                        {totalError && <p style={{ color: "red" }}>O valor da soma das parcelas deve corresponder ao valor total da nota</p>}
+                    </Box>
                 </Grid>
                 <Grid item xs={installmentsPay ? 6 : 12}>
                     <TextField
@@ -139,7 +154,12 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
                         }}
                     >
                         <InstallmentsListHeader />
-                        <InstallmentsList installmentsArray={installmentsArray} formik={formik} />
+                        <InstallmentsList
+                            installmentsArray={installmentsArray}
+                            formik={formik}
+                            setInstallmentsArray={setInstallmentsArray}
+                            setTotalError={setTotalError}
+                        />
                     </Box>
                 </Box>
             )}
