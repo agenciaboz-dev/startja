@@ -12,6 +12,9 @@ export const NaturesList: React.FC<NaturesListProps> = ({ natures, disabled }) =
     const isMobile = useMediaQuery("(orientation: portrait)")
     const { user } = useUser()
 
+
+    console.log(natures)
+
     return (
         <Box
             sx={{
@@ -22,7 +25,7 @@ export const NaturesList: React.FC<NaturesListProps> = ({ natures, disabled }) =
             }}
         >
             {natures
-                .filter((nature) => (user ? nature.active : nature))
+                .filter((nature) => (user ? (nature.user_id ? nature : nature.active) : nature))
                 .sort((a, b) => a.id - b.id)
                 .map((nature) => (
                     <NatureRow key={nature.id} nature={nature} disabled={disabled} />
