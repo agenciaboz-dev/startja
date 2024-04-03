@@ -1,6 +1,6 @@
-import React, { useEffect } from "react"
+import React, {  } from "react"
 import { Box, Checkbox, CircularProgress, IconButton, Menu, MenuItem, darken, useMediaQuery } from "@mui/material"
-import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
+//import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
 import { DeleteForever, Edit, RemoveRedEye, ThumbsUpDown } from "@mui/icons-material"
 import { colors } from "../../../style/colors"
@@ -8,6 +8,8 @@ import { useProduct } from "../../../hooks/useProduct"
 import { useIo } from "../../../hooks/useIo"
 import { useUser } from "../../../hooks/useUser"
 import { useConfirmDialog } from "burgos-confirm"
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined"
+import { ToggleSwitch } from "../../ToggleSwitch"
 
 interface ProductRowProps {
     product: Product
@@ -127,7 +129,7 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct, di
                 </Box>
                 <Box
                     sx={{
-                        flex: 0.45,
+                        flex: 0.4,
                         minWidth: isMobile ? "25vw" : "",
                     }}
                 >
@@ -143,31 +145,48 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct, di
                 </Box>
                 <Box
                     sx={{
-                        flex: 0.05,
-                        justifyContent: "center",
+                        flex: 0.4,
+                        minWidth: isMobile ? "25vw" : "",
                     }}
                 >
-                    <IconButton onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
-                        <FormatListBulletedOutlinedIcon />
-                    </IconButton>
-                </Box>
-                <Menu
-                    anchorEl={menuAnchorEl}
-                    open={menu_opened}
-                    onClose={() => setMenuAnchorEl(null)}
-                    slotProps={{ paper: { elevation: 3 } }}
-                    MenuListProps={{ sx: { width: "100%" } }}
-                >
-                    {actions.map((action) => {
-                        const Icon = () => action.icon
-                        return (
-                            <MenuItem sx={{ gap: isMobile ? "2vw" : "0.5vw" }} onClick={action.onClick} key={action.id}>
-                                <Icon /> {action.title}
-                            </MenuItem>
+                    {user ? (
+                        product.user_id ? (
+                            <IconButton color="inherit" onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
+                                <EditOutlinedIcon />
+                            </IconButton>
+                        ) : (
+                            <IconButton color="inherit" onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
+                                <RemoveRedEye />
+                            </IconButton>
                         )
-                    })}
-                </Menu>
+                    ) : (
+                        <IconButton color="inherit" onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
+                            <EditOutlinedIcon />
+                        </IconButton>
+                    )}
+
+                    <Menu
+                        anchorEl={menuAnchorEl}
+                        open={menu_opened}
+                        onClose={() => setMenuAnchorEl(null)}
+                        slotProps={{ paper: { elevation: 3 } }}
+                        MenuListProps={{ sx: { width: "100%" } }}
+                    >
+                        {actions.map((action) => {
+                            const Icon = () => action.icon
+                            return (
+                                <MenuItem sx={{ gap: isMobile ? "2vw" : "0.5vw" }} onClick={action.onClick} key={action.id}>
+                                    <Icon /> {action.title}
+                                </MenuItem>
+                            )
+                        })}
+                    </Menu>
+                </Box>
+                <Box>
+                    <ToggleSwitch checked={true} onClick={() => console.log("clicou")} />
+                </Box>
             </Box>
         </Box>
     )
 }
+

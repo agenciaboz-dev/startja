@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Box, Checkbox, IconButton, useMediaQuery } from "@mui/material"
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined"
+//import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined"
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined"
 import { ToggleSwitch } from "../../ToggleSwitch"
 import AddNatureModal from "../../Modals/AddNatureModal"
