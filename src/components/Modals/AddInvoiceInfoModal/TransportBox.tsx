@@ -7,7 +7,11 @@ interface TransportBoxProps {
     formik: {
         values: FocusNFeInvoiceForm
         handleChange: (e: React.ChangeEvent<any>) => void
-        setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => Promise<void> | Promise<FormikErrors<FocusNFeInvoiceForm>>
+        setFieldValue: (
+            field: string,
+            value: any,
+            shouldValidate?: boolean | undefined
+        ) => Promise<void> | Promise<FormikErrors<FocusNFeInvoiceForm>>
     }
 }
 
@@ -21,7 +25,9 @@ export const TransportBox: React.FC<TransportBoxProps> = ({ formik }) => {
         if (selectedShippingCompany) {
             formik.setFieldValue("transporte.transportadora", selectedShippingCompany.name)
         } else {
-            setSelectedShippingCompany(user?.companies.find((company) => company.name == formik.values.transporte.transportadora) || null)
+            setSelectedShippingCompany(
+                user?.companies.find((company) => company.name == formik.values.transporte.transportadora) || null
+            )
         }
     }, [selectedShippingCompany])
 
@@ -60,7 +66,9 @@ export const TransportBox: React.FC<TransportBoxProps> = ({ formik }) => {
                             options={user.companies}
                             getOptionLabel={(option: Company) => `${option.name}`}
                             isOptionEqualToValue={(option: Company, value) => option.id === value.id}
-                            renderInput={(params) => <TextField {...params} label="Transportadora" name="transporte.transportadora" />}
+                            renderInput={(params) => (
+                                <TextField {...params} label="Transportadora" name="transporte.transportadora" />
+                            )}
                             value={selectedShippingCompany}
                             onChange={(_, value) => setSelectedShippingCompany(value)}
                         />
@@ -102,26 +110,26 @@ export const TransportBox: React.FC<TransportBoxProps> = ({ formik }) => {
                 )}
             </Grid>
 
-            {formik.values.transporte.modalidade_frete == 0 &&
-                (formik.values.emitente.uf == formik.values.destinatario.uf ? (
-                    <Box
-                        sx={{
-                            flexDirection: "column",
-                            gap: "1vw",
-                        }}
-                    >
-                        <h3>Dados do Veículo</h3>
-                        <Grid container spacing={2}>
-                            <Grid item xs={isMobile ? 12 : 6}>
-                                <TextField
-                                    fullWidth
-                                    label="Placa do veículo"
-                                    name="transporte.veiculo_placa"
-                                    value={formik.values.transporte.veiculo_placa}
-                                    onChange={formik.handleChange}
-                                    required
-                                />
-                            </Grid>
+            {formik.values.transporte.modalidade_frete == 0 && (
+                <Box
+                    sx={{
+                        flexDirection: "column",
+                        gap: "1vw",
+                    }}
+                >
+                    <h3>Dados do Veículo</h3>
+                    <Grid container spacing={2}>
+                        <Grid item xs={isMobile ? 12 : formik.values.emitente.uf != formik.values.destinatario.uf ? 12 : 6}>
+                            <TextField
+                                fullWidth
+                                label="Placa do veículo"
+                                name="transporte.veiculo_placa"
+                                value={formik.values.transporte.veiculo_placa}
+                                onChange={formik.handleChange}
+                                required
+                            />
+                        </Grid>
+                        {formik.values.emitente.uf == formik.values.destinatario.uf && (
                             <Grid item xs={isMobile ? 12 : 6}>
                                 <TextField
                                     fullWidth
@@ -132,14 +140,10 @@ export const TransportBox: React.FC<TransportBoxProps> = ({ formik }) => {
                                     required
                                 />
                             </Grid>
-                        </Grid>
-                    </Box>
-                ) : (
-                    <p>
-                        Os campos para dados do veículo (placa e UF) foram ocultados nesta nota, pois só são incluidos quando a UF da propriedade
-                        emitente é a mesma UF do destinatário.
-                    </p>
-                ))}
+                        )}
+                    </Grid>
+                </Box>
+            )}
 
             {formik.values.transporte.modalidade_frete == 0 && (
                 <Box
