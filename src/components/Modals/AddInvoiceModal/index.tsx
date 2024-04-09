@@ -293,6 +293,13 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
 
     const emptyList = !formik.values.produtos.length
 
+    const resetInvoice = () => {
+        setCurrentRecipient(currentInvoice ? currentInvoice.destinatario : user.companies[0])
+        setCurrentProperty(currentInvoice ? currentInvoice.propriedade : user.properties[0])
+        setSelectedNature(null)
+        formik.resetForm()
+    }
+
     const closeCompanyModal = () => {
         setOpenCompanyModal(false)
     }
@@ -393,12 +400,14 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
     }, [formik.values.valor])
 
     useEffect(() => {
+        resetInvoice()
         if (open) {
             // console.log({
             //     next_invoice_number: Number(formik.values.numero) || Number(currentProperty.nfe_number),
             //     property_number: Number(currentProperty.nfe_number),
             // })
             // console.log(formik.values.formas_pagamento)
+        } else {
         }
     }, [open])
 
