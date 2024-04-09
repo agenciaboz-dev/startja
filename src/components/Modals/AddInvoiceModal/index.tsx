@@ -46,7 +46,9 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
     if (!user) return null
 
     const isMobile = useMediaQuery("(orientation: portrait)")
-    const [currentRecipient, setCurrentRecipient] = useState(currentInvoice ? currentInvoice.destinatario : user.companies[0])
+    const [currentRecipient, setCurrentRecipient] = useState(
+        currentInvoice ? currentInvoice.destinatario : user.companies[0]
+    )
     const [currentProperty, setCurrentProperty] = useState(currentInvoice ? currentInvoice.propriedade : user.properties[0])
     const [loading, setLoading] = useState(false)
     const [selectedNature, setSelectedNature] = useState<Natureza | null>(null)
@@ -157,7 +159,9 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                   informacoes_adicionais_contribuinte: `${user.observations}\n\n${
                       user.show_funrural_on_invoices
                           ? `Funrural: ${
-                                user.recolhimento == 1 ? "Recolhimento pela folha de pagamento" : "Recolhimento pelo valor da produção agrícola"
+                                user.recolhimento == 1
+                                    ? "Recolhimento pela folha de pagamento"
+                                    : "Recolhimento pelo valor da produção agrícola"
                             }`
                           : ""
                   }\n\n${selectedNature?.rules.map((rule) => `${rule.observations}\n`)}`,
@@ -258,7 +262,13 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
 
             setLoading(true)
 
-            const data: { nota: FocusNFeInvoiceData; emitente_id: number; destinatario_id: number; propriedade_id: number; nature_id: number } = {
+            const data: {
+                nota: FocusNFeInvoiceData
+                emitente_id: number
+                destinatario_id: number
+                propriedade_id: number
+                nature_id: number
+            } = {
                 emitente_id: user.id,
                 destinatario_id: currentRecipient.id,
                 propriedade_id: currentProperty.id,
@@ -305,7 +315,6 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
 
     const changeProperty = (property: Property | null) => {
         if (!property) return
-
         setCurrentProperty(property)
         formik.setFieldValue("emitente.bairro", property.district)
         formik.setFieldValue("emitente.inscricao_estadual", property.ie)
@@ -381,7 +390,13 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
     useEffect(() => {
         formik.setFieldValue(
             "valor.total",
-            Number((formik.values.transporte.valor_frete + formik.values.valor.produtos + formik.values.transporte.valor_seguro).toFixed(2))
+            Number(
+                (
+                    formik.values.transporte.valor_frete +
+                    formik.values.valor.produtos +
+                    formik.values.transporte.valor_seguro
+                ).toFixed(2)
+            )
         )
     }, [formik.values.valor])
 
@@ -603,7 +618,9 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                                             <InvoiceModalProductsListHeader />
                                             <InvoiceModalProductsList
                                                 list={formik.values.produtos}
-                                                updateList={(list: InvoiceProduct[]) => formik.setFieldValue("produtos", list)}
+                                                updateList={(list: InvoiceProduct[]) =>
+                                                    formik.setFieldValue("produtos", list)
+                                                }
                                             />
                                         </Box>
                                     </Box>
@@ -677,9 +694,17 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                     </Button>
                 </Box>
             </DialogActions>
-            <AddInvoiceInfoModal open={openInfoModal} onClose={() => setOpenInfoModal(false)} focusNFEInvoiceFormik={formik} />
+            <AddInvoiceInfoModal
+                open={openInfoModal}
+                onClose={() => setOpenInfoModal(false)}
+                focusNFEInvoiceFormik={formik}
+            />
             <AddCompanyModal open={openCompanyModal} onClose={closeCompanyModal} setCompany={changeRecipient} />
-            <AddPropertyModal open={openPropertyModal} onClose={() => setOpenPropertyModal(false)} setProperty={changeProperty} />
+            <AddPropertyModal
+                open={openPropertyModal}
+                onClose={() => setOpenPropertyModal(false)}
+                setProperty={changeProperty}
+            />
             <AddNatureModal open={openNatureModal} onClose={() => setOpenNatureModal(false)} />
         </Dialog>
     )

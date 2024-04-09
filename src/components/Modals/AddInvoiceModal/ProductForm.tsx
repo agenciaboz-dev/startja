@@ -15,7 +15,11 @@ interface ProductFormProps {
     focusNFEInvoiceFormik: {
         values: FocusNFeInvoiceForm
         handleChange: (e: React.ChangeEvent<any>) => void
-        setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => Promise<void> | Promise<FormikErrors<FocusNFeInvoiceForm>>
+        setFieldValue: (
+            field: string,
+            value: any,
+            shouldValidate?: boolean | undefined
+        ) => Promise<void> | Promise<FormikErrors<FocusNFeInvoiceForm>>
     }
     nature: Natureza | null
 }
@@ -102,12 +106,15 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
     }
 
     const checkTaxRules = useCallback(() => {
+        console.log({ natureza_operação: nature })
+        console.log({ Estado: focusNFEInvoiceFormik.values.emitente.uf })
         const tax_rule = nature?.rules.find((rule) => {
-            console.log(rule)
+         
             const origem = rule.origem == focusNFEInvoiceFormik.values.emitente.uf
             const destino = rule.destino.split(", ").includes(focusNFEInvoiceFormik.values.destinatario.uf)
             const produto = rule.products.find((item) => item.id == currentProduct?.id)
-            console.log({ origem, destino, produto, currentProduct })
+            console.log({ aqui: origem, destino, produto, currentProduct })
+            console.log({ ORIGEM_REGRA: rule.origem, EMITENTE: focusNFEInvoiceFormik.values.emitente.uf })
             return origem && destino && produto
         })
         console.log({ tax_rule })
@@ -118,7 +125,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                 formik.setFieldValue(param, value)
             })
         }
-    }, [currentProduct])
+    }, [currentProduct, nature])
 
     useEffect(() => {
         const available_products = nature?.rules.flatMap((rule) => rule.products)
@@ -226,7 +233,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 // @ts-ignore
                                 InputProps={{
                                     inputComponent: MaskedInput,
-                                    inputProps: { mask: useNumberMask({ allowDecimal: true, decimalLimit: 6 }), inputMode: "numeric" },
+                                    inputProps: {
+                                        mask: useNumberMask({ allowDecimal: true, decimalLimit: 6 }),
+                                        inputMode: "numeric",
+                                    },
                                 }}
                                 required
                             />
@@ -272,7 +282,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 label="Valor total"
                                 fullWidth
                                 value={Number(
-                                    (unmaskNumber(formik.values.quantidade) * unmaskCurrency(formik.values.valor_unitario_comercial)).toFixed(2)
+                                    (
+                                        unmaskNumber(formik.values.quantidade) *
+                                        unmaskCurrency(formik.values.valor_unitario_comercial)
+                                    ).toFixed(2)
                                 )}
                                 InputProps={{ startAdornment: <>R$</>, sx: { gap: "0.3rem" } }}
                             />
