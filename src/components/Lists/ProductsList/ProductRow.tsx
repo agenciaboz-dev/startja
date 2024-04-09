@@ -1,4 +1,4 @@
-import React, {  } from "react"
+import React, { useEffect } from "react"
 import { Box, Checkbox, CircularProgress, IconButton, Menu, MenuItem, darken, useMediaQuery } from "@mui/material"
 //import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined"
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline"
@@ -23,7 +23,7 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct, di
     const { user } = useUser()
     const { confirm } = useConfirmDialog()
 
-    const { isPresentOnInvoice } = useProduct()
+    const { isPresentOnInvoice, addProduct } = useProduct()
     const can_delete = product.user_id == user?.id ? !isPresentOnInvoice(product) : false
 
     const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -80,6 +80,31 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct, di
             },
         })
     }
+
+    const handleUserToggle = () => {
+        console.log("user toggle")
+        io.emit("product:usertoggle", product.id, user?.id)
+    }
+
+    const handleToggle = () => {
+        console.log("admin toggle")
+        io.emit("product:toggle", product.id)
+    }
+
+    useEffect(() => {
+        io.on("product:toggle:success", (product: Product) => {
+            addProduct(product)
+        })
+
+        io.on("product:usertoggle", (product: Product) => {
+            addProduct(product)
+        })
+
+        return () => {
+            io.off("product:toggle:success")
+            io.off("product:usertoggle")
+        }
+    }, [])
 
     // useEffect(() => {
     //     io.on("product:delete:success", (product: Product) => {
@@ -151,16 +176,16 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct, di
                 >
                     {user ? (
                         product.user_id ? (
-                            <IconButton color="inherit" onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
+                            <IconButton color="inherit" onClick={() => editProduct(product)}>
                                 <EditOutlinedIcon />
                             </IconButton>
                         ) : (
-                            <IconButton color="inherit" onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
+                            <IconButton color="inherit" onClick={() => editProduct(product)}>
                                 <RemoveRedEye />
                             </IconButton>
                         )
                     ) : (
-                        <IconButton color="inherit" onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
+                        <IconButton color="inherit" onClick={() => editProduct(product)}>
                             <EditOutlinedIcon />
                         </IconButton>
                     )}
@@ -183,10 +208,18 @@ export const ProductRow: React.FC<ProductRowProps> = ({ product, editProduct, di
                     </Menu>
                 </Box>
                 <Box>
-                    <ToggleSwitch checked={true} onClick={() => console.log("clicou")} />
+                    <ToggleSwitch
+                        checked={
+                            user
+                                ? product.user_id
+                                    ? product.active
+                                    : !product.hidden_by.split(",").includes(user?.id.toString() || "a")
+                                : product.active
+                        }
+                        onClick={user ? (product.user_id ? handleToggle : handleUserToggle) : handleToggle}
+                    />
                 </Box>
             </Box>
         </Box>
     )
 }
-
