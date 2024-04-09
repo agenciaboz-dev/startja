@@ -159,9 +159,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                   informacoes_adicionais_contribuinte: `${user.observations}\n\n${
                       user.show_funrural_on_invoices
                           ? `Funrural: ${
-                                user.recolhimento == 1
-                                    ? "Recolhimento pela folha de pagamento"
-                                    : "Recolhimento pelo valor da produção agrícola"
+                                user.recolhimento == 1 ? "Recolhimento pela folha de pagamento" : "Recolhimento pelo valor da produção agrícola"
                             }`
                           : ""
                   }\n\n${selectedNature?.rules.map((rule) => `${rule.observations}\n`)}`,
@@ -290,7 +288,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
             console.log(data)
             io.emit("nota:create", data)
         },
-        enableReinitialize: true,
+        // enableReinitialize: true,
     })
 
     const emptyList = !formik.values.produtos.length
@@ -390,23 +388,17 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
     useEffect(() => {
         formik.setFieldValue(
             "valor.total",
-            Number(
-                (
-                    formik.values.transporte.valor_frete +
-                    formik.values.valor.produtos +
-                    formik.values.transporte.valor_seguro
-                ).toFixed(2)
-            )
+            Number((formik.values.transporte.valor_frete + formik.values.valor.produtos + formik.values.transporte.valor_seguro).toFixed(2))
         )
     }, [formik.values.valor])
 
     useEffect(() => {
         if (open) {
-            console.log({
-                next_invoice_number: Number(formik.values.numero) || Number(currentProperty.nfe_number),
-                property_number: Number(currentProperty.nfe_number),
-            })
-            console.log(formik.values.formas_pagamento)
+            // console.log({
+            //     next_invoice_number: Number(formik.values.numero) || Number(currentProperty.nfe_number),
+            //     property_number: Number(currentProperty.nfe_number),
+            // })
+            // console.log(formik.values.formas_pagamento)
         }
     }, [open])
 
