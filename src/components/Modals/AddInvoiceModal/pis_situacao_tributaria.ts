@@ -21,15 +21,15 @@ export const pis_situacao_tributaria_values: {
                 xs: 6,
             },
             { field: "pis_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number", xs: 6 },
-            {
-                field: "pis_aliquota_valor",
-                label: "Valor alíquota",
-                type: "number",
-                disabled: true,
-                formula:
-                    "({formik.values.pis_aliquota_porcentual} / 100) * (({formik.values.interno_pis_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
-                xs: 6,
-            },
+            // {
+            //     field: "pis_aliquota_valor",
+            //     label: "Valor alíquota",
+            //     type: "number",
+            //     disabled: true,
+            //     formula:
+            //         "({formik.values.pis_aliquota_porcentual} / 100) * (({formik.values.interno_pis_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
+            //     xs: 6,
+            // },
             {
                 field: "pis_valor",
                 label: "Valor do PIS",
@@ -37,6 +37,7 @@ export const pis_situacao_tributaria_values: {
                 disabled: true,
                 formula:
                     "({formik.values.pis_aliquota_porcentual} / 100) * (({formik.values.interno_pis_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
+                    xs: 6
             },
         ],
     },
@@ -80,31 +81,64 @@ export const pis_situacao_tributaria_values: {
 
     { value: "49", label: "Outras operações de saída" },
 
-    { value: "50", label: "Operação com direito a crédito: vinculada exclusivamente a receita tributada no mercado interno" },
+    {
+        value: "50",
+        label: "Operação com direito a crédito: vinculada exclusivamente a receita tributada no mercado interno",
+    },
 
-    { value: "51", label: "Operação com direito a crédito: vinculada exclusivamente a receita não tributada no mercado interno" },
+    {
+        value: "51",
+        label: "Operação com direito a crédito: vinculada exclusivamente a receita não tributada no mercado interno",
+    },
 
     { value: "52", label: "Operação com direito a crédito: vinculada exclusivamente a receita de exportação" },
 
-    { value: "53", label: "Operação com direito a crédito: vinculada a receitas tributadas e não-tributadas no mercado interno" },
+    {
+        value: "53",
+        label: "Operação com direito a crédito: vinculada a receitas tributadas e não-tributadas no mercado interno",
+    },
 
-    { value: "54", label: "Operação com direito a crédito: vinculada a receitas tributadas no mercado interno e de exportação" },
+    {
+        value: "54",
+        label: "Operação com direito a crédito: vinculada a receitas tributadas no mercado interno e de exportação",
+    },
 
-    { value: "55", label: "Operação com direito a crédito: vinculada a receitas não-tributadas no mercado interno e de exprtação" },
+    {
+        value: "55",
+        label: "Operação com direito a crédito: vinculada a receitas não-tributadas no mercado interno e de exprtação",
+    },
 
-    { value: "56", label: "Operação com direito a crédito: vinculada a receitas tributadas e não-tributadas no mercado interno e de exportação" },
+    {
+        value: "56",
+        label: "Operação com direito a crédito: vinculada a receitas tributadas e não-tributadas no mercado interno e de exportação",
+    },
 
-    { value: "60", label: "Crédito presumido: operação de aquisição vinculada exclusivamente a receita tributada no mercado interno" },
+    {
+        value: "60",
+        label: "Crédito presumido: operação de aquisição vinculada exclusivamente a receita tributada no mercado interno",
+    },
 
-    { value: "61", label: "Crédito presumido: operação de aquisição vinculada exclusivamente a receita não-tributada no mercado interno" },
+    {
+        value: "61",
+        label: "Crédito presumido: operação de aquisição vinculada exclusivamente a receita não-tributada no mercado interno",
+    },
 
     { value: "62", label: "Crédito presumido: operação de aquisição vinculada exclusivamente a receita de exportação" },
 
-    { value: "63", label: "Crédito presumido: operação de aquisição vinculada a receitas tributadas e não-tributadas no mercado interno" },
+    {
+        value: "63",
+        label: "Crédito presumido: operação de aquisição vinculada a receitas tributadas e não-tributadas no mercado interno",
+    },
 
-    { value: "64", label: "Crédito presumido: operação de aquisição vinculada a receitas tributadas no mercado interno e de exportação" },
+    {
+        value: "64",
+        label: "Crédito presumido: operação de aquisição vinculada a receitas tributadas no mercado interno e de exportação",
+    },
 
-    { value: "65", label: "Crédito presumido: operação de aquisição vinculada a receitas não-tributadas no mercado interno e de exportação" },
+    {
+        value: "65",
+        label: "Crédito presumido: operação de aquisição vinculada a receitas não-tributadas no mercado interno e de exportação",
+    },
 
     {
         value: "66",

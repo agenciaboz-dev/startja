@@ -10,7 +10,12 @@ export const cofins_situacao_tributaria_values: {
         value: "01",
         label: "Operação tributável: base de cálculo = valor da operação (alíquota normal - cumulativo/não cumulativo)",
         fields: [
-            { field: "interno_cofins_percentual_base_calculo", label: "Percentual da base de cálculo", type: "number", xs: 6 },
+            {
+                field: "interno_cofins_percentual_base_calculo",
+                label: "Percentual da base de cálculo",
+                type: "number",
+                xs: 6,
+            },
             {
                 field: "cofins_base_calculo",
                 label: "Base de cálculo COFINS",
@@ -21,15 +26,15 @@ export const cofins_situacao_tributaria_values: {
                 xs: 6,
             },
             { field: "cofins_aliquota_porcentual", label: "Alíquota (em percentual)", type: "number", xs: 6 },
-            {
-                field: "cofins_aliquota_valor",
-                label: "Valor alíquota",
-                type: "number",
-                disabled: true,
-                formula:
-                    "({formik.values.cofins_aliquota_porcentual} / 100) * (({formik.values.interno_cofins_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
-                xs: 6,
-            },
+            // {
+            //     field: "cofins_aliquota_valor",
+            //     label: "Valor alíquota",
+            //     type: "number",
+            //     disabled: true,
+            //     formula:
+            //         "({formik.values.cofins_aliquota_porcentual} / 100) * (({formik.values.interno_cofins_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
+            //     xs: 6,
+            // },
             {
                 field: "cofins_valor",
                 label: "Valor do COFINS",
@@ -37,6 +42,7 @@ export const cofins_situacao_tributaria_values: {
                 disabled: true,
                 formula:
                     "({formik.values.cofins_aliquota_porcentual} / 100) * (({formik.values.interno_cofins_percentual_base_calculo} / 100) * {product_formik.values.valor_unitario_comercial} * {product_formik.values.quantidade})",
+                xs: 6,
             },
         ],
     },
@@ -80,31 +86,64 @@ export const cofins_situacao_tributaria_values: {
 
     { value: "49", label: "Outras operações de saída" },
 
-    { value: "50", label: "Operação com direito a crédito: vinculada exclusivamente a receita tributada no mercado interno" },
+    {
+        value: "50",
+        label: "Operação com direito a crédito: vinculada exclusivamente a receita tributada no mercado interno",
+    },
 
-    { value: "51", label: "Operação com direito a crédito: vinculada exclusivamente a receita não tributada no mercado interno" },
+    {
+        value: "51",
+        label: "Operação com direito a crédito: vinculada exclusivamente a receita não tributada no mercado interno",
+    },
 
     { value: "52", label: "Operação com direito a crédito: vinculada exclusivamente a receita de exportação" },
 
-    { value: "53", label: "Operação com direito a crédito: vinculada a receitas tributadas e não-tributadas no mercado interno" },
+    {
+        value: "53",
+        label: "Operação com direito a crédito: vinculada a receitas tributadas e não-tributadas no mercado interno",
+    },
 
-    { value: "54", label: "Operação com direito a crédito: vinculada a receitas tributadas no mercado interno e de exportação" },
+    {
+        value: "54",
+        label: "Operação com direito a crédito: vinculada a receitas tributadas no mercado interno e de exportação",
+    },
 
-    { value: "55", label: "Operação com direito a crédito: vinculada a receitas não-tributadas no mercado interno e de exprtação" },
+    {
+        value: "55",
+        label: "Operação com direito a crédito: vinculada a receitas não-tributadas no mercado interno e de exprtação",
+    },
 
-    { value: "56", label: "Operação com direito a crédito: vinculada a receitas tributadas e não-tributadas no mercado interno e de exportação" },
+    {
+        value: "56",
+        label: "Operação com direito a crédito: vinculada a receitas tributadas e não-tributadas no mercado interno e de exportação",
+    },
 
-    { value: "60", label: "Crédito presumido: operação de aquisição vinculada exclusivamente a receita tributada no mercado interno" },
+    {
+        value: "60",
+        label: "Crédito presumido: operação de aquisição vinculada exclusivamente a receita tributada no mercado interno",
+    },
 
-    { value: "61", label: "Crédito presumido: operação de aquisição vinculada exclusivamente a receita não-tributada no mercado interno" },
+    {
+        value: "61",
+        label: "Crédito presumido: operação de aquisição vinculada exclusivamente a receita não-tributada no mercado interno",
+    },
 
     { value: "62", label: "Crédito presumido: operação de aquisição vinculada exclusivamente a receita de exportação" },
 
-    { value: "63", label: "Crédito presumido: operação de aquisição vinculada a receitas tributadas e não-tributadas no mercado interno" },
+    {
+        value: "63",
+        label: "Crédito presumido: operação de aquisição vinculada a receitas tributadas e não-tributadas no mercado interno",
+    },
 
-    { value: "64", label: "Crédito presumido: operação de aquisição vinculada a receitas tributadas no mercado interno e de exportação" },
+    {
+        value: "64",
+        label: "Crédito presumido: operação de aquisição vinculada a receitas tributadas no mercado interno e de exportação",
+    },
 
-    { value: "65", label: "Crédito presumido: operação de aquisição vinculada a receitas não-tributadas no mercado interno e de exportação" },
+    {
+        value: "65",
+        label: "Crédito presumido: operação de aquisição vinculada a receitas não-tributadas no mercado interno e de exportação",
+    },
 
     {
         value: "66",
