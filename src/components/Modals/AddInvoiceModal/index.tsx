@@ -232,7 +232,7 @@ const AddInvoiceModal: React.FC<AddInvoiceModalProps> = ({ open, onClose, curren
                   produtos: [],
                   formas_pagamento: {
                       indicador_pagamento: 0,
-                      forma_pagamento: "00",
+                      forma_pagamento: "99",
                   },
               },
         onSubmit: (values) => {
