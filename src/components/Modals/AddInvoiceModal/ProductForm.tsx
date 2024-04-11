@@ -9,17 +9,14 @@ import { unmaskCurrency, unmaskNumber } from "../../../tools/unmaskNumber"
 import { TaxValues } from "../../TaxValues"
 import { useSnackbar } from "burgos-snackbar"
 import icms_situacao_tributaria_values from "./icms_situacao_tributaria"
+import { useUser } from "../../../hooks/useUser"
 
 interface ProductFormProps {
     addProduct: (product: InvoiceProduct) => void
     focusNFEInvoiceFormik: {
         values: FocusNFeInvoiceForm
         handleChange: (e: React.ChangeEvent<any>) => void
-        setFieldValue: (
-            field: string,
-            value: any,
-            shouldValidate?: boolean | undefined
-        ) => Promise<void> | Promise<FormikErrors<FocusNFeInvoiceForm>>
+        setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => Promise<void> | Promise<FormikErrors<FocusNFeInvoiceForm>>
     }
     nature: Natureza | null
 }
@@ -29,6 +26,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
     const number_mask = useNumberMask({})
     const products = useProduct()
     const { snackbar } = useSnackbar()
+    const { user } = useUser()
 
     const [productFormDisplay, setProductFormDisplay] = useState("produto")
     const [list, setList] = useState<Product[]>([])
@@ -109,7 +107,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
         console.log({ natureza_operação: nature })
         console.log({ Estado: focusNFEInvoiceFormik.values.emitente.uf })
         const tax_rule = nature?.rules.find((rule) => {
-         
             const origem = rule.origem == focusNFEInvoiceFormik.values.emitente.uf
             const destino = rule.destino.split(", ").includes(focusNFEInvoiceFormik.values.destinatario.uf)
             const produto = rule.products.find((item) => item.id == currentProduct?.id)
@@ -124,6 +121,16 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                 if (["id", "product", "product_id", "origem", "destino"].includes(param)) return
                 formik.setFieldValue(param, value)
             })
+            focusNFEInvoiceFormik.setFieldValue(
+                "informacoes_adicionais_contribuinte",
+                `${user?.observations}\n\n${
+                    user?.show_funrural_on_invoices
+                        ? `Funrural: ${
+                              user.recolhimento == 1 ? "Recolhimento pela folha de pagamento" : "Recolhimento pelo valor da produção agrícola"
+                          }`
+                        : ""
+                }\n\n${nature?.rules.map((rule) => `${rule.observations}\n`)}`
+            )
         }
     }, [currentProduct, nature])
 
@@ -282,10 +289,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ addProduct, focusNFEIn
                                 label="Valor total"
                                 fullWidth
                                 value={Number(
-                                    (
-                                        unmaskNumber(formik.values.quantidade) *
-                                        unmaskCurrency(formik.values.valor_unitario_comercial)
-                                    ).toFixed(2)
+                                    (unmaskNumber(formik.values.quantidade) * unmaskCurrency(formik.values.valor_unitario_comercial)).toFixed(2)
                                 )}
                                 InputProps={{ startAdornment: <>R$</>, sx: { gap: "0.3rem" } }}
                             />
