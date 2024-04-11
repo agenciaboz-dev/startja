@@ -99,17 +99,23 @@ export const TaxField: React.FC<TaxFieldProps> = ({ item, formik, product_formik
     const inputRef = useRef<HTMLInputElement>(null)
     const [cursor, setCursor] = useState<number>(0)
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (item.type == "number") {
-            const is_number = !!Number(event.target.value)
-            if (is_number) {
+        if (event.target.value == "") {
+            formik.handleChange(event)
+        } else {
+            if (item.type == "number") {
+                const is_number = !!Number(event.target.value)
+                if (is_number) {
+                    formik.handleChange(event)
+                }
+            } else {
                 formik.handleChange(event)
             }
-        } else {
-            formik.handleChange(event)
+            // item.type == "number" ? formik.setFieldValue(item.field, unmaskCurrency(event.target.value)) : formik.handleChange(event)
+            const newCursorPosition = event.target.selectionStart ? event.target.selectionStart + 1 : 0
+            setCursor(newCursorPosition)
         }
-        // item.type == "number" ? formik.setFieldValue(item.field, unmaskCurrency(event.target.value)) : formik.handleChange(event)
-        const newCursorPosition = event.target.selectionStart ? event.target.selectionStart + 1 : 0
-        setCursor(newCursorPosition)
+
+        
     }
 
     useEffect(() => {
