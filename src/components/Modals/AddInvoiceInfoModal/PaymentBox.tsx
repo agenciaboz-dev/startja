@@ -8,6 +8,8 @@ import { addMonths } from "date-fns"
 import { InstallmentData } from "../../../definitions/Installments"
 import CheckIcon from "@mui/icons-material/Check"
 import CloseIcon from "@mui/icons-material/Close"
+import MaskedInput from "../../MaskedInput"
+import { useNumberMask } from "burgos-masks"
 
 interface PaymentBoxProps {
     formik: {
@@ -19,6 +21,14 @@ interface PaymentBoxProps {
 
 export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const number_mask = useNumberMask({
+        allowDecimal: true,
+        allowLeadingZeroes: false,
+        allowNegative: false,
+        decimalLimit: 2,
+        thousandsSeparatorSymbol: "",
+        decimalSymbol: ".",
+    })
 
     const [installmentsPay, setInstallmentsPay] = useState(false)
     const [installmentsNumber, setInstallmentsNumber] = useState(1)
@@ -105,7 +115,12 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
                             Valor total da nota: R$ {valor_total}
                             {totalError ? <CloseIcon color="error" /> : <CheckIcon color="primary" />}
                         </Box>
-                        {totalError && <p style={{ color: "red" }}>O valor da soma das parcelas deve corresponder ao valor total da nota</p>}
+                        {totalError && (
+                            <p style={{ color: "red" }}>
+                                O valor da soma das parcelas deve corresponder ao valor total da nota. Valor somado: R$
+                                {installmentsArray.reduce((total, item) => (total += Number(item.value)), 0).toFixed(2)}
+                            </p>
+                        )}
                     </Box>
                 </Grid>
                 <Grid item xs={installmentsPay ? 6 : 12}>
@@ -130,10 +145,10 @@ export const PaymentBox: React.FC<PaymentBoxProps> = ({ formik }) => {
                         <TextField
                             fullWidth
                             label="Quantidade de parcelas"
-                            type="number"
                             inputProps={{ min: 1, max: 120 }}
                             value={installmentsNumber}
                             onChange={handleInstallmentsChange}
+                            InputProps={{ inputComponent: MaskedInput, inputProps: { mask: number_mask, inputMode: "numeric" } }}
                         />
                     </Grid>
                 )}

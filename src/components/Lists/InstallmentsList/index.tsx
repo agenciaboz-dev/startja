@@ -25,8 +25,8 @@ export const InstallmentsList: React.FC<InstallmentsListProps> = ({ installments
     }
 
     useEffect(() => {
-        console.log(installmentsArray)
-        const total = installmentsArray.reduce((total, item) => (total += Number(item.value)), 0)
+        const total = Number(installmentsArray.reduce((total, item) => (total += Number(item.value)), 0).toFixed(2))
+        console.log({ total_somado: total, total_nota: formik.values.valor.total })
 
         if (total != formik.values.valor.total) {
             setTotalError(true)
