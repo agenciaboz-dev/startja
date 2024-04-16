@@ -31,6 +31,10 @@ export const TransportBox: React.FC<TransportBoxProps> = ({ formik }) => {
         }
     }, [selectedShippingCompany])
 
+    useEffect(() => {
+        console.log(formik.values)
+    }, [formik.values])
+
     return user ? (
         <Box
             sx={{
@@ -145,7 +149,7 @@ export const TransportBox: React.FC<TransportBoxProps> = ({ formik }) => {
                 </Box>
             )}
 
-            {formik.values.transporte.modalidade_frete == 0 && (
+            {(formik.values.transporte.modalidade_frete == 0 || formik.values.transporte.modalidade_frete == 9) && (
                 <Box
                     sx={{
                         flexDirection: "column",
@@ -158,20 +162,20 @@ export const TransportBox: React.FC<TransportBoxProps> = ({ formik }) => {
                             <TextField
                                 fullWidth
                                 label="Quantidade dos produtos transportados"
-                                name="transporte.volumes.quantidade"
+                                name="transporte.volumes.volumes_quantidade"
                                 value={formik.values.transporte.volumes.volumes_quantidade}
                                 onChange={formik.handleChange}
-                                required
+                                required={formik.values.transporte.modalidade_frete == 9 ? false : true}
                             />
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 6}>
                             <TextField
                                 fullWidth
                                 label="Espécie dos produtos transportados"
-                                name="transporte.volumes.especie"
+                                name="transporte.volumes.volumes_especie"
                                 value={formik.values.transporte.volumes.volumes_especie}
                                 onChange={formik.handleChange}
-                                required
+                                required={formik.values.transporte.modalidade_frete == 9 ? false : true}
                             />
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 6}>
@@ -181,7 +185,7 @@ export const TransportBox: React.FC<TransportBoxProps> = ({ formik }) => {
                                 name="transporte.volumes.peso_bruto"
                                 value={formik.values.transporte.volumes.peso_bruto}
                                 onChange={formik.handleChange}
-                                required
+                                required={formik.values.transporte.modalidade_frete == 9 ? false : true}
                             />
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 6}>
@@ -191,7 +195,7 @@ export const TransportBox: React.FC<TransportBoxProps> = ({ formik }) => {
                                 name="transporte.volumes.peso_liquido"
                                 value={formik.values.transporte.volumes.peso_liquido}
                                 onChange={formik.handleChange}
-                                required
+                                required={formik.values.transporte.modalidade_frete == 9 ? false : true}
                             />
                         </Grid>
                     </Grid>
