@@ -6,6 +6,7 @@ import { colors } from "../../../../../../style/colors"
 import { useFormik } from "formik"
 import { useIo } from "../../../../../../hooks/useIo"
 import { useSnackbar } from "burgos-snackbar"
+import MaskedInput from "../../../../../../components/MaskedInput"
 
 interface ConfigMyAccountProps {
     user: User
@@ -37,7 +38,7 @@ export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
         },
         onSubmit(values) {
             setLoading(true)
-            io.emit("user:update", user.id, values)
+            io.emit("user:update", user.id, { ...values, cep: values.cep?.replace(/\D/g, "") })
         },
         enableReinitialize: true,
     })
@@ -224,7 +225,17 @@ export const ConfigMyAccount: React.FC<ConfigMyAccountProps> = ({ user }) => {
                             <p>Endereço</p>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
-                                    <TextField label="CEP" fullWidth name="cep" value={formik.values.cep} onChange={formik.handleChange} />
+                                    <TextField
+                                        label="CEP"
+                                        fullWidth
+                                        name="cep"
+                                        value={formik.values.cep}
+                                        onChange={formik.handleChange}
+                                        InputProps={{
+                                            inputComponent: MaskedInput,
+                                            inputProps: { mask: [/\d/, /\d/, /\d/, ".", /\d/, /\d/, "-", /\d/, /\d/, /\d/] },
+                                        }}
+                                    />
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField label="Cidade/UF" fullWidth name="city" value={formik.values.city} onChange={formik.handleChange} />
