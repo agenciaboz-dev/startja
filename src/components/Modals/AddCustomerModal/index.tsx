@@ -37,6 +37,11 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
 
     const [certificateFile, setCertificateFile] = React.useState<ExtFile>()
 
+    const handleClose = () => {
+        formik.resetForm()
+        onClose()
+    }
+
     const formik = useFormik<NewUser>({
         initialValues: {
             name: "",
@@ -100,7 +105,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
         io.on("user:signup:success", (customer: User) => {
             io.emit("user:list")
             setLoading(false)
-            onClose()
+            handleClose()
         })
         io.on("user:signup:failed", ({ error }) => {
             setLoading(false)
@@ -117,7 +122,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
     return (
         <Dialog
             open={open}
-            onClose={onClose}
+            onClose={handleClose}
             sx={{
                 justifyContent: "center",
             }}
@@ -138,7 +143,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                         right: isMobile ? "5vw" : "1vw",
                         cursor: "pointer",
                     }}
-                    onClick={onClose}
+                    onClick={handleClose}
                 />
 
                 <DialogContent>
@@ -171,7 +176,7 @@ const AddCustomerModal: React.FC<AddCustomerModalProps> = ({ open, onClose }) =>
                     }}
                 >
                     <Button
-                        onClick={onClose}
+                        onClick={handleClose}
                         color="secondary"
                         variant="contained"
                         sx={{
