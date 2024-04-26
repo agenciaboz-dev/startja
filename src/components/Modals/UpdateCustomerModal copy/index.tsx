@@ -1,19 +1,5 @@
 import React, { useEffect, useState } from "react"
-import {
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
-    Button,
-    Box,
-    Grid,
-    TextField,
-    FormControlLabel,
-    Checkbox,
-    CircularProgress,
-    useMediaQuery,
-    MenuItem,
-} from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, CircularProgress, useMediaQuery } from "@mui/material"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { useFormik } from "formik"
 import { NewUser } from "../../../definitions/userOperations"
@@ -75,6 +61,8 @@ const UpdateCustomerModal: React.FC<UpdateCustomerModalProps> = ({ customer, ope
             show_funrural_on_invoices: customer.show_funrural_on_invoices || true,
         },
         onSubmit: (values) => {
+            snackbar({ severity: "info", text: "em desenvolvimento" })
+            return
             if (!certificateFile) {
                 alert("Anexar certificado")
                 return
@@ -89,7 +77,7 @@ const UpdateCustomerModal: React.FC<UpdateCustomerModalProps> = ({ customer, ope
 
             console.log({ dataAtualizado: data })
             setLoading(true)
-            // io.emit("user:update",customer.id, data)
+            io.emit("user:update", customer.id, data)
         },
     })
 
