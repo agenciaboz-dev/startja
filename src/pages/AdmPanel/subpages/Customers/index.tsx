@@ -10,6 +10,7 @@ import { useHeader } from "../../../../hooks/useHeader"
 import normalize from "../../../../tools/normalize"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useUser } from "../../../../hooks/useUser"
+import UpdateCustomerModal from "../../../../components/Modals/UpdateCustomerModal copy"
 
 interface CustomersProps {}
 
@@ -47,7 +48,6 @@ export const Customers: React.FC<CustomersProps> = ({}) => {
             })
         )
     }
-      
 
     useEffect(() => {
         if (pathname.split("/adm").length < 3) {

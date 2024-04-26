@@ -1,18 +1,22 @@
-import React from "react"
-import { AlertColor, Box, Button, Grid, Avatar as MuiAvatar, useMediaQuery } from "@mui/material"
+import React, { useState } from "react"
+import { AlertColor, Box, Button, Grid, IconButton, Menu, MenuItem, Avatar as MuiAvatar, useMediaQuery } from "@mui/material"
 import { colors } from "../../style/colors"
 import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined"
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined"
 import SettingsPhoneOutlinedIcon from "@mui/icons-material/SettingsPhoneOutlined"
 import { useNavigate } from "react-router-dom"
 import { useUser } from "../../hooks/useUser"
+import { Edit } from "@mui/icons-material"
+import MoreVertIcon from "@mui/icons-material/MoreVert"
+import UpdateCustomerModal from "../Modals/UpdateCustomerModal copy"
 
 interface CustomerCardProps {
     customer: User
     buttonColor: AlertColor | "primary" | "secondary"
+    openCustomerModal?: () => void
 }
 
-export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColor }) => {
+export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColor, openCustomerModal }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const navigate = useNavigate()
     const { setUser } = useUser()
@@ -22,6 +26,19 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
         navigate("/painel")
     }
 
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+    const open = Boolean(anchorEl)
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget)
+    }
+    const handleClose = () => {
+        setAnchorEl(null)
+    }
+
+    const [updateCustomerModalOpen, setUpdateCustomerModalOpen] = useState(false)
+    const openUpdateCustomerModal = () => {
+        setUpdateCustomerModalOpen(true)
+    }
     const calculateDays = (registerDate: number): number => {
         const registerDateObj = new Date(registerDate)
         const currentDate = new Date()
@@ -44,30 +61,73 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
                     // flex: 1,
                 }}
             >
+                <UpdateCustomerModal
+                    customer={customer}
+                    open={updateCustomerModalOpen}
+                    onClose={() => setUpdateCustomerModalOpen(false)}
+                />
                 <Box
                     sx={{
                         alignItems: "center",
                         gap: "1vw",
+                        justifyContent: "space-between",
                     }}
                 >
-                    <MuiAvatar
-                        sx={{
-                            backgroundColor: colors.secondary,
-                        }}
-                    />
                     <Box
                         sx={{
-                            flexDirection: "column",
+                            alignItems: "center",
+                            gap: "1vw",
                         }}
                     >
-                        <p
-                            style={{
-                                color: colors.text.darkgrey,
+                        <MuiAvatar
+                            sx={{
+                                backgroundColor: colors.secondary,
+                            }}
+                        />
+                        <Box
+                            sx={{
+                                flexDirection: "column",
                             }}
                         >
-                            {customer.name}
-                        </p>
-                        <p>Cliente há {calculateDays(Number(customer.register_date))} dias</p>
+                            <p
+                                style={{
+                                    color: colors.text.darkgrey,
+                                }}
+                            >
+                                {customer.name}
+                            </p>
+                            <p>Cliente há {calculateDays(Number(customer.register_date))} dias</p>
+                        </Box>
+                    </Box>
+                    <Box>
+                        <IconButton
+                            id="basic-button"
+                            aria-controls={open ? "basic-menu" : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? "true" : undefined}
+                            onClick={handleClick}
+                        >
+                            <MoreVertIcon sx={{ color: colors.secondary }} />
+                        </IconButton>
+                        <Menu
+                            id="basic-menu"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                                "aria-labelledby": "basic-button",
+                            }}
+                        >
+                            <MenuItem
+                                onClick={() => {
+                                    handleClose()
+                                    openUpdateCustomerModal()
+                                }}
+                            >
+                                <Edit sx={{}} />
+                                Editar
+                            </MenuItem>
+                        </Menu>
                     </Box>
                 </Box>
                 <Box
@@ -85,7 +145,10 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customer, buttonColo
                             {customer.city}/{customer.state}
                         </p>
                     </Box>
-                    <p>Certificado digital expira em: {new Date(Number(customer.certificate.expiry)).toLocaleDateString("pt-br")}</p>
+                    <p>
+                        Certificado digital expira em:{" "}
+                        {new Date(Number(customer.certificate.expiry)).toLocaleDateString("pt-br")}
+                    </p>
                 </Box>
                 <Box
                     sx={{

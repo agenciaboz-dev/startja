@@ -19,7 +19,7 @@ import MaskedInput from "../../MaskedInput"
 
 interface InfoContainerProps {
     formik: {
-        values: NewUser
+        values: Partial<NewUser>
         handleChange: (e: React.ChangeEvent<any>) => void
     }
 
@@ -122,19 +122,20 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                         value={formik.values.businessName}
                         name="businessName"
                         onChange={formik.handleChange}
-                        required={formik.values.document.replace(/\D/g, "").length == 14}
+                        required={formik.values.document ? formik.values.document.replace(/\D/g, "").length == 14 : false}
                     />
                 </Grid>
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
                     <TextField
                         required
+                        type="password"
                         label="Senha provisória"
                         fullWidth
                         value={formik.values.password}
                         name="password"
                         onChange={formik.handleChange}
                     />
-                </Grid>
+                </Grid> */}
             </Grid>
 
             <h3>Contato</h3>
@@ -446,7 +447,7 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
 
             <h3>Certificado</h3>
 
-            <Dropzone
+            {/* <Dropzone
                 onChange={updateFiles}
                 value={file ? [file] : []}
                 maxFiles={1}
@@ -455,15 +456,15 @@ export const InfoContainer: React.FC<InfoContainerProps> = ({ formik, file, setF
                 label="Clique ou arraste o arquivo aqui"
             >
                 {file && <FileMosaic key={file.id} {...file} onDelete={removeFile} info={true} />}
-            </Dropzone>
-            <TextField
+            </Dropzone> */}
+            {/* <TextField
                 required
                 label="Senha do certificado"
                 value={formik.values.certificate_password}
                 name="certificate_password"
                 onChange={formik.handleChange}
                 fullWidth
-            />
+            /> */}
         </Box>
     )
 }
